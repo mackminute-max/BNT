@@ -1,6 +1,6 @@
 # Blood and Thunder — racing prototype development
 
-The numbered production specifications remain authoritative. Version `0.4.1-m4` implements the four racing-prototype milestones. Stable economy, campaigns and persistent roster progression remain outside this prototype. Final offline file-launch acceptance is still blocked by the managed test browser; see `IMPLEMENTATION_STATUS.md`.
+The numbered production specifications remain authoritative. Current version `0.4.2-corrective` is maintenance of B01–B04 within the approved racing prototype, not a new milestone. Stable economy, campaigns and persistent roster progression remain outside this prototype. The owner confirms offline operation of the pre-corrective 0.4.1 file; managed direct-file navigation remains policy-blocked, and the new artifact requires its own local confirmation. See `IMPLEMENTATION_STATUS.md` and `docs/audits/CORRECTIVE_PASS_0_4_2.md`.
 
 ## Build and validate
 
@@ -88,3 +88,18 @@ See `reports/MILESTONE_4_UPDATE.md` for the 0.4.1-m4 evidence. `tests/fixtures.j
 Apply the catalog's `openingCommands` with `step`. Sign replacement, retirement and live-override workflows are demonstrated in `tests/audit-regressions.test.js`; expected invariants are asserted there and in existing focused tests. The Sprint scenario uses an explicit autonomous Sprint bias so it exercises condition integration. Disabling component conditions are part of setup, not unlogged live fixture mutation.
 
 Use `BNT_REPORT_TAG=milestone-4-update npm run reference` to write separate update reference/replay files without overwriting the original evidence. Run `node docs/audits/evidence/reproduce-findings.mjs` to inspect the original counterexamples against the current source; all three should now report `reproduced: false`. Preserve the original audit output as historical evidence. Replays are simulation-version-specific; 0.4.0-m4 records intentionally do not replay under 0.4.1-m4.
+
+
+## Corrective pass — 0.4.2
+
+`tests/corrective.test.js` contains 30 focused regressions; `npm test` runs these alongside all 114 retained tests. `scripts/browser-test.mjs` adds four corrective UI checks while retaining its explicit blocked `file://` result and labeled HTTP fallback. Use `BNT_REPORT_TAG=corrective-0.4.2 npm run reference` for separate reference/replay output; previous reports are historical and remain untouched.
+
+AI diagnostics distinguish `intended`, `effective`, `executed` and `physicalOutcome`. AI_DECISION is an immutable snapshot with a decisionId; subsequent AI_EXECUTION_RESULT references that ID. Pending positional compliance is unresolved (null) until the physical outcome. Pace application is distinct from movement achievement: an unrelated lateral failure leaves an applied pace sign intact; forward blockage/control loss records a relevant constraint. Offensive actions resolved by a contest count as attempted engagement even when defended. Raw test commands without a decision link do not rewrite previous autonomous samples. Paused signs record phase=paused, so replay restores them before boundary retirement/condition events.
+
+Surface hazardModifier is dimensionless, default 1, accepted 0..2. It weights each eligible placement tile on that segment; 0 excludes the segment, including scheduled requests. Random incident frequency/type weights stay unchanged, and no extra RNG draws are added. Nonzero scheduled requests retain their explicit placement. A zero random incidentRate still allows explicitly scheduled test requests, as before; consequences=false disables all incidents. Surface changes require a new setup through the existing surface editor/JSON; no structural live-edit workflow is added.
+
+At the qualifying finish crossing, finishSnapshot stores the unrounded time and each beast's fatigue. It is deeply frozen and nonreplaceable in engine state, present in the RU_FINISHED event/checksums/replay, and copied into results export. Current mutable fatigue remains separate. Historical fatigueAtFinish averages finishSnapshot beasts, never later component values.
+
+The finish_photo setup uses a fixture-only outer-lane rollingEfficiency of 57.34996687475359 and no random incidents to produce a roughly 0.0005 s gap within the unchanged 0.001 s tolerance. Both entrants start stationary and complete the physical common-line lap. No timestamp/lap/position injection is involved. Tightening tolerance changes classification without altering finish times.
+
+The simulation/package version advances to 0.4.2-corrective / 0.4.2 because event/state/paused-command metadata change. Schema remains 1; configuration and replay records are version-specific. Validate/regenerate older setup payloads for the new engine rather than changing a replay version string or silently migrating history.

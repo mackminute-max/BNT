@@ -4,7 +4,11 @@ import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import assert from "node:assert/strict";
-import { createRace, run, capture, issueSign } from "../src/sim/race.js";
+import { createRace, run, step, capture, issueSign } from "../src/sim/race.js";
+
+import { configuration } from "../src/dev/configuration.js";
+import { verifyReplay } from "../src/replay/replay.js";
+import { entrant, fixtureCatalog } from "../tests/fixtures.js";
 
 const htmlPath = resolve("dist/Blood_and_Thunder.html");
 const html = await readFile(htmlPath, "utf8");
@@ -382,6 +386,68 @@ try {
     ),
   );
   report.checks.push("800px viewport has no horizontal overflow");
+  // Corrective-pass workflows use public UI controls and the bundled engine.
+  const correctiveA = entrant("A");
+  correctiveA.ru.driver.awareness = 0;
+  correctiveA.ru.driver.personality = { aggression: 100, caution: 0, patience: 0, opportunism: 0, staminaManagement: 0, tacticalDiscipline: 100 };
+  const correctiveSetup = { seed: 145, entrants: [correctiveA], environmentOverrides: { visibility: .1 },
+    autonomous: { noise: 0, executionError: 0, judgmentError: 0, stressError: 0, utility: { laneBase: 100 } },
+    consequence: { incidentRate: 0 }, scheduledIncidents: [{ time: 0, type: "debris", lane: 1, tile: 79, duration: 12 }] };
+  await page.fill("#setupJSON", JSON.stringify(configuration(correctiveSetup)));
+  await page.click("#applySetup");
+  await page.selectOption("#sign", "Push the Pace");
+  await page.click("#queueSign"); await page.click("#step");
+  const corrected = await page.evaluate(() => window.BNT.getState());
+  assert.equal(corrected.entrants[0].ai.diagnostics.compliance, "Followed");
+  assert.equal(corrected.entrants[0].ai.diagnostics.executed.position, null);
+  assert.equal(corrected.entrants[0].lane, 0);
+  assert.match(await page.locator("#signStatus").textContent(), /Followed/);
+  const correctiveExpected = createRace(correctiveSetup);
+  issueSign(correctiveExpected, "queue", "Push the Pace"); step(correctiveExpected);
+  assert.deepEqual(await page.evaluate(() => window.BNT.capture(window.BNT.getState())), capture(correctiveExpected));
+  report.checks.push("B01 blocked positional maneuver preserves pace compliance and bundled/Node event parity");
+
+  await page.selectOption("#surfaceSegment", "north");
+  await page.selectOption("#surfaceField", "hazardModifier");
+  await page.fill("#surfaceValue", "2"); await page.click("#applySurface");
+  assert.equal(await page.evaluate(() => window.BNT.getState().track.segments[0].surface.hazardModifier), 2);
+  const surfaceDigest = await page.evaluate(() => window.BNT.digest(window.BNT.getState()));
+  await page.fill("#surfaceValue", "-1"); await page.click("#applySurface");
+  assert.match(await page.locator("#developerStatus").textContent(), /Invalid surface modifier/);
+  assert.equal(await page.evaluate(() => window.BNT.digest(window.BNT.getState())), surfaceDigest);
+  assert.equal(JSON.parse(await page.locator("#setupJSON").inputValue()).setup.surfaces.north.hazardModifier, 2);
+  report.checks.push("B02 hazard modifier is tunable, serialized and validated without corrupting the live setup");
+
+  const fatigueSetup = { seed: 145, entrants: [entrant("A", 0, -.5, 0, 80), entrant("B", 1, -.5, 0, 20)], overrides: { laps: 1 }, consequence: { incidentRate: 0 }, checkpointInterval: 1000 };
+  await page.fill("#setupJSON", JSON.stringify(configuration(fatigueSetup))); await page.click("#applySetup");
+  await page.selectOption("#speed", "16"); await page.click("#play");
+  await page.waitForFunction(() => window.BNT.getState().entrants.some(r => r.finishTime !== null), undefined, { timeout: 60000 });
+  await page.click("#play");
+  const finishedBefore = await page.evaluate(() => window.BNT.getState().entrants.find(r => r.finishTime !== null));
+  const fatigueBefore = await page.evaluate(() => window.BNT.results(window.BNT.getState()).technical.fatigueAtFinish);
+  await page.selectOption("#componentScope", finishedBefore.id);
+  await page.selectOption("#componentObject", "beasts.*"); await page.selectOption("#componentField", "fatigue");
+  await page.selectOption("#componentMode", "live"); await page.fill("#componentValue", "100");
+  await page.click("#applyComponent"); await page.click("#step");
+  assert.equal(await page.evaluate(() => window.BNT.results(window.BNT.getState()).technical.fatigueAtFinish), fatigueBefore);
+  const fatigueRecord = await page.evaluate(() => window.BNT.capture(window.BNT.getState()));
+  const fatigueVerified = verifyReplay(fatigueRecord);
+  assert.equal(fatigueVerified.checksum, fatigueRecord.checksum);
+  const resultDownload = page.waitForEvent("download"); await page.click("#exportResults");
+  const resultJSON = JSON.parse(await readFile(await (await resultDownload).path(), "utf8"));
+  assert.deepEqual(resultJSON.technical.entrants.find(r => r.id === finishedBefore.id).finishSnapshot, finishedBefore.finishSnapshot);
+  await page.click("#complete");
+  await page.waitForFunction(() => document.getElementById("state").textContent === "Ended", undefined, { timeout: 60000 });
+  assert.deepEqual(await page.evaluate(id => window.BNT.getState().entrants.find(r => r.id === id).finishSnapshot, finishedBefore.id), finishedBefore.finishSnapshot);
+  report.checks.push("B03 finished RU can be live-edited while historical fatigue survives export, replay and exit clearance");
+
+  await page.fill("#setupJSON", JSON.stringify(configuration(fixtureCatalog.finish_photo.setup))); await page.click("#applySetup");
+  await page.click("#complete");
+  await page.waitForFunction(() => document.getElementById("state").textContent === "Ended", undefined, { timeout: 60000 });
+  const photo = await page.evaluate(() => window.BNT.capture(window.BNT.getState()));
+  assert.deepEqual(photo, capture(run(createRace(fixtureCatalog.finish_photo.setup))));
+  assert.deepEqual(await page.evaluate(() => window.BNT.classification(window.BNT.getState()).map(r => r.place)), [1, 1]);
+  report.checks.push("B04 named photo-finish fixture produces official ties with exact bundled/Node parity");
   assert.deepEqual(report.errors, []);
   assert.deepEqual(report.networkRequests, []);
   report.checks.push(

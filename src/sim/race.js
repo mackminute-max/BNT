@@ -1,3 +1,4 @@
+import { resolveAction } from "../ai/telemetry.js";
 import { applyOverride } from "../dev/overrides.js";
 import {
   consequenceConfig,
@@ -28,7 +29,7 @@ import { signCommand, activateSign } from "../ai/signs.js";
 import { config, VERSION } from "../config/config.js";
 import { defaultRU, derive } from "../model/ru.js";
 import { byId, random, checksum } from "../core/determinism.js";
-import { track, location, key, nextDistance } from "../track/oval.js";
+import { surfaceDefaults, surfaceRules, track, location, key, nextDistance } from "../track/oval.js";
 import { emit } from "../events/events.js";
 import { travel, arrival } from "./kinematics.js";
 
@@ -86,10 +87,10 @@ export function createRace({
       throw new Error("Invalid surface");
     for (const [k, v] of Object.entries(patch))
       if (
-        !["grip", "roughness", "rollingResistance"].includes(k) ||
+        !Object.hasOwn(surfaceDefaults, k) ||
         !Number.isFinite(v) ||
-        v < (k === "roughness" ? 0 : 0.1) ||
-        v > 2
+        v < surfaceRules[k][0] ||
+        v > surfaceRules[k][1]
       )
         throw new Error("Invalid surface modifier");
     Object.assign(segment.surface, patch);
@@ -149,6 +150,7 @@ export function createRace({
       lastCrossingTime: null,
       lastCrossingQ: null,
       finishTime: null,
+      finishSnapshot: null,
       retirement: null,
       pace: "Maintain",
       cornerVisits: 0,
@@ -441,9 +443,14 @@ function crossing(s, r) {
       emit(s, "FINAL_LAP", [r.id], { targetLaps: s.config.laps });
     if (r.completedLaps === s.config.laps) {
       r.finishTime = s.time;
+      const finishSnapshot = Object.freeze({
+        time: s.time,
+        beasts: Object.freeze(r.ru.beasts.map((b, index) => Object.freeze({ index, fatigue: b.fatigue }))),
+      });
+      Object.defineProperty(r, "finishSnapshot", { value: finishSnapshot, enumerable: true, writable: false, configurable: false });
       r.status = "Finished";
       r.physical = "Clearing";
-      emit(s, "RU_FINISHED", [r.id], { time: r.finishTime });
+      emit(s, "RU_FINISHED", [r.id], { time: r.finishTime, finishSnapshot: r.finishSnapshot });
     }
   }
 }
@@ -489,6 +496,7 @@ function laneChanges(s, commands) {
       cmd.lane < 0 ||
       cmd.lane >= s.config.lanes
     ) {
+      resolveAction(s, r, cmd.decisionId, "position", false, "Illegal adjacent lane change");
       emit(s, "COMMAND_REJECTED", cmd.id ? [cmd.id] : [], {
         reason: "Illegal adjacent lane change",
       });
@@ -496,6 +504,7 @@ function laneChanges(s, commands) {
     }
     intents.push({
       r,
+      decisionId: cmd.decisionId,
       lane: cmd.lane,
       target: key(r.q, cmd.lane, s.track),
       rank: randomDraw(s, "lateral", s.tick, r.id),
@@ -539,6 +548,7 @@ function laneChanges(s, commands) {
         lane: intent.lane,
         reason: intent.hazard ? "Swept tile contains an incident" : "Swept tile occupied or contested",
       });
+      resolveAction(s, intent.r, intent.decisionId, "position", false, "Physical execution blocked", { lane: intent.r.lane });
     } else {
       won.add(intent.target);
       const old = intent.r.lane;
@@ -556,6 +566,7 @@ function laneChanges(s, commands) {
         to: intent.lane,
       });
       corner(s, intent.r);
+      resolveAction(s, intent.r, intent.decisionId, "position", true, null, { lane: intent.r.lane });
     }
   }
   flush(s);
@@ -796,6 +807,7 @@ function resolveForward(s, movers) {
       r.q = next - s.config.positionEpsilon;
       r.speed = 0;
       r.blocked = true;
+      resolveAction(s, r, r.ai.diagnostics?.decisionId, "movement", false, "Forward path blocked");
       emit(s, "MOVEMENT_BLOCKED", [r.id], { tile: key(next, r.lane, s.track) });
     }
   }
@@ -829,6 +841,15 @@ export function step(s, commands = []) {
   try {
     s.resolving = true;
     assertState(s);
+    // Paused UI signs were already applied before this boundary in the original
+    // run. Replay them before condition/retirement effects, preserving event order.
+    for (const command of commands.filter(c => c?.phase === "paused")) {
+      if (command.type !== "sign" || command.id !== s.playerId ||
+          Object.keys(command).some(k => !["type", "id", "action", "sign", "phase"].includes(k)))
+        throw new Error("Invalid paused sign command");
+      issueSign(s, command.action, command.sign);
+    }
+    commands = commands.filter(c => c?.phase !== "paused");
     s.impactsThisTick = 0;
     for (const r of sorted(s)) {
       r.reactionsRemaining = s.consequence.reactionBudget;
@@ -862,17 +883,6 @@ export function step(s, commands = []) {
         s,
         intents.filter((c) => c.type === "lane"),
       );
-      for (const intent of intents.filter((c) => c.type === "lane")) {
-        const r = s.entrants.find((r) => r.id === intent.id);
-        if (r.lane !== intent.lane && r.ai.diagnostics) {
-          r.ai.diagnostics.compliance = r.signs.active ? "Prevented" : null;
-          r.ai.diagnostics.reason = "Physical execution blocked";
-          emit(s, "AI_EXECUTION_RESULT", [r.id], {
-            compliance: r.ai.diagnostics.compliance,
-            reason: r.ai.diagnostics.reason,
-          });
-        }
-      }
     }
     const end = (s.tick + 1) * s.config.dt;
     let groups = 0;
@@ -958,14 +968,9 @@ export function step(s, commands = []) {
           );
           for (const intent of reactions.filter((c) => c.type === "lane")) {
             const r = s.entrants.find((r) => r.id === intent.id);
-            if (r.lane !== lanes.get(r.id)) r.blocked = false;
-            else if (r.signs.active) {
-              r.ai.diagnostics.compliance = "Prevented";
-              r.ai.diagnostics.reason = "Physical execution blocked";
-              emit(s, "AI_EXECUTION_RESULT", [r.id], {
-                compliance: r.ai.diagnostics.compliance,
-                reason: r.ai.diagnostics.reason,
-              });
+            if (r.lane !== lanes.get(r.id)) {
+              r.blocked = false;
+              resolveAction(s, r, intent.decisionId, "movement", true);
             }
           }
         }
@@ -1043,7 +1048,7 @@ export function issueSign(s, action, sign) {
     action,
     ...(sign === undefined ? {} : { sign }),
   };
-  s.commands.push({ tick: s.tick, order: s.commands.length, ...command });
+  s.commands.push({ tick: s.tick, order: s.commands.length, phase: "paused", ...command });
   return signCommand(s, command);
 }
 

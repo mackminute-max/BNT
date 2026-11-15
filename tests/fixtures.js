@@ -18,6 +18,7 @@ export const fixtureDefinitions = {
     seed: 23,
     entrants: [entrant("A", 0), entrant("B", 1)],
     overrides: { laps: 1 },
+    consequence: { incidentRate: 0 },
   },
   rear_row_laps: {
     seed: 29,
@@ -49,6 +50,9 @@ Object.assign(fixtureDefinitions, {
   override_replay: { seed: 73, entrants: [entrant("A")], driverMode: "autonomous", overrides: { laps: 1 }, checkpointInterval: 20 },
   all_retired: { seed: 79, entrants: [entrant("A"), entrant("B", 1)] },
 });
+// Fixture-only compensation for the outer lane's longer physical circuit.
+// Standing start, unchanged tie tolerance, no position/lap/timestamp injection.
+fixtureDefinitions.finish_photo.entrants[1].ru.chariot.rollingEfficiency = 57.34996687475359;
 fixtureDefinitions.mismatched_team.entrants[0].ru.beasts[1].speed = 20;
 fixtureDefinitions.mismatched_team.entrants[0].ru.beasts[1].agility = 20;
 // Disablement is part of initial component configuration, not an unlogged live edit.

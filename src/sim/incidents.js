@@ -1,4 +1,4 @@
-import { key, mod } from "../track/oval.js";
+import { key, mod, location } from "../track/oval.js";
 import { emit } from "../events/events.js";
 import { drawConsequence } from "./consequences.js";
 export const incidentTypes = ["debris", "animal", "spectator"];
@@ -93,18 +93,20 @@ export function updateIncidents(s) {
     const eligible = [];
     for (let lane = 0; lane < s.config.lanes; lane++)
       for (let tile = s.config.exitTiles + 1; tile < s.track.cells; tile++)
-        if (!occupied.has(key(tile, lane, s.track)))
-          eligible.push({ lane, tile });
-    const placement =
-      request.tile === undefined
-        ? eligible[
-            Math.floor(
-              drawConsequence(s, "incident-placement", id) * eligible.length,
-            )
-          ]
-        : eligible.find(
-            (p) => p.lane === request.lane && p.tile === request.tile,
-          );
+        if (!occupied.has(key(tile, lane, s.track))) {
+          const weight = location(tile, lane, s.config, s.track).surface.hazardModifier;
+          if (weight > 0) eligible.push({ lane, tile, weight });
+        }
+    let placement;
+    if (request.tile === undefined) {
+      // The race-wide incident clock is unchanged. Surface coefficients weight
+      // eligible placement cells; neutral weights reproduce the old uniform draw.
+      let pick = drawConsequence(s, "incident-placement", id) *
+        eligible.reduce((sum, cell) => sum + cell.weight, 0);
+      placement = eligible.find(cell => { pick -= cell.weight; return pick < 0; });
+    } else {
+      placement = eligible.find(p => p.lane === request.lane && p.tile === request.tile);
+    }
     if (!placement) {
       emit(s, "INCIDENT_SKIPPED", [], {
         incidentId: id,

@@ -1,3 +1,4 @@
+import { resolveAction } from "../ai/telemetry.js";
 import { byId, clamp, random } from "../core/determinism.js";
 import { location, mod } from "../track/oval.js";
 import { emit } from "../events/events.js";
@@ -188,6 +189,8 @@ export function updateControl(s, r, cause = null) {
         : "Normal";
   if (next !== r.control) {
     r.control = next;
+    if (next === "Out of Control")
+      resolveAction(s, r, r.ai.diagnostics?.decisionId, "pace", false, "Out of control requires braking");
     emit(s, "CONTROL_CHANGED", [r.id], {
       control: next,
       instability: r.instability,
@@ -457,15 +460,7 @@ export function resolveAttacks(s, intents, refresh) {
       !eligibleCombat(s, a, b, intent.action) ||
       s.time + s.config.epsilon < a.nextAttackTime
     ) {
-      if (a?.ai.diagnostics) {
-        if (a.ai.diagnostics.compliance)
-          a.ai.diagnostics.compliance = "Prevented";
-        a.ai.diagnostics.reason = "Combat execution invalidated";
-        emit(s, "AI_EXECUTION_RESULT", [a.id], {
-          compliance: a.ai.diagnostics.compliance,
-          reason: a.ai.diagnostics.reason,
-        });
-      }
+      resolveAction(s, a, intent.decisionId, "position", false, "Combat execution invalidated");
       emit(
         s,
         "ATTACK_INVALIDATED",
@@ -514,6 +509,7 @@ export function resolveAttacks(s, intents, refresh) {
       success,
       reacted: react,
     });
+    resolveAction(s, a, intent.decisionId, "position", true, null, { combatResult: success ? "Hit" : "Defended", attackId: id });
     if (!success) continue;
     if (intent.action === "ram")
       queueImpact(s, a, b, "Deliberate lateral ram", {

@@ -1,0 +1,891 @@
+{
+  "execution": {
+    "target": 1000,
+    "completed": 1000,
+    "countsByFormat": {
+      "Pure": 500,
+      "Combat": 500
+    },
+    "statuses": {
+      "Ended": 1000
+    },
+    "toolErrors": [],
+    "cancelled": false,
+    "wallSeconds": 237.70437555,
+    "workers": 4
+  },
+  "replications": {
+    "uniqueConfigurations": 245,
+    "uniqueSeededConfigurations": 968,
+    "duplicateExecutions": 32,
+    "allDuplicateChecksumsMatch": true
+  },
+  "baseline": {
+    "Pure": {
+      "n": 100,
+      "uniqueSeeds": 20,
+      "duration": {
+        "n": 100,
+        "mean": 163.3585000000001,
+        "median": 157.125,
+        "sd": 20.427657592023852,
+        "p10": 141.70000000000002,
+        "p90": 201.74,
+        "p95": 203.5625,
+        "min": 135.35,
+        "max": 204.8,
+        "clusters": 20,
+        "ci95": [
+          162.62996249999998,
+          164.1401125
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "winnerGap": {
+        "n": 100,
+        "mean": 2.7135365617802707,
+        "median": 1.6977162846713014,
+        "sd": 2.6511680148539107,
+        "p10": 0.4016631494537947,
+        "p90": 5.9477778317639345,
+        "p95": 8.435407260827146,
+        "min": 0.061853100618549206,
+        "max": 12.864679956231583,
+        "clusters": 20,
+        "ci95": [
+          2.3593813449791705,
+          3.1303946124457447
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "fieldFinishSpan": {
+        "n": 100,
+        "mean": 25.96267527015165,
+        "median": 25.19613893237687,
+        "sd": 9.213676593263909,
+        "p10": 14.59389536127129,
+        "p90": 37.87953339041131,
+        "p95": 40.072931479451206,
+        "min": 9.597327155683843,
+        "max": 41.43770824597701,
+        "clusters": 20,
+        "ci95": [
+          25.191769249720025,
+          26.785856589541147
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "overtakes": {
+        "n": 100,
+        "mean": 51.77,
+        "median": 51,
+        "sd": 9.54717685279716,
+        "p10": 40,
+        "p90": 65.10000000000001,
+        "p95": 70.05,
+        "min": 32,
+        "max": 75,
+        "clusters": 20,
+        "ci95": [
+          50.75975,
+          52.87025
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "collisions": {
+        "n": 100,
+        "mean": 8.45,
+        "median": 8.5,
+        "sd": 2.4261829354695483,
+        "p10": 5,
+        "p90": 12,
+        "p95": 12,
+        "min": 4,
+        "max": 14,
+        "clusters": 20,
+        "ci95": [
+          8.16975,
+          8.71025
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "attacks": {
+        "n": 100,
+        "mean": 0,
+        "median": 0,
+        "sd": 0,
+        "p10": 0,
+        "p90": 0,
+        "p95": 0,
+        "min": 0,
+        "max": 0,
+        "clusters": 20,
+        "ci95": [
+          0,
+          0
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "rams": {
+        "n": 100,
+        "mean": 0,
+        "median": 0,
+        "sd": 0,
+        "p10": 0,
+        "p90": 0,
+        "p95": 0,
+        "min": 0,
+        "max": 0,
+        "clusters": 20,
+        "ci95": [
+          0,
+          0
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "damage": {
+        "n": 100,
+        "mean": 9.249801601667148,
+        "median": 4.466198378314246,
+        "sd": 10.568719830135537,
+        "p10": 0.2690510542433714,
+        "p90": 27.81983622847393,
+        "p95": 31.664913329105005,
+        "min": 0,
+        "max": 51.36203053021549,
+        "clusters": 20,
+        "ci95": [
+          7.764268238020731,
+          10.784207852211855
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "fatigueAtFinish": {
+        "n": 100,
+        "mean": 17.018077428608766,
+        "median": 16.191587259281537,
+        "sd": 2.718007673223228,
+        "p10": 13.308768516392096,
+        "p90": 20.461005224422927,
+        "p95": 20.616212589973607,
+        "min": 12.796019438028123,
+        "max": 21.136778632261525,
+        "clusters": 20,
+        "ci95": [
+          16.97112592301059,
+          17.058802981558358
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "incidents": 41,
+      "entries": 800,
+      "finishes": 800,
+      "dnfs": 0,
+      "dns": 0,
+      "wrecks": 0,
+      "controlLossEvents": 0,
+      "reactions": 0,
+      "successfulAttacks": 0,
+      "successfulDefenses": 0,
+      "laneAttempts": 3772,
+      "laneSuccesses": 3772,
+      "laneRejected": 0,
+      "repeatedBlockedAttempts": 4184,
+      "rapidReversals": 278,
+      "meanBlockedSecondsPerEntry": 0.28702116661729943,
+      "maximumLoggedImpactEnergy": {
+        "n": 98,
+        "mean": 3496.0278800411247,
+        "median": 1842.5587524997827,
+        "sd": 3729.1591064732065,
+        "p10": 103.75541262973043,
+        "p90": 7815.559925776719,
+        "p95": 10689.429321300673,
+        "min": 53.669934878902815,
+        "max": 16471.24686581281
+      },
+      "entryMetrics": {
+        "sampledAverageSpeed": {
+          "n": 800,
+          "mean": 12.142830266665866,
+          "median": 12.465923526404207,
+          "sd": 1.5126823751626328,
+          "p10": 9.993672895507922,
+          "p90": 13.90095164869628,
+          "p95": 14.197105641580388,
+          "min": 8.566720515002707,
+          "max": 15.003744105406895,
+          "clusters": 20,
+          "ci95": [
+            12.129857209145502,
+            12.154435443524283
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples"
+        },
+        "maxObservedSpeed": {
+          "n": 800,
+          "mean": 15.909931548702962,
+          "median": 16.124001969243093,
+          "sd": 2.0202868710361135,
+          "p10": 13.139622969675576,
+          "p90": 18.43185595256252,
+          "p95": 19.251095955234124,
+          "min": 11.063271100429663,
+          "max": 21.10687090694205,
+          "clusters": 20,
+          "ci95": [
+            15.877986747129553,
+            15.943114378078567
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples"
+        },
+        "paceShares": {
+          "Conserve": {
+            "n": 800,
+            "mean": 0.21226478965790335,
+            "median": 0.1481819059131786,
+            "sd": 0.18596640200868278,
+            "p10": 0.010640544665655453,
+            "p90": 0.5143382950252844,
+            "p95": 0.5569500296292642,
+            "min": 0,
+            "max": 0.7073416886928852,
+            "clusters": 20,
+            "ci95": [
+              0.21100198729033545,
+              0.2136128549278068
+            ],
+            "smallClusterSample": false,
+            "method": "seed-cluster bootstrap mean, 1000 resamples"
+          },
+          "Maintain": {
+            "n": 800,
+            "mean": 0.6821274646443318,
+            "median": 0.7181551559572854,
+            "sd": 0.2455275924028088,
+            "p10": 0.326356832856129,
+            "p90": 0.9703603491348699,
+            "p95": 0.9785023986856807,
+            "min": 0.05712604816232817,
+            "max": 1,
+            "clusters": 20,
+            "ci95": [
+              0.680264117579519,
+              0.6840547030995017
+            ],
+            "smallClusterSample": false,
+            "method": "seed-cluster bootstrap mean, 1000 resamples"
+          },
+          "Push": {
+            "n": 800,
+            "mean": 0.09755145309341252,
+            "median": 0.039346225372346014,
+            "sd": 0.111123989600326,
+            "p10": 0,
+            "p90": 0.26022526197540485,
+            "p95": 0.28234939531609354,
+            "min": 0,
+            "max": 0.4835179207241562,
+            "clusters": 20,
+            "ci95": [
+              0.09646616092258761,
+              0.09857455235136037
+            ],
+            "smallClusterSample": false,
+            "method": "seed-cluster bootstrap mean, 1000 resamples"
+          },
+          "Sprint": {
+            "n": 800,
+            "mean": 0.008056292604351848,
+            "median": 0,
+            "sd": 0.011669583146477812,
+            "p10": 0,
+            "p90": 0.027982776942606036,
+            "p95": 0.032952947226913734,
+            "min": 0,
+            "max": 0.04969366378908912,
+            "clusters": 20,
+            "ci95": [
+              0.007619956298048285,
+              0.008494663946972254
+            ],
+            "smallClusterSample": false,
+            "method": "seed-cluster bootstrap mean, 1000 resamples"
+          }
+        },
+        "sampledLaneShares": {
+          "0": 0.25637730034090533,
+          "1": 0.2471398979455407,
+          "2": 0.24562263979142443,
+          "3": 0.25086016192212773
+        },
+        "decisions": {
+          "total": 313283,
+          "boundaryDue": 223976,
+          "boundaryEarly": 83853,
+          "boundaryRepeat": 0,
+          "subevent": 5454
+        },
+        "strain": {
+          "n": 800,
+          "mean": 3.5177697595023822,
+          "median": 3.489176632497691,
+          "sd": 0.4371061213270826,
+          "p10": 3.009904069873493,
+          "p90": 4.07598989205156,
+          "p95": 4.221732433084631,
+          "min": 2.646752693858605,
+          "max": 4.800819563427509,
+          "clusters": 20,
+          "ci95": [
+            3.5139923224696923,
+            3.5216190618822556
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples"
+        },
+        "wear": {
+          "n": 800,
+          "mean": 0.15595912163464315,
+          "median": 0.14796798309425468,
+          "sd": 0.032156309087115545,
+          "p10": 0.12192800994338239,
+          "p90": 0.20654709890935302,
+          "p95": 0.2185857744235132,
+          "min": 0.10826308287697967,
+          "max": 0.2496426172982305,
+          "clusters": 20,
+          "ci95": [
+            0.15577878688913577,
+            0.1561289684168202
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples"
+        }
+      },
+      "retirementSeedContext": {
+        "seeds": 20,
+        "seedsWithAnyRetirement": 0,
+        "wilsonCI95": [
+          0,
+          0.16112515805281938
+        ],
+        "definition": "Probability of any retirement across five selected weather contexts per seed, not per-entry or per-race retirement risk"
+      }
+    },
+    "Combat": {
+      "n": 100,
+      "uniqueSeeds": 20,
+      "duration": {
+        "n": 100,
+        "mean": 163.87200000000007,
+        "median": 158.40000000000003,
+        "sd": 20.83783141744405,
+        "p10": 142.14000000000001,
+        "p90": 202.335,
+        "p95": 203.8075,
+        "min": 135.35,
+        "max": 215.85000000000002,
+        "clusters": 20,
+        "ci95": [
+          163.011875,
+          164.587025
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "winnerGap": {
+        "n": 100,
+        "mean": 3.6017411739474916,
+        "median": 2.639688333618871,
+        "sd": 3.2381764963295256,
+        "p10": 0.5229115269897093,
+        "p90": 8.994730529944935,
+        "p95": 10.67577403886283,
+        "min": 0.1151895512456349,
+        "max": 12.883641732034988,
+        "clusters": 20,
+        "ci95": [
+          2.934062540961871,
+          4.293400065005006
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "fieldFinishSpan": {
+        "n": 100,
+        "mean": 27.6306776130396,
+        "median": 27.832901447034132,
+        "sd": 9.579174240968662,
+        "p10": 15.566603370300387,
+        "p90": 39.624061987986984,
+        "p95": 40.41396916908928,
+        "min": 9.419441861948314,
+        "max": 51.964880893585246,
+        "clusters": 20,
+        "ci95": [
+          26.520391409728262,
+          28.799357756029348
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "overtakes": {
+        "n": 100,
+        "mean": 50.38,
+        "median": 49,
+        "sd": 9.175923700509706,
+        "p10": 40,
+        "p90": 63.10000000000001,
+        "p95": 67.1,
+        "min": 32,
+        "max": 80,
+        "clusters": 20,
+        "ci95": [
+          49.41975,
+          51.32
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "collisions": {
+        "n": 100,
+        "mean": 7.96,
+        "median": 8,
+        "sd": 2.3177836853600486,
+        "p10": 5,
+        "p90": 11,
+        "p95": 12,
+        "min": 4,
+        "max": 13,
+        "clusters": 20,
+        "ci95": [
+          7.58,
+          8.30025
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "attacks": {
+        "n": 100,
+        "mean": 8.21,
+        "median": 8,
+        "sd": 2.8684807508822185,
+        "p10": 5,
+        "p90": 12.100000000000009,
+        "p95": 14,
+        "min": 3,
+        "max": 18,
+        "clusters": 20,
+        "ci95": [
+          7.67,
+          8.78
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "rams": {
+        "n": 100,
+        "mean": 0,
+        "median": 0,
+        "sd": 0,
+        "p10": 0,
+        "p90": 0,
+        "p95": 0,
+        "min": 0,
+        "max": 0,
+        "clusters": 20,
+        "ci95": [
+          0,
+          0
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "damage": {
+        "n": 100,
+        "mean": 18.22699391358195,
+        "median": 16.815022225568995,
+        "sd": 11.956335734910775,
+        "p10": 3.331989590374744,
+        "p90": 33.5928208412992,
+        "p95": 38.88257424290401,
+        "min": 0.3039062140011879,
+        "max": 54.843266020681966,
+        "clusters": 20,
+        "ci95": [
+          15.628607794404896,
+          20.77911210136123
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "fatigueAtFinish": {
+        "n": 100,
+        "mean": 17.13029147130044,
+        "median": 16.33838732208931,
+        "sd": 2.6829758643833563,
+        "p10": 13.544716394915968,
+        "p90": 20.57363047310583,
+        "p95": 20.634089503339766,
+        "min": 12.796019438028123,
+        "max": 20.93721344899062,
+        "clusters": 20,
+        "ci95": [
+          17.071303914657566,
+          17.18640334329377
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples"
+      },
+      "incidents": 41,
+      "entries": 800,
+      "finishes": 800,
+      "dnfs": 0,
+      "dns": 0,
+      "wrecks": 0,
+      "controlLossEvents": 0,
+      "reactions": 821,
+      "successfulAttacks": 147,
+      "successfulDefenses": 674,
+      "laneAttempts": 3654,
+      "laneSuccesses": 3653,
+      "laneRejected": 1,
+      "repeatedBlockedAttempts": 3999,
+      "rapidReversals": 277,
+      "meanBlockedSecondsPerEntry": 0.273904124503631,
+      "maximumLoggedImpactEnergy": {
+        "n": 100,
+        "mean": 3376.212872734892,
+        "median": 1162.4322732812857,
+        "sd": 3848.7421108708095,
+        "p10": 107.66123251920868,
+        "p90": 9616.45259875793,
+        "p95": 10975.626690666735,
+        "min": 29.200012340977207,
+        "max": 16471.24686581281
+      },
+      "entryMetrics": {
+        "sampledAverageSpeed": {
+          "n": 800,
+          "mean": 12.144951444098067,
+          "median": 12.49451930420025,
+          "sd": 1.5416413665379571,
+          "p10": 9.932731163137897,
+          "p90": 13.947365628573358,
+          "p95": 14.197885146434352,
+          "min": 8.400725981330183,
+          "max": 15.093420262487626,
+          "clusters": 20,
+          "ci95": [
+            12.132180204795297,
+            12.159467952272397
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples"
+        },
+        "maxObservedSpeed": {
+          "n": 800,
+          "mean": 15.893994032555982,
+          "median": 16.124001969243093,
+          "sd": 2.0126905718581245,
+          "p10": 13.025908961588486,
+          "p90": 18.423412690553352,
+          "p95": 19.133668916858237,
+          "min": 10.508726636265768,
+          "max": 21.10687090694205,
+          "clusters": 20,
+          "ci95": [
+            15.864963110465567,
+            15.927201192126047
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples"
+        },
+        "paceShares": {
+          "Conserve": {
+            "n": 800,
+            "mean": 0.20983565584927927,
+            "median": 0.1398736556041874,
+            "sd": 0.18738620910581785,
+            "p10": 0.0077947927085084915,
+            "p90": 0.5133859601420673,
+            "p95": 0.5681161176033566,
+            "min": 0,
+            "max": 0.7073416886928865,
+            "clusters": 20,
+            "ci95": [
+              0.20839637685823012,
+              0.21138267087235657
+            ],
+            "smallClusterSample": false,
+            "method": "seed-cluster bootstrap mean, 1000 resamples"
+          },
+          "Maintain": {
+            "n": 800,
+            "mean": 0.6847122672536443,
+            "median": 0.7197584648542357,
+            "sd": 0.24609975374663084,
+            "p10": 0.32558803870106,
+            "p90": 0.9704535596834926,
+            "p95": 0.9817496475344922,
+            "min": 0.14550188722637492,
+            "max": 1,
+            "clusters": 20,
+            "ci95": [
+              0.6826670812646153,
+              0.6868332987840363
+            ],
+            "smallClusterSample": false,
+            "method": "seed-cluster bootstrap mean, 1000 resamples"
+          },
+          "Push": {
+            "n": 800,
+            "mean": 0.09757566182430794,
+            "median": 0.039346225372345695,
+            "sd": 0.111103368208972,
+            "p10": 0,
+            "p90": 0.26134897735875506,
+            "p95": 0.2842897591634622,
+            "min": 0,
+            "max": 0.4823487220381194,
+            "clusters": 20,
+            "ci95": [
+              0.09666229028298226,
+              0.0985222246556908
+            ],
+            "smallClusterSample": false,
+            "method": "seed-cluster bootstrap mean, 1000 resamples"
+          },
+          "Sprint": {
+            "n": 800,
+            "mean": 0.007876415072768761,
+            "median": 0,
+            "sd": 0.01135970832946112,
+            "p10": 0,
+            "p90": 0.0265033755698919,
+            "p95": 0.03203924719117526,
+            "min": 0,
+            "max": 0.04969366378908912,
+            "clusters": 20,
+            "ci95": [
+              0.0074992153161960355,
+              0.008331718895475054
+            ],
+            "smallClusterSample": false,
+            "method": "seed-cluster bootstrap mean, 1000 resamples"
+          }
+        },
+        "sampledLaneShares": {
+          "0": 0.2502990359206914,
+          "1": 0.24288565975840948,
+          "2": 0.2555175418452903,
+          "3": 0.2512977624756081
+        },
+        "decisions": {
+          "total": 306279,
+          "boundaryDue": 225111,
+          "boundaryEarly": 75972,
+          "boundaryRepeat": 0,
+          "subevent": 5196
+        },
+        "strain": {
+          "n": 800,
+          "mean": 3.5232811318213497,
+          "median": 3.505978484564733,
+          "sd": 0.4384058605727372,
+          "p10": 3.011026260794164,
+          "p90": 4.092566566842944,
+          "p95": 4.213726184415462,
+          "min": 2.6340218428747044,
+          "max": 4.8518640522634,
+          "clusters": 20,
+          "ci95": [
+            3.5178039737982245,
+            3.52831838423862
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples"
+        },
+        "wear": {
+          "n": 800,
+          "mean": 0.15621087799422986,
+          "median": 0.1479721843841936,
+          "sd": 0.032298025627840565,
+          "p10": 0.12239284671109887,
+          "p90": 0.20724025539717958,
+          "p95": 0.21835412655127895,
+          "min": 0.10826308287697967,
+          "max": 0.25229693071769776,
+          "clusters": 20,
+          "ci95": [
+            0.15596052856774392,
+            0.15642723202509198
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples"
+        }
+      },
+      "retirementSeedContext": {
+        "seeds": 20,
+        "seedsWithAnyRetirement": 0,
+        "wilsonCI95": [
+          0,
+          0.16112515805281938
+        ],
+        "definition": "Probability of any retirement across five selected weather contexts per seed, not per-entry or per-race retirement risk"
+      }
+    }
+  },
+  "formatContrast": {
+    "pairs": 100,
+    "uniqueSeeds": 20,
+    "metrics": {
+      "duration": {
+        "n": 100,
+        "mean": 0.5135,
+        "median": 0,
+        "sd": 3.182669730927422,
+        "p10": -1.055000000000001,
+        "p90": 3.2950000000000057,
+        "p95": 5.102500000000009,
+        "min": -6.5,
+        "max": 23.350000000000023,
+        "clusters": 20,
+        "ci95": [
+          -0.0976000000000011,
+          1.2795250000000005
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples",
+        "dz": 0.16134253422844705
+      },
+      "damage": {
+        "n": 100,
+        "mean": 8.977192311914793,
+        "median": 8.276530887350958,
+        "sd": 10.397380829425503,
+        "p10": 0,
+        "p90": 22.02687999584372,
+        "p95": 29.57899979472801,
+        "min": -15.551085305663463,
+        "max": 47.40123103087858,
+        "clusters": 20,
+        "ci95": [
+          6.041785305890859,
+          12.189289518543488
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples",
+        "dz": 0.8634090122493685
+      },
+      "attacks": {
+        "n": 100,
+        "mean": 8.21,
+        "median": 8,
+        "sd": 2.8684807508822185,
+        "p10": 5,
+        "p90": 12.100000000000009,
+        "p95": 14,
+        "min": 3,
+        "max": 18,
+        "clusters": 20,
+        "ci95": [
+          7.65,
+          8.83
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples",
+        "dz": 2.8621422672872967
+      },
+      "overtakes": {
+        "n": 100,
+        "mean": -1.39,
+        "median": 0,
+        "sd": 6.417927857166828,
+        "p10": -8,
+        "p90": 5,
+        "p95": 7.049999999999997,
+        "min": -30,
+        "max": 20,
+        "clusters": 20,
+        "ci95": [
+          -2.94025,
+          -0.17
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples",
+        "dz": -0.21658080784560432
+      },
+      "dnfs": {
+        "n": 100,
+        "mean": 0,
+        "median": 0,
+        "sd": 0,
+        "p10": 0,
+        "p90": 0,
+        "p95": 0,
+        "min": 0,
+        "max": 0,
+        "clusters": 20,
+        "ci95": [
+          0,
+          0
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples",
+        "dz": null
+      },
+      "fatigue": {
+        "n": 100,
+        "mean": 0.11221404269167295,
+        "median": 0.0020650506463075757,
+        "sd": 0.2767881390861954,
+        "p10": -0.15114703436436158,
+        "p90": 0.5883608303703037,
+        "p95": 0.6787515817811717,
+        "min": -0.43555372915255575,
+        "max": 1.1807368849161328,
+        "clusters": 20,
+        "ci95": [
+          0.05635656520018749,
+          0.1737397340372523
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples",
+        "dz": 0.405414925155908
+      },
+      "collisions": {
+        "n": 100,
+        "mean": -0.49,
+        "median": 0,
+        "sd": 1.7893907320423879,
+        "p10": -3,
+        "p90": 1,
+        "p95": 2.049999999999997,
+        "min": -5,
+        "max": 4,
+        "clusters": 20,
+        "ci95": [
+          -0.9404999999999999,
+          -0.09
+        ],
+        "smallClusterSample": false,
+        "method": "seed-cluster bootstrap mean, 1000 resamples",
+        "dz": -0.27383622326059565
+      }
+    }
+  },
+  "excluded": []
+}

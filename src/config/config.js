@@ -1,4 +1,4 @@
-export const VERSION = "0.4.1-m4";
+export const VERSION = "0.4.2-corrective";
 // Bounds and units are shared by validation and diagnostic UI.
 export const rules = {
   dt: [0.001, 1, "s"],

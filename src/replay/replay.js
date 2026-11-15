@@ -30,7 +30,8 @@ export function startReplay(record) {
         c.order !== i ||
         !Number.isInteger(c.tick) ||
         c.tick < 0 ||
-        c.tick > record.tick,
+        c.tick > record.tick ||
+        (c.phase !== undefined && (c.phase !== "paused" || c.type !== "sign")),
     )
   )
     throw new Error("Invalid command order or tick");

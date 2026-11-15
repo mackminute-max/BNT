@@ -4,23 +4,29 @@ export function statistics(s) {
   const count = (type) => s.events.filter((e) => e.type === type).length;
   const decisions = [];
   const latest = new Map();
+  const byDecision = new Map();
   for (const e of s.events) {
     if (e.type === "AI_DECISION" && !e.effects.compliance)
       latest.delete(e.participants[0]);
-    if (e.type === "AI_DECISION" && e.effects.compliance) {
+    if (e.type === "AI_DECISION" && (e.effects.sign || e.effects.compliance)) {
       const sample = { ...e.effects };
       decisions.push(sample);
       latest.set(e.participants[0], sample);
+      if (e.effects.decisionId != null) byDecision.set(e.effects.decisionId, sample);
     }
-    if (e.type === "AI_EXECUTION_RESULT" && latest.has(e.participants[0]))
-      latest.get(e.participants[0]).compliance = e.effects.compliance;
+    if (e.type === "AI_EXECUTION_RESULT") {
+      const sample = e.effects.decisionId != null
+        ? byDecision.get(e.effects.decisionId)
+        : latest.get(e.participants[0]);
+      if (sample) sample.compliance = e.effects.compliance;
+    }
   }
   const compliance = {};
   for (const d of decisions)
-    compliance[d.compliance] = (compliance[d.compliance] ?? 0) + 1;
+    if (d.compliance) compliance[d.compliance] = (compliance[d.compliance] ?? 0) + 1;
   const finishFatigue = s.entrants
     .filter((r) => r.finishTime !== null)
-    .flatMap((r) => r.ru.beasts.map((b) => b.fatigue));
+    .flatMap((r) => r.finishSnapshot?.beasts.map((b) => b.fatigue) ?? []);
   return {
     version: s.version,
     seed: s.seed,
@@ -61,6 +67,7 @@ export function statistics(s) {
         beasts: r.ru.beasts.map((b) => b.condition),
       },
       fatigue: r.ru.beasts.map((b) => b.fatigue),
+      finishSnapshot: r.finishSnapshot ? structuredClone(r.finishSnapshot) : null,
       strain: r.ru.driver.strain,
       wear: r.ru.chariot.wear,
       signs: r.signs,

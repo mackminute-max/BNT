@@ -1,0 +1,2738 @@
+{
+  "n": 130,
+  "countsByFormat": {
+    "Pure": 60,
+    "Combat": 70
+  },
+  "excluded": [],
+  "control": {
+    "Pure": {
+      "n": 10,
+      "position": {
+        "n": 10,
+        "mean": 6.6,
+        "median": 6.5,
+        "sd": 1.1737877907772674,
+        "p10": 5,
+        "p90": 8,
+        "p95": 8,
+        "min": 5,
+        "max": 8
+      },
+      "time": {
+        "n": 10,
+        "mean": 150.61663762807905,
+        "median": 142.07623359041227,
+        "sd": 24.002643428108186,
+        "p10": 129.41076255888532,
+        "p90": 184.98056959485714,
+        "p95": 194.27191469807275,
+        "min": 128.19843677855005,
+        "max": 203.56325980128838
+      }
+    },
+    "Combat": {
+      "n": 10,
+      "position": {
+        "n": 10,
+        "mean": 6.6,
+        "median": 6.5,
+        "sd": 1.1737877907772674,
+        "p10": 5,
+        "p90": 8,
+        "p95": 8,
+        "min": 5,
+        "max": 8
+      },
+      "time": {
+        "n": 10,
+        "mean": 150.61663762807905,
+        "median": 142.07623359041227,
+        "sd": 24.002643428108186,
+        "p10": 129.41076255888532,
+        "p90": 184.98056959485714,
+        "p95": 194.27191469807275,
+        "min": 128.19843677855005,
+        "max": 203.56325980128838
+      }
+    }
+  },
+  "signs": {
+    "Pure": [
+      {
+        "arm": "Conserve Strength",
+        "n": 10,
+        "compliance": {
+          "Followed": 3760,
+          "Prevented": 110
+        },
+        "fullComplianceRate": 0.9715762273901809,
+        "inapplicableRate": 0,
+        "comparison": {
+          "pairs": 10,
+          "uniqueSeeds": 10,
+          "metrics": {
+            "position": {
+              "n": 10,
+              "mean": 1.4,
+              "median": 1.5,
+              "sd": 1.1737877907772671,
+              "p10": 0,
+              "p90": 3,
+              "p95": 3,
+              "min": 0,
+              "max": 3,
+              "clusters": 10,
+              "ci95": [
+                0.8,
+                2.1
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 1.1927198519188362
+            },
+            "time": {
+              "n": 10,
+              "mean": 34.13407245333607,
+              "median": 34.62778866892155,
+              "sd": 7.827693939116233,
+              "p10": 24.342455871099215,
+              "p90": 43.54734795932153,
+              "p95": 44.36915720509834,
+              "min": 22.532762717412737,
+              "max": 45.19096645087515,
+              "clusters": 10,
+              "ci95": [
+                29.50351971844724,
+                38.32865832455453
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 4.360680516999096
+            },
+            "fatigue": {
+              "n": 10,
+              "mean": -18.773256870611345,
+              "median": -18.330429958236017,
+              "sd": 1.8979895805102127,
+              "p10": -20.855691561931817,
+              "p90": -16.383902685818388,
+              "p95": -16.168824733514917,
+              "min": -22.137131512110788,
+              "max": -15.953746781211446,
+              "clusters": 10,
+              "ci95": [
+                -19.91958799040677,
+                -17.697569136318982
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -9.891127466339812
+            },
+            "damage": {
+              "n": 10,
+              "mean": -2.118044092307245,
+              "median": -0.003600283281237182,
+              "sd": 4.513244541180742,
+              "p10": -8.766131460436199,
+              "p90": 0,
+              "p95": 0,
+              "min": -12.59211523513602,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                -5.045828588051988,
+                -0.003533264597158771
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.4692952205406376
+            },
+            "combatDamageDealt": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "attacks": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "overtakes": {
+              "n": 10,
+              "mean": -4.4,
+              "median": -5,
+              "sd": 2.011080417199781,
+              "p10": -6.1,
+              "p90": -1.9000000000000004,
+              "p95": -1.450000000000001,
+              "min": -7,
+              "max": -1,
+              "clusters": 10,
+              "ci95": [
+                -5.5,
+                -3.2
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -2.187878695634926
+            },
+            "laneSuccesses": {
+              "n": 10,
+              "mean": -1.6,
+              "median": -1.5,
+              "sd": 1.3498971154211057,
+              "p10": -3.1,
+              "p90": -0.8000000000000007,
+              "p95": 0.09999999999999787,
+              "min": -4,
+              "max": 1,
+              "clusters": 10,
+              "ci95": [
+                -2.4,
+                -0.9
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -1.1852755159795076
+            },
+            "blockedSeconds": {
+              "n": 10,
+              "mean": -0.10121040605889506,
+              "median": -0.005517053799829252,
+              "sd": 0.2564367421193462,
+              "p10": -0.3660714548364584,
+              "p90": 0.03242233439781319,
+              "p95": 0.17832283918797281,
+              "min": -0.5959118684313509,
+              "max": 0.324223343978133,
+              "clusters": 10,
+              "ci95": [
+                -0.2606820034630121,
+                0.04851380255943128
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.39467981546806397
+            },
+            "fastPaceShare": {
+              "n": 10,
+              "mean": -0.01854242331149441,
+              "median": -0.017481831052267516,
+              "sd": 0.008164474450331515,
+              "p10": -0.028800363919218665,
+              "p90": -0.010059918365054843,
+              "p95": -0.0083264259259279,
+              "min": -0.030877190389703078,
+              "max": -0.006592933486800952,
+              "clusters": 10,
+              "ci95": [
+                -0.02338292807230513,
+                -0.014070197953430773
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -2.271110458400847
+            }
+          }
+        }
+      },
+      {
+        "arm": "Hold Position",
+        "n": 10,
+        "compliance": {
+          "Followed": 2662,
+          "Overridden": 138,
+          "Partially Followed": 18,
+          "Prevented": 82
+        },
+        "fullComplianceRate": 0.9179310344827586,
+        "inapplicableRate": 0,
+        "comparison": {
+          "pairs": 10,
+          "uniqueSeeds": 10,
+          "metrics": {
+            "position": {
+              "n": 10,
+              "mean": -4.3,
+              "median": -4.5,
+              "sd": 1.888562063228706,
+              "p10": -6.1,
+              "p90": -1.9000000000000004,
+              "p95": -1.450000000000001,
+              "min": -7,
+              "max": -1,
+              "clusters": 10,
+              "ci95": [
+                -5.4,
+                -3.1975000000000025
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -2.27686454351872
+            },
+            "time": {
+              "n": 10,
+              "mean": -13.550180214184499,
+              "median": -9.80430820366675,
+              "sd": 11.134398315546276,
+              "p10": -21.656136790320076,
+              "p90": -4.217846745533786,
+              "p95": -3.8840413033868066,
+              "min": -40.448356662071035,
+              "max": -3.550235861239827,
+              "clusters": 10,
+              "ci95": [
+                -20.50561905665865,
+                -7.948784475468223
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -1.2169656437802494
+            },
+            "fatigue": {
+              "n": 10,
+              "mean": 3.5676873818015493,
+              "median": 1.393975361995734,
+              "sd": 4.02098759891184,
+              "p10": -0.25747646172073907,
+              "p90": 8.78279326304943,
+              "p95": 8.86804093485047,
+              "min": -0.6416547148525726,
+              "max": 8.953288606651512,
+              "clusters": 10,
+              "ci95": [
+                1.3752313682683788,
+                6.003443283396375
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 0.8872664473690586
+            },
+            "damage": {
+              "n": 10,
+              "mean": -1.9786388964444015,
+              "median": 0.001320279429087634,
+              "sd": 4.586633619609931,
+              "p10": -8.763833870252146,
+              "p90": 0.6357793531173854,
+              "p95": 0.664823458930833,
+              "min": -12.569139333295496,
+              "max": 0.6938675647442807,
+              "clusters": 10,
+              "ci95": [
+                -4.946710993047832,
+                0.20333511341254676
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.4313924024768026
+            },
+            "combatDamageDealt": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "attacks": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "overtakes": {
+              "n": 10,
+              "mean": 1.8,
+              "median": 1.5,
+              "sd": 1.5491933384829668,
+              "p10": 0,
+              "p90": 3.1999999999999993,
+              "p95": 4.099999999999998,
+              "min": 0,
+              "max": 5,
+              "clusters": 10,
+              "ci95": [
+                1,
+                2.7
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 1.161895003862225
+            },
+            "laneSuccesses": {
+              "n": 10,
+              "mean": -2.4,
+              "median": -3,
+              "sd": 2.4585451886114367,
+              "p10": -5,
+              "p90": 0.09999999999999964,
+              "p95": 0.5499999999999989,
+              "min": -5,
+              "max": 1,
+              "clusters": 10,
+              "ci95": [
+                -3.8,
+                -1
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.9761870601839527
+            },
+            "blockedSeconds": {
+              "n": 10,
+              "mean": -0.048766621058546636,
+              "median": -0.05718328652652449,
+              "sd": 0.2402983005155593,
+              "p10": -0.29016987795752147,
+              "p90": 0.054580942694858144,
+              "p95": 0.30019518482172025,
+              "min": -0.32932239121027607,
+              "max": 0.5458094269485834,
+              "clusters": 10,
+              "ci95": [
+                -0.17352948791500783,
+                0.10297022201305714
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.2029420139631366
+            },
+            "fastPaceShare": {
+              "n": 10,
+              "mean": -0.01854242331149441,
+              "median": -0.017481831052267516,
+              "sd": 0.008164474450331515,
+              "p10": -0.028800363919218665,
+              "p90": -0.010059918365054843,
+              "p95": -0.0083264259259279,
+              "min": -0.030877190389703078,
+              "max": -0.006592933486800952,
+              "clusters": 10,
+              "ci95": [
+                -0.023583062905277393,
+                -0.013901734487275793
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -2.271110458400847
+            }
+          }
+        }
+      },
+      {
+        "arm": "Push the Pace",
+        "n": 10,
+        "compliance": {
+          "Followed": 2377,
+          "Overridden": 1398,
+          "Prevented": 123
+        },
+        "fullComplianceRate": 0.6097998973832734,
+        "inapplicableRate": 0,
+        "comparison": {
+          "pairs": 10,
+          "uniqueSeeds": 10,
+          "metrics": {
+            "position": {
+              "n": 10,
+              "mean": -1.8,
+              "median": -1.5,
+              "sd": 1.6865480854231356,
+              "p10": -4,
+              "p90": 0.09999999999999964,
+              "p95": 0.5499999999999989,
+              "min": -4,
+              "max": 1,
+              "clusters": 10,
+              "ci95": [
+                -2.7,
+                -0.8
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -1.0672687103068281
+            },
+            "time": {
+              "n": 10,
+              "mean": -4.540400087505759,
+              "median": -3.4050068145038352,
+              "sd": 7.1474664669044845,
+              "p10": -9.30843614708211,
+              "p90": 0.19440168318018958,
+              "p95": 3.004022736275582,
+              "min": -21.90335011095428,
+              "max": 5.813643789370985,
+              "clusters": 10,
+              "ci95": [
+                -9.149822114155045,
+                -0.5911497692472387
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.6352460845433211
+            },
+            "fatigue": {
+              "n": 10,
+              "mean": 12.9528453121472,
+              "median": 13.621934224802008,
+              "sd": 1.9254335397862041,
+              "p10": 9.5129113499823,
+              "p90": 14.4420225331885,
+              "p95": 14.48409579282179,
+              "min": 9.429060255435356,
+              "max": 14.526169052455081,
+              "clusters": 10,
+              "ci95": [
+                11.651272203337458,
+                13.95187067193362
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 6.727235733924868
+            },
+            "damage": {
+              "n": 10,
+              "mean": -2.091657783726903,
+              "median": 0.007164326321451142,
+              "sd": 4.527116989549431,
+              "p10": -8.766131460436199,
+              "p90": 0.08876228870873888,
+              "p95": 0.09005944666266572,
+              "min": -12.59211523513602,
+              "max": 0.09135660461659256,
+              "clusters": 10,
+              "ci95": [
+                -5.010296236182493,
+                0.029148389349742843
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.46202865721282776
+            },
+            "combatDamageDealt": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "attacks": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "overtakes": {
+              "n": 10,
+              "mean": 3.1,
+              "median": 2.5,
+              "sd": 2.923088169119167,
+              "p10": -0.09999999999999998,
+              "p90": 7.1,
+              "p95": 7.549999999999999,
+              "min": -1,
+              "max": 8,
+              "clusters": 10,
+              "ci95": [
+                1.4,
+                4.8024999999999975
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 1.060522235610205
+            },
+            "laneSuccesses": {
+              "n": 10,
+              "mean": 3,
+              "median": 3,
+              "sd": 1.9436506316151,
+              "p10": 1,
+              "p90": 5.199999999999999,
+              "p95": 6.099999999999998,
+              "min": 1,
+              "max": 7,
+              "clusters": 10,
+              "ci95": [
+                1.9,
+                4.2
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 1.5434872662825796
+            },
+            "blockedSeconds": {
+              "n": 10,
+              "mean": -0.16476521518804113,
+              "median": -0.10570974224681073,
+              "sd": 0.21989521925440123,
+              "p10": -0.40529097726715546,
+              "p90": 0.016111290037366586,
+              "p95": 0.08861209520551637,
+              "min": -0.5139218383915747,
+              "max": 0.16111290037366643,
+              "clusters": 10,
+              "ci95": [
+                -0.2939112419007085,
+                -0.025947280193958377
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.7492896650809899
+            },
+            "fastPaceShare": {
+              "n": 10,
+              "mean": 0.8058993356421883,
+              "median": 0.9039407954515526,
+              "sd": 0.14600739416703182,
+              "p10": 0.6069383852773818,
+              "p90": 0.9272489774075261,
+              "p95": 0.9315040480916401,
+              "min": 0.5959159864323027,
+              "max": 0.9357591187757541,
+              "clusters": 10,
+              "ci95": [
+                0.7164911108078591,
+                0.8849746274672528
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 5.51957892434025
+            }
+          }
+        }
+      },
+      {
+        "arm": "Race Defensively",
+        "n": 10,
+        "compliance": {
+          "Followed": 3607,
+          "Prevented": 114
+        },
+        "fullComplianceRate": 0.9693630744423543,
+        "inapplicableRate": 0,
+        "comparison": {
+          "pairs": 10,
+          "uniqueSeeds": 10,
+          "metrics": {
+            "position": {
+              "n": 10,
+              "mean": 1.4,
+              "median": 1.5,
+              "sd": 1.1737877907772671,
+              "p10": 0,
+              "p90": 3,
+              "p95": 3,
+              "min": 0,
+              "max": 3,
+              "clusters": 10,
+              "ci95": [
+                0.7,
+                2.1
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 1.1927198519188362
+            },
+            "time": {
+              "n": 10,
+              "mean": 28.68336997049285,
+              "median": 28.906498491329273,
+              "sd": 6.4506803662083385,
+              "p10": 21.835792500259476,
+              "p90": 36.52326352746509,
+              "p95": 36.73084212992401,
+              "min": 15.56306054588012,
+              "max": 36.93842073238292,
+              "clusters": 10,
+              "ci95": [
+                24.55590933382793,
+                32.09581157754536
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 4.446565066337758
+            },
+            "fatigue": {
+              "n": 10,
+              "mean": -18.773256870611345,
+              "median": -18.330429958236017,
+              "sd": 1.8979895805102127,
+              "p10": -20.855691561931817,
+              "p90": -16.383902685818388,
+              "p95": -16.168824733514917,
+              "min": -22.137131512110788,
+              "max": -15.953746781211446,
+              "clusters": 10,
+              "ci95": [
+                -19.863697578301604,
+                -17.611600129579386
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -9.891127466339812
+            },
+            "damage": {
+              "n": 10,
+              "mean": -2.118044092307245,
+              "median": -0.003600283281237182,
+              "sd": 4.513244541180742,
+              "p10": -8.766131460436199,
+              "p90": 0,
+              "p95": 0,
+              "min": -12.59211523513602,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                -5.067744099089047,
+                -0.003469515117181743
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.4692952205406376
+            },
+            "combatDamageDealt": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "attacks": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "overtakes": {
+              "n": 10,
+              "mean": -4.4,
+              "median": -5,
+              "sd": 2.011080417199781,
+              "p10": -6.1,
+              "p90": -1.9000000000000004,
+              "p95": -1.450000000000001,
+              "min": -7,
+              "max": -1,
+              "clusters": 10,
+              "ci95": [
+                -5.5,
+                -3.1
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -2.187878695634926
+            },
+            "laneSuccesses": {
+              "n": 10,
+              "mean": -2.9,
+              "median": -2.5,
+              "sd": 1.286683937707919,
+              "p10": -4.1,
+              "p90": -1.9000000000000004,
+              "p95": -1.450000000000001,
+              "min": -5,
+              "max": -1,
+              "clusters": 10,
+              "ci95": [
+                -3.7,
+                -2.2
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -2.253855756656153
+            },
+            "blockedSeconds": {
+              "n": 10,
+              "mean": -0.13363274045670837,
+              "median": -0.005517053799829252,
+              "sd": 0.21358730125721379,
+              "p10": -0.3660714548364584,
+              "p90": 0,
+              "p95": 0,
+              "min": -0.5959118684313509,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                -0.2779646614505431,
+                -0.016802528103009848
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.6256586401444361
+            },
+            "fastPaceShare": {
+              "n": 10,
+              "mean": -0.01854242331149441,
+              "median": -0.017481831052267516,
+              "sd": 0.008164474450331515,
+              "p10": -0.028800363919218665,
+              "p90": -0.010059918365054843,
+              "p95": -0.0083264259259279,
+              "min": -0.030877190389703078,
+              "max": -0.006592933486800952,
+              "clusters": 10,
+              "ci95": [
+                -0.023285478908993303,
+                -0.01364710418713176
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -2.271110458400847
+            }
+          }
+        }
+      },
+      {
+        "arm": "Seek Open Track",
+        "n": 10,
+        "compliance": {
+          "Inapplicable": 1631,
+          "Prevented": 49,
+          "Followed": 63,
+          "Overridden": 1553
+        },
+        "fullComplianceRate": 0.03783783783783784,
+        "inapplicableRate": 0.49484223300970875,
+        "comparison": {
+          "pairs": 10,
+          "uniqueSeeds": 10,
+          "metrics": {
+            "position": {
+              "n": 10,
+              "mean": -0.4,
+              "median": 0,
+              "sd": 0.5163977794943222,
+              "p10": -1,
+              "p90": 0,
+              "p95": 0,
+              "min": -1,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                -0.7,
+                -0.1
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.7745966692414835
+            },
+            "time": {
+              "n": 10,
+              "mean": -2.2353863461190002,
+              "median": -1.4665176778258342,
+              "sd": 3.7381446345695504,
+              "p10": -3.521001183944904,
+              "p90": 0,
+              "p95": 0,
+              "min": -12.50878976802511,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                -4.821649040917343,
+                -0.6507302841197806
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.5979935408187881
+            },
+            "fatigue": {
+              "n": 10,
+              "mean": 0.016149658610685336,
+              "median": 0.010851654177534087,
+              "sd": 0.1198918580290082,
+              "p10": -0.13344609154673534,
+              "p90": 0.08262500679322243,
+              "p95": 0.18872321222540114,
+              "min": -0.1467250158490323,
+              "max": 0.2948214176575803,
+              "clusters": 10,
+              "ci95": [
+                -0.04603956384702468,
+                0.09569508490286714
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 0.1347018794785704
+            },
+            "damage": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "combatDamageDealt": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "attacks": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "overtakes": {
+              "n": 10,
+              "mean": 0.5,
+              "median": 0,
+              "sd": 0.97182531580755,
+              "p10": 0,
+              "p90": 1.1999999999999993,
+              "p95": 2.099999999999998,
+              "min": 0,
+              "max": 3,
+              "clusters": 10,
+              "ci95": [
+                0.1,
+                1.2
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 0.5144957554275266
+            },
+            "laneSuccesses": {
+              "n": 10,
+              "mean": 2.1,
+              "median": 2.5,
+              "sd": 1.7919573407620815,
+              "p10": 0,
+              "p90": 4.1,
+              "p95": 4.549999999999999,
+              "min": 0,
+              "max": 5,
+              "clusters": 10,
+              "ci95": [
+                1.1,
+                3.1
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 1.1719028975918113
+            },
+            "blockedSeconds": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "fastPaceShare": {
+              "n": 10,
+              "mean": 0.00021695612659541392,
+              "median": 0.00012572473172176284,
+              "sd": 0.00029459839044924555,
+              "p10": 0,
+              "p90": 0.0004267338887035865,
+              "p95": 0.0006958143245974562,
+              "min": 0,
+              "max": 0.000964894760491327,
+              "clusters": 10,
+              "ci95": [
+                0.00007257285614078761,
+                0.0004064698623121856
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 0.7364470873875731
+            }
+          }
+        }
+      }
+    ],
+    "Combat": [
+      {
+        "arm": "Conserve Strength",
+        "n": 10,
+        "compliance": {
+          "Followed": 3760,
+          "Prevented": 110
+        },
+        "fullComplianceRate": 0.9715762273901809,
+        "inapplicableRate": 0,
+        "comparison": {
+          "pairs": 10,
+          "uniqueSeeds": 10,
+          "metrics": {
+            "position": {
+              "n": 10,
+              "mean": 1.4,
+              "median": 1.5,
+              "sd": 1.1737877907772671,
+              "p10": 0,
+              "p90": 3,
+              "p95": 3,
+              "min": 0,
+              "max": 3,
+              "clusters": 10,
+              "ci95": [
+                0.7,
+                2.2
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 1.1927198519188362
+            },
+            "time": {
+              "n": 10,
+              "mean": 34.13407245333607,
+              "median": 34.62778866892155,
+              "sd": 7.827693939116233,
+              "p10": 24.342455871099215,
+              "p90": 43.54734795932153,
+              "p95": 44.36915720509834,
+              "min": 22.532762717412737,
+              "max": 45.19096645087515,
+              "clusters": 10,
+              "ci95": [
+                29.68916497528908,
+                38.710022564239154
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 4.360680516999096
+            },
+            "fatigue": {
+              "n": 10,
+              "mean": -18.773256870611345,
+              "median": -18.330429958236017,
+              "sd": 1.8979895805102127,
+              "p10": -20.855691561931817,
+              "p90": -16.383902685818388,
+              "p95": -16.168824733514917,
+              "min": -22.137131512110788,
+              "max": -15.953746781211446,
+              "clusters": 10,
+              "ci95": [
+                -19.924831139289655,
+                -17.721505315245384
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -9.891127466339812
+            },
+            "damage": {
+              "n": 10,
+              "mean": -2.118044092307245,
+              "median": -0.003600283281237182,
+              "sd": 4.513244541180742,
+              "p10": -8.766131460436199,
+              "p90": 0,
+              "p95": 0,
+              "min": -12.59211523513602,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                -5.046547010106185,
+                -0.00562641588182267
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.4692952205406376
+            },
+            "combatDamageDealt": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "attacks": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "overtakes": {
+              "n": 10,
+              "mean": -4.4,
+              "median": -5,
+              "sd": 2.011080417199781,
+              "p10": -6.1,
+              "p90": -1.9000000000000004,
+              "p95": -1.450000000000001,
+              "min": -7,
+              "max": -1,
+              "clusters": 10,
+              "ci95": [
+                -5.5,
+                -3.2
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -2.187878695634926
+            },
+            "laneSuccesses": {
+              "n": 10,
+              "mean": -1.6,
+              "median": -1.5,
+              "sd": 1.3498971154211057,
+              "p10": -3.1,
+              "p90": -0.8000000000000007,
+              "p95": 0.09999999999999787,
+              "min": -4,
+              "max": 1,
+              "clusters": 10,
+              "ci95": [
+                -2.4,
+                -0.8
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -1.1852755159795076
+            },
+            "blockedSeconds": {
+              "n": 10,
+              "mean": -0.10121040605889506,
+              "median": -0.005517053799829252,
+              "sd": 0.2564367421193462,
+              "p10": -0.3660714548364584,
+              "p90": 0.03242233439781319,
+              "p95": 0.17832283918797281,
+              "min": -0.5959118684313509,
+              "max": 0.324223343978133,
+              "clusters": 10,
+              "ci95": [
+                -0.2606903866100512,
+                0.029142348754355396
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.39467981546806397
+            },
+            "fastPaceShare": {
+              "n": 10,
+              "mean": -0.01854242331149441,
+              "median": -0.017481831052267516,
+              "sd": 0.008164474450331515,
+              "p10": -0.028800363919218665,
+              "p90": -0.010059918365054843,
+              "p95": -0.0083264259259279,
+              "min": -0.030877190389703078,
+              "max": -0.006592933486800952,
+              "clusters": 10,
+              "ci95": [
+                -0.022743631368196994,
+                -0.014153710883799695
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -2.271110458400847
+            }
+          }
+        }
+      },
+      {
+        "arm": "Engage Rivals",
+        "n": 10,
+        "compliance": {
+          "Followed": 391,
+          "Inapplicable": 2794,
+          "Overridden": 68,
+          "Prevented": 20
+        },
+        "fullComplianceRate": 0.8162839248434238,
+        "inapplicableRate": 0.8536510846318363,
+        "comparison": {
+          "pairs": 10,
+          "uniqueSeeds": 10,
+          "metrics": {
+            "position": {
+              "n": 10,
+              "mean": -1.2,
+              "median": -1,
+              "sd": 0.9189365834726815,
+              "p10": -2.1,
+              "p90": 0,
+              "p95": 0,
+              "min": -3,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                -1.8,
+                -0.7
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -1.305857250198021
+            },
+            "time": {
+              "n": 10,
+              "mean": -2.395730343473332,
+              "median": -0.03874027160601656,
+              "sd": 6.120411537566998,
+              "p10": -4.829692876637068,
+              "p90": 1.0885514711844732e-12,
+              "p95": 1.3827161637891543e-12,
+              "min": -19.578168923555808,
+              "max": 1.6768808563938364e-12,
+              "clusters": 10,
+              "ci95": [
+                -6.395790992534902,
+                -0.052116840894712156
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.3914328846627998
+            },
+            "fatigue": {
+              "n": 10,
+              "mean": -0.22466676274753183,
+              "median": -1.5987211554602254e-13,
+              "sd": 0.410165124680184,
+              "p10": -0.9298646869541735,
+              "p90": 0.0010921692014068858,
+              "p95": 0.0060069306071303665,
+              "min": -1.0446894867917464,
+              "max": 0.010921692012853867,
+              "clusters": 10,
+              "ci95": [
+                -0.4921764145177535,
+                -0.0010134979555837293
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.5477471126359418
+            },
+            "damage": {
+              "n": 10,
+              "mean": -1.2531810329942232,
+              "median": 0,
+              "sd": 3.9841472768292845,
+              "p10": -1.2626497549850626,
+              "p90": 0.006412516238486865,
+              "p95": 0.03526883931135807,
+              "min": -12.59211523513602,
+              "max": 0.06412516238422938,
+              "clusters": 10,
+              "ci95": [
+                -3.777634570540806,
+                0.012825032476852983
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.3145418444449538
+            },
+            "combatDamageDealt": {
+              "n": 10,
+              "mean": 50.0332713715462,
+              "median": 44.6254582175162,
+              "sd": 40.20662001122571,
+              "p10": 9.639177191433735,
+              "p90": 104.15971950842754,
+              "p95": 112.52231277469647,
+              "min": 6.0456809243785585,
+              "max": 120.88490604096545,
+              "clusters": 10,
+              "ci95": [
+                28.156164974959847,
+                74.36681622390716
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 1.2444038160277309
+            },
+            "attacks": {
+              "n": 10,
+              "mean": 39.1,
+              "median": 40.5,
+              "sd": 13.924000063838616,
+              "p10": 20.5,
+              "p90": 54.5,
+              "p95": 56.74999999999999,
+              "min": 16,
+              "max": 59,
+              "clusters": 10,
+              "ci95": [
+                30.9,
+                47.1
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 2.808101107493157
+            },
+            "overtakes": {
+              "n": 10,
+              "mean": 0.6,
+              "median": 0,
+              "sd": 1.1737877907772671,
+              "p10": -0.09999999999999998,
+              "p90": 2.0999999999999996,
+              "p95": 2.549999999999999,
+              "min": -1,
+              "max": 3,
+              "clusters": 10,
+              "ci95": [
+                0,
+                1.3
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 0.5111656508223583
+            },
+            "laneSuccesses": {
+              "n": 10,
+              "mean": -0.1,
+              "median": 0,
+              "sd": 0.31622776601683794,
+              "p10": -0.09999999999999998,
+              "p90": 0,
+              "p95": 0,
+              "min": -1,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                -0.3,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.31622776601683794
+            },
+            "blockedSeconds": {
+              "n": 10,
+              "mean": -0.04565751549903716,
+              "median": 0,
+              "sd": 0.10739357318107158,
+              "p10": -0.14745972658925907,
+              "p90": 3.4309977081647956e-11,
+              "p95": 3.705018514210678e-11,
+              "min": -0.32932239121027607,
+              "max": 3.979039320256561e-11,
+              "clusters": 10,
+              "ci95": [
+                -0.11152199374844082,
+                1.1328538107591157e-11
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.4251419721555966
+            },
+            "fastPaceShare": {
+              "n": 10,
+              "mean": 0.0005958444892952908,
+              "median": 4.640385298237959e-17,
+              "sd": 0.0021032169429148406,
+              "p10": -0.00033369901758545546,
+              "p90": 0.0038100527542760925,
+              "p95": 0.0038633833629491523,
+              "min": -0.0033369901758523706,
+              "max": 0.003916713971622212,
+              "clusters": 10,
+              "ci95": [
+                -0.000621276901965318,
+                0.0019122409577979663
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 0.28330148789573373
+            }
+          }
+        }
+      },
+      {
+        "arm": "Hold Position",
+        "n": 10,
+        "compliance": {
+          "Followed": 2662,
+          "Overridden": 138,
+          "Partially Followed": 18,
+          "Prevented": 82
+        },
+        "fullComplianceRate": 0.9179310344827586,
+        "inapplicableRate": 0,
+        "comparison": {
+          "pairs": 10,
+          "uniqueSeeds": 10,
+          "metrics": {
+            "position": {
+              "n": 10,
+              "mean": -4.3,
+              "median": -4.5,
+              "sd": 1.888562063228706,
+              "p10": -6.1,
+              "p90": -1.9000000000000004,
+              "p95": -1.450000000000001,
+              "min": -7,
+              "max": -1,
+              "clusters": 10,
+              "ci95": [
+                -5.3,
+                -3.2
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -2.27686454351872
+            },
+            "time": {
+              "n": 10,
+              "mean": -13.550180214184499,
+              "median": -9.80430820366675,
+              "sd": 11.134398315546276,
+              "p10": -21.656136790320076,
+              "p90": -4.217846745533786,
+              "p95": -3.8840413033868066,
+              "min": -40.448356662071035,
+              "max": -3.550235861239827,
+              "clusters": 10,
+              "ci95": [
+                -20.654026292664994,
+                -8.087797399136493
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -1.2169656437802494
+            },
+            "fatigue": {
+              "n": 10,
+              "mean": 3.5676873818015493,
+              "median": 1.393975361995734,
+              "sd": 4.02098759891184,
+              "p10": -0.25747646172073907,
+              "p90": 8.78279326304943,
+              "p95": 8.86804093485047,
+              "min": -0.6416547148525726,
+              "max": 8.953288606651512,
+              "clusters": 10,
+              "ci95": [
+                1.4174399355530487,
+                6.091462885743203
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 0.8872664473690586
+            },
+            "damage": {
+              "n": 10,
+              "mean": -1.9786388964444015,
+              "median": 0.001320279429087634,
+              "sd": 4.586633619609931,
+              "p10": -8.763833870252146,
+              "p90": 0.6357793531173854,
+              "p95": 0.664823458930833,
+              "min": -12.569139333295496,
+              "max": 0.6938675647442807,
+              "clusters": 10,
+              "ci95": [
+                -4.952580446118667,
+                0.23431601242786765
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.4313924024768026
+            },
+            "combatDamageDealt": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "attacks": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "overtakes": {
+              "n": 10,
+              "mean": 1.8,
+              "median": 1.5,
+              "sd": 1.5491933384829668,
+              "p10": 0,
+              "p90": 3.1999999999999993,
+              "p95": 4.099999999999998,
+              "min": 0,
+              "max": 5,
+              "clusters": 10,
+              "ci95": [
+                1,
+                2.8024999999999975
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 1.161895003862225
+            },
+            "laneSuccesses": {
+              "n": 10,
+              "mean": -2.4,
+              "median": -3,
+              "sd": 2.4585451886114367,
+              "p10": -5,
+              "p90": 0.09999999999999964,
+              "p95": 0.5499999999999989,
+              "min": -5,
+              "max": 1,
+              "clusters": 10,
+              "ci95": [
+                -3.8,
+                -0.9
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.9761870601839527
+            },
+            "blockedSeconds": {
+              "n": 10,
+              "mean": -0.048766621058546636,
+              "median": -0.05718328652652449,
+              "sd": 0.2402983005155593,
+              "p10": -0.29016987795752147,
+              "p90": 0.054580942694858144,
+              "p95": 0.30019518482172025,
+              "min": -0.32932239121027607,
+              "max": 0.5458094269485834,
+              "clusters": 10,
+              "ci95": [
+                -0.1679260741786115,
+                0.10170250058725064
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.2029420139631366
+            },
+            "fastPaceShare": {
+              "n": 10,
+              "mean": -0.01854242331149441,
+              "median": -0.017481831052267516,
+              "sd": 0.008164474450331515,
+              "p10": -0.028800363919218665,
+              "p90": -0.010059918365054843,
+              "p95": -0.0083264259259279,
+              "min": -0.030877190389703078,
+              "max": -0.006592933486800952,
+              "clusters": 10,
+              "ci95": [
+                -0.02327780707526355,
+                -0.013965174861153791
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -2.271110458400847
+            }
+          }
+        }
+      },
+      {
+        "arm": "Push the Pace",
+        "n": 10,
+        "compliance": {
+          "Followed": 2377,
+          "Overridden": 1398,
+          "Prevented": 123
+        },
+        "fullComplianceRate": 0.6097998973832734,
+        "inapplicableRate": 0,
+        "comparison": {
+          "pairs": 10,
+          "uniqueSeeds": 10,
+          "metrics": {
+            "position": {
+              "n": 10,
+              "mean": -1.8,
+              "median": -1.5,
+              "sd": 1.6865480854231356,
+              "p10": -4,
+              "p90": 0.09999999999999964,
+              "p95": 0.5499999999999989,
+              "min": -4,
+              "max": 1,
+              "clusters": 10,
+              "ci95": [
+                -2.7,
+                -0.8
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -1.0672687103068281
+            },
+            "time": {
+              "n": 10,
+              "mean": -4.540400087505759,
+              "median": -3.4050068145038352,
+              "sd": 7.1474664669044845,
+              "p10": -9.30843614708211,
+              "p90": 0.19440168318018958,
+              "p95": 3.004022736275582,
+              "min": -21.90335011095428,
+              "max": 5.813643789370985,
+              "clusters": 10,
+              "ci95": [
+                -9.394468810708107,
+                -0.866520824818157
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.6352460845433211
+            },
+            "fatigue": {
+              "n": 10,
+              "mean": 12.9528453121472,
+              "median": 13.621934224802008,
+              "sd": 1.9254335397862041,
+              "p10": 9.5129113499823,
+              "p90": 14.4420225331885,
+              "p95": 14.48409579282179,
+              "min": 9.429060255435356,
+              "max": 14.526169052455081,
+              "clusters": 10,
+              "ci95": [
+                11.7064915070879,
+                14.01531657396326
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 6.727235733924868
+            },
+            "damage": {
+              "n": 10,
+              "mean": -2.091657783726903,
+              "median": 0.007164326321451142,
+              "sd": 4.527116989549431,
+              "p10": -8.766131460436199,
+              "p90": 0.08876228870873888,
+              "p95": 0.09005944666266572,
+              "min": -12.59211523513602,
+              "max": 0.09135660461659256,
+              "clusters": 10,
+              "ci95": [
+                -5.022877645524056,
+                0.03176250069650542
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.46202865721282776
+            },
+            "combatDamageDealt": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "attacks": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "overtakes": {
+              "n": 10,
+              "mean": 3.1,
+              "median": 2.5,
+              "sd": 2.923088169119167,
+              "p10": -0.09999999999999998,
+              "p90": 7.1,
+              "p95": 7.549999999999999,
+              "min": -1,
+              "max": 8,
+              "clusters": 10,
+              "ci95": [
+                1.5,
+                4.9
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 1.060522235610205
+            },
+            "laneSuccesses": {
+              "n": 10,
+              "mean": 3,
+              "median": 3,
+              "sd": 1.9436506316151,
+              "p10": 1,
+              "p90": 5.199999999999999,
+              "p95": 6.099999999999998,
+              "min": 1,
+              "max": 7,
+              "clusters": 10,
+              "ci95": [
+                2,
+                4.2
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 1.5434872662825796
+            },
+            "blockedSeconds": {
+              "n": 10,
+              "mean": -0.16476521518804113,
+              "median": -0.10570974224681073,
+              "sd": 0.21989521925440123,
+              "p10": -0.40529097726715546,
+              "p90": 0.016111290037366586,
+              "p95": 0.08861209520551637,
+              "min": -0.5139218383915747,
+              "max": 0.16111290037366643,
+              "clusters": 10,
+              "ci95": [
+                -0.30331533495834784,
+                -0.036925538561778735
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.7492896650809899
+            },
+            "fastPaceShare": {
+              "n": 10,
+              "mean": 0.8058993356421883,
+              "median": 0.9039407954515526,
+              "sd": 0.14600739416703182,
+              "p10": 0.6069383852773818,
+              "p90": 0.9272489774075261,
+              "p95": 0.9315040480916401,
+              "min": 0.5959159864323027,
+              "max": 0.9357591187757541,
+              "clusters": 10,
+              "ci95": [
+                0.7148024917459359,
+                0.8888846666457272
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 5.51957892434025
+            }
+          }
+        }
+      },
+      {
+        "arm": "Race Defensively",
+        "n": 10,
+        "compliance": {
+          "Followed": 3607,
+          "Prevented": 114
+        },
+        "fullComplianceRate": 0.9693630744423543,
+        "inapplicableRate": 0,
+        "comparison": {
+          "pairs": 10,
+          "uniqueSeeds": 10,
+          "metrics": {
+            "position": {
+              "n": 10,
+              "mean": 1.4,
+              "median": 1.5,
+              "sd": 1.1737877907772671,
+              "p10": 0,
+              "p90": 3,
+              "p95": 3,
+              "min": 0,
+              "max": 3,
+              "clusters": 10,
+              "ci95": [
+                0.7,
+                2.1
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 1.1927198519188362
+            },
+            "time": {
+              "n": 10,
+              "mean": 28.68336997049285,
+              "median": 28.906498491329273,
+              "sd": 6.4506803662083385,
+              "p10": 21.835792500259476,
+              "p90": 36.52326352746509,
+              "p95": 36.73084212992401,
+              "min": 15.56306054588012,
+              "max": 36.93842073238292,
+              "clusters": 10,
+              "ci95": [
+                24.82670713438772,
+                32.391449079438694
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 4.446565066337758
+            },
+            "fatigue": {
+              "n": 10,
+              "mean": -18.773256870611345,
+              "median": -18.330429958236017,
+              "sd": 1.8979895805102127,
+              "p10": -20.855691561931817,
+              "p90": -16.383902685818388,
+              "p95": -16.168824733514917,
+              "min": -22.137131512110788,
+              "max": -15.953746781211446,
+              "clusters": 10,
+              "ci95": [
+                -19.892337034913396,
+                -17.669002542050396
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -9.891127466339812
+            },
+            "damage": {
+              "n": 10,
+              "mean": -2.118044092307245,
+              "median": -0.003600283281237182,
+              "sd": 4.513244541180742,
+              "p10": -8.766131460436199,
+              "p90": 0,
+              "p95": 0,
+              "min": -12.59211523513602,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                -5.066087565932613,
+                -0.0042533212534062075
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.4692952205406376
+            },
+            "combatDamageDealt": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "attacks": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "overtakes": {
+              "n": 10,
+              "mean": -4.4,
+              "median": -5,
+              "sd": 2.011080417199781,
+              "p10": -6.1,
+              "p90": -1.9000000000000004,
+              "p95": -1.450000000000001,
+              "min": -7,
+              "max": -1,
+              "clusters": 10,
+              "ci95": [
+                -5.5,
+                -3.1
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -2.187878695634926
+            },
+            "laneSuccesses": {
+              "n": 10,
+              "mean": -2.9,
+              "median": -2.5,
+              "sd": 1.286683937707919,
+              "p10": -4.1,
+              "p90": -1.9000000000000004,
+              "p95": -1.450000000000001,
+              "min": -5,
+              "max": -1,
+              "clusters": 10,
+              "ci95": [
+                -3.7,
+                -2.2
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -2.253855756656153
+            },
+            "blockedSeconds": {
+              "n": 10,
+              "mean": -0.13363274045670837,
+              "median": -0.005517053799829252,
+              "sd": 0.21358730125721379,
+              "p10": -0.3660714548364584,
+              "p90": 0,
+              "p95": 0,
+              "min": -0.5959118684313509,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                -0.2606433177781533,
+                -0.012462731624826483
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.6256586401444361
+            },
+            "fastPaceShare": {
+              "n": 10,
+              "mean": -0.01854242331149441,
+              "median": -0.017481831052267516,
+              "sd": 0.008164474450331515,
+              "p10": -0.028800363919218665,
+              "p90": -0.010059918365054843,
+              "p95": -0.0083264259259279,
+              "min": -0.030877190389703078,
+              "max": -0.006592933486800952,
+              "clusters": 10,
+              "ci95": [
+                -0.02349105775100279,
+                -0.013876212987271857
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -2.271110458400847
+            }
+          }
+        }
+      },
+      {
+        "arm": "Seek Open Track",
+        "n": 10,
+        "compliance": {
+          "Inapplicable": 1631,
+          "Prevented": 49,
+          "Followed": 63,
+          "Overridden": 1553
+        },
+        "fullComplianceRate": 0.03783783783783784,
+        "inapplicableRate": 0.49484223300970875,
+        "comparison": {
+          "pairs": 10,
+          "uniqueSeeds": 10,
+          "metrics": {
+            "position": {
+              "n": 10,
+              "mean": -0.4,
+              "median": 0,
+              "sd": 0.5163977794943222,
+              "p10": -1,
+              "p90": 0,
+              "p95": 0,
+              "min": -1,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                -0.7,
+                -0.1
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.7745966692414835
+            },
+            "time": {
+              "n": 10,
+              "mean": -2.2353863461190002,
+              "median": -1.4665176778258342,
+              "sd": 3.7381446345695504,
+              "p10": -3.521001183944904,
+              "p90": 0,
+              "p95": 0,
+              "min": -12.50878976802511,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                -4.652135939938579,
+                -0.6815099698969378
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": -0.5979935408187881
+            },
+            "fatigue": {
+              "n": 10,
+              "mean": 0.016149658610685336,
+              "median": 0.010851654177534087,
+              "sd": 0.1198918580290082,
+              "p10": -0.13344609154673534,
+              "p90": 0.08262500679322243,
+              "p95": 0.18872321222540114,
+              "min": -0.1467250158490323,
+              "max": 0.2948214176575803,
+              "clusters": 10,
+              "ci95": [
+                -0.04670168618565111,
+                0.0908709861861243
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 0.1347018794785704
+            },
+            "damage": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "combatDamageDealt": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "attacks": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "overtakes": {
+              "n": 10,
+              "mean": 0.5,
+              "median": 0,
+              "sd": 0.97182531580755,
+              "p10": 0,
+              "p90": 1.1999999999999993,
+              "p95": 2.099999999999998,
+              "min": 0,
+              "max": 3,
+              "clusters": 10,
+              "ci95": [
+                0,
+                1.1
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 0.5144957554275266
+            },
+            "laneSuccesses": {
+              "n": 10,
+              "mean": 2.1,
+              "median": 2.5,
+              "sd": 1.7919573407620815,
+              "p10": 0,
+              "p90": 4.1,
+              "p95": 4.549999999999999,
+              "min": 0,
+              "max": 5,
+              "clusters": 10,
+              "ci95": [
+                1.1,
+                3.1
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 1.1719028975918113
+            },
+            "blockedSeconds": {
+              "n": 10,
+              "mean": 0,
+              "median": 0,
+              "sd": 0,
+              "p10": 0,
+              "p90": 0,
+              "p95": 0,
+              "min": 0,
+              "max": 0,
+              "clusters": 10,
+              "ci95": [
+                0,
+                0
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": null
+            },
+            "fastPaceShare": {
+              "n": 10,
+              "mean": 0.00021695612659541392,
+              "median": 0.00012572473172176284,
+              "sd": 0.00029459839044924555,
+              "p10": 0,
+              "p90": 0.0004267338887035865,
+              "p95": 0.0006958143245974562,
+              "min": 0,
+              "max": 0.000964894760491327,
+              "clusters": 10,
+              "ci95": [
+                0.00007258829787050717,
+                0.00040715028650303956
+              ],
+              "smallClusterSample": false,
+              "method": "seed-cluster bootstrap mean, 1000 resamples",
+              "dz": 0.7364470873875731
+            }
+          }
+        }
+      }
+    ]
+  },
+  "holdVersusPush": {
+    "Pure": {
+      "pairs": 10,
+      "uniqueSeeds": 10,
+      "metrics": {
+        "position": {
+          "n": 10,
+          "mean": -2.5,
+          "median": -2.5,
+          "sd": 2.273030282830976,
+          "p10": -5.1,
+          "p90": 1,
+          "p95": 1,
+          "min": -6,
+          "max": 1,
+          "clusters": 10,
+          "ci95": [
+            -3.8,
+            -1.1
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": -1.0998533626601497
+        },
+        "time": {
+          "n": 10,
+          "mean": -9.00978012667874,
+          "median": -4.356679374923033,
+          "sd": 9.119528600767982,
+          "p10": -19.62258834185693,
+          "p90": -0.5472617294864177,
+          "p95": 0.9226609358734799,
+          "min": -23.982499135008624,
+          "max": 2.392583601233383,
+          "clusters": 10,
+          "ci95": [
+            -14.434180237478914,
+            -3.9701873788953352
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": -0.9879655540440982
+        },
+        "fatigue": {
+          "n": 10,
+          "mean": -9.385157930345652,
+          "median": -9.90386654885188,
+          "sd": 3.2991667015534936,
+          "p10": -12.851717652172226,
+          "p90": -5.4336155568385704,
+          "p95": -5.284898420884321,
+          "min": -13.37760558923502,
+          "max": -5.136181284930071,
+          "clusters": 10,
+          "ci95": [
+            -11.29391000718615,
+            -7.4550763142004115
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": -2.8447055815416724
+        },
+        "damage": {
+          "n": 10,
+          "mean": 0.11301888728250162,
+          "median": 0.007580227492361757,
+          "sd": 0.2786648197756618,
+          "p10": -0.08849823282292135,
+          "p90": 0.6191718507163572,
+          "p95": 0.6379611326182377,
+          "min": -0.0887160457584173,
+          "max": 0.6567504145201184,
+          "clusters": 10,
+          "ci95": [
+            -0.029587558541707713,
+            0.2913912110811419
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": 0.4055728576484362
+        },
+        "combatDamageDealt": {
+          "n": 10,
+          "mean": 0,
+          "median": 0,
+          "sd": 0,
+          "p10": 0,
+          "p90": 0,
+          "p95": 0,
+          "min": 0,
+          "max": 0,
+          "clusters": 10,
+          "ci95": [
+            0,
+            0
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": null
+        },
+        "attacks": {
+          "n": 10,
+          "mean": 0,
+          "median": 0,
+          "sd": 0,
+          "p10": 0,
+          "p90": 0,
+          "p95": 0,
+          "min": 0,
+          "max": 0,
+          "clusters": 10,
+          "ci95": [
+            0,
+            0
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": null
+        },
+        "overtakes": {
+          "n": 10,
+          "mean": -1.3,
+          "median": -1,
+          "sd": 2.94580681270476,
+          "p10": -5.1,
+          "p90": 3,
+          "p95": 3,
+          "min": -6,
+          "max": 3,
+          "clusters": 10,
+          "ci95": [
+            -3.1025,
+            0.4
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": -0.4413052459493687
+        },
+        "laneSuccesses": {
+          "n": 10,
+          "mean": -5.4,
+          "median": -6,
+          "sd": 1.9550504398153572,
+          "p10": -7,
+          "p90": -2.9000000000000004,
+          "p95": -2.450000000000001,
+          "min": -7,
+          "max": -2,
+          "clusters": 10,
+          "ci95": [
+            -6.5,
+            -4.1
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": -2.762077074855418
+        },
+        "blockedSeconds": {
+          "n": 10,
+          "mean": 0.1159985941294945,
+          "median": 0,
+          "sd": 0.22992867158408514,
+          "p10": -0.016111290037366638,
+          "p90": 0.4899307300755593,
+          "p95": 0.5178700785120712,
+          "min": -0.16111290037366643,
+          "max": 0.5458094269485834,
+          "clusters": 10,
+          "ci95": [
+            -0.010571922987058714,
+            0.254798125301731
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": 0.5044981703687775
+        },
+        "fastPaceShare": {
+          "n": 10,
+          "mean": -0.8244417589536827,
+          "median": -0.9297385357985002,
+          "sd": 0.15111745577420618,
+          "p10": -0.9470711330712422,
+          "p90": -0.614588654964434,
+          "p95": -0.613835468443026,
+          "min": -0.9548730115668879,
+          "max": -0.613082281921618,
+          "clusters": 10,
+          "ci95": [
+            -0.9093805125973797,
+            -0.7342174822609772
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": -5.455635516955311
+        }
+      }
+    },
+    "Combat": {
+      "pairs": 10,
+      "uniqueSeeds": 10,
+      "metrics": {
+        "position": {
+          "n": 10,
+          "mean": -2.5,
+          "median": -2.5,
+          "sd": 2.273030282830976,
+          "p10": -5.1,
+          "p90": 1,
+          "p95": 1,
+          "min": -6,
+          "max": 1,
+          "clusters": 10,
+          "ci95": [
+            -3.7,
+            -1.1
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": -1.0998533626601497
+        },
+        "time": {
+          "n": 10,
+          "mean": -9.00978012667874,
+          "median": -4.356679374923033,
+          "sd": 9.119528600767982,
+          "p10": -19.62258834185693,
+          "p90": -0.5472617294864177,
+          "p95": 0.9226609358734799,
+          "min": -23.982499135008624,
+          "max": 2.392583601233383,
+          "clusters": 10,
+          "ci95": [
+            -14.675776303467122,
+            -3.786349302130977
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": -0.9879655540440982
+        },
+        "fatigue": {
+          "n": 10,
+          "mean": -9.385157930345652,
+          "median": -9.90386654885188,
+          "sd": 3.2991667015534936,
+          "p10": -12.851717652172226,
+          "p90": -5.4336155568385704,
+          "p95": -5.284898420884321,
+          "min": -13.37760558923502,
+          "max": -5.136181284930071,
+          "clusters": 10,
+          "ci95": [
+            -11.31225757897764,
+            -7.5905493290982635
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": -2.8447055815416724
+        },
+        "damage": {
+          "n": 10,
+          "mean": 0.11301888728250162,
+          "median": 0.007580227492361757,
+          "sd": 0.2786648197756618,
+          "p10": -0.08849823282292135,
+          "p90": 0.6191718507163572,
+          "p95": 0.6379611326182377,
+          "min": -0.0887160457584173,
+          "max": 0.6567504145201184,
+          "clusters": 10,
+          "ci95": [
+            -0.02307450260574171,
+            0.3048882037068841
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": 0.4055728576484362
+        },
+        "combatDamageDealt": {
+          "n": 10,
+          "mean": 0,
+          "median": 0,
+          "sd": 0,
+          "p10": 0,
+          "p90": 0,
+          "p95": 0,
+          "min": 0,
+          "max": 0,
+          "clusters": 10,
+          "ci95": [
+            0,
+            0
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": null
+        },
+        "attacks": {
+          "n": 10,
+          "mean": 0,
+          "median": 0,
+          "sd": 0,
+          "p10": 0,
+          "p90": 0,
+          "p95": 0,
+          "min": 0,
+          "max": 0,
+          "clusters": 10,
+          "ci95": [
+            0,
+            0
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": null
+        },
+        "overtakes": {
+          "n": 10,
+          "mean": -1.3,
+          "median": -1,
+          "sd": 2.94580681270476,
+          "p10": -5.1,
+          "p90": 3,
+          "p95": 3,
+          "min": -6,
+          "max": 3,
+          "clusters": 10,
+          "ci95": [
+            -2.9,
+            0.4
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": -0.4413052459493687
+        },
+        "laneSuccesses": {
+          "n": 10,
+          "mean": -5.4,
+          "median": -6,
+          "sd": 1.9550504398153572,
+          "p10": -7,
+          "p90": -2.9000000000000004,
+          "p95": -2.450000000000001,
+          "min": -7,
+          "max": -2,
+          "clusters": 10,
+          "ci95": [
+            -6.5,
+            -4.2
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": -2.762077074855418
+        },
+        "blockedSeconds": {
+          "n": 10,
+          "mean": 0.1159985941294945,
+          "median": 0,
+          "sd": 0.22992867158408514,
+          "p10": -0.016111290037366638,
+          "p90": 0.4899307300755593,
+          "p95": 0.5178700785120712,
+          "min": -0.16111290037366643,
+          "max": 0.5458094269485834,
+          "clusters": 10,
+          "ci95": [
+            -0.008636679580986935,
+            0.2567481096117283
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": 0.5044981703687775
+        },
+        "fastPaceShare": {
+          "n": 10,
+          "mean": -0.8244417589536827,
+          "median": -0.9297385357985002,
+          "sd": 0.15111745577420618,
+          "p10": -0.9470711330712422,
+          "p90": -0.614588654964434,
+          "p95": -0.613835468443026,
+          "min": -0.9548730115668879,
+          "max": -0.613082281921618,
+          "clusters": 10,
+          "ci95": [
+            -0.9081033028459465,
+            -0.7346504232647332
+          ],
+          "smallClusterSample": false,
+          "method": "seed-cluster bootstrap mean, 1000 resamples",
+          "dz": -5.455635516955311
+        }
+      }
+    }
+  }
+}

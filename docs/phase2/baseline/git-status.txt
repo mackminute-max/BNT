@@ -1,0 +1,25 @@
+ M ASSUMPTIONS.md
+ M DEVELOPMENT.md
+ M IMPLEMENTATION_STATUS.md
+ M RELEASE_CHECKLIST.md
+ M dist/Blood_and_Thunder.html
+ M package-lock.json
+ M package.json
+ M scripts/browser-test.mjs
+ M src/ai/driver.js
+ M src/config/config.js
+ M src/replay/replay.js
+ M src/reporting/results.js
+ M src/sim/consequences.js
+ M src/sim/incidents.js
+ M src/sim/race.js
+ M src/track/oval.js
+ M src/ui/index.html
+ M tests/fixtures.js
+?? docs/audits/CORRECTIVE_PASS_0_4_2.md
+?? docs/audits/corrective-0.4.2-evidence/
+?? docs/phase2/
+?? reports/corrective-0.4.2-reference.json
+?? reports/corrective-0.4.2-seed-145-replay.json
+?? src/ai/telemetry.js
+?? tests/corrective.test.js

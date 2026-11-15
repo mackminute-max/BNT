@@ -579,7 +579,8 @@
             ><select id="surfaceField" aria-label="Surface attribute">
               <option>grip</option>
               <option>roughness</option>
-              <option>rollingResistance</option></select
+              <option>rollingResistance</option>
+              <option>hazardModifier</option></select
             ><input
               id="surfaceValue"
               aria-label="Surface value"
@@ -590,6 +591,7 @@
               value="1"
             /><button id="applySurface">Apply to new race</button>
           </div>
+          <p class="note">Hazard modifier: 0–2, neutral 1. Weights incident placement on this segment; 0 excludes it. Incident frequency and the disabled-incidents setting remain unchanged.</p>
           <h2>Complete configuration and lineup</h2>
           <p class="note">
             Edit entrants, beasts, equipment, starting lanes/positions, player
@@ -644,7 +646,153 @@
     return accumulator2;
   }
 
+  // src/events/events.js
+  function emit(s, type, participants = [], effects = {}) {
+    const event = {
+      id: s.events.length + 1,
+      type,
+      time: s.time,
+      tick: s.tick,
+      fraction: (s.time - s.tick * s.config.dt) / s.config.dt,
+      participants: [...participants].sort(),
+      effects: structuredClone(effects)
+    };
+    s.events.push(event);
+    return event;
+  }
+
+  // src/ai/signs.js
+  var signs = [
+    "Push the Pace",
+    "Conserve Strength",
+    "Seek Open Track",
+    "Race Defensively",
+    "Engage Rivals",
+    "Hold Position"
+  ];
+  function signCommand(s, cmd) {
+    const r = s.entrants.find((r2) => r2.id === s.playerId);
+    const reject = (reason) => {
+      emit(s, "SIGN_REJECTED", [s.playerId], { reason });
+      return false;
+    };
+    if (!r || r.status !== "Racing") return reject("Player is not racing");
+    if (cmd.action === "queue") {
+      if (!signs.includes(cmd.sign) || cmd.sign === "Engage Rivals" && s.format === "Pure")
+        return reject("Sign illegal for format");
+      if (!r.signs.remaining) return reject("No sign uses remaining");
+      r.signs.remaining--;
+      r.signs.pending = cmd.sign;
+      emit(s, "SIGN_QUEUED", [r.id], {
+        sign: cmd.sign,
+        remaining: r.signs.remaining
+      });
+    } else if (cmd.action === "cancel") {
+      r.signs.pending = null;
+      emit(s, "SIGN_CANCELED", [r.id], { remaining: r.signs.remaining });
+    } else if (cmd.action === "lower") {
+      r.signs.active = null;
+      r.ai.nextDecision = s.tick;
+      emit(s, "SIGN_LOWERED", [r.id]);
+    } else return reject("Unknown sign action");
+    return true;
+  }
+  function activateSign(s, r) {
+    if (r.status !== "Racing" || !r.signs.pending) return;
+    r.signs.active = r.signs.pending;
+    r.signs.pending = null;
+    r.ai.nextDecision = s.tick;
+    emit(s, "SIGN_ACTIVATED", [r.id], { sign: r.signs.active });
+  }
+  function signPreference(sign, action, c) {
+    if (sign === "Push the Pace")
+      return ["Push", "Sprint"].includes(action) ? c.signPush : 0;
+    if (sign === "Conserve Strength")
+      return action === "Conserve" ? c.signConserve : 0;
+    if (sign === "Seek Open Track")
+      return ["inward", "outward", "overtake"].includes(action) ? c.signOpen : 0;
+    if (sign === "Race Defensively")
+      return [
+        "Conserve",
+        "avoid",
+        "yield",
+        "hold",
+        "defendCombat",
+        "disengage"
+      ].includes(action) ? c.signDefensive : 0;
+    if (sign === "Hold Position")
+      return ["hold", "defend", "Maintain"].includes(action) ? c.signHold : 0;
+    if (sign === "Engage Rivals")
+      return ["attack", "ram"].includes(action) ? c.signEngage : 0;
+    return 0;
+  }
+
+  // src/ai/telemetry.js
+  function compliance(d, tuning) {
+    if (!d.sign) return null;
+    if (!d.candidates.some((x) => signPreference(d.sign, x.action, tuning) > 0))
+      return "Inapplicable";
+    if (d.executionError || d.stressError) return "Prevented";
+    const pacePreferred = signPreference(d.sign, d.effective.pace, tuning) > 0;
+    const positionPreferred = signPreference(d.sign, d.effective.position, tuning) > 0;
+    const paceApplied = d.physicalOutcome.pace.status === "Applied" && !(d.sign === "Push the Pace" && d.physicalOutcome.movement.status === "Blocked");
+    const positionStatus = d.physicalOutcome.position.status;
+    if (["Push the Pace", "Conserve Strength"].includes(d.sign))
+      return pacePreferred ? paceApplied ? "Followed" : "Prevented" : "Overridden";
+    if (positionPreferred && positionStatus === "Pending") return null;
+    const paceFollowed = pacePreferred && paceApplied;
+    const positionFollowed = positionPreferred && positionStatus === "Succeeded";
+    if (positionFollowed) return "Followed";
+    if (paceFollowed) return "Partially Followed";
+    if (positionPreferred && positionStatus === "Prevented" || pacePreferred && !paceApplied)
+      return "Prevented";
+    return "Overridden";
+  }
+  function beginDecision(s, r, diagnostic, failed, position) {
+    const pending = !failed && (position?.lane != null || ["attack", "ram"].includes(position?.action));
+    const action = failed ? null : position?.action ?? null;
+    const paceApplied = !failed && r.control !== "Out of Control";
+    r.ai.diagnostics = {
+      ...diagnostic,
+      decisionId: s.events.length + 1,
+      sign: r.signs.active,
+      intended: { ...diagnostic.chosen, lane: position?.lane ?? null, target: position?.target ?? null },
+      effective: { pace: failed ? null : r.pace, position: action, lane: failed ? null : position?.lane ?? null, target: failed ? null : position?.target ?? null },
+      executed: { pace: paceApplied ? r.pace : null, position: pending ? null : action },
+      physicalOutcome: {
+        pace: { action: r.pace, status: paceApplied ? "Applied" : "Prevented", reason: failed ? "Driver error" : paceApplied ? null : "Out of control" },
+        position: { action, status: failed ? "Prevented" : pending ? "Pending" : "Succeeded", lane: r.lane, reason: failed ? "Driver error" : null },
+        movement: { status: r.blocked ? "Blocked" : "Not evaluated" }
+      }
+    };
+    r.ai.diagnostics.compliance = compliance(r.ai.diagnostics, s.autonomous);
+    emit(s, "AI_DECISION", [r.id], r.ai.diagnostics);
+    return r.ai.diagnostics.decisionId;
+  }
+  function resolveAction(s, r, decisionId, domain, succeeded, reason = null, details = {}) {
+    const d = r?.ai.diagnostics;
+    if (!d || decisionId == null || d.decisionId !== decisionId) return;
+    const outcome = domain === "movement" ? { status: succeeded ? "Moving" : "Blocked", reason, ...details } : { ...d.physicalOutcome[domain], status: succeeded ? domain === "pace" ? "Applied" : "Succeeded" : "Prevented", reason, ...details };
+    d.physicalOutcome[domain] = outcome;
+    if (domain === "pace") d.executed.pace = succeeded ? d.effective.pace : null;
+    if (domain === "position") d.executed.position = succeeded ? d.effective.position : null;
+    d.compliance = compliance(d, s.autonomous);
+    if (reason) d.reason = reason;
+    emit(s, "AI_EXECUTION_RESULT", [r.id], {
+      decisionId: d.decisionId,
+      sign: d.sign,
+      domain,
+      effective: d.effective,
+      executed: d.executed,
+      physicalOutcome: d.physicalOutcome,
+      compliance: d.compliance,
+      reason: d.reason
+    });
+  }
+
   // src/track/oval.js
+  var surfaceDefaults = Object.freeze({ grip: 1, roughness: 0, rollingResistance: 1, hazardModifier: 1 });
+  var surfaceRules = Object.freeze({ grip: [0.1, 2], roughness: [0, 2], rollingResistance: [0.1, 2], hazardModifier: [0, 2] });
   var mod = (n, d) => (n % d + d) % d;
   function track(c) {
     const segments = [
@@ -657,7 +805,7 @@
     for (const s of segments) {
       s.start = start;
       start += s.tiles;
-      s.surface = { grip: 1, roughness: 0, rollingResistance: 1 };
+      s.surface = { ...surfaceDefaults };
     }
     return { segments, cells: start, lanes: c.lanes };
   }
@@ -691,21 +839,6 @@
     if (x < 2 * n + k) return { x: l * (1 - (x - n - k) / n), y: r };
     const a = Math.PI / 2 + (x - 2 * n - k) / k * Math.PI;
     return { x: r * Math.cos(a), y: r * Math.sin(a) };
-  }
-
-  // src/events/events.js
-  function emit(s, type, participants = [], effects = {}) {
-    const event = {
-      id: s.events.length + 1,
-      type,
-      time: s.time,
-      tick: s.tick,
-      fraction: (s.time - s.tick * s.config.dt) / s.config.dt,
-      participants: [...participants].sort(),
-      effects: structuredClone(effects)
-    };
-    s.events.push(event);
-    return event;
   }
 
   // src/core/determinism.js
@@ -889,6 +1022,8 @@
     const next = r.instability > c.outOfControlThreshold ? "Out of Control" : r.instability > c.unstableThreshold ? "Unstable" : "Normal";
     if (next !== r.control) {
       r.control = next;
+      if (next === "Out of Control")
+        resolveAction(s, r, r.ai.diagnostics?.decisionId, "pace", false, "Out of control requires braking");
       emit(s, "CONTROL_CHANGED", [r.id], {
         control: next,
         instability: r.instability,
@@ -1083,15 +1218,7 @@
     for (const intent of ordered) {
       const a = s.entrants.find((r) => r.id === intent.id), b = s.entrants.find((r) => r.id === intent.target), c = s.consequence;
       if (!eligibleCombat(s, a, b, intent.action) || s.time + s.config.epsilon < a.nextAttackTime) {
-        if (a?.ai.diagnostics) {
-          if (a.ai.diagnostics.compliance)
-            a.ai.diagnostics.compliance = "Prevented";
-          a.ai.diagnostics.reason = "Combat execution invalidated";
-          emit(s, "AI_EXECUTION_RESULT", [a.id], {
-            compliance: a.ai.diagnostics.compliance,
-            reason: a.ai.diagnostics.reason
-          });
-        }
+        resolveAction(s, a, intent.decisionId, "position", false, "Combat execution invalidated");
         emit(
           s,
           "ATTACK_INVALIDATED",
@@ -1127,6 +1254,7 @@
         success,
         reacted: react
       });
+      resolveAction(s, a, intent.decisionId, "position", true, null, { combatResult: success ? "Hit" : "Defended", attackId: id });
       if (!success) continue;
       if (intent.action === "ram")
         queueImpact(s, a, b, "Deliberate lateral ram", {
@@ -1214,13 +1342,20 @@
       const eligible = [];
       for (let lane = 0; lane < s.config.lanes; lane++)
         for (let tile = s.config.exitTiles + 1; tile < s.track.cells; tile++)
-          if (!occupied.has(key(tile, lane, s.track)))
-            eligible.push({ lane, tile });
-      const placement = request.tile === void 0 ? eligible[Math.floor(
-        drawConsequence(s, "incident-placement", id) * eligible.length
-      )] : eligible.find(
-        (p) => p.lane === request.lane && p.tile === request.tile
-      );
+          if (!occupied.has(key(tile, lane, s.track))) {
+            const weight = location(tile, lane, s.config, s.track).surface.hazardModifier;
+            if (weight > 0) eligible.push({ lane, tile, weight });
+          }
+      let placement;
+      if (request.tile === void 0) {
+        let pick = drawConsequence(s, "incident-placement", id) * eligible.reduce((sum, cell) => sum + cell.weight, 0);
+        placement = eligible.find((cell) => {
+          pick -= cell.weight;
+          return pick < 0;
+        });
+      } else {
+        placement = eligible.find((p) => p.lane === request.lane && p.tile === request.tile);
+      }
       if (!placement) {
         emit(s, "INCIDENT_SKIPPED", [], {
           incidentId: id,
@@ -1253,7 +1388,7 @@
   }
 
   // src/config/config.js
-  var VERSION = "0.4.1-m4";
+  var VERSION = "0.4.2-corrective";
   var rules = {
     dt: [1e-3, 1, "s"],
     epsilon: [1e-12, 1e-7, "s"],
@@ -1757,72 +1892,6 @@
     };
   }
 
-  // src/ai/signs.js
-  var signs = [
-    "Push the Pace",
-    "Conserve Strength",
-    "Seek Open Track",
-    "Race Defensively",
-    "Engage Rivals",
-    "Hold Position"
-  ];
-  function signCommand(s, cmd) {
-    const r = s.entrants.find((r2) => r2.id === s.playerId);
-    const reject = (reason) => {
-      emit(s, "SIGN_REJECTED", [s.playerId], { reason });
-      return false;
-    };
-    if (!r || r.status !== "Racing") return reject("Player is not racing");
-    if (cmd.action === "queue") {
-      if (!signs.includes(cmd.sign) || cmd.sign === "Engage Rivals" && s.format === "Pure")
-        return reject("Sign illegal for format");
-      if (!r.signs.remaining) return reject("No sign uses remaining");
-      r.signs.remaining--;
-      r.signs.pending = cmd.sign;
-      emit(s, "SIGN_QUEUED", [r.id], {
-        sign: cmd.sign,
-        remaining: r.signs.remaining
-      });
-    } else if (cmd.action === "cancel") {
-      r.signs.pending = null;
-      emit(s, "SIGN_CANCELED", [r.id], { remaining: r.signs.remaining });
-    } else if (cmd.action === "lower") {
-      r.signs.active = null;
-      r.ai.nextDecision = s.tick;
-      emit(s, "SIGN_LOWERED", [r.id]);
-    } else return reject("Unknown sign action");
-    return true;
-  }
-  function activateSign(s, r) {
-    if (r.status !== "Racing" || !r.signs.pending) return;
-    r.signs.active = r.signs.pending;
-    r.signs.pending = null;
-    r.ai.nextDecision = s.tick;
-    emit(s, "SIGN_ACTIVATED", [r.id], { sign: r.signs.active });
-  }
-  function signPreference(sign, action, c) {
-    if (sign === "Push the Pace")
-      return ["Push", "Sprint"].includes(action) ? c.signPush : 0;
-    if (sign === "Conserve Strength")
-      return action === "Conserve" ? c.signConserve : 0;
-    if (sign === "Seek Open Track")
-      return ["inward", "outward", "overtake"].includes(action) ? c.signOpen : 0;
-    if (sign === "Race Defensively")
-      return [
-        "Conserve",
-        "avoid",
-        "yield",
-        "hold",
-        "defendCombat",
-        "disengage"
-      ].includes(action) ? c.signDefensive : 0;
-    if (sign === "Hold Position")
-      return ["hold", "defend", "Maintain"].includes(action) ? c.signHold : 0;
-    if (sign === "Engage Rivals")
-      return ["attack", "ram"].includes(action) ? c.signEngage : 0;
-    return 0;
-  }
-
   // src/ai/driver.js
   var tendencies = [
     "aggression",
@@ -2066,29 +2135,18 @@
       r.ai.goal = position.action;
       r.ai.goalUntil = s.tick + c.goalTicks;
     }
-    const preferred = candidates.some(
-      (x) => signPreference(sign, x.action, c) > 0
-    );
-    const followed = signPreference(sign, r.pace, c) > 0, positionFollowed = position && signPreference(sign, position.action, c) > 0;
-    let compliance = !sign ? null : !preferred ? "Inapplicable" : failed ? "Prevented" : followed && positionFollowed ? "Followed" : followed || positionFollowed ? "Partially Followed" : "Overridden";
-    if (!failed && sign && (["Push the Pace", "Conserve Strength"].includes(sign) && followed || ["Seek Open Track", "Race Defensively", "Hold Position"].includes(
-      sign
-    ) && positionFollowed))
-      compliance = "Followed";
-    r.ai.diagnostics = {
+    const preferred = candidates.some((x) => signPreference(sign, x.action, c) > 0);
+    const decisionId = beginDecision(s, r, {
       tick: s.tick,
       perceived,
       candidates,
       chosen: { pace: pace.action, position: position?.action },
-      executed: { pace: r.pace, position: failed ? null : position?.action },
       judgmentError: judgment,
       executionError: executionFailure,
       stressError: stressFailure,
-      compliance,
       reason: failed ? "Driver error" : !preferred && sign ? "No applicable legal action" : r.pace !== pace.action ? `${position?.action} requires ${r.pace}; selected pace ${pace.action} was overridden` : null
-    };
-    emit(s, "AI_DECISION", [r.id], r.ai.diagnostics);
-    return commands;
+    }, failed, position);
+    return commands.map((command) => ({ ...command, decisionId }));
   }
 
   // src/dev/overrides.js
@@ -2301,7 +2359,7 @@
       if (!segment || !patch || typeof patch !== "object")
         throw new Error("Invalid surface");
       for (const [k, v] of Object.entries(patch))
-        if (!["grip", "roughness", "rollingResistance"].includes(k) || !Number.isFinite(v) || v < (k === "roughness" ? 0 : 0.1) || v > 2)
+        if (!Object.hasOwn(surfaceDefaults, k) || !Number.isFinite(v) || v < surfaceRules[k][0] || v > surfaceRules[k][1])
           throw new Error("Invalid surface modifier");
       Object.assign(segment.surface, patch);
     }
@@ -2345,6 +2403,7 @@
         lastCrossingTime: null,
         lastCrossingQ: null,
         finishTime: null,
+        finishSnapshot: null,
         retirement: null,
         pace: "Maintain",
         cornerVisits: 0,
@@ -2601,9 +2660,14 @@
         emit(s, "FINAL_LAP", [r.id], { targetLaps: s.config.laps });
       if (r.completedLaps === s.config.laps) {
         r.finishTime = s.time;
+        const finishSnapshot = Object.freeze({
+          time: s.time,
+          beasts: Object.freeze(r.ru.beasts.map((b, index) => Object.freeze({ index, fatigue: b.fatigue })))
+        });
+        Object.defineProperty(r, "finishSnapshot", { value: finishSnapshot, enumerable: true, writable: false, configurable: false });
         r.status = "Finished";
         r.physical = "Clearing";
-        emit(s, "RU_FINISHED", [r.id], { time: r.finishTime });
+        emit(s, "RU_FINISHED", [r.id], { time: r.finishTime, finishSnapshot: r.finishSnapshot });
       }
     }
   }
@@ -2639,6 +2703,7 @@
     for (const cmd of commands) {
       const r = s.entrants.find((r2) => r2.id === cmd.id);
       if (!r || r.status !== "Racing" || r.control === "Out of Control" || !Number.isInteger(cmd.lane) || Math.abs(cmd.lane - r.lane) !== 1 || cmd.lane < 0 || cmd.lane >= s.config.lanes) {
+        resolveAction(s, r, cmd.decisionId, "position", false, "Illegal adjacent lane change");
         emit(s, "COMMAND_REJECTED", cmd.id ? [cmd.id] : [], {
           reason: "Illegal adjacent lane change"
         });
@@ -2646,6 +2711,7 @@
       }
       intents.push({
         r,
+        decisionId: cmd.decisionId,
         lane: cmd.lane,
         target: key(r.q, cmd.lane, s.track),
         rank: randomDraw(s, "lateral", s.tick, r.id),
@@ -2686,6 +2752,7 @@
           lane: intent.lane,
           reason: intent.hazard ? "Swept tile contains an incident" : "Swept tile occupied or contested"
         });
+        resolveAction(s, intent.r, intent.decisionId, "position", false, "Physical execution blocked", { lane: intent.r.lane });
       } else {
         won.add(intent.target);
         const old = intent.r.lane;
@@ -2700,6 +2767,7 @@
           to: intent.lane
         });
         corner(s, intent.r);
+        resolveAction(s, intent.r, intent.decisionId, "position", true, null, { lane: intent.r.lane });
       }
     }
     flush(s);
@@ -2877,6 +2945,7 @@
         r.q = next - s.config.positionEpsilon;
         r.speed = 0;
         r.blocked = true;
+        resolveAction(s, r, r.ai.diagnostics?.decisionId, "movement", false, "Forward path blocked");
         emit(s, "MOVEMENT_BLOCKED", [r.id], { tile: key(next, r.lane, s.track) });
       }
     }
@@ -2904,6 +2973,12 @@
     try {
       s.resolving = true;
       assertState(s);
+      for (const command of commands.filter((c) => c?.phase === "paused")) {
+        if (command.type !== "sign" || command.id !== s.playerId || Object.keys(command).some((k) => !["type", "id", "action", "sign", "phase"].includes(k)))
+          throw new Error("Invalid paused sign command");
+        issueSign(s, command.action, command.sign);
+      }
+      commands = commands.filter((c) => c?.phase !== "paused");
       s.impactsThisTick = 0;
       for (const r of sorted(s)) {
         r.reactionsRemaining = s.consequence.reactionBudget;
@@ -2937,17 +3012,6 @@
           s,
           intents.filter((c) => c.type === "lane")
         );
-        for (const intent of intents.filter((c) => c.type === "lane")) {
-          const r = s.entrants.find((r2) => r2.id === intent.id);
-          if (r.lane !== intent.lane && r.ai.diagnostics) {
-            r.ai.diagnostics.compliance = r.signs.active ? "Prevented" : null;
-            r.ai.diagnostics.reason = "Physical execution blocked";
-            emit(s, "AI_EXECUTION_RESULT", [r.id], {
-              compliance: r.ai.diagnostics.compliance,
-              reason: r.ai.diagnostics.reason
-            });
-          }
-        }
       }
       const end = (s.tick + 1) * s.config.dt;
       let groups = 0;
@@ -3026,14 +3090,9 @@
             );
             for (const intent of reactions.filter((c) => c.type === "lane")) {
               const r = s.entrants.find((r2) => r2.id === intent.id);
-              if (r.lane !== lanes.get(r.id)) r.blocked = false;
-              else if (r.signs.active) {
-                r.ai.diagnostics.compliance = "Prevented";
-                r.ai.diagnostics.reason = "Physical execution blocked";
-                emit(s, "AI_EXECUTION_RESULT", [r.id], {
-                  compliance: r.ai.diagnostics.compliance,
-                  reason: r.ai.diagnostics.reason
-                });
+              if (r.lane !== lanes.get(r.id)) {
+                r.blocked = false;
+                resolveAction(s, r, intent.decisionId, "movement", true);
               }
             }
           }
@@ -3093,7 +3152,7 @@
       action,
       ...sign === void 0 ? {} : { sign }
     };
-    s.commands.push({ tick: s.tick, order: s.commands.length, ...command });
+    s.commands.push({ tick: s.tick, order: s.commands.length, phase: "paused", ...command });
     return signCommand(s, command);
   }
   function logRacecraft(s) {
@@ -3203,7 +3262,7 @@
     if (!Array.isArray(record.events) || !Array.isArray(record.commands) || !Array.isArray(record.checkpoints) || !Number.isInteger(record.tick) || record.tick < 0 || record.tick > 1e6)
       throw new Error("Invalid replay structure");
     if (record.commands.some(
-      (c, i) => c.order !== i || !Number.isInteger(c.tick) || c.tick < 0 || c.tick > record.tick
+      (c, i) => c.order !== i || !Number.isInteger(c.tick) || c.tick < 0 || c.tick > record.tick || c.phase !== void 0 && (c.phase !== "paused" || c.type !== "sign")
     ))
       throw new Error("Invalid command order or tick");
     if (record.checkpoints.some(
@@ -3392,21 +3451,25 @@
     const count = (type) => s.events.filter((e) => e.type === type).length;
     const decisions = [];
     const latest = /* @__PURE__ */ new Map();
+    const byDecision = /* @__PURE__ */ new Map();
     for (const e of s.events) {
       if (e.type === "AI_DECISION" && !e.effects.compliance)
         latest.delete(e.participants[0]);
-      if (e.type === "AI_DECISION" && e.effects.compliance) {
+      if (e.type === "AI_DECISION" && (e.effects.sign || e.effects.compliance)) {
         const sample = { ...e.effects };
         decisions.push(sample);
         latest.set(e.participants[0], sample);
+        if (e.effects.decisionId != null) byDecision.set(e.effects.decisionId, sample);
       }
-      if (e.type === "AI_EXECUTION_RESULT" && latest.has(e.participants[0]))
-        latest.get(e.participants[0]).compliance = e.effects.compliance;
+      if (e.type === "AI_EXECUTION_RESULT") {
+        const sample = e.effects.decisionId != null ? byDecision.get(e.effects.decisionId) : latest.get(e.participants[0]);
+        if (sample) sample.compliance = e.effects.compliance;
+      }
     }
-    const compliance = {};
+    const compliance2 = {};
     for (const d of decisions)
-      compliance[d.compliance] = (compliance[d.compliance] ?? 0) + 1;
-    const finishFatigue = s.entrants.filter((r) => r.finishTime !== null).flatMap((r) => r.ru.beasts.map((b) => b.fatigue));
+      if (d.compliance) compliance2[d.compliance] = (compliance2[d.compliance] ?? 0) + 1;
+    const finishFatigue = s.entrants.filter((r) => r.finishTime !== null).flatMap((r) => r.finishSnapshot?.beasts.map((b) => b.fatigue) ?? []);
     return {
       version: s.version,
       seed: s.seed,
@@ -3431,7 +3494,7 @@
       incidents: count("INCIDENT"),
       signQueues: count("SIGN_QUEUED"),
       signActivations: count("SIGN_ACTIVATED"),
-      signCompliance: compliance,
+      signCompliance: compliance2,
       diagnostics: s.diagnostics,
       entrants: s.entrants.map((r) => ({
         id: r.id,
@@ -3443,6 +3506,7 @@
           beasts: r.ru.beasts.map((b) => b.condition)
         },
         fatigue: r.ru.beasts.map((b) => b.fatigue),
+        finishSnapshot: r.finishSnapshot ? structuredClone(r.finishSnapshot) : null,
         strain: r.ru.driver.strain,
         wear: r.ru.chariot.wear,
         signs: r.signs,

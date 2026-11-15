@@ -1,7 +1,7 @@
+import { beginDecision } from "./telemetry.js";
 import { random, byId } from "../core/determinism.js";
 import { mod } from "../track/oval.js";
 import { signPreference } from "./signs.js";
-import { emit } from "../events/events.js";
 export const tendencies = [
   "aggression",
   "caution",
@@ -316,42 +316,15 @@ export function decide(s, r) {
     r.ai.goal = position.action;
     r.ai.goalUntil = s.tick + c.goalTicks;
   }
-  const preferred = candidates.some(
-    (x) => signPreference(sign, x.action, c) > 0,
-  );
-  const followed = signPreference(sign, r.pace, c) > 0,
-    positionFollowed = position && signPreference(sign, position.action, c) > 0;
-  let compliance = !sign
-    ? null
-    : !preferred
-      ? "Inapplicable"
-      : failed
-        ? "Prevented"
-        : followed && positionFollowed
-          ? "Followed"
-          : followed || positionFollowed
-            ? "Partially Followed"
-            : "Overridden";
-  if (
-    !failed &&
-    sign &&
-    ((["Push the Pace", "Conserve Strength"].includes(sign) && followed) ||
-      (["Seek Open Track", "Race Defensively", "Hold Position"].includes(
-        sign,
-      ) &&
-        positionFollowed))
-  )
-    compliance = "Followed";
-  r.ai.diagnostics = {
+  const preferred = candidates.some(x => signPreference(sign, x.action, c) > 0);
+  const decisionId = beginDecision(s, r, {
     tick: s.tick,
     perceived,
     candidates,
     chosen: { pace: pace.action, position: position?.action },
-    executed: { pace: r.pace, position: failed ? null : position?.action },
     judgmentError: judgment,
     executionError: executionFailure,
     stressError: stressFailure,
-    compliance,
     reason: failed
       ? "Driver error"
       : !preferred && sign
@@ -359,7 +332,6 @@ export function decide(s, r) {
         : r.pace !== pace.action
           ? `${position?.action} requires ${r.pace}; selected pace ${pace.action} was overridden`
           : null,
-  };
-  emit(s, "AI_DECISION", [r.id], r.ai.diagnostics);
-  return commands;
+  }, failed, position);
+  return commands.map(command => ({ ...command, decisionId }));
 }

@@ -1,3 +1,6 @@
+// Provisional segment coefficients; one source for defaults and validation ranges.
+export const surfaceDefaults = Object.freeze({ grip: 1, roughness: 0, rollingResistance: 1, hazardModifier: 1 });
+export const surfaceRules = Object.freeze({ grip: [0.1, 2], roughness: [0, 2], rollingResistance: [0.1, 2], hazardModifier: [0, 2] });
 export const mod = (n, d) => ((n % d) + d) % d;
 export function track(c) {
   const segments = [
@@ -10,7 +13,7 @@ export function track(c) {
   for (const s of segments) {
     s.start = start;
     start += s.tiles;
-    s.surface = { grip: 1, roughness: 0, rollingResistance: 1 };
+    s.surface = { ...surfaceDefaults };
   }
   return { segments, cells: start, lanes: c.lanes };
 }

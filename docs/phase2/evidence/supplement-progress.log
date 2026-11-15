@@ -1,0 +1,9 @@
+{"started":true,"target":130,"workers":4}
+{"completed":20,"target":130,"seconds":7,"perMinute":164,"errors":0,"stalls":0}
+{"completed":40,"target":130,"seconds":12,"perMinute":202,"errors":0,"stalls":0}
+{"completed":60,"target":130,"seconds":17,"perMinute":208,"errors":0,"stalls":0}
+{"completed":80,"target":130,"seconds":23,"perMinute":211,"errors":0,"stalls":0}
+{"completed":100,"target":130,"seconds":27,"perMinute":219,"errors":0,"stalls":0}
+{"completed":120,"target":130,"seconds":32,"perMinute":225,"errors":0,"stalls":0}
+{"completed":130,"target":130,"seconds":34,"perMinute":229,"errors":0,"stalls":0}
+{"done":true,"target":130,"completed":130,"cancelled":false,"toolErrors":[],"countsByFormat":{"Pure":60,"Combat":70},"statuses":{"Ended":130},"bounded":0,"workers":4,"wallSeconds":34.107840785}
