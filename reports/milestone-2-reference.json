@@ -1,0 +1,155 @@
+{
+  "version": "0.2.0-m2",
+  "seed": 145,
+  "status": "Ended",
+  "time": 142.65,
+  "ticks": 2853,
+  "events": 3886,
+  "checksum": "b42032fa",
+  "artifactBytes": 71261,
+  "diagnostics": {
+    "subevents": 24305,
+    "maxGroups": 384
+  },
+  "classification": [
+    {
+      "id": "RU8",
+      "place": 1,
+      "status": "Finished",
+      "time": 118.62409823351399,
+      "completedLaps": 3,
+      "progress": 240
+    },
+    {
+      "id": "RU6",
+      "place": 2,
+      "status": "Finished",
+      "time": 118.63637694880504,
+      "completedLaps": 3,
+      "progress": 240
+    },
+    {
+      "id": "RU3",
+      "place": 3,
+      "status": "Finished",
+      "time": 124.83844324939005,
+      "completedLaps": 3,
+      "progress": 240
+    },
+    {
+      "id": "RU5",
+      "place": 4,
+      "status": "Finished",
+      "time": 125.59592615129588,
+      "completedLaps": 3,
+      "progress": 240
+    },
+    {
+      "id": "RU1",
+      "place": 5,
+      "status": "Finished",
+      "time": 127.23081698045678,
+      "completedLaps": 3,
+      "progress": 240
+    },
+    {
+      "id": "RU7",
+      "place": 6,
+      "status": "Finished",
+      "time": 130.9460146364223,
+      "completedLaps": 3,
+      "progress": 240
+    },
+    {
+      "id": "RU2",
+      "place": 7,
+      "status": "Finished",
+      "time": 133.42190499664062,
+      "completedLaps": 3,
+      "progress": 240
+    },
+    {
+      "id": "RU4",
+      "place": 8,
+      "status": "Finished",
+      "time": 140.22087863220312,
+      "completedLaps": 3,
+      "progress": 240
+    }
+  ],
+  "laneChanges": 34,
+  "fatigue": [
+    {
+      "id": "RU1",
+      "beasts": [
+        17.201606455757844,
+        17.201606455757844
+      ],
+      "strain": 3.180770424511437,
+      "wear": 0.12723081698045763
+    },
+    {
+      "id": "RU2",
+      "beasts": [
+        16.13658460255468,
+        16.13658460255468
+      ],
+      "strain": 3.6705476249159945,
+      "wear": 0.14682190499664186
+    },
+    {
+      "id": "RU3",
+      "beasts": [
+        17.528997622420682,
+        17.528997622420682
+      ],
+      "strain": 3.3709610812347477,
+      "wear": 0.13483844324939123
+    },
+    {
+      "id": "RU4",
+      "beasts": [
+        8.735478731014847,
+        8.735478731014847
+      ],
+      "strain": 3.42435988461228,
+      "wear": 0.1369743953844923
+    },
+    {
+      "id": "RU5",
+      "beasts": [
+        18.613489130081053,
+        18.613489130081053
+      ],
+      "strain": 3.877882488964893,
+      "wear": 0.15511529955859815
+    },
+    {
+      "id": "RU6",
+      "beasts": [
+        13.648134358164073,
+        13.648134358164073
+      ],
+      "strain": 2.9240881245421955,
+      "wear": 0.11696352498168817
+    },
+    {
+      "id": "RU7",
+      "beasts": [
+        7.986964346265168,
+        7.986964346265168
+      ],
+      "strain": 3.61758016465975,
+      "wear": 0.1447032065863908
+    },
+    {
+      "id": "RU8",
+      "beasts": [
+        9.544764493321262,
+        9.544764493321262
+      ],
+      "strain": 2.8527274558378597,
+      "wear": 0.11410909823351441
+    }
+  ]
+}

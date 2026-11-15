@@ -1,0 +1,1088 @@
+import { applyOverride } from "../dev/overrides.js";
+import {
+  consequenceConfig,
+  queueImpact,
+  queueHazardImpact,
+  flushImpacts,
+  resolveAttacks,
+  retire,
+  updateControl,
+  controlTime,
+  recoverControl,
+} from "./consequences.js";
+import {
+  validateIncidents,
+  initializeIncidents,
+  incidentTime,
+  updateIncidents,
+  hazardAt,
+} from "./incidents.js";
+import {
+  weatherPresets,
+  m2Config,
+  integrateCondition,
+  environmentConfig,
+} from "./environment.js";
+import { personality, tendencies, decide } from "../ai/driver.js";
+import { signCommand, activateSign } from "../ai/signs.js";
+import { config, VERSION } from "../config/config.js";
+import { defaultRU, derive } from "../model/ru.js";
+import { byId, random, checksum } from "../core/determinism.js";
+import { track, location, key, nextDistance } from "../track/oval.js";
+import { emit } from "../events/events.js";
+import { travel, arrival } from "./kinematics.js";
+
+const sorted = (s) => [...s.entrants].sort(byId);
+const physical = (r) => r.physical !== "Exited" && r.status !== "DNS";
+export function createRace({
+  seed = 145,
+  overrides = {},
+  entrants,
+  format = "Pure",
+  driverMode = "autonomous",
+  weather = "Clear",
+  autonomous = {},
+  playerId = null,
+  surfaces = {},
+  consequences = true,
+  consequence = {},
+  scheduledIncidents = [],
+  checkpointInterval = 100,
+  environmentOverrides = {},
+} = {}) {
+  if (!Object.hasOwn(weatherPresets, weather))
+    throw new Error("Invalid weather");
+  if (!["reference", "autonomous"].includes(driverMode))
+    throw new Error("Invalid driver mode");
+  if (typeof consequences !== "boolean")
+    throw new Error("Invalid consequences flag");
+  if (
+    !Number.isInteger(checkpointInterval) ||
+    checkpointInterval < 1 ||
+    checkpointInterval > 10000
+  )
+    throw new Error("Invalid checkpoint interval");
+  const consequenceTuning = consequenceConfig(consequence);
+  const tuning = m2Config(autonomous);
+  const environment = environmentConfig(weather, environmentOverrides);
+  const c = config(overrides),
+    t = track(c);
+  if (!Number.isSafeInteger(seed))
+    throw new Error("Seed must be a safe integer");
+  if (!["Pure", "Combat"].includes(format))
+    throw new Error("Invalid race format");
+  const input =
+    entrants ??
+    Array.from({ length: 8 }, (_, i) => ({
+      ru: defaultRU(`RU${i + 1}`, 46 + i * 2),
+      lane: i % c.lanes,
+      q: -c.gridOffset - Math.floor(i / c.lanes) * c.gridGap,
+    }));
+  if (!input.length || input.length > 64)
+    throw new Error("Expected 1..64 entrants");
+  for (const [id, patch] of Object.entries(surfaces)) {
+    const segment = t.segments.find((x) => x.id === id);
+    if (!segment || !patch || typeof patch !== "object")
+      throw new Error("Invalid surface");
+    for (const [k, v] of Object.entries(patch))
+      if (
+        !["grip", "roughness", "rollingResistance"].includes(k) ||
+        !Number.isFinite(v) ||
+        v < (k === "roughness" ? 0 : 0.1) ||
+        v > 2
+      )
+        throw new Error("Invalid surface modifier");
+    Object.assign(segment.surface, patch);
+  }
+  const seen = new Set();
+  const units = input.map((e, i) => {
+    const ru = structuredClone(e.ru);
+    ru.driver.personality ??= personality(
+      Number(ru.id.replace(/\D/g, "")) || 0,
+    );
+    for (const k of tendencies)
+      if (
+        !Number.isFinite(ru.driver.personality[k]) ||
+        ru.driver.personality[k] < 0 ||
+        ru.driver.personality[k] > 100
+      )
+        throw new Error(`Invalid personality ${k}`);
+    const derived = derive(ru, {
+      ...c,
+      crowdMorale: environment.crowdMorale,
+      grip: c.grip * environment.grip,
+      speedReference: c.speedReference / environment.rolling,
+    });
+    if (seen.has(ru.id)) throw new Error(`Duplicate ID ${ru.id}`);
+    seen.add(ru.id);
+    const lane = e.lane ?? i % c.lanes,
+      q = e.q ?? -c.gridOffset - Math.floor(i / c.lanes) * c.gridGap,
+      speed = e.speed ?? 0;
+    if (
+      !Number.isInteger(lane) ||
+      lane < 0 ||
+      lane >= c.lanes ||
+      !Number.isFinite(q) ||
+      q >= 0 ||
+      q < -t.cells + 1 ||
+      !Number.isFinite(speed) ||
+      speed < 0 ||
+      speed > 200
+    )
+      throw new Error(
+        `Invalid initial position/speed ${ru.id}; grid must be behind common line`,
+      );
+    if (location(q, lane, c, t).type !== "straight")
+      throw new Error("Starting grid must fit on approach straight");
+    return {
+      id: ru.id,
+      ru,
+      derived,
+      lane,
+      q,
+      speed,
+      status: "Racing",
+      physical: "Live",
+      control: "Normal",
+      hasEnteredCourse: false,
+      completedLaps: 0,
+      lastCrossingTime: null,
+      lastCrossingQ: null,
+      finishTime: null,
+      retirement: null,
+      pace: "Maintain",
+      cornerVisits: 0,
+      blocked: false,
+      instability: 0,
+      nextAttackTime: 0,
+      reactionsRemaining: consequenceTuning.reactionBudget,
+      defending: false,
+      signs: { remaining: tuning.signUses, pending: null, active: null },
+      ai: {
+        nextDecision: 0,
+        goal: "hold",
+        goalUntil: 0,
+        perceived: null,
+        diagnostics: null,
+      },
+    };
+  });
+  const s = {
+    version: VERSION,
+    seed,
+    rng: { algorithm: "keyed-fnv-avalanche-v1", draws: 0 },
+    config: c,
+    track: t,
+    format,
+    consequences,
+    consequence: consequenceTuning,
+    driverMode,
+    weather,
+    environment,
+    autonomous: tuning,
+    playerId: playerId ?? units[0].id,
+    hazards: [],
+    wrecks: {},
+    contactHistory: {},
+    pendingImpacts: [],
+    impactsThisTick: 0,
+    nextImpact: 1,
+    nextAttack: 1,
+    incidentSchedule: validateIncidents(scheduledIncidents, c, t),
+    status: "Ready",
+    tick: 0,
+    time: 0,
+    entrants: units,
+    events: [],
+    commands: [],
+    contacts: [],
+    lastProgressTime: 0,
+    diagnostics: { subevents: 0, maxGroups: 0 },
+    setup: null,
+    configRevision: 0,
+    pendingOverrides: [],
+    resolving: false,
+    checkpointInterval,
+    checkpoints: [],
+    previousProgress: Object.fromEntries(
+      units.map((r) => [r.id, { q: r.q, status: r.status }]),
+    ),
+    leader: null,
+  };
+  if (!units.some((r) => r.id === s.playerId))
+    throw new Error("Invalid player RU");
+  s.setup = {
+    seed,
+    overrides: { ...c },
+    entrants: units.map((r) => ({
+      ru: structuredClone(r.ru),
+      lane: r.lane,
+      q: r.q,
+      speed: r.speed,
+    })),
+    format,
+    driverMode,
+    weather,
+    autonomous: tuning,
+    playerId: s.playerId,
+    surfaces: structuredClone(surfaces),
+    consequences,
+    consequence: consequenceTuning,
+    scheduledIncidents: structuredClone(scheduledIncidents),
+    checkpointInterval,
+    environmentOverrides: structuredClone(environmentOverrides),
+  };
+  if (driverMode === "autonomous")
+    for (const r of units) r.derived = deriveAt(s, r);
+  initializeIncidents(s);
+  s.initialRng = structuredClone(s.rng);
+  assertState(s);
+  s.checkpoints.push({ tick: 0, checksum: digest(s) });
+  return s;
+}
+export function assertState(s) {
+  const occupied = new Set();
+  for (const r of sorted(s)) {
+    if (
+      ![r.q, r.speed, s.time].every(Number.isFinite) ||
+      r.speed < -s.config.epsilon ||
+      !Number.isInteger(r.lane) ||
+      r.lane < 0 ||
+      r.lane >= s.config.lanes
+    )
+      throw new Error(`Invalid numeric state ${r.id}`);
+    if (physical(r)) {
+      const k = key(r.q, r.lane, s.track);
+      if (occupied.has(k)) throw new Error(`Overlapping occupancy at ${k}`);
+      occupied.add(k);
+    }
+    if (
+      Object.hasOwn(s.wrecks, r.id) &&
+      (r.physical !== "Wreck" ||
+        r.q !== s.wrecks[r.id].q ||
+        r.lane !== s.wrecks[r.id].lane)
+    )
+      throw new Error(`Wreck moved or removed ${r.id}`);
+    if (
+      s.consequences &&
+      (!Number.isFinite(r.instability) ||
+        r.ru.beasts.some(
+          (b) =>
+            !Number.isFinite(b.condition) ||
+            b.condition < 0 ||
+            b.condition > 100,
+        ))
+    )
+      throw new Error(`Invalid damage state ${r.id}`);
+    if (
+      s.consequences &&
+      r.physical === "Wreck" &&
+      !Object.hasOwn(s.wrecks, r.id)
+    )
+      throw new Error(`Unregistered wreck ${r.id}`);
+    if (r.physical === "Wreck" && r.speed !== 0)
+      throw new Error(`Moving wreck ${r.id}`);
+  }
+}
+export function snapshot(s) {
+  return {
+    version: s.version,
+    seed: s.seed,
+    config: s.config,
+    configRevision: s.configRevision,
+    pendingOverrides: s.pendingOverrides,
+    checkpointInterval: s.checkpointInterval,
+    previousProgress: s.previousProgress,
+    leader: s.leader,
+    format: s.format,
+    driverMode: s.driverMode,
+    weather: s.weather,
+    environment: s.environment,
+    autonomous: s.autonomous,
+    playerId: s.playerId,
+    hazards: s.hazards,
+    consequences: s.consequences,
+    consequence: s.consequence,
+    wrecks: s.wrecks,
+    contactHistory: s.contactHistory,
+    pendingImpacts: s.pendingImpacts,
+    impactsThisTick: s.impactsThisTick,
+    nextImpact: s.nextImpact,
+    nextAttack: s.nextAttack,
+    incidentSchedule: s.incidentSchedule,
+    incidentCursor: s.incidentCursor,
+    nextIncidentAt: s.nextIncidentAt,
+    nextIncident: s.nextIncident,
+    track: s.track,
+    contacts: [...s.contacts].sort(),
+    lastProgressTime: s.lastProgressTime,
+    diagnostics: s.diagnostics,
+    time: s.time,
+    tick: s.tick,
+    status: s.status,
+    rng: s.rng,
+    entrants: sorted(s),
+    commands: s.commands,
+    events: s.events,
+  };
+}
+export function digest(s) {
+  return checksum(snapshot(s));
+}
+export function capture(s) {
+  return structuredClone({
+    version: s.version,
+    setup: s.setup,
+    commands: s.commands,
+    events: s.events,
+    checksum: digest(s),
+    schema: 1,
+    kind: "BNT-replay",
+    tick: s.tick,
+    time: s.time,
+    status: s.status,
+    initialRng: s.initialRng,
+    checkpoints: s.checkpoints,
+    pendingOverrides: s.pendingOverrides,
+  });
+}
+export function classification(s) {
+  const finished = sorted(s)
+    .filter((r) => r.finishTime !== null)
+    .sort((a, b) => a.finishTime - b.finishTime || byId(a, b));
+  let groupTime = -Infinity,
+    place = 0;
+  const rows = finished.map((r, i) => {
+    if (r.finishTime - groupTime > s.config.finishTolerance) {
+      place = i + 1;
+      groupTime = r.finishTime;
+    }
+    return {
+      id: r.id,
+      place,
+      status: "Finished",
+      time: r.finishTime,
+      completedLaps: r.completedLaps,
+      progress: r.retirement?.progress ?? s.config.laps * s.track.cells,
+    };
+  });
+  const rest = sorted(s)
+    .filter((r) => r.finishTime === null)
+    .sort(
+      (a, b) =>
+        (a.status === "DNS") - (b.status === "DNS") ||
+        (b.retirement?.progress ?? b.q) - (a.retirement?.progress ?? a.q) ||
+        byId(a, b),
+    );
+  return [
+    ...rows,
+    ...rest.map((r) => ({
+      id: r.id,
+      place: null,
+      status: r.status,
+      time: r.retirement?.time ?? null,
+      completedLaps: r.completedLaps,
+      progress: r.retirement?.progress ?? r.q,
+      reason: r.retirement?.reason ?? null,
+    })),
+  ];
+}
+function deriveAt(s, r) {
+  const surface = location(r.q, r.lane, s.config, s.track).surface;
+  return derive(r.ru, {
+    ...s.config,
+    crowdMorale: s.environment.crowdMorale,
+    grip: s.config.grip * s.environment.grip * surface.grip,
+    speedReference:
+      s.config.speedReference /
+      (s.environment.rolling * surface.rollingResistance),
+  });
+}
+function randomDraw(s, ...keys) {
+  s.rng.draws++;
+  return random(s.seed, ...keys);
+}
+function contact(s, ids, cause, options = {}) {
+  const [a, b] = ids.map((id) => s.entrants.find((r) => r.id === id));
+  queueImpact(s, a, b, cause, options);
+}
+function flush(s) {
+  flushImpacts(s, (r) => {
+    r.derived = deriveAt(s, r);
+  });
+}
+function attacks(s, intents) {
+  resolveAttacks(
+    s,
+    intents.filter((c) => c.type === "attack"),
+    (r) => {
+      r.derived = deriveAt(s, r);
+    },
+  );
+}
+function crossing(s, r) {
+  if (
+    r.status !== "Racing" ||
+    r.q % s.track.cells !== 0 ||
+    r.lastCrossingQ === r.q
+  )
+    return;
+  activateSign(s, r);
+  r.lastCrossingQ = r.q;
+  r.lastCrossingTime = s.time;
+  if (!r.hasEnteredCourse) {
+    r.hasEnteredCourse = true;
+    emit(s, "LAP_ENTERED", [r.id], { completedLaps: 0 });
+    if (s.config.laps === 1) emit(s, "FINAL_LAP", [r.id], { targetLaps: 1 });
+  } else {
+    r.completedLaps++;
+    emit(s, "LAP_COMPLETED", [r.id], { completedLaps: r.completedLaps });
+    if (r.completedLaps === s.config.laps - 1)
+      emit(s, "FINAL_LAP", [r.id], { targetLaps: s.config.laps });
+    if (r.completedLaps === s.config.laps) {
+      r.finishTime = s.time;
+      r.status = "Finished";
+      r.physical = "Clearing";
+      emit(s, "RU_FINISHED", [r.id], { time: r.finishTime });
+    }
+  }
+}
+function corner(s, r) {
+  if (r.status !== "Racing") return;
+  const loc = location(r.q, r.lane, s.config, s.track);
+  if (loc.type !== "turn") return;
+  const safe = Math.sqrt(r.derived.lateral * loc.radius),
+    excess = Math.max(0, r.speed / safe - 1);
+  const probability = Math.min(1, s.config.cornerRisk * excess * excess);
+  const roll = randomDraw(s, "corner", r.id, r.cornerVisits++);
+  emit(s, "CORNER_EVALUATED", [r.id], {
+    safe,
+    speed: r.speed,
+    probability,
+    roll,
+  });
+  if (roll < probability) {
+    if (s.consequences) {
+      r.instability += s.consequence.cornerShock * excess;
+      updateControl(s, r, "Corner overspeed");
+    } else r.control = "Unstable";
+    r.speed *= 1 - s.config.cornerSpeedLoss;
+    emit(s, "CONTROL_CHANGED", [r.id], {
+      control: r.control,
+      speed: r.speed,
+      cause: "corner overspeed",
+    });
+  } else if (!s.consequences) r.control = "Normal";
+}
+// Lateral sweeps are resolved from one immutable boundary snapshot. No swapping through another RU.
+function laneChanges(s, commands) {
+  const intents = [];
+  const speeds = new Map(sorted(s).map((r) => [r.id, r.speed]));
+  for (const cmd of commands) {
+    const r = s.entrants.find((r) => r.id === cmd.id);
+    if (
+      !r ||
+      r.status !== "Racing" ||
+      r.control === "Out of Control" ||
+      !Number.isInteger(cmd.lane) ||
+      Math.abs(cmd.lane - r.lane) !== 1 ||
+      cmd.lane < 0 ||
+      cmd.lane >= s.config.lanes
+    ) {
+      emit(s, "COMMAND_REJECTED", cmd.id ? [cmd.id] : [], {
+        reason: "Illegal adjacent lane change",
+      });
+      continue;
+    }
+    intents.push({
+      r,
+      lane: cmd.lane,
+      target: key(r.q, cmd.lane, s.track),
+      rank: randomDraw(s, "lateral", s.tick, r.id),
+      hazard: s.consequences && hazardAt(s, r.q, cmd.lane),
+    });
+    emit(s, "LANE_CHANGE_REQUESTED", [r.id], { lane: cmd.lane });
+  }
+  const occupied = new Map(
+    sorted(s)
+      .filter(physical)
+      .map((r) => [key(r.q, r.lane, s.track), r]),
+  );
+  const accepted = new Set(),
+    reserved = new Set();
+  for (const intent of [...intents].sort(
+    (a, b) => a.rank - b.rank || byId(a.r, b.r),
+  )) {
+    if (!intent.hazard && !occupied.has(intent.target) && !reserved.has(intent.target)) {
+      accepted.add(intent.r.id);
+      reserved.add(intent.target);
+    }
+  }
+  const won = new Set();
+  for (const intent of intents.sort(
+    (a, b) => a.rank - b.rank || byId(a.r, b.r),
+  )) {
+    const blocker = occupied.get(intent.target);
+    if (intent.hazard || blocker || won.has(intent.target)) {
+      if (intent.hazard)
+        queueHazardImpact(s, intent.r, intent.hazard, speeds.get(intent.r.id), true);
+      if (blocker && accepted.has(blocker.id))
+        emit(s, "MOVEMENT_CONFLICT", [intent.r.id, blocker.id], {
+          cause: "Conservative lateral reservation; blocker vacating",
+        });
+      if (blocker && !accepted.has(blocker.id))
+        contact(s, [intent.r.id, blocker.id], "lateral sweep blocked", {
+          side: true,
+          speeds,
+        });
+      emit(s, "LANE_CHANGE_REJECTED", [intent.r.id], {
+        lane: intent.lane,
+        reason: intent.hazard ? "Swept tile contains an incident" : "Swept tile occupied or contested",
+      });
+    } else {
+      won.add(intent.target);
+      const old = intent.r.lane;
+      if (s.driverMode === "autonomous") {
+        intent.r.ai.laneCooldown = s.tick + s.autonomous.goalTicks;
+        const target = intent.r.ai.perceived?.neighbors
+          .filter((o) => o.lane === old && o.gap > 0 && o.gap < 4)
+          .sort((a, b) => a.gap - b.gap)[0];
+        if (target) intent.r.ai.passTarget = target.id;
+      }
+      intent.r.lane = intent.lane;
+      // Same longitudinal cross-section; no speed penalty or distance credit.
+      emit(s, "LANE_CHANGE_COMPLETED", [intent.r.id], {
+        from: old,
+        to: intent.lane,
+      });
+      corner(s, intent.r);
+    }
+  }
+  flush(s);
+}
+function applyCommands(s, commands) {
+  const ids = new Set();
+  for (const command of commands) {
+    if (
+      !command ||
+      !["lane", "pace", "sign", "attack", "override"].includes(command.type) ||
+      (!["sign", "override"].includes(command.type) &&
+        ids.has(`${command.type}:${command.id}`))
+    )
+      throw new Error("Invalid/duplicate boundary command");
+    ids.add(`${command.type}:${command.id}`);
+    const fields =
+      command.type === "override"
+        ? ["type", "id", "target", "path", "value"]
+        : command.type === "attack"
+          ? ["type", "id", "target", "action"]
+          : command.type === "sign"
+            ? ["type", "id", "action", "sign"]
+            : command.type === "lane"
+              ? ["type", "id", "lane"]
+              : ["type", "id", "pace"];
+    if (
+      typeof command.id !== "string" ||
+      Object.keys(command).some((k) => !fields.includes(k))
+    )
+      throw new Error("Invalid command fields");
+    if (
+      command.type === "attack" &&
+      (typeof command.target !== "string" ||
+        !["attack", "ram"].includes(command.action))
+    )
+      throw new Error("Invalid combat intent");
+    if (
+      command.type === "pace" &&
+      !["Conserve", "Maintain", "Push", "Sprint", "Brake"].includes(
+        command.pace,
+      )
+    )
+      throw new Error("Invalid pace");
+  }
+  const ordered = [
+    ...commands.filter((c) => c.type === "sign"),
+    ...commands.filter((c) => c.type === "override"),
+    ...commands
+      .filter((c) => !["sign", "override"].includes(c.type))
+      .sort((a, b) => byId(a, b) || a.type.localeCompare(b.type)),
+  ].map((c) => ({ ...c }));
+  for (const cmd of ordered) {
+    s.commands.push({ tick: s.tick, order: s.commands.length, ...cmd });
+    if (cmd.type === "override") {
+      try {
+        applyOverride(s, cmd);
+      } catch (error) {
+        emit(s, "OVERRIDE_REJECTED", [cmd.id], { message: error.message });
+      }
+    }
+    if (cmd.type === "sign") {
+      if (cmd.id !== s.playerId)
+        emit(s, "SIGN_REJECTED", [cmd.id], {
+          reason: "Only player RU may receive signs",
+        });
+      else signCommand(s, cmd);
+    }
+    if (cmd.type === "pace") {
+      const r = s.entrants.find(
+        (r) => r.id === cmd.id && r.status === "Racing",
+      );
+      if (r) {
+        r.pace = cmd.pace;
+        emit(s, "PACE_CHANGED", [r.id], { pace: r.pace });
+      } else emit(s, "COMMAND_REJECTED", [cmd.id], { reason: "Not racing" });
+    }
+  }
+  attacks(s, ordered);
+  laneChanges(
+    s,
+    ordered.filter((c) => c.type === "lane"),
+  );
+}
+// Shared physical target integration; AI selects preferences, never physical outcomes.
+function motion(s, r) {
+  if (r.blocked || r.physical === "Wreck" || !physical(r))
+    return {
+      a: 0,
+      limitTime: Infinity,
+      boundaryTime: Infinity,
+      envelopeTime: Infinity,
+    };
+  const c = s.config,
+    w = c.tuning,
+    loc = location(r.q, r.lane, c, s.track),
+    d = r.derived;
+  let target =
+    r.physical === "Clearing"
+      ? c.clearSpeed
+      : d.maxSpeed *
+        {
+          Conserve: w.paceConserve,
+          Maintain: w.paceMaintain,
+          Push: w.pacePush,
+          Sprint: w.paceSprint,
+          Brake: 0,
+        }[r.pace];
+  const constraints = [];
+  if (r.status === "Racing" && r.pace !== "Sprint") {
+    const next = location(Math.floor(r.q) + 1, r.lane, c, s.track);
+    if (loc.type === "turn")
+      target = Math.min(
+        target,
+        Math.sqrt(d.lateral * loc.radius) * w.safeCornerFraction,
+      );
+    else if (next.type === "turn")
+      constraints.push({
+        speed: Math.sqrt(d.lateral * next.radius) * w.safeCornerFraction,
+        distance: nextDistance(r, c, s.track),
+      });
+  }
+  if (s.consequences && r.control === "Out of Control") target = 0;
+  if (r.physical === "Clearing") {
+    for (const other of sorted(s).filter(
+      (o) => o.id !== r.id && physical(o) && o.lane === r.lane,
+    )) {
+      const gap =
+        (((Math.floor(other.q) - r.q) % s.track.cells) + s.track.cells) %
+        s.track.cells;
+      if (gap <= s.config.exitTiles + 1) {
+        let position = r.q,
+          distance = 0,
+          remaining = gap;
+        while (remaining > s.config.positionEpsilon) {
+          const portion = Math.min(
+            remaining,
+            Math.floor(position) + 1 - position,
+          );
+          distance += portion * location(position, r.lane, c, s.track).length;
+          position += portion;
+          remaining -= portion;
+          if (portion === 0) break;
+        }
+        constraints.push({ speed: 0, distance });
+      }
+    }
+  }
+  // Follow a continuous braking envelope. Do not repeatedly chase its moving
+  // instantaneous target: that creates a zero-time limit-event cascade.
+  for (const constraint of constraints) {
+    const envelope = Math.sqrt(
+      constraint.speed ** 2 + 2 * d.braking * constraint.distance,
+    );
+    if (
+      r.speed >= envelope - c.epsilon ||
+      constraint.distance <= c.positionEpsilon * loc.length * 2
+    )
+      target = Math.min(target, constraint.speed);
+  }
+  const delta = target - r.speed;
+  const a =
+    Math.abs(delta) < c.epsilon ? 0 : delta > 0 ? d.acceleration : -d.braking;
+  let envelopeTime = Infinity;
+  if (a + d.braking > c.epsilon)
+    for (const constraint of constraints) {
+      const distance =
+        (constraint.speed ** 2 +
+          2 * d.braking * constraint.distance -
+          r.speed ** 2) /
+        (2 * (a + d.braking));
+      if (
+        distance > 0 &&
+        r.speed <
+          Math.sqrt(
+            constraint.speed ** 2 + 2 * d.braking * constraint.distance,
+          ) -
+            c.epsilon
+      )
+        envelopeTime = Math.min(envelopeTime, arrival(r.speed, a, distance));
+    }
+  return {
+    a,
+    target,
+    envelopeTime,
+    limitTime: a ? delta / a : Infinity,
+    boundaryTime: arrival(r.speed, a, nextDistance(r, c, s.track)),
+  };
+}
+function resolveForward(s, movers) {
+  const speeds = new Map(sorted(s).map((r) => [r.id, r.speed]));
+  const occupied = new Map(
+    sorted(s)
+      .filter(physical)
+      .map((r) => [key(r.q, r.lane, s.track), r]),
+  );
+  const intents = new Map(
+    movers.map((r) => [r.id, { r, next: Math.floor(r.q) + 1 }]),
+  );
+  const decisions = new Map(),
+    visiting = new Set();
+  function allowed(id) {
+    if (decisions.has(id)) return decisions.get(id);
+    if (visiting.has(id)) return false; // Closed occupancy cycle has no free swept space.
+    visiting.add(id);
+    const { r, next } = intents.get(id),
+      blocker = occupied.get(key(next, r.lane, s.track));
+    const hazard = s.consequences && hazardAt(s, next, r.lane);
+    const ok =
+      !hazard &&
+      (!blocker ||
+        (blocker.id !== id && intents.has(blocker.id) && allowed(blocker.id)));
+    visiting.delete(id);
+    decisions.set(id, ok);
+    return ok;
+  }
+  for (const r of movers) allowed(r.id);
+  for (const r of movers) {
+    const { next } = intents.get(r.id);
+    if (decisions.get(r.id)) {
+      r.q = next;
+      s.lastProgressTime = s.time;
+      if (s.driverMode === "autonomous") r.derived = deriveAt(s, r);
+      crossing(s, r);
+      if (
+        r.physical === "Clearing" &&
+        r.q >= s.config.laps * s.track.cells + s.config.exitTiles
+      ) {
+        r.physical = "Exited";
+        r.speed = 0;
+        emit(s, "RU_EXITED", [r.id]);
+      } else corner(s, r);
+    } else {
+      const blocker = occupied.get(key(next, r.lane, s.track));
+      if (blocker)
+        contact(s, [r.id, blocker.id], "forward occupancy", { speeds });
+      const hazard = s.consequences && hazardAt(s, next, r.lane);
+      if (hazard) queueHazardImpact(s, r, hazard, speeds.get(r.id));
+      r.q = next - s.config.positionEpsilon;
+      r.speed = 0;
+      r.blocked = true;
+      emit(s, "MOVEMENT_BLOCKED", [r.id], { tile: key(next, r.lane, s.track) });
+    }
+  }
+  flush(s);
+}
+function endIfDone(s) {
+  if (
+    s.entrants.every((r) => r.status !== "Racing") &&
+    s.entrants.every((r) => r.physical !== "Clearing")
+  ) {
+    s.status = "Ended";
+    emit(s, "RACE_ENDED", [], { classification: classification(s) });
+  } else if (
+    s.time >= s.config.maxRaceTime ||
+    s.time - s.lastProgressTime > s.config.stallTime
+  ) {
+    if (s.consequences)
+      for (const r of sorted(s))
+        if (r.status === "Racing")
+          retire(s, r, "Race safeguard: stalled or time limit");
+    s.status = "Stalled";
+    emit(s, "RACE_STALLED", [], {
+      reason:
+        s.time >= s.config.maxRaceTime ? "Time limit" : "No tile progress",
+      classification: classification(s),
+    });
+  }
+}
+export function step(s, commands = []) {
+  if (["Ended", "Stalled", "Error"].includes(s.status)) return s;
+  try {
+    s.resolving = true;
+    assertState(s);
+    s.impactsThisTick = 0;
+    for (const r of sorted(s)) {
+      r.reactionsRemaining = s.consequence.reactionBudget;
+      r.defending = r.ai.goal === "defendCombat";
+    }
+    if (s.consequences)
+      for (const r of sorted(s)) updateControl(s, r, "Boundary condition");
+    applyCommands(s, [...s.pendingOverrides.splice(0), ...commands]);
+    if (s.status === "Ready") {
+      s.status = "Running";
+      emit(s, "RACE_STARTED", [], {
+        referenceDrivers: s.driverMode === "reference",
+      });
+      for (const r of sorted(s)) activateSign(s, r);
+    }
+    if (s.consequences) {
+      for (const r of sorted(s)) updateControl(s, r, "Initial condition");
+      updateIncidents(s);
+    }
+    for (const r of sorted(s)) r.blocked = false;
+    if (s.driverMode === "autonomous") {
+      const intents = [];
+      for (const r of sorted(s))
+        if (r.status === "Racing") {
+          r.derived = deriveAt(s, r);
+          const result = decide(s, r);
+          if (result) intents.push(...result);
+        }
+      attacks(s, intents);
+      laneChanges(
+        s,
+        intents.filter((c) => c.type === "lane"),
+      );
+      for (const intent of intents.filter((c) => c.type === "lane")) {
+        const r = s.entrants.find((r) => r.id === intent.id);
+        if (r.lane !== intent.lane && r.ai.diagnostics) {
+          r.ai.diagnostics.compliance = r.signs.active ? "Prevented" : null;
+          r.ai.diagnostics.reason = "Physical execution blocked";
+          emit(s, "AI_EXECUTION_RESULT", [r.id], {
+            compliance: r.ai.diagnostics.compliance,
+            reason: r.ai.diagnostics.reason,
+          });
+        }
+      }
+    }
+    const end = (s.tick + 1) * s.config.dt;
+    let groups = 0;
+    while (s.time < end - s.config.epsilon) {
+      if (++groups > s.config.maxSubevents)
+        throw new Error("Subevent budget exceeded");
+      const units = sorted(s).filter(physical),
+        motions = new Map(
+          units.map((r) => [
+            r.id,
+            {
+              ...motion(s, r),
+              controlTime: controlTime(s, r),
+              nextQ: Math.floor(r.q) + 1,
+            },
+          ]),
+        );
+      const elapsed = Math.min(
+        end - s.time,
+        incidentTime(s),
+        ...[...motions.values()].flatMap((m) => [
+          m.limitTime,
+          m.boundaryTime,
+          m.controlTime,
+          m.envelopeTime,
+        ]),
+      );
+      if (!Number.isFinite(elapsed) || elapsed < 0)
+        throw new Error("Invalid elapsed time");
+      for (const r of units) {
+        const m = motions.get(r.id);
+        if (s.driverMode === "autonomous") integrateCondition(s, r, elapsed);
+        const distance = travel(r.speed, m.a, elapsed);
+        r.q += distance / location(r.q, r.lane, s.config, s.track).length;
+        // Keep ownership of source tile until the entire simultaneous group resolves.
+        if (m.boundaryTime <= elapsed + s.config.epsilon)
+          r.q = m.nextQ - s.config.positionEpsilon;
+        r.speed = Math.max(0, r.speed + m.a * elapsed);
+        if (Math.abs(m.limitTime - elapsed) <= s.config.epsilon)
+          r.speed = m.target;
+      }
+      s.time += elapsed;
+      if (s.consequences) {
+        for (const r of units) recoverControl(s, r, elapsed);
+        updateIncidents(s);
+      }
+      const movers = units.filter(
+        (r) => motions.get(r.id).boundaryTime <= elapsed + s.config.epsilon,
+      );
+      if (movers.length) {
+        const eventStart = s.events.length;
+        resolveForward(s, movers);
+        if (s.driverMode === "autonomous") {
+          const affected = new Set(
+            s.events
+              .slice(eventStart)
+              .filter((e) =>
+                [
+                  "MOVEMENT_BLOCKED",
+                  "CONTROL_CHANGED",
+                  "SIGN_ACTIVATED",
+                  "DAMAGE",
+                ].includes(e.type),
+              )
+              .flatMap((e) => e.participants),
+          );
+          const reactions = [];
+          for (const r of sorted(s))
+            if (affected.has(r.id) && r.status === "Racing") {
+              r.ai.nextDecision = s.tick;
+              const intents = decide(s, r);
+              if (intents) reactions.push(...intents);
+            }
+          const lanes = new Map(
+            reactions
+              .filter((c) => c.type === "lane")
+              .map((c) => [c.id, s.entrants.find((r) => r.id === c.id).lane]),
+          );
+          attacks(s, reactions);
+          laneChanges(
+            s,
+            reactions.filter((c) => c.type === "lane"),
+          );
+          for (const intent of reactions.filter((c) => c.type === "lane")) {
+            const r = s.entrants.find((r) => r.id === intent.id);
+            if (r.lane !== lanes.get(r.id)) r.blocked = false;
+            else if (r.signs.active) {
+              r.ai.diagnostics.compliance = "Prevented";
+              r.ai.diagnostics.reason = "Physical execution blocked";
+              emit(s, "AI_EXECUTION_RESULT", [r.id], {
+                compliance: r.ai.diagnostics.compliance,
+                reason: r.ai.diagnostics.reason,
+              });
+            }
+          }
+        }
+      }
+      assertState(s);
+      if (elapsed === 0 && !movers.length && incidentTime(s) === 0)
+        throw new Error("Zero-time event without progress");
+    }
+    s.time = end;
+    s.tick++;
+    s.diagnostics.subevents += groups;
+    s.diagnostics.maxGroups = Math.max(groups, s.diagnostics.maxGroups);
+    // Contact identity survives only while the participants remain spatially adjacent.
+    s.contacts = s.contacts.filter((pair) => {
+      const [a, b] = pair
+        .split("|")
+        .map((id) => s.entrants.find((r) => r.id === id));
+      return (
+        physical(a) &&
+        physical(b) &&
+        Math.abs(a.lane - b.lane) <= 1 &&
+        Math.min(
+          Math.abs(a.q - b.q) % s.track.cells,
+          s.track.cells - (Math.abs(a.q - b.q) % s.track.cells),
+        ) < 1.01
+      );
+    });
+    logRacecraft(s);
+    endIfDone(s);
+    assertState(s);
+    if (
+      s.tick % s.checkpointInterval === 0 ||
+      ["Ended", "Stalled"].includes(s.status)
+    )
+      s.checkpoints.push({ tick: s.tick, checksum: digest(s) });
+  } catch (error) {
+    s.status = "Error";
+    emit(s, "INTEGRITY_ERROR", [], {
+      message: error.message,
+      context: sorted(s).map(({ id, q, lane, speed }) => ({
+        id,
+        q,
+        lane,
+        speed,
+      })),
+    });
+  } finally {
+    s.resolving = false;
+  }
+  return s;
+}
+export function run(
+  s,
+  {
+    commands = [],
+    maxTicks = Math.ceil(s.config.maxRaceTime / s.config.dt) + 2,
+  } = {},
+) {
+  while (!["Ended", "Stalled", "Error"].includes(s.status) && s.tick < maxTicks)
+    step(
+      s,
+      commands
+        .filter((c) => c.tick === s.tick)
+        .map(({ tick, order, ...c }) => c),
+    );
+  return s;
+}
+
+// Paused sign controls apply at the current resolved tick boundary without advancing time.
+export function issueSign(s, action, sign) {
+  if (!["Ready", "Running"].includes(s.status)) return false;
+  const command = {
+    type: "sign",
+    id: s.playerId,
+    action,
+    ...(sign === undefined ? {} : { sign }),
+  };
+  s.commands.push({ tick: s.tick, order: s.commands.length, ...command });
+  return signCommand(s, command);
+}
+
+function logRacecraft(s) {
+  const racers = sorted(s).filter((r) => r.status === "Racing");
+  for (let i = 0; i < racers.length; i++)
+    for (let j = i + 1; j < racers.length; j++) {
+      const a = racers[i],
+        b = racers[j],
+        pa = s.previousProgress[a.id],
+        pb = s.previousProgress[b.id];
+      if (
+        pa?.status === "Racing" &&
+        pb?.status === "Racing" &&
+        (pa.q - pb.q) * (a.q - b.q) < 0 &&
+        Math.abs(a.q - b.q) > s.config.positionEpsilon
+      ) {
+        const passer = a.q > b.q ? a : b,
+          passed = passer === a ? b : a;
+        emit(s, "OVERTAKE", [passer.id, passed.id], {
+          passer: passer.id,
+          passed: passed.id,
+          observedAtTickBoundary: true,
+        });
+      }
+    }
+  if (!s.entrants.some((r) => r.finishTime !== null)) {
+    const order = [...racers].sort((a, b) => b.q - a.q || byId(a, b));
+    const leader =
+      order[0] &&
+      (!order[1] || order[0].q - order[1].q > s.config.positionEpsilon)
+        ? order[0].id
+        : null;
+    if (leader && leader !== s.leader) {
+      s.leader = leader;
+      emit(s, "LEAD_CHANGED", [leader], { leader });
+    }
+  }
+  s.previousProgress = Object.fromEntries(
+    sorted(s).map((r) => [r.id, { q: r.q, status: r.status }]),
+  );
+}

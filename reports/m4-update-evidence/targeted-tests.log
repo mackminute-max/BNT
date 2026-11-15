@@ -1,0 +1,22 @@
+✔ A01 Pure lateral debris impact blocks visible and hidden hazards deterministically (42.258829ms)
+✔ A01 Pure lateral animal impact blocks visible and hidden hazards deterministically (21.37019ms)
+✔ A01 Pure lateral spectator impact blocks visible and hidden hazards deterministically (16.922345ms)
+✔ A01 Combat lateral debris impact blocks visible and hidden hazards deterministically (14.170901ms)
+✔ A01 Combat lateral animal impact blocks visible and hidden hazards deterministically (13.039344ms)
+✔ A01 Combat lateral spectator impact blocks visible and hidden hazards deterministically (11.85619ms)
+✔ A01 expiry allows lateral entry and unchanged stationary contact does not repeat damage (1.509504ms)
+✔ A02 seed ranges reject unsafe endpoints and cumulative overflow before expansion (0.872035ms)
+✔ A03 executed yield overrides Push compliance in diagnostics, events and totals (7.336961ms)
+✔ A03 executed disengage overrides Push compliance in diagnostics, events and totals (6.090726ms)
+✔ A03 effective Conserve obeys its sign; an execution failure remains Prevented (3.222558ms)
+✔ A05 all twenty named scenarios hold normalized reproducible snapshots and explicit invariants (77.317569ms)
+✔ A05 reusable Sprint, retirement, blockage and clearing scenarios exercise documented outcomes (874.66379ms)
+✔ A05 reusable replacement, pending-retirement and paused-override replay scenarios (405.269496ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1627.127271
