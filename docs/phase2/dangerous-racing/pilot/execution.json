@@ -1,0 +1,123 @@
+{
+  "target": 15,
+  "completed": 15,
+  "cancelled": false,
+  "toolErrors": [],
+  "countsByFormat": {
+    "Pure": 0,
+    "Combat": 15
+  },
+  "statuses": {
+    "Ended": 15
+  },
+  "bounded": 0,
+  "workers": 4,
+  "wallSeconds": 9.590276227999999,
+  "runs": [
+    {
+      "id": "DR-healthy-0-0-Combat",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.858081316
+    },
+    {
+      "id": "DR-healthy-0-1-Combat",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.21758526
+    },
+    {
+      "id": "DR-healthy-0-3-Combat",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.253218946
+    },
+    {
+      "id": "DR-healthy-0-2-Combat",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.6068519649999997
+    },
+    {
+      "id": "DR-mixed-0-0-Combat",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2195478599999996
+    },
+    {
+      "id": "DR-healthy-0-4-Combat",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.5356812659999997
+    },
+    {
+      "id": "DR-mixed-0-1-Combat",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.593842224
+    },
+    {
+      "id": "DR-mixed-0-2-Combat",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2754649160000004
+    },
+    {
+      "id": "DR-mixed-0-3-Combat",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2678677929999995
+    },
+    {
+      "id": "DR-mixed-0-4-Combat",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.499717039
+    },
+    {
+      "id": "DR-high-risk-0-0-Combat",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.8368821740000003
+    },
+    {
+      "id": "DR-high-risk-0-1-Combat",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.014414517
+    },
+    {
+      "id": "DR-high-risk-0-2-Combat",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.1357123420000006
+    },
+    {
+      "id": "DR-high-risk-0-3-Combat",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.8102977520000003
+    },
+    {
+      "id": "DR-high-risk-0-4-Combat",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.5643795299999992
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+import {readFileSync,writeFileSync} from 'node:fs';import {gunzipSync} from 'node:zlib';import {mean,clustered} from '../evaluation/statistics.mjs';
+const root='docs/phase2/dangerous-racing',rows=JSON.parse(gunzipSync(readFileSync(root+'/mechanisms/ram-niches.json.gz'))),result={};
+for(const name of [...new Set(rows.map(r=>r.name))]){const arms={};for(const action of ['none','attack','ram']){const a=rows.filter(r=>r.name===name&&r.action===action);const time=(r,id)=>r.official.find(u=>u.id===id&&u.status==='Finished')?.time;arms[action]={n:a.length,winsA:a.filter(r=>r.official[0].id==='A'&&r.official[0].status==='Finished').length,retiredB:a.filter(r=>r.official.some(u=>u.id==='B'&&u.status==='Retired')).length,meanTimeA:mean(a.map(r=>time(r,'A')).filter(Number.isFinite)),meanTimeB:mean(a.map(r=>time(r,'B')).filter(Number.isFinite))};}
+ const pairs=[];for(let seed=1;seed<=32;seed++){const a=rows.find(r=>r.name===name&&r.seed===seed&&r.action==='attack'),b=rows.find(r=>r.name===name&&r.seed===seed&&r.action==='ram');if([a,b].some(r=>r.official.some(u=>u.status!=='Finished')))continue;const lead=r=>r.official.find(u=>u.id==='B').time-r.official.find(u=>u.id==='A').time;pairs.push({seed,delta:lead(b)-lead(a)});}
+ result[name]={arms,ramMinusWeaponLead:clustered(pairs,r=>r.delta,name+'lead'),ramBetterLead:pairs.filter(x=>x.delta>0).length,pairs};
+}
+writeFileSync(root+'/niche-analysis.json',JSON.stringify(result,null,2));

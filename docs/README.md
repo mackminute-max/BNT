@@ -20,3 +20,7 @@ The [evaluation package](phase2/README.md) records 1,130 races: the planned 500 
 - [M4 update audit](audits/M4_UPDATE_AUDIT.md)
 
 The ten numbered establishment documents remain at the project root. Historical audit records and baseline manifests retain the revisions and verification scope applicable when they were written. Recommendations require owner review before gameplay tuning.
+
+## Phase 2.1 — Dangerous Racing investigation
+
+The investigation, raw datasets, deterministic replay evidence and recommendations are in [phase2/dangerous-racing](phase2/dangerous-racing/README.md). Start with [full-race results](phase2/dangerous-racing/DANGEROUS_RACING_RESULTS.md) and [recommendations](phase2/dangerous-racing/DANGEROUS_RACING_RECOMMENDATIONS.md). This evaluation changes no gameplay or standalone application bytes.

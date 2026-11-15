@@ -1,0 +1,30 @@
+✔ DR frozen allocation is 600 Combat and 120 exact matched Pure controls (100.728756ms)
+✔ DR all cohort configurations validate and start above disablement limits without injected incidents (138.046334ms)
+✖ DR ram legality is contained in attack legality throughout tested geometry and formats (4.532068ms)
+✔ DR observation preserves full event/RNG/state checksums and actual replay for each cohort (18375.088016ms)
+✔ DR defense threshold contrast excludes passive defense and records actual damage only (0.564432ms)
+✔ DR initially worn components are distinct from new threshold crossings (0.372649ms)
+✔ DR grid rotations and composite surface/traffic strata are balanced by cohort (180.096347ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19121.814749
+
+✖ failing tests:
+
+test at tests/dangerous-racing.test.js:13:1
+✖ DR ram legality is contained in attack legality throughout tested geometry and formats (4.532068ms)
+  Error: Overlapping occupancy at 0:76
+      at assertState (file:///workspace/BNT/src/sim/race.js:258:34)
+      at createRace (file:///workspace/BNT/src/sim/race.js:241:3)
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/dangerous-racing.test.js:14:115)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

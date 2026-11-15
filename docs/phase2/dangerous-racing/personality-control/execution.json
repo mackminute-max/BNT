@@ -1,0 +1,718 @@
+{
+  "target": 100,
+  "completed": 100,
+  "cancelled": false,
+  "toolErrors": [],
+  "countsByFormat": {
+    "Pure": 0,
+    "Combat": 100
+  },
+  "statuses": {
+    "Ended": 100
+  },
+  "bounded": 0,
+  "workers": 2,
+  "wallSeconds": 96.626473723,
+  "runs": [
+    {
+      "id": "DR-personality-0-0-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.406233548
+    },
+    {
+      "id": "DR-personality-0-0-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.799347009
+    },
+    {
+      "id": "DR-personality-0-1-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.6563330549999995
+    },
+    {
+      "id": "DR-personality-0-1-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.560652017
+    },
+    {
+      "id": "DR-personality-0-2-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.5680741709999992
+    },
+    {
+      "id": "DR-personality-0-3-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.6055427820000003
+    },
+    {
+      "id": "DR-personality-0-2-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.7131271640000003
+    },
+    {
+      "id": "DR-personality-0-3-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.076934357
+    },
+    {
+      "id": "DR-personality-0-4-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2332757419999998
+    },
+    {
+      "id": "DR-personality-1-0-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9463366319999986
+    },
+    {
+      "id": "DR-personality-0-4-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.079432768999999
+    },
+    {
+      "id": "DR-personality-1-1-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2836226169999991
+    },
+    {
+      "id": "DR-personality-1-0-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.804617164000001
+    },
+    {
+      "id": "DR-personality-1-1-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3180365060000003
+    },
+    {
+      "id": "DR-personality-1-2-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.1492344949999986
+    },
+    {
+      "id": "DR-personality-1-2-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.4285155540000014
+    },
+    {
+      "id": "DR-personality-1-3-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2467585949999993
+    },
+    {
+      "id": "DR-personality-1-3-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.293240232
+    },
+    {
+      "id": "DR-personality-1-4-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1387213540000012
+    },
+    {
+      "id": "DR-personality-1-4-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.176664643
+    },
+    {
+      "id": "DR-personality-2-0-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2029266210000022
+    },
+    {
+      "id": "DR-personality-2-0-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9458516169999966
+    },
+    {
+      "id": "DR-personality-2-1-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.968819155000001
+    },
+    {
+      "id": "DR-personality-2-1-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.088683817000001
+    },
+    {
+      "id": "DR-personality-2-2-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1306719169999997
+    },
+    {
+      "id": "DR-personality-2-2-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.5332433469999995
+    },
+    {
+      "id": "DR-personality-2-3-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0067108740000004
+    },
+    {
+      "id": "DR-personality-2-3-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9308891100000001
+    },
+    {
+      "id": "DR-personality-2-4-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1978334890000006
+    },
+    {
+      "id": "DR-personality-2-4-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1899638679999989
+    },
+    {
+      "id": "DR-personality-3-0-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1343122049999983
+    },
+    {
+      "id": "DR-personality-3-0-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2602432569999982
+    },
+    {
+      "id": "DR-personality-3-1-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9755137809999979
+    },
+    {
+      "id": "DR-personality-3-1-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0948268719999978
+    },
+    {
+      "id": "DR-personality-3-2-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3072163269999983
+    },
+    {
+      "id": "DR-personality-3-2-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.5093602820000052
+    },
+    {
+      "id": "DR-personality-3-3-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.047620762000006
+    },
+    {
+      "id": "DR-personality-3-3-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1150887030000012
+    },
+    {
+      "id": "DR-personality-3-4-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2160059679999977
+    },
+    {
+      "id": "DR-personality-3-4-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.6967220610000004
+    },
+    {
+      "id": "DR-personality-4-0-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.160617247000002
+    },
+    {
+      "id": "DR-personality-4-0-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2595481280000023
+    },
+    {
+      "id": "DR-personality-4-1-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.357796137000005
+    },
+    {
+      "id": "DR-personality-4-1-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.298866704
+    },
+    {
+      "id": "DR-personality-4-2-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.4145058129999961
+    },
+    {
+      "id": "DR-personality-4-2-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3784954520000028
+    },
+    {
+      "id": "DR-personality-4-3-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0342150230000042
+    },
+    {
+      "id": "DR-personality-4-3-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0760695730000007
+    },
+    {
+      "id": "DR-personality-4-4-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3574586320000017
+    },
+    {
+      "id": "DR-personality-4-4-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1240311849999998
+    },
+    {
+      "id": "DR-personality-5-0-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.062682716999996
+    },
+    {
+      "id": "DR-personality-5-0-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1339171609999976
+    },
+    {
+      "id": "DR-personality-5-1-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3662178480000002
+    },
+    {
+      "id": "DR-personality-5-2-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3108533989999995
+    },
+    {
+      "id": "DR-personality-5-1-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.9494155810000011
+    },
+    {
+      "id": "DR-personality-5-2-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.328920999999995
+    },
+    {
+      "id": "DR-personality-5-3-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.8576112490000014
+    },
+    {
+      "id": "DR-personality-5-3-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.039055389000001
+    },
+    {
+      "id": "DR-personality-5-4-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1217695190000012
+    },
+    {
+      "id": "DR-personality-5-4-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.9383353530000023
+    },
+    {
+      "id": "DR-personality-6-0-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1570390290000068
+    },
+    {
+      "id": "DR-personality-6-1-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9419588520000034
+    },
+    {
+      "id": "DR-personality-6-0-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.971391356
+    },
+    {
+      "id": "DR-personality-6-1-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3404732029999942
+    },
+    {
+      "id": "DR-personality-6-2-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3806544839999988
+    },
+    {
+      "id": "DR-personality-6-2-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.428092389999998
+    },
+    {
+      "id": "DR-personality-6-3-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.300599957999999
+    },
+    {
+      "id": "DR-personality-6-3-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.8013075390000013
+    },
+    {
+      "id": "DR-personality-6-4-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0202017269999997
+    },
+    {
+      "id": "DR-personality-6-4-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.9990973099999974
+    },
+    {
+      "id": "DR-personality-7-0-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0897446649999984
+    },
+    {
+      "id": "DR-personality-7-0-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.8378844849999951
+    },
+    {
+      "id": "DR-personality-7-1-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.321362918999992
+    },
+    {
+      "id": "DR-personality-7-2-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.5311841819999972
+    },
+    {
+      "id": "DR-personality-7-1-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.248277768
+    },
+    {
+      "id": "DR-personality-7-2-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.5135276999999914
+    },
+    {
+      "id": "DR-personality-7-3-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.3074159139999972
+    },
+    {
+      "id": "DR-personality-7-3-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1594146960000071
+    },
+    {
+      "id": "DR-personality-7-4-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.5005068619999948
+    },
+    {
+      "id": "DR-personality-7-4-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.9744111469999917
+    },
+    {
+      "id": "DR-personality-8-0-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9055851039999979
+    },
+    {
+      "id": "DR-personality-8-1-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.173614128000001
+    },
+    {
+      "id": "DR-personality-8-0-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.4739784560000118
+    },
+    {
+      "id": "DR-personality-8-1-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3143165210000007
+    },
+    {
+      "id": "DR-personality-8-2-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.541271655000004
+    },
+    {
+      "id": "DR-personality-8-2-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.523489717999997
+    },
+    {
+      "id": "DR-personality-8-3-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0386241399999998
+    },
+    {
+      "id": "DR-personality-8-4-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2218141900000046
+    },
+    {
+      "id": "DR-personality-8-3-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.9118480860000127
+    },
+    {
+      "id": "DR-personality-8-4-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1602521220000053
+    },
+    {
+      "id": "DR-personality-9-0-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.8201880149999925
+    },
+    {
+      "id": "DR-personality-9-0-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1426437619999925
+    },
+    {
+      "id": "DR-personality-9-1-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9831052229999914
+    },
+    {
+      "id": "DR-personality-9-1-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.8819205740000033
+    },
+    {
+      "id": "DR-personality-9-2-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.212895371999999
+    },
+    {
+      "id": "DR-personality-9-3-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1288888730000035
+    },
+    {
+      "id": "DR-personality-9-2-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.4938908809999996
+    },
+    {
+      "id": "DR-personality-9-3-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0140269870000047
+    },
+    {
+      "id": "DR-personality-9-4-false",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2908908539999975
+    },
+    {
+      "id": "DR-personality-9-4-true",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.6141014480000013
+    }
+  ]
+}
