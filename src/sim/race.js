@@ -29,7 +29,8 @@ import { signCommand, activateSign } from "../ai/signs.js";
 import { config, VERSION } from "../config/config.js";
 import { defaultRU, derive } from "../model/ru.js";
 import { byId, random, checksum } from "../core/determinism.js";
-import { surfaceDefaults, surfaceRules, track, location, key, nextDistance } from "../track/oval.js";
+import { normalizeCourse } from "../track/course.js";
+import { surfaceDefaults, surfaceRules, track, location, key, nextDistance, gap, forwardGap, finishQ } from "../track/oval.js";
 import { emit } from "../events/events.js";
 import { travel, arrival } from "./kinematics.js";
 
@@ -50,6 +51,7 @@ export function createRace({
   scheduledIncidents = [],
   checkpointInterval = 100,
   environmentOverrides = {},
+  course = null,
 } = {}) {
   if (!Object.hasOwn(weatherPresets, weather))
     throw new Error("Invalid weather");
@@ -67,7 +69,7 @@ export function createRace({
   const tuning = m2Config(autonomous);
   const environment = environmentConfig(weather, environmentOverrides);
   const c = config(overrides),
-    t = track(c);
+    t = track(c, course);
   if (!Number.isSafeInteger(seed))
     throw new Error("Seed must be a safe integer");
   if (!["Pure", "Combat"].includes(format))
@@ -149,6 +151,7 @@ export function createRace({
       completedLaps: 0,
       lastCrossingTime: null,
       lastCrossingQ: null,
+      ...(t.course && !t.closed ? { checkpointCursor: 0 } : {}),
       finishTime: null,
       finishSnapshot: null,
       retirement: null,
@@ -214,6 +217,7 @@ export function createRace({
   if (!units.some((r) => r.id === s.playerId))
     throw new Error("Invalid player RU");
   s.setup = {
+    ...(t.course ? { course: normalizeCourse(course) } : {}),
     seed,
     overrides: { ...c },
     entrants: units.map((r) => ({
@@ -365,7 +369,7 @@ export function classification(s) {
       status: "Finished",
       time: r.finishTime,
       completedLaps: r.completedLaps,
-      progress: r.retirement?.progress ?? s.config.laps * s.track.cells,
+      progress: r.retirement?.progress ?? finishQ(s),
     };
   });
   const rest = sorted(s)
@@ -422,7 +426,36 @@ function attacks(s, intents) {
     },
   );
 }
+function checkpoints(s, r) {
+  if (!s.track.course || s.track.closed || r.status !== "Racing") return;
+  while (s.track.checkpoints[r.checkpointCursor]?.q <= r.q) {
+    const cp = s.track.checkpoints[r.checkpointCursor++];
+    emit(s, "CHECKPOINT_CROSSED", [r.id], { checkpoint: cp.id, distance: cp.distance, q: cp.q });
+    activateSign(s, r);
+  }
+}
+function lockFinish(s, r) {
+  r.finishTime = s.time;
+  const finishSnapshot = Object.freeze({
+    time: s.time,
+    beasts: Object.freeze(r.ru.beasts.map((b, index) => Object.freeze({ index, fatigue: b.fatigue }))),
+  });
+  Object.defineProperty(r, "finishSnapshot", { value: finishSnapshot, enumerable: true, writable: false, configurable: false });
+  r.status = "Finished";
+  r.physical = "Clearing";
+  emit(s, "RU_FINISHED", [r.id], { time: r.finishTime, finishSnapshot: r.finishSnapshot });
+}
 function crossing(s, r) {
+  if (s.track.course && !s.track.closed) {
+    if (r.status !== "Racing") return;
+    if (r.q === 0 && !r.hasEnteredCourse) {
+      r.hasEnteredCourse = true; r.lastCrossingQ = 0; r.lastCrossingTime = s.time;
+      emit(s, "COURSE_ENTERED", [r.id], { track: s.track.name });
+    }
+    checkpoints(s, r);
+    if (r.q === s.track.cells && r.hasEnteredCourse) lockFinish(s, r);
+    return;
+  }
   if (
     r.status !== "Racing" ||
     r.q % s.track.cells !== 0 ||
@@ -442,15 +475,7 @@ function crossing(s, r) {
     if (r.completedLaps === s.config.laps - 1)
       emit(s, "FINAL_LAP", [r.id], { targetLaps: s.config.laps });
     if (r.completedLaps === s.config.laps) {
-      r.finishTime = s.time;
-      const finishSnapshot = Object.freeze({
-        time: s.time,
-        beasts: Object.freeze(r.ru.beasts.map((b, index) => Object.freeze({ index, fatigue: b.fatigue }))),
-      });
-      Object.defineProperty(r, "finishSnapshot", { value: finishSnapshot, enumerable: true, writable: false, configurable: false });
-      r.status = "Finished";
-      r.physical = "Clearing";
-      emit(s, "RU_FINISHED", [r.id], { time: r.finishTime, finishSnapshot: r.finishSnapshot });
+      lockFinish(s, r);
     }
   }
 }
@@ -693,9 +718,8 @@ function motion(s, r) {
     for (const other of sorted(s).filter(
       (o) => o.id !== r.id && physical(o) && o.lane === r.lane,
     )) {
-      const gap =
-        (((Math.floor(other.q) - r.q) % s.track.cells) + s.track.cells) %
-        s.track.cells;
+      const gap = forwardGap(r.q, Math.floor(other.q), s.track);
+      if (gap < 0) continue;
       if (gap <= s.config.exitTiles + 1) {
         let position = r.q,
           distance = 0,
@@ -786,13 +810,21 @@ function resolveForward(s, movers) {
   for (const r of movers) {
     const { next } = intents.get(r.id);
     if (decisions.get(r.id)) {
+      const previousLocation = s.track.course ? location(r.q, r.lane, s.config, s.track) : null;
       r.q = next;
+      if (s.track.course && r.status === "Racing") {
+        const loc = location(r.q, r.lane, s.config, s.track);
+        if (previousLocation.segment !== loc.segment) emit(s, "SEGMENT_ENTERED", [r.id], {
+          segment: loc.segment, terrain: loc.terrain, type: loc.type, direction: loc.direction,
+          radius: Number.isFinite(loc.radius) ? loc.radius : null,
+        });
+      }
       s.lastProgressTime = s.time;
       if (s.driverMode === "autonomous") r.derived = deriveAt(s, r);
       crossing(s, r);
       if (
         r.physical === "Clearing" &&
-        r.q >= s.config.laps * s.track.cells + s.config.exitTiles
+        r.q >= finishQ(s) + s.config.exitTiles
       ) {
         r.physical = "Exited";
         r.speed = 0;
@@ -900,6 +932,12 @@ export function step(s, commands = []) {
             },
           ]),
         );
+      if (s.track.course && !s.track.closed) for (const r of units) {
+        const m = motions.get(r.id), cp = s.track.checkpoints[r.checkpointCursor];
+        m.markerQ = r.status === "Racing" && cp && cp.q > r.q && cp.q <= m.nextQ ? cp.q : null;
+        m.markerTime = m.markerQ !== null ? arrival(r.speed, m.a,
+          (m.markerQ - r.q) * location(r.q, r.lane, s.config, s.track).length) : Infinity;
+      }
       const elapsed = Math.min(
         end - s.time,
         incidentTime(s),
@@ -908,6 +946,7 @@ export function step(s, commands = []) {
           m.boundaryTime,
           m.controlTime,
           m.envelopeTime,
+          m.markerTime ?? Infinity,
         ]),
       );
       if (!Number.isFinite(elapsed) || elapsed < 0)
@@ -932,9 +971,15 @@ export function step(s, commands = []) {
       const movers = units.filter(
         (r) => motions.get(r.id).boundaryTime <= elapsed + s.config.epsilon,
       );
-      if (movers.length) {
+      const markers = units.filter(r => (motions.get(r.id).markerTime ?? Infinity) <= elapsed + s.config.epsilon);
+      if (movers.length || markers.length) {
         const eventStart = s.events.length;
-        resolveForward(s, movers);
+        if (movers.length) resolveForward(s, movers);
+        for (const r of markers) {
+          const m = motions.get(r.id);
+          if (!movers.includes(r)) r.q = m.markerQ;
+          checkpoints(s, r);
+        }
         if (s.driverMode === "autonomous") {
           const affected = new Set(
             s.events
@@ -992,10 +1037,7 @@ export function step(s, commands = []) {
         physical(a) &&
         physical(b) &&
         Math.abs(a.lane - b.lane) <= 1 &&
-        Math.min(
-          Math.abs(a.q - b.q) % s.track.cells,
-          s.track.cells - (Math.abs(a.q - b.q) % s.track.cells),
-        ) < 1.01
+        Math.abs(gap(a.q, b.q, s.track)) < 1.01
       );
     });
     logRacecraft(s);

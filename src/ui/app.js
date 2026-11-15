@@ -4,6 +4,7 @@ import { Commentary, narrative } from "../reporting/commentary.js";
 import { results } from "../reporting/results.js";
 import { verifyReplay, startReplay, advanceReplay } from "../replay/replay.js";
 import { queueOverride } from "../dev/overrides.js";
+import { coursePresets, courseDistance } from "../track/course.js";
 import { location } from "../track/oval.js";
 import { weatherPresets, m2Defaults } from "../sim/environment.js";
 import { signs } from "../ai/signs.js";
@@ -28,6 +29,15 @@ const colors = [
   "#dd9d63",
   "#b4c3df",
 ];
+function populateTracks(course = null) {
+  const kind = $("raceKind").value;
+  const choices = kind === "Oval" ? [["oval", "Existing Oval"]] : Object.entries(coursePresets).filter(([, c]) => c.kind === kind).map(([id,c]) => [id,c.name]);
+  if (course && !choices.some(([id]) => id === course.id)) choices.push([course.id, course.name]);
+  $("trackPreset").replaceChildren(...choices.map(([id,name]) => new Option(name,id)));
+  if (course) $("trackPreset").value = course.id;
+  $("lapCount").disabled = kind === "Rally";
+}
+$("raceKind").onchange = () => populateTracks();
 let state = createRace(),
   playing = false,
   previous = null,
@@ -43,6 +53,9 @@ function reset() {
   try {
     const next = createRace({
       ...devSetup,
+      course: $("trackPreset").value === "oval" ? null : $("trackPreset").value === devSetup.course?.id ? devSetup.course : $("trackPreset").value,
+      surfaces: $("trackPreset").value === (devSetup.course?.id ?? "oval") ? devSetup.surfaces : {},
+      overrides: { ...devSetup.overrides, laps: Number($("lapCount").value) },
       seed: Number($("seed").value),
       weather: $("weather").value,
       format: $("format").value,
@@ -80,12 +93,41 @@ function draw() {
     850 / (c.straightLength + 2 * outer),
     360 / (2 * outer),
   );
+  let framing = null;
+  if (t.course) {
+    const samples = [];
+    for (let q = Math.min(-c.gridGap - 2, ...state.setup.entrants.map(r => r.q)); q <= t.cells + c.exitTiles + 1; q += .5)
+      for (const lane of [-.5, c.lanes - .5]) samples.push(point(q, lane, c, t));
+    const minX = Math.min(...samples.map(p => p.x)), maxX = Math.max(...samples.map(p => p.x));
+    const minY = Math.min(...samples.map(p => p.y)), maxY = Math.max(...samples.map(p => p.y));
+    framing = { x: (minX + maxX) / 2, y: (minY + maxY) / 2,
+      scale: Math.min(900 / Math.max(1, maxX - minX), 390 / Math.max(1, maxY - minY)) };
+  }
   const xy = (q, lane) => {
     const p = point(q, lane, c, t);
-    return [500 + (p.x - c.straightLength / 2) * scale, 285 + p.y * scale];
+    return framing ? [500 + (p.x - framing.x) * framing.scale, 265 + (p.y - framing.y) * framing.scale] :
+      [500 + (p.x - c.straightLength / 2) * scale, 285 + p.y * scale];
   };
+  const displayScale = framing?.scale ?? scale;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   for (let lane = c.lanes - 1; lane >= 0; lane--) {
+    if (t.course) {
+      for (const segment of t.segments) {
+        ctx.beginPath();
+        const begin = segment.start - t.offset, end = begin + segment.tiles;
+        for (let i = 0; i <= segment.tiles * 10; i++) {
+          const p = xy(begin + i / 10, lane);
+          if (!i) ctx.moveTo(...p); else ctx.lineTo(...p);
+        }
+        ctx.lineWidth = c.laneWidth * displayScale * .96;
+        ctx.strokeStyle = { dirt: "#6b5942", stone: "#727b7e", gravel: "#827664", sand: "#ad9258", mud: "#55402e" }[segment.terrain];
+        ctx.stroke();
+      }
+      if (!t.closed) for (const [start, end] of [[-c.gridGap - 2, 0], [t.cells, t.cells + c.exitTiles + 1]]) {
+        ctx.beginPath();ctx.moveTo(...xy(start, lane));ctx.lineTo(...xy(end, lane));ctx.strokeStyle="#35444b";ctx.lineWidth=c.laneWidth*displayScale*.96;ctx.stroke();
+      }
+      continue;
+    }
     ctx.beginPath();
     for (let q = 0; q <= t.cells; q += 0.1) {
       const [x, y] = xy(q, lane);
@@ -104,14 +146,15 @@ function draw() {
       if (q === 0) ctx.moveTo(x, y);
       else ctx.lineTo(x, y);
     }
-    ctx.closePath();
+    if (!t.course || t.closed) ctx.closePath();
     ctx.lineWidth = 1;
     ctx.strokeStyle = "#91a3a066";
     ctx.stroke();
   }
   for (const [q, text, color] of [
-    [0, "START / FINISH", "#f3d69c"],
-    [c.exitTiles, "EXIT →", "#7cc5ae"],
+    [0, t.course && !t.closed ? "START" : "START / FINISH", "#f3d69c"],
+    [t.course && !t.closed ? t.cells : c.exitTiles, t.course && !t.closed ? "FINISH →" : "EXIT →", "#7cc5ae"],
+    ...(t.course && !t.closed ? t.checkpoints.map(cp => [cp.q, cp.id, "#82cde0"]) : []),
   ]) {
     const a = xy(q, -0.5),
       b = xy(q, c.lanes - 0.5);
@@ -123,14 +166,14 @@ function draw() {
     ctx.stroke();
     ctx.fillStyle = color;
     ctx.font = "12px system-ui";
-    ctx.fillText(text, a[0] - 35, b[1] - (q === 0 ? 15 : 35));
+    ctx.fillText(text, a[0] - 35, t.course && q === 0 ? Math.min(a[1], b[1]) - 12 : b[1] - (q === 0 ? 15 : 35));
   }
   ctx.textAlign = "center";
   ctx.fillStyle = "#a9b8bd";
   ctx.font = "16px Georgia";
-  ctx.fillText("BLOOD AND THUNDER", 500, 275);
+  ctx.fillText(t.course ? t.name : "BLOOD AND THUNDER", 500, t.course ? 485 : 275);
   ctx.font = "12px system-ui";
-  ctx.fillText("AUTONOMOUS RACING · FOUR-LANE OVAL", 500, 300);
+  ctx.fillText(t.course ? `${t.raceType} · ${t.closed ? c.laps + " laps" : "point to point"}` : "AUTONOMOUS RACING · FOUR-LANE OVAL", 500, t.course ? 505 : 300);
   for (const [i, r] of [...state.entrants]
     .sort((a, b) => a.id.localeCompare(b.id))
     .entries()) {
@@ -181,6 +224,9 @@ function render() {
   workbench?.render();
   syncSignOptions();
   $("playerLabel").textContent = state.playerId;
+  const rally = state.track.course && !state.track.closed;
+  $("progressHeading").textContent = rally ? "Course %" : "Full laps";
+  $("standingsNote").textContent = (rally ? "Common terminal finish; signs activate at intermediate checkpoints. " : "Initial line entry starts lap 1; it does not complete a lap. ") + "Official ties share a place. DNF/DNS remain separate from finishers.";
   const lines = radio.consume(state.events, {
     enabled: $("commentaryEnabled").checked,
   });
@@ -217,8 +263,8 @@ function render() {
         "RU",
         "Status",
         "Official time",
-        "Full laps",
-        "Progress (circuits)",
+        state.track.course && !state.track.closed ? "Checkpoints" : "Full laps",
+        state.track.course && !state.track.closed ? "Course fraction" : "Progress (circuits)",
         "Reason",
       ]) {
         const th = document.createElement("th");
@@ -236,8 +282,8 @@ function render() {
           row.id,
           row.status,
           row.status === "Finished" ? `${row.time.toFixed(4)} s` : "—",
-          row.completedLaps,
-          (row.progress / state.track.cells).toFixed(3),
+          state.track.course && !state.track.closed ? state.entrants.find(r => r.id === row.id).checkpointCursor + "/3" : row.completedLaps,
+          (state.track.course && !state.track.closed ? Math.max(0, Math.min(1, courseDistance(row.progress, state.track) / state.track.length)) : row.progress / state.track.cells).toFixed(3),
           row.reason ?? "",
         ]) {
           const td = document.createElement("td");
@@ -260,13 +306,13 @@ function render() {
     output.append(pre);
   }
   document.querySelector(".legend").textContent =
-    `${state.config.lanes} lanes · ${state.config.laps} full laps after initial line entry · ${state.weather} · Exit beyond finish · Wrecks remain through race end`;
+    `${state.track.name ?? "Existing Oval"} · ${state.track.raceType ?? "Oval"} · ${state.config.lanes} lanes · ${state.track.course && !state.track.closed ? "Terminal finish; no laps" : state.config.laps + " full laps after initial line entry"} · ${state.weather} · Exit beyond finish · Wrecks remain through race end`;
 
   $("consequenceStatus").textContent =
     `${state.format} · ${state.weather} · Attacks ${state.events.filter((e) => e.type === "ATTACK").length} · Damage events ${state.events.filter((e) => e.type === "DAMAGE").length} · Wrecks ${Object.keys(state.wrecks).length} · Incidents ${state.events.filter((e) => e.type === "INCIDENT").length}`;
   const player = state.entrants.find((r) => r.id === state.playerId);
   $("signStatus").textContent =
-    `Uses ${player.signs.remaining} · Pending: ${player.signs.pending ?? "none"} · Active: ${player.signs.active ?? "none"} · ${player.signs.active ? (player.ai.diagnostics?.compliance ?? "Awaiting evaluation") : "Base autonomous AI"}`;
+    `Uses ${player.signs.remaining} · Pending: ${player.signs.pending ?? "none"} · Active: ${player.signs.active ?? "none"} · ${player.signs.active ? (player.ai.diagnostics?.compliance ?? "Awaiting evaluation") : "Base autonomous AI"}${state.track.course && !state.track.closed ? " · Next checkpoint: " + (state.track.checkpoints[player.checkpointCursor] ? `${state.track.checkpoints[player.checkpointCursor].id} at ${state.track.checkpoints[player.checkpointCursor].distance.toFixed(0)} m` : "none before finish") : ""}`;
   const inspect =
     state.entrants.find((r) => r.id === $("inspect").value) ?? player;
   $("aiDiagnostics").textContent = JSON.stringify(
@@ -330,7 +376,7 @@ function render() {
       tr.title = r.retirement?.reason ?? r.physical;
       for (const value of [
         r.finishTime === null ? r.id : `${row.place}. ${r.id}`,
-        `${r.completedLaps}/${state.config.laps}`,
+        state.track.course && !state.track.closed ? `${(Math.max(0, Math.min(1, courseDistance(r.q, state.track) / state.track.length)) * 100).toFixed(1)}%` : `${r.completedLaps}/${state.config.laps}`,
         r.speed.toFixed(2),
         r.finishTime === null
           ? r.status === "Retired"
@@ -507,6 +553,10 @@ function replaceRace(next) {
   pausePlayback();
   state = next;
   devSetup = next.setup;
+  $("raceKind").value = next.track.raceType ?? "Oval";
+  populateTracks(next.setup.course);
+  $("lapCount").value = next.config.laps;
+  $("lapCount").disabled = next.track.course && !next.track.closed;
   playing = false;
   accumulator = 0;
   radio = new Commentary();

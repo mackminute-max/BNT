@@ -133,7 +133,7 @@ export function hazardAt(s, q, lane) {
   return s.hazards.find(
     (h) =>
       h.lane === lane &&
-      mod(Math.floor(h.q), s.track.cells) === mod(Math.floor(q), s.track.cells),
+      key(h.q, lane, s.track) === key(q, lane, s.track),
   );
 }
 

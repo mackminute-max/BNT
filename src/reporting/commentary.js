@@ -31,6 +31,9 @@ const templates = {
   SIGN_ACTIVATED: (e) => [
     `${e.participants[0]} receives the sign: ${e.effects.sign}.`,
   ],
+  COURSE_ENTERED: e => [`${e.participants[0]} is away on ${e.effects.track}.`],
+  SEGMENT_ENTERED: e => [`${e.participants[0]} reaches ${e.effects.terrain}${e.effects.type === "turn" ? ", turning " + (e.effects.direction > 0 ? "right" : "left") : " straightaway"}.`],
+  CHECKPOINT_CROSSED: e => [`${e.participants[0]} sweeps through checkpoint ${e.effects.checkpoint}.`],
   FINAL_LAP: (e) => [`${e.participants[0]} begins the final lap!`],
   RU_FINISHED: (e) => [
     `${e.participants[0]} crosses the finish in ${e.effects.time.toFixed(4)} seconds!`,
@@ -53,6 +56,7 @@ const priority = new Set([
   "RACE_ENDED",
   "RACE_STALLED",
   "SIGN_ACTIVATED",
+  "CHECKPOINT_CROSSED",
   "INTEGRITY_ERROR",
 ]);
 export class Commentary {
@@ -64,10 +68,10 @@ export class Commentary {
   consume(events, { enabled = true } = {}) {
     for (const e of events.slice(this.cursor)) {
       if (!enabled || !templates[e.type]) continue;
-      const key = `${e.type}:${e.participants.join(",")}`;
+      const key = e.type === "SEGMENT_ENTERED" ? e.type : `${e.type}:${e.participants.join(",")}`;
       if (
         !priority.has(e.type) &&
-        e.time - (this.last.get(key) ?? -Infinity) < 1
+        e.time - (this.last.get(key) ?? -Infinity) < (e.type === "SEGMENT_ENTERED" ? 3 : 1)
       )
         continue;
       const options = templates[e.type](e);

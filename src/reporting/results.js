@@ -29,6 +29,7 @@ export function statistics(s) {
     .flatMap((r) => r.finishSnapshot?.beasts.map((b) => b.fatigue) ?? []);
   return {
     version: s.version,
+    ...(s.track.course ? { raceType: s.track.raceType, track: s.track.name, weather: s.weather } : {}),
     seed: s.seed,
     configRevision: s.configRevision,
     fatigueAtFinish: finishFatigue.length
@@ -78,6 +79,7 @@ export function statistics(s) {
 export function results(s) {
   return {
     version: s.version,
+    ...(s.track.course ? { raceType: s.track.raceType, track: s.track.name, weather: s.weather } : {}),
     seed: s.seed,
     setup: structuredClone(s.setup),
     official: classification(s),

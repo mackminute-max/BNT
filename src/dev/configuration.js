@@ -2,6 +2,7 @@ import { createRace } from "../sim/race.js";
 import { VERSION } from "../config/config.js";
 import { editRU, supportsPath } from "./overrides.js";
 const fields = new Set([
+  "course",
   "seed",
   "overrides",
   "entrants",
@@ -38,7 +39,7 @@ export function parseConfiguration(text) {
   if (
     doc.kind !== "BNT-configuration" ||
     doc.schema !== 1 ||
-    doc.version !== VERSION
+    (doc.version !== VERSION && !(doc.version === "0.4.3-combat-ai" && (!doc.setup?.course || doc.setup.course === "oval")))
   )
     throw new Error("Unsupported configuration version");
   return configuration(doc.setup);

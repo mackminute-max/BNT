@@ -51,6 +51,9 @@ export function mountWorkbench({
   };
   function setEditor(setup) {
     $("setupJSON").value = JSON.stringify(configuration(setup), null, 2);
+    const selected = $("surfaceSegment").value;
+    $("surfaceSegment").replaceChildren(...getState().track.segments.map(s => new Option(s.id, s.id)));
+    if ([...$("surfaceSegment").options].some(o => o.value === selected)) $("surfaceSegment").value = selected;
     refreshComponents();
     refreshParameter();
   }

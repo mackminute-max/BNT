@@ -1,0 +1,31 @@
+✔ Courses: four irregular presets validate; closed geometry has continuous position and heading (10.304663ms)
+✔ Courses: lane arc distance and rendering derivatives agree; right/left inner lanes reverse (1.197915ms)
+✔ Courses: malformed segments, connections, topology, surfaces, checkpoints and closure reject (5.336013ms)
+✔ Courses: eight aligned stationary grid entrants and mass start operate for every preset (31.642115ms)
+✔ Courses: open keys, perception, hazard and combat range never wrap finish back to start (1.43215ms)
+✔ Courses: Rally terminal finish locks full precision, no laps, rear row physical disadvantage and safe exit (21.677016ms)
+✔ Courses: Rally pre-signal sign activates at start and one cursor crosses each checkpoint once (296.149774ms)
+✔ Courses: in-race Rally signs wait for checkpoints, replacements and lowering retain accounting (114.517835ms)
+✔ Courses: a Rally sign queued after last checkpoint remains pending and never activates at terminal (268.73683ms)
+✔ Courses: fractional checkpoints and several tile boundaries resolve chronologically in one tick (3.207096ms)
+✔ Courses: Circuit line activation preserves initial entry and full completed laps (597.409067ms)
+✔ Courses: terrain applies existing movement/fatigue model and survives configuration roundtrip (206.334528ms)
+✔ Courses: wreck occupancy across a segment boundary blocks movement without phasing (1.948451ms)
+✔ Courses: deterministic full races, storage permutation and selected-track replay (13219.334225ms)
+✔ Courses: multiple distinct segments, checkpoints, finish and terminal exit can resolve in one tick (6.630871ms)
+✔ Courses: precise simultaneous Rally finish ties use unchanged tolerance and a common terminal line (2.920283ms)
+✔ Courses: combat actions and bilateral damage work on every new geometry; Pure remains prohibited (13.051131ms)
+✔ Courses: terminal wreck obstruction preserves finished classification and explicit blocked-clearance status (1.813402ms)
+✔ Courses: static course preview is visible, hidden hazards remain hidden, and left/right lane utility follows geometry (3.121409ms)
+✔ Courses: existing latest oval configurations migrate explicitly; old replays remain version specific (4.338423ms)
+✔ Courses: Rally ignores closed-lap configuration in movement, finish, and combat racing priorities (1100.484687ms)
+✔ Courses: malformed course scalar cannot silently select the oval adapter (1.493581ms)
+✔ Courses: checkpoint-triggered Push diagnostics and technical compliance describe the applied pace (7.707537ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16051.419191

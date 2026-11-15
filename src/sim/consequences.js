@@ -1,6 +1,6 @@
 import { resolveAction } from "../ai/telemetry.js";
 import { byId, clamp, random } from "../core/determinism.js";
-import { location, mod } from "../track/oval.js";
+import { location, gap } from "../track/oval.js";
 import { emit } from "../events/events.js";
 
 export const consequenceDefaults = Object.freeze({
@@ -438,13 +438,11 @@ export function eligibleCombat(s, a, b, action) {
     a.control === "Out of Control"
   )
     return false;
-  const gap = Math.abs(
-      mod(b.q - a.q + s.track.cells / 2, s.track.cells) - s.track.cells / 2,
-    ),
+  const separation = Math.abs(gap(a.q, b.q, s.track)),
     lanes = Math.abs(a.lane - b.lane);
   return action === "ram"
-    ? lanes === 1 && gap <= s.consequence.ramRange
-    : action === "attack" && lanes <= 1 && gap <= s.consequence.attackRange;
+    ? lanes === 1 && separation <= s.consequence.ramRange
+    : action === "attack" && lanes <= 1 && separation <= s.consequence.attackRange;
 }
 export function resolveAttacks(s, intents, refresh) {
   const ordered = [...intents].sort(

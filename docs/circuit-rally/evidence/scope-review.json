@@ -1,0 +1,38 @@
+{
+  "unchanged": [
+    "src/model/ru.js",
+    "src/sim/kinematics.js",
+    "src/sim/environment.js",
+    "src/ai/signs.js",
+    "src/ai/telemetry.js",
+    "src/replay/replay.js"
+  ],
+  "configurationOnlyVersionChanged": true,
+  "consequenceDefaultsAndPhysicalDamageAndContestsIdentical": true,
+  "oldSurfaceDefaultsIdentical": true,
+  "baselineRevision": "6651ef9917fb3d4c5f33edbad6685b3ae6469d29",
+  "trackedChangedFiles": [
+    "ASSUMPTIONS.md",
+    "DEVELOPMENT.md",
+    "IMPLEMENTATION_STATUS.md",
+    "RELEASE_CHECKLIST.md",
+    "dist/Blood_and_Thunder.html",
+    "docs/README.md",
+    "package-lock.json",
+    "package.json",
+    "src/ai/combat-value.js",
+    "src/ai/driver.js",
+    "src/ai/weights.js",
+    "src/config/config.js",
+    "src/dev/configuration.js",
+    "src/reporting/commentary.js",
+    "src/reporting/results.js",
+    "src/sim/consequences.js",
+    "src/sim/incidents.js",
+    "src/sim/race.js",
+    "src/track/oval.js",
+    "src/ui/app.js",
+    "src/ui/index.html",
+    "src/ui/workbench.js"
+  ]
+}

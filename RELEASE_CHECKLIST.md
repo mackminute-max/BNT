@@ -39,3 +39,9 @@ The new file still requires direct-file verification in a permitted local browse
 Supersedes previous artifact/test counts for the current build; historical audit evidence remains unchanged. 178 tests pass, 23 retained +7 new browser functional checks pass in HTTP diagnostic mode, and the single-HTML build succeeds. Exact version-specific replay/observer and browser/headless parity evidence is in [the report](docs/combat-ai-refinement/COMBAT_AI_REFINEMENT_REPORT.md).
 
 Current HTML:169883 bytes, SHA-256 `29d3b74f0503f7a0538e7e4ee16728af82f9f5f6cb9c93bc6eacbedd28e765ac`. Direct managed file launch remains administrator-blocked; independent local-file confirmation and final owner acceptance are unchecked. No final balance acceptance: ordinary sampled rams remain zero, worn-field risk redistributes, and one wreck-blocked clearance stall remains. No publication/deployment/push.
+
+## 0.5.0 Circuit/Rally evidence (current artifact)
+
+Supersedes prior artifact/test counts for the current build; historical records remain unchanged. **203 tests pass**, four exact old oval event/RNG/classification comparisons pass,17 exported current replays reconstruct, and all80 new-preset smoke races Ended with640 finishers/no integrity errors or stalls. Thirty browser functional checks pass (23 retained +7 new), through explicitly labeled HTTP diagnostics because managed direct-file navigation remains blocked.
+
+Current one-file HTML:190874 bytes, SHA-256 `e39a60395e5346890fc41a2d80688640ec07bef90cc01ee5f2ae7dcd0e7e6177`. Direct offline launch of this hash and final owner acceptance remain unchecked. See [the implementation report](docs/circuit-rally/CIRCUIT_AND_RALLY_IMPLEMENTATION_REPORT.md) for scope, configurations, checkpoints, presets and limits. No new balance acceptance, publication, deployment or push.

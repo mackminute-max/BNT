@@ -296,6 +296,9 @@
       <section>
         <div class="panel">
           <div class="controls">
+            <label>Race format<select id="raceKind"><option>Oval</option><option>Circuit</option><option>Rally</option></select></label>
+            <label>Track<select id="trackPreset"><option value="oval">Existing Oval</option></select></label>
+            <label>Laps<input id="lapCount" type="number" min="1" max="100" step="1" value="3" /></label>
             <label
               >Seed
               <input id="seed" type="number" value="145" step="1" /></label
@@ -322,7 +325,7 @@
             id="race"
             width="1000"
             height="550"
-            aria-label="Four-lane oval race viewer"
+            aria-label="Four-lane race course viewer"
           ></canvas>
           <div class="legend">
             Common start / finish line · 3 full laps after initial entry · Exit
@@ -460,14 +463,14 @@
             <thead>
               <tr>
                 <th>RU</th>
-                <th>Full laps</th>
+                <th id="progressHeading">Full laps</th>
                 <th>m/s</th>
                 <th>State / time</th>
               </tr>
             </thead>
             <tbody id="standings"></tbody>
           </table>
-          <p class="note">
+          <p class="note" id="standingsNote">
             Initial line entry starts lap 1; it does not complete a lap.
             Official ties share a place. DNF/DNS remain separate from finishers.
           </p>
@@ -595,7 +598,7 @@
           <h2>Complete configuration and lineup</h2>
           <p class="note">
             Edit entrants, beasts, equipment, starting lanes/positions, player
-            entry, track geometry and all coefficients. Import errors preserve
+            entry, track geometry and all coefficients. Course JSON exposes ordered segments (length in metres, tiles, signed turn in degrees, terrain/surface and next ID) and Rally checkpoint distances in metres along lane 1. Closed-course edits must preserve position/heading closure. Import errors preserve
             the current valid race. Normalized coefficient groups must remain
             valid together.
           </p>

@@ -1,8 +1,9 @@
-// Provisional segment coefficients; one source for defaults and validation ranges.
-export const surfaceDefaults = Object.freeze({ grip: 1, roughness: 0, rollingResistance: 1, hazardModifier: 1 });
-export const surfaceRules = Object.freeze({ grip: [0.1, 2], roughness: [0, 2], rollingResistance: [0.1, 2], hazardModifier: [0, 2] });
+import { compileCourse, courseLocation, coursePoint } from "./course.js";
+import { surfaceDefaults } from "./surfaces.js";
+export { surfaceDefaults, surfaceRules } from "./surfaces.js";
 export const mod = (n, d) => ((n % d) + d) % d;
-export function track(c) {
+export function track(c, definition = null) {
+  if (definition !== null && definition !== undefined && definition !== "oval") return compileCourse(definition, c);
   const segments = [
     { id: "north", type: "straight", tiles: c.straightTiles, direction: 0 },
     { id: "east", type: "turn", tiles: c.turnTiles, direction: 1 },
@@ -18,6 +19,7 @@ export function track(c) {
   return { segments, cells: start, lanes: c.lanes };
 }
 export function location(q, lane, c, t) {
+  if (t.course) return courseLocation(q, lane, c, t);
   const tile = mod(Math.floor(q) + Math.floor(c.straightTiles / 2), t.cells);
   const s = t.segments.find((s) => tile >= s.start && tile < s.start + s.tiles);
   const radius = c.innerRadius + lane * c.laneWidth;
@@ -39,13 +41,14 @@ export function lapLength(lane, c) {
   );
 }
 export function key(q, lane, t) {
-  return `${lane}:${mod(Math.floor(q), t.cells)}`;
+  return `${lane}:${t.course && !t.closed ? Math.floor(q) : mod(Math.floor(q), t.cells)}`;
 }
 export function nextDistance(ru, c, t) {
   return (Math.floor(ru.q) + 1 - ru.q) * location(ru.q, ru.lane, c, t).length;
 }
 // Drawing coordinates share segment/angle mapping with authoritative lane geometry.
 export function point(q, lane, c, t) {
+  if (t.course) return coursePoint(q, lane, c, t);
   const x = mod(q + Math.floor(c.straightTiles / 2), t.cells),
     n = c.straightTiles,
     k = c.turnTiles;
@@ -60,3 +63,12 @@ export function point(q, lane, c, t) {
   const a = Math.PI / 2 + ((x - 2 * n - k) / k) * Math.PI;
   return { x: r * Math.cos(a), y: r * Math.sin(a) };
 }
+
+// All spatial consumers use the same topology; open courses never alias endpoints.
+export function gap(from, to, t) {
+  return t.course && !t.closed ? to - from : mod(to - from + t.cells / 2, t.cells) - t.cells / 2;
+}
+export function forwardGap(from, to, t) {
+  return t.course && !t.closed ? to - from : mod(to - from, t.cells);
+}
+export function finishQ(s) { return s.track.course && !s.track.closed ? s.track.cells : s.config.laps * s.track.cells; }

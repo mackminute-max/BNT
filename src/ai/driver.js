@@ -2,7 +2,8 @@ import { combatValue } from "./combat-value.js";
 import { location } from "../track/oval.js";
 import { beginDecision } from "./telemetry.js";
 import { random, byId } from "../core/determinism.js";
-import { mod } from "../track/oval.js";
+import { routePreview } from "../track/course.js";
+import { mod, gap, forwardGap, key } from "../track/oval.js";
 import { signPreference } from "./signs.js";
 export const tendencies = [
   "aggression",
@@ -28,12 +29,11 @@ export function perceive(s, r) {
       (o) => o.id !== r.id && o.physical !== "Exited" && o.status !== "DNS",
     )
     .map((o) => {
-      let gap =
-        mod(o.q - r.q + s.track.cells / 2, s.track.cells) - s.track.cells / 2;
+      const separation = gap(r.q, o.q, s.track);
       return {
         id: o.id,
         lane: o.lane,
-        gap,
+        gap: separation,
         speed: o.speed,
         physical: o.physical,
         status: o.status,
@@ -44,13 +44,11 @@ export function perceive(s, r) {
   const hazards = (s.hazards ?? [])
     .filter(
       (h) =>
-        Math.min(
-          mod(h.q - r.q, s.track.cells),
-          mod(r.q - h.q, s.track.cells),
-        ) <= range,
+        Math.abs(gap(r.q, h.q, s.track)) <= range,
     )
     .map((h) => ({ ...h }));
   return {
+    ...(s.track.course ? { course: routePreview(r.q, r.lane, s.config, s.track) } : {}),
     range,
     neighbors,
     hazards,
@@ -74,7 +72,7 @@ export function decide(s, r) {
   const danger =
     (ahead && ahead.gap < w.dangerGap) ||
     perceived.hazards.some(
-      (h) => h.lane === r.lane && mod(h.q - r.q, s.track.cells) < w.hazardGap,
+      (h) => h.lane === r.lane && forwardGap(r.q, h.q, s.track) >= 0 && forwardGap(r.q, h.q, s.track) < w.hazardGap,
     );
   // Tactical danger is reconsidered every tick; strategy is periodic and goals persist.
   if (s.tick < r.ai.nextDecision && !danger) return null;
@@ -115,7 +113,7 @@ export function decide(s, r) {
     !perceived.hazards.some(
       (h) =>
         h.lane === lane &&
-        Math.floor(h.q) === mod(Math.floor(r.q), s.track.cells),
+        key(h.q, lane, s.track) === key(r.q, lane, s.track),
     );
   const sign = r.signs.active,
     responsiveness = p.tacticalDiscipline / 100;
@@ -169,6 +167,16 @@ export function decide(s, r) {
     aggression: (p.aggression / 100) * w.sprintAggression,
     fatigue: -fatigue * w.sprintFatigue,
   });
+  const route = perceived.course;
+  const cornerRisk = route?.corner ? Math.max(0, r.derived.maxSpeed /
+    Math.sqrt(r.derived.lateral * route.corner.radius) - 1) : 0;
+  if (route) for (const candidate of candidates) {
+    const effort = { Conserve: 0, Maintain: 0, Push: .5, Sprint: 1 }[candidate.action];
+    candidate.terms.courseCorner = -c.utility.courseCornerRisk * Math.min(2, cornerRisk) * effort * (1 + p.caution / 100);
+    candidate.terms.courseTerrain = -c.utility.courseTerrainRisk * effort *
+      Math.max(route.current.surface.roughness, 1 - route.current.surface.grip) * (p.staminaManagement / 100);
+    candidate.score = Object.values(candidate.terms).reduce((a, b) => a + b, 0);
+  }
   const laneScores = [];
   add("hold", w.holdBase, {
     patience: (p.patience / 100) * w.holdPatience,
@@ -186,7 +194,10 @@ export function decide(s, r) {
       action,
       w.laneBase,
       {
-        distance: action === "inward" ? w.insideBonus : 0,
+        distance: route ? (route.corner && (action === "outward" ? 1 : -1) === route.corner.direction ? w.insideBonus : 0) : action === "inward" ? w.insideBonus : 0,
+        ...(route?.corner ? { courseLaneRisk: -w.courseLaneRisk * Math.min(2,
+          Math.max(0, r.derived.maxSpeed / Math.sqrt(r.derived.lateral *
+            (s.track.segments.find(x => x.id === route.corner.segment).radius - route.corner.direction * lane * s.config.laneWidth)) - 1)) } : {}),
         opportunity:
           threat *
           (w.laneOpportunityBase + (p.opportunism / 100) * w.laneOpportunism),
@@ -239,7 +250,7 @@ export function decide(s, r) {
     const canAct = s.time + s.config.epsilon >= r.nextAttackTime && r.control !== "Out of Control";
     const evaluated = action => rivals
       .filter(o => action !== "ram" || (Math.abs(o.lane - r.lane) === 1 && Math.abs(o.gap) <= combat.ramRange))
-      .map(o => ({ target: o, value: combatValue(action, r, o, perceived, s.config, combat, w, grip) }))
+      .map(o => ({ target: o, value: combatValue(action, r, o, perceived, s.config, combat, w, grip, s.track.course && !s.track.closed ? r.q >= s.track.checkpoints.at(-1).q : null) }))
       .sort((a, b) => Object.values(b.value.features).reduce((x, y) => x + y, 0) -
         Object.values(a.value.features).reduce((x, y) => x + y, 0) || byId(a.target, b.target))[0];
     const target = rivals[0];

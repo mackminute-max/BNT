@@ -1,4 +1,4 @@
-export const VERSION = "0.4.3-combat-ai";
+export const VERSION = "0.5.0-courses";
 // Bounds and units are shared by validation and diagnostic UI.
 export const rules = {
   dt: [0.001, 1, "s"],

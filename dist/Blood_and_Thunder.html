@@ -296,6 +296,9 @@
       <section>
         <div class="panel">
           <div class="controls">
+            <label>Race format<select id="raceKind"><option>Oval</option><option>Circuit</option><option>Rally</option></select></label>
+            <label>Track<select id="trackPreset"><option value="oval">Existing Oval</option></select></label>
+            <label>Laps<input id="lapCount" type="number" min="1" max="100" step="1" value="3" /></label>
             <label
               >Seed
               <input id="seed" type="number" value="145" step="1" /></label
@@ -322,7 +325,7 @@
             id="race"
             width="1000"
             height="550"
-            aria-label="Four-lane oval race viewer"
+            aria-label="Four-lane race course viewer"
           ></canvas>
           <div class="legend">
             Common start / finish line · 3 full laps after initial entry · Exit
@@ -460,14 +463,14 @@
             <thead>
               <tr>
                 <th>RU</th>
-                <th>Full laps</th>
+                <th id="progressHeading">Full laps</th>
                 <th>m/s</th>
                 <th>State / time</th>
               </tr>
             </thead>
             <tbody id="standings"></tbody>
           </table>
-          <p class="note">
+          <p class="note" id="standingsNote">
             Initial line entry starts lap 1; it does not complete a lap.
             Official ties share a place. DNF/DNS remain separate from finishers.
           </p>
@@ -595,7 +598,7 @@
           <h2>Complete configuration and lineup</h2>
           <p class="note">
             Edit entrants, beasts, equipment, starting lanes/positions, player
-            entry, track geometry and all coefficients. Import errors preserve
+            entry, track geometry and all coefficients. Course JSON exposes ordered segments (length in metres, tiles, signed turn in degrees, terrain/surface and next ID) and Rally checkpoint distances in metres along lane 1. Closed-course edits must preserve position/heading closure. Import errors preserve
             the current valid race. Normalized coefficient groups must remain
             valid together.
           </p>
@@ -635,12 +638,12 @@
     </main>
     <script>(() => {
   // src/ui/clock.js
-  function advanceFrames(accumulator2, elapsed, speed, dt, advance2, stopped) {
+  function advanceFrames(accumulator2, elapsed, speed, dt, advance3, stopped) {
     if (![accumulator2, elapsed, speed, dt].every(Number.isFinite) || elapsed < 0 || speed < 0 || dt <= 0)
       throw new Error("Invalid playback clock");
     accumulator2 += Math.min(elapsed, 0.25) * speed;
     while (accumulator2 + dt * 1e-9 >= dt && !stopped()) {
-      if (advance2() === false) break;
+      if (advance3() === false) break;
       accumulator2 = Math.max(0, accumulator2 - dt);
     }
     return accumulator2;
@@ -790,11 +793,152 @@
     });
   }
 
-  // src/track/oval.js
+  // src/track/surfaces.js
   var surfaceDefaults = Object.freeze({ grip: 1, roughness: 0, rollingResistance: 1, hazardModifier: 1 });
   var surfaceRules = Object.freeze({ grip: [0.1, 2], roughness: [0, 2], rollingResistance: [0.1, 2], hazardModifier: [0, 2] });
-  var mod = (n, d) => (n % d + d) % d;
-  function track(c) {
+
+  // src/track/course.js
+  var terrainProfiles = Object.freeze({
+    dirt: { grip: 1, roughness: 0.12, rollingResistance: 1, hazardModifier: 1 },
+    stone: { grip: 1.1, roughness: 0.03, rollingResistance: 0.95, hazardModifier: 0.7 },
+    gravel: { grip: 0.8, roughness: 0.3, rollingResistance: 1.08, hazardModifier: 1.3 },
+    sand: { grip: 0.7, roughness: 0.4, rollingResistance: 1.2, hazardModifier: 0.9 },
+    mud: { grip: 0.6, roughness: 0.5, rollingResistance: 1.25, hazardModifier: 1.4 }
+  });
+  var mod = (x, n) => (x % n + n) % n;
+  var finite = (x, min, max) => Number.isFinite(x) && x >= min && x <= max;
+  var identifier = (x) => typeof x === "string" && !["__proto__", "prototype", "constructor"].includes(x) && /^[a-zA-Z0-9_-]{1,64}$/.test(x);
+  function advance(x, y, h, length, angle, fraction = 1) {
+    if (!angle) return { x: x + Math.cos(h) * length * fraction, y: y + Math.sin(h) * length * fraction, heading: h };
+    const signedRadius = length / angle, a = h + angle * fraction;
+    return { x: x + signedRadius * (Math.sin(a) - Math.sin(h)), y: y - signedRadius * (Math.cos(a) - Math.cos(h)), heading: a };
+  }
+  function normalizeCourse(input) {
+    if (typeof input === "string") {
+      if (!Object.hasOwn(coursePresets, input)) throw Error("Unknown track preset");
+      input = structuredClone(coursePresets[input]);
+    }
+    if (!input || typeof input !== "object" || Array.isArray(input) || Object.keys(input).some((k) => !["id", "name", "kind", "closed", "lanes", "segments", "checkpoints"].includes(k))) throw Error("Invalid course definition");
+    if (!identifier(input.id) || typeof input.name !== "string" || !input.name.length || input.name.length > 100 || !["Circuit", "Rally"].includes(input.kind) || input.closed !== (input.kind === "Circuit") || input.lanes !== 4) throw Error("Invalid course kind, topology or lanes");
+    if (!Array.isArray(input.segments) || input.segments.length < 2 || input.segments.length > 128) throw Error("Invalid course segments");
+    const seen = /* @__PURE__ */ new Set();
+    const segments = input.segments.map((s, i) => {
+      if (!s || typeof s !== "object" || Object.keys(s).some((k) => !["id", "length", "tiles", "turn", "terrain", "surface", "next"].includes(k)) || !identifier(s.id) || seen.has(s.id) || !finite(s.length, 1, 2e3) || !Number.isInteger(s.tiles) || s.tiles < 1 || s.tiles > 256 || !finite(s.turn, -180, 180)) throw Error("Invalid course segment");
+      seen.add(s.id);
+      if (s.next !== (input.segments[i + 1]?.id ?? (input.closed ? input.segments[0].id : null))) throw Error("Invalid course connection");
+      if (s.terrain !== void 0 && !Object.hasOwn(terrainProfiles, s.terrain)) throw Error("Invalid terrain profile");
+      const surface = { ...surfaceDefaults, ...terrainProfiles[s.terrain] ?? {}, ...s.surface };
+      if (s.surface !== void 0 && (!s.surface || typeof s.surface !== "object" || Array.isArray(s.surface))) throw Error("Invalid course surface");
+      for (const [k, v] of Object.entries(surface)) if (!Object.hasOwn(surfaceRules, k) || !finite(v, ...surfaceRules[k])) throw Error("Invalid surface modifier");
+      return { ...s, terrain: s.terrain ?? "dirt", surface };
+    });
+    if (segments[0].turn !== 0 || segments[0].tiles < 8) throw Error("Course needs a straight starting grid");
+    if (!input.closed && segments.at(-1).turn !== 0) throw Error("Rally needs a straight terminal exit");
+    const length = segments.reduce((n, s) => n + s.length, 0), cp = input.checkpoints ?? [];
+    if (!Array.isArray(cp) || (input.closed ? cp.length !== 0 : cp.length !== 3)) throw Error("Rally requires three ordered intermediate checkpoints");
+    let previous2 = 0;
+    const ids = /* @__PURE__ */ new Set();
+    for (const p of cp) {
+      if (!p || Object.keys(p).some((k) => !["id", "distance"].includes(k)) || !identifier(p.id) || ids.has(p.id) || !finite(p.distance, Number.EPSILON, length - Number.EPSILON) || p.distance <= previous2 || p.distance >= length) throw Error("Invalid checkpoint position");
+      previous2 = p.distance;
+      ids.add(p.id);
+    }
+    return { id: input.id, name: input.name, kind: input.kind, closed: input.closed, lanes: 4, segments, checkpoints: structuredClone(cp) };
+  }
+  function compileCourse(input, c) {
+    const definition = normalizeCourse(input);
+    if (c.lanes !== definition.lanes) throw Error("Course lane count must match four racing lanes");
+    let x = 0, y = 0, heading = 0, start = 0, distance = 0;
+    const segments = definition.segments.map((s) => {
+      const angle = s.turn * Math.PI / 180, radius = angle ? s.length / Math.abs(angle) : Infinity;
+      if (angle && radius <= (c.lanes - 1) * c.laneWidth + 1) throw Error("Corner radius cannot fit lane geometry");
+      const end = advance(x, y, heading, s.length, angle);
+      const result = { ...s, type: angle ? "turn" : "straight", direction: Math.sign(angle), radius: angle ? radius : null, angle, start, startDistance: distance, x, y, heading, endX: end.x, endY: end.y };
+      x = end.x;
+      y = end.y;
+      heading = end.heading;
+      start += s.tiles;
+      distance += s.length;
+      return result;
+    });
+    if (definition.closed && (Math.hypot(x, y) > 1e-6 || Math.min(mod(heading, Math.PI * 2), Math.PI * 2 - mod(heading, Math.PI * 2)) > 1e-7)) throw Error("Closed circuit geometry does not connect");
+    const checkpoints2 = definition.checkpoints.map((p) => {
+      const s = segments.find((s2) => p.distance < s2.startDistance + s2.length) ?? segments.at(-1);
+      return { ...p, q: s.start + (p.distance - s.startDistance) / s.length * s.tiles };
+    });
+    return { course: true, id: definition.id, name: definition.name, raceType: definition.kind, closed: definition.closed, segments, cells: start, lanes: c.lanes, offset: definition.closed ? Math.floor(segments[0].tiles / 2) : 0, length: distance, checkpoints: checkpoints2 };
+  }
+  function segmentAt(q, t) {
+    const position = t.closed ? mod(q + t.offset, t.cells) : q;
+    const segment2 = position < 0 ? t.segments[0] : position >= t.cells ? t.segments.at(-1) : t.segments.find((s) => position < s.start + s.tiles);
+    return { segment: segment2, position };
+  }
+  function courseLocation(q, lane, c, t) {
+    const { segment: s, position } = segmentAt(q, t);
+    const extension = !t.closed && (q < 0 || q >= t.cells);
+    const radius = s.angle ? s.radius - Math.sign(s.angle) * lane * c.laneWidth : Infinity;
+    return { tile: Math.floor(position), segment: s.id, type: extension ? "straight" : s.type, direction: extension ? 0 : s.direction, radius: extension ? Infinity : radius, length: (extension || !s.angle ? s.length : Math.abs(s.angle) * radius) / s.tiles, surface: s.surface, terrain: s.terrain };
+  }
+  function coursePoint(q, lane, c, t) {
+    const { segment: s, position } = segmentAt(q, t), fraction = (position - s.start) / s.tiles;
+    const p = advance(s.x, s.y, s.heading, s.length, s.angle, fraction), offset = lane * c.laneWidth;
+    return { x: p.x - Math.sin(p.heading) * offset, y: p.y + Math.cos(p.heading) * offset };
+  }
+  function routePreview(q, lane, c, t) {
+    let next = null;
+    for (let i = 0; i <= 8; i++) {
+      const at = Math.floor(q) + i;
+      if (!t.closed && at >= t.cells) break;
+      const loc = courseLocation(at, lane, c, t);
+      if (loc.type === "turn") {
+        next = { ...loc, tilesAhead: i };
+        break;
+      }
+    }
+    return { current: courseLocation(q, lane, c, t), corner: next };
+  }
+  function segment(id, length, turn = 0, terrain = "dirt") {
+    return { id, length, turn, terrain, tiles: Math.max(2, Math.ceil(length / 8)), next: null };
+  }
+  function connect(segments, closed) {
+    segments.forEach((s, i) => s.next = segments[i + 1]?.id ?? (closed ? segments[0].id : null));
+    return segments;
+  }
+  function circuit(id, name, vertices, radii) {
+    const corners = vertices.map((v, i) => {
+      const previous2 = vertices[(i + vertices.length - 1) % vertices.length], next = vertices[(i + 1) % vertices.length];
+      const incoming = Math.atan2(v[1] - previous2[1], v[0] - previous2[0]), outgoing = Math.atan2(next[1] - v[1], next[0] - v[0]);
+      const turn = mod(outgoing - incoming + Math.PI, 2 * Math.PI) - Math.PI;
+      return { v, incoming, outgoing, turn, trim: radii[i] * Math.tan(Math.abs(turn) / 2), r: radii[i] };
+    });
+    const segments = [];
+    for (let i = 0; i < corners.length; i++) {
+      const a = corners[i], b = corners[(i + 1) % corners.length], length = Math.hypot(b.v[0] - a.v[0], b.v[1] - a.v[1]) - a.trim - b.trim;
+      segments.push(segment("straight-" + i, length, 0, i % 3 === 0 ? "stone" : "dirt"));
+      segments.push(segment("corner-" + (i + 1) % corners.length, b.r * Math.abs(b.turn), b.turn * 180 / Math.PI, "dirt"));
+    }
+    return { id, name, kind: "Circuit", closed: true, lanes: 4, segments: connect(segments, true), checkpoints: [] };
+  }
+  function rally(id, name, items) {
+    const segments = connect(items.map((x, i) => segment("sector-" + i, ...x)), false), length = segments.reduce((n, s) => n + s.length, 0);
+    return { id, name, kind: "Rally", closed: false, lanes: 4, segments, checkpoints: [0.25, 0.5, 0.75].map((p, i) => ({ id: "CP" + (i + 1), distance: p * length })) };
+  }
+  var coursePresets = Object.freeze({
+    "technical-circuit": circuit("technical-circuit", "Technical Circuit", [[0, 0], [240, 0], [240, 160], [160, 160], [160, 90], [80, 90], [80, 200], [0, 200]], [20, 22, 20, 18, 18, 18, 20, 22]),
+    "fast-circuit": circuit("fast-circuit", "Fast Circuit", [[0, 0], [500, 0], [500, 300], [300, 300], [300, 180], [0, 180]], [50, 70, 60, 35, 35, 45]),
+    "mixed-rally": rally("mixed-rally", "Mixed-Terrain Rally", [[120, 0, "dirt"], [55, 75, "gravel"], [140, 0, "stone"], [70, -90, "sand"], [110, 0, "sand"], [50, 90, "mud"], [80, 0, "mud"], [65, -70, "gravel"], [150, 0, "stone"]]),
+    "technical-rally": rally("technical-rally", "Technical Rally", [[80, 0, "dirt"], [32, 90, "gravel"], [36, -100, "mud"], [55, 0, "sand"], [40, 110, "gravel"], [38, -100, "mud"], [60, 0, "stone"], [38, 95, "sand"], [40, -100, "gravel"], [95, 0, "dirt"]])
+  });
+  function courseDistance(q, t) {
+    if (t.closed) throw Error("Use lap progress on a closed course");
+    const { segment: s } = segmentAt(q, t);
+    return s.startDistance + (q - s.start) / s.tiles * s.length;
+  }
+
+  // src/track/oval.js
+  var mod2 = (n, d) => (n % d + d) % d;
+  function track(c, definition = null) {
+    if (definition !== null && definition !== void 0 && definition !== "oval") return compileCourse(definition, c);
     const segments = [
       { id: "north", type: "straight", tiles: c.straightTiles, direction: 0 },
       { id: "east", type: "turn", tiles: c.turnTiles, direction: 1 },
@@ -810,7 +954,8 @@
     return { segments, cells: start, lanes: c.lanes };
   }
   function location(q, lane, c, t) {
-    const tile = mod(Math.floor(q) + Math.floor(c.straightTiles / 2), t.cells);
+    if (t.course) return courseLocation(q, lane, c, t);
+    const tile = mod2(Math.floor(q) + Math.floor(c.straightTiles / 2), t.cells);
     const s = t.segments.find((s2) => tile >= s2.start && tile < s2.start + s2.tiles);
     const radius = c.innerRadius + lane * c.laneWidth;
     return {
@@ -823,13 +968,14 @@
     };
   }
   function key(q, lane, t) {
-    return `${lane}:${mod(Math.floor(q), t.cells)}`;
+    return `${lane}:${t.course && !t.closed ? Math.floor(q) : mod2(Math.floor(q), t.cells)}`;
   }
   function nextDistance(ru, c, t) {
     return (Math.floor(ru.q) + 1 - ru.q) * location(ru.q, ru.lane, c, t).length;
   }
   function point(q, lane, c, t) {
-    const x = mod(q + Math.floor(c.straightTiles / 2), t.cells), n = c.straightTiles, k = c.turnTiles;
+    if (t.course) return coursePoint(q, lane, c, t);
+    const x = mod2(q + Math.floor(c.straightTiles / 2), t.cells), n = c.straightTiles, k = c.turnTiles;
     const r = c.innerRadius + lane * c.laneWidth, l = c.straightLength;
     if (x < n) return { x: x / n * l, y: -r };
     if (x < n + k) {
@@ -839,6 +985,15 @@
     if (x < 2 * n + k) return { x: l * (1 - (x - n - k) / n), y: r };
     const a = Math.PI / 2 + (x - 2 * n - k) / k * Math.PI;
     return { x: r * Math.cos(a), y: r * Math.sin(a) };
+  }
+  function gap(from, to, t) {
+    return t.course && !t.closed ? to - from : mod2(to - from + t.cells / 2, t.cells) - t.cells / 2;
+  }
+  function forwardGap(from, to, t) {
+    return t.course && !t.closed ? to - from : mod2(to - from, t.cells);
+  }
+  function finishQ(s) {
+    return s.track.course && !s.track.closed ? s.track.cells : s.config.laps * s.track.cells;
   }
 
   // src/core/determinism.js
@@ -1206,10 +1361,8 @@
   function eligibleCombat(s, a, b, action) {
     if (!s.consequences || s.format !== "Combat" || !a || !b || a.id === b.id || a.status !== "Racing" || b.status !== "Racing" || a.physical !== "Live" || b.physical !== "Live" || a.control === "Out of Control")
       return false;
-    const gap = Math.abs(
-      mod(b.q - a.q + s.track.cells / 2, s.track.cells) - s.track.cells / 2
-    ), lanes = Math.abs(a.lane - b.lane);
-    return action === "ram" ? lanes === 1 && gap <= s.consequence.ramRange : action === "attack" && lanes <= 1 && gap <= s.consequence.attackRange;
+    const separation = Math.abs(gap(a.q, b.q, s.track)), lanes = Math.abs(a.lane - b.lane);
+    return action === "ram" ? lanes === 1 && separation <= s.consequence.ramRange : action === "attack" && lanes <= 1 && separation <= s.consequence.attackRange;
   }
   function resolveAttacks(s, intents, refresh) {
     const ordered = [...intents].sort(
@@ -1380,7 +1533,7 @@
   }
   function hazardAt(s, q, lane) {
     return s.hazards.find(
-      (h) => h.lane === lane && mod(Math.floor(h.q), s.track.cells) === mod(Math.floor(q), s.track.cells)
+      (h) => h.lane === lane && key(h.q, lane, s.track) === key(q, lane, s.track)
     );
   }
   function rescheduleIncidents(s) {
@@ -1388,7 +1541,7 @@
   }
 
   // src/config/config.js
-  var VERSION = "0.4.3-combat-ai";
+  var VERSION = "0.5.0-courses";
   var rules = {
     dt: [1e-3, 1, "s"],
     epsilon: [1e-12, 1e-7, "s"],
@@ -1560,6 +1713,9 @@
     combatUnknownProtection: 50,
     combatUnknownCondition: 100,
     combatUnknownMassRatio: 1,
+    courseCornerRisk: 2,
+    courseTerrainRisk: 1,
+    courseLaneRisk: 0.4,
     perceptionBase: 0.2,
     perceptionSkill: 0.8,
     dangerGap: 1.5,
@@ -1915,7 +2071,7 @@
     if (margin >= span) return 1;
     return margin < 0 ? (margin + span) ** 2 / (2 * span ** 2) : 1 - (span - margin) ** 2 / (2 * span ** 2);
   }
-  function combatValue(action, own, target, perceived, config2, combat, utility, grip) {
+  function combatValue(action, own, target, perceived, config2, combat, utility, grip, terminalPhase = null) {
     const w = utility, ru = own.ru, p = ru.driver.personality;
     const skill = w.combatUnknownSkill;
     const rivalCombat = skill * (config2.tuning.combatSkill + config2.tuning.combatControl);
@@ -1958,7 +2114,7 @@
     const clearAhead = !perceived.neighbors.some((n) => n.lane === own.lane && n.gap > 0 && n.gap < w.overtakeGap);
     const passing = perceived.neighbors.some((n) => n.lane === own.lane && n.gap > 0 && n.gap < w.overtakeGap);
     const leadingTarget = target.gap < 0;
-    const nearFinish = own.hasEnteredCourse && own.completedLaps >= config2.laps - 1;
+    const nearFinish = terminalPhase ?? (own.hasEnteredCourse && own.completedLaps >= config2.laps - 1);
     const racingCost = (clearAhead ? 0.5 : 0) + (passing ? 0.5 : 0) + (leadingTarget ? 0.5 : 0) + (nearFinish ? 0.5 : 0);
     const retaliation = contestChance(rivalCombat * combat.attackSkillMultiplier - (ru.driver.driving * combat.defenseDriving + own.derived.combat * combat.defenseCombat + own.derived.control * combat.defenseControl + combat.reactionBonus), combat.contestNoise);
     const exposure2 = Math.min(2, perceived.neighbors.filter((n) => n.status === "Racing" && n.physical === "Live" && Math.abs(n.lane - own.lane) <= 1 && Math.abs(n.gap) <= combat.attackRange).length / 2);
@@ -2013,23 +2169,21 @@
     const neighbors = s.entrants.filter(
       (o) => o.id !== r.id && o.physical !== "Exited" && o.status !== "DNS"
     ).map((o) => {
-      let gap = mod(o.q - r.q + s.track.cells / 2, s.track.cells) - s.track.cells / 2;
+      const separation = gap(r.q, o.q, s.track);
       return {
         id: o.id,
         lane: o.lane,
-        gap,
+        gap: separation,
         speed: o.speed,
         physical: o.physical,
         status: o.status
       };
     }).filter((o) => Math.abs(o.gap) <= range).sort(byId);
     const hazards = (s.hazards ?? []).filter(
-      (h) => Math.min(
-        mod(h.q - r.q, s.track.cells),
-        mod(r.q - h.q, s.track.cells)
-      ) <= range
+      (h) => Math.abs(gap(r.q, h.q, s.track)) <= range
     ).map((h) => ({ ...h }));
     return {
+      ...s.track.course ? { course: routePreview(r.q, r.lane, s.config, s.track) } : {},
       range,
       neighbors,
       hazards,
@@ -2046,7 +2200,7 @@
     r.ai.perceived = perceived;
     const ahead = perceived.neighbors.filter((o) => o.lane === r.lane && o.gap > 0).sort((a, b) => a.gap - b.gap)[0];
     const danger = ahead && ahead.gap < w.dangerGap || perceived.hazards.some(
-      (h) => h.lane === r.lane && mod(h.q - r.q, s.track.cells) < w.hazardGap
+      (h) => h.lane === r.lane && forwardGap(r.q, h.q, s.track) >= 0 && forwardGap(r.q, h.q, s.track) < w.hazardGap
     );
     if (s.tick < r.ai.nextDecision && !danger) return null;
     r.ai.evaluation = (r.ai.evaluation ?? 0) + 1;
@@ -2064,7 +2218,7 @@
     ) && lane >= 0 && lane < s.config.lanes && !perceived.neighbors.some(
       (o) => o.lane === lane && Math.floor(r.q + o.gap) === Math.floor(r.q)
     ) && !perceived.hazards.some(
-      (h) => h.lane === lane && Math.floor(h.q) === mod(Math.floor(r.q), s.track.cells)
+      (h) => h.lane === lane && key(h.q, lane, s.track) === key(r.q, lane, s.track)
     );
     const sign = r.signs.active, responsiveness = p.tacticalDiscipline / 100;
     const candidates = [];
@@ -2105,6 +2259,14 @@
       aggression: p.aggression / 100 * w.sprintAggression,
       fatigue: -fatigue * w.sprintFatigue
     });
+    const route = perceived.course;
+    const cornerRisk = route?.corner ? Math.max(0, r.derived.maxSpeed / Math.sqrt(r.derived.lateral * route.corner.radius) - 1) : 0;
+    if (route) for (const candidate of candidates) {
+      const effort = { Conserve: 0, Maintain: 0, Push: 0.5, Sprint: 1 }[candidate.action];
+      candidate.terms.courseCorner = -c.utility.courseCornerRisk * Math.min(2, cornerRisk) * effort * (1 + p.caution / 100);
+      candidate.terms.courseTerrain = -c.utility.courseTerrainRisk * effort * Math.max(route.current.surface.roughness, 1 - route.current.surface.grip) * (p.staminaManagement / 100);
+      candidate.score = Object.values(candidate.terms).reduce((a, b) => a + b, 0);
+    }
     const laneScores = [];
     add("hold", w.holdBase, {
       patience: p.patience / 100 * w.holdPatience,
@@ -2122,7 +2284,11 @@
         action,
         w.laneBase,
         {
-          distance: action === "inward" ? w.insideBonus : 0,
+          distance: route ? route.corner && (action === "outward" ? 1 : -1) === route.corner.direction ? w.insideBonus : 0 : action === "inward" ? w.insideBonus : 0,
+          ...route?.corner ? { courseLaneRisk: -w.courseLaneRisk * Math.min(
+            2,
+            Math.max(0, r.derived.maxSpeed / Math.sqrt(r.derived.lateral * (s.track.segments.find((x) => x.id === route.corner.segment).radius - route.corner.direction * lane * s.config.laneWidth)) - 1)
+          ) } : {},
           opportunity: threat * (w.laneOpportunityBase + p.opportunism / 100 * w.laneOpportunism),
           traffic: blocked ? -w.laneTrafficPenalty : 0
         },
@@ -2167,7 +2333,7 @@
       );
       const grip = Math.max(0.1, s.environment.grip * location(r.q, r.lane, s.config, s.track).surface.grip);
       const canAct = s.time + s.config.epsilon >= r.nextAttackTime && r.control !== "Out of Control";
-      const evaluated = (action) => rivals.filter((o) => action !== "ram" || Math.abs(o.lane - r.lane) === 1 && Math.abs(o.gap) <= combat.ramRange).map((o) => ({ target: o, value: combatValue(action, r, o, perceived, s.config, combat, w, grip) })).sort((a, b) => Object.values(b.value.features).reduce((x, y) => x + y, 0) - Object.values(a.value.features).reduce((x, y) => x + y, 0) || byId(a.target, b.target))[0];
+      const evaluated = (action) => rivals.filter((o) => action !== "ram" || Math.abs(o.lane - r.lane) === 1 && Math.abs(o.gap) <= combat.ramRange).map((o) => ({ target: o, value: combatValue(action, r, o, perceived, s.config, combat, w, grip, s.track.course && !s.track.closed ? r.q >= s.track.checkpoints.at(-1).q : null) })).sort((a, b) => Object.values(b.value.features).reduce((x, y) => x + y, 0) - Object.values(a.value.features).reduce((x, y) => x + y, 0) || byId(a.target, b.target))[0];
       const target = rivals[0];
       for (const action of ["attack", "ram"]) {
         const best = canAct ? evaluated(action) : null;
@@ -2415,7 +2581,8 @@
     consequence = {},
     scheduledIncidents = [],
     checkpointInterval = 100,
-    environmentOverrides = {}
+    environmentOverrides = {},
+    course = null
   } = {}) {
     if (!Object.hasOwn(weatherPresets, weather))
       throw new Error("Invalid weather");
@@ -2428,7 +2595,7 @@
     const consequenceTuning = consequenceConfig(consequence);
     const tuning = m2Config(autonomous);
     const environment = environmentConfig(weather, environmentOverrides);
-    const c = config(overrides), t = track(c);
+    const c = config(overrides), t = track(c, course);
     if (!Number.isSafeInteger(seed))
       throw new Error("Seed must be a safe integer");
     if (!["Pure", "Combat"].includes(format))
@@ -2441,13 +2608,13 @@
     if (!input.length || input.length > 64)
       throw new Error("Expected 1..64 entrants");
     for (const [id, patch] of Object.entries(surfaces)) {
-      const segment = t.segments.find((x) => x.id === id);
-      if (!segment || !patch || typeof patch !== "object")
+      const segment2 = t.segments.find((x) => x.id === id);
+      if (!segment2 || !patch || typeof patch !== "object")
         throw new Error("Invalid surface");
       for (const [k, v] of Object.entries(patch))
         if (!Object.hasOwn(surfaceDefaults, k) || !Number.isFinite(v) || v < surfaceRules[k][0] || v > surfaceRules[k][1])
           throw new Error("Invalid surface modifier");
-      Object.assign(segment.surface, patch);
+      Object.assign(segment2.surface, patch);
     }
     const seen = /* @__PURE__ */ new Set();
     const units = input.map((e, i) => {
@@ -2488,6 +2655,7 @@
         completedLaps: 0,
         lastCrossingTime: null,
         lastCrossingQ: null,
+        ...t.course && !t.closed ? { checkpointCursor: 0 } : {},
         finishTime: null,
         finishSnapshot: null,
         retirement: null,
@@ -2553,6 +2721,7 @@
     if (!units.some((r) => r.id === s.playerId))
       throw new Error("Invalid player RU");
     s.setup = {
+      ...t.course ? { course: normalizeCourse(course) } : {},
       seed,
       overrides: { ...c },
       entrants: units.map((r) => ({
@@ -2679,7 +2848,7 @@
         status: "Finished",
         time: r.finishTime,
         completedLaps: r.completedLaps,
-        progress: r.retirement?.progress ?? s.config.laps * s.track.cells
+        progress: r.retirement?.progress ?? finishQ(s)
       };
     });
     const rest = sorted(s).filter((r) => r.finishTime === null).sort(
@@ -2729,7 +2898,38 @@
       }
     );
   }
+  function checkpoints(s, r) {
+    if (!s.track.course || s.track.closed || r.status !== "Racing") return;
+    while (s.track.checkpoints[r.checkpointCursor]?.q <= r.q) {
+      const cp = s.track.checkpoints[r.checkpointCursor++];
+      emit(s, "CHECKPOINT_CROSSED", [r.id], { checkpoint: cp.id, distance: cp.distance, q: cp.q });
+      activateSign(s, r);
+    }
+  }
+  function lockFinish(s, r) {
+    r.finishTime = s.time;
+    const finishSnapshot = Object.freeze({
+      time: s.time,
+      beasts: Object.freeze(r.ru.beasts.map((b, index) => Object.freeze({ index, fatigue: b.fatigue })))
+    });
+    Object.defineProperty(r, "finishSnapshot", { value: finishSnapshot, enumerable: true, writable: false, configurable: false });
+    r.status = "Finished";
+    r.physical = "Clearing";
+    emit(s, "RU_FINISHED", [r.id], { time: r.finishTime, finishSnapshot: r.finishSnapshot });
+  }
   function crossing(s, r) {
+    if (s.track.course && !s.track.closed) {
+      if (r.status !== "Racing") return;
+      if (r.q === 0 && !r.hasEnteredCourse) {
+        r.hasEnteredCourse = true;
+        r.lastCrossingQ = 0;
+        r.lastCrossingTime = s.time;
+        emit(s, "COURSE_ENTERED", [r.id], { track: s.track.name });
+      }
+      checkpoints(s, r);
+      if (r.q === s.track.cells && r.hasEnteredCourse) lockFinish(s, r);
+      return;
+    }
     if (r.status !== "Racing" || r.q % s.track.cells !== 0 || r.lastCrossingQ === r.q)
       return;
     activateSign(s, r);
@@ -2745,15 +2945,7 @@
       if (r.completedLaps === s.config.laps - 1)
         emit(s, "FINAL_LAP", [r.id], { targetLaps: s.config.laps });
       if (r.completedLaps === s.config.laps) {
-        r.finishTime = s.time;
-        const finishSnapshot = Object.freeze({
-          time: s.time,
-          beasts: Object.freeze(r.ru.beasts.map((b, index) => Object.freeze({ index, fatigue: b.fatigue })))
-        });
-        Object.defineProperty(r, "finishSnapshot", { value: finishSnapshot, enumerable: true, writable: false, configurable: false });
-        r.status = "Finished";
-        r.physical = "Clearing";
-        emit(s, "RU_FINISHED", [r.id], { time: r.finishTime, finishSnapshot: r.finishSnapshot });
+        lockFinish(s, r);
       }
     }
   }
@@ -2946,9 +3138,10 @@
       for (const other of sorted(s).filter(
         (o) => o.id !== r.id && physical(o) && o.lane === r.lane
       )) {
-        const gap = ((Math.floor(other.q) - r.q) % s.track.cells + s.track.cells) % s.track.cells;
-        if (gap <= s.config.exitTiles + 1) {
-          let position = r.q, distance = 0, remaining = gap;
+        const gap2 = forwardGap(r.q, Math.floor(other.q), s.track);
+        if (gap2 < 0) continue;
+        if (gap2 <= s.config.exitTiles + 1) {
+          let position = r.q, distance = 0, remaining = gap2;
           while (remaining > s.config.positionEpsilon) {
             const portion = Math.min(
               remaining,
@@ -3013,11 +3206,22 @@
     for (const r of movers) {
       const { next } = intents.get(r.id);
       if (decisions.get(r.id)) {
+        const previousLocation = s.track.course ? location(r.q, r.lane, s.config, s.track) : null;
         r.q = next;
+        if (s.track.course && r.status === "Racing") {
+          const loc = location(r.q, r.lane, s.config, s.track);
+          if (previousLocation.segment !== loc.segment) emit(s, "SEGMENT_ENTERED", [r.id], {
+            segment: loc.segment,
+            terrain: loc.terrain,
+            type: loc.type,
+            direction: loc.direction,
+            radius: Number.isFinite(loc.radius) ? loc.radius : null
+          });
+        }
         s.lastProgressTime = s.time;
         if (s.driverMode === "autonomous") r.derived = deriveAt(s, r);
         crossing(s, r);
-        if (r.physical === "Clearing" && r.q >= s.config.laps * s.track.cells + s.config.exitTiles) {
+        if (r.physical === "Clearing" && r.q >= finishQ(s) + s.config.exitTiles) {
           r.physical = "Exited";
           r.speed = 0;
           emit(s, "RU_EXITED", [r.id]);
@@ -3114,6 +3318,15 @@
             }
           ])
         );
+        if (s.track.course && !s.track.closed) for (const r of units) {
+          const m = motions.get(r.id), cp = s.track.checkpoints[r.checkpointCursor];
+          m.markerQ = r.status === "Racing" && cp && cp.q > r.q && cp.q <= m.nextQ ? cp.q : null;
+          m.markerTime = m.markerQ !== null ? arrival(
+            r.speed,
+            m.a,
+            (m.markerQ - r.q) * location(r.q, r.lane, s.config, s.track).length
+          ) : Infinity;
+        }
         const elapsed = Math.min(
           end - s.time,
           incidentTime(s),
@@ -3121,7 +3334,8 @@
             m.limitTime,
             m.boundaryTime,
             m.controlTime,
-            m.envelopeTime
+            m.envelopeTime,
+            m.markerTime ?? Infinity
           ])
         );
         if (!Number.isFinite(elapsed) || elapsed < 0)
@@ -3145,9 +3359,15 @@
         const movers = units.filter(
           (r) => motions.get(r.id).boundaryTime <= elapsed + s.config.epsilon
         );
-        if (movers.length) {
+        const markers = units.filter((r) => (motions.get(r.id).markerTime ?? Infinity) <= elapsed + s.config.epsilon);
+        if (movers.length || markers.length) {
           const eventStart = s.events.length;
-          resolveForward(s, movers);
+          if (movers.length) resolveForward(s, movers);
+          for (const r of markers) {
+            const m = motions.get(r.id);
+            if (!movers.includes(r)) r.q = m.markerQ;
+            checkpoints(s, r);
+          }
           if (s.driverMode === "autonomous") {
             const affected = new Set(
               s.events.slice(eventStart).filter(
@@ -3193,10 +3413,7 @@
       s.diagnostics.maxGroups = Math.max(groups, s.diagnostics.maxGroups);
       s.contacts = s.contacts.filter((pair) => {
         const [a, b] = pair.split("|").map((id) => s.entrants.find((r) => r.id === id));
-        return physical(a) && physical(b) && Math.abs(a.lane - b.lane) <= 1 && Math.min(
-          Math.abs(a.q - b.q) % s.track.cells,
-          s.track.cells - Math.abs(a.q - b.q) % s.track.cells
-        ) < 1.01;
+        return physical(a) && physical(b) && Math.abs(a.lane - b.lane) <= 1 && Math.abs(gap(a.q, b.q, s.track)) < 1.01;
       });
       logRacecraft(s);
       endIfDone(s);
@@ -3270,6 +3487,7 @@
 
   // src/dev/configuration.js
   var fields = /* @__PURE__ */ new Set([
+    "course",
     "seed",
     "overrides",
     "entrants",
@@ -3298,7 +3516,7 @@
   }
   function parseConfiguration(text) {
     const doc = JSON.parse(text);
-    if (doc.kind !== "BNT-configuration" || doc.schema !== 1 || doc.version !== VERSION)
+    if (doc.kind !== "BNT-configuration" || doc.schema !== 1 || doc.version !== VERSION && !(doc.version === "0.4.3-combat-ai" && (!doc.setup?.course || doc.setup.course === "oval")))
       throw new Error("Unsupported configuration version");
     return configuration(doc.setup);
   }
@@ -3479,6 +3697,9 @@
     SIGN_ACTIVATED: (e) => [
       `${e.participants[0]} receives the sign: ${e.effects.sign}.`
     ],
+    COURSE_ENTERED: (e) => [`${e.participants[0]} is away on ${e.effects.track}.`],
+    SEGMENT_ENTERED: (e) => [`${e.participants[0]} reaches ${e.effects.terrain}${e.effects.type === "turn" ? ", turning " + (e.effects.direction > 0 ? "right" : "left") : " straightaway"}.`],
+    CHECKPOINT_CROSSED: (e) => [`${e.participants[0]} sweeps through checkpoint ${e.effects.checkpoint}.`],
     FINAL_LAP: (e) => [`${e.participants[0]} begins the final lap!`],
     RU_FINISHED: (e) => [
       `${e.participants[0]} crosses the finish in ${e.effects.time.toFixed(4)} seconds!`
@@ -3501,6 +3722,7 @@
     "RACE_ENDED",
     "RACE_STALLED",
     "SIGN_ACTIVATED",
+    "CHECKPOINT_CROSSED",
     "INTEGRITY_ERROR"
   ]);
   var Commentary = class {
@@ -3512,8 +3734,8 @@
     consume(events, { enabled = true } = {}) {
       for (const e of events.slice(this.cursor)) {
         if (!enabled || !templates[e.type]) continue;
-        const key2 = `${e.type}:${e.participants.join(",")}`;
-        if (!priority.has(e.type) && e.time - (this.last.get(key2) ?? -Infinity) < 1)
+        const key2 = e.type === "SEGMENT_ENTERED" ? e.type : `${e.type}:${e.participants.join(",")}`;
+        if (!priority.has(e.type) && e.time - (this.last.get(key2) ?? -Infinity) < (e.type === "SEGMENT_ENTERED" ? 3 : 1))
           continue;
         const options = templates[e.type](e);
         this.lines.push({
@@ -3558,6 +3780,7 @@
     const finishFatigue = s.entrants.filter((r) => r.finishTime !== null).flatMap((r) => r.finishSnapshot?.beasts.map((b) => b.fatigue) ?? []);
     return {
       version: s.version,
+      ...s.track.course ? { raceType: s.track.raceType, track: s.track.name, weather: s.weather } : {},
       seed: s.seed,
       configRevision: s.configRevision,
       fatigueAtFinish: finishFatigue.length ? finishFatigue.reduce((a, b) => a + b, 0) / finishFatigue.length : null,
@@ -3603,6 +3826,7 @@
   function results(s) {
     return {
       version: s.version,
+      ...s.track.course ? { raceType: s.track.raceType, track: s.track.name, weather: s.weather } : {},
       seed: s.seed,
       setup: structuredClone(s.setup),
       official: classification(s),
@@ -3735,6 +3959,9 @@
     };
     function setEditor(setup) {
       $("setupJSON").value = JSON.stringify(configuration(setup), null, 2);
+      const selected = $("surfaceSegment").value;
+      $("surfaceSegment").replaceChildren(...getState().track.segments.map((s) => new Option(s.id, s.id)));
+      if ([...$("surfaceSegment").options].some((o) => o.value === selected)) $("surfaceSegment").value = selected;
       refreshComponents();
       refreshParameter();
     }
@@ -4031,6 +4258,15 @@
     "#dd9d63",
     "#b4c3df"
   ];
+  function populateTracks(course = null) {
+    const kind = $2("raceKind").value;
+    const choices = kind === "Oval" ? [["oval", "Existing Oval"]] : Object.entries(coursePresets).filter(([, c]) => c.kind === kind).map(([id, c]) => [id, c.name]);
+    if (course && !choices.some(([id]) => id === course.id)) choices.push([course.id, course.name]);
+    $2("trackPreset").replaceChildren(...choices.map(([id, name]) => new Option(name, id)));
+    if (course) $2("trackPreset").value = course.id;
+    $2("lapCount").disabled = kind === "Rally";
+  }
+  $2("raceKind").onchange = () => populateTracks();
   var state = createRace();
   var playing = false;
   var previous = null;
@@ -4046,6 +4282,9 @@
     try {
       const next = createRace({
         ...devSetup,
+        course: $2("trackPreset").value === "oval" ? null : $2("trackPreset").value === devSetup.course?.id ? devSetup.course : $2("trackPreset").value,
+        surfaces: $2("trackPreset").value === (devSetup.course?.id ?? "oval") ? devSetup.surfaces : {},
+        overrides: { ...devSetup.overrides, laps: Number($2("lapCount").value) },
         seed: Number($2("seed").value),
         weather: $2("weather").value,
         format: $2("format").value,
@@ -4081,12 +4320,49 @@
       850 / (c.straightLength + 2 * outer),
       360 / (2 * outer)
     );
+    let framing = null;
+    if (t.course) {
+      const samples = [];
+      for (let q = Math.min(-c.gridGap - 2, ...state.setup.entrants.map((r) => r.q)); q <= t.cells + c.exitTiles + 1; q += 0.5)
+        for (const lane of [-0.5, c.lanes - 0.5]) samples.push(point(q, lane, c, t));
+      const minX = Math.min(...samples.map((p) => p.x)), maxX = Math.max(...samples.map((p) => p.x));
+      const minY = Math.min(...samples.map((p) => p.y)), maxY = Math.max(...samples.map((p) => p.y));
+      framing = {
+        x: (minX + maxX) / 2,
+        y: (minY + maxY) / 2,
+        scale: Math.min(900 / Math.max(1, maxX - minX), 390 / Math.max(1, maxY - minY))
+      };
+    }
     const xy = (q, lane) => {
       const p = point(q, lane, c, t);
-      return [500 + (p.x - c.straightLength / 2) * scale, 285 + p.y * scale];
+      return framing ? [500 + (p.x - framing.x) * framing.scale, 265 + (p.y - framing.y) * framing.scale] : [500 + (p.x - c.straightLength / 2) * scale, 285 + p.y * scale];
     };
+    const displayScale = framing?.scale ?? scale;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let lane = c.lanes - 1; lane >= 0; lane--) {
+      if (t.course) {
+        for (const segment2 of t.segments) {
+          ctx.beginPath();
+          const begin = segment2.start - t.offset, end = begin + segment2.tiles;
+          for (let i = 0; i <= segment2.tiles * 10; i++) {
+            const p = xy(begin + i / 10, lane);
+            if (!i) ctx.moveTo(...p);
+            else ctx.lineTo(...p);
+          }
+          ctx.lineWidth = c.laneWidth * displayScale * 0.96;
+          ctx.strokeStyle = { dirt: "#6b5942", stone: "#727b7e", gravel: "#827664", sand: "#ad9258", mud: "#55402e" }[segment2.terrain];
+          ctx.stroke();
+        }
+        if (!t.closed) for (const [start, end] of [[-c.gridGap - 2, 0], [t.cells, t.cells + c.exitTiles + 1]]) {
+          ctx.beginPath();
+          ctx.moveTo(...xy(start, lane));
+          ctx.lineTo(...xy(end, lane));
+          ctx.strokeStyle = "#35444b";
+          ctx.lineWidth = c.laneWidth * displayScale * 0.96;
+          ctx.stroke();
+        }
+        continue;
+      }
       ctx.beginPath();
       for (let q = 0; q <= t.cells; q += 0.1) {
         const [x, y] = xy(q, lane);
@@ -4105,14 +4381,15 @@
         if (q === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
       }
-      ctx.closePath();
+      if (!t.course || t.closed) ctx.closePath();
       ctx.lineWidth = 1;
       ctx.strokeStyle = "#91a3a066";
       ctx.stroke();
     }
     for (const [q, text, color] of [
-      [0, "START / FINISH", "#f3d69c"],
-      [c.exitTiles, "EXIT \u2192", "#7cc5ae"]
+      [0, t.course && !t.closed ? "START" : "START / FINISH", "#f3d69c"],
+      [t.course && !t.closed ? t.cells : c.exitTiles, t.course && !t.closed ? "FINISH \u2192" : "EXIT \u2192", "#7cc5ae"],
+      ...t.course && !t.closed ? t.checkpoints.map((cp) => [cp.q, cp.id, "#82cde0"]) : []
     ]) {
       const a = xy(q, -0.5), b = xy(q, c.lanes - 0.5);
       ctx.beginPath();
@@ -4123,14 +4400,14 @@
       ctx.stroke();
       ctx.fillStyle = color;
       ctx.font = "12px system-ui";
-      ctx.fillText(text, a[0] - 35, b[1] - (q === 0 ? 15 : 35));
+      ctx.fillText(text, a[0] - 35, t.course && q === 0 ? Math.min(a[1], b[1]) - 12 : b[1] - (q === 0 ? 15 : 35));
     }
     ctx.textAlign = "center";
     ctx.fillStyle = "#a9b8bd";
     ctx.font = "16px Georgia";
-    ctx.fillText("BLOOD AND THUNDER", 500, 275);
+    ctx.fillText(t.course ? t.name : "BLOOD AND THUNDER", 500, t.course ? 485 : 275);
     ctx.font = "12px system-ui";
-    ctx.fillText("AUTONOMOUS RACING \xB7 FOUR-LANE OVAL", 500, 300);
+    ctx.fillText(t.course ? `${t.raceType} \xB7 ${t.closed ? c.laps + " laps" : "point to point"}` : "AUTONOMOUS RACING \xB7 FOUR-LANE OVAL", 500, t.course ? 505 : 300);
     for (const [i, r] of [...state.entrants].sort((a, b) => a.id.localeCompare(b.id)).entries()) {
       if (r.physical === "Exited") continue;
       const [x, y] = xy(r.q, r.lane);
@@ -4177,6 +4454,9 @@
     workbench?.render();
     syncSignOptions();
     $2("playerLabel").textContent = state.playerId;
+    const rally2 = state.track.course && !state.track.closed;
+    $2("progressHeading").textContent = rally2 ? "Course %" : "Full laps";
+    $2("standingsNote").textContent = (rally2 ? "Common terminal finish; signs activate at intermediate checkpoints. " : "Initial line entry starts lap 1; it does not complete a lap. ") + "Official ties share a place. DNF/DNS remain separate from finishers.";
     const lines = radio.consume(state.events, {
       enabled: $2("commentaryEnabled").checked
     });
@@ -4209,8 +4489,8 @@
           "RU",
           "Status",
           "Official time",
-          "Full laps",
-          "Progress (circuits)",
+          state.track.course && !state.track.closed ? "Checkpoints" : "Full laps",
+          state.track.course && !state.track.closed ? "Course fraction" : "Progress (circuits)",
           "Reason"
         ]) {
           const th = document.createElement("th");
@@ -4226,8 +4506,8 @@
             row.id,
             row.status,
             row.status === "Finished" ? `${row.time.toFixed(4)} s` : "\u2014",
-            row.completedLaps,
-            (row.progress / state.track.cells).toFixed(3),
+            state.track.course && !state.track.closed ? state.entrants.find((r2) => r2.id === row.id).checkpointCursor + "/3" : row.completedLaps,
+            (state.track.course && !state.track.closed ? Math.max(0, Math.min(1, courseDistance(row.progress, state.track) / state.track.length)) : row.progress / state.track.cells).toFixed(3),
             row.reason ?? ""
           ]) {
             const td = document.createElement("td");
@@ -4249,10 +4529,10 @@
       pre.textContent = JSON.stringify(report.technical, null, 2);
       output.append(pre);
     }
-    document.querySelector(".legend").textContent = `${state.config.lanes} lanes \xB7 ${state.config.laps} full laps after initial line entry \xB7 ${state.weather} \xB7 Exit beyond finish \xB7 Wrecks remain through race end`;
+    document.querySelector(".legend").textContent = `${state.track.name ?? "Existing Oval"} \xB7 ${state.track.raceType ?? "Oval"} \xB7 ${state.config.lanes} lanes \xB7 ${state.track.course && !state.track.closed ? "Terminal finish; no laps" : state.config.laps + " full laps after initial line entry"} \xB7 ${state.weather} \xB7 Exit beyond finish \xB7 Wrecks remain through race end`;
     $2("consequenceStatus").textContent = `${state.format} \xB7 ${state.weather} \xB7 Attacks ${state.events.filter((e) => e.type === "ATTACK").length} \xB7 Damage events ${state.events.filter((e) => e.type === "DAMAGE").length} \xB7 Wrecks ${Object.keys(state.wrecks).length} \xB7 Incidents ${state.events.filter((e) => e.type === "INCIDENT").length}`;
     const player = state.entrants.find((r2) => r2.id === state.playerId);
-    $2("signStatus").textContent = `Uses ${player.signs.remaining} \xB7 Pending: ${player.signs.pending ?? "none"} \xB7 Active: ${player.signs.active ?? "none"} \xB7 ${player.signs.active ? player.ai.diagnostics?.compliance ?? "Awaiting evaluation" : "Base autonomous AI"}`;
+    $2("signStatus").textContent = `Uses ${player.signs.remaining} \xB7 Pending: ${player.signs.pending ?? "none"} \xB7 Active: ${player.signs.active ?? "none"} \xB7 ${player.signs.active ? player.ai.diagnostics?.compliance ?? "Awaiting evaluation" : "Base autonomous AI"}${state.track.course && !state.track.closed ? " \xB7 Next checkpoint: " + (state.track.checkpoints[player.checkpointCursor] ? `${state.track.checkpoints[player.checkpointCursor].id} at ${state.track.checkpoints[player.checkpointCursor].distance.toFixed(0)} m` : "none before finish") : ""}`;
     const inspect = state.entrants.find((r2) => r2.id === $2("inspect").value) ?? player;
     $2("aiDiagnostics").textContent = JSON.stringify(
       {
@@ -4290,7 +4570,7 @@
         tr.title = r2.retirement?.reason ?? r2.physical;
         for (const value of [
           r2.finishTime === null ? r2.id : `${row.place}. ${r2.id}`,
-          `${r2.completedLaps}/${state.config.laps}`,
+          state.track.course && !state.track.closed ? `${(Math.max(0, Math.min(1, courseDistance(r2.q, state.track) / state.track.length)) * 100).toFixed(1)}%` : `${r2.completedLaps}/${state.config.laps}`,
           r2.speed.toFixed(2),
           r2.finishTime === null ? r2.status === "Retired" ? `DNF / ${r2.retirement?.time.toFixed(3)} s` : r2.status === "DNS" ? "DNS" : r2.hasEnteredCourse ? r2.status : "Grid / entry" : `${r2.finishTime.toFixed(4)} s`
         ]) {
@@ -4431,7 +4711,7 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
   };
   $2("step").onclick = () => {
     pausePlayback();
-    advance();
+    advance2();
     render();
   };
   $2("inspect").onchange = render;
@@ -4454,6 +4734,10 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
     pausePlayback();
     state = next;
     devSetup = next.setup;
+    $2("raceKind").value = next.track.raceType ?? "Oval";
+    populateTracks(next.setup.course);
+    $2("lapCount").value = next.config.laps;
+    $2("lapCount").disabled = next.track.course && !next.track.closed;
     playing = false;
     accumulator = 0;
     radio = new Commentary();
@@ -4468,7 +4752,7 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
     for (const input of document.querySelectorAll("#tuners input"))
       input.value = next.autonomous[input.dataset.key];
   }
-  function advance() {
+  function advance2() {
     try {
       if (workbench) workbench.advance();
       else step(state);
@@ -4488,7 +4772,7 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
     try {
       while (!["Ended", "Stalled", "Error"].includes(state.status) && !workbench?.isDone() && epoch === transportEpoch) {
         for (let i = 0; i < 100 && !["Ended", "Stalled", "Error"].includes(state.status) && !workbench?.isDone(); i++)
-          if (!advance()) return;
+          if (!advance2()) return;
         render();
         await new Promise((resolve) => setTimeout(resolve, 0));
       }
@@ -4504,7 +4788,7 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
         (now - previous) / 1e3,
         Number($2("speed").value),
         state.config.dt,
-        advance,
+        advance2,
         () => !playing || ["Ended", "Stalled", "Error"].includes(state.status) || workbench?.isDone()
       );
       render();

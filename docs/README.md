@@ -28,3 +28,7 @@ The investigation, raw datasets, deterministic replay evidence and recommendatio
 ## Combat AI refinement — 0.4.3
 
 [Implementation report](combat-ai-refinement/COMBAT_AI_REFINEMENT_REPORT.md), [baseline/comparative datasets and reproduction](combat-ai-refinement/README.md), and regression/browser/replay evidence are under `combat-ai-refinement/`. Gameplay changes are limited to contextual AI evaluation; physical rules remain unchanged.
+
+## Circuit and Rally expansion — 0.5.0
+
+[Implementation report](circuit-rally/CIRCUIT_AND_RALLY_IMPLEMENTATION_REPORT.md), [configuration/reproduction guide](circuit-rally/README.md), source baseline,80-race smoke outcomes, replay records and browser screenshots are in `circuit-rally/`. Existing Oval, two irregular circuits and two point-to-point rallies share the authoritative engine.

@@ -109,3 +109,11 @@ The simulation/package version advances to 0.4.2-corrective / 0.4.2 because even
 See [report and reproducible comparison](docs/combat-ai-refinement/COMBAT_AI_REFINEMENT_REPORT.md) and [dataset guide](docs/combat-ai-refinement/README.md). `npm test` retains all prior cases and adds combat-decision tests. `npm run build` creates the standalone; `npm run test:browser` retains a blocked/nonzero result when managed policy denies direct file navigation, even when HTTP functional tests pass. `node scripts/combat-ai-refinement/browser.mjs` adds five tactical parity and editor/dependency checks with the same policy distinction.
 
 Historical Phase2/2.1 verification references belong to 0.4.2-corrective. Reconstruct them with their archived engine/source rather than replacing references or expecting new AI checksums to match. The current pass archives executable 0.4.2 at `docs/combat-ai-refinement/baseline/source.tar.gz`. New replays/configurations use 0.4.3-combat-ai with explicit version validation.
+
+## Circuit and Rally formats — 0.5.0
+
+[Implementation report](docs/circuit-rally/CIRCUIT_AND_RALLY_IMPLEMENTATION_REPORT.md) and [reproduction/data guide](docs/circuit-rally/README.md). Main controls select course kind, preset and closed-course laps; Rally disables laps and shows course percentage plus next sign checkpoint. Developer configuration JSON exposes segments/curvature/surfaces/checkpoints; invalid definitions preserve the valid race.
+
+`npm test` runs all 203 cases; `node scripts/circuit-rally/smoke.mjs` executes the 80-race new-preset campaign, `summarize.mjs` summarizes it, and `verify.mjs` compares old oval references and reconstructs saved files in isolated bounded-memory workers. Build before `node scripts/circuit-rally/browser.mjs`. The existing browser campaign and new preset campaign both explicitly disclose blocked managed file navigation versus HTTP functional checks.
+
+Direct `createRace({course:'mixed-rally', format:'Combat'})` uses the shared engine; omit course for legacy Oval. New track defaults are bundled into the standalone, never fetched. Old0.4.3 source/artifact is archived in `docs/circuit-rally/baseline/source.tar.gz` for historical replay reconstruction. No old checksum/reference should be overwritten to disguise an intentional version change.

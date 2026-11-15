@@ -12,7 +12,7 @@ export function contestChance(margin, noise) {
     : 1 - (span - margin) ** 2 / (2 * span ** 2);
 }
 
-export function combatValue(action, own, target, perceived, config, combat, utility, grip) {
+export function combatValue(action, own, target, perceived, config, combat, utility, grip, terminalPhase = null) {
   const w = utility, ru = own.ru, p = ru.driver.personality;
   const skill = w.combatUnknownSkill;
   const rivalCombat = skill * (config.tuning.combatSkill + config.tuning.combatControl);
@@ -60,7 +60,7 @@ export function combatValue(action, own, target, perceived, config, combat, util
   const clearAhead = !perceived.neighbors.some(n => n.lane === own.lane && n.gap > 0 && n.gap < w.overtakeGap);
   const passing = perceived.neighbors.some(n => n.lane === own.lane && n.gap > 0 && n.gap < w.overtakeGap);
   const leadingTarget = target.gap < 0;
-  const nearFinish = own.hasEnteredCourse && own.completedLaps >= config.laps - 1;
+  const nearFinish = terminalPhase ?? (own.hasEnteredCourse && own.completedLaps >= config.laps - 1);
   const racingCost = (clearAhead ? .5 : 0) + (passing ? .5 : 0) +
     (leadingTarget ? .5 : 0) + (nearFinish ? .5 : 0);
   const retaliation = contestChance(rivalCombat * combat.attackSkillMultiplier -
