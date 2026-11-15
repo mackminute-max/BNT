@@ -103,3 +103,9 @@ At the qualifying finish crossing, finishSnapshot stores the unrounded time and 
 The finish_photo setup uses a fixture-only outer-lane rollingEfficiency of 57.34996687475359 and no random incidents to produce a roughly 0.0005 s gap within the unchanged 0.001 s tolerance. Both entrants start stationary and complete the physical common-line lap. No timestamp/lap/position injection is involved. Tightening tolerance changes classification without altering finish times.
 
 The simulation/package version advances to 0.4.2-corrective / 0.4.2 because event/state/paused-command metadata change. Schema remains 1; configuration and replay records are version-specific. Validate/regenerate older setup payloads for the new engine rather than changing a replay version string or silently migrating history.
+
+## Combat AI refinement 0.4.3
+
+See [report and reproducible comparison](docs/combat-ai-refinement/COMBAT_AI_REFINEMENT_REPORT.md) and [dataset guide](docs/combat-ai-refinement/README.md). `npm test` retains all prior cases and adds combat-decision tests. `npm run build` creates the standalone; `npm run test:browser` retains a blocked/nonzero result when managed policy denies direct file navigation, even when HTTP functional tests pass. `node scripts/combat-ai-refinement/browser.mjs` adds five tactical parity and editor/dependency checks with the same policy distinction.
+
+Historical Phase2/2.1 verification references belong to 0.4.2-corrective. Reconstruct them with their archived engine/source rather than replacing references or expecting new AI checksums to match. The current pass archives executable 0.4.2 at `docs/combat-ai-refinement/baseline/source.tar.gz`. New replays/configurations use 0.4.3-combat-ai with explicit version validation.

@@ -1,3 +1,5 @@
+import { combatValue } from "./combat-value.js";
+import { location } from "../track/oval.js";
 import { beginDecision } from "./telemetry.js";
 import { random, byId } from "../core/determinism.js";
 import { mod } from "../track/oval.js";
@@ -125,6 +127,7 @@ export function decide(s, r) {
     legal = true,
     lane = null,
     target = null,
+    assessment = null,
   ) {
     if (!legal) return;
     const influence =
@@ -142,6 +145,7 @@ export function decide(s, r) {
       action,
       lane,
       target,
+      ...(assessment ? { assessment } : {}),
       terms,
       score: Object.values(terms).reduce((a, b) => a + b, 0),
     });
@@ -231,40 +235,23 @@ export function decide(s, r) {
         Math.abs(o.lane - r.lane) <= 1 &&
         Math.abs(o.gap) <= combat.attackRange,
     );
-    const target = rivals
-      .slice()
-      .sort((a, b) => Math.abs(a.gap) - Math.abs(b.gap) || byId(a, b))[0];
-    const lateral = rivals.find(
-      (o) =>
-        Math.abs(o.lane - r.lane) === 1 && Math.abs(o.gap) <= combat.ramRange,
-    );
-    const canAct =
-      s.time + s.config.epsilon >= r.nextAttackTime &&
-      r.control !== "Out of Control";
-    add(
-      "attack",
-      combat.attackBase,
-      {
-        aggression: (p.aggression / 100) * combat.attackAggression,
-        opportunity: (p.opportunism / 100) * combat.attackOpportunity,
-        caution: (-p.caution / 100) * combat.attackCaution,
-      },
-      !!target && canAct,
-      null,
-      target?.id,
-    );
-    add(
-      "ram",
-      combat.ramBase,
-      {
-        aggression: (p.aggression / 100) * combat.ramAggression,
-        opportunity: (p.opportunism / 100) * combat.ramOpportunity,
-        caution: (-p.caution / 100) * combat.ramCaution,
-      },
-      !!lateral && canAct,
-      null,
-      lateral?.id,
-    );
+    const grip = Math.max(.1, s.environment.grip * location(r.q, r.lane, s.config, s.track).surface.grip);
+    const canAct = s.time + s.config.epsilon >= r.nextAttackTime && r.control !== "Out of Control";
+    const evaluated = action => rivals
+      .filter(o => action !== "ram" || (Math.abs(o.lane - r.lane) === 1 && Math.abs(o.gap) <= combat.ramRange))
+      .map(o => ({ target: o, value: combatValue(action, r, o, perceived, s.config, combat, w, grip) }))
+      .sort((a, b) => Object.values(b.value.features).reduce((x, y) => x + y, 0) -
+        Object.values(a.value.features).reduce((x, y) => x + y, 0) || byId(a.target, b.target))[0];
+    const target = rivals[0];
+    for (const action of ["attack", "ram"]) {
+      const best = canAct ? evaluated(action) : null;
+      add(action, combat[action + "Base"], {
+        aggression: p.aggression / 100 * combat[action + "Aggression"],
+        opportunity: p.opportunism / 100 * combat[action + "Opportunity"],
+        caution: -p.caution / 100 * combat[action + "Caution"],
+        ...(best?.value.features ?? {}),
+      }, !!best, null, best?.target.id, best?.value.estimate);
+    }
     add(
       "defendCombat",
       combat.defendBase,

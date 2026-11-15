@@ -1,5 +1,20 @@
 // Provisional additive utility and perception weights. All overrides are validated.
 export const utilityDefaults = Object.freeze({
+  // Provisional combat-value preferences/priors; normalized features are bounded.
+  combatDamageValue: 4,
+  combatDisruptionValue: 4,
+  combatSelfRisk: 4,
+  combatControlRisk: 8,
+  combatProgressCost: 1,
+  combatRetaliationCost: 1,
+  combatConditionCost: 3,
+  combatFutilityCost: 3,
+  combatDamageUnit: 10,
+  combatSpeedUnit: 2,
+  combatUnknownSkill: 50,
+  combatUnknownProtection: 50,
+  combatUnknownCondition: 100,
+  combatUnknownMassRatio: 1,
   perceptionBase: 0.2,
   perceptionSkill: 0.8,
   dangerGap: 1.5,

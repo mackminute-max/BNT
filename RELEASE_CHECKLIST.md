@@ -33,3 +33,9 @@
 [dist/Blood_and_Thunder.html](dist/Blood_and_Thunder.html), 163,579 bytes; SHA-256 `30cea713001b2e1dfdc0b818605161ba5951d15a44e4b87b2210493451354002`.
 
 The new file still requires direct-file verification in a permitted local browser; a second-browser check is not claimed. Read [the corrective report](docs/audits/CORRECTIVE_PASS_0_4_2.md) for commands, failures encountered and corrected, replay/version compatibility, reference evidence and scope. Passing tests does not establish universal correctness or authorize publication. No remote push, deployment or final acceptance was performed.
+
+## 0.4.3 combat AI refinement evidence (current artifact)
+
+Supersedes previous artifact/test counts for the current build; historical audit evidence remains unchanged. 178 tests pass, 23 retained +7 new browser functional checks pass in HTTP diagnostic mode, and the single-HTML build succeeds. Exact version-specific replay/observer and browser/headless parity evidence is in [the report](docs/combat-ai-refinement/COMBAT_AI_REFINEMENT_REPORT.md).
+
+Current HTML:169883 bytes, SHA-256 `29d3b74f0503f7a0538e7e4ee16728af82f9f5f6cb9c93bc6eacbedd28e765ac`. Direct managed file launch remains administrator-blocked; independent local-file confirmation and final owner acceptance are unchecked. No final balance acceptance: ordinary sampled rams remain zero, worn-field risk redistributes, and one wreck-blocked clearance stall remains. No publication/deployment/push.

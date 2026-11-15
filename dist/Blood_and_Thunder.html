@@ -1388,7 +1388,7 @@
   }
 
   // src/config/config.js
-  var VERSION = "0.4.2-corrective";
+  var VERSION = "0.4.3-combat-ai";
   var rules = {
     dt: [1e-3, 1, "s"],
     epsilon: [1e-12, 1e-7, "s"],
@@ -1545,6 +1545,21 @@
 
   // src/ai/weights.js
   var utilityDefaults = Object.freeze({
+    // Provisional combat-value preferences/priors; normalized features are bounded.
+    combatDamageValue: 4,
+    combatDisruptionValue: 4,
+    combatSelfRisk: 4,
+    combatControlRisk: 8,
+    combatProgressCost: 1,
+    combatRetaliationCost: 1,
+    combatConditionCost: 3,
+    combatFutilityCost: 3,
+    combatDamageUnit: 10,
+    combatSpeedUnit: 2,
+    combatUnknownSkill: 50,
+    combatUnknownProtection: 50,
+    combatUnknownCondition: 100,
+    combatUnknownMassRatio: 1,
     perceptionBase: 0.2,
     perceptionSkill: 0.8,
     dangerGap: 1.5,
@@ -1892,6 +1907,92 @@
     };
   }
 
+  // src/ai/combat-value.js
+  function contestChance(margin, noise) {
+    if (noise <= 0) return margin > 0 ? 1 : 0;
+    const span = 2 * noise;
+    if (margin <= -span) return 0;
+    if (margin >= span) return 1;
+    return margin < 0 ? (margin + span) ** 2 / (2 * span ** 2) : 1 - (span - margin) ** 2 / (2 * span ** 2);
+  }
+  function combatValue(action, own, target, perceived, config2, combat, utility, grip) {
+    const w = utility, ru = own.ru, p = ru.driver.personality;
+    const skill = w.combatUnknownSkill;
+    const rivalCombat = skill * (config2.tuning.combatSkill + config2.tuning.combatControl);
+    const defense = skill * (combat.defenseDriving + combat.defenseControl) + rivalCombat * combat.defenseCombat + combat.reactionBonus;
+    const margin = own.derived.combat * combat.attackSkillMultiplier - defense;
+    const chance = contestChance(margin, combat.contestNoise);
+    const protection = w.combatUnknownProtection;
+    const condition = w.combatUnknownCondition;
+    const targetResistance = Math.max(
+      0.1,
+      (1 + config2.attributeStrength * (condition / 100 * 0.5 - 0.5)) * (combat.componentResistanceBase + skill / 100) * (1 + protection / 100 * combat.protectionStrength) * grip
+    );
+    const targetMass = Math.max(1, config2.referenceMass * w.combatUnknownMassRatio);
+    const reducedMass = own.derived.mass * targetMass / (own.derived.mass + targetMass);
+    const closing = Math.abs(own.speed - target.speed);
+    const energy = 0.5 * reducedMass * (closing ** 2 + combat.ramSpeed ** 2);
+    const sideWeights = combat.sideDriver + combat.sideChariot + combat.sideBeasts;
+    const selfResistance = (toughness) => Math.max(
+      0.1,
+      own.derived.collisionResistance * Math.max(0.1, combat.componentResistanceBase + toughness / 100) * (1 + ru.chariot.protection / 100 * combat.protectionStrength) * grip
+    );
+    const selfAbsorption = (combat.sideDriver / selfResistance(ru.chariot.protection) + combat.sideChariot / selfResistance(ru.chariot.durability) + combat.sideBeasts * ru.beasts.reduce((sum, b) => sum + 1 / selfResistance(b.toughness), 0) / ru.beasts.length) / sideWeights;
+    const ram = action === "ram";
+    const targetDamage = chance * (ram ? energy * combat.sideGeometry * combat.damageScale * 0.5 / targetResistance : combat.attackDamage * (1 + Math.min(combat.marginDamageCap, Math.max(0, margin) / 100)) / targetResistance);
+    const selfDamage = ram ? chance * energy * combat.sideGeometry * combat.damageScale * 0.5 * selfAbsorption : 0;
+    const damageUnit = Math.max(1, w.combatDamageUnit);
+    const speedUnit = Math.max(1, w.combatSpeedUnit);
+    const weakCondition = Math.min(
+      ru.driver.condition,
+      ru.chariot.condition,
+      ru.beasts.reduce((sum, b) => sum + b.condition, 0) / ru.beasts.length
+    ) / 100;
+    const estimatedSelfShock = selfDamage * combat.damageInstability + (ram ? chance * energy * combat.sideGeometry * combat.energyInstability * 0.5 : 0);
+    const consequenceRisk = clamp(
+      (selfDamage / Math.max(1, weakCondition * 100)) ** 2 + (estimatedSelfShock / Math.max(1, combat.outOfControlThreshold - own.instability)) ** 2,
+      0,
+      2
+    );
+    const danger = clamp(1 - weakCondition + own.instability / combat.outOfControlThreshold, 0, 2);
+    const clearAhead = !perceived.neighbors.some((n) => n.lane === own.lane && n.gap > 0 && n.gap < w.overtakeGap);
+    const passing = perceived.neighbors.some((n) => n.lane === own.lane && n.gap > 0 && n.gap < w.overtakeGap);
+    const leadingTarget = target.gap < 0;
+    const nearFinish = own.hasEnteredCourse && own.completedLaps >= config2.laps - 1;
+    const racingCost = (clearAhead ? 0.5 : 0) + (passing ? 0.5 : 0) + (leadingTarget ? 0.5 : 0) + (nearFinish ? 0.5 : 0);
+    const retaliation = contestChance(rivalCombat * combat.attackSkillMultiplier - (ru.driver.driving * combat.defenseDriving + own.derived.combat * combat.defenseCombat + own.derived.control * combat.defenseControl + combat.reactionBonus), combat.contestNoise);
+    const exposure2 = Math.min(2, perceived.neighbors.filter((n) => n.status === "Racing" && n.physical === "Live" && Math.abs(n.lane - own.lane) <= 1 && Math.abs(n.gap) <= combat.attackRange).length / 2);
+    const speedDisruption = ram ? chance * (target.speed - own.speed) * (1 - combat.sideSpeedRetention) / speedUnit : targetDamage / 100;
+    const features = {
+      expectedDamage: w.combatDamageValue * clamp(targetDamage / damageUnit, 0, 2),
+      disruption: w.combatDisruptionValue * clamp(speedDisruption, -2, 2),
+      selfRisk: -w.combatSelfRisk * clamp(selfDamage / damageUnit * (1 + danger + p.caution / 100), 0, 2),
+      racingCost: -w.combatProgressCost * clamp(racingCost * (1 + p.patience / 100) + (ram ? chance * own.speed * (1 - combat.sideSpeedRetention) / speedUnit : 0), 0, 2),
+      retaliationRisk: -w.combatRetaliationCost * clamp(retaliation * exposure2 * (1 + danger + p.caution / 100), 0, 2),
+      conditionRisk: -w.combatConditionCost * danger,
+      controlRisk: -w.combatControlRisk * consequenceRisk,
+      futileContest: -w.combatFutilityCost * (1 - chance)
+    };
+    return { features, estimate: {
+      model: "perceived-combat-value-v1",
+      chance,
+      targetDamage,
+      selfDamage,
+      estimatedTargetMass: targetMass,
+      estimatedTargetSkill: skill,
+      estimatedTargetCondition: condition,
+      estimatedTargetProtection: protection,
+      observedRelativeSpeed: target.speed - own.speed,
+      speedDisruption,
+      racingCost,
+      retaliation,
+      danger,
+      estimatedSelfShock,
+      consequenceRisk,
+      unknownOpponentProperties: true
+    } };
+  }
+
   // src/ai/driver.js
   var tendencies = [
     "aggression",
@@ -1967,7 +2068,7 @@
     );
     const sign = r.signs.active, responsiveness = p.tacticalDiscipline / 100;
     const candidates = [];
-    function add(action, base, features = {}, legal = true, lane = null, target = null) {
+    function add(action, base, features = {}, legal = true, lane = null, target = null, assessment = null) {
       if (!legal) return;
       const influence = c.signStrength * responsiveness * signPreference(sign, action, c);
       const persistence = r.ai.goal === action && s.tick < r.ai.goalUntil ? c.switchCost : 0;
@@ -1982,6 +2083,7 @@
         action,
         lane,
         target,
+        ...assessment ? { assessment } : {},
         terms,
         score: Object.values(terms).reduce((a, b) => a + b, 0)
       });
@@ -2063,35 +2165,19 @@
       const rivals = perceived.neighbors.filter(
         (o) => o.status === "Racing" && o.physical === "Live" && Math.abs(o.lane - r.lane) <= 1 && Math.abs(o.gap) <= combat.attackRange
       );
-      const target = rivals.slice().sort((a, b) => Math.abs(a.gap) - Math.abs(b.gap) || byId(a, b))[0];
-      const lateral = rivals.find(
-        (o) => Math.abs(o.lane - r.lane) === 1 && Math.abs(o.gap) <= combat.ramRange
-      );
+      const grip = Math.max(0.1, s.environment.grip * location(r.q, r.lane, s.config, s.track).surface.grip);
       const canAct = s.time + s.config.epsilon >= r.nextAttackTime && r.control !== "Out of Control";
-      add(
-        "attack",
-        combat.attackBase,
-        {
-          aggression: p.aggression / 100 * combat.attackAggression,
-          opportunity: p.opportunism / 100 * combat.attackOpportunity,
-          caution: -p.caution / 100 * combat.attackCaution
-        },
-        !!target && canAct,
-        null,
-        target?.id
-      );
-      add(
-        "ram",
-        combat.ramBase,
-        {
-          aggression: p.aggression / 100 * combat.ramAggression,
-          opportunity: p.opportunism / 100 * combat.ramOpportunity,
-          caution: -p.caution / 100 * combat.ramCaution
-        },
-        !!lateral && canAct,
-        null,
-        lateral?.id
-      );
+      const evaluated = (action) => rivals.filter((o) => action !== "ram" || Math.abs(o.lane - r.lane) === 1 && Math.abs(o.gap) <= combat.ramRange).map((o) => ({ target: o, value: combatValue(action, r, o, perceived, s.config, combat, w, grip) })).sort((a, b) => Object.values(b.value.features).reduce((x, y) => x + y, 0) - Object.values(a.value.features).reduce((x, y) => x + y, 0) || byId(a.target, b.target))[0];
+      const target = rivals[0];
+      for (const action of ["attack", "ram"]) {
+        const best = canAct ? evaluated(action) : null;
+        add(action, combat[action + "Base"], {
+          aggression: p.aggression / 100 * combat[action + "Aggression"],
+          opportunity: p.opportunism / 100 * combat[action + "Opportunity"],
+          caution: -p.caution / 100 * combat[action + "Caution"],
+          ...best?.value.features ?? {}
+        }, !!best, null, best?.target.id, best?.value.estimate);
+      }
       add(
         "defendCombat",
         combat.defendBase,

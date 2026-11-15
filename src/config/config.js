@@ -1,4 +1,4 @@
-export const VERSION = "0.4.2-corrective";
+export const VERSION = "0.4.3-combat-ai";
 // Bounds and units are shared by validation and diagnostic UI.
 export const rules = {
   dt: [0.001, 1, "s"],

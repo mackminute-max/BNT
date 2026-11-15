@@ -1,3 +1,4 @@
+import { tacticalScenario } from "./combat-ai-refinement/scenarios.mjs";
 import { chromium } from "playwright-core";
 import { createServer } from "node:http";
 import { readFile, mkdir, writeFile } from "node:fs/promises";
@@ -127,6 +128,11 @@ try {
   await page.screenshot({ path: "artifacts/m4-results.png", fullPage: true });
   await page.selectOption("#format", "Combat");
   await page.click("#reset");
+  // A positive-value engagement, rather than assuming every default sign must attack.
+  await page.locator("#developer > summary").click();
+  const combatSetup = tacticalScenario("weapon");
+  await page.fill("#setupJSON", JSON.stringify(configuration(combatSetup)));
+  await page.click("#applySetup");
   await page.selectOption("#sign", "Engage Rivals");
   await page.click("#queueSign");
   await page.click("#complete");
@@ -138,7 +144,7 @@ try {
   const combatActual = await page.evaluate(() =>
     window.BNT.capture(window.BNT.getState()),
   );
-  const combatExpected = createRace({ format: "Combat" });
+  const combatExpected = createRace(combatSetup);
   issueSign(combatExpected, "queue", "Engage Rivals");
   run(combatExpected);
   assert.deepEqual(combatActual, capture(combatExpected));
@@ -148,6 +154,9 @@ try {
     "Combat format and Engage Rivals reproduce Node events and checksum",
   );
   await page.screenshot({ path: "artifacts/m4-combat.png", fullPage: true });
+  await page.fill("#setupJSON", JSON.stringify(configuration({})));
+  await page.click("#applySetup");
+  await page.locator("#developer > summary").click();
   await page.selectOption("#format", "Pure");
   await page.fill("#damageScale", "1");
   await page.click("#reset");

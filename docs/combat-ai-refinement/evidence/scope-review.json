@@ -1,0 +1,19 @@
+{
+  "configurationChangedOnlyVersion": true,
+  "changedTrackedFiles": [
+    "ASSUMPTIONS.md",
+    "DEVELOPMENT.md",
+    "IMPLEMENTATION_STATUS.md",
+    "RELEASE_CHECKLIST.md",
+    "dist/Blood_and_Thunder.html",
+    "docs/README.md",
+    "package-lock.json",
+    "package.json",
+    "scripts/browser-test.mjs",
+    "src/ai/driver.js",
+    "src/ai/weights.js",
+    "src/config/config.js"
+  ],
+  "physicsAndOtherRuntimeByteGuard": "verification.json",
+  "historicalReportsUnchanged": true
+}

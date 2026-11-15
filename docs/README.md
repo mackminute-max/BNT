@@ -24,3 +24,7 @@ The ten numbered establishment documents remain at the project root. Historical 
 ## Phase 2.1 — Dangerous Racing investigation
 
 The investigation, raw datasets, deterministic replay evidence and recommendations are in [phase2/dangerous-racing](phase2/dangerous-racing/README.md). Start with [full-race results](phase2/dangerous-racing/DANGEROUS_RACING_RESULTS.md) and [recommendations](phase2/dangerous-racing/DANGEROUS_RACING_RECOMMENDATIONS.md). This evaluation changes no gameplay or standalone application bytes.
+
+## Combat AI refinement — 0.4.3
+
+[Implementation report](combat-ai-refinement/COMBAT_AI_REFINEMENT_REPORT.md), [baseline/comparative datasets and reproduction](combat-ai-refinement/README.md), and regression/browser/replay evidence are under `combat-ai-refinement/`. Gameplay changes are limited to contextual AI evaluation; physical rules remain unchanged.
