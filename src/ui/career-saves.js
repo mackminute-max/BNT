@@ -1,6 +1,7 @@
-import { createCareer } from '../career/state.js';
+import { createCareer, createUninitializedCareer } from '../career/state.js';
 import { CareerStore } from '../persistence/career-store.js';
-import { SAVE_KEY, MAX_SAVE_BYTES, parseEnvelope } from '../persistence/envelope.js';
+import { historyRetentionPlan } from '../career/history.js';
+import { SAVE_KEY, MAX_IMPORT_BYTES, parseEnvelope } from '../persistence/envelope.js';
 
 const $ = id => document.getElementById(id);
 let sequence = 0;
@@ -19,11 +20,14 @@ export function mountCareerSaves({ download }) {
   let staged = null, lastToken = null, notice = '', queue = Promise.resolve();
   function render() {
     const state = store.state;
-    $('careerSaveStatus').textContent = `${store.mode.toUpperCase()} · ${state ? `Revision ${state.revision} · Treasury ${state.career.treasury} Gold · ${(state.profile.developerEdited || state.career.developerEdited) ? 'DEVELOPER-EDITED (persistent)' : 'Unedited foundation'}` : 'No career loaded'}${store.requiresCheckpoint ? ' · CHECKPOINT REQUIRED: export, save the file and confirm before another change.' : ''}`;
+    $('careerSaveStatus').textContent = `${store.mode.toUpperCase()} · ${state ? `Schema ${state.schema} · Revision ${state.revision} · Maintenance ${state.maintenanceRevision ?? 0} · Treasury ${state.career.treasury} Gold · ${(state.profile.developerEdited || state.career.developerEdited) ? 'DEVELOPER-EDITED (persistent)' : 'Unedited foundation'}` : 'No career loaded'}${store.requiresCheckpoint ? ' · CHECKPOINT REQUIRED: export, save the file and confirm before another change.' : ''}`;
     $('careerSaveNotice').textContent = [store.problem, notice].filter(Boolean).join(' ');
     $('careerSaveInspect').textContent = JSON.stringify(state ?? { status: store.mode, recoveryAvailable: Boolean(store.recovery) }, null, 2);
     $('careerAdjust').disabled = !state || ['blocked', 'recovery-required'].includes(store.mode) || store.requiresCheckpoint;
     $('careerExport').disabled = !state;
+    $('careerMigrate').disabled = !state || state.schema !== 1 || ['blocked', 'recovery-required'].includes(store.mode) || store.requiresCheckpoint;
+    $('careerCreate').textContent = store.schema2Session ? 'Create uninitialized schema-2 foundation' : 'Create empty M1 state';
+    $('careerHistoryPlan').textContent = JSON.stringify(state ? historyRetentionPlan(state) : { scope: 'M2-A only', initialized: false }, null, 2);
     $('careerAcknowledge').disabled = !state || !lastToken;
     $('careerRecover').disabled = !store.recoveryPending;
     $('careerRawExport').disabled = !store.quarantine;
@@ -41,9 +45,17 @@ export function mountCareerSaves({ download }) {
   };
   $('careerCreate').onclick = act(() => {
     const existing = store.state || store.raw !== null || store.quarantine;
-    if (existing && !window.confirm('Replace the current Owner Profile and Career State with an empty M1 foundation? Export a backup first. Owner Legacy will not be merged.')) return;
-    store.create(createCareer({ profileId: newId('profile'), careerId: newId('career'), ownerName: $('careerOwnerName').value, careerName: $('careerName').value }), { confirmed: Boolean(existing) });
-    notice = 'Empty M1 foundation created: 0 Gold, no roster, championships or Legacy progression. This is not the M2 starting stable.'; lastToken = null;
+    if (existing && !window.confirm('Replace the current Owner Profile and Career State with an empty foundation? Export a backup first. Owner Legacy will not be merged.')) return;
+    const create = store.schema2Session ? createUninitializedCareer : createCareer;
+    store.create(create({ profileId: newId('profile'), careerId: newId('career'), ownerName: $('careerOwnerName').value, careerName: $('careerName').value }), { confirmed: Boolean(existing) });
+    notice = 'Empty uninitialized foundation created: 0 Gold, no roster, championships or Legacy progression. Starting packages and explicit initialization require M2-B.'; lastToken = null;
+  });
+  $('careerMigrate').onclick = act(() => {
+    const state = store.state;
+    if (!state) throw Error('No career loaded');
+    if (!window.confirm('Upgrade this M1 career to schema 2? IDs, Gold, gameplay revision, receipts and provenance are preserved. No assets or progress are granted. The previous valid checkpoint is retained. Initialization requires M2-B.')) return;
+    store.migrateSchema({ confirmed: true, profileId: state.profile.id, careerId: state.career.id, expectedRevision: state.revision, expectedMaintenanceRevision: state.maintenanceRevision ?? 0 });
+    notice = 'Schema 2 migration committed: management remains uninitialized, registries empty. No Gold, assets, achievements or gameplay revision awarded.'; lastToken = null;
   });
   $('careerAdjust').onclick = act(() => {
     const state = store.state;
@@ -52,7 +64,7 @@ export function mountCareerSaves({ download }) {
     if (!rawDelta.trim() || !Number.isSafeInteger(Number(rawDelta))) throw Error('Enter a whole-number treasury change');
     const delta = Number(rawDelta), reason = $('careerEditReason').value;
     if (!window.confirm('Apply this developer treasury transaction? It permanently marks this profile and career developer-edited.')) return;
-    store.transaction({ id: newId('tx'), profileId: state.profile.id, careerId: state.career.id, expectedRevision: state.revision, type: 'developer.treasury.adjust', delta, reason });
+    store.transaction({ id: newId('tx'), profileId: state.profile.id, careerId: state.career.id, expectedRevision: state.revision, type: 'developer.treasury.adjust', delta, reason, ...(state.schema === 2 ? { commandVersion: 1, expectedMaintenanceRevision: state.maintenanceRevision, effectId: newId('effect') } : {}) });
     notice = 'Developer transaction committed. This provenance cannot be cleared by ordinary actions.'; lastToken = null;
   });
   $('careerExport').onclick = act(() => {
@@ -69,15 +81,16 @@ export function mountCareerSaves({ download }) {
     const file = $('careerImportFile').files[0];
     $('careerImportFile').value = ''; // Allow selecting the same filename again after a replacement.
     if (!file) return;
-    if (!file.name.toLowerCase().endsWith('.json') || file.size > MAX_SAVE_BYTES) throw Error('Choose a career .json file within the 2 MiB limit');
+    if (!file.name.toLowerCase().endsWith('.json') || file.size > MAX_IMPORT_BYTES) throw Error('Choose a career .json file within the 8 MiB import limit (schema 1 remains limited to 2 MiB)');
     const text = await file.text(), parsed = parseEnvelope(text);
     staged = text;
-    notice = `Import validated: ${parsed.primary.profile.name} / ${parsed.primary.career.name}, revision ${parsed.primary.revision}. Nothing was replaced. Use Confirm replacement to proceed.`;
+    $('careerImportMigrate').checked = parsed.primary.schema === 1 && store.schema2Session;
+    notice = `Import validated: ${parsed.primary.profile.name} / ${parsed.primary.career.name}, schema ${parsed.primary.schema}, revision ${parsed.primary.revision}. ${$('careerImportMigrate').checked ? 'Schema-1 upgrade is selected; no grants or initialization. ' : ''}Nothing was replaced. Use Confirm replacement to proceed.`;
   });
   $('careerImportApply').onclick = act(() => {
     if (!staged) throw Error('Select and validate an import first');
-    if (!window.confirm('Replace the entire loaded Owner Profile, Career State and pending checkpoint with this file? Export your current state first. Owner Legacy is replaced, never merged; known matching developer provenance is retained.')) return;
-    store.importSave(staged, { confirmed: true }); staged = null; lastToken = null;
+    if (!window.confirm('Replace the entire loaded Owner Profile, Career State and pending checkpoint with this file? Export your current state first. Owner Legacy is replaced, never merged; known matching developer provenance is retained. If the schema-1 upgrade checkbox is selected, the file is upgraded without grants.')) return;
+    store.importSave(staged, { confirmed: true, migrateLegacy: $('careerImportMigrate').checked }); staged = null; lastToken = null;
     notice = 'Complete persistent state imported. Owner Legacy was not merged. Retained developer provenance may keep an older imported checkpoint marked edited.';
   });
   $('careerRecover').onclick = act(() => {

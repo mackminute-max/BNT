@@ -615,6 +615,7 @@
               <label>Owner name<input id="careerOwnerName" value="Owner" maxlength="100" /></label>
               <label>Career name<input id="careerName" value="M1 Foundation" maxlength="100" /></label>
               <button id="careerCreate">Create empty M1 state</button>
+              <button id="careerMigrate">Migrate loaded M1 to schema 2 (M2-A)</button>
             </div>
             <div class="controls">
               <label>Treasury change / Gold<input id="careerTreasuryDelta" type="number" step="1" value="100" /></label>
@@ -625,11 +626,14 @@
               <button id="careerExport">Export complete persistent game state</button>
               <button id="careerAcknowledge">I saved this checkpoint</button>
               <label>Import game save<input id="careerImportFile" type="file" accept=".json,application/json" /></label>
+              <label><input id="careerImportMigrate" type="checkbox" /> Upgrade schema-1 file on confirmed import (no grants)</label>
               <button id="careerImportApply">Confirm replacement</button>
               <button id="careerRecover">Recover previous valid checkpoint</button>
               <button id="careerRawExport">Export corrupt-save diagnostic</button>
             </div>
             <p class="note">Manual mode requires export and your explicit checkpoint confirmation between changes. A download request is not proof of durable saving. Import replaces the whole profile; Owner Legacy progression is never merged. Developer-edit status/provenance persists. Moving or renaming the HTML may change browser storage access.</p>
+            <details><summary>M2-A protected history / compaction preview (read-only)</summary><pre id="careerHistoryPlan"></pre></details>
+            <p class="note">M2-A adds schema-2 migration, empty registries and protected identities. Career initialization, starting packages and compaction execution are not available in this stage.</p>
             <details><summary>Career metadata and serialized state (read-only)</summary><pre id="careerSaveInspect"></pre></details>
           </details>
           <h2>Complete configuration and lineup</h2>

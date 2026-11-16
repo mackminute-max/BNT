@@ -1,3 +1,19 @@
+# Current M2-A review record
+
+- [x] Explicit schema 1→2 migration preserves original IDs/treasury/gameplay lineage/receipts/provenance/pending records; no grants or initialization.
+- [x] Empty registries and ownership/FK scaffold, independent protected command/effect identities, separate maintenance revision/clock and readonly hybrid-retention interfaces implemented.
+- [x] Manual fallback, confirmed import/recovery, write rollback and mixed-schema recovery retained; no silent downgrade or history pruning.
+- [x] 237 baseline tests and 265 final tests pass; all 25 original M1 persistence assertions retained, 28 new M2-A cases pass.
+- [x] Managed functional browser groups: 12 M2-A, 18 M1 and 23 racing/workbench pass; unchanged engine parity, zero page errors/runtime requests.
+- [x] Both standalone aliases rebuilt identically; source/artifact scope/hash evidence in M2-A report.
+- [ ] Windows actual file-origin/offline persistence acceptance of this checksum: managed policy blocks file navigation.
+- [ ] Owner approval of M2-A review; full M2 acceptance is not declared.
+- [ ] M2-B–E implementation: not authorized or begun. Missing detailed 3.59–3.62 references must be reviewed before later scope.
+
+[Report](docs/m2-a/M2_A_IMPLEMENTATION_REPORT.md) · [Windows review](docs/m2-a/WINDOWS_ACCEPTANCE.md). Prior records follow as historical evidence.
+
+---
+
 # Current M0/M1 acceptance record
 
 - [x] M1 profile/career schema, complete persistent-state export/import, automatic primary/recovery checkpoint, manual-save gating and separate developer configuration storage implemented.

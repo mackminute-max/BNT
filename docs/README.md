@@ -42,3 +42,8 @@ The investigation, raw datasets, deterministic replay evidence and recommendatio
 ## M0/M1 persistence foundation — career save schema 1
 
 [Implementation/verification report](persistence-foundation/M0_M1_IMPLEMENTATION_REPORT.md), [Windows file-origin checklist](persistence-foundation/WINDOWS_TESTING.md), [APIs/reproduction/evidence](persistence-foundation/README.md). Adds the isolated persistence/developer transaction foundation; racing engine unchanged. M0 file-origin acceptance remains policy-blocked and no M2 gameplay was implemented.
+
+
+## M2-A — persistence/domain foundation review
+
+[Implementation report](m2-a/M2_A_IMPLEMENTATION_REPORT.md), [schema/migration/transaction/reference contract](m2-a/SCHEMA_AND_TRANSACTION_API.md), [Windows checklist](m2-a/WINDOWS_ACCEPTANCE.md), [reproduction/evidence](m2-a/README.md). Explicit schema-2 migration with empty uninitialized registries, P0 identities/effects and sealed maintenance clock. M1 and racing regressions retained; M2-B–E not implemented. Direct-file acceptance remains policy-blocked.

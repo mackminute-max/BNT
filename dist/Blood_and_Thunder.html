@@ -615,6 +615,7 @@
               <label>Owner name<input id="careerOwnerName" value="Owner" maxlength="100" /></label>
               <label>Career name<input id="careerName" value="M1 Foundation" maxlength="100" /></label>
               <button id="careerCreate">Create empty M1 state</button>
+              <button id="careerMigrate">Migrate loaded M1 to schema 2 (M2-A)</button>
             </div>
             <div class="controls">
               <label>Treasury change / Gold<input id="careerTreasuryDelta" type="number" step="1" value="100" /></label>
@@ -625,11 +626,14 @@
               <button id="careerExport">Export complete persistent game state</button>
               <button id="careerAcknowledge">I saved this checkpoint</button>
               <label>Import game save<input id="careerImportFile" type="file" accept=".json,application/json" /></label>
+              <label><input id="careerImportMigrate" type="checkbox" /> Upgrade schema-1 file on confirmed import (no grants)</label>
               <button id="careerImportApply">Confirm replacement</button>
               <button id="careerRecover">Recover previous valid checkpoint</button>
               <button id="careerRawExport">Export corrupt-save diagnostic</button>
             </div>
             <p class="note">Manual mode requires export and your explicit checkpoint confirmation between changes. A download request is not proof of durable saving. Import replaces the whole profile; Owner Legacy progression is never merged. Developer-edit status/provenance persists. Moving or renaming the HTML may change browser storage access.</p>
+            <details><summary>M2-A protected history / compaction preview (read-only)</summary><pre id="careerHistoryPlan"></pre></details>
+            <p class="note">M2-A adds schema-2 migration, empty registries and protected identities. Career initialization, starting packages and compaction execution are not available in this stage.</p>
             <details><summary>Career metadata and serialized state (read-only)</summary><pre id="careerSaveInspect"></pre></details>
           </details>
           <h2>Complete configuration and lineup</h2>
@@ -3638,7 +3642,7 @@
     return parseConfiguration(text2);
   }
 
-  // src/career/state.js
+  // src/career/legacy-state.js
   var CAREER_SCHEMA = 1;
   var MAX_RECEIPTS = 1e3;
   var MAX_MARKS = 2e3;
@@ -3774,9 +3778,340 @@
     return { state: next, duplicate: false, receipt: structuredClone(receipt) };
   }
 
+  // src/career/history.js
+  var MAX_PROTECTED_COMMANDS = 2e3;
+  var RETENTION_CLASSES = Object.freeze({ P0: "Protected identities, requests and effects: never discarded", P1: "Summarizable detail: future explicit confirmation", P2: "Provably redundant detail: future safe maintenance only" });
+  function validateCommandV1(tx) {
+    exact(tx, ["id", "profileId", "careerId", "expectedRevision", "type", "delta", "reason", "commandVersion", "expectedMaintenanceRevision", "effectId"], "versioned command");
+    validateTransaction(legacyRequest(tx));
+    if (tx.commandVersion !== 1 || !Number.isSafeInteger(tx.expectedMaintenanceRevision) || tx.expectedMaintenanceRevision < 0) throw Error("Invalid command/maintenance version");
+    effectId(tx.effectId);
+  }
+  function legacyRequest(tx) {
+    return Object.fromEntries(["id", "profileId", "careerId", "expectedRevision", "type", "delta", "reason"].map((k) => [k, tx[k]]));
+  }
+  function effectId(value) {
+    if (typeof value !== "string" || !/^[a-zA-Z0-9_-]{1,128}$/.test(value)) throw Error("Invalid protected effect ID");
+  }
+  function protectTransaction(tx, balanceAfter = null) {
+    const version = Object.hasOwn(tx, "commandVersion") ? 1 : 0;
+    if (version) validateCommandV1(tx);
+    else validateTransaction(tx);
+    return {
+      id: tx.id,
+      profileId: tx.profileId,
+      careerId: tx.careerId,
+      commandVersion: version,
+      request: canonical(tx),
+      fingerprint: checksum(tx),
+      resultRevision: tx.expectedRevision + 1,
+      effectId: version ? tx.effectId : "legacy-" + tx.id,
+      delta: tx.delta,
+      balanceAfter,
+      retention: "P0"
+    };
+  }
+  function validateProtected(entry) {
+    exact(entry, ["id", "profileId", "careerId", "commandVersion", "request", "fingerprint", "resultRevision", "effectId", "delta", "balanceAfter", "retention"], "protected history identity");
+    id(entry.id);
+    id(entry.profileId);
+    id(entry.careerId);
+    effectId(entry.effectId);
+    if (typeof entry.request !== "string" || entry.request.length > 3e3 || entry.retention !== "P0" || ![0, 1].includes(entry.commandVersion)) throw Error("Invalid protected request");
+    const request = JSON.parse(entry.request);
+    if (entry.commandVersion === 0) validateTransaction(request);
+    else validateCommandV1(request);
+    const expected = protectTransaction(request, entry.balanceAfter);
+    if (!Number.isSafeInteger(entry.resultRevision) || entry.resultRevision < 1) throw Error("Invalid protected result revision");
+    if (canonical(expected) !== canonical(entry) || entry.balanceAfter !== null && (!Number.isSafeInteger(entry.balanceAfter) || entry.balanceAfter < 0)) throw Error("Protected request fingerprint/effect mismatch");
+    return entry;
+  }
+  function mergeProtected(...lists) {
+    const commands = /* @__PURE__ */ new Map(), effects = /* @__PURE__ */ new Map(), owners = /* @__PURE__ */ new Map();
+    for (const incoming of lists.flat()) {
+      validateProtected(incoming);
+      const previous2 = commands.get(incoming.id);
+      if (previous2) {
+        const a = { ...previous2, balanceAfter: null }, b = { ...incoming, balanceAfter: null };
+        if (canonical(a) !== canonical(b) || previous2.balanceAfter !== null && incoming.balanceAfter !== null && previous2.balanceAfter !== incoming.balanceAfter) throw Error("Conflicting protected transaction ID");
+        if (previous2.balanceAfter !== null) continue;
+      }
+      const key2 = incoming.careerId + ":" + incoming.effectId;
+      if (effects.has(key2) && effects.get(key2) !== incoming.id) throw Error("Protected effect identity reused by another command");
+      if (owners.has(incoming.careerId) && owners.get(incoming.careerId) !== incoming.profileId) throw Error("Protected career ownership conflict");
+      effects.set(key2, incoming.id);
+      owners.set(incoming.careerId, incoming.profileId);
+      commands.set(incoming.id, structuredClone(incoming));
+    }
+    if (commands.size > MAX_PROTECTED_COMMANDS) throw Error("Protected history limit reached; no P0 identity was discarded");
+    return [...commands.values()].sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+  }
+  function completeProtectedRegistry(entries, legacyMarks) {
+    const base = mergeProtected(entries), known = new Set(base.map((e) => e.id));
+    const missing = legacyMarks.filter((m) => !known.has(m.id)).map((m) => protectTransaction({
+      id: m.id,
+      profileId: m.profileId,
+      careerId: m.careerId,
+      expectedRevision: m.revision - 1,
+      type: m.type,
+      delta: m.delta,
+      reason: m.reason
+    }));
+    return mergeProtected(base, missing);
+  }
+  function protectedFromState(state2) {
+    if (!state2) return [];
+    if (state2.schema === 2) return state2.history.commands;
+    const receipts = state2.transactions.map((r) => protectTransaction(r.transaction, r.balanceAfter));
+    const tombstones = state2.provenance.map((m) => protectTransaction({ id: m.id, profileId: m.profileId, careerId: m.careerId, expectedRevision: m.revision - 1, type: m.type, delta: m.delta, reason: m.reason }));
+    return mergeProtected(receipts, tombstones);
+  }
+  function lookupCommitted(entries, tx, receipts = []) {
+    const previous2 = entries.find((e) => e.id === tx.id);
+    if (!previous2) return null;
+    if (previous2.request !== canonical(tx)) throw Error("Conflicting protected transaction ID");
+    return { status: "ALREADY_COMMITTED", duplicate: true, receipt: structuredClone(receipts.find((r) => r.transaction.id === tx.id) ?? null) };
+  }
+  function historyRetentionPlan(state2) {
+    return {
+      gameplayRevision: state2.revision,
+      maintenanceRevision: state2.maintenanceRevision ?? 0,
+      classes: { ...RETENTION_CLASSES },
+      protectedCommands: protectedFromState(state2).map((e) => e.id),
+      protectedEffects: protectedFromState(state2).map((e) => e.effectId),
+      remove: [],
+      summarize: [],
+      canCompact: false,
+      reason: "Compaction execution is deferred to M2-E; no history is removed in M2-A"
+    };
+  }
+
+  // src/career/registries.js
+  var REGISTRY_LINKS = Object.freeze({
+    personnel: { contract: ["contracts"] },
+    specialists: { contract: ["contracts"] },
+    beasts: {},
+    chariots: { equipment: ["equipment"] },
+    equipment: { installedOn: ["chariots"] },
+    contracts: { employee: ["personnel", "specialists"] },
+    candidates: {},
+    recruitmentOffers: { candidate: ["candidates"] },
+    marketOffers: { candidate: ["candidates"] },
+    properties: { facilities: ["facilities"] },
+    facilities: { property: ["properties"] },
+    projects: { subject: ["personnel", "beasts", "chariots", "equipment"], specialist: ["specialists"], facility: ["facilities"] },
+    assignments: { subject: ["personnel", "specialists", "beasts", "chariots", "equipment"], project: ["projects"] },
+    obligations: { liableEntity: ["personnel", "specialists", "contracts", "properties"] },
+    advancementChoices: { subject: ["personnel", "beasts"] },
+    achievements: {}
+  });
+  var REGISTRY_NAMES = Object.freeze(Object.keys(REGISTRY_LINKS));
+  function emptyManagement() {
+    return { initialized: false, registrySchema: 1, registries: Object.fromEntries(REGISTRY_NAMES.map((k) => [k, {}])) };
+  }
+  function validateOwnershipGraph(registries, careerId, reservedIds = []) {
+    id(careerId);
+    reservedIds.forEach(id);
+    exact(registries, REGISTRY_NAMES, "management registries");
+    const entities = /* @__PURE__ */ new Map();
+    for (const registry of REGISTRY_NAMES) {
+      const records = registries[registry];
+      if (!records || typeof records !== "object" || Array.isArray(records) || ![Object.prototype, null].includes(Object.getPrototypeOf(records)) || Object.keys(records).length > 1e3) throw Error("Invalid registry " + registry);
+      for (const [key2, record] of Object.entries(records)) {
+        id(key2);
+        exact(record, ["id", "ownerCareerId", "references"], "registry record");
+        id(record.id);
+        id(record.ownerCareerId);
+        if (record.id !== key2 || record.ownerCareerId !== careerId || entities.has(key2) || key2 === careerId || reservedIds.includes(key2)) throw Error("Duplicate identity or invalid entity ownership");
+        if (!record.references || typeof record.references !== "object" || Array.isArray(record.references) || ![Object.prototype, null].includes(Object.getPrototypeOf(record.references)) || Object.keys(record.references).some((k) => !Object.hasOwn(REGISTRY_LINKS[registry], k))) throw Error("Invalid reference relation");
+        entities.set(key2, { registry, record });
+      }
+    }
+    for (const { registry, record } of entities.values()) for (const [relation, targets] of Object.entries(record.references)) {
+      if (!Array.isArray(targets) || targets.length > 1e3 || new Set(targets).size !== targets.length || !["equipment", "facilities", "subject"].includes(relation) && targets.length > 1) throw Error("Invalid reference cardinality");
+      for (const target of targets) {
+        id(target);
+        const found = entities.get(target);
+        if (!found || !REGISTRY_LINKS[registry][relation].includes(found.registry)) throw Error("Dangling or wrong-type entity reference");
+      }
+    }
+    const checkReciprocal = (sourceRegistry, relation, targetRegistry, inverse) => {
+      for (const record of Object.values(registries[sourceRegistry])) for (const target of record.references[relation] ?? []) {
+        if (!(registries[targetRegistry][target].references[inverse] ?? []).includes(record.id)) throw Error("Nonreciprocal ownership/assignment reference");
+      }
+    };
+    checkReciprocal("chariots", "equipment", "equipment", "installedOn");
+    checkReciprocal("equipment", "installedOn", "chariots", "equipment");
+    checkReciprocal("properties", "facilities", "facilities", "property");
+    checkReciprocal("facilities", "property", "properties", "facilities");
+    for (const contract of Object.values(registries.contracts)) {
+      if (contract.references.employee?.length !== 1) throw Error("Contract needs one employee reference");
+      const employee = entities.get(contract.references.employee[0]).record;
+      if (employee.references.contract?.length !== 1 || employee.references.contract[0] !== contract.id) throw Error("Nonreciprocal employment reference");
+    }
+    for (const kind of ["personnel", "specialists"]) for (const record of Object.values(registries[kind])) for (const target of record.references.contract ?? []) {
+      if (registries.contracts[target].references.employee?.[0] !== record.id) throw Error("Conflicting employment reference");
+    }
+    for (const record of Object.values(registries.facilities)) if (record.references.property?.length !== 1) throw Error("Facility needs one owned property");
+    const assigned = /* @__PURE__ */ new Set();
+    for (const record of Object.values(registries.assignments)) {
+      if (record.references.project?.length !== 1 || !record.references.subject?.length) throw Error("Assignment needs project and subject references");
+      for (const target of record.references.subject) {
+        if (assigned.has(target)) throw Error("Conflicting exclusive assignment");
+        assigned.add(target);
+      }
+    }
+    return true;
+  }
+  function validateManagement(management, careerId, profileId) {
+    exact(management, ["initialized", "registrySchema", "registries"], "management foundation");
+    if (management.registrySchema !== 1) throw Error("Unsupported management registry schema");
+    validateOwnershipGraph(management.registries, careerId, profileId ? [profileId] : []);
+    if (management.initialized !== false || REGISTRY_NAMES.some((k) => Object.keys(management.registries[k]).length)) throw Error("Career initialization/assets require the separately authorized M2-B transaction");
+  }
+
+  // src/career/schema2.js
+  var CORE_FIELDS = ["kind", "schema", "revision", "profile", "career", "pendingRace", "transactions", "provenance"];
+  var SCHEMA2_FIELDS = [...CORE_FIELDS, "maintenanceRevision", "management", "history", "migration"];
+  function assertRevision(state2, revision, maintenance) {
+    if (revision !== state2.revision || maintenance !== (state2.maintenanceRevision ?? 0)) throw Error("Stale gameplay or persistence-maintenance revision");
+  }
+  function validateInertPending(pending, state2) {
+    if (pending === null) return;
+    exact(pending, ["id", "careerId", "engineVersion", "setup"], "inert pending checkpoint");
+    id(pending.id);
+    id(pending.careerId);
+    if (pending.careerId !== state2.career.id || [state2.profile.id, state2.career.id].includes(pending.id) || typeof pending.engineVersion !== "string" || !pending.engineVersion.length || pending.engineVersion.length > 100) throw Error("Invalid inert checkpoint reference/version");
+    if (!pending.setup || typeof pending.setup !== "object" || Array.isArray(pending.setup) || !Array.isArray(pending.setup.entrants) || !pending.setup.entrants.length || !Number.isSafeInteger(pending.setup.seed)) throw Error("Incomplete inert pending record");
+    if (pending.engineVersion === VERSION && canonical(configuration(pending.setup).setup) !== canonical(pending.setup)) throw Error("Pending record must retain complete normalized setup");
+    const seen = /* @__PURE__ */ new Set();
+    for (const entrant of pending.setup.entrants) {
+      id(entrant?.ru?.id);
+      if (seen.has(entrant.ru.id)) throw Error("Duplicate inert entrant identity");
+      seen.add(entrant.ru.id);
+    }
+  }
+  function validateStateV2(state2) {
+    exact(state2, SCHEMA2_FIELDS, "schema-2 career state");
+    if (state2.schema !== 2 || !Number.isSafeInteger(state2.maintenanceRevision) || state2.maintenanceRevision < 1) throw Error("Invalid schema-2 maintenance revision");
+    const projection = Object.fromEntries(CORE_FIELDS.map((k) => [k, state2[k]]));
+    projection.schema = 1;
+    projection.pendingRace = null;
+    projection.transactions = state2.transactions?.map((r) => ({ ...r, transaction: legacyRequest(r.transaction) }));
+    validateState(projection);
+    validateInertPending(state2.pendingRace, state2);
+    validateManagement(state2.management, state2.career.id, state2.profile.id);
+    exact(state2.history, ["schema", "commands"], "protected history");
+    if (state2.history.schema !== 1 || !Array.isArray(state2.history.commands)) throw Error("Invalid protected history schema");
+    const entries = mergeProtected(state2.history.commands);
+    if (canonical(entries) !== canonical(state2.history.commands)) throw Error("Protected history must be unique and canonically ordered");
+    for (const entry of entries) {
+      if (entry.profileId !== state2.profile.id || entry.careerId !== state2.career.id) throw Error("Protected history entity reference mismatch");
+      if (!state2.provenance.some((m2) => canonical(m2) === canonical(transactionMark(JSON.parse(entry.request))))) throw Error("Protected developer command lacks provenance");
+    }
+    for (const mark of state2.provenance.filter((m2) => m2.careerId === state2.career.id)) if (!entries.some((e) => e.id === mark.id)) throw Error("Developer identity missing from protected history");
+    for (const r of state2.transactions) {
+      const expected = protectTransaction(r.transaction, r.balanceAfter);
+      if (!entries.some((e) => canonical(e) === canonical(expected))) throw Error("Receipt changed or missing protected request/effect fact");
+      if (expected.commandVersion === 1 && r.transaction.expectedMaintenanceRevision > state2.maintenanceRevision) throw Error("Receipt from a future maintenance revision");
+    }
+    const m = state2.migration;
+    exact(m, ["fromSchema", "toSchema", "sourceProfileId", "sourceCareerId", "sourceRevision", "sourceTreasury", "sourcePendingDigest", "sourceStateDigest"], "migration lineage");
+    if (m.fromSchema !== 1 || m.toSchema !== 2 || m.sourceProfileId !== state2.profile.id || m.sourceCareerId !== state2.career.id || !Number.isSafeInteger(m.sourceRevision) || m.sourceRevision < 0 || m.sourceRevision > state2.revision || !/^[0-9a-f]{8}$/.test(m.sourceStateDigest) || m.sourcePendingDigest !== (state2.pendingRace === null ? null : checksum(state2.pendingRace))) throw Error("Invalid migration identity/revision/checkpoint lineage");
+    if (m.sourceTreasury !== (m.sourceRevision ? state2.transactions[m.sourceRevision - 1].balanceAfter : 0)) throw Error("Migration treasury lineage mismatch");
+    for (const [i, r] of state2.transactions.entries()) {
+      if (i < m.sourceRevision) validateTransaction(r.transaction);
+      else validateCommandV1(r.transaction);
+    }
+    return state2;
+  }
+  function migrateStateV1(source) {
+    validateState(source);
+    const next = structuredClone(source);
+    next.schema = 2;
+    next.maintenanceRevision = 1;
+    next.management = emptyManagement();
+    next.history = { schema: 1, commands: protectedFromState(source).filter((e) => e.profileId === source.profile.id && e.careerId === source.career.id) };
+    next.migration = {
+      fromSchema: 1,
+      toSchema: 2,
+      sourceProfileId: source.profile.id,
+      sourceCareerId: source.career.id,
+      sourceRevision: source.revision,
+      sourceTreasury: source.career.treasury,
+      sourcePendingDigest: source.pendingRace === null ? null : checksum(source.pendingRace),
+      sourceStateDigest: checksum(source)
+    };
+    return validateStateV2(next);
+  }
+  function withKnownHistoryV2(state2, knownMarks, knownHistory = []) {
+    validateStateV2(state2);
+    if (knownMarks.some((m) => m.careerId === state2.career.id && m.profileId !== state2.profile.id) || knownHistory.some((e) => e.careerId === state2.career.id && e.profileId !== state2.profile.id)) throw Error("Career history belongs to a different Owner Profile");
+    const next = structuredClone(state2);
+    next.provenance = mergeMarks(next.provenance, knownMarks.filter((m) => m.profileId === next.profile.id));
+    next.profile.developerEdited = Boolean(next.provenance.length);
+    next.career.developerEdited = next.provenance.some((m) => m.careerId === next.career.id);
+    next.history.commands = mergeProtected(next.history.commands, knownHistory.filter((e) => e.profileId === next.profile.id && e.careerId === next.career.id));
+    return validateStateV2(next);
+  }
+  function transactV2(state2, tx) {
+    validateStateV2(state2);
+    const committed = lookupCommitted(state2.history.commands, tx, state2.transactions);
+    if (committed) return { ...committed, state: structuredClone(state2) };
+    if (tx.type === "career.initialize") throw Error("Career initialization requires the separately authorized M2-B transaction");
+    validateCommandV1(tx);
+    if (tx.profileId !== state2.profile.id || tx.careerId !== state2.career.id) throw Error("Command ownership mismatch");
+    assertRevision(state2, tx.expectedRevision, tx.expectedMaintenanceRevision);
+    if (state2.history.commands.some((e) => e.effectId === tx.effectId)) throw Error("Effect identity already committed");
+    if (state2.transactions.length >= MAX_RECEIPTS) throw Error("Transaction limit reached; no protected history was discarded");
+    const balance = BigInt(state2.career.treasury) + BigInt(tx.delta);
+    if (balance < 0n || balance > BigInt(Number.MAX_SAFE_INTEGER)) throw Error("Treasury must be a nonnegative safe integer");
+    const next = structuredClone(state2), receipt = { transaction: structuredClone(tx), resultRevision: state2.revision + 1, balanceAfter: Number(balance) };
+    next.revision++;
+    next.career.treasury = Number(balance);
+    next.transactions.push(receipt);
+    next.provenance = mergeMarks(next.provenance, [transactionMark(tx)]);
+    next.profile.developerEdited = next.career.developerEdited = true;
+    next.history.commands = mergeProtected(next.history.commands, [protectTransaction(tx, Number(balance))]);
+    return { state: validateStateV2(next), duplicate: false, receipt: structuredClone(receipt) };
+  }
+  function immutableHistoryView(state2) {
+    const view = structuredClone(state2);
+    const freeze = (value) => {
+      if (value && typeof value === "object") {
+        Object.values(value).forEach(freeze);
+        Object.freeze(value);
+      }
+      return value;
+    };
+    freeze(view.transactions);
+    freeze(view.history);
+    freeze(view.migration);
+    return view;
+  }
+
+  // src/career/state.js
+  var createCareer2 = createCareer;
+  function createUninitializedCareer(options) {
+    return migrateStateV1(createCareer(options));
+  }
+  function validateState2(state2) {
+    return state2?.schema === 2 ? validateStateV2(state2) : validateState(state2);
+  }
+  function withProvenance2(state2, marks, protectedHistory = []) {
+    return state2?.schema === 2 ? withKnownHistoryV2(state2, marks, protectedHistory) : withProvenance(state2, marks);
+  }
+  function transact2(state2, tx) {
+    return state2?.schema === 2 ? transactV2(state2, tx) : transact(state2, tx);
+  }
+
+  // src/career/foundation-catalog.js
+  var FOUNDATION_LIMITS = Object.freeze({ version: 1, schema1SaveBytes: 2 * 1024 * 1024, schema2SaveBytes: 8 * 1024 * 1024 });
+
   // src/persistence/envelope.js
   var SAVE_KEY = "bnt.career.save.v1";
-  var MAX_SAVE_BYTES = 2 * 1024 * 1024;
+  var MAX_SAVE_BYTES = FOUNDATION_LIMITS.schema1SaveBytes;
+  var MAX_IMPORT_BYTES = FOUNDATION_LIMITS.schema2SaveBytes;
   function seal(value) {
     return { value: structuredClone(value), digest: checksum(value) };
   }
@@ -3786,14 +4121,37 @@
     return record.value;
   }
   function inspectEnvelope(text2) {
-    if (typeof text2 !== "string" || new TextEncoder().encode(text2).length > MAX_SAVE_BYTES) throw Error("Invalid or oversized career save");
-    const envelope = JSON.parse(text2);
-    exact(envelope, ["kind", "schema", "primary", "recovery", "provenance"], "game save");
+    if (typeof text2 !== "string") throw Error("Invalid career save");
+    const bytes = new TextEncoder().encode(text2).length;
+    if (bytes > MAX_IMPORT_BYTES) throw Error("Invalid or oversized career save");
+    let envelope;
+    try {
+      envelope = JSON.parse(text2);
+    } catch (error) {
+      if (bytes > MAX_SAVE_BYTES) throw Error("Invalid or oversized career save");
+      throw error;
+    }
+    if (bytes > MAX_SAVE_BYTES && !Object.hasOwn(envelope ?? {}, "protectedHistory")) throw Error("Invalid or oversized schema-1 save");
+    exact(envelope, ["kind", "schema", "primary", "recovery", "provenance", ...Object.hasOwn(envelope, "protectedHistory") ? ["protectedHistory", "maintenanceClock"] : []], "game save");
     if (envelope.kind !== "BNT-game-save" || envelope.schema !== 1) throw Error("Incompatible game save type/schema");
     const rawMarks = unseal(envelope.provenance);
     if (!Array.isArray(rawMarks)) throw Error("Invalid provenance registry");
     const marks = mergeMarks(rawMarks);
     if (marks.length !== rawMarks.length) throw Error("Duplicate provenance registry");
+    const hasHistory = Object.hasOwn(envelope, "protectedHistory");
+    const rawHistory = hasHistory ? unseal(envelope.protectedHistory) : [];
+    const maintenanceClock = hasHistory ? unseal(envelope.maintenanceClock) : 0;
+    if (!Number.isSafeInteger(maintenanceClock) || maintenanceClock < (hasHistory ? 1 : 0)) throw Error("Invalid maintenance clock");
+    if (!Array.isArray(rawHistory)) throw Error("Invalid protected history registry");
+    const protectedHistory = mergeProtected(rawHistory);
+    if (protectedHistory.length !== rawHistory.length) throw Error("Duplicate protected registry identity");
+    if (hasHistory) {
+      for (const mark of marks) if (!protectedHistory.some((e) => e.id === mark.id)) throw Error("Known provenance identity missing from protected registry");
+      for (const entry of protectedHistory) {
+        const tx = JSON.parse(entry.request);
+        if (!marks.some((m) => m.id === entry.id && m.profileId === tx.profileId && m.careerId === tx.careerId && m.revision === tx.expectedRevision + 1 && m.type === tx.type && m.reason === tx.reason && m.delta === tx.delta)) throw Error("Protected registry/provenance mismatch");
+      }
+    }
     const errors = {}, valid = {};
     for (const key2 of ["primary", "recovery"]) {
       if (key2 === "recovery" && envelope[key2] === null) {
@@ -3801,26 +4159,35 @@
         continue;
       }
       try {
-        const state2 = validateState(unseal(envelope[key2]));
+        const state2 = validateState2(unseal(envelope[key2]));
         for (const m of state2.provenance) if (!marks.some((k) => canonical(k) === canonical(m))) throw Error("Checkpoint provenance missing from registry");
-        if (key2 === "primary" && canonical(withProvenance(state2, marks)) !== canonical(state2)) throw Error("Primary clears known developer provenance");
+        if (state2.schema === 2 && !Object.hasOwn(envelope, "protectedHistory")) throw Error("Schema-2 checkpoint requires protected registry");
+        if (state2.schema === 2 && (state2.maintenanceRevision > maintenanceClock || key2 === "primary" && state2.maintenanceRevision !== maintenanceClock)) throw Error("Maintenance clock/checkpoint mismatch");
+        if (key2 === "primary" && state2.schema !== 2 && Object.hasOwn(envelope, "protectedHistory")) throw Error("Cannot downgrade a protected save to schema 1");
+        for (const entry of state2.schema === 2 ? state2.history.commands : []) {
+          if (!protectedHistory.some((e) => e.id === entry.id && e.request === entry.request && (entry.balanceAfter === null || e.balanceAfter === entry.balanceAfter))) throw Error("Checkpoint loses protected identity/effect facts");
+        }
+        if (key2 === "primary" && canonical(withProvenance2(state2, marks, protectedHistory)) !== canonical(state2)) throw Error("Primary clears known developer provenance");
         valid[key2] = structuredClone(state2);
       } catch (e) {
         errors[key2] = e.message;
         valid[key2] = null;
       }
     }
-    return { envelope, marks, primary: valid.primary, recovery: valid.recovery, errors };
+    return { envelope, marks, protectedHistory, maintenanceClock, primary: valid.primary, recovery: valid.recovery, errors };
   }
   function parseEnvelope(text2) {
     const result = inspectEnvelope(text2);
     if (!result.primary || Object.keys(result.errors).length) throw Error("Invalid career save: " + JSON.stringify(result.errors));
     return result;
   }
-  function makeEnvelope(primary, recovery = null, knownMarks = []) {
+  function makeEnvelope(primary, recovery = null, knownMarks = [], knownHistory = [], knownMaintenance = 0) {
     const marks = mergeMarks(knownMarks, primary.provenance, recovery?.provenance ?? []);
-    const state2 = withProvenance(primary, marks);
-    const envelope = { kind: "BNT-game-save", schema: 1, primary: seal(state2), recovery: recovery ? seal(validateState(recovery)) : null, provenance: seal(marks) };
+    const useHistory = primary.schema === 2 || recovery?.schema === 2 || knownHistory.length > 0;
+    const protectedHistory = useHistory ? completeProtectedRegistry(mergeProtected(knownHistory, protectedFromState(primary), protectedFromState(recovery)), marks) : [];
+    const state2 = withProvenance2(primary, marks, protectedHistory);
+    const maintenanceClock = Math.max(knownMaintenance, primary.maintenanceRevision ?? 0, recovery?.maintenanceRevision ?? 0);
+    const envelope = { kind: "BNT-game-save", schema: 1, primary: seal(state2), recovery: recovery ? seal(validateState2(recovery)) : null, provenance: seal(marks), ...useHistory ? { protectedHistory: seal(protectedHistory), maintenanceClock: seal(maintenanceClock) } : {} };
     const text2 = JSON.stringify(envelope);
     parseEnvelope(text2);
     return { envelope, text: text2, state: state2 };
@@ -3834,6 +4201,9 @@
       this.current = null;
       this.recovery = null;
       this.marks = [];
+      this.protectedHistory = [];
+      this.maintenanceClock = 0;
+      this.schema2Session = false;
       this.raw = null;
       this.quarantine = null;
       this.problem = "";
@@ -3842,7 +4212,7 @@
       this.recoveryPending = false;
     }
     get state() {
-      return this.current ? structuredClone(this.current) : null;
+      return this.current?.schema === 2 ? immutableHistoryView(this.current) : this.current ? structuredClone(this.current) : null;
     }
     open() {
       try {
@@ -3856,6 +4226,9 @@
       try {
         const read = inspectEnvelope(this.raw);
         this.marks = read.marks;
+        this.protectedHistory = read.protectedHistory;
+        this.maintenanceClock = read.maintenanceClock;
+        this.schema2Session = Object.hasOwn(read.envelope, "protectedHistory");
         this.recovery = read.recovery;
         if (!read.primary || Object.keys(read.errors).length) {
           this.mode = read.recovery ? "recovery-required" : "blocked";
@@ -3876,6 +4249,7 @@
       if (this.mode === "manual" && this.requiresCheckpoint) throw Error("Export and explicitly confirm this manual checkpoint before another change");
     }
     publish(candidate, { allowBlocked = false } = {}) {
+      const read = parseEnvelope(candidate.text);
       if (["blocked", "recovery-required"].includes(this.mode) && !allowBlocked) throw Error("Resolve corrupt save explicitly before changing state");
       if (this.mode !== "manual") {
         let raw;
@@ -3900,10 +4274,12 @@
         this.mode = "automatic";
         this.problem = "";
       }
-      const read = parseEnvelope(candidate.text);
       this.current = read.primary;
       this.recovery = read.recovery;
       this.marks = read.marks;
+      this.protectedHistory = read.protectedHistory;
+      this.maintenanceClock = read.maintenanceClock;
+      this.schema2Session = Object.hasOwn(read.envelope, "protectedHistory");
       this.requiresCheckpoint = this.mode === "manual";
       this.exportToken = null;
       this.recoveryPending = false;
@@ -3912,43 +4288,77 @@
     create(state2, { confirmed = false } = {}) {
       if ((this.current || this.raw !== null || this.quarantine) && confirmed !== true) throw Error("Confirm replacement of existing career/save");
       this.requireManualCheckpoint();
-      const candidate = makeEnvelope(state2, this.current, this.marks);
+      if (this.schema2Session && state2.schema !== 2) throw Error("Protected session requires explicit schema-2 creation, not downgrade");
+      if (state2.schema === 2 && this.schema2Session) {
+        state2 = structuredClone(state2);
+        state2.maintenanceRevision = Math.max(state2.maintenanceRevision, this.maintenanceClock + 1);
+      }
+      const candidate = makeEnvelope(state2, this.current, this.marks, this.protectedHistory, this.maintenanceClock);
       this.publish(candidate, { allowBlocked: confirmed });
       return this.state;
     }
+    migrateSchema({ confirmed = false, profileId, careerId, expectedRevision, expectedMaintenanceRevision } = {}) {
+      if (!this.current) throw Error("No career loaded");
+      if (confirmed !== true) throw Error("Explicit migration confirmation required");
+      id(profileId);
+      id(careerId);
+      if (profileId !== this.current.profile.id || careerId !== this.current.career.id) throw Error("Migration ownership mismatch");
+      assertRevision(this.current, expectedRevision, expectedMaintenanceRevision);
+      if (this.current.schema === 2) return { migrated: false, state: this.state };
+      this.requireManualCheckpoint();
+      const state2 = migrateStateV1(this.current);
+      this.publish(makeEnvelope(state2, this.current, this.marks, this.protectedHistory, this.maintenanceClock));
+      return { migrated: true, state: this.state };
+    }
     transaction(tx) {
       if (!this.current) throw Error("No career loaded");
-      const result = transact(this.current, tx);
+      if (this.current.schema === 2) {
+        const prior = lookupCommitted(this.protectedHistory, tx, this.current.transactions);
+        if (prior) return { ...prior, state: this.state };
+        if (this.protectedHistory.some((e) => e.careerId === tx.careerId && e.effectId === tx.effectId)) throw Error("Effect identity already committed on a retained timeline");
+      }
+      const result = transact2(this.current, tx);
       if (result.duplicate) return result;
       this.requireManualCheckpoint();
-      this.publish(makeEnvelope(result.state, this.current, this.marks));
+      this.publish(makeEnvelope(result.state, this.current, this.marks, this.protectedHistory, this.maintenanceClock));
       return { ...result, state: this.state };
     }
-    importSave(text2, { confirmed = false } = {}) {
+    importSave(text2, { confirmed = false, migrateLegacy = false } = {}) {
       const incoming = parseEnvelope(text2);
       if (confirmed !== true) throw Error("Confirm complete save replacement; Owner Legacy is replaced, never merged");
       this.requireManualCheckpoint();
       const marks = mergeMarks(this.marks, incoming.marks);
-      const state2 = withProvenance(incoming.primary, marks);
+      const useProtected = this.schema2Session || incoming.primary.schema === 2 || incoming.protectedHistory.length || migrateLegacy === true;
+      const protectedHistory = useProtected ? completeProtectedRegistry(mergeProtected(this.protectedHistory, incoming.protectedHistory), marks) : [];
+      let target = incoming.primary;
+      if (target.schema === 1 && (this.schema2Session || protectedHistory.length || migrateLegacy)) {
+        if (migrateLegacy !== true) throw Error("Explicit schema-1 migration confirmation is required; protected saves cannot downgrade");
+        target = migrateStateV1(target);
+      }
+      let state2 = withProvenance2(target, marks, protectedHistory);
+      if (state2.schema === 2 && (this.current || this.schema2Session)) state2.maintenanceRevision = Math.max(state2.maintenanceRevision, this.maintenanceClock, incoming.maintenanceClock) + 1;
       const recovery = incoming.recovery;
-      this.publish(makeEnvelope(state2, recovery, marks), { allowBlocked: true });
+      this.publish(makeEnvelope(state2, recovery, marks, protectedHistory, Math.max(this.maintenanceClock, incoming.maintenanceClock)), { allowBlocked: true });
       return this.state;
     }
     recover({ confirmed = false } = {}) {
       if (!this.recoveryPending || !this.recovery) throw Error("No valid recovery checkpoint is available");
       if (confirmed !== true) throw Error("Explicit recovery confirmation required");
-      const state2 = withProvenance(this.recovery, this.marks);
-      this.publish(makeEnvelope(state2, this.recovery, this.marks), { allowBlocked: true });
+      let target = this.recovery;
+      if (target.schema === 1 && (this.schema2Session || this.protectedHistory.length)) target = migrateStateV1(target);
+      const state2 = withProvenance2(target, this.marks, this.protectedHistory);
+      if (state2.schema === 2) state2.maintenanceRevision = Math.max(state2.maintenanceRevision, this.maintenanceClock) + 1;
+      this.publish(makeEnvelope(state2, this.recovery, this.marks, this.protectedHistory, this.maintenanceClock), { allowBlocked: true });
       return this.state;
     }
     export() {
       if (!this.current) throw Error("No valid loaded career to export");
-      const candidate = makeEnvelope(this.current, this.recovery, this.marks);
+      const candidate = makeEnvelope(this.current, this.recovery, this.marks, this.protectedHistory, this.maintenanceClock);
       this.exportToken = candidate.envelope.primary.digest;
       return structuredClone(candidate.envelope);
     }
     acknowledgeExport(token) {
-      if (!this.current || !this.exportToken || token !== this.exportToken || token !== makeEnvelope(this.current, this.recovery, this.marks).envelope.primary.digest) throw Error("Export the current checkpoint first");
+      if (!this.current || !this.exportToken || token !== this.exportToken || token !== makeEnvelope(this.current, this.recovery, this.marks, this.protectedHistory, this.maintenanceClock).envelope.primary.digest) throw Error("Export the current checkpoint first");
       this.requiresCheckpoint = false;
     }
   };
@@ -3976,11 +4386,14 @@
     let staged = null, lastToken = null, notice = "", queue = Promise.resolve();
     function render2() {
       const state2 = store.state;
-      $("careerSaveStatus").textContent = `${store.mode.toUpperCase()} \xB7 ${state2 ? `Revision ${state2.revision} \xB7 Treasury ${state2.career.treasury} Gold \xB7 ${state2.profile.developerEdited || state2.career.developerEdited ? "DEVELOPER-EDITED (persistent)" : "Unedited foundation"}` : "No career loaded"}${store.requiresCheckpoint ? " \xB7 CHECKPOINT REQUIRED: export, save the file and confirm before another change." : ""}`;
+      $("careerSaveStatus").textContent = `${store.mode.toUpperCase()} \xB7 ${state2 ? `Schema ${state2.schema} \xB7 Revision ${state2.revision} \xB7 Maintenance ${state2.maintenanceRevision ?? 0} \xB7 Treasury ${state2.career.treasury} Gold \xB7 ${state2.profile.developerEdited || state2.career.developerEdited ? "DEVELOPER-EDITED (persistent)" : "Unedited foundation"}` : "No career loaded"}${store.requiresCheckpoint ? " \xB7 CHECKPOINT REQUIRED: export, save the file and confirm before another change." : ""}`;
       $("careerSaveNotice").textContent = [store.problem, notice].filter(Boolean).join(" ");
       $("careerSaveInspect").textContent = JSON.stringify(state2 ?? { status: store.mode, recoveryAvailable: Boolean(store.recovery) }, null, 2);
       $("careerAdjust").disabled = !state2 || ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint;
       $("careerExport").disabled = !state2;
+      $("careerMigrate").disabled = !state2 || state2.schema !== 1 || ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint;
+      $("careerCreate").textContent = store.schema2Session ? "Create uninitialized schema-2 foundation" : "Create empty M1 state";
+      $("careerHistoryPlan").textContent = JSON.stringify(state2 ? historyRetentionPlan(state2) : { scope: "M2-A only", initialized: false }, null, 2);
       $("careerAcknowledge").disabled = !state2 || !lastToken;
       $("careerRecover").disabled = !store.recoveryPending;
       $("careerRawExport").disabled = !store.quarantine;
@@ -3999,9 +4412,18 @@
     };
     $("careerCreate").onclick = act(() => {
       const existing = store.state || store.raw !== null || store.quarantine;
-      if (existing && !window.confirm("Replace the current Owner Profile and Career State with an empty M1 foundation? Export a backup first. Owner Legacy will not be merged.")) return;
-      store.create(createCareer({ profileId: newId("profile"), careerId: newId("career"), ownerName: $("careerOwnerName").value, careerName: $("careerName").value }), { confirmed: Boolean(existing) });
-      notice = "Empty M1 foundation created: 0 Gold, no roster, championships or Legacy progression. This is not the M2 starting stable.";
+      if (existing && !window.confirm("Replace the current Owner Profile and Career State with an empty foundation? Export a backup first. Owner Legacy will not be merged.")) return;
+      const create = store.schema2Session ? createUninitializedCareer : createCareer2;
+      store.create(create({ profileId: newId("profile"), careerId: newId("career"), ownerName: $("careerOwnerName").value, careerName: $("careerName").value }), { confirmed: Boolean(existing) });
+      notice = "Empty uninitialized foundation created: 0 Gold, no roster, championships or Legacy progression. Starting packages and explicit initialization require M2-B.";
+      lastToken = null;
+    });
+    $("careerMigrate").onclick = act(() => {
+      const state2 = store.state;
+      if (!state2) throw Error("No career loaded");
+      if (!window.confirm("Upgrade this M1 career to schema 2? IDs, Gold, gameplay revision, receipts and provenance are preserved. No assets or progress are granted. The previous valid checkpoint is retained. Initialization requires M2-B.")) return;
+      store.migrateSchema({ confirmed: true, profileId: state2.profile.id, careerId: state2.career.id, expectedRevision: state2.revision, expectedMaintenanceRevision: state2.maintenanceRevision ?? 0 });
+      notice = "Schema 2 migration committed: management remains uninitialized, registries empty. No Gold, assets, achievements or gameplay revision awarded.";
       lastToken = null;
     });
     $("careerAdjust").onclick = act(() => {
@@ -4011,7 +4433,7 @@
       if (!rawDelta.trim() || !Number.isSafeInteger(Number(rawDelta))) throw Error("Enter a whole-number treasury change");
       const delta = Number(rawDelta), reason = $("careerEditReason").value;
       if (!window.confirm("Apply this developer treasury transaction? It permanently marks this profile and career developer-edited.")) return;
-      store.transaction({ id: newId("tx"), profileId: state2.profile.id, careerId: state2.career.id, expectedRevision: state2.revision, type: "developer.treasury.adjust", delta, reason });
+      store.transaction({ id: newId("tx"), profileId: state2.profile.id, careerId: state2.career.id, expectedRevision: state2.revision, type: "developer.treasury.adjust", delta, reason, ...state2.schema === 2 ? { commandVersion: 1, expectedMaintenanceRevision: state2.maintenanceRevision, effectId: newId("effect") } : {} });
       notice = "Developer transaction committed. This provenance cannot be cleared by ordinary actions.";
       lastToken = null;
     });
@@ -4031,15 +4453,16 @@
       const file = $("careerImportFile").files[0];
       $("careerImportFile").value = "";
       if (!file) return;
-      if (!file.name.toLowerCase().endsWith(".json") || file.size > MAX_SAVE_BYTES) throw Error("Choose a career .json file within the 2 MiB limit");
+      if (!file.name.toLowerCase().endsWith(".json") || file.size > MAX_IMPORT_BYTES) throw Error("Choose a career .json file within the 8 MiB import limit (schema 1 remains limited to 2 MiB)");
       const text2 = await file.text(), parsed = parseEnvelope(text2);
       staged = text2;
-      notice = `Import validated: ${parsed.primary.profile.name} / ${parsed.primary.career.name}, revision ${parsed.primary.revision}. Nothing was replaced. Use Confirm replacement to proceed.`;
+      $("careerImportMigrate").checked = parsed.primary.schema === 1 && store.schema2Session;
+      notice = `Import validated: ${parsed.primary.profile.name} / ${parsed.primary.career.name}, schema ${parsed.primary.schema}, revision ${parsed.primary.revision}. ${$("careerImportMigrate").checked ? "Schema-1 upgrade is selected; no grants or initialization. " : ""}Nothing was replaced. Use Confirm replacement to proceed.`;
     });
     $("careerImportApply").onclick = act(() => {
       if (!staged) throw Error("Select and validate an import first");
-      if (!window.confirm("Replace the entire loaded Owner Profile, Career State and pending checkpoint with this file? Export your current state first. Owner Legacy is replaced, never merged; known matching developer provenance is retained.")) return;
-      store.importSave(staged, { confirmed: true });
+      if (!window.confirm("Replace the entire loaded Owner Profile, Career State and pending checkpoint with this file? Export your current state first. Owner Legacy is replaced, never merged; known matching developer provenance is retained. If the schema-1 upgrade checkbox is selected, the file is upgraded without grants.")) return;
+      store.importSave(staged, { confirmed: true, migrateLegacy: $("careerImportMigrate").checked });
       staged = null;
       lastToken = null;
       notice = "Complete persistent state imported. Owner Legacy was not merged. Retained developer provenance may keep an older imported checkpoint marked edited.";

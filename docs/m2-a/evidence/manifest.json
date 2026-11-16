@@ -1,0 +1,35 @@
+{
+  "baselineRevision": "ffb92fcc21966cc1853b2ff6adbdf81e7770e79c",
+  "baselineWorkingTree": "clean",
+  "simulationVersion": "0.6.0-tracks",
+  "packageVersion": "0.6.0",
+  "careerSchemas": [
+    1,
+    2
+  ],
+  "transportSchema": 1,
+  "baselineTests": 237,
+  "finalTests": 265,
+  "newCases": 28,
+  "originalM1Cases": 25,
+  "focusedCases": 53,
+  "retainedTestsUnchanged": true,
+  "legacyImplementationVerbatim": true,
+  "legacyImplementationSHA256": "4dd8204d059dc3902cb5cead399a025d210f768fdfd074f1ecf6f1eeb8aabcb7",
+  "engineAndDependencyPathsUnchanged": true,
+  "referenceDefaultRaceChecksum": "43ba2ec0",
+  "priorDefaultRaceChecksum": "43ba2ec0",
+  "browserGroups": {
+    "m2a": 12,
+    "m1": 18,
+    "racing": 23
+  },
+  "fileLaunch": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///workspace/BNT/dist/Blood_and_Thunder.html",
+  "artifact": {
+    "path": "dist/Blood_and_Thunder.html",
+    "bytes": 267562,
+    "sha256": "0f91c4f04616387933eb6485eb542bb6344713319a8a6980b7abaa9aba747a11",
+    "identicalAliases": true
+  },
+  "scope": "M2-A only; no initialization, grants, management gameplay or compaction execution; stop for review"
+}

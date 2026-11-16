@@ -8,7 +8,7 @@ import {createCareer} from '../src/career/state.js';
 import {SAVE_KEY,makeEnvelope} from '../src/persistence/envelope.js';
 import {configuration} from '../src/dev/configuration.js';
 import {VERSION} from '../src/config/config.js';
-const out='docs/persistence-foundation/evidence';await mkdir(out,{recursive:true});
+const out=process.env.BNT_PERSISTENCE_EVIDENCE_DIR??'docs/persistence-foundation/evidence';await mkdir(out,{recursive:true});
 const report={checks:[],errors:[],requests:[],fileLaunch:'not attempted',browser:null};
 const html=await readFile('dist/Blood-and-Thunder-Track-Test.html','utf8'),fileURL=pathToFileURL(resolve('dist/Blood-and-Thunder-Track-Test.html')).href;
 const browser=await chromium.launch({executablePath:process.env.BNT_BROWSER_PATH??'/usr/bin/chromium',headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});let server;
