@@ -132,3 +132,13 @@ These entries supersede the earlier diagnostic and verification notes where appl
 - Dynamic hazards/opponents stay perception-filtered; the eight-cell layout preview is static course knowledge. Geometric inside benefit competes with corner risk. New surface profiles use only existing grip/roughness/rolling/hazard parameters. Narrower effective passing in Technical Rally comes from short straights/compound corners/terrain, not a new lane restriction.
 - A shared finish snapshot/exit path locks results before physical clearance; terminal wrecks remain obstacles and may explicitly stall classified finishers. Forced regressions cover this; no teleport/removal policy was added. Checkpoints/terrain transitions support event commentary, with a three-second segment-message cooldown in presentation only.
 - Same-version0.5.0 replay/configuration is deterministic. Latest0.4.3 **oval configurations** explicitly normalize on import; old replay checksums require old engine/source. Four old oval event/RNG/classification references match exactly despite version/default metadata hash changes.
+
+
+## Track catalogue and generation 0.6.0
+
+- Four physical lanes remain constant-width. Technical passages reduce effective passing windows through geometry and existing surfaces; no unsupported lane-merging rule is inferred from “narrow” or “wide” chunk names.
+- Three oval dimensions and twelve handcrafted circuits use the existing engine's metre/degree/tile geometry. New preset values are configurable course design data, not changes to global physical or AI coefficients.
+- Rally generation is a pre-race deterministic authoring operation with its own keyed seed namespace. The race seed remains separate. Checkpoints scale to actual route length at 25/50/75%; generation metadata and complete geometry survive configuration/replay snapshots.
+- Initial categories use 6/12/22 chunks, configurable within 4–24; retry bounds default to 12 (maximum 32). Ambiguous/nonlocal road corridors are rejected by sampled shared geometry; a bounded, explicitly identified straight fallback preserves participation. Sampling is not an exhaustive analytic proof for arbitrary custom roads.
+- The default UI includes the new catalogue; older course definitions remain available through configuration import. Version 0.5.0 configurations normalize explicitly. Historical replay checksums require their original source version; old/new behavior comparisons use complete events/RNG/classification rather than ignoring checksum divergence.
+- Long Rally auto-follow is presentation-only. The selected inspection RU is the camera target, with an overview minimap; ready previews always fit the whole route.

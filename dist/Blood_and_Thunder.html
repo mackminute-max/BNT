@@ -282,6 +282,7 @@
       .radio-empty {
         color: #becbc8;
       }
+      [hidden] { display: none !important; }
     </style>
   </head>
   <body>
@@ -314,6 +315,15 @@
               </select></label
             >
           </div>
+          <div id="rallyControls" class="controls" hidden>
+            <label>Track seed<input id="rallySeed" type="number" step="1" value="1" /></label>
+            <label>Length<select id="rallyCategory"><option value="short">Short</option><option value="medium" selected>Medium</option><option value="long">Long</option></select></label>
+            <label>Terrain<select id="rallyTerrain"><option>balanced</option><option>road</option><option>rugged</option></select></label>
+            <label>Turn frequency<input id="rallyTurns" type="number" min="0" max="1" step=".05" value=".55" /></label>
+            <label>Turn complexity<input id="rallyComplexity" type="number" min="0" max="1" step=".05" value=".5" /></label>
+            <button id="regenerateRally">Generate / preview</button>
+          </div>
+          <label>Camera<select id="cameraMode"><option value="auto">Auto</option><option value="overview">Overview</option><option value="follow">Follow selected RU</option></select></label>
           <div class="metrics">
             <div>
               <strong id="clock">0.000</strong><span>RACE CLOCK / s</span>
@@ -595,6 +605,7 @@
             /><button id="applySurface">Apply to new race</button>
           </div>
           <p class="note">Hazard modifier: 0–2, neutral 1. Weights incident placement on this segment; 0 excludes it. Incident frequency and the disabled-incidents setting remain unchanged.</p>
+          <h2>Track diagnostics</h2><pre id="trackDiagnostics"></pre>
           <h2>Complete configuration and lineup</h2>
           <p class="note">
             Edit entrants, beasts, equipment, starting lanes/positions, player
@@ -818,7 +829,7 @@
       if (!Object.hasOwn(coursePresets, input)) throw Error("Unknown track preset");
       input = structuredClone(coursePresets[input]);
     }
-    if (!input || typeof input !== "object" || Array.isArray(input) || Object.keys(input).some((k) => !["id", "name", "kind", "closed", "lanes", "segments", "checkpoints"].includes(k))) throw Error("Invalid course definition");
+    if (!input || typeof input !== "object" || Array.isArray(input) || Object.keys(input).some((k) => !["id", "name", "kind", "closed", "lanes", "segments", "checkpoints", "generation"].includes(k))) throw Error("Invalid course definition");
     if (!identifier(input.id) || typeof input.name !== "string" || !input.name.length || input.name.length > 100 || !["Circuit", "Rally"].includes(input.kind) || input.closed !== (input.kind === "Circuit") || input.lanes !== 4) throw Error("Invalid course kind, topology or lanes");
     if (!Array.isArray(input.segments) || input.segments.length < 2 || input.segments.length > 128) throw Error("Invalid course segments");
     const seen = /* @__PURE__ */ new Set();
@@ -843,7 +854,7 @@
       previous2 = p.distance;
       ids.add(p.id);
     }
-    return { id: input.id, name: input.name, kind: input.kind, closed: input.closed, lanes: 4, segments, checkpoints: structuredClone(cp) };
+    return { id: input.id, name: input.name, kind: input.kind, closed: input.closed, lanes: 4, segments, checkpoints: structuredClone(cp), ...input.generation ? { generation: validateGenerationMetadata(input.generation) } : {} };
   }
   function compileCourse(input, c) {
     const definition = normalizeCourse(input);
@@ -881,8 +892,8 @@
   }
   function coursePoint(q, lane, c, t) {
     const { segment: s, position } = segmentAt(q, t), fraction = (position - s.start) / s.tiles;
-    const p = advance(s.x, s.y, s.heading, s.length, s.angle, fraction), offset = lane * c.laneWidth;
-    return { x: p.x - Math.sin(p.heading) * offset, y: p.y + Math.cos(p.heading) * offset };
+    const p = advance(s.x, s.y, s.heading, s.length, s.angle, fraction), offset2 = lane * c.laneWidth;
+    return { x: p.x - Math.sin(p.heading) * offset2, y: p.y + Math.cos(p.heading) * offset2 };
   }
   function routePreview(q, lane, c, t) {
     let next = null;
@@ -934,10 +945,52 @@
     const { segment: s } = segmentAt(q, t);
     return s.startDistance + (q - s.start) / s.tiles * s.length;
   }
+  function validateGenerationMetadata(g) {
+    if (!g || typeof g !== "object" || g.version !== 1 || !Number.isSafeInteger(g.seed) || !["short", "medium", "long"].includes(g.category) || typeof g.fallback !== "boolean" || !Number.isInteger(g.attempt) || g.attempt < 0 || g.attempt > 32 || !g.options || typeof g.options !== "object") throw Error("Invalid generation metadata");
+    return structuredClone(g);
+  }
+
+  // src/track/catalog.js
+  var ovalPresets = Object.freeze({
+    "short-oval": { id: "short-oval", name: "Short Oval", overrides: { straightLength: 90, innerRadius: 24, straightTiles: 12, turnTiles: 16 } },
+    oval: { id: "oval", name: "Standard Oval", overrides: { straightLength: 160, innerRadius: 35, straightTiles: 20, turnTiles: 20 } },
+    "grand-oval": { id: "grand-oval", name: "Grand Oval", overrides: { straightLength: 280, innerRadius: 60, straightTiles: 35, turnTiles: 28 } }
+  });
+  var authored = [
+    ["C01", "Broken Crown", [[0, 0], [240, 0], [240, 160], [160, 160], [160, 90], [80, 90], [80, 200], [0, 200]], [20, 22, 20, 18, 18, 18, 20, 22], ["stone", "dirt"]],
+    ["C02", "Serpent's Coil", [[0, 0], [520, 0], [520, 300], [400, 300], [400, 120], [310, 120], [310, 340], [210, 340], [210, 140], [110, 140], [110, 300], [0, 300]], [28, 30, 28, 25, 24, 24, 28, 24, 24, 24, 28, 30], ["dirt", "gravel", "stone"]],
+    ["C03", "Ironhook", [[0, 0], [650, 0], [650, 70], [150, 70], [150, 340], [0, 340]], [30, 24, 24, 28, 40, 35], ["stone", "dirt"]],
+    ["C04", "Blackstone Run", [[0, 0], [340, 0], [340, 260], [240, 260], [240, 160], [160, 160], [160, 330], [80, 330], [80, 250], [0, 250]], [24, 28, 26, 24, 24, 24, 24, 22, 22, 26], ["stone", "gravel", "stone", "dirt"]],
+    ["C05", "Thunder's Bend", [[0, 0], [500, 0], [500, 300], [300, 300], [300, 180], [0, 180]], [50, 70, 60, 35, 35, 45], ["stone", "dirt"]],
+    ["C06", "Widowmaker", [[0, 0], [360, 0], [360, 330], [280, 330], [280, 130], [190, 130], [190, 250], [100, 250], [100, 330], [0, 330]], [24, 26, 22, 22, 24, 24, 22, 22, 22, 26], ["dirt", "gravel", "mud"]],
+    ["C07", "Ashen Ring", [[0, 0], [360, 0], [460, 130], [340, 300], [220, 250], [140, 360], [-80, 260], [-100, 100]], [30, 28, 32, 26, 24, 24, 28, 26], ["dirt", "sand", "mud", "gravel", "stone"]],
+    ["C08", "King's Gauntlet", [[0, 0], [650, 0], [650, 350], [500, 350], [500, 210], [380, 210], [380, 380], [220, 380], [220, 150], [100, 150], [100, 310], [0, 310]], [35, 48, 40, 28, 24, 28, 32, 28, 24, 24, 28, 30], ["stone", "gravel", "dirt", "stone", "sand"]],
+    ["C09", "Red Fang", [[0, 0], [420, 0], [520, 180], [320, 340], [280, 200], [180, 220], [100, 340], [-80, 250], [-80, 100]], [26, 30, 28, 24, 24, 22, 24, 24, 24], ["dirt", "stone", "gravel"]],
+    ["C10", "The Labyrinth", [[0, 0], [600, 0], [600, 420], [490, 420], [490, 140], [390, 140], [390, 340], [280, 340], [280, 180], [180, 180], [180, 460], [80, 460], [80, 300], [0, 300]], [24, 28, 26, 24, 24, 24, 26, 24, 24, 24, 24, 24, 22, 24], ["dirt", "gravel", "stone", "sand"]],
+    ["C11", "Stormbreaker", [[0, 0], [620, 0], [620, 320], [470, 320], [470, 140], [320, 140], [320, 410], [0, 410]], [45, 55, 45, 35, 30, 35, 45, 55], ["stone", "dirt", "gravel"]],
+    ["C12", "Devil's Spine", [[0, 0], [500, 0], [560, 140], [430, 280], [360, 170], [280, 210], [220, 360], [90, 340], [110, 180], [-50, 180], [-70, 80]], [24, 26, 24, 22, 20, 20, 24, 20, 20, 22, 20], ["gravel", "dirt", "sand", "stone"]]
+  ];
+  var circuitCatalog = Object.freeze(Object.fromEntries(authored.map(([id, name, vertices, radii, terrains]) => {
+    const scale = { C02: 0.8, C08: 0.75, C10: 0.65, C11: 0.8 }[id] ?? 1;
+    const definition = circuit(id, name, vertices.map(([x, y]) => [x * scale, y * scale]), radii);
+    definition.segments.forEach((segment2, i) => segment2.terrain = terrains[i % terrains.length]);
+    return [id, definition];
+  })));
+  function resolveCatalog(course) {
+    return typeof course === "string" && Object.hasOwn(circuitCatalog, course) ? structuredClone(circuitCatalog[course]) : course;
+  }
+  function trackChoices(kind) {
+    if (kind === "Oval") return Object.values(ovalPresets).map((x) => [x.id, x.name]);
+    if (kind === "Circuit") return Object.values(circuitCatalog).map((x) => [x.id, x.name]);
+    return [["generated-short", "Short Rally"], ["generated-medium", "Medium Rally"], ["generated-long", "Long Rally"]];
+  }
 
   // src/track/oval.js
   var mod2 = (n, d) => (n % d + d) % d;
   function track(c, definition = null) {
+    definition = resolveCatalog(definition);
+    const ovalId = typeof definition === "string" && Object.hasOwn(ovalPresets, definition) ? definition : null;
+    if (ovalId) definition = null;
     if (definition !== null && definition !== void 0 && definition !== "oval") return compileCourse(definition, c);
     const segments = [
       { id: "north", type: "straight", tiles: c.straightTiles, direction: 0 },
@@ -951,7 +1004,7 @@
       start += s.tiles;
       s.surface = { ...surfaceDefaults };
     }
-    return { segments, cells: start, lanes: c.lanes };
+    return { segments, cells: start, lanes: c.lanes, ...ovalId && ovalId !== "oval" ? { ovalId, name: ovalPresets[ovalId].name } : {} };
   }
   function location(q, lane, c, t) {
     if (t.course) return courseLocation(q, lane, c, t);
@@ -966,6 +1019,9 @@
       length: s.type === "turn" ? Math.PI * radius / s.tiles : c.straightLength / s.tiles,
       surface: s.surface
     };
+  }
+  function lapLength(lane, c) {
+    return c.straightLength * 2 + Math.PI * 2 * (c.innerRadius + lane * c.laneWidth);
   }
   function key(q, lane, t) {
     return `${lane}:${t.course && !t.closed ? Math.floor(q) : mod2(Math.floor(q), t.cells)}`;
@@ -1541,7 +1597,7 @@
   }
 
   // src/config/config.js
-  var VERSION = "0.5.0-courses";
+  var VERSION = "0.6.0-tracks";
   var rules = {
     dt: [1e-3, 1, "s"],
     epsilon: [1e-12, 1e-7, "s"],
@@ -2595,7 +2651,9 @@
     const consequenceTuning = consequenceConfig(consequence);
     const tuning = m2Config(autonomous);
     const environment = environmentConfig(weather, environmentOverrides);
-    const c = config(overrides), t = track(c, course);
+    course = resolveCatalog(course);
+    const oval = typeof course === "string" && Object.hasOwn(ovalPresets, course) ? ovalPresets[course] : null;
+    const c = config({ ...oval?.overrides, ...overrides }), t = track(c, course);
     if (!Number.isSafeInteger(seed))
       throw new Error("Seed must be a safe integer");
     if (!["Pure", "Combat"].includes(format))
@@ -2721,7 +2779,7 @@
     if (!units.some((r) => r.id === s.playerId))
       throw new Error("Invalid player RU");
     s.setup = {
-      ...t.course ? { course: normalizeCourse(course) } : {},
+      ...t.course ? { course: normalizeCourse(course) } : t.ovalId ? { course: t.ovalId } : {},
       seed,
       overrides: { ...c },
       entrants: units.map((r) => ({
@@ -3516,7 +3574,7 @@
   }
   function parseConfiguration(text) {
     const doc = JSON.parse(text);
-    if (doc.kind !== "BNT-configuration" || doc.schema !== 1 || doc.version !== VERSION && !(doc.version === "0.4.3-combat-ai" && (!doc.setup?.course || doc.setup.course === "oval")))
+    if (doc.kind !== "BNT-configuration" || doc.schema !== 1 || doc.version !== VERSION && doc.version !== "0.5.0-courses" && !(doc.version === "0.4.3-combat-ai" && (!doc.setup?.course || doc.setup.course === "oval")))
       throw new Error("Unsupported configuration version");
     return configuration(doc.setup);
   }
@@ -3847,7 +3905,7 @@
           throw new Error("Invalid seed range: use safe integers and at most 1000 seeds");
         const count = b - a + 1;
         if (result.length + count > 1e3) throw new Error("Choose 1..1000 seeds");
-        for (let offset = 0; offset < count; offset++) result.push(a + offset);
+        for (let offset2 = 0; offset2 < count; offset2++) result.push(a + offset2);
       } else {
         const seed = Number(token);
         if (!Number.isSafeInteger(seed)) throw new Error("Invalid seed");
@@ -4246,6 +4304,132 @@
     };
   }
 
+  // src/track/validation.js
+  function validateFootprint(t, c, { spacing = 4, clearance = c.lanes * c.laneWidth + 4 } = {}) {
+    if (!Number.isFinite(spacing) || spacing <= 0 || !Number.isFinite(clearance) || clearance <= 0) throw Error("Invalid geometry validation parameters");
+    const samples = [];
+    let distance = 0, previous2 = null;
+    for (let q = 0; q <= t.cells; q += 0.25) {
+      const p = point(q, (c.lanes - 1) / 2, c, t);
+      if (previous2) distance += Math.hypot(p.x - previous2.x, p.y - previous2.y);
+      if (!samples.length || distance - samples.at(-1).distance >= spacing || q === t.cells) samples.push({ ...p, distance });
+      previous2 = p;
+    }
+    const closed = !t.course || t.closed, total = distance;
+    let minimum = Infinity;
+    for (let i = 0; i < samples.length; i++) for (let j = i + 1; j < samples.length; j++) {
+      let apart = samples[j].distance - samples[i].distance;
+      if (closed) apart = Math.min(apart, total - apart);
+      if (apart <= clearance * 1.7) continue;
+      const separation = Math.hypot(samples[i].x - samples[j].x, samples[i].y - samples[j].y);
+      minimum = Math.min(minimum, separation);
+      if (separation < clearance) return { valid: false, message: `Road overlaps or approaches ambiguously near samples ${i}/${j} (${separation.toFixed(2)} < ${clearance} m)`, samples: samples.length };
+    }
+    return { valid: true, message: "Connected geometry and road corridor validated", samples: samples.length, minimumSeparation: Number.isFinite(minimum) ? minimum : null };
+  }
+  var footprintCache = /* @__PURE__ */ new WeakMap();
+  function trackDiagnostics(s) {
+    const t = s.track, c = s.config, terrain = {};
+    if (!footprintCache.has(t)) footprintCache.set(t, validateFootprint(t, c));
+    for (const segment2 of t.segments) {
+      const length = segment2.length ?? (segment2.type === "turn" ? Math.PI * c.innerRadius : c.straightLength);
+      terrain[segment2.terrain ?? "neutral"] = (terrain[segment2.terrain ?? "neutral"] ?? 0) + length;
+    }
+    return { id: t.id ?? t.ovalId ?? "oval", name: t.name ?? "Standard Oval", type: t.raceType ?? "Oval", seed: s.setup.course?.generation?.seed ?? null, generation: s.setup.course?.generation ?? null, segments: t.segments.length, distance: t.length ?? lapLength(0, c), leftTurns: t.segments.filter((x) => x.direction < 0).length, rightTurns: t.segments.filter((x) => x.direction > 0).length, terrainMetres: terrain, minWidth: c.lanes * c.laneWidth, maxWidth: c.lanes * c.laneWidth, validation: footprintCache.get(t), raceStatus: s.status, ticks: s.tick };
+  }
+
+  // src/track/rally-generator.js
+  var line = (length) => ({ length, turn: 0 });
+  var arc = (turn, radius) => ({ length: Math.abs(turn) * Math.PI / 180 * radius, turn });
+  var offset = (turn, radius, straight = 20) => [arc(turn, radius), line(straight), arc(-turn, radius)];
+  var rallyChunks = Object.freeze({
+    "short-straight": [line(55)],
+    "medium-straight": [line(90)],
+    "long-straight": [line(145)],
+    "gentle-left": offset(-35, 55, 25),
+    "gentle-right": offset(35, 55, 25),
+    "sharp-left": offset(-65, 36, 25),
+    "sharp-right": offset(65, 36, 25),
+    "hairpin-left": offset(-150, 38, 40),
+    "hairpin-right": offset(150, 38, 40),
+    "s-left-right": [arc(-45, 38), arc(90, 38), arc(-45, 38)],
+    "s-right-left": [arc(45, 38), arc(-90, 38), arc(45, 38)],
+    "narrow-passage": [line(30), arc(-55, 28), arc(55, 28), line(20)],
+    "wide-passing": [line(180)],
+    "rough-section": [line(70)],
+    "terrain-transition": [line(45), line(55)],
+    "technical-combination": [arc(-60, 30), arc(90, 30), arc(-30, 30), line(25)],
+    "fast-open": [line(160), arc(20, 70), arc(-20, 70)]
+  });
+  var rallyCategories = Object.freeze({ short: { chunks: 6 }, medium: { chunks: 12 }, long: { chunks: 22 } });
+  var rallyTerrainProfiles = Object.freeze({
+    balanced: { dirt: 4, stone: 3, gravel: 2, sand: 1, mud: 1 },
+    road: { dirt: 2, stone: 7, gravel: 1, sand: 0, mud: 0 },
+    rugged: { dirt: 2, stone: 1, gravel: 4, sand: 2, mud: 2 }
+  });
+  function generationOptions(input = {}) {
+    if (!input || typeof input !== "object" || Array.isArray(input) || Object.keys(input).some((k) => !["seed", "category", "terrainProfile", "terrainWeights", "turnFrequency", "turnSeverity", "chunks", "maxAttempts", "chunkLibrary", "laneWidth"].includes(k))) throw Error("Invalid rally generator options");
+    const seed = input.seed ?? 1, category = input.category ?? "medium", terrainProfile = input.terrainProfile ?? "balanced";
+    if (!Number.isSafeInteger(seed) || !Object.hasOwn(rallyCategories, category) || !Object.hasOwn(rallyTerrainProfiles, terrainProfile)) throw Error("Invalid rally seed, category or terrain profile");
+    const o = { seed, category, terrainProfile, terrainWeights: { ...input.terrainWeights ?? rallyTerrainProfiles[terrainProfile] }, turnFrequency: input.turnFrequency ?? 0.55, turnSeverity: input.turnSeverity ?? 0.5, chunks: input.chunks ?? rallyCategories[category].chunks, maxAttempts: input.maxAttempts ?? 12, laneWidth: input.laneWidth ?? 4 };
+    for (const k of ["turnFrequency", "turnSeverity"]) if (!Number.isFinite(o[k]) || o[k] < 0 || o[k] > 1) throw Error("Invalid " + k + " (0..1)");
+    if (!Number.isInteger(o.chunks) || o.chunks < 4 || o.chunks > 24 || !Number.isInteger(o.maxAttempts) || o.maxAttempts < 1 || o.maxAttempts > 32 || !Number.isFinite(o.laneWidth) || o.laneWidth < 1 || o.laneWidth > 4) throw Error("Invalid generation bounds or width");
+    if (Object.keys(o.terrainWeights).some((k) => !Object.hasOwn(rallyTerrainProfiles.balanced, k)) || Object.values(o.terrainWeights).some((v) => !Number.isFinite(v) || v < 0 || v > 100) || !Object.values(o.terrainWeights).some((v) => v > 0)) throw Error("Invalid terrain distribution");
+    const library = input.chunkLibrary ?? rallyChunks;
+    if (!library || typeof library !== "object" || Array.isArray(library) || !Object.keys(library).length || Object.keys(library).length > 64) throw Error("Invalid chunk library");
+    for (const [id, items] of Object.entries(library)) if (!/^[a-z0-9-]{1,40}$/.test(id) || !Array.isArray(items) || !items.length || items.length > 5 || items.some((s) => !s || Object.keys(s).some((k) => !["length", "turn"].includes(k)) || !Number.isFinite(s.length) || s.length < 1 || s.length > 200 || !Number.isFinite(s.turn) || Math.abs(s.turn) > 170)) throw Error("Invalid chunk " + id);
+    return { ...o, chunkLibrary: structuredClone(library) };
+  }
+  function pickTerrain(o, draw3, key2) {
+    const items = Object.entries(o.terrainWeights).filter(([, w]) => w > 0);
+    let n = draw3("terrain", key2) * items.reduce((a, [, w]) => a + w, 0);
+    return items.find(([, w]) => (n -= w) < 0)?.[0] ?? items.at(-1)[0];
+  }
+  function generateRally(input = {}) {
+    const o = generationOptions(input), c = config({ laneWidth: o.laneWidth });
+    const build = (attempt, fallback2 = false) => {
+      const draw3 = (...key2) => random(o.seed, "rally-generator-v1", attempt, ...key2), parts = [], used = [];
+      for (let i = 0; i < o.chunks; i++) {
+        const turning = !fallback2 && draw3("turn", i) < o.turnFrequency;
+        let choices = Object.entries(o.chunkLibrary).filter(([id2, items2]) => {
+          const hasTurn = items2.some((s) => s.turn !== 0), severe = items2.some((s) => Math.abs(s.turn) > 90);
+          const peak = Math.max(...items2.map((s) => Math.abs(s.turn)));
+          return hasTurn === turning && peak <= 45 + 125 * o.turnSeverity && (!severe || draw3("severity", i) < o.turnSeverity);
+        });
+        const fresh = choices.filter(([id2]) => !used.slice(-2).includes(id2));
+        if (fresh.length) choices = fresh;
+        let id, items;
+        if (!choices.length) {
+          id = fallback2 ? "fallback-straight" : "safe-straight";
+          items = [line(85)];
+        } else [id, items] = choices[Math.floor(draw3("chunk", i) * choices.length)];
+        if (fallback2) {
+          id = "fallback-straight";
+          items = [line(85)];
+        }
+        used.push(id);
+        const terrain = pickTerrain(o, draw3, i);
+        for (let j = 0; j < items.length; j++) parts.push([items[j].length, items[j].turn, id === "terrain-transition" ? pickTerrain(o, draw3, i + "-" + j) : terrain]);
+      }
+      const course = rally("rally-" + o.category + "-" + String(o.seed).replace("-", "n"), "Generated " + o.category + " Rally \xB7 " + o.seed, [[80, 0, "dirt"], ...parts, [80, 0, "dirt"]]);
+      course.segments[0].terrain = pickTerrain(o, draw3, "start");
+      course.segments.at(-1).terrain = pickTerrain(o, draw3, "finish");
+      course.generation = { version: 1, seed: o.seed, category: o.category, terrainProfile: o.terrainProfile, attempt, fallback: fallback2, chunks: used, options: structuredClone(o) };
+      const t = compileCourse(course, c), validation = validateFootprint(t, c);
+      if (!validation.valid) throw Error(validation.message);
+      return course;
+    };
+    const failures = [];
+    for (let attempt = 0; attempt < o.maxAttempts; attempt++) try {
+      return build(attempt);
+    } catch (e) {
+      failures.push(e.message);
+    }
+    const fallback = build(o.maxAttempts, true);
+    fallback.generation.failures = failures;
+    return fallback;
+  }
+
   // src/ui/app.js
   var $2 = (id) => document.getElementById(id);
   var colors = [
@@ -4258,15 +4442,25 @@
     "#dd9d63",
     "#b4c3df"
   ];
+  var presetId = (course) => typeof course === "string" ? course : course?.generation ? "generated-" + course.generation.category : course?.id ?? "oval";
   function populateTracks(course = null) {
-    const kind = $2("raceKind").value;
-    const choices = kind === "Oval" ? [["oval", "Existing Oval"]] : Object.entries(coursePresets).filter(([, c]) => c.kind === kind).map(([id, c]) => [id, c.name]);
-    if (course && !choices.some(([id]) => id === course.id)) choices.push([course.id, course.name]);
-    $2("trackPreset").replaceChildren(...choices.map(([id, name]) => new Option(name, id)));
-    if (course) $2("trackPreset").value = course.id;
+    const kind = $2("raceKind").value, choices = trackChoices(kind), id = presetId(course);
+    if (course && !choices.some(([key2]) => key2 === id)) choices.push([id, course.name ?? id]);
+    $2("trackPreset").replaceChildren(...choices.map(([id2, name]) => new Option(name, id2)));
+    if (course) $2("trackPreset").value = id;
+    else if (kind === "Oval") $2("trackPreset").value = "oval";
+    else if (kind === "Rally") $2("trackPreset").value = "generated-" + $2("rallyCategory").value;
     $2("lapCount").disabled = kind === "Rally";
+    $2("rallyControls").hidden = kind !== "Rally";
   }
   $2("raceKind").onchange = () => populateTracks();
+  $2("trackPreset").onchange = () => {
+    if ($2("trackPreset").value.startsWith("generated-")) $2("rallyCategory").value = $2("trackPreset").value.slice(10);
+  };
+  $2("rallyCategory").onchange = () => $2("trackPreset").value = "generated-" + $2("rallyCategory").value;
+  $2("regenerateRally").onclick = () => reset(true);
+  populateTracks();
+  $2("trackPreset").value = "oval";
   var state = createRace();
   var playing = false;
   var previous = null;
@@ -4278,13 +4472,32 @@
   var transportEpoch = 0;
   var canvas = $2("race");
   var ctx = canvas.getContext("2d");
-  function reset() {
+  function reset(forceGeneration = false) {
     try {
+      const selected = $2("trackPreset").value, previous2 = presetId(devSetup.course);
+      let course = selected === "oval" ? null : selected === previous2 ? devSetup.course : selected;
+      const overrides = { ...devSetup.overrides, laps: Number($2("lapCount").value) };
+      if (Object.hasOwn(ovalPresets, selected) && selected !== previous2) Object.assign(overrides, ovalPresets[selected].overrides);
+      if (selected.startsWith("generated-")) {
+        const old = devSetup.course?.generation, category = selected.slice(10), terrainProfile = $2("rallyTerrain").value;
+        const options = {
+          ...old?.category === category ? old.options : {},
+          seed: Number($2("rallySeed").value),
+          category,
+          terrainProfile,
+          turnFrequency: Number($2("rallyTurns").value),
+          turnSeverity: Number($2("rallyComplexity").value),
+          laneWidth: overrides.laneWidth ?? 4
+        };
+        if (old?.terrainProfile !== terrainProfile) delete options.terrainWeights;
+        const same = old && ["seed", "category", "terrainProfile", "turnFrequency", "turnSeverity"].every((k) => options[k] === old.options[k]);
+        course = !forceGeneration && same ? devSetup.course : generateRally(options);
+      }
       const next = createRace({
         ...devSetup,
-        course: $2("trackPreset").value === "oval" ? null : $2("trackPreset").value === devSetup.course?.id ? devSetup.course : $2("trackPreset").value,
-        surfaces: $2("trackPreset").value === (devSetup.course?.id ?? "oval") ? devSetup.surfaces : {},
-        overrides: { ...devSetup.overrides, laps: Number($2("lapCount").value) },
+        course,
+        surfaces: selected === previous2 && !forceGeneration ? devSetup.surfaces : {},
+        overrides,
         seed: Number($2("seed").value),
         weather: $2("weather").value,
         format: $2("format").value,
@@ -4332,6 +4545,13 @@
         y: (minY + maxY) / 2,
         scale: Math.min(900 / Math.max(1, maxX - minX), 390 / Math.max(1, maxY - minY))
       };
+    }
+    const overview = framing;
+    const follow = t.course && !t.closed && ($2("cameraMode").value === "follow" || $2("cameraMode").value === "auto" && t.length > 1600 && state.status !== "Ready");
+    if (follow) {
+      const actor = state.entrants.find((r) => r.id === $2("inspect").value) ?? state.entrants.find((r) => r.id === state.playerId);
+      const p = point(actor.q, actor.lane, c, t);
+      framing = { x: p.x, y: p.y, scale: 1.8 };
     }
     const xy = (q, lane) => {
       const p = point(q, lane, c, t);
@@ -4443,6 +4663,41 @@
       ctx.fillStyle = "#e0b350";
       ctx.fill();
     }
+    if (t.course) {
+      ctx.fillStyle = "#e4e2c1";
+      for (let q = 1; q < t.cells; q += Math.max(4, t.cells / 12)) {
+        const a = xy(q, 1.5), b = xy(q + 0.3, 1.5), h = Math.atan2(b[1] - a[1], b[0] - a[0]);
+        ctx.beginPath();
+        ctx.moveTo(a[0] + 5 * Math.cos(h), a[1] + 5 * Math.sin(h));
+        ctx.lineTo(a[0] + 4 * Math.cos(h + 2.4), a[1] + 4 * Math.sin(h + 2.4));
+        ctx.lineTo(a[0] + 4 * Math.cos(h - 2.4), a[1] + 4 * Math.sin(h - 2.4));
+        ctx.fill();
+      }
+      if (follow && overview) {
+        const mini = (q, lane) => {
+          const p = point(q, lane, c, t);
+          return [870 + (p.x - overview.x) * overview.scale * 0.22, 65 + (p.y - overview.y) * overview.scale * 0.22];
+        };
+        ctx.fillStyle = "#10191eee";
+        ctx.fillRect(755, 10, 235, 110);
+        ctx.beginPath();
+        for (let q = 0; q <= t.cells; q += 0.5) {
+          const p = mini(q, 1.5);
+          if (q === 0) ctx.moveTo(...p);
+          else ctx.lineTo(...p);
+        }
+        ctx.strokeStyle = "#a4b9b8";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        for (const [i, r] of state.entrants.entries()) {
+          const p = mini(r.q, r.lane);
+          ctx.beginPath();
+          ctx.arc(...p, 3, 0, Math.PI * 2);
+          ctx.fillStyle = colors[i % 8];
+          ctx.fill();
+        }
+      }
+    }
     ctx.textAlign = "left";
   }
   function normalizedInputs(object, exclude = []) {
@@ -4454,6 +4709,7 @@
     workbench?.render();
     syncSignOptions();
     $2("playerLabel").textContent = state.playerId;
+    $2("trackDiagnostics").textContent = JSON.stringify(trackDiagnostics(state), null, 2);
     const rally2 = state.track.course && !state.track.closed;
     $2("progressHeading").textContent = rally2 ? "Course %" : "Full laps";
     $2("standingsNote").textContent = (rally2 ? "Common terminal finish; signs activate at intermediate checkpoints. " : "Initial line entry starts lap 1; it does not complete a lap. ") + "Official ties share a place. DNF/DNS remain separate from finishers.";
@@ -4461,9 +4717,9 @@
       enabled: $2("commentaryEnabled").checked
     });
     $2("commentary").replaceChildren(
-      ...($2("commentaryEnabled").checked ? lines : []).slice(-60).map((line) => {
+      ...($2("commentaryEnabled").checked ? lines : []).slice(-60).map((line2) => {
         const p = document.createElement("p");
-        p.textContent = `${line.time.toFixed(2)} \xB7 ${line.text}`;
+        p.textContent = `${line2.time.toFixed(2)} \xB7 ${line2.text}`;
         return p;
       })
     );
@@ -4519,9 +4775,9 @@
         output.append(table);
       }
     } else if (view === "narrative") {
-      for (const line of report.narrative) {
+      for (const line2 of report.narrative) {
         const p = document.createElement("p");
-        p.textContent = `${line.time.toFixed(3)} \xB7 ${line.text}`;
+        p.textContent = `${line2.time.toFixed(3)} \xB7 ${line2.text}`;
         output.append(p);
       }
     } else {
@@ -4703,7 +4959,7 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
   }
   $2("format").onchange = syncSignOptions;
   syncSignOptions();
-  $2("reset").onclick = reset;
+  $2("reset").onclick = () => reset();
   $2("play").onclick = () => {
     if (completing) pausePlayback();
     else playing = !playing;
@@ -4736,6 +4992,14 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
     devSetup = next.setup;
     $2("raceKind").value = next.track.raceType ?? "Oval";
     populateTracks(next.setup.course);
+    if (next.setup.course?.generation) {
+      const g = next.setup.course.generation;
+      $2("rallySeed").value = g.seed;
+      $2("rallyCategory").value = g.category;
+      $2("rallyTerrain").value = g.terrainProfile;
+      $2("rallyTurns").value = g.options.turnFrequency;
+      $2("rallyComplexity").value = g.options.turnSeverity;
+    }
     $2("lapCount").value = next.config.laps;
     $2("lapCount").disabled = next.track.course && !next.track.closed;
     playing = false;

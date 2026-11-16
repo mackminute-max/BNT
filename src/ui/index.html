@@ -282,6 +282,7 @@
       .radio-empty {
         color: #becbc8;
       }
+      [hidden] { display: none !important; }
     </style>
   </head>
   <body>
@@ -314,6 +315,15 @@
               </select></label
             >
           </div>
+          <div id="rallyControls" class="controls" hidden>
+            <label>Track seed<input id="rallySeed" type="number" step="1" value="1" /></label>
+            <label>Length<select id="rallyCategory"><option value="short">Short</option><option value="medium" selected>Medium</option><option value="long">Long</option></select></label>
+            <label>Terrain<select id="rallyTerrain"><option>balanced</option><option>road</option><option>rugged</option></select></label>
+            <label>Turn frequency<input id="rallyTurns" type="number" min="0" max="1" step=".05" value=".55" /></label>
+            <label>Turn complexity<input id="rallyComplexity" type="number" min="0" max="1" step=".05" value=".5" /></label>
+            <button id="regenerateRally">Generate / preview</button>
+          </div>
+          <label>Camera<select id="cameraMode"><option value="auto">Auto</option><option value="overview">Overview</option><option value="follow">Follow selected RU</option></select></label>
           <div class="metrics">
             <div>
               <strong id="clock">0.000</strong><span>RACE CLOCK / s</span>
@@ -595,6 +605,7 @@
             /><button id="applySurface">Apply to new race</button>
           </div>
           <p class="note">Hazard modifier: 0–2, neutral 1. Weights incident placement on this segment; 0 excludes it. Incident frequency and the disabled-incidents setting remain unchanged.</p>
+          <h2>Track diagnostics</h2><pre id="trackDiagnostics"></pre>
           <h2>Complete configuration and lineup</h2>
           <p class="note">
             Edit entrants, beasts, equipment, starting lanes/positions, player

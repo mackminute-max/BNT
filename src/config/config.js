@@ -1,4 +1,4 @@
-export const VERSION = "0.5.0-courses";
+export const VERSION = "0.6.0-tracks";
 // Bounds and units are shared by validation and diagnostic UI.
 export const rules = {
   dt: [0.001, 1, "s"],

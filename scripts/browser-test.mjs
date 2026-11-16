@@ -5,6 +5,15 @@ import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import assert from "node:assert/strict";
+import { canonical } from "../src/core/determinism.js";
+import { createHash } from "node:crypto";
+// Fail with a bounded diagnostic before deepEqual can format a multi-megabyte diff.
+function assertReplayEqual(actual, expected) {
+  const hash = value => createHash("sha256").update(canonical(value)).digest("hex");
+  assert.equal(hash(actual), hash(expected), JSON.stringify({message:"Browser/Node replay differs", actual:{checksum:actual.checksum,course:actual.setup.course,straightLength:actual.setup.overrides.straightLength},expected:{checksum:expected.checksum,course:expected.setup.course,straightLength:expected.setup.overrides.straightLength}, firstEventDifference:actual.events.findIndex((e,i)=>canonical(e)!==canonical(expected.events[i]))}));
+  assert.deepEqual(actual, expected);
+}
+
 import { createRace, run, step, capture, issueSign } from "../src/sim/race.js";
 
 import { configuration } from "../src/dev/configuration.js";
@@ -22,6 +31,8 @@ const report = {
   errors: [],
   networkRequests: [],
 };
+const pushCheck = report.checks.push.bind(report.checks);
+report.checks.push = (...checks) => { console.log(checks.join("\n")); return pushCheck(...checks); };
 const browser = await chromium.launch({
   executablePath: process.env.BNT_BROWSER_PATH || "/usr/bin/chromium",
   headless: true,
@@ -69,7 +80,8 @@ try {
   }
   report.mode = mode;
   assert.equal(await page.title(), "Blood and Thunder · Racing Prototype");
-  report.checks.push("Artifact loads and Canvas UI initializes");
+  assert.equal(await page.locator("#trackPreset").inputValue(), "oval");
+  report.checks.push("Artifact loads with original Standard Oval selected and Canvas UI initializes");
   await page.click("#step");
   assert.equal(await page.locator("#tick").textContent(), "1");
   await page.waitForTimeout(100);
@@ -114,7 +126,7 @@ try {
     window.BNT.capture(window.BNT.getState()),
   );
   const expected = capture(run(createRace()));
-  assert.deepEqual(actual, expected);
+  assertReplayEqual(actual, expected);
   report.checks.push(
     "Bundled browser eight-RU race matches Node events, commands and checksum exactly",
   );
@@ -147,7 +159,7 @@ try {
   const combatExpected = createRace(combatSetup);
   issueSign(combatExpected, "queue", "Engage Rivals");
   run(combatExpected);
-  assert.deepEqual(combatActual, capture(combatExpected));
+  assertReplayEqual(combatActual, capture(combatExpected));
   assert.ok(combatActual.events.some((e) => e.type === "ATTACK"));
   report.combatChecksum = combatActual.checksum;
   report.checks.push(
@@ -413,7 +425,7 @@ try {
   assert.match(await page.locator("#signStatus").textContent(), /Followed/);
   const correctiveExpected = createRace(correctiveSetup);
   issueSign(correctiveExpected, "queue", "Push the Pace"); step(correctiveExpected);
-  assert.deepEqual(await page.evaluate(() => window.BNT.capture(window.BNT.getState())), capture(correctiveExpected));
+  assertReplayEqual(await page.evaluate(() => window.BNT.capture(window.BNT.getState())), capture(correctiveExpected));
   report.checks.push("B01 blocked positional maneuver preserves pace compliance and bundled/Node event parity");
 
   await page.selectOption("#surfaceSegment", "north");
@@ -454,7 +466,7 @@ try {
   await page.click("#complete");
   await page.waitForFunction(() => document.getElementById("state").textContent === "Ended", undefined, { timeout: 60000 });
   const photo = await page.evaluate(() => window.BNT.capture(window.BNT.getState()));
-  assert.deepEqual(photo, capture(run(createRace(fixtureCatalog.finish_photo.setup))));
+  assertReplayEqual(photo, capture(run(createRace(fixtureCatalog.finish_photo.setup))));
   assert.deepEqual(await page.evaluate(() => window.BNT.classification(window.BNT.getState()).map(r => r.place)), [1, 1]);
   report.checks.push("B04 named photo-finish fixture produces official ties with exact bundled/Node parity");
   assert.deepEqual(report.errors, []);

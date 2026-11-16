@@ -39,7 +39,7 @@ export function parseConfiguration(text) {
   if (
     doc.kind !== "BNT-configuration" ||
     doc.schema !== 1 ||
-    (doc.version !== VERSION && !(doc.version === "0.4.3-combat-ai" && (!doc.setup?.course || doc.setup.course === "oval")))
+    (doc.version !== VERSION && doc.version !== "0.5.0-courses" && !(doc.version === "0.4.3-combat-ai" && (!doc.setup?.course || doc.setup.course === "oval")))
   )
     throw new Error("Unsupported configuration version");
   return configuration(doc.setup);

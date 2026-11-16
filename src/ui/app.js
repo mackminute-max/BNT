@@ -4,6 +4,9 @@ import { Commentary, narrative } from "../reporting/commentary.js";
 import { results } from "../reporting/results.js";
 import { verifyReplay, startReplay, advanceReplay } from "../replay/replay.js";
 import { queueOverride } from "../dev/overrides.js";
+import { trackChoices, ovalPresets } from "../track/catalog.js";
+import { generateRally } from "../track/rally-generator.js";
+import { trackDiagnostics } from "../track/validation.js";
 import { coursePresets, courseDistance } from "../track/course.js";
 import { location } from "../track/oval.js";
 import { weatherPresets, m2Defaults } from "../sim/environment.js";
@@ -29,15 +32,22 @@ const colors = [
   "#dd9d63",
   "#b4c3df",
 ];
+const presetId = course => typeof course === "string" ? course : course?.generation ? "generated-" + course.generation.category : course?.id ?? "oval";
 function populateTracks(course = null) {
-  const kind = $("raceKind").value;
-  const choices = kind === "Oval" ? [["oval", "Existing Oval"]] : Object.entries(coursePresets).filter(([, c]) => c.kind === kind).map(([id,c]) => [id,c.name]);
-  if (course && !choices.some(([id]) => id === course.id)) choices.push([course.id, course.name]);
+  const kind = $("raceKind").value, choices = trackChoices(kind), id = presetId(course);
+  if (course && !choices.some(([key]) => key === id)) choices.push([id, course.name ?? id]);
   $("trackPreset").replaceChildren(...choices.map(([id,name]) => new Option(name,id)));
-  if (course) $("trackPreset").value = course.id;
+  if (course) $("trackPreset").value = id;
+  else if (kind === "Oval") $("trackPreset").value = "oval";
+  else if (kind === "Rally") $("trackPreset").value = "generated-" + $("rallyCategory").value;
   $("lapCount").disabled = kind === "Rally";
+  $("rallyControls").hidden = kind !== "Rally";
 }
 $("raceKind").onchange = () => populateTracks();
+$("trackPreset").onchange = () => { if ($("trackPreset").value.startsWith("generated-")) $("rallyCategory").value = $("trackPreset").value.slice(10); };
+$("rallyCategory").onchange = () => $("trackPreset").value = "generated-" + $("rallyCategory").value;
+$("regenerateRally").onclick = () => reset(true);
+populateTracks(); $("trackPreset").value = "oval";
 let state = createRace(),
   playing = false,
   previous = null,
@@ -49,13 +59,25 @@ let workbench,
   transportEpoch = 0;
 const canvas = $("race"),
   ctx = canvas.getContext("2d");
-function reset() {
+function reset(forceGeneration = false) {
   try {
+    const selected = $("trackPreset").value, previous = presetId(devSetup.course);
+    let course = selected === "oval" ? null : selected === previous ? devSetup.course : selected;
+    const overrides = { ...devSetup.overrides, laps: Number($("lapCount").value) };
+    if (Object.hasOwn(ovalPresets, selected) && selected !== previous) Object.assign(overrides, ovalPresets[selected].overrides);
+    if (selected.startsWith("generated-")) {
+      const old = devSetup.course?.generation, category = selected.slice(10), terrainProfile = $("rallyTerrain").value;
+      const options = { ...(old?.category === category ? old.options : {}), seed: Number($("rallySeed").value), category, terrainProfile,
+        turnFrequency: Number($("rallyTurns").value), turnSeverity: Number($("rallyComplexity").value), laneWidth: overrides.laneWidth ?? 4 };
+      if (old?.terrainProfile !== terrainProfile) delete options.terrainWeights;
+      const same = old && ["seed","category","terrainProfile","turnFrequency","turnSeverity"].every(k => options[k] === old.options[k]);
+      course = !forceGeneration && same ? devSetup.course : generateRally(options);
+    }
     const next = createRace({
       ...devSetup,
-      course: $("trackPreset").value === "oval" ? null : $("trackPreset").value === devSetup.course?.id ? devSetup.course : $("trackPreset").value,
-      surfaces: $("trackPreset").value === (devSetup.course?.id ?? "oval") ? devSetup.surfaces : {},
-      overrides: { ...devSetup.overrides, laps: Number($("lapCount").value) },
+      course,
+      surfaces: selected === previous && !forceGeneration ? devSetup.surfaces : {},
+      overrides,
       seed: Number($("seed").value),
       weather: $("weather").value,
       format: $("format").value,
@@ -102,6 +124,14 @@ function draw() {
     const minY = Math.min(...samples.map(p => p.y)), maxY = Math.max(...samples.map(p => p.y));
     framing = { x: (minX + maxX) / 2, y: (minY + maxY) / 2,
       scale: Math.min(900 / Math.max(1, maxX - minX), 390 / Math.max(1, maxY - minY)) };
+  }
+  const overview = framing;
+  const follow = t.course && !t.closed && ($("cameraMode").value === "follow" ||
+    ($("cameraMode").value === "auto" && t.length > 1600 && state.status !== "Ready"));
+  if (follow) {
+    const actor = state.entrants.find(r => r.id === $("inspect").value) ?? state.entrants.find(r => r.id === state.playerId);
+    const p = point(actor.q, actor.lane, c, t);
+    framing = {x:p.x,y:p.y,scale:1.8};
   }
   const xy = (q, lane) => {
     const p = point(q, lane, c, t);
@@ -211,6 +241,21 @@ function draw() {
     ctx.fillStyle = "#e0b350";
     ctx.fill();
   }
+  if (t.course) {
+    // Direction arrows and follow-view minimap share the same analytic path.
+    ctx.fillStyle = "#e4e2c1";
+    for (let q = 1; q < t.cells; q += Math.max(4, t.cells / 12)) {
+      const a = xy(q, 1.5), b = xy(q + .3, 1.5), h = Math.atan2(b[1]-a[1],b[0]-a[0]);
+      ctx.beginPath();ctx.moveTo(a[0]+5*Math.cos(h),a[1]+5*Math.sin(h));
+      ctx.lineTo(a[0]+4*Math.cos(h+2.4),a[1]+4*Math.sin(h+2.4));ctx.lineTo(a[0]+4*Math.cos(h-2.4),a[1]+4*Math.sin(h-2.4));ctx.fill();
+    }
+    if (follow && overview) {
+      const mini = (q,lane) => {const p=point(q,lane,c,t);return [870+(p.x-overview.x)*overview.scale*.22,65+(p.y-overview.y)*overview.scale*.22];};
+      ctx.fillStyle="#10191eee";ctx.fillRect(755,10,235,110);ctx.beginPath();
+      for(let q=0;q<=t.cells;q+=.5){const p=mini(q,1.5);if(q===0)ctx.moveTo(...p);else ctx.lineTo(...p);}ctx.strokeStyle="#a4b9b8";ctx.lineWidth=2;ctx.stroke();
+      for(const [i,r] of state.entrants.entries()){const p=mini(r.q,r.lane);ctx.beginPath();ctx.arc(...p,3,0,Math.PI*2);ctx.fillStyle=colors[i%8];ctx.fill();}
+    }
+  }
   ctx.textAlign = "left";
 }
 function normalizedInputs(object, exclude = []) {
@@ -224,6 +269,7 @@ function render() {
   workbench?.render();
   syncSignOptions();
   $("playerLabel").textContent = state.playerId;
+  $("trackDiagnostics").textContent = JSON.stringify(trackDiagnostics(state), null, 2);
   const rally = state.track.course && !state.track.closed;
   $("progressHeading").textContent = rally ? "Course %" : "Full laps";
   $("standingsNote").textContent = (rally ? "Common terminal finish; signs activate at intermediate checkpoints. " : "Initial line entry starts lap 1; it does not complete a lap. ") + "Official ties share a place. DNF/DNS remain separate from finishers.";
@@ -520,7 +566,7 @@ function syncSignOptions() {
 }
 $("format").onchange = syncSignOptions;
 syncSignOptions();
-$("reset").onclick = reset;
+$("reset").onclick = () => reset();
 $("play").onclick = () => {
   if (completing) pausePlayback();
   else playing = !playing;
@@ -555,6 +601,11 @@ function replaceRace(next) {
   devSetup = next.setup;
   $("raceKind").value = next.track.raceType ?? "Oval";
   populateTracks(next.setup.course);
+  if (next.setup.course?.generation) {
+    const g = next.setup.course.generation;
+    $("rallySeed").value = g.seed; $("rallyCategory").value = g.category;
+    $("rallyTerrain").value = g.terrainProfile; $("rallyTurns").value = g.options.turnFrequency; $("rallyComplexity").value = g.options.turnSeverity;
+  }
   $("lapCount").value = next.config.laps;
   $("lapCount").disabled = next.track.course && !next.track.closed;
   playing = false;

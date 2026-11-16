@@ -20,7 +20,7 @@ export function normalizeCourse(input){
     if(!Object.hasOwn(coursePresets,input))throw Error('Unknown track preset');
     input = structuredClone(coursePresets[input]);
   }
-  if(!input||typeof input!=='object'||Array.isArray(input)||Object.keys(input).some(k=>!['id','name','kind','closed','lanes','segments','checkpoints'].includes(k)))throw Error('Invalid course definition');
+  if(!input||typeof input!=='object'||Array.isArray(input)||Object.keys(input).some(k=>!['id','name','kind','closed','lanes','segments','checkpoints','generation'].includes(k)))throw Error('Invalid course definition');
   if(!identifier(input.id)||typeof input.name!=='string'||!input.name.length||input.name.length>100||!['Circuit','Rally'].includes(input.kind)||input.closed!==(input.kind==='Circuit')||input.lanes!==4)throw Error('Invalid course kind, topology or lanes');
   if(!Array.isArray(input.segments)||input.segments.length<2||input.segments.length>128)throw Error('Invalid course segments');
   const seen=new Set();
@@ -40,7 +40,7 @@ export function normalizeCourse(input){
   if(!Array.isArray(cp)||(input.closed?cp.length!==0:cp.length!==3))throw Error('Rally requires three ordered intermediate checkpoints');
   let previous=0;const ids=new Set();
   for(const p of cp){if(!p||Object.keys(p).some(k=>!['id','distance'].includes(k))||!identifier(p.id)||ids.has(p.id)||!finite(p.distance,Number.EPSILON,length-Number.EPSILON)||p.distance<=previous||p.distance>=length)throw Error('Invalid checkpoint position');previous=p.distance;ids.add(p.id);}
-  return {id:input.id,name:input.name,kind:input.kind,closed:input.closed,lanes:4,segments,checkpoints:structuredClone(cp)};
+  return {id:input.id,name:input.name,kind:input.kind,closed:input.closed,lanes:4,segments,checkpoints:structuredClone(cp),...(input.generation ? {generation:validateGenerationMetadata(input.generation)} : {})};
 }
 export function compileCourse(input,c){
   const definition=normalizeCourse(input);
@@ -113,4 +113,13 @@ export function courseDistance(q,t){
   if(t.closed)throw Error('Use lap progress on a closed course');
   const {segment:s}=segmentAt(q,t);
   return s.startDistance+(q-s.start)/s.tiles*s.length;
+}
+
+// Shared deterministic authoring helpers; no separate movement implementation.
+export { circuit as makeCircuit, rally as makeRally };
+
+function validateGenerationMetadata(g){
+  if(!g||typeof g!=='object'||g.version!==1||!Number.isSafeInteger(g.seed)||!['short','medium','long'].includes(g.category)||typeof g.fallback!=='boolean'||!Number.isInteger(g.attempt)||g.attempt<0||g.attempt>32||!g.options||typeof g.options!=='object')throw Error('Invalid generation metadata');
+  // Geometry, rather than rerunning generation, remains authoritative on import.
+  return structuredClone(g);
 }

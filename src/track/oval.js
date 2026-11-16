@@ -1,8 +1,12 @@
+import { ovalPresets, resolveCatalog } from "./catalog.js";
 import { compileCourse, courseLocation, coursePoint } from "./course.js";
 import { surfaceDefaults } from "./surfaces.js";
 export { surfaceDefaults, surfaceRules } from "./surfaces.js";
 export const mod = (n, d) => ((n % d) + d) % d;
 export function track(c, definition = null) {
+  definition = resolveCatalog(definition);
+  const ovalId = typeof definition === "string" && Object.hasOwn(ovalPresets, definition) ? definition : null;
+  if (ovalId) definition = null;
   if (definition !== null && definition !== undefined && definition !== "oval") return compileCourse(definition, c);
   const segments = [
     { id: "north", type: "straight", tiles: c.straightTiles, direction: 0 },
@@ -16,7 +20,7 @@ export function track(c, definition = null) {
     start += s.tiles;
     s.surface = { ...surfaceDefaults };
   }
-  return { segments, cells: start, lanes: c.lanes };
+  return { segments, cells: start, lanes: c.lanes, ...(ovalId && ovalId !== "oval" ? { ovalId, name: ovalPresets[ovalId].name } : {}) };
 }
 export function location(q, lane, c, t) {
   if (t.course) return courseLocation(q, lane, c, t);

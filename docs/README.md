@@ -32,3 +32,8 @@ The investigation, raw datasets, deterministic replay evidence and recommendatio
 ## Circuit and Rally expansion — 0.5.0
 
 [Implementation report](circuit-rally/CIRCUIT_AND_RALLY_IMPLEMENTATION_REPORT.md), [configuration/reproduction guide](circuit-rally/README.md), source baseline,80-race smoke outcomes, replay records and browser screenshots are in `circuit-rally/`. Existing Oval, two irregular circuits and two point-to-point rallies share the authoritative engine.
+
+
+## Track catalogue and procedural Rally expansion — 0.6.0
+
+[Implementation/test report](track-expansion/TRACK_SYSTEM_EXPANSION_REPORT.md), [player instructions](track-expansion/USER_TESTING_INSTRUCTIONS.md), [reproduction guide and evidence](track-expansion/README.md). Includes three ovals, twelve handcrafted circuits, seeded chunk-based rallies, 300-seed validation and complete-race/replay/browser evidence. Direct-file acceptance is separately identified as policy-blocked.

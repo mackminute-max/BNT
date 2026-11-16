@@ -1,7 +1,7 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';
 import {createRace,step,run,capture,digest,classification,issueSign,assertState} from '../src/sim/race.js';
 import {track,point,location,key,gap} from '../src/track/oval.js';
-import {config} from '../src/config/config.js';import {coursePresets,normalizeCourse} from '../src/track/course.js';
+import {config, VERSION} from '../src/config/config.js';import {coursePresets,normalizeCourse} from '../src/track/course.js';
 import {defaultRU} from '../src/model/ru.js';import {verifyReplay} from '../src/replay/replay.js';
 import {configuration,parseConfiguration} from '../src/dev/configuration.js';import {retire,eligibleCombat} from '../src/sim/consequences.js';
 import {perceive} from '../src/ai/driver.js';import {results} from '../src/reporting/results.js';
@@ -77,7 +77,7 @@ test('Courses: static course preview is visible, hidden hazards remain hidden, a
  for(const direction of [-1,1]){const s=createRace(setup('technical-circuit')),r=s.entrants[0],turn=s.track.segments.find(x=>x.direction===direction);r.q=turn.start+1-s.track.offset;r.lane=1;s.autonomous={...s.autonomous,noise:0,executionError:0,judgmentError:0,stressError:0,utility:{...s.autonomous.utility,courseLaneRisk:0}};s.hazards=[{id:'hidden',lane:1,q:r.q+30}];s.entrants=s.entrants.slice(0,1);step(s);const d=s.events.find(e=>e.type==='AI_DECISION').effects;assert.equal(d.perceived.course.corner.direction,direction);assert.equal(d.perceived.hazards.length,0);const inward=d.candidates.find(c=>c.action==='inward'),outward=d.candidates.find(c=>c.action==='outward');assert.equal((outward.terms.distance>inward.terms.distance),direction===1);}
 });
 test('Courses: existing latest oval configurations migrate explicitly; old replays remain version specific',()=>{
- const old=configuration({});old.version='0.4.3-combat-ai';assert.equal(parseConfiguration(JSON.stringify(old)).version,'0.5.0-courses');const altered=configuration({course:'mixed-rally'});altered.version='0.4.3-combat-ai';assert.throws(()=>parseConfiguration(JSON.stringify(altered)),/version/);
+ const old=configuration({});old.version='0.4.3-combat-ai';assert.equal(parseConfiguration(JSON.stringify(old)).version,VERSION);const altered=configuration({course:'mixed-rally'});altered.version='0.4.3-combat-ai';assert.throws(()=>parseConfiguration(JSON.stringify(altered)),/version/);
 });
 
 test('Courses: Rally ignores closed-lap configuration in movement, finish, and combat racing priorities',()=>{

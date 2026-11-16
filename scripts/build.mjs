@@ -21,6 +21,7 @@ if (
   throw new Error("External runtime dependency found");
 await mkdir("dist", { recursive: true });
 await writeFile("dist/Blood_and_Thunder.html", html);
+await writeFile("dist/Blood-and-Thunder-Track-Test.html", html);
 console.log(
   `Built dist/Blood_and_Thunder.html (${Buffer.byteLength(html)} bytes)`,
 );

@@ -1,3 +1,18 @@
+# Current track expansion acceptance record — 0.6.0-tracks
+
+- [x] Three ovals, twelve distinct circuits, seeded Short/Medium/Long Rally generator integrated with the existing engine.
+- [x] Baseline preserved: revision, source archive, original artifact checksum, 203 passing tests.
+- [x] Final suite: 212 passed, zero failed; 15 fixed +300 generated geometries validated.
+- [x] Sixty complete races Ended, 480 finishers; zero stalls/integrity/bounds failures. Thirty-six saved replays reconstruct exactly.
+- [x] New selectors, generator controls, track preview, follow/minimap and diagnostics function in managed browser diagnostics; three formats match Node exactly.
+- [x] Named standalone HTML and canonical artifact rebuilt identically, embedded dependencies checked; checksum in current implementation report.
+- [ ] Independent direct-file/offline launch of the new checksum: managed browser policy blocks navigation. HTTP functional diagnostics are recorded separately.
+- [ ] Final owner acceptance: not declared. Previous offline confirmation belongs to an older artifact.
+
+See [current report](docs/track-expansion/TRACK_SYSTEM_EXPANSION_REPORT.md) for evidence and limitations. Historical release record follows unchanged.
+
+---
+
 # Racing prototype acceptance record — 0.4.2-corrective
 
 **Status: B01–B04 corrected; ready for owner review, not finally accepted.** This is corrective maintenance of the racing prototype.

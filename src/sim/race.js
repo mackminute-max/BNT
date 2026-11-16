@@ -29,6 +29,7 @@ import { signCommand, activateSign } from "../ai/signs.js";
 import { config, VERSION } from "../config/config.js";
 import { defaultRU, derive } from "../model/ru.js";
 import { byId, random, checksum } from "../core/determinism.js";
+import { ovalPresets, resolveCatalog } from "../track/catalog.js";
 import { normalizeCourse } from "../track/course.js";
 import { surfaceDefaults, surfaceRules, track, location, key, nextDistance, gap, forwardGap, finishQ } from "../track/oval.js";
 import { emit } from "../events/events.js";
@@ -68,7 +69,9 @@ export function createRace({
   const consequenceTuning = consequenceConfig(consequence);
   const tuning = m2Config(autonomous);
   const environment = environmentConfig(weather, environmentOverrides);
-  const c = config(overrides),
+  course = resolveCatalog(course);
+  const oval = typeof course === "string" && Object.hasOwn(ovalPresets, course) ? ovalPresets[course] : null;
+  const c = config({ ...oval?.overrides, ...overrides }),
     t = track(c, course);
   if (!Number.isSafeInteger(seed))
     throw new Error("Seed must be a safe integer");
@@ -217,7 +220,7 @@ export function createRace({
   if (!units.some((r) => r.id === s.playerId))
     throw new Error("Invalid player RU");
   s.setup = {
-    ...(t.course ? { course: normalizeCourse(course) } : {}),
+    ...(t.course ? { course: normalizeCourse(course) } : t.ovalId ? { course: t.ovalId } : {}),
     seed,
     overrides: { ...c },
     entrants: units.map((r) => ({

@@ -1,6 +1,6 @@
 # Blood and Thunder — racing prototype development
 
-The numbered production specifications remain authoritative. Current version `0.4.2-corrective` is maintenance of B01–B04 within the approved racing prototype, not a new milestone. Stable economy, campaigns and persistent roster progression remain outside this prototype. The owner confirms offline operation of the pre-corrective 0.4.1 file; managed direct-file navigation remains policy-blocked, and the new artifact requires its own local confirmation. See `IMPLEMENTATION_STATUS.md` and `docs/audits/CORRECTIVE_PASS_0_4_2.md`.
+The numbered production specifications remain authoritative. Current version `0.6.0-tracks` expands the existing authoritative engine with a fixed track catalogue and seeded Rally generation. See [the implementation report](docs/track-expansion/TRACK_SYSTEM_EXPANSION_REPORT.md) and [reproduction guide](docs/track-expansion/README.md). Stable economy, campaigns and persistent roster progression remain outside this prototype. The owner confirms offline operation of the pre-corrective 0.4.1 file; managed direct-file navigation remains policy-blocked, and each new artifact requires its own local confirmation. See `IMPLEMENTATION_STATUS.md` and `docs/audits/CORRECTIVE_PASS_0_4_2.md`.
 
 ## Build and validate
 
@@ -117,3 +117,7 @@ Historical Phase2/2.1 verification references belong to 0.4.2-corrective. Recons
 `npm test` runs all 203 cases; `node scripts/circuit-rally/smoke.mjs` executes the 80-race new-preset campaign, `summarize.mjs` summarizes it, and `verify.mjs` compares old oval references and reconstructs saved files in isolated bounded-memory workers. Build before `node scripts/circuit-rally/browser.mjs`. The existing browser campaign and new preset campaign both explicitly disclose blocked managed file navigation versus HTTP functional checks.
 
 Direct `createRace({course:'mixed-rally', format:'Combat'})` uses the shared engine; omit course for legacy Oval. New track defaults are bundled into the standalone, never fetched. Old0.4.3 source/artifact is archived in `docs/circuit-rally/baseline/source.tar.gz` for historical replay reconstruction. No old checksum/reference should be overwritten to disguise an intentional version change.
+
+## Track catalogue test build — 0.6.0
+
+`npm run build` also emits the identical `dist/Blood-and-Thunder-Track-Test.html`. Use [player instructions](docs/track-expansion/USER_TESTING_INSTRUCTIONS.md) for the three-oval/twelve-circuit catalogue, procedural Rally controls, camera and diagnostics. [Verification scripts and archived evidence](docs/track-expansion/README.md) cover the fixed catalogue, 300 generator seeds, complete races, replay and browser/Node parity. Run memory-heavy evaluations sequentially. The retained browser harness emits progress and bounded mismatch diagnostics while preserving full comparison assertions. Managed direct-file launch remains blocked by policy; browser HTTP functional checks are reported separately.
