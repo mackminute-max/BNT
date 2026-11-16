@@ -1,0 +1,36 @@
+✔ Draft3 traditional: exact grants, native values, capacities and one assigned RU (29.368738ms)
+✔ Draft3 beastmaster: exact grants, native values, capacities and one assigned RU (8.667505ms)
+✔ Draft3 mechanist: exact grants, native values, capacities and one assigned RU (5.78732ms)
+✔ Draft3 veteran: exact grants, native values, capacities and one assigned RU (6.68234ms)
+✔ Draft3 scrappy: exact grants, native values, capacities and one assigned RU (15.491865ms)
+✔ Draft3: catalog literal values independently match approved tables (0.362404ms)
+✔ Draft3: no implicit initialization on create, load, migration, preview or import (17.611248ms)
+✔ Draft3: confirmations, identity, catalog, deltas, dual revisions and effect IDs fail without mutation (2.518472ms)
+✔ Draft3: active-career edits, transactions, zeroed prior balance and pending checkpoint block grant (3.368445ms)
+✔ Draft3: other-career Owner Profile provenance does not contaminate pristine active career (3.027413ms)
+✔ Draft3: initialized export/import preserves every field and accepts another valid transaction (86.875761ms)
+✔ Draft3: old-save restoration retains initialization tombstone; same and alternate commands cannot grant (23.608277ms)
+✔ Draft3: corrupt primary recovers pre-initialization checkpoint without second grant (23.727238ms)
+✔ Draft3: mixed schema-1 recovery after initialization retains original history and prevents grant (36.7654ms)
+✔ Draft3: failed atomic publish preserves original bytes, state, protected history and all assets (22.396772ms)
+✔ M2-B: failed import and corrupted receipt or asset never replace a loaded career (51.145295ms)
+✔ M2-B: graph rejects bad references, reciprocity, wrong types and exclusive overlaps (2.718707ms)
+✔ M2-B: typed validators reject invalid ranges, enums, capacity and unapproved effects (2.731235ms)
+✔ M2-B: prospective assembly rejects missing/foreign/duplicate/unavailable and exclusive conflicts (3.50791ms)
+✔ M2-B: preview is pure, deterministic, immutable and keeps management fatigue distinct (14.830529ms)
+✔ M2-B: reassembly with reserves and disassembly are atomic idempotent and roundtrip (151.339747ms)
+✔ M2-B: stale/reused assignment effects and invalid selection preserve loaded bytes (27.051103ms)
+✔ M2-B: public stored state and receipt results are isolated immutable snapshots (43.409703ms)
+✔ Draft3: no later-stage actions or hidden grants are enabled (10.316657ms)
+✔ Draft3: deterministic racing, replay and RNG remain independent of stable operations (467.077703ms)
+✔ M2-B: restored initialized save permits legitimate reassembly but retains exact old command identity (72.413143ms)
+✔ M2-B: a failed initialization does not leak a protected fact through create or reload (38.818887ms)
+✔ M2-B: retained other-career edits in the real store allow a different pristine career (15.429623ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1385.508517

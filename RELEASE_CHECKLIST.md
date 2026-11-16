@@ -1,3 +1,21 @@
+# Current M2-B owner review gate
+
+- [x] Five exact approved Draft 3 packages, Basic capacities, neutral equipment and descriptive facilities.
+- [x] Explicit atomic pristine initialization, protected one-time career effect, old-save/recovery duplicate prevention and cross-career provenance exception.
+- [x] Typed owned assets, reciprocal exclusive assignments, pure native RU preview and persisted assembly/disassembly.
+- [x] Existing M1/M2-A compatibility and racing source preserved; all 293 tests pass.
+- [x] 66 managed browser functional groups pass; 12 full race captures/replays match M2-A.
+- [x] Both self-contained HTML aliases rebuilt identically; checksum and exact evidence recorded in the M2-B report.
+- [ ] Real Windows `file://` offline/persistence acceptance of this new checksum: managed Chromium blocks file navigation.
+- [ ] Owner acceptance and approval to merge the dedicated review branch.
+- [ ] M2-C/D/E and M3: not started; require separate authorization.
+
+[Report](docs/m2-b/M2_B_IMPLEMENTATION_REPORT.md) · [Windows owner checklist](docs/m2-b/WINDOWS_ACCEPTANCE.md).
+
+---
+
+## Historical review records below (their stage/status wording is historical)
+
 # Current M2-A review record
 
 - [x] Explicit schema 1→2 migration preserves original IDs/treasury/gameplay lineage/receipts/provenance/pending records; no grants or initialization.

@@ -1,0 +1,61 @@
+✔ Draft3 traditional: exact grants, native values, capacities and one assigned RU (15.569396ms)
+✔ Draft3 beastmaster: exact grants, native values, capacities and one assigned RU (6.120408ms)
+✔ Draft3 mechanist: exact grants, native values, capacities and one assigned RU (5.357809ms)
+✔ Draft3 veteran: exact grants, native values, capacities and one assigned RU (5.236175ms)
+✔ Draft3 scrappy: exact grants, native values, capacities and one assigned RU (6.247295ms)
+✔ Draft3: catalog literal values independently match approved tables (0.24441ms)
+✔ Draft3: no implicit initialization on create, load, migration, preview or import (4.924897ms)
+✔ Draft3: confirmations, identity, catalog, deltas, dual revisions and effect IDs fail without mutation (2.673259ms)
+✔ Draft3: active-career edits, transactions, zeroed prior balance and pending checkpoint block grant (2.536859ms)
+✔ Draft3: other-career Owner Profile provenance does not contaminate pristine active career (2.648382ms)
+✔ Draft3: initialized export/import preserves every field and accepts another valid transaction (58.625166ms)
+✔ Draft3: old-save restoration retains initialization tombstone; same and alternate commands cannot grant (16.538799ms)
+✔ Draft3: corrupt primary recovers pre-initialization checkpoint without second grant (16.228592ms)
+✔ Draft3: mixed schema-1 recovery after initialization retains original history and prevents grant (15.868972ms)
+✔ Draft3: failed atomic publish preserves original bytes, state, protected history and all assets (19.378944ms)
+✔ M2-B: failed import and corrupted receipt or asset never replace a loaded career (38.996129ms)
+✔ M2-B: graph rejects bad references, reciprocity, wrong types and exclusive overlaps (2.149738ms)
+✔ M2-B: typed validators reject invalid ranges, enums, capacity and unapproved effects (2.335656ms)
+✔ M2-B: prospective assembly rejects missing/foreign/duplicate/unavailable and exclusive conflicts (2.346157ms)
+✔ M2-B: preview is pure, deterministic, immutable and keeps management fatigue distinct (2.032455ms)
+✖ M2-B: reassembly with reserves and disassembly are atomic idempotent and roundtrip (60.78595ms)
+✔ M2-B: stale/reused assignment effects and invalid selection preserve loaded bytes (29.553495ms)
+✔ M2-B: public stored state and receipt results are isolated immutable snapshots (25.286589ms)
+✔ Draft3: no later-stage actions or hidden grants are enabled (8.176788ms)
+✖ Draft3: deterministic racing, replay and RNG remain independent of stable operations (0.958032ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 23
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 459.488237
+
+✖ failing tests:
+
+test at tests/m2-b.test.js:107:1
+✖ M2-B: reassembly with reserves and disassembly are atomic idempotent and roundtrip (60.78595ms)
+  TypeError [Error]: Cannot read properties of undefined (reading 'id')
+      at selection (file:///workspace/BNT/tests/m2-b.test.js:20:106)
+      at assignment (file:///workspace/BNT/tests/m2-b.test.js:21:331)
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/m2-b.test.js:110:301)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/m2-b.test.js:123:1
+✖ Draft3: deterministic racing, replay and RNG remain independent of stable operations (0.958032ms)
+  Error: Invalid autonomous tuning incidentFrequency
+      at m2Config (file:///workspace/BNT/src/sim/environment.js:85:13)
+      at createRace (file:///workspace/BNT/src/sim/race.js:70:18)
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/m2-b.test.js:124:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

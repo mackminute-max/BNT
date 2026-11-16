@@ -607,7 +607,7 @@
           <p class="note">Hazard modifier: 0–2, neutral 1. Weights incident placement on this segment; 0 excludes it. Incident frequency and the disabled-incidents setting remain unchanged.</p>
           <h2>Track diagnostics</h2><pre id="trackDiagnostics"></pre>
           <details id="careerSaves">
-            <summary>Career State / Save Management — M1 foundation</summary>
+            <summary>Career State / Save Management — M2-B stable foundation</summary>
             <p class="note">Separate from developer race configurations and replays. Empty M1 states contain no roster or championship. Full exports contain Owner Profile, Career State, provenance, recovery and any optional race-start checkpoint; no mid-race saving. Use one active window when Web Locks are unavailable.</p>
             <p id="careerSaveStatus" role="status"></p>
             <p id="careerSaveNotice" class="note" role="alert"></p>
@@ -633,7 +633,26 @@
             </div>
             <p class="note">Manual mode requires export and your explicit checkpoint confirmation between changes. A download request is not proof of durable saving. Import replaces the whole profile; Owner Legacy progression is never merged. Developer-edit status/provenance persists. Moving or renaming the HTML may change browser storage access.</p>
             <details><summary>M2-A protected history / compaction preview (read-only)</summary><pre id="careerHistoryPlan"></pre></details>
-            <p class="note">M2-A adds schema-2 migration, empty registries and protected identities. Career initialization, starting packages and compaction execution are not available in this stage.</p>
+            <details id="stableFoundation">
+              <summary>M2-B starting stable and prospective RU</summary>
+              <p class="note">Explicit one-time starting grant. Assembly and baseline previews only; this stable does not enter races or championships. Equipment and facilities are neutral. No markets, repairs, treatments, training or management cycles.</p>
+              <button id="stableNewCareer">Create empty schema-2 career</button>
+              <p id="stableStatus" role="status"></p>
+              <label>Starting package<select id="stablePackage"></select></label>
+              <button id="stableInitialize">Confirm one-time initialization</button>
+              <details><summary>Package preview (no grant)</summary><pre id="stablePackagePreview"></pre></details>
+              <details><summary>Owned roster, capacities and last receipt</summary><pre id="stableRoster"></pre></details>
+              <div class="controls">
+                <label>Driver<select id="stableDriver"></select></label>
+                <label>Lead A<select id="stableBeastA"></select></label>
+                <label>Lead B<select id="stableBeastB"></select></label>
+                <label>Chariot<select id="stableChariot"></select></label>
+                <button id="stableAssemble">Commit prospective RU assembly</button>
+                <button id="stableDisassemble">Disassemble prospective RU</button>
+              </div>
+              <p class="note">Baseline / no weather or surface adjustment. Management driver fatigue remains separate from engine strain. Assembled and eligible does not mean committed to a competition.</p>
+              <pre id="stableRUPreview"></pre>
+            </details>
             <details><summary>Career metadata and serialized state (read-only)</summary><pre id="careerSaveInspect"></pre></details>
           </details>
           <h2>Complete configuration and lineup</h2>

@@ -1,3 +1,4 @@
+import { isDomainCommand } from '../career/domain-commands.js';
 import { checksum, canonical } from '../core/determinism.js';
 import { exact, validateState, mergeMarks, withProvenance } from '../career/state.js';
 import { FOUNDATION_LIMITS } from '../career/foundation-catalog.js';
@@ -36,7 +37,7 @@ export function inspectEnvelope(text) {
     for (const mark of marks) if (!protectedHistory.some(e => e.id === mark.id)) throw Error('Known provenance identity missing from protected registry');
     for (const entry of protectedHistory) {
       const tx = JSON.parse(entry.request);
-      if (!marks.some(m => m.id === entry.id && m.profileId === tx.profileId && m.careerId === tx.careerId && m.revision === tx.expectedRevision + 1 && m.type === tx.type && m.reason === tx.reason && m.delta === tx.delta)) throw Error('Protected registry/provenance mismatch');
+      if (!isDomainCommand(tx) && !marks.some(m => m.id === entry.id && m.profileId === tx.profileId && m.careerId === tx.careerId && m.revision === tx.expectedRevision + 1 && m.type === tx.type && m.reason === tx.reason && m.delta === tx.delta)) throw Error('Protected registry/provenance mismatch');
     }
   }
   const errors = {}, valid = {};

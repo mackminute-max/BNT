@@ -1,9 +1,10 @@
 import { exact, id } from './legacy-state.js';
+import { validateTypedRecord, validateStable } from './assets.js';
 
 // Reference scaffolding only. No assets, prices, packages or domain actions are generated here.
 export const REGISTRY_LINKS = Object.freeze({
-  personnel: { contract: ['contracts'] }, specialists: { contract: ['contracts'] }, beasts: {},
-  chariots: { equipment: ['equipment'] }, equipment: { installedOn: ['chariots'] },
+  personnel: { contract: ['contracts'], assignment: ['assignments'] }, specialists: { contract: ['contracts'] }, beasts: { assignment: ['assignments'] },
+  chariots: { equipment: ['equipment'], assignment: ['assignments'] }, equipment: { installedOn: ['chariots'] },
   contracts: { employee: ['personnel', 'specialists'] }, candidates: {},
   recruitmentOffers: { candidate: ['candidates'] }, marketOffers: { candidate: ['candidates'] },
   properties: { facilities: ['facilities'] }, facilities: { property: ['properties'] },
@@ -23,7 +24,9 @@ export function validateOwnershipGraph(registries, careerId, reservedIds = []) {
     const records = registries[registry];
     if (!records || typeof records !== 'object' || Array.isArray(records) || ![Object.prototype, null].includes(Object.getPrototypeOf(records)) || Object.keys(records).length > 1000) throw Error('Invalid registry ' + registry);
     for (const [key, record] of Object.entries(records)) {
-      id(key); exact(record, ['id', 'ownerCareerId', 'references'], 'registry record'); id(record.id); id(record.ownerCareerId);
+      id(key); if (Object.hasOwn(record, 'recordVersion')) validateTypedRecord(registry, record);
+      else exact(record, ['id', 'ownerCareerId', 'references'], 'registry record');
+      id(record.id); id(record.ownerCareerId);
       if (record.id !== key || record.ownerCareerId !== careerId || entities.has(key) || key === careerId || reservedIds.includes(key)) throw Error('Duplicate identity or invalid entity ownership');
       if (!record.references || typeof record.references !== 'object' || Array.isArray(record.references) || ![Object.prototype, null].includes(Object.getPrototypeOf(record.references)) || Object.keys(record.references).some(k => !Object.hasOwn(REGISTRY_LINKS[registry], k))) throw Error('Invalid reference relation');
       entities.set(key, { registry, record });
@@ -56,14 +59,19 @@ export function validateOwnershipGraph(registries, careerId, reservedIds = []) {
   for (const record of Object.values(registries.facilities)) if (record.references.property?.length !== 1) throw Error('Facility needs one owned property');
   const assigned = new Set();
   for (const record of Object.values(registries.assignments)) {
-    if (record.references.project?.length !== 1 || !record.references.subject?.length) throw Error('Assignment needs project and subject references');
+    if ((record.kind !== 'prospectiveRU' && record.references.project?.length !== 1) || !record.references.subject?.length) throw Error('Assignment needs project and subject references');
     for (const target of record.references.subject) { if (assigned.has(target)) throw Error('Conflicting exclusive assignment'); assigned.add(target); }
   }
   return true;
 }
 export function validateManagement(management, careerId, profileId) {
   exact(management, ['initialized', 'registrySchema', 'registries'], 'management foundation');
-  if (management.registrySchema !== 1) throw Error('Unsupported management registry schema');
+  if (![1, 2].includes(management.registrySchema)) throw Error('Unsupported management registry schema');
   validateOwnershipGraph(management.registries, careerId, profileId ? [profileId] : []);
-  if (management.initialized !== false || REGISTRY_NAMES.some(k => Object.keys(management.registries[k]).length)) throw Error('Career initialization/assets require the separately authorized M2-B transaction');
+  if (management.registrySchema === 1) {
+    if (management.initialized !== false || REGISTRY_NAMES.some(k => Object.keys(management.registries[k]).length)) throw Error('M2-B initialization requires typed registry schema 2');
+  } else {
+    if (management.initialized !== true) throw Error('Typed M2-B stable must be initialized');
+    validateStable(management.registries);
+  }
 }

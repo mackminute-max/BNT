@@ -1,8 +1,10 @@
+import { isDomainCommand, validateDomainCommand, domainResult } from './domain-commands.js';
 import { canonical, checksum } from '../core/determinism.js';
 import { exact, id, validateTransaction as validateLegacyTransaction } from './legacy-state.js';
 export const MAX_PROTECTED_COMMANDS = 2000;
 export const RETENTION_CLASSES = Object.freeze({ P0: 'Protected identities, requests and effects: never discarded', P1: 'Summarizable detail: future explicit confirmation', P2: 'Provably redundant detail: future safe maintenance only' });
 export function validateCommandV1(tx) {
+  if (isDomainCommand(tx)) { validateDomainCommand(tx); return; }
   exact(tx, ['id', 'profileId', 'careerId', 'expectedRevision', 'type', 'delta', 'reason', 'commandVersion', 'expectedMaintenanceRevision', 'effectId'], 'versioned command');
   validateLegacyTransaction(legacyRequest(tx));
   if (tx.commandVersion !== 1 || !Number.isSafeInteger(tx.expectedMaintenanceRevision) || tx.expectedMaintenanceRevision < 0) throw Error('Invalid command/maintenance version');
@@ -17,10 +19,10 @@ export function protectTransaction(tx, balanceAfter = null) {
   if (version) validateCommandV1(tx); else validateLegacyTransaction(tx);
   return { id: tx.id, profileId: tx.profileId, careerId: tx.careerId, commandVersion: version,
     request: canonical(tx), fingerprint: checksum(tx), resultRevision: tx.expectedRevision + 1,
-    effectId: version ? tx.effectId : 'legacy-' + tx.id, delta: tx.delta, balanceAfter, retention: 'P0' };
+    effectId: version ? tx.effectId : 'legacy-' + tx.id, delta: tx.delta, balanceAfter, retention: 'P0', ...(isDomainCommand(tx) ? { result: domainResult(tx) } : {}) };
 }
 export function validateProtected(entry) {
-  exact(entry, ['id', 'profileId', 'careerId', 'commandVersion', 'request', 'fingerprint', 'resultRevision', 'effectId', 'delta', 'balanceAfter', 'retention'], 'protected history identity');
+  exact(entry, ['id', 'profileId', 'careerId', 'commandVersion', 'request', 'fingerprint', 'resultRevision', 'effectId', 'delta', 'balanceAfter', 'retention', ...(Object.hasOwn(entry, 'result') ? ['result'] : [])], 'protected history identity');
   id(entry.id); id(entry.profileId); id(entry.careerId); effectId(entry.effectId);
   if (typeof entry.request !== 'string' || entry.request.length > 3000 || entry.retention !== 'P0' || ![0, 1].includes(entry.commandVersion)) throw Error('Invalid protected request');
   const request = JSON.parse(entry.request);

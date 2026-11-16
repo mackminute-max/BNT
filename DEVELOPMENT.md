@@ -1,5 +1,8 @@
 # Blood and Thunder — racing prototype development
 
+Current stage: [M2-B starting stable review](docs/m2-b/M2_B_IMPLEMENTATION_REPORT.md). See the [schema/API contract](docs/m2-b/SCHEMA_AND_TRANSACTION_API.md), [reproduction commands](docs/m2-b/README.md) and [Windows acceptance checklist](docs/m2-b/WINDOWS_ACCEPTANCE.md). M2-B adds explicit starting grants and prospective RU assembly only; no race-entry or management-cycle integration. Later stages remain unauthorized.
+
+
 The numbered production specifications remain authoritative. Current simulation `0.6.0-tracks` retains the existing track catalogue and seeded Rally generation; career schema 1 remains compatible and explicit schema-2 migration now supplies the M2-A domain/history foundation. See [the M2-A report](docs/m2-a/M2_A_IMPLEMENTATION_REPORT.md). See [the save implementation report](docs/persistence-foundation/M0_M1_IMPLEMENTATION_REPORT.md). See [the implementation report](docs/track-expansion/TRACK_SYSTEM_EXPANSION_REPORT.md) and [reproduction guide](docs/track-expansion/README.md). Stable economy, campaigns and persistent roster progression remain outside this prototype. The owner confirms offline operation of the pre-corrective 0.4.1 file; managed direct-file navigation remains policy-blocked, and each new artifact requires its own local confirmation. See `IMPLEMENTATION_STATUS.md` and `docs/audits/CORRECTIVE_PASS_0_4_2.md`.
 
 ## Build and validate

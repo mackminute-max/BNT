@@ -1,3 +1,17 @@
+# Current implementation status — M2-B review
+
+M2-B implements the approved five starting packages, explicit pristine one-time initialization, typed owned assets, prospective RU assembly/disassembly and minimal save-panel UI. Racing engine/formulas/AI/track/replay and M1 compatibility source remain unchanged. M2-A passed owner-reported local testing; M2-B awaits owner review and merge approval.
+
+Verification: **293 automated tests passed**, including all 265 previous tests and 28 new cases. **66 browser functional groups passed** (13 M2-B, 12 M2-A, 18 M1, 23 racing/workbench); direct file navigation remains administrator-blocked. Twelve complete reference/autonomous races matched M2-A captures and replay checksums exactly. HTTP/offline-after-load diagnostics do not establish Windows file-origin operation.
+
+[Report](docs/m2-b/M2_B_IMPLEMENTATION_REPORT.md) · [API](docs/m2-b/SCHEMA_AND_TRANSACTION_API.md) · [Windows checklist](docs/m2-b/WINDOWS_ACCEPTANCE.md) · [Reproduction](docs/m2-b/README.md).
+
+Standalone aliases: **295768 bytes**, SHA-256 `3f8c8e33acebe128c8b1f25e327c5feefdaf5900d120ff38d016db62a21bd83d`. Dedicated review branch: `feat/m2-b-stable-initialization`. No merge, deployment, final acceptance, M2-C/D/E or M3 implementation.
+
+---
+
+## Historical M2-A status (superseded by the M2-B record above)
+
 # Current implementation status — M2-A foundation
 
 **M2-A implemented; automated/managed-browser functional gate passed; stopped for owner review.** Racing simulation/package remain `0.6.0-tracks`/`0.6.0`. New career schema 2 coexists with the unchanged schema-1 compatibility implementation. The transport envelope/discovery key stay version 1 with explicit protected-history/maintenance-clock features for upgraded files.

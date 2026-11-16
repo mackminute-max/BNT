@@ -1,0 +1,17 @@
+{
+  "sourceRevision": "5e93b2c23ed74000b42d4658c1232cdc10d0f0fb",
+  "branch": "work",
+  "ownerReport": "M2-A passed local testing",
+  "baselineTests": {
+    "passed": 265,
+    "failed": 0,
+    "skipped": 0
+  },
+  "artifact": {
+    "bytes": 267562,
+    "sha256": "0f91c4f04616387933eb6485eb542bb6344713319a8a6980b7abaa9aba747a11",
+    "modified": false
+  },
+  "status": "M2-B blocked by package sections B3/7: approved grants/catalog and migrated-career initialization policy required",
+  "productionChanges": []
+}

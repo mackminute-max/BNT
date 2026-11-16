@@ -1,6 +1,6 @@
 import {chromium} from 'playwright-core';import {createServer} from 'node:http';import {readFile,writeFile,mkdir} from 'node:fs/promises';import {resolve} from 'node:path';import {pathToFileURL} from 'node:url';import assert from 'node:assert/strict';
 import {createCareer,transact} from '../src/career/state.js';import {makeEnvelope,SAVE_KEY} from '../src/persistence/envelope.js';import {configuration} from '../src/dev/configuration.js';import {VERSION} from '../src/config/config.js';
-const out='docs/m2-a/evidence';await mkdir(out,{recursive:true});
+const out=process.env.BNT_M2A_EVIDENCE_DIR??'docs/m2-a/evidence';await mkdir(out,{recursive:true});
 const original=createCareer({profileId:'browser-owner',careerId:'browser-career',pendingRace:{id:'browser-pending',careerId:'browser-career',engineVersion:VERSION,setup:configuration({seed:42,course:'C01'}).setup}});
 const edited=transact(original,{id:'browser-legacy-edit',profileId:original.profile.id,careerId:original.career.id,expectedRevision:0,type:'developer.treasury.adjust',delta:100,reason:'M2-A migration browser fixture'}).state;
 const seeded=makeEnvelope(edited,original).envelope,rawM1=JSON.stringify(seeded);await writeFile(out+'/browser-seeded-m1.json',JSON.stringify(seeded,null,2));

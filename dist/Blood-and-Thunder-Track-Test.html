@@ -607,7 +607,7 @@
           <p class="note">Hazard modifier: 0–2, neutral 1. Weights incident placement on this segment; 0 excludes it. Incident frequency and the disabled-incidents setting remain unchanged.</p>
           <h2>Track diagnostics</h2><pre id="trackDiagnostics"></pre>
           <details id="careerSaves">
-            <summary>Career State / Save Management — M1 foundation</summary>
+            <summary>Career State / Save Management — M2-B stable foundation</summary>
             <p class="note">Separate from developer race configurations and replays. Empty M1 states contain no roster or championship. Full exports contain Owner Profile, Career State, provenance, recovery and any optional race-start checkpoint; no mid-race saving. Use one active window when Web Locks are unavailable.</p>
             <p id="careerSaveStatus" role="status"></p>
             <p id="careerSaveNotice" class="note" role="alert"></p>
@@ -633,7 +633,26 @@
             </div>
             <p class="note">Manual mode requires export and your explicit checkpoint confirmation between changes. A download request is not proof of durable saving. Import replaces the whole profile; Owner Legacy progression is never merged. Developer-edit status/provenance persists. Moving or renaming the HTML may change browser storage access.</p>
             <details><summary>M2-A protected history / compaction preview (read-only)</summary><pre id="careerHistoryPlan"></pre></details>
-            <p class="note">M2-A adds schema-2 migration, empty registries and protected identities. Career initialization, starting packages and compaction execution are not available in this stage.</p>
+            <details id="stableFoundation">
+              <summary>M2-B starting stable and prospective RU</summary>
+              <p class="note">Explicit one-time starting grant. Assembly and baseline previews only; this stable does not enter races or championships. Equipment and facilities are neutral. No markets, repairs, treatments, training or management cycles.</p>
+              <button id="stableNewCareer">Create empty schema-2 career</button>
+              <p id="stableStatus" role="status"></p>
+              <label>Starting package<select id="stablePackage"></select></label>
+              <button id="stableInitialize">Confirm one-time initialization</button>
+              <details><summary>Package preview (no grant)</summary><pre id="stablePackagePreview"></pre></details>
+              <details><summary>Owned roster, capacities and last receipt</summary><pre id="stableRoster"></pre></details>
+              <div class="controls">
+                <label>Driver<select id="stableDriver"></select></label>
+                <label>Lead A<select id="stableBeastA"></select></label>
+                <label>Lead B<select id="stableBeastB"></select></label>
+                <label>Chariot<select id="stableChariot"></select></label>
+                <button id="stableAssemble">Commit prospective RU assembly</button>
+                <button id="stableDisassemble">Disassemble prospective RU</button>
+              </div>
+              <p class="note">Baseline / no weather or surface adjustment. Management driver fatigue remains separate from engine strain. Assembled and eligible does not mean committed to a competition.</p>
+              <pre id="stableRUPreview"></pre>
+            </details>
             <details><summary>Career metadata and serialized state (read-only)</summary><pre id="careerSaveInspect"></pre></details>
           </details>
           <h2>Complete configuration and lineup</h2>
@@ -3778,10 +3797,335 @@
     return { state: next, duplicate: false, receipt: structuredClone(receipt) };
   }
 
+  // src/career/assets.js
+  var BASIC_CAPACITY = Object.freeze({ drivers: 2, specialists: 0, beasts: 4, chariots: 1 });
+  var INJURIES = Object.freeze(["Healthy", "Minor", "Moderate", "Severe", "Dead"]);
+  function freeze(value) {
+    if (value && typeof value === "object") {
+      Object.values(value).forEach(freeze);
+      Object.freeze(value);
+    }
+    return value;
+  }
+  function number(value, lo = 0, hi = 100) {
+    if (!Number.isFinite(value) || value < lo || value > hi) throw Error("Invalid native asset number");
+  }
+  function stats(value, keys) {
+    exact(value, keys, "native attributes");
+    Object.values(value).forEach((v) => number(v));
+  }
+  function integrityStatus(n) {
+    number(n);
+    return n >= 80 ? "Functional" : n >= 60 ? "Light" : n >= 30 ? "Moderate" : n > 0 ? "Critical" : "Destroyed";
+  }
+  function validateTypedRecord(kind, r) {
+    const fields2 = {
+      personnel: ["role", "attributes", "condition", "injury", "fatigue", "strain", "xp", "available"],
+      beasts: ["species", "attributes", "condition", "injury", "fatigue", "xp", "available"],
+      chariots: ["attributes", "condition", "wear", "integrity", "status", "weight", "capacity", "xp", "available"],
+      equipment: ["mass", "combat"],
+      properties: ["tier", "capacities", "packageId", "catalogVersion"],
+      facilities: ["descriptiveOnly"],
+      assignments: ["kind", "driverId", "beastIds", "chariotId"]
+    }[kind];
+    if (!fields2) throw Error("Registry content is outside M2-B");
+    exact(r, ["id", "ownerCareerId", "references", "recordVersion", "name", ...fields2], "typed M2-B " + kind);
+    if (r.recordVersion !== 1 || typeof r.name !== "string" || !r.name.trim() || r.name.length > 100) throw Error("Invalid asset version/name");
+    if (kind === "personnel" || kind === "beasts") {
+      stats(r.attributes, kind === "personnel" ? driverAttributes : beastAttributes);
+      number(r.condition);
+      number(r.fatigue);
+      if (!INJURIES.includes(r.injury)) throw Error("Invalid injury label");
+      if (kind === "personnel") {
+        if (r.role !== "driver") throw Error("Only drivers supported in M2-B");
+        number(r.strain);
+      } else if (r.species !== "generic_draft_beast") throw Error("Unsupported management beast type");
+    }
+    if (kind === "chariots") {
+      stats(r.attributes, chariotAttributes);
+      number(r.condition);
+      number(r.wear);
+      number(r.integrity);
+      if (r.status !== integrityStatus(r.integrity)) throw Error("Inconsistent management integrity/status");
+      number(r.weight, 1, 5e3);
+      number(r.capacity, 1, 1e4);
+    }
+    if (["personnel", "beasts", "chariots"].includes(kind) && (r.xp !== 0 || typeof r.available !== "boolean")) throw Error("Invalid M2-B XP/availability");
+    if (kind === "equipment" && (r.mass !== 0 || r.combat !== 0)) throw Error("M2-B equipment must remain neutral");
+    if (kind === "facilities" && r.descriptiveOnly !== true) throw Error("M2-B facilities have no mechanical effects");
+    if (kind === "properties") {
+      exact(r.capacities, Object.keys(BASIC_CAPACITY), "Basic capacities");
+      if (r.tier !== "Basic" || Object.keys(BASIC_CAPACITY).some((k) => r.capacities[k] !== BASIC_CAPACITY[k]) || r.catalogVersion !== 3 || typeof r.packageId !== "string") throw Error("Invalid Basic property/catalog");
+    }
+    if (kind === "assignments" && (r.kind !== "prospectiveRU" || !Array.isArray(r.beastIds) || r.beastIds.length !== 2 || new Set(r.beastIds).size !== 2)) throw Error("RU requires two distinct beasts");
+  }
+  function validateStable(registries) {
+    const list = (k) => Object.values(registries[k]);
+    if (list("properties").length !== 1 || list("facilities").length !== 1) throw Error("M2-B requires one Basic property and descriptive facility");
+    for (const [kind, records] of Object.entries(registries)) for (const r of Object.values(records)) validateTypedRecord(kind, r);
+    for (const [kind, cap] of [["personnel", "drivers"], ["specialists", "specialists"], ["beasts", "beasts"], ["chariots", "chariots"]]) if (list(kind).length > BASIC_CAPACITY[cap]) throw Error("Basic property capacity exceeded: " + kind);
+    for (const r of list("personnel").concat(list("beasts"), list("chariots"))) {
+      const assigned = list("assignments").filter((a) => a.references.subject.includes(r.id)).map((a) => a.id).sort();
+      if (JSON.stringify([...r.references.assignment ?? []].sort()) !== JSON.stringify(assigned)) throw Error("Nonreciprocal RU assignment");
+    }
+    for (const a of list("assignments")) {
+      const expected = [a.driverId, ...a.beastIds, a.chariotId];
+      if (a.references.subject.length !== 4 || expected.some((id2) => !a.references.subject.includes(id2)) || new Set(expected).size !== 4 || !registries.personnel[a.driverId] || !registries.chariots[a.chariotId] || a.beastIds.some((id2) => !registries.beasts[id2])) throw Error("Invalid typed RU assignment");
+    }
+  }
+
+  // src/career/registries.js
+  var REGISTRY_LINKS = Object.freeze({
+    personnel: { contract: ["contracts"], assignment: ["assignments"] },
+    specialists: { contract: ["contracts"] },
+    beasts: { assignment: ["assignments"] },
+    chariots: { equipment: ["equipment"], assignment: ["assignments"] },
+    equipment: { installedOn: ["chariots"] },
+    contracts: { employee: ["personnel", "specialists"] },
+    candidates: {},
+    recruitmentOffers: { candidate: ["candidates"] },
+    marketOffers: { candidate: ["candidates"] },
+    properties: { facilities: ["facilities"] },
+    facilities: { property: ["properties"] },
+    projects: { subject: ["personnel", "beasts", "chariots", "equipment"], specialist: ["specialists"], facility: ["facilities"] },
+    assignments: { subject: ["personnel", "specialists", "beasts", "chariots", "equipment"], project: ["projects"] },
+    obligations: { liableEntity: ["personnel", "specialists", "contracts", "properties"] },
+    advancementChoices: { subject: ["personnel", "beasts"] },
+    achievements: {}
+  });
+  var REGISTRY_NAMES = Object.freeze(Object.keys(REGISTRY_LINKS));
+  function emptyManagement() {
+    return { initialized: false, registrySchema: 1, registries: Object.fromEntries(REGISTRY_NAMES.map((k) => [k, {}])) };
+  }
+  function validateOwnershipGraph(registries, careerId, reservedIds = []) {
+    id(careerId);
+    reservedIds.forEach(id);
+    exact(registries, REGISTRY_NAMES, "management registries");
+    const entities = /* @__PURE__ */ new Map();
+    for (const registry of REGISTRY_NAMES) {
+      const records = registries[registry];
+      if (!records || typeof records !== "object" || Array.isArray(records) || ![Object.prototype, null].includes(Object.getPrototypeOf(records)) || Object.keys(records).length > 1e3) throw Error("Invalid registry " + registry);
+      for (const [key2, record] of Object.entries(records)) {
+        id(key2);
+        if (Object.hasOwn(record, "recordVersion")) validateTypedRecord(registry, record);
+        else exact(record, ["id", "ownerCareerId", "references"], "registry record");
+        id(record.id);
+        id(record.ownerCareerId);
+        if (record.id !== key2 || record.ownerCareerId !== careerId || entities.has(key2) || key2 === careerId || reservedIds.includes(key2)) throw Error("Duplicate identity or invalid entity ownership");
+        if (!record.references || typeof record.references !== "object" || Array.isArray(record.references) || ![Object.prototype, null].includes(Object.getPrototypeOf(record.references)) || Object.keys(record.references).some((k) => !Object.hasOwn(REGISTRY_LINKS[registry], k))) throw Error("Invalid reference relation");
+        entities.set(key2, { registry, record });
+      }
+    }
+    for (const { registry, record } of entities.values()) for (const [relation, targets] of Object.entries(record.references)) {
+      if (!Array.isArray(targets) || targets.length > 1e3 || new Set(targets).size !== targets.length || !["equipment", "facilities", "subject"].includes(relation) && targets.length > 1) throw Error("Invalid reference cardinality");
+      for (const target of targets) {
+        id(target);
+        const found = entities.get(target);
+        if (!found || !REGISTRY_LINKS[registry][relation].includes(found.registry)) throw Error("Dangling or wrong-type entity reference");
+      }
+    }
+    const checkReciprocal = (sourceRegistry, relation, targetRegistry, inverse) => {
+      for (const record of Object.values(registries[sourceRegistry])) for (const target of record.references[relation] ?? []) {
+        if (!(registries[targetRegistry][target].references[inverse] ?? []).includes(record.id)) throw Error("Nonreciprocal ownership/assignment reference");
+      }
+    };
+    checkReciprocal("chariots", "equipment", "equipment", "installedOn");
+    checkReciprocal("equipment", "installedOn", "chariots", "equipment");
+    checkReciprocal("properties", "facilities", "facilities", "property");
+    checkReciprocal("facilities", "property", "properties", "facilities");
+    for (const contract of Object.values(registries.contracts)) {
+      if (contract.references.employee?.length !== 1) throw Error("Contract needs one employee reference");
+      const employee = entities.get(contract.references.employee[0]).record;
+      if (employee.references.contract?.length !== 1 || employee.references.contract[0] !== contract.id) throw Error("Nonreciprocal employment reference");
+    }
+    for (const kind of ["personnel", "specialists"]) for (const record of Object.values(registries[kind])) for (const target of record.references.contract ?? []) {
+      if (registries.contracts[target].references.employee?.[0] !== record.id) throw Error("Conflicting employment reference");
+    }
+    for (const record of Object.values(registries.facilities)) if (record.references.property?.length !== 1) throw Error("Facility needs one owned property");
+    const assigned = /* @__PURE__ */ new Set();
+    for (const record of Object.values(registries.assignments)) {
+      if (record.kind !== "prospectiveRU" && record.references.project?.length !== 1 || !record.references.subject?.length) throw Error("Assignment needs project and subject references");
+      for (const target of record.references.subject) {
+        if (assigned.has(target)) throw Error("Conflicting exclusive assignment");
+        assigned.add(target);
+      }
+    }
+    return true;
+  }
+  function validateManagement(management, careerId, profileId) {
+    exact(management, ["initialized", "registrySchema", "registries"], "management foundation");
+    if (![1, 2].includes(management.registrySchema)) throw Error("Unsupported management registry schema");
+    validateOwnershipGraph(management.registries, careerId, profileId ? [profileId] : []);
+    if (management.registrySchema === 1) {
+      if (management.initialized !== false || REGISTRY_NAMES.some((k) => Object.keys(management.registries[k]).length)) throw Error("M2-B initialization requires typed registry schema 2");
+    } else {
+      if (management.initialized !== true) throw Error("Typed M2-B stable must be initialized");
+      validateStable(management.registries);
+    }
+  }
+
+  // src/career/packages.js
+  var CATALOG_VERSION = 3;
+  var equal = (n) => Array(n).fill(50);
+  var STARTING_PACKAGES = freeze({
+    traditional: { name: "Traditional", gold: 1200, drivers: [equal(5)], beasts: [equal(6), equal(6)], chariot: equal(5), equipment: ["Standard harness", "Standard wheels"], facility: "Basic Stable" },
+    beastmaster: { name: "Beastmaster Yard", gold: 850, drivers: [[50, 70, 40, 50, 50]], beasts: [[70, 60, 60, 70, 70, 60], [60, 70, 60, 70, 70, 60], [50, 50, 60, 60, 60, 50]], chariot: equal(5), equipment: ["Standard harness", "Standard wheels"], facility: "Animal Yard" },
+    mechanist: { name: "Mechanist Workshop", gold: 800, drivers: [[50, 40, 50, 60, 50]], beasts: [equal(6), equal(6)], chariot: [70, 70, 60, 70, 70], equipment: ["Reinforced harness", "Precision wheels"], facility: "Workshop Shed" },
+    veteran: { name: "Veteran Outfit", gold: 650, drivers: [[80, 60, 60, 70, 80], [40, 50, 40, 50, 50]], beasts: [equal(6), equal(6)], chariot: equal(5), equipment: ["Standard harness", "Standard wheels"], facility: "Veteran Quarters" },
+    scrappy: { name: "Scrappy Underdog", gold: 750, drivers: [[40, 50, 40, 50, 60], [30, 40, 40, 40, 50]], beasts: [[40, 50, 40, 60, 40, 50], [50, 40, 40, 60, 40, 50], [40, 40, 50, 60, 50, 50]], chariot: [40, 40, 40, 40, 40], equipment: ["Patched harness", "Worn wheels"], facility: "Makeshift Yard" }
+  });
+  function packageById(id2) {
+    if (!Object.hasOwn(STARTING_PACKAGES, id2)) throw Error("Unknown approved starting package");
+    return STARTING_PACKAGES[id2];
+  }
+  function assetId(careerId, tag) {
+    return "starter-" + checksum(careerId) + "-" + tag;
+  }
+  function buildPackage(careerId, packageId) {
+    const p = packageById(packageId), management = emptyManagement(), r = management.registries;
+    management.initialized = true;
+    management.registrySchema = 2;
+    const aid = (tag) => assetId(careerId, tag), assignment = aid("ru");
+    function record(kind, tag, name, fields2, references = {}) {
+      const id2 = aid(tag);
+      r[kind][id2] = { id: id2, ownerCareerId: careerId, references, recordVersion: 1, name, ...fields2 };
+      return id2;
+    }
+    const attributes = (keys, values) => Object.fromEntries(keys.map((k, i) => [k, values[i]]));
+    p.drivers.forEach((values, i) => record("personnel", "driver-" + i, p.name + " " + (i ? "Reserve Driver" : "Primary Driver"), { role: "driver", attributes: attributes(driverAttributes, values), condition: 100, injury: "Healthy", fatigue: 0, strain: 0, xp: 0, available: true }, i ? {} : { assignment: [assignment] }));
+    p.beasts.forEach((values, i) => record("beasts", "beast-" + i, p.name + " " + ["Lead A", "Lead B", "Reserve Beast"][i], { species: "generic_draft_beast", attributes: attributes(beastAttributes, values), condition: 100, injury: "Healthy", fatigue: 0, xp: 0, available: true }, i < 2 ? { assignment: [assignment] } : {}));
+    const chariotId = record("chariots", "chariot", packageId === "mechanist" ? "Workshop-tuned chariot" : packageId === "scrappy" ? "Salvaged racing chariot" : "Standard racing chariot", { attributes: attributes(chariotAttributes, p.chariot), condition: 100, wear: 0, integrity: 100, status: "Functional", weight: 180, capacity: 400, xp: 0, available: true }, { equipment: [aid("equipment-0"), aid("equipment-1")], assignment: [assignment] });
+    p.equipment.forEach((name, i) => record("equipment", "equipment-" + i, name, { mass: 0, combat: 0 }, { installedOn: [chariotId] }));
+    record("properties", "property", "Basic Property", { tier: "Basic", capacities: { ...BASIC_CAPACITY }, packageId, catalogVersion: CATALOG_VERSION }, { facilities: [aid("facility")] });
+    record("facilities", "facility", p.facility, { descriptiveOnly: true }, { property: [aid("property")] });
+    const driverId = aid("driver-0"), beastIds = [aid("beast-0"), aid("beast-1")];
+    record("assignments", "ru", "Prospective Racing Unit", { kind: "prospectiveRU", driverId, beastIds, chariotId }, { subject: [driverId, ...beastIds, chariotId] });
+    return management;
+  }
+  function initializationResult(careerId, packageId) {
+    const management = buildPackage(careerId, packageId);
+    return {
+      packageId,
+      catalogVersion: CATALOG_VERSION,
+      treasuryGrant: packageById(packageId).gold,
+      grantedIds: Object.values(management.registries).flatMap((r) => Object.keys(r)).sort()
+    };
+  }
+
+  // src/career/assembly.js
+  function previewRU(state2, selection, { assignmentId = null } = {}) {
+    const reasons = [], r = state2.management?.registries;
+    if (state2.schema !== 2 || !state2.management?.initialized || !r) return freeze({ assembled: false, eligible: false, reasons: ["Initialize a schema-2 stable first"], native: null, derived: null });
+    const { driverId, beastIds, chariotId } = selection ?? {};
+    const current = r.assignments[assignmentId];
+    const assembled = Boolean(current && current.driverId === driverId && current.chariotId === chariotId && JSON.stringify(current.beastIds) === JSON.stringify(beastIds));
+    if (!Array.isArray(beastIds) || beastIds.length !== 2 || new Set(beastIds).size !== 2) reasons.push("Select two distinct beasts");
+    const specs = [["personnel", driverId], ...(Array.isArray(beastIds) ? beastIds : []).map((id2) => ["beasts", id2]), ["chariots", chariotId]];
+    for (const [kind, key2] of specs) {
+      const a = Object.hasOwn(r[kind], key2) ? r[kind][key2] : null;
+      if (!a || a.ownerCareerId !== state2.career.id) {
+        reasons.push("Missing or foreign owned " + kind + ": " + String(key2));
+        continue;
+      }
+      if ((a.references.assignment ?? []).some((key3) => key3 !== assignmentId)) reasons.push("Asset already exclusively assigned: " + a.name);
+      if (!a.available) reasons.push("Asset unavailable: " + a.name);
+      if (["Severe", "Dead"].includes(a.injury) || ["Critical", "Destroyed"].includes(a.status)) reasons.push("Ineligible condition: " + a.name);
+    }
+    if (reasons.length) return freeze({ assembled, eligible: false, reasons, native: null, derived: null });
+    const driver = r.personnel[driverId], beasts = beastIds.map((id2) => r.beasts[id2]), chariot = r.chariots[chariotId];
+    const native = defaultRU("management-preview");
+    if (driver.condition <= consequenceDefaults.disabledCondition || chariot.condition <= consequenceDefaults.disabledCondition || beasts.every((b) => b.condition <= consequenceDefaults.minimumTeamCondition)) reasons.push("Native engine component disable threshold reached");
+    native.driver = { ...driver.attributes, condition: driver.condition, strain: driver.strain };
+    native.beasts = beasts.map((b) => ({ ...b.attributes, condition: b.condition, fatigue: b.fatigue }));
+    native.chariot = { ...chariot.attributes, condition: chariot.condition, wear: chariot.wear, weight: chariot.weight, capacity: chariot.capacity };
+    native.equipment = { mass: 0, combat: 0 };
+    for (const key2 of chariot.references.equipment ?? []) {
+      const item = r.equipment[key2];
+      if (!item || item.ownerCareerId !== state2.career.id || item.references.installedOn?.[0] !== chariot.id) reasons.push("Invalid installed equipment");
+      else {
+        native.equipment.mass += item.mass;
+        native.equipment.combat += item.combat;
+      }
+    }
+    try {
+      validateRU(native);
+    } catch (e) {
+      reasons.push(e.message);
+    }
+    if (reasons.length) return freeze({ assembled, eligible: false, reasons, native: null, derived: null });
+    return freeze({ assembled, eligible: true, reasons: [], native, derived: derive(native, config()), label: "Baseline / no weather or surface adjustment; not competition entry. Management driver fatigue is not mapped to strain." });
+  }
+  function applyAssembly(state2, tx) {
+    const r = state2.management.registries, key2 = tx.assignmentId;
+    id(key2);
+    if (!state2.management.initialized || state2.pendingRace !== null) throw Error("Initialized stable without pending checkpoint required");
+    const existing = r.assignments[key2];
+    if (tx.type === "ru.disassemble" && !existing) throw Error("No assembled RU with this identity");
+    if (tx.type === "ru.assemble") {
+      const preview = previewRU(state2, tx, { assignmentId: key2 });
+      if (!preview.eligible) throw Error(preview.reasons.join("; "));
+      for (const [kind, records] of Object.entries(r)) if (kind !== "assignments" && Object.hasOwn(records, key2)) throw Error("Assignment identity collides with owned asset");
+      if ([state2.profile.id, state2.career.id].includes(key2)) throw Error("Assignment identity is reserved");
+    }
+    if (existing) {
+      for (const subject of existing.references.subject) for (const kind of ["personnel", "beasts", "chariots"]) if (r[kind][subject]) r[kind][subject].references.assignment = [];
+      delete r.assignments[key2];
+    }
+    if (tx.type === "ru.assemble") {
+      const subjects = [tx.driverId, ...tx.beastIds, tx.chariotId];
+      r.assignments[key2] = { id: key2, ownerCareerId: state2.career.id, references: { subject: subjects }, recordVersion: 1, name: "Prospective Racing Unit", kind: "prospectiveRU", driverId: tx.driverId, beastIds: [...tx.beastIds], chariotId: tx.chariotId };
+      for (const subject of subjects) for (const kind of ["personnel", "beasts", "chariots"]) if (r[kind][subject]) r[kind][subject].references.assignment = [key2];
+    }
+  }
+
+  // src/career/domain-commands.js
+  var isDomainCommand = (tx) => ["career.initialize", "ru.assemble", "ru.disassemble"].includes(tx?.type);
+  var initializationEffect = (careerId) => "initialize-" + careerId;
+  var assignmentEffect = (careerId, revision, maintenanceRevision) => "assembly-" + careerId + "-" + revision + "-" + maintenanceRevision;
+  function validateDomainCommand(tx) {
+    const common = ["id", "profileId", "careerId", "expectedRevision", "type", "delta", "reason", "commandVersion", "expectedMaintenanceRevision", "effectId"];
+    exact(tx, [...common, ...tx.type === "career.initialize" ? ["packageId", "catalogVersion", "confirmed"] : tx.type === "ru.assemble" ? ["assignmentId", "driverId", "beastIds", "chariotId"] : ["assignmentId"]], "M2-B domain command");
+    for (const k of ["id", "profileId", "careerId"]) id(tx[k]);
+    if (tx.commandVersion !== 1 || !Number.isSafeInteger(tx.expectedRevision) || tx.expectedRevision < 0 || !Number.isSafeInteger(tx.expectedMaintenanceRevision) || tx.expectedMaintenanceRevision < 1 || typeof tx.reason !== "string" || !tx.reason.trim() || tx.reason.length > 500) throw Error("Invalid M2-B command/version/revisions");
+    if (tx.type === "career.initialize") {
+      if (tx.confirmed !== true || tx.catalogVersion !== CATALOG_VERSION || tx.delta !== packageById(tx.packageId).gold || tx.effectId !== initializationEffect(tx.careerId)) throw Error("Invalid confirmed initialization grant/catalog/effect");
+    } else {
+      if (tx.delta !== 0 || tx.effectId !== assignmentEffect(tx.careerId, tx.expectedRevision, tx.expectedMaintenanceRevision)) throw Error("Invalid assembly delta/effect identity");
+      id(tx.assignmentId);
+      if (tx.type === "ru.assemble") {
+        id(tx.driverId);
+        id(tx.chariotId);
+        if (!Array.isArray(tx.beastIds) || tx.beastIds.length !== 2 || new Set(tx.beastIds).size !== 2) throw Error("RU requires two distinct beasts");
+        tx.beastIds.forEach(id);
+      }
+    }
+  }
+  function assertPristine(state2) {
+    const reasons = [];
+    if (state2.management.initialized || state2.management.registrySchema !== 1 || Object.values(state2.management.registries).some((r) => Object.keys(r).length)) reasons.push("management is not empty/uninitialized");
+    if (state2.career.treasury !== 0) reasons.push("treasury is not zero");
+    if (state2.transactions.length || state2.history.commands.length || state2.provenance.some((m) => m.careerId === state2.career.id) || state2.career.developerEdited) reasons.push("active-career transaction/edit/protected history exists");
+    if (state2.pendingRace !== null) reasons.push("pending checkpoint exists");
+    if (reasons.length) throw Error("Initialization requires pristine career: " + reasons.join("; "));
+  }
+  function applyDomainCommand(next, tx) {
+    if (tx.type === "career.initialize") {
+      assertPristine(next);
+      next.management = buildPackage(next.career.id, tx.packageId);
+    } else applyAssembly(next, tx);
+  }
+  function domainResult(tx) {
+    return tx.type === "career.initialize" ? initializationResult(tx.careerId, tx.packageId) : { assignmentId: tx.assignmentId, assembled: tx.type === "ru.assemble" };
+  }
+
   // src/career/history.js
   var MAX_PROTECTED_COMMANDS = 2e3;
   var RETENTION_CLASSES = Object.freeze({ P0: "Protected identities, requests and effects: never discarded", P1: "Summarizable detail: future explicit confirmation", P2: "Provably redundant detail: future safe maintenance only" });
   function validateCommandV1(tx) {
+    if (isDomainCommand(tx)) {
+      validateDomainCommand(tx);
+      return;
+    }
     exact(tx, ["id", "profileId", "careerId", "expectedRevision", "type", "delta", "reason", "commandVersion", "expectedMaintenanceRevision", "effectId"], "versioned command");
     validateTransaction(legacyRequest(tx));
     if (tx.commandVersion !== 1 || !Number.isSafeInteger(tx.expectedMaintenanceRevision) || tx.expectedMaintenanceRevision < 0) throw Error("Invalid command/maintenance version");
@@ -3808,11 +4152,12 @@
       effectId: version ? tx.effectId : "legacy-" + tx.id,
       delta: tx.delta,
       balanceAfter,
-      retention: "P0"
+      retention: "P0",
+      ...isDomainCommand(tx) ? { result: domainResult(tx) } : {}
     };
   }
   function validateProtected(entry) {
-    exact(entry, ["id", "profileId", "careerId", "commandVersion", "request", "fingerprint", "resultRevision", "effectId", "delta", "balanceAfter", "retention"], "protected history identity");
+    exact(entry, ["id", "profileId", "careerId", "commandVersion", "request", "fingerprint", "resultRevision", "effectId", "delta", "balanceAfter", "retention", ...Object.hasOwn(entry, "result") ? ["result"] : []], "protected history identity");
     id(entry.id);
     id(entry.profileId);
     id(entry.careerId);
@@ -3886,90 +4231,6 @@
     };
   }
 
-  // src/career/registries.js
-  var REGISTRY_LINKS = Object.freeze({
-    personnel: { contract: ["contracts"] },
-    specialists: { contract: ["contracts"] },
-    beasts: {},
-    chariots: { equipment: ["equipment"] },
-    equipment: { installedOn: ["chariots"] },
-    contracts: { employee: ["personnel", "specialists"] },
-    candidates: {},
-    recruitmentOffers: { candidate: ["candidates"] },
-    marketOffers: { candidate: ["candidates"] },
-    properties: { facilities: ["facilities"] },
-    facilities: { property: ["properties"] },
-    projects: { subject: ["personnel", "beasts", "chariots", "equipment"], specialist: ["specialists"], facility: ["facilities"] },
-    assignments: { subject: ["personnel", "specialists", "beasts", "chariots", "equipment"], project: ["projects"] },
-    obligations: { liableEntity: ["personnel", "specialists", "contracts", "properties"] },
-    advancementChoices: { subject: ["personnel", "beasts"] },
-    achievements: {}
-  });
-  var REGISTRY_NAMES = Object.freeze(Object.keys(REGISTRY_LINKS));
-  function emptyManagement() {
-    return { initialized: false, registrySchema: 1, registries: Object.fromEntries(REGISTRY_NAMES.map((k) => [k, {}])) };
-  }
-  function validateOwnershipGraph(registries, careerId, reservedIds = []) {
-    id(careerId);
-    reservedIds.forEach(id);
-    exact(registries, REGISTRY_NAMES, "management registries");
-    const entities = /* @__PURE__ */ new Map();
-    for (const registry of REGISTRY_NAMES) {
-      const records = registries[registry];
-      if (!records || typeof records !== "object" || Array.isArray(records) || ![Object.prototype, null].includes(Object.getPrototypeOf(records)) || Object.keys(records).length > 1e3) throw Error("Invalid registry " + registry);
-      for (const [key2, record] of Object.entries(records)) {
-        id(key2);
-        exact(record, ["id", "ownerCareerId", "references"], "registry record");
-        id(record.id);
-        id(record.ownerCareerId);
-        if (record.id !== key2 || record.ownerCareerId !== careerId || entities.has(key2) || key2 === careerId || reservedIds.includes(key2)) throw Error("Duplicate identity or invalid entity ownership");
-        if (!record.references || typeof record.references !== "object" || Array.isArray(record.references) || ![Object.prototype, null].includes(Object.getPrototypeOf(record.references)) || Object.keys(record.references).some((k) => !Object.hasOwn(REGISTRY_LINKS[registry], k))) throw Error("Invalid reference relation");
-        entities.set(key2, { registry, record });
-      }
-    }
-    for (const { registry, record } of entities.values()) for (const [relation, targets] of Object.entries(record.references)) {
-      if (!Array.isArray(targets) || targets.length > 1e3 || new Set(targets).size !== targets.length || !["equipment", "facilities", "subject"].includes(relation) && targets.length > 1) throw Error("Invalid reference cardinality");
-      for (const target of targets) {
-        id(target);
-        const found = entities.get(target);
-        if (!found || !REGISTRY_LINKS[registry][relation].includes(found.registry)) throw Error("Dangling or wrong-type entity reference");
-      }
-    }
-    const checkReciprocal = (sourceRegistry, relation, targetRegistry, inverse) => {
-      for (const record of Object.values(registries[sourceRegistry])) for (const target of record.references[relation] ?? []) {
-        if (!(registries[targetRegistry][target].references[inverse] ?? []).includes(record.id)) throw Error("Nonreciprocal ownership/assignment reference");
-      }
-    };
-    checkReciprocal("chariots", "equipment", "equipment", "installedOn");
-    checkReciprocal("equipment", "installedOn", "chariots", "equipment");
-    checkReciprocal("properties", "facilities", "facilities", "property");
-    checkReciprocal("facilities", "property", "properties", "facilities");
-    for (const contract of Object.values(registries.contracts)) {
-      if (contract.references.employee?.length !== 1) throw Error("Contract needs one employee reference");
-      const employee = entities.get(contract.references.employee[0]).record;
-      if (employee.references.contract?.length !== 1 || employee.references.contract[0] !== contract.id) throw Error("Nonreciprocal employment reference");
-    }
-    for (const kind of ["personnel", "specialists"]) for (const record of Object.values(registries[kind])) for (const target of record.references.contract ?? []) {
-      if (registries.contracts[target].references.employee?.[0] !== record.id) throw Error("Conflicting employment reference");
-    }
-    for (const record of Object.values(registries.facilities)) if (record.references.property?.length !== 1) throw Error("Facility needs one owned property");
-    const assigned = /* @__PURE__ */ new Set();
-    for (const record of Object.values(registries.assignments)) {
-      if (record.references.project?.length !== 1 || !record.references.subject?.length) throw Error("Assignment needs project and subject references");
-      for (const target of record.references.subject) {
-        if (assigned.has(target)) throw Error("Conflicting exclusive assignment");
-        assigned.add(target);
-      }
-    }
-    return true;
-  }
-  function validateManagement(management, careerId, profileId) {
-    exact(management, ["initialized", "registrySchema", "registries"], "management foundation");
-    if (management.registrySchema !== 1) throw Error("Unsupported management registry schema");
-    validateOwnershipGraph(management.registries, careerId, profileId ? [profileId] : []);
-    if (management.initialized !== false || REGISTRY_NAMES.some((k) => Object.keys(management.registries[k]).length)) throw Error("Career initialization/assets require the separately authorized M2-B transaction");
-  }
-
   // src/career/schema2.js
   var CORE_FIELDS = ["kind", "schema", "revision", "profile", "career", "pendingRace", "transactions", "provenance"];
   var SCHEMA2_FIELDS = [...CORE_FIELDS, "maintenanceRevision", "management", "history", "migration"];
@@ -3997,7 +4258,12 @@
     const projection = Object.fromEntries(CORE_FIELDS.map((k) => [k, state2[k]]));
     projection.schema = 1;
     projection.pendingRace = null;
-    projection.transactions = state2.transactions?.map((r) => ({ ...r, transaction: legacyRequest(r.transaction) }));
+    projection.transactions = state2.transactions?.map((r) => ({ transaction: { ...legacyRequest(r.transaction), type: "developer.treasury.adjust" }, resultRevision: r.resultRevision, balanceAfter: r.balanceAfter }));
+    const domainMarks = state2.transactions?.filter((r) => isDomainCommand(r.transaction)).map((r) => transactionMark({ ...legacyRequest(r.transaction), type: "developer.treasury.adjust" })) ?? [];
+    projection.provenance = mergeMarks(state2.provenance, domainMarks);
+    projection.profile = { ...state2.profile, developerEdited: Boolean(projection.provenance.length) };
+    projection.career = { ...state2.career, developerEdited: projection.provenance.some((m2) => m2.careerId === state2.career.id) };
+    if (state2.profile.developerEdited !== Boolean(state2.provenance.length) || state2.career.developerEdited !== state2.provenance.some((m2) => m2.careerId === state2.career.id)) throw Error("Inconsistent developer-edited state");
     validateState(projection);
     validateInertPending(state2.pendingRace, state2);
     validateManagement(state2.management, state2.career.id, state2.profile.id);
@@ -4007,13 +4273,34 @@
     if (canonical(entries) !== canonical(state2.history.commands)) throw Error("Protected history must be unique and canonically ordered");
     for (const entry of entries) {
       if (entry.profileId !== state2.profile.id || entry.careerId !== state2.career.id) throw Error("Protected history entity reference mismatch");
-      if (!state2.provenance.some((m2) => canonical(m2) === canonical(transactionMark(JSON.parse(entry.request))))) throw Error("Protected developer command lacks provenance");
+      if (!isDomainCommand(JSON.parse(entry.request)) && !state2.provenance.some((m2) => canonical(m2) === canonical(transactionMark(JSON.parse(entry.request))))) throw Error("Protected developer command lacks provenance");
     }
     for (const mark of state2.provenance.filter((m2) => m2.careerId === state2.career.id)) if (!entries.some((e) => e.id === mark.id)) throw Error("Developer identity missing from protected history");
     for (const r of state2.transactions) {
+      exact(r, ["transaction", "resultRevision", "balanceAfter", ...isDomainCommand(r.transaction) ? ["result"] : []], "receipt");
+      if (isDomainCommand(r.transaction) && canonical(r.result) !== canonical(domainResult(r.transaction))) throw Error("Domain receipt result mismatch");
       const expected = protectTransaction(r.transaction, r.balanceAfter);
       if (!entries.some((e) => canonical(e) === canonical(expected))) throw Error("Receipt changed or missing protected request/effect fact");
       if (expected.commandVersion === 1 && r.transaction.expectedMaintenanceRevision > state2.maintenanceRevision) throw Error("Receipt from a future maintenance revision");
+    }
+    const initialization = state2.transactions.filter((r) => r.transaction.type === "career.initialize");
+    if (initialization.length > 1 || state2.management.initialized !== (initialization.length === 1)) throw Error("M2-B initialization requires one active canonical receipt");
+    if (initialization.length) {
+      const tx = initialization[0].transaction;
+      if (tx.expectedRevision !== 0 || state2.migration.sourceRevision !== 0 || state2.pendingRace !== null) throw Error("Initialization was not pristine");
+      const original = buildPackage(state2.career.id, tx.packageId).registries;
+      for (const kind of Object.keys(original).filter((k) => k !== "assignments")) {
+        const strip = (records) => Object.fromEntries(Object.entries(records).map(([key2, value]) => {
+          const v = structuredClone(value);
+          delete v.references.assignment;
+          return [key2, v];
+        }));
+        if (canonical(strip(original[kind])) !== canonical(strip(state2.management.registries[kind]))) throw Error("M2-B assets differ from canonical package grant");
+      }
+      const replay = structuredClone(state2);
+      replay.management = buildPackage(state2.career.id, tx.packageId);
+      for (const r of state2.transactions.slice(1)) if (isDomainCommand(r.transaction)) applyDomainCommand(replay, r.transaction);
+      if (canonical(replay.management) !== canonical(state2.management)) throw Error("RU assignments do not match committed history");
     }
     const m = state2.migration;
     exact(m, ["fromSchema", "toSchema", "sourceProfileId", "sourceCareerId", "sourceRevision", "sourceTreasury", "sourcePendingDigest", "sourceStateDigest"], "migration lineage");
@@ -4058,7 +4345,6 @@
     validateStateV2(state2);
     const committed = lookupCommitted(state2.history.commands, tx, state2.transactions);
     if (committed) return { ...committed, state: structuredClone(state2) };
-    if (tx.type === "career.initialize") throw Error("Career initialization requires the separately authorized M2-B transaction");
     validateCommandV1(tx);
     if (tx.profileId !== state2.profile.id || tx.careerId !== state2.career.id) throw Error("Command ownership mismatch");
     assertRevision(state2, tx.expectedRevision, tx.expectedMaintenanceRevision);
@@ -4067,26 +4353,30 @@
     const balance = BigInt(state2.career.treasury) + BigInt(tx.delta);
     if (balance < 0n || balance > BigInt(Number.MAX_SAFE_INTEGER)) throw Error("Treasury must be a nonnegative safe integer");
     const next = structuredClone(state2), receipt = { transaction: structuredClone(tx), resultRevision: state2.revision + 1, balanceAfter: Number(balance) };
+    if (isDomainCommand(tx)) {
+      applyDomainCommand(next, tx);
+      receipt.result = domainResult(tx);
+    }
     next.revision++;
     next.career.treasury = Number(balance);
     next.transactions.push(receipt);
-    next.provenance = mergeMarks(next.provenance, [transactionMark(tx)]);
-    next.profile.developerEdited = next.career.developerEdited = true;
+    if (!isDomainCommand(tx)) {
+      next.provenance = mergeMarks(next.provenance, [transactionMark(tx)]);
+      next.profile.developerEdited = next.career.developerEdited = true;
+    }
     next.history.commands = mergeProtected(next.history.commands, [protectTransaction(tx, Number(balance))]);
     return { state: validateStateV2(next), duplicate: false, receipt: structuredClone(receipt) };
   }
   function immutableHistoryView(state2) {
     const view = structuredClone(state2);
-    const freeze = (value) => {
+    const freeze2 = (value) => {
       if (value && typeof value === "object") {
-        Object.values(value).forEach(freeze);
+        Object.values(value).forEach(freeze2);
         Object.freeze(value);
       }
       return value;
     };
-    freeze(view.transactions);
-    freeze(view.history);
-    freeze(view.migration);
+    freeze2(view);
     return view;
   }
 
@@ -4103,6 +4393,76 @@
   }
   function transact2(state2, tx) {
     return state2?.schema === 2 ? transactV2(state2, tx) : transact(state2, tx);
+  }
+
+  // src/ui/stable-foundation.js
+  var $ = (id2) => document.getElementById(id2);
+  function mountStableFoundation({ store, act, newId: newId2, setNotice }) {
+    for (const [value, p] of Object.entries(STARTING_PACKAGES)) $("stablePackage").add(new Option(p.name, value));
+    function command(type, fields2) {
+      const s = store.state;
+      return { id: newId2("domain"), profileId: s.profile.id, careerId: s.career.id, expectedRevision: s.revision, expectedMaintenanceRevision: s.maintenanceRevision, commandVersion: 1, type, reason: "M2-B " + type, delta: 0, effectId: assignmentEffect(s.career.id, s.revision, s.maintenanceRevision), ...fields2 };
+    }
+    function currentSelection() {
+      return { driverId: $("stableDriver").value, beastIds: [$("stableBeastA").value, $("stableBeastB").value], chariotId: $("stableChariot").value };
+    }
+    function render2() {
+      const s = store.state, ready = s?.schema === 2 && s.management.initialized, blocked = ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint;
+      if (ready) $("stablePackage").value = Object.values(s.management.registries.properties)[0].packageId;
+      const packageId = $("stablePackage").value, p = STARTING_PACKAGES[packageId];
+      $("stablePackagePreview").textContent = JSON.stringify({ catalogVersion: CATALOG_VERSION, ...p, purchasePrice: 0, property: { tier: "Basic", drivers: 2, specialists: 0, beasts: 4, chariots: 1 }, equipmentEffects: { mass: 0, combat: 0 }, facilityEffects: "Descriptive only", initialRU: "Primary driver, Lead A, Lead B, sole chariot; reserves unassigned" }, null, 2);
+      let reason = "Create or explicitly migrate to schema 2 first";
+      if (s?.schema === 2) {
+        try {
+          assertPristine(s);
+          reason = "Eligible for explicit one-time initialization";
+        } catch (e) {
+          reason = e.message;
+        }
+      }
+      $("stableStatus").textContent = ready ? "Initialized stable \xB7 prospective assembly only \xB7 no competition entry" : reason;
+      $("stableInitialize").disabled = blocked || !s || s.schema !== 2 || reason !== "Eligible for explicit one-time initialization";
+      $("stablePackage").disabled = Boolean(ready);
+      const r = ready ? s.management.registries : null, a = r ? Object.values(r.assignments)[0] : null;
+      const controls = [["stableDriver", "personnel", a?.driverId], ["stableBeastA", "beasts", a?.beastIds[0]], ["stableBeastB", "beasts", a?.beastIds[1]], ["stableChariot", "chariots", a?.chariotId]];
+      for (const [key2, kind, preferred] of controls) {
+        const select = $(key2), old = select.value;
+        select.replaceChildren();
+        if (r) for (const asset of Object.values(r[kind])) select.add(new Option(asset.name, asset.id));
+        if ([...select.options].some((o) => o.value === old)) select.value = old;
+        else if (preferred) select.value = preferred;
+        select.disabled = !ready;
+      }
+      $("stableRoster").textContent = r ? JSON.stringify({ package: Object.values(r.properties)[0].packageId, capacities: Object.values(r.properties)[0].capacities, roster: r, lastReceipt: s.transactions.at(-1) }, null, 2) : "No owned assets. Previewing a package grants nothing.";
+      const preview = ready ? previewRU(s, currentSelection(), { assignmentId: a?.id ?? null }) : null;
+      $("stableRUPreview").textContent = preview ? JSON.stringify(preview, null, 2) : "Initialize before assembling.";
+      $("stableAssemble").disabled = !ready || blocked || !preview?.eligible;
+      $("stableDisassemble").disabled = !a || blocked;
+    }
+    $("stableNewCareer").onclick = act(() => {
+      const existing = store.state || store.raw !== null || store.quarantine;
+      if (existing && !window.confirm("Replace the loaded career with an empty schema-2 foundation? Export a backup first. Owner Legacy is replaced, never merged.")) return;
+      store.create(createUninitializedCareer({ profileId: newId2("profile"), careerId: newId2("career"), ownerName: $("careerOwnerName").value, careerName: $("careerName").value }), { confirmed: Boolean(existing) });
+      setNotice("Empty schema-2 career created. Choose a package and confirm initialization separately.");
+    });
+    $("stableInitialize").onclick = act(() => {
+      const s = store.state, packageId = $("stablePackage").value, p = STARTING_PACKAGES[packageId];
+      if (!window.confirm(`Initialize this career once with ${p.name}, ${p.gold} Gold and the previewed assets? Package selection cannot be changed after initialization.`)) return;
+      store.transaction(command("career.initialize", { packageId, catalogVersion: CATALOG_VERSION, confirmed: true, delta: p.gold, effectId: initializationEffect(s.career.id) }));
+      setNotice("Starting stable initialized atomically. Initial RU assembled; no race entered.");
+    });
+    $("stableAssemble").onclick = act(() => {
+      const s = store.state, a = Object.values(s.management.registries.assignments)[0];
+      store.transaction(command("ru.assemble", { assignmentId: a?.id ?? assetId(s.career.id, "ru"), ...currentSelection() }));
+      setNotice("Prospective RU assembly committed. No Gold, time or fatigue consumed; no competition entry.");
+    });
+    $("stableDisassemble").onclick = act(() => {
+      const a = Object.values(store.state.management.registries.assignments)[0];
+      store.transaction(command("ru.disassemble", { assignmentId: a.id }));
+      setNotice("Prospective RU disassembled; owned assets retained.");
+    });
+    for (const key2 of ["stablePackage", "stableDriver", "stableBeastA", "stableBeastB", "stableChariot"]) $(key2).onchange = render2;
+    return render2;
   }
 
   // src/career/foundation-catalog.js
@@ -4149,7 +4509,7 @@
       for (const mark of marks) if (!protectedHistory.some((e) => e.id === mark.id)) throw Error("Known provenance identity missing from protected registry");
       for (const entry of protectedHistory) {
         const tx = JSON.parse(entry.request);
-        if (!marks.some((m) => m.id === entry.id && m.profileId === tx.profileId && m.careerId === tx.careerId && m.revision === tx.expectedRevision + 1 && m.type === tx.type && m.reason === tx.reason && m.delta === tx.delta)) throw Error("Protected registry/provenance mismatch");
+        if (!isDomainCommand(tx) && !marks.some((m) => m.id === entry.id && m.profileId === tx.profileId && m.careerId === tx.careerId && m.revision === tx.expectedRevision + 1 && m.type === tx.type && m.reason === tx.reason && m.delta === tx.delta)) throw Error("Protected registry/provenance mismatch");
       }
     }
     const errors = {}, valid = {};
@@ -4364,7 +4724,7 @@
   };
 
   // src/ui/career-saves.js
-  var $ = (id2) => document.getElementById(id2);
+  var $2 = (id2) => document.getElementById(id2);
   var sequence = 0;
   function newId(prefix) {
     let suffix;
@@ -4384,20 +4744,23 @@
     const store = new CareerStore(storage);
     store.open();
     let staged = null, lastToken = null, notice = "", queue = Promise.resolve();
+    let renderStable = () => {
+    };
     function render2() {
       const state2 = store.state;
-      $("careerSaveStatus").textContent = `${store.mode.toUpperCase()} \xB7 ${state2 ? `Schema ${state2.schema} \xB7 Revision ${state2.revision} \xB7 Maintenance ${state2.maintenanceRevision ?? 0} \xB7 Treasury ${state2.career.treasury} Gold \xB7 ${state2.profile.developerEdited || state2.career.developerEdited ? "DEVELOPER-EDITED (persistent)" : "Unedited foundation"}` : "No career loaded"}${store.requiresCheckpoint ? " \xB7 CHECKPOINT REQUIRED: export, save the file and confirm before another change." : ""}`;
-      $("careerSaveNotice").textContent = [store.problem, notice].filter(Boolean).join(" ");
-      $("careerSaveInspect").textContent = JSON.stringify(state2 ?? { status: store.mode, recoveryAvailable: Boolean(store.recovery) }, null, 2);
-      $("careerAdjust").disabled = !state2 || ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint;
-      $("careerExport").disabled = !state2;
-      $("careerMigrate").disabled = !state2 || state2.schema !== 1 || ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint;
-      $("careerCreate").textContent = store.schema2Session ? "Create uninitialized schema-2 foundation" : "Create empty M1 state";
-      $("careerHistoryPlan").textContent = JSON.stringify(state2 ? historyRetentionPlan(state2) : { scope: "M2-A only", initialized: false }, null, 2);
-      $("careerAcknowledge").disabled = !state2 || !lastToken;
-      $("careerRecover").disabled = !store.recoveryPending;
-      $("careerRawExport").disabled = !store.quarantine;
-      $("careerImportApply").disabled = !staged;
+      $2("careerSaveStatus").textContent = `${store.mode.toUpperCase()} \xB7 ${state2 ? `Schema ${state2.schema} \xB7 Revision ${state2.revision} \xB7 Maintenance ${state2.maintenanceRevision ?? 0} \xB7 Treasury ${state2.career.treasury} Gold \xB7 ${state2.profile.developerEdited || state2.career.developerEdited ? "DEVELOPER-EDITED (persistent)" : "Unedited foundation"}` : "No career loaded"}${store.requiresCheckpoint ? " \xB7 CHECKPOINT REQUIRED: export, save the file and confirm before another change." : ""}`;
+      $2("careerSaveNotice").textContent = [store.problem, notice].filter(Boolean).join(" ");
+      $2("careerSaveInspect").textContent = JSON.stringify(state2 ?? { status: store.mode, recoveryAvailable: Boolean(store.recovery) }, null, 2);
+      $2("careerAdjust").disabled = !state2 || ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint;
+      $2("careerExport").disabled = !state2;
+      $2("careerMigrate").disabled = !state2 || state2.schema !== 1 || ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint;
+      $2("careerCreate").textContent = store.schema2Session ? "Create uninitialized schema-2 foundation" : "Create empty M1 state";
+      $2("careerHistoryPlan").textContent = JSON.stringify(state2 ? historyRetentionPlan(state2) : { scope: "M2-A only", initialized: false }, null, 2);
+      $2("careerAcknowledge").disabled = !state2 || !lastToken;
+      $2("careerRecover").disabled = !store.recoveryPending;
+      $2("careerRawExport").disabled = !store.quarantine;
+      $2("careerImportApply").disabled = !staged;
+      renderStable();
     }
     async function exclusive(fn) {
       if (navigator.locks?.request) return navigator.locks.request(SAVE_KEY + ".writer", fn);
@@ -4410,15 +4773,15 @@
       }).finally(render2);
       return queue;
     };
-    $("careerCreate").onclick = act(() => {
+    $2("careerCreate").onclick = act(() => {
       const existing = store.state || store.raw !== null || store.quarantine;
       if (existing && !window.confirm("Replace the current Owner Profile and Career State with an empty foundation? Export a backup first. Owner Legacy will not be merged.")) return;
       const create = store.schema2Session ? createUninitializedCareer : createCareer2;
-      store.create(create({ profileId: newId("profile"), careerId: newId("career"), ownerName: $("careerOwnerName").value, careerName: $("careerName").value }), { confirmed: Boolean(existing) });
+      store.create(create({ profileId: newId("profile"), careerId: newId("career"), ownerName: $2("careerOwnerName").value, careerName: $2("careerName").value }), { confirmed: Boolean(existing) });
       notice = "Empty uninitialized foundation created: 0 Gold, no roster, championships or Legacy progression. Starting packages and explicit initialization require M2-B.";
       lastToken = null;
     });
-    $("careerMigrate").onclick = act(() => {
+    $2("careerMigrate").onclick = act(() => {
       const state2 = store.state;
       if (!state2) throw Error("No career loaded");
       if (!window.confirm("Upgrade this M1 career to schema 2? IDs, Gold, gameplay revision, receipts and provenance are preserved. No assets or progress are granted. The previous valid checkpoint is retained. Initialization requires M2-B.")) return;
@@ -4426,54 +4789,54 @@
       notice = "Schema 2 migration committed: management remains uninitialized, registries empty. No Gold, assets, achievements or gameplay revision awarded.";
       lastToken = null;
     });
-    $("careerAdjust").onclick = act(() => {
+    $2("careerAdjust").onclick = act(() => {
       const state2 = store.state;
       if (!state2) throw Error("No career loaded");
-      const rawDelta = $("careerTreasuryDelta").value;
+      const rawDelta = $2("careerTreasuryDelta").value;
       if (!rawDelta.trim() || !Number.isSafeInteger(Number(rawDelta))) throw Error("Enter a whole-number treasury change");
-      const delta = Number(rawDelta), reason = $("careerEditReason").value;
+      const delta = Number(rawDelta), reason = $2("careerEditReason").value;
       if (!window.confirm("Apply this developer treasury transaction? It permanently marks this profile and career developer-edited.")) return;
       store.transaction({ id: newId("tx"), profileId: state2.profile.id, careerId: state2.career.id, expectedRevision: state2.revision, type: "developer.treasury.adjust", delta, reason, ...state2.schema === 2 ? { commandVersion: 1, expectedMaintenanceRevision: state2.maintenanceRevision, effectId: newId("effect") } : {} });
       notice = "Developer transaction committed. This provenance cannot be cleared by ordinary actions.";
       lastToken = null;
     });
-    $("careerExport").onclick = act(() => {
+    $2("careerExport").onclick = act(() => {
       const envelope = store.export();
       lastToken = store.exportToken;
       download(envelope, "BNT-game-save.json");
       notice = "Download requested. This exports the complete persistent state, not the running race. The browser cannot verify that you saved it durably. In manual mode, save the file before confirming the checkpoint.";
     });
-    $("careerAcknowledge").onclick = act(() => {
+    $2("careerAcknowledge").onclick = act(() => {
       if (!window.confirm("Have you saved this exact exported checkpoint? This records your confirmation only; the game cannot verify disk durability.")) return;
       store.acknowledgeExport(lastToken);
       notice = "Checkpoint confirmed by you for this session; disk durability was not independently verified.";
     });
-    $("careerImportFile").onchange = act(async () => {
+    $2("careerImportFile").onchange = act(async () => {
       staged = null;
-      const file = $("careerImportFile").files[0];
-      $("careerImportFile").value = "";
+      const file = $2("careerImportFile").files[0];
+      $2("careerImportFile").value = "";
       if (!file) return;
       if (!file.name.toLowerCase().endsWith(".json") || file.size > MAX_IMPORT_BYTES) throw Error("Choose a career .json file within the 8 MiB import limit (schema 1 remains limited to 2 MiB)");
       const text2 = await file.text(), parsed = parseEnvelope(text2);
       staged = text2;
-      $("careerImportMigrate").checked = parsed.primary.schema === 1 && store.schema2Session;
-      notice = `Import validated: ${parsed.primary.profile.name} / ${parsed.primary.career.name}, schema ${parsed.primary.schema}, revision ${parsed.primary.revision}. ${$("careerImportMigrate").checked ? "Schema-1 upgrade is selected; no grants or initialization. " : ""}Nothing was replaced. Use Confirm replacement to proceed.`;
+      $2("careerImportMigrate").checked = parsed.primary.schema === 1 && store.schema2Session;
+      notice = `Import validated: ${parsed.primary.profile.name} / ${parsed.primary.career.name}, schema ${parsed.primary.schema}, revision ${parsed.primary.revision}. ${$2("careerImportMigrate").checked ? "Schema-1 upgrade is selected; no grants or initialization. " : ""}Nothing was replaced. Use Confirm replacement to proceed.`;
     });
-    $("careerImportApply").onclick = act(() => {
+    $2("careerImportApply").onclick = act(() => {
       if (!staged) throw Error("Select and validate an import first");
       if (!window.confirm("Replace the entire loaded Owner Profile, Career State and pending checkpoint with this file? Export your current state first. Owner Legacy is replaced, never merged; known matching developer provenance is retained. If the schema-1 upgrade checkbox is selected, the file is upgraded without grants.")) return;
-      store.importSave(staged, { confirmed: true, migrateLegacy: $("careerImportMigrate").checked });
+      store.importSave(staged, { confirmed: true, migrateLegacy: $2("careerImportMigrate").checked });
       staged = null;
       lastToken = null;
       notice = "Complete persistent state imported. Owner Legacy was not merged. Retained developer provenance may keep an older imported checkpoint marked edited.";
     });
-    $("careerRecover").onclick = act(() => {
+    $2("careerRecover").onclick = act(() => {
       if (!window.confirm("Recover the previous valid checkpoint? The current corrupt bytes remain available for diagnostic export. No financial recovery transaction or reward will be created.")) return;
       store.recover({ confirmed: true });
       lastToken = null;
       notice = "Previous checkpoint selected explicitly. Known developer provenance retained; no transaction, reward or revision was invented.";
     });
-    $("careerRawExport").onclick = act(() => {
+    $2("careerRawExport").onclick = act(() => {
       download({ kind: "BNT-corrupt-save-diagnostic", raw: store.quarantine }, "BNT-corrupt-save-diagnostic.json");
       notice = "Original corrupt bytes included in a diagnostic download request. This is not an importable game save or a verified durable backup.";
     });
@@ -4483,6 +4846,10 @@
         render2();
       }
     });
+    renderStable = mountStableFoundation({ store, act, newId, setNotice: (message) => {
+      notice = message;
+      lastToken = null;
+    } });
     render2();
   }
 
@@ -4859,7 +5226,7 @@
   }
 
   // src/ui/workbench.js
-  var $2 = (id2) => document.getElementById(id2);
+  var $3 = (id2) => document.getElementById(id2);
   function downloadJSON(value, name) {
     const url = URL.createObjectURL(
       new Blob([JSON.stringify(value, null, 2)], { type: "application/json" })
@@ -4879,7 +5246,7 @@
   }) {
     let replay = null, batchAbort = null, batchResult = null;
     const message = (text2) => {
-      $2("developerStatus").textContent = text2;
+      $3("developerStatus").textContent = text2;
     };
     const act = (fn) => async () => {
       try {
@@ -4890,40 +5257,40 @@
       render2();
     };
     function setEditor(setup) {
-      $2("setupJSON").value = JSON.stringify(configuration(setup), null, 2);
-      const selected = $2("surfaceSegment").value;
-      $2("surfaceSegment").replaceChildren(...getState().track.segments.map((s) => new Option(s.id, s.id)));
-      if ([...$2("surfaceSegment").options].some((o) => o.value === selected)) $2("surfaceSegment").value = selected;
+      $3("setupJSON").value = JSON.stringify(configuration(setup), null, 2);
+      const selected = $3("surfaceSegment").value;
+      $3("surfaceSegment").replaceChildren(...getState().track.segments.map((s) => new Option(s.id, s.id)));
+      if ([...$3("surfaceSegment").options].some((o) => o.value === selected)) $3("surfaceSegment").value = selected;
       refreshComponents();
       refreshParameter();
     }
     function apply(doc) {
       replay = null;
-      $2("replayStatus").textContent = "Live race";
+      $3("replayStatus").textContent = "Live race";
       setState(createRace(doc.setup));
       setEditor(doc.setup);
       message("Configuration applied to a new race.");
     }
     function selectedRU() {
-      return getState().entrants.find((r) => r.id === $2("componentScope").value) ?? getState().entrants[0];
+      return getState().entrants.find((r) => r.id === $3("componentScope").value) ?? getState().entrants[0];
     }
     function refreshComponents() {
-      const selection = $2("componentScope").value;
-      $2("componentScope").replaceChildren();
+      const selection = $3("componentScope").value;
+      $3("componentScope").replaceChildren();
       for (const [value, label] of [
         ["all", `All ${getState().entrants.length} RUs`],
         ...getState().entrants.map((r) => [r.id, r.id])
       ]) {
         const o = new Option(label, value);
-        $2("componentScope").append(o);
+        $3("componentScope").append(o);
       }
-      if ([...$2("componentScope").options].some((o) => o.value === selection))
-        $2("componentScope").value = selection;
+      if ([...$3("componentScope").options].some((o) => o.value === selection))
+        $3("componentScope").value = selection;
       refreshObjects();
     }
     function refreshObjects() {
-      const ru = selectedRU(), previous2 = $2("componentObject").value;
-      $2("componentObject").replaceChildren();
+      const ru = selectedRU(), previous2 = $3("componentObject").value;
+      $3("componentObject").replaceChildren();
       for (const value of [
         "driver",
         "driver.personality",
@@ -4932,23 +5299,23 @@
         "beasts.*",
         ...ru.ru.beasts.map((_, i) => `beasts.${i}`)
       ])
-        $2("componentObject").append(new Option(value, value));
-      if ([...$2("componentObject").options].some((o) => o.value === previous2))
-        $2("componentObject").value = previous2;
+        $3("componentObject").append(new Option(value, value));
+      if ([...$3("componentObject").options].some((o) => o.value === previous2))
+        $3("componentObject").value = previous2;
       refreshFields();
     }
     function refreshFields() {
-      const ru = selectedRU().ru, path = $2("componentObject").value.replace("*", "0"), obj = path.split(".").reduce((n, k) => n[k], ru);
-      $2("componentField").replaceChildren();
+      const ru = selectedRU().ru, path = $3("componentObject").value.replace("*", "0"), obj = path.split(".").reduce((n, k) => n[k], ru);
+      $3("componentField").replaceChildren();
       for (const [key2, v] of Object.entries(obj))
         if (typeof v === "number")
-          $2("componentField").append(new Option(key2, key2));
+          $3("componentField").append(new Option(key2, key2));
       refreshValue();
     }
     function refreshValue() {
-      const path = $2("componentObject").value.replace("*", "0") + "." + $2("componentField").value;
-      $2("componentValue").value = path.split(".").reduce((n, k) => n[k], selectedRU().ru);
-      $2("componentSummary").textContent = `Scope: ${$2("componentScope").value}; ${$2("componentObject").value}.${$2("componentField").value}. Wildcard beasts.* edits every team member.`;
+      const path = $3("componentObject").value.replace("*", "0") + "." + $3("componentField").value;
+      $3("componentValue").value = path.split(".").reduce((n, k) => n[k], selectedRU().ru);
+      $3("componentSummary").textContent = `Scope: ${$3("componentScope").value}; ${$3("componentObject").value}.${$3("componentField").value}. Wildcard beasts.* edits every team member.`;
     }
     const parameterGroups = {
       config: { target: "config", source: () => getState().config, defaults },
@@ -4981,26 +5348,26 @@
       }
     };
     function refreshParameter() {
-      const g = parameterGroups[$2("parameterGroup").value], previous2 = $2("parameterField").value;
-      $2("parameterField").replaceChildren();
+      const g = parameterGroups[$3("parameterGroup").value], previous2 = $3("parameterField").value;
+      $3("parameterField").replaceChildren();
       for (const [key2, v] of Object.entries(g.source()))
         if (typeof v === "number")
-          $2("parameterField").append(new Option(key2, key2));
-      if ([...$2("parameterField").options].some((o) => o.value === previous2))
-        $2("parameterField").value = previous2;
+          $3("parameterField").append(new Option(key2, key2));
+      if ([...$3("parameterField").options].some((o) => o.value === previous2))
+        $3("parameterField").value = previous2;
       refreshParameterValue();
     }
     function refreshParameterValue() {
-      const g = parameterGroups[$2("parameterGroup").value], key2 = $2("parameterField").value;
-      $2("parameterValue").value = g.source()[key2];
+      const g = parameterGroups[$3("parameterGroup").value], key2 = $3("parameterField").value;
+      $3("parameterValue").value = g.source()[key2];
       const bounds = rules[key2];
-      $2("parameterSummary").textContent = `Default ${(typeof g.defaults === "function" ? g.defaults() : g.defaults)[key2]}; ${bounds ? `${bounds[0]}..${bounds[1]} ${bounds[2]}` : $2("parameterGroup").value === "model" ? "0..2; normalized weight groups must sum to 1" : "See validated ranges in the configuration documentation"}. Structural settings require a new race.`;
+      $3("parameterSummary").textContent = `Default ${(typeof g.defaults === "function" ? g.defaults() : g.defaults)[key2]}; ${bounds ? `${bounds[0]}..${bounds[1]} ${bounds[2]}` : $3("parameterGroup").value === "model" ? "0..2; normalized weight groups must sum to 1" : "See validated ranges in the configuration documentation"}. Structural settings require a new race.`;
     }
-    $2("applySetup").onclick = act(
-      () => apply(parseConfiguration($2("setupJSON").value))
+    $3("applySetup").onclick = act(
+      () => apply(parseConfiguration($3("setupJSON").value))
     );
-    $2("resetSetup").onclick = act(() => apply(configuration({})));
-    $2("captureSetup").onclick = act(() => {
+    $3("resetSetup").onclick = act(() => apply(configuration({})));
+    $3("captureSetup").onclick = act(() => {
       const s = getState(), setup = structuredClone(s.setup);
       setup.overrides = s.config;
       setup.autonomous = s.autonomous;
@@ -5013,8 +5380,8 @@
         "Copied current component conditions and tuning into the configuration editor; apply to start a new race."
       );
     });
-    $2("saveSetup").onclick = act(() => {
-      const doc = parseConfiguration($2("setupJSON").value);
+    $3("saveSetup").onclick = act(() => {
+      const doc = parseConfiguration($3("setupJSON").value);
       let storage;
       try {
         storage = window.localStorage;
@@ -5023,29 +5390,29 @@
       const result = saveConfiguration(storage, doc);
       message(result.ok ? "Configuration saved locally." : result.message);
     });
-    $2("loadSetup").onclick = act(
+    $3("loadSetup").onclick = act(
       () => apply(loadConfiguration(window.localStorage))
     );
-    $2("exportSetup").onclick = act(
+    $3("exportSetup").onclick = act(
       () => downloadJSON(
-        parseConfiguration($2("setupJSON").value),
+        parseConfiguration($3("setupJSON").value),
         "BNT-configuration.json"
       )
     );
-    $2("setupFile").onchange = act(async () => {
-      const file = $2("setupFile").files[0];
+    $3("setupFile").onchange = act(async () => {
+      const file = $3("setupFile").files[0];
       if (file) apply(parseConfiguration(await file.text()));
     });
-    $2("componentScope").onchange = refreshObjects;
-    $2("componentObject").onchange = refreshFields;
-    $2("componentField").onchange = refreshValue;
-    $2("applyComponent").onclick = act(() => {
+    $3("componentScope").onchange = refreshObjects;
+    $3("componentObject").onchange = refreshFields;
+    $3("componentField").onchange = refreshValue;
+    $3("applyComponent").onclick = act(() => {
       const edit = {
-        id: $2("componentScope").value,
-        path: $2("componentObject").value + "." + $2("componentField").value,
-        value: Number($2("componentValue").value)
+        id: $3("componentScope").value,
+        path: $3("componentObject").value + "." + $3("componentField").value,
+        value: Number($3("componentValue").value)
       };
-      if ($2("componentMode").value === "live") {
+      if ($3("componentMode").value === "live") {
         if (replay) throw new Error("Replay is read-only");
         queueOverride(
           getState(),
@@ -5056,14 +5423,14 @@
           `Component edit queued for tick ${getState().tick}. Step or Resume to apply.`
         );
       } else
-        apply(editConfiguration(parseConfiguration($2("setupJSON").value), edit));
+        apply(editConfiguration(parseConfiguration($3("setupJSON").value), edit));
     });
-    $2("parameterGroup").onchange = refreshParameter;
-    $2("parameterField").onchange = refreshParameterValue;
-    $2("applyParameter").onclick = act(() => {
+    $3("parameterGroup").onchange = refreshParameter;
+    $3("parameterField").onchange = refreshParameterValue;
+    $3("applyParameter").onclick = act(() => {
       var _a;
-      const g = parameterGroups[$2("parameterGroup").value], path = (g.prefix ?? "") + $2("parameterField").value, value = Number($2("parameterValue").value);
-      if ($2("parameterMode").value === "live") {
+      const g = parameterGroups[$3("parameterGroup").value], path = (g.prefix ?? "") + $3("parameterField").value, value = Number($3("parameterValue").value);
+      if ($3("parameterMode").value === "live") {
         if (replay) throw new Error("Replay is read-only");
         queueOverride(
           getState(),
@@ -5074,7 +5441,7 @@
           `Parameter edit queued for tick ${getState().tick}. Step or Resume to apply.`
         );
       } else {
-        const doc = parseConfiguration($2("setupJSON").value), field = g.target === "config" ? "overrides" : g.target === "environment" ? "environmentOverrides" : g.target;
+        const doc = parseConfiguration($3("setupJSON").value), field = g.target === "config" ? "overrides" : g.target === "environment" ? "environmentOverrides" : g.target;
         (_a = doc.setup)[field] ?? (_a[field] = {});
         let obj = doc.setup[field];
         const keys = path.split(".");
@@ -5083,53 +5450,53 @@
         apply(configuration(doc.setup));
       }
     });
-    $2("applySurface").onclick = act(() => {
+    $3("applySurface").onclick = act(() => {
       var _a, _b;
-      const doc = parseConfiguration($2("setupJSON").value);
-      (_a = doc.setup.surfaces)[_b = $2("surfaceSegment").value] ?? (_a[_b] = {});
-      doc.setup.surfaces[$2("surfaceSegment").value][$2("surfaceField").value] = Number($2("surfaceValue").value);
+      const doc = parseConfiguration($3("setupJSON").value);
+      (_a = doc.setup.surfaces)[_b = $3("surfaceSegment").value] ?? (_a[_b] = {});
+      doc.setup.surfaces[$3("surfaceSegment").value][$3("surfaceField").value] = Number($3("surfaceValue").value);
       apply(configuration(doc.setup));
     });
-    $2("replayFile").onchange = act(async () => {
-      const file = $2("replayFile").files[0];
+    $3("replayFile").onchange = act(async () => {
+      const file = $3("replayFile").files[0];
       if (!file) return;
       pause();
-      $2("replayStatus").textContent = "Verifying events and checkpoints\u2026";
+      $3("replayStatus").textContent = "Verifying events and checkpoints\u2026";
       const record = JSON.parse(await file.text());
       const verified = await verifyReplayAsync(record);
       replay = startReplay(record);
       setState(replay.state);
       setEditor(record.setup);
-      $2("replayStatus").textContent = `Verified ${verified.events} events and ${verified.checkpoints} checkpoints. Press Start or Step to reconstruct playback.`;
+      $3("replayStatus").textContent = `Verified ${verified.events} events and ${verified.checkpoints} checkpoints. Press Start or Step to reconstruct playback.`;
       message(
         "Verified deterministic replay. Developer edits and sign input are disabled during playback."
       );
     });
-    $2("restartReplay").onclick = act(() => {
+    $3("restartReplay").onclick = act(() => {
       if (!replay) throw new Error("Import a replay first");
       pause();
       replay = startReplay(replay.record);
       setState(replay.state);
-      $2("replayStatus").textContent = "Replay reset to initial setup.";
+      $3("replayStatus").textContent = "Replay reset to initial setup.";
     });
-    $2("verifyReplay").onclick = act(async () => {
+    $3("verifyReplay").onclick = act(async () => {
       pause();
       const verified = await verifyReplayAsync(capture(getState()));
-      $2("replayStatus").textContent = `Verified ${verified.events} events, ${verified.checkpoints} checkpoints, checksum ${verified.checksum}.`;
+      $3("replayStatus").textContent = `Verified ${verified.events} events, ${verified.checkpoints} checkpoints, checksum ${verified.checksum}.`;
     });
-    $2("batchRun").onclick = act(async () => {
+    $3("batchRun").onclick = act(async () => {
       if (batchAbort) throw new Error("A batch is already running");
-      const setup = parseConfiguration($2("setupJSON").value).setup, seeds = parseSeeds($2("batchSeeds").value);
+      const setup = parseConfiguration($3("setupJSON").value).setup, seeds = parseSeeds($3("batchSeeds").value);
       batchAbort = new AbortController();
       try {
         batchResult = await batch(setup, seeds, {
           signal: batchAbort.signal,
           onProgress: (n, total) => {
-            $2("batchStatus").textContent = `Completed ${n}/${total}`;
+            $3("batchStatus").textContent = `Completed ${n}/${total}`;
           }
         });
-        $2("batchStatus").textContent = `${batchResult.cancelled ? "Cancelled; " : "Finished; "}${batchResult.completed} completed races`;
-        $2("batchOutput").textContent = JSON.stringify(
+        $3("batchStatus").textContent = `${batchResult.cancelled ? "Cancelled; " : "Finished; "}${batchResult.completed} completed races`;
+        $3("batchOutput").textContent = JSON.stringify(
           {
             completed: batchResult.completed,
             cancelled: batchResult.cancelled,
@@ -5144,8 +5511,8 @@
         batchAbort = null;
       }
     });
-    $2("batchCancel").onclick = () => batchAbort?.abort();
-    $2("batchExport").onclick = act(() => {
+    $3("batchCancel").onclick = () => batchAbort?.abort();
+    $3("batchExport").onclick = act(() => {
       if (!batchResult) throw new Error("Run a batch first");
       downloadJSON(batchResult, "BNT-batch.json");
     });
@@ -5157,7 +5524,7 @@
           advanceReplay(replay);
           if (replay.done) {
             pause();
-            $2("replayStatus").textContent = `Replay verified through tick ${replay.state.tick}, including final checksum.`;
+            $3("replayStatus").textContent = `Replay verified through tick ${replay.state.tick}, including final checksum.`;
           }
           return replay.state;
         }
@@ -5167,14 +5534,14 @@
       isDone: () => replay?.done ?? false,
       clearReplay() {
         replay = null;
-        $2("replayStatus").textContent = "Live race";
+        $3("replayStatus").textContent = "Live race";
       },
       refreshSetup: setEditor,
       render() {
         const s = getState();
-        $2("overrideStatus").textContent = `Configuration revision ${s.configRevision}; ${s.pendingOverrides.length} pending overrides. Last change: ${JSON.stringify(s.events.filter((e) => e.type === "OVERRIDE_APPLIED").at(-1)?.effects ?? "none")}`;
+        $3("overrideStatus").textContent = `Configuration revision ${s.configRevision}; ${s.pendingOverrides.length} pending overrides. Last change: ${JSON.stringify(s.events.filter((e) => e.type === "OVERRIDE_APPLIED").at(-1)?.effects ?? "none")}`;
         for (const id2 of ["queueSign", "cancelSign", "lowerSign"])
-          $2(id2).disabled = !!replay || !["Ready", "Running"].includes(s.status) || s.entrants.find((r) => r.id === s.playerId).status !== "Racing";
+          $3(id2).disabled = !!replay || !["Ready", "Running"].includes(s.status) || s.entrants.find((r) => r.id === s.playerId).status !== "Racing";
       }
     };
   }
@@ -5306,7 +5673,7 @@
   }
 
   // src/ui/app.js
-  var $3 = (id2) => document.getElementById(id2);
+  var $4 = (id2) => document.getElementById(id2);
   var colors = [
     "#ecbd6c",
     "#67bbd4",
@@ -5319,23 +5686,23 @@
   ];
   var presetId = (course) => typeof course === "string" ? course : course?.generation ? "generated-" + course.generation.category : course?.id ?? "oval";
   function populateTracks(course = null) {
-    const kind = $3("raceKind").value, choices = trackChoices(kind), id2 = presetId(course);
+    const kind = $4("raceKind").value, choices = trackChoices(kind), id2 = presetId(course);
     if (course && !choices.some(([key2]) => key2 === id2)) choices.push([id2, course.name ?? id2]);
-    $3("trackPreset").replaceChildren(...choices.map(([id3, name]) => new Option(name, id3)));
-    if (course) $3("trackPreset").value = id2;
-    else if (kind === "Oval") $3("trackPreset").value = "oval";
-    else if (kind === "Rally") $3("trackPreset").value = "generated-" + $3("rallyCategory").value;
-    $3("lapCount").disabled = kind === "Rally";
-    $3("rallyControls").hidden = kind !== "Rally";
+    $4("trackPreset").replaceChildren(...choices.map(([id3, name]) => new Option(name, id3)));
+    if (course) $4("trackPreset").value = id2;
+    else if (kind === "Oval") $4("trackPreset").value = "oval";
+    else if (kind === "Rally") $4("trackPreset").value = "generated-" + $4("rallyCategory").value;
+    $4("lapCount").disabled = kind === "Rally";
+    $4("rallyControls").hidden = kind !== "Rally";
   }
-  $3("raceKind").onchange = () => populateTracks();
-  $3("trackPreset").onchange = () => {
-    if ($3("trackPreset").value.startsWith("generated-")) $3("rallyCategory").value = $3("trackPreset").value.slice(10);
+  $4("raceKind").onchange = () => populateTracks();
+  $4("trackPreset").onchange = () => {
+    if ($4("trackPreset").value.startsWith("generated-")) $4("rallyCategory").value = $4("trackPreset").value.slice(10);
   };
-  $3("rallyCategory").onchange = () => $3("trackPreset").value = "generated-" + $3("rallyCategory").value;
-  $3("regenerateRally").onclick = () => reset(true);
+  $4("rallyCategory").onchange = () => $4("trackPreset").value = "generated-" + $4("rallyCategory").value;
+  $4("regenerateRally").onclick = () => reset(true);
   populateTracks();
-  $3("trackPreset").value = "oval";
+  $4("trackPreset").value = "oval";
   var state = createRace();
   var playing = false;
   var previous = null;
@@ -5345,23 +5712,23 @@
   var radio = new Commentary();
   var completing = false;
   var transportEpoch = 0;
-  var canvas = $3("race");
+  var canvas = $4("race");
   var ctx = canvas.getContext("2d");
   function reset(forceGeneration = false) {
     try {
-      const selected = $3("trackPreset").value, previous2 = presetId(devSetup.course);
+      const selected = $4("trackPreset").value, previous2 = presetId(devSetup.course);
       let course = selected === "oval" ? null : selected === previous2 ? devSetup.course : selected;
-      const overrides = { ...devSetup.overrides, laps: Number($3("lapCount").value) };
+      const overrides = { ...devSetup.overrides, laps: Number($4("lapCount").value) };
       if (Object.hasOwn(ovalPresets, selected) && selected !== previous2) Object.assign(overrides, ovalPresets[selected].overrides);
       if (selected.startsWith("generated-")) {
-        const old = devSetup.course?.generation, category = selected.slice(10), terrainProfile = $3("rallyTerrain").value;
+        const old = devSetup.course?.generation, category = selected.slice(10), terrainProfile = $4("rallyTerrain").value;
         const options = {
           ...old?.category === category ? old.options : {},
-          seed: Number($3("rallySeed").value),
+          seed: Number($4("rallySeed").value),
           category,
           terrainProfile,
-          turnFrequency: Number($3("rallyTurns").value),
-          turnSeverity: Number($3("rallyComplexity").value),
+          turnFrequency: Number($4("rallyTurns").value),
+          turnSeverity: Number($4("rallyComplexity").value),
           laneWidth: overrides.laneWidth ?? 4
         };
         if (old?.terrainProfile !== terrainProfile) delete options.terrainWeights;
@@ -5373,13 +5740,13 @@
         course,
         surfaces: selected === previous2 && !forceGeneration ? devSetup.surfaces : {},
         overrides,
-        seed: Number($3("seed").value),
-        weather: $3("weather").value,
-        format: $3("format").value,
+        seed: Number($4("seed").value),
+        weather: $4("weather").value,
+        format: $4("format").value,
         consequence: {
           ...devSetup.consequence,
-          damageScale: Number($3("damageScale").value),
-          incidentRate: Number($3("incidentRate").value)
+          damageScale: Number($4("damageScale").value),
+          incidentRate: Number($4("incidentRate").value)
         },
         autonomous: {
           ...devSetup.autonomous,
@@ -5389,17 +5756,17 @@
               Number(input.value)
             ])
           ),
-          signStrength: Number($3("signStrength").value),
-          fatigueRate: Number($3("fatigueRate").value)
+          signStrength: Number($4("signStrength").value),
+          fatigueRate: Number($4("fatigueRate").value)
         }
       });
       replaceRace(next);
       workbench?.clearReplay();
       workbench?.refreshSetup(next.setup);
-      $3("error").textContent = "";
+      $4("error").textContent = "";
       render();
     } catch (e) {
-      $3("error").textContent = e.message;
+      $4("error").textContent = e.message;
     }
   }
   function draw2() {
@@ -5422,9 +5789,9 @@
       };
     }
     const overview = framing;
-    const follow = t.course && !t.closed && ($3("cameraMode").value === "follow" || $3("cameraMode").value === "auto" && t.length > 1600 && state.status !== "Ready");
+    const follow = t.course && !t.closed && ($4("cameraMode").value === "follow" || $4("cameraMode").value === "auto" && t.length > 1600 && state.status !== "Ready");
     if (follow) {
-      const actor = state.entrants.find((r) => r.id === $3("inspect").value) ?? state.entrants.find((r) => r.id === state.playerId);
+      const actor = state.entrants.find((r) => r.id === $4("inspect").value) ?? state.entrants.find((r) => r.id === state.playerId);
       const p = point(actor.q, actor.lane, c, t);
       framing = { x: p.x, y: p.y, scale: 1.8 };
     }
@@ -5583,30 +5950,30 @@
   function render() {
     workbench?.render();
     syncSignOptions();
-    $3("playerLabel").textContent = state.playerId;
-    $3("trackDiagnostics").textContent = JSON.stringify(trackDiagnostics(state), null, 2);
+    $4("playerLabel").textContent = state.playerId;
+    $4("trackDiagnostics").textContent = JSON.stringify(trackDiagnostics(state), null, 2);
     const rally2 = state.track.course && !state.track.closed;
-    $3("progressHeading").textContent = rally2 ? "Course %" : "Full laps";
-    $3("standingsNote").textContent = (rally2 ? "Common terminal finish; signs activate at intermediate checkpoints. " : "Initial line entry starts lap 1; it does not complete a lap. ") + "Official ties share a place. DNF/DNS remain separate from finishers.";
+    $4("progressHeading").textContent = rally2 ? "Course %" : "Full laps";
+    $4("standingsNote").textContent = (rally2 ? "Common terminal finish; signs activate at intermediate checkpoints. " : "Initial line entry starts lap 1; it does not complete a lap. ") + "Official ties share a place. DNF/DNS remain separate from finishers.";
     const lines = radio.consume(state.events, {
-      enabled: $3("commentaryEnabled").checked
+      enabled: $4("commentaryEnabled").checked
     });
-    $3("commentary").replaceChildren(
-      ...($3("commentaryEnabled").checked ? lines : []).slice(-60).map((line2) => {
+    $4("commentary").replaceChildren(
+      ...($4("commentaryEnabled").checked ? lines : []).slice(-60).map((line2) => {
         const p = document.createElement("p");
         p.textContent = `${line2.time.toFixed(2)} \xB7 ${line2.text}`;
         return p;
       })
     );
-    if (!lines.length && $3("commentaryEnabled").checked) {
+    if (!lines.length && $4("commentaryEnabled").checked) {
       const p = document.createElement("p");
       p.className = "radio-empty";
       p.textContent = "Ready at the starting signal. Commentary follows verified race events.";
-      $3("commentary").append(p);
+      $4("commentary").append(p);
     }
-    $3("commentary").scrollTop = $3("commentary").scrollHeight;
-    const report = results(state), view = $3("resultsView").value;
-    const output = $3("resultsOutput");
+    $4("commentary").scrollTop = $4("commentary").scrollHeight;
+    const report = results(state), view = $4("resultsView").value;
+    const output = $4("resultsOutput");
     output.replaceChildren();
     if (view === "official") {
       if (state.status === "Ready") {
@@ -5661,11 +6028,11 @@
       output.append(pre);
     }
     document.querySelector(".legend").textContent = `${state.track.name ?? "Existing Oval"} \xB7 ${state.track.raceType ?? "Oval"} \xB7 ${state.config.lanes} lanes \xB7 ${state.track.course && !state.track.closed ? "Terminal finish; no laps" : state.config.laps + " full laps after initial line entry"} \xB7 ${state.weather} \xB7 Exit beyond finish \xB7 Wrecks remain through race end`;
-    $3("consequenceStatus").textContent = `${state.format} \xB7 ${state.weather} \xB7 Attacks ${state.events.filter((e) => e.type === "ATTACK").length} \xB7 Damage events ${state.events.filter((e) => e.type === "DAMAGE").length} \xB7 Wrecks ${Object.keys(state.wrecks).length} \xB7 Incidents ${state.events.filter((e) => e.type === "INCIDENT").length}`;
+    $4("consequenceStatus").textContent = `${state.format} \xB7 ${state.weather} \xB7 Attacks ${state.events.filter((e) => e.type === "ATTACK").length} \xB7 Damage events ${state.events.filter((e) => e.type === "DAMAGE").length} \xB7 Wrecks ${Object.keys(state.wrecks).length} \xB7 Incidents ${state.events.filter((e) => e.type === "INCIDENT").length}`;
     const player = state.entrants.find((r2) => r2.id === state.playerId);
-    $3("signStatus").textContent = `Uses ${player.signs.remaining} \xB7 Pending: ${player.signs.pending ?? "none"} \xB7 Active: ${player.signs.active ?? "none"} \xB7 ${player.signs.active ? player.ai.diagnostics?.compliance ?? "Awaiting evaluation" : "Base autonomous AI"}${state.track.course && !state.track.closed ? " \xB7 Next checkpoint: " + (state.track.checkpoints[player.checkpointCursor] ? `${state.track.checkpoints[player.checkpointCursor].id} at ${state.track.checkpoints[player.checkpointCursor].distance.toFixed(0)} m` : "none before finish") : ""}`;
-    const inspect = state.entrants.find((r2) => r2.id === $3("inspect").value) ?? player;
-    $3("aiDiagnostics").textContent = JSON.stringify(
+    $4("signStatus").textContent = `Uses ${player.signs.remaining} \xB7 Pending: ${player.signs.pending ?? "none"} \xB7 Active: ${player.signs.active ?? "none"} \xB7 ${player.signs.active ? player.ai.diagnostics?.compliance ?? "Awaiting evaluation" : "Base autonomous AI"}${state.track.course && !state.track.closed ? " \xB7 Next checkpoint: " + (state.track.checkpoints[player.checkpointCursor] ? `${state.track.checkpoints[player.checkpointCursor].id} at ${state.track.checkpoints[player.checkpointCursor].distance.toFixed(0)} m` : "none before finish") : ""}`;
+    const inspect = state.entrants.find((r2) => r2.id === $4("inspect").value) ?? player;
+    $4("aiDiagnostics").textContent = JSON.stringify(
       {
         control: inspect.control,
         instability: inspect.instability,
@@ -5686,16 +6053,16 @@
       2
     );
     draw2();
-    $3("clock").textContent = state.time.toFixed(3);
-    $3("state").textContent = state.status;
-    $3("tick").textContent = state.tick;
-    $3("play").textContent = playing || completing ? "Pause" : state.status === "Ready" ? "Start race" : "Resume";
+    $4("clock").textContent = state.time.toFixed(3);
+    $4("state").textContent = state.status;
+    $4("tick").textContent = state.tick;
+    $4("play").textContent = playing || completing ? "Pause" : state.status === "Ready" ? "Start race" : "Resume";
     const official = classification(state), rows = state.status === "Ended" ? official : [...official].sort((a, b) => {
       const ar = state.entrants.find((r2) => r2.id === a.id), br = state.entrants.find((r2) => r2.id === b.id);
       const category = (r2) => r2.finishTime !== null ? 0 : r2.status === "Racing" ? 1 : r2.status === "Retired" ? 2 : 3;
       return category(ar) - category(br) || (ar.finishTime !== null && br.finishTime !== null ? ar.finishTime - br.finishTime : (br.retirement?.progress ?? br.q) - (ar.retirement?.progress ?? ar.q));
     });
-    $3("standings").replaceChildren(
+    $4("standings").replaceChildren(
       ...rows.map((row) => {
         const r2 = state.entrants.find((r3) => r3.id === row.id), tr = document.createElement("tr");
         tr.title = r2.retirement?.reason ?? r2.physical;
@@ -5712,14 +6079,14 @@
         return tr;
       })
     );
-    if (!$3("inspect").options.length)
+    if (!$4("inspect").options.length)
       for (const r2 of state.entrants) {
         const o = document.createElement("option");
         o.value = o.textContent = r2.id;
-        $3("inspect").append(o);
+        $4("inspect").append(o);
       }
-    const r = state.entrants.find((r2) => r2.id === $3("inspect").value) ?? state.entrants[0], d = r.derived;
-    $3("derived").textContent = `
+    const r = state.entrants.find((r2) => r2.id === $4("inspect").value) ?? state.entrants[0], d = r.derived;
+    $4("derived").textContent = `
 Team speed     ${d.team.speed.toFixed(2)}
 Team power     ${d.team.power.toFixed(2)}
 Coordination   ${d.coordination.toFixed(3)}
@@ -5735,7 +6102,7 @@ Combat score   ${d.combat.toFixed(2)}
 Braking        ${d.braking.toFixed(3)} m/s\xB2
 Corner lateral ${d.lateral.toFixed(3)} m/s\xB2
 Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
-    $3("derivedDetails").textContent = JSON.stringify(
+    $4("derivedDetails").textContent = JSON.stringify(
       {
         base: r.ru,
         normalized: {
@@ -5760,20 +6127,20 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
       null,
       2
     );
-    $3("log").textContent = state.events.slice($3("fullLog").checked ? 0 : -60).map(
+    $4("log").textContent = state.events.slice($4("fullLog").checked ? 0 : -60).map(
       (e) => `${e.time.toFixed(6)}  ${e.type}  ${e.participants.join(", ")}  ${JSON.stringify(e.effects)}`
     ).join("\n");
     const terminal = ["Ended", "Stalled", "Error"].includes(state.status) || workbench?.isDone();
     for (const id2 of ["play", "step", "complete"])
-      $3(id2).disabled = terminal || id2 === "complete" && completing;
+      $4(id2).disabled = terminal || id2 === "complete" && completing;
     if (terminal) {
       playing = false;
-      $3("play").textContent = "Race ended";
-      $3("checksum").textContent = `Checksum ${digest(state)}`;
-    } else $3("checksum").textContent = "";
-    $3("log").scrollTop = $3("log").scrollHeight;
+      $4("play").textContent = "Race ended";
+      $4("checksum").textContent = `Checksum ${digest(state)}`;
+    } else $4("checksum").textContent = "";
+    $4("log").scrollTop = $4("log").scrollHeight;
     if (state.status === "Error")
-      $3("error").textContent = JSON.stringify(
+      $4("error").textContent = JSON.stringify(
         state.events.at(-1).effects,
         null,
         2
@@ -5801,61 +6168,61 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
     input.value = m2Defaults[key2];
     input.dataset.key = key2;
     label.append(input);
-    $3("tuners").append(label);
+    $4("tuners").append(label);
   }
   for (const weather of Object.keys(weatherPresets)) {
     const option = document.createElement("option");
     option.value = option.textContent = weather;
-    $3("weather").append(option);
+    $4("weather").append(option);
   }
   for (const sign of signs) {
     const option = document.createElement("option");
     option.value = option.textContent = sign;
-    $3("sign").append(option);
+    $4("sign").append(option);
   }
   for (const [id2, action] of [
     ["queueSign", "queue"],
     ["cancelSign", "cancel"],
     ["lowerSign", "lower"]
   ])
-    $3(id2).onclick = () => {
+    $4(id2).onclick = () => {
       if (!workbench?.isReplay())
         issueSign(
           state,
           action,
-          action === "queue" ? $3("sign").value : void 0
+          action === "queue" ? $4("sign").value : void 0
         );
       render();
     };
   function syncSignOptions() {
-    for (const option of $3("sign").options)
+    for (const option of $4("sign").options)
       option.disabled = option.value === "Engage Rivals" && state.format === "Pure";
-    if ($3("sign").selectedOptions[0]?.disabled) $3("sign").value = signs[0];
+    if ($4("sign").selectedOptions[0]?.disabled) $4("sign").value = signs[0];
   }
-  $3("format").onchange = syncSignOptions;
+  $4("format").onchange = syncSignOptions;
   syncSignOptions();
-  $3("reset").onclick = () => reset();
-  $3("play").onclick = () => {
+  $4("reset").onclick = () => reset();
+  $4("play").onclick = () => {
     if (completing) pausePlayback();
     else playing = !playing;
     render();
   };
-  $3("step").onclick = () => {
+  $4("step").onclick = () => {
     pausePlayback();
     advance2();
     render();
   };
-  $3("inspect").onchange = render;
-  $3("complete").onclick = () => {
+  $4("inspect").onchange = render;
+  $4("complete").onclick = () => {
     playing = false;
     complete();
   };
-  $3("export").textContent = "Export replay & evidence";
-  $3("export").onclick = () => downloadJSON(capture(state), `BNT-M4-seed-${state.seed}.json`);
-  $3("exportResults").onclick = () => downloadJSON(results(state), `BNT-results-${state.seed}.json`);
-  $3("resultsView").onchange = render;
-  $3("fullLog").onchange = render;
-  $3("commentaryEnabled").onchange = render;
+  $4("export").textContent = "Export replay & evidence";
+  $4("export").onclick = () => downloadJSON(capture(state), `BNT-M4-seed-${state.seed}.json`);
+  $4("exportResults").onclick = () => downloadJSON(results(state), `BNT-results-${state.seed}.json`);
+  $4("resultsView").onchange = render;
+  $4("fullLog").onchange = render;
+  $4("commentaryEnabled").onchange = render;
   function pausePlayback() {
     playing = false;
     completing = false;
@@ -5865,29 +6232,29 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
     pausePlayback();
     state = next;
     devSetup = next.setup;
-    $3("raceKind").value = next.track.raceType ?? "Oval";
+    $4("raceKind").value = next.track.raceType ?? "Oval";
     populateTracks(next.setup.course);
     if (next.setup.course?.generation) {
       const g = next.setup.course.generation;
-      $3("rallySeed").value = g.seed;
-      $3("rallyCategory").value = g.category;
-      $3("rallyTerrain").value = g.terrainProfile;
-      $3("rallyTurns").value = g.options.turnFrequency;
-      $3("rallyComplexity").value = g.options.turnSeverity;
+      $4("rallySeed").value = g.seed;
+      $4("rallyCategory").value = g.category;
+      $4("rallyTerrain").value = g.terrainProfile;
+      $4("rallyTurns").value = g.options.turnFrequency;
+      $4("rallyComplexity").value = g.options.turnSeverity;
     }
-    $3("lapCount").value = next.config.laps;
-    $3("lapCount").disabled = next.track.course && !next.track.closed;
+    $4("lapCount").value = next.config.laps;
+    $4("lapCount").disabled = next.track.course && !next.track.closed;
     playing = false;
     accumulator = 0;
     radio = new Commentary();
-    $3("inspect").replaceChildren();
-    $3("seed").value = next.seed;
-    $3("weather").value = next.weather;
-    $3("format").value = next.format;
-    $3("damageScale").value = next.consequence.damageScale;
-    $3("incidentRate").value = next.consequence.incidentRate;
-    $3("signStrength").value = next.autonomous.signStrength;
-    $3("fatigueRate").value = next.autonomous.fatigueRate;
+    $4("inspect").replaceChildren();
+    $4("seed").value = next.seed;
+    $4("weather").value = next.weather;
+    $4("format").value = next.format;
+    $4("damageScale").value = next.consequence.damageScale;
+    $4("incidentRate").value = next.consequence.incidentRate;
+    $4("signStrength").value = next.autonomous.signStrength;
+    $4("fatigueRate").value = next.autonomous.fatigueRate;
     for (const input of document.querySelectorAll("#tuners input"))
       input.value = next.autonomous[input.dataset.key];
   }
@@ -5899,7 +6266,7 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
       return true;
     } catch (e) {
       playing = false;
-      $3("error").textContent = e.details ? JSON.stringify(e.details, null, 2) : e.message;
+      $4("error").textContent = e.details ? JSON.stringify(e.details, null, 2) : e.message;
       return false;
     }
   }
@@ -5925,7 +6292,7 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
       accumulator = advanceFrames(
         accumulator,
         (now - previous) / 1e3,
-        Number($3("speed").value),
+        Number($4("speed").value),
         state.config.dt,
         advance2,
         () => !playing || ["Ended", "Stalled", "Error"].includes(state.status) || workbench?.isDone()
@@ -5959,13 +6326,13 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
   });
   var signbar = document.createElement("div");
   signbar.className = "signbar";
-  var signControls = $3("sign").parentElement;
-  signbar.append(signControls, $3("signStatus"));
+  var signControls = $4("sign").parentElement;
+  signbar.append(signControls, $4("signStatus"));
   document.querySelector(".metrics").before(signbar);
   document.querySelector("aside").prepend(document.querySelector(".commentary-panel"));
   var topControls = document.querySelector("main .panel .controls");
-  topControls.insertBefore($3("weather").parentElement, $3("reset"));
-  topControls.insertBefore($3("format").parentElement, $3("reset"));
+  topControls.insertBefore($4("weather").parentElement, $4("reset"));
+  topControls.insertBefore($4("format").parentElement, $4("reset"));
   render();
   requestAnimationFrame(frame);
 })();

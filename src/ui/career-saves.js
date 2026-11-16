@@ -1,3 +1,4 @@
+import { mountStableFoundation } from './stable-foundation.js';
 import { createCareer, createUninitializedCareer } from '../career/state.js';
 import { CareerStore } from '../persistence/career-store.js';
 import { historyRetentionPlan } from '../career/history.js';
@@ -18,6 +19,7 @@ export function mountCareerSaves({ download }) {
   const store = new CareerStore(storage);
   store.open();
   let staged = null, lastToken = null, notice = '', queue = Promise.resolve();
+  let renderStable = () => {};
   function render() {
     const state = store.state;
     $('careerSaveStatus').textContent = `${store.mode.toUpperCase()} · ${state ? `Schema ${state.schema} · Revision ${state.revision} · Maintenance ${state.maintenanceRevision ?? 0} · Treasury ${state.career.treasury} Gold · ${(state.profile.developerEdited || state.career.developerEdited) ? 'DEVELOPER-EDITED (persistent)' : 'Unedited foundation'}` : 'No career loaded'}${store.requiresCheckpoint ? ' · CHECKPOINT REQUIRED: export, save the file and confirm before another change.' : ''}`;
@@ -32,6 +34,7 @@ export function mountCareerSaves({ download }) {
     $('careerRecover').disabled = !store.recoveryPending;
     $('careerRawExport').disabled = !store.quarantine;
     $('careerImportApply').disabled = !staged;
+    renderStable();
   }
   async function exclusive(fn) {
     // Web Locks serialize cooperating windows when supported. The storage adapter
@@ -104,5 +107,6 @@ export function mountCareerSaves({ download }) {
   window.addEventListener('storage', e => {
     if (e.key === SAVE_KEY) { notice = 'Career storage changed in another window. Reload before further editing. Use only one active writer when Web Locks are unavailable.'; render(); }
   });
+  renderStable = mountStableFoundation({store,act,newId,setNotice:message=>{notice=message;lastToken=null;}});
   render();
 }
