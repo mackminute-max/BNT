@@ -1,0 +1,12 @@
+Lifecycle scripts included in blood-and-thunder@0.6.0:
+  test
+    node --test tests/*.test.js
+available via `npm run`:
+  build
+    node scripts/build.mjs
+  test:browser
+    node scripts/browser-test.mjs
+  check
+    npm test && npm run build && npm run test:browser
+  reference
+    node scripts/reference.mjs

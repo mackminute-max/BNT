@@ -1,0 +1,26 @@
+{
+  "inputComponentsAreCopied": true,
+  "componentIdAccepted": false,
+  "componentIdError": "Unknown driver attribute",
+  "resultAliases": {
+    "signs": true,
+    "diagnostics": true,
+    "setup": false
+  },
+  "liveJsonSerializable": true,
+  "captureRoundTrip": "BNT-replay",
+  "configurationStorageRoundTrip": true,
+  "corruptConfigurationRejected": "Expected property name or '}' in JSON at position 1 (line 1 column 2)",
+  "corruptConfigurationPreserved": true,
+  "storageWriteFailure": {
+    "ok": false,
+    "message": "Storage unavailable: quota probe. Use export instead."
+  },
+  "writeCalls": 1,
+  "supportedOldConfiguration": "0.6.0-tracks",
+  "oldReplayRejection": "Unsupported replay version",
+  "disqualificationCommand": {
+    "status": "Error",
+    "error": "Invalid/duplicate boundary command"
+  }
+}

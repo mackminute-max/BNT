@@ -1,0 +1,66 @@
+src/sim/race.js:40:export function createRace({
+src/sim/race.js:252:export function assertState(s) {
+src/sim/race.js:296:export function snapshot(s) {
+src/sim/race.js:338:export function digest(s) {
+src/sim/race.js:341:export function capture(s) {
+src/sim/race.js:358:export function classification(s) {
+src/sim/race.js:602:function applyCommands(s, commands) {
+src/sim/race.js:874:export function step(s, commands = []) {
+src/sim/race.js:1070:export function run(
+src/sim/race.js:1088:export function issueSign(s, action, sign) {
+src/track/course.js:3:export const terrainProfiles = Object.freeze({
+src/track/course.js:18:export function normalizeCourse(input){
+src/track/course.js:45:export function compileCourse(input,c){
+src/track/course.js:68:export function courseLocation(q,lane,c,t){
+src/track/course.js:74:export function coursePoint(q,lane,c,t){
+src/track/course.js:80:export function routePreview(q,lane,c,t){
+src/track/course.js:103:export const coursePresets=Object.freeze({
+src/track/course.js:112:export function courseDistance(q,t){
+src/track/course.js:119:export { circuit as makeCircuit, rally as makeRally };
+src/replay/replay.js:10:export function startReplay(record) {
+src/replay/replay.js:82:export function advanceReplay(session) {
+src/replay/replay.js:122:export function verifyReplay(record) {
+src/replay/replay.js:132:export async function verifyReplayAsync(
+src/model/ru.js:2:export const beastAttributes = [
+src/model/ru.js:10:export const driverAttributes = [
+src/model/ru.js:17:export const chariotAttributes = [
+src/model/ru.js:24:export function component(keys, value = 50) {
+src/model/ru.js:30:export function defaultRU(id, value = 50) {
+src/model/ru.js:51:export function validateRU(ru) {
+src/model/ru.js:114:export function derive(ru, c) {
+src/reporting/results.js:3:export function statistics(s) {
+src/reporting/results.js:79:export function results(s) {
+src/track/rally-generator.js:9:export const rallyChunks=Object.freeze({
+src/track/rally-generator.js:22:export const rallyCategories=Object.freeze({short:{chunks:6},medium:{chunks:12},long:{chunks:22}});
+src/track/rally-generator.js:23:export const rallyTerrainProfiles=Object.freeze({
+src/track/rally-generator.js:28:export function generationOptions(input={}){
+src/track/rally-generator.js:42:export function generateRally(input={}){
+src/ui/workbench.js:21:export function downloadJSON(value, name) {
+src/ui/workbench.js:23:    new Blob([JSON.stringify(value, null, 2)], { type: "application/json" }),
+src/ui/workbench.js:31:export function mountWorkbench({
+src/ui/workbench.js:48:      message(e.details ? JSON.stringify(e.details, null, 2) : e.message);
+src/ui/workbench.js:53:    $("setupJSON").value = JSON.stringify(configuration(setup), null, 2);
+src/ui/workbench.js:60:  function apply(doc) {
+src/ui/workbench.js:318:      $("batchOutput").textContent = JSON.stringify(
+src/ui/workbench.js:362:        `Configuration revision ${s.configRevision}; ${s.pendingOverrides.length} pending overrides. Last change: ${JSON.stringify(s.events.filter((e) => e.type === "OVERRIDE_APPLIED").at(-1)?.effects ?? "none")}`;
+src/ui/app.js:110:function draw() {
+src/ui/app.js:268:function render() {
+src/ui/app.js:272:  $("trackDiagnostics").textContent = JSON.stringify(trackDiagnostics(state), null, 2);
+src/ui/app.js:351:    pre.textContent = JSON.stringify(report.technical, null, 2);
+src/ui/app.js:364:  $("aiDiagnostics").textContent = JSON.stringify(
+src/ui/app.js:456:  $("derivedDetails").textContent = JSON.stringify(
+src/ui/app.js:491:        `${e.time.toFixed(6)}  ${e.type}  ${e.participants.join(", ")}  ${JSON.stringify(e.effects)}`,
+src/ui/app.js:505:    $("error").textContent = JSON.stringify(
+src/ui/app.js:598:function replaceRace(next) {
+src/ui/app.js:634:      ? JSON.stringify(e.details, null, 2)
+src/dev/configuration.js:21:export function configuration(setup) {
+src/dev/configuration.js:37:export function parseConfiguration(text) {
+src/dev/configuration.js:47:export function editConfiguration(doc, { id, path, value }) {
+src/dev/configuration.js:61:export function saveConfiguration(storage, doc) {
+src/dev/configuration.js:64:    storage.setItem("bnt.configuration.v1", JSON.stringify(valid));
+src/dev/configuration.js:73:export function loadConfiguration(storage) {
+src/dev/configuration.js:76:    text = storage.getItem("bnt.configuration.v1");
+src/track/catalog.js:3:export const ovalPresets=Object.freeze({
+src/track/catalog.js:22:export const circuitCatalog=Object.freeze(Object.fromEntries(authored.map(([id,name,vertices,radii,terrains])=>{
+src/track/catalog.js:28:export function resolveCatalog(course){return typeof course==='string'&&Object.hasOwn(circuitCatalog,course)?structuredClone(circuitCatalog[course]):course;}
+src/track/catalog.js:29:export function trackChoices(kind){
