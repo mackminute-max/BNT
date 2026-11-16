@@ -1,3 +1,4 @@
+import { mountCareerSaves } from "./career-saves.js";
 import {
   configuration,
   parseConfiguration,
@@ -336,6 +337,7 @@ export function mountWorkbench({
     downloadJSON(batchResult, "BNT-batch.json");
   });
   setEditor(getState().setup);
+  mountCareerSaves({ download: downloadJSON });
   return {
     advance() {
       if (replay) {

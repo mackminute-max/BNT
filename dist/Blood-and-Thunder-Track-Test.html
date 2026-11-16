@@ -606,6 +606,32 @@
           </div>
           <p class="note">Hazard modifier: 0–2, neutral 1. Weights incident placement on this segment; 0 excludes it. Incident frequency and the disabled-incidents setting remain unchanged.</p>
           <h2>Track diagnostics</h2><pre id="trackDiagnostics"></pre>
+          <details id="careerSaves">
+            <summary>Career State / Save Management — M1 foundation</summary>
+            <p class="note">Separate from developer race configurations and replays. Empty M1 states contain no roster or championship. Full exports contain Owner Profile, Career State, provenance, recovery and any optional race-start checkpoint; no mid-race saving. Use one active window when Web Locks are unavailable.</p>
+            <p id="careerSaveStatus" role="status"></p>
+            <p id="careerSaveNotice" class="note" role="alert"></p>
+            <div class="controls">
+              <label>Owner name<input id="careerOwnerName" value="Owner" maxlength="100" /></label>
+              <label>Career name<input id="careerName" value="M1 Foundation" maxlength="100" /></label>
+              <button id="careerCreate">Create empty M1 state</button>
+            </div>
+            <div class="controls">
+              <label>Treasury change / Gold<input id="careerTreasuryDelta" type="number" step="1" value="100" /></label>
+              <label>Developer reason<input id="careerEditReason" value="Persistence test" maxlength="500" /></label>
+              <button id="careerAdjust">Commit developer treasury edit</button>
+            </div>
+            <div class="controls">
+              <button id="careerExport">Export complete persistent game state</button>
+              <button id="careerAcknowledge">I saved this checkpoint</button>
+              <label>Import game save<input id="careerImportFile" type="file" accept=".json,application/json" /></label>
+              <button id="careerImportApply">Confirm replacement</button>
+              <button id="careerRecover">Recover previous valid checkpoint</button>
+              <button id="careerRawExport">Export corrupt-save diagnostic</button>
+            </div>
+            <p class="note">Manual mode requires export and your explicit checkpoint confirmation between changes. A download request is not proof of durable saving. Import replaces the whole profile; Owner Legacy progression is never merged. Developer-edit status/provenance persists. Moving or renaming the HTML may change browser storage access.</p>
+            <details><summary>Career metadata and serialized state (read-only)</summary><pre id="careerSaveInspect"></pre></details>
+          </details>
           <h2>Complete configuration and lineup</h2>
           <p class="note">
             Edit entrants, beasts, equipment, starting lanes/positions, player
@@ -659,6 +685,34 @@
     }
     return accumulator2;
   }
+
+  // src/core/determinism.js
+  function hash(text2) {
+    let h = 2166136261;
+    for (const c of String(text2)) {
+      h ^= c.charCodeAt(0);
+      h = Math.imul(h, 16777619);
+    }
+    h ^= h >>> 16;
+    h = Math.imul(h, 2146121005);
+    h ^= h >>> 15;
+    h = Math.imul(h, 2221713035);
+    return (h ^ h >>> 16) >>> 0;
+  }
+  function random(seed, ...key2) {
+    return hash(JSON.stringify([seed, ...key2])) / 4294967296;
+  }
+  function canonical(value) {
+    if (Array.isArray(value)) return `[${value.map(canonical).join(",")}]`;
+    if (value && typeof value === "object")
+      return `{${Object.keys(value).sort().map((k) => `${JSON.stringify(k)}:${canonical(value[k])}`).join(",")}}`;
+    return JSON.stringify(value);
+  }
+  function checksum(value) {
+    return hash(canonical(value)).toString(16).padStart(8, "0");
+  }
+  var byId = (a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+  var clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
 
   // src/events/events.js
   function emit(s, type, participants = [], effects = {}) {
@@ -908,14 +962,14 @@
     }
     return { current: courseLocation(q, lane, c, t), corner: next };
   }
-  function segment(id, length, turn = 0, terrain = "dirt") {
-    return { id, length, turn, terrain, tiles: Math.max(2, Math.ceil(length / 8)), next: null };
+  function segment(id2, length, turn = 0, terrain = "dirt") {
+    return { id: id2, length, turn, terrain, tiles: Math.max(2, Math.ceil(length / 8)), next: null };
   }
   function connect(segments, closed) {
     segments.forEach((s, i) => s.next = segments[i + 1]?.id ?? (closed ? segments[0].id : null));
     return segments;
   }
-  function circuit(id, name, vertices, radii) {
+  function circuit(id2, name, vertices, radii) {
     const corners = vertices.map((v, i) => {
       const previous2 = vertices[(i + vertices.length - 1) % vertices.length], next = vertices[(i + 1) % vertices.length];
       const incoming = Math.atan2(v[1] - previous2[1], v[0] - previous2[0]), outgoing = Math.atan2(next[1] - v[1], next[0] - v[0]);
@@ -928,11 +982,11 @@
       segments.push(segment("straight-" + i, length, 0, i % 3 === 0 ? "stone" : "dirt"));
       segments.push(segment("corner-" + (i + 1) % corners.length, b.r * Math.abs(b.turn), b.turn * 180 / Math.PI, "dirt"));
     }
-    return { id, name, kind: "Circuit", closed: true, lanes: 4, segments: connect(segments, true), checkpoints: [] };
+    return { id: id2, name, kind: "Circuit", closed: true, lanes: 4, segments: connect(segments, true), checkpoints: [] };
   }
-  function rally(id, name, items) {
+  function rally(id2, name, items) {
     const segments = connect(items.map((x, i) => segment("sector-" + i, ...x)), false), length = segments.reduce((n, s) => n + s.length, 0);
-    return { id, name, kind: "Rally", closed: false, lanes: 4, segments, checkpoints: [0.25, 0.5, 0.75].map((p, i) => ({ id: "CP" + (i + 1), distance: p * length })) };
+    return { id: id2, name, kind: "Rally", closed: false, lanes: 4, segments, checkpoints: [0.25, 0.5, 0.75].map((p, i) => ({ id: "CP" + (i + 1), distance: p * length })) };
   }
   var coursePresets = Object.freeze({
     "technical-circuit": circuit("technical-circuit", "Technical Circuit", [[0, 0], [240, 0], [240, 160], [160, 160], [160, 90], [80, 90], [80, 200], [0, 200]], [20, 22, 20, 18, 18, 18, 20, 22]),
@@ -970,11 +1024,11 @@
     ["C11", "Stormbreaker", [[0, 0], [620, 0], [620, 320], [470, 320], [470, 140], [320, 140], [320, 410], [0, 410]], [45, 55, 45, 35, 30, 35, 45, 55], ["stone", "dirt", "gravel"]],
     ["C12", "Devil's Spine", [[0, 0], [500, 0], [560, 140], [430, 280], [360, 170], [280, 210], [220, 360], [90, 340], [110, 180], [-50, 180], [-70, 80]], [24, 26, 24, 22, 20, 20, 24, 20, 20, 22, 20], ["gravel", "dirt", "sand", "stone"]]
   ];
-  var circuitCatalog = Object.freeze(Object.fromEntries(authored.map(([id, name, vertices, radii, terrains]) => {
-    const scale = { C02: 0.8, C08: 0.75, C10: 0.65, C11: 0.8 }[id] ?? 1;
-    const definition = circuit(id, name, vertices.map(([x, y]) => [x * scale, y * scale]), radii);
+  var circuitCatalog = Object.freeze(Object.fromEntries(authored.map(([id2, name, vertices, radii, terrains]) => {
+    const scale = { C02: 0.8, C08: 0.75, C10: 0.65, C11: 0.8 }[id2] ?? 1;
+    const definition = circuit(id2, name, vertices.map(([x, y]) => [x * scale, y * scale]), radii);
     definition.segments.forEach((segment2, i) => segment2.terrain = terrains[i % terrains.length]);
-    return [id, definition];
+    return [id2, definition];
   })));
   function resolveCatalog(course) {
     return typeof course === "string" && Object.hasOwn(circuitCatalog, course) ? structuredClone(circuitCatalog[course]) : course;
@@ -1051,34 +1105,6 @@
   function finishQ(s) {
     return s.track.course && !s.track.closed ? s.track.cells : s.config.laps * s.track.cells;
   }
-
-  // src/core/determinism.js
-  function hash(text) {
-    let h = 2166136261;
-    for (const c of String(text)) {
-      h ^= c.charCodeAt(0);
-      h = Math.imul(h, 16777619);
-    }
-    h ^= h >>> 16;
-    h = Math.imul(h, 2146121005);
-    h ^= h >>> 15;
-    h = Math.imul(h, 2221713035);
-    return (h ^ h >>> 16) >>> 0;
-  }
-  function random(seed, ...key2) {
-    return hash(JSON.stringify([seed, ...key2])) / 4294967296;
-  }
-  function canonical(value) {
-    if (Array.isArray(value)) return `[${value.map(canonical).join(",")}]`;
-    if (value && typeof value === "object")
-      return `{${Object.keys(value).sort().map((k) => `${JSON.stringify(k)}:${canonical(value[k])}`).join(",")}}`;
-    return JSON.stringify(value);
-  }
-  function checksum(value) {
-    return hash(canonical(value)).toString(16).padStart(8, "0");
-  }
-  var byId = (a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
-  var clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
 
   // src/sim/consequences.js
   var consequenceDefaults = Object.freeze({
@@ -1261,7 +1287,7 @@
       updateControl(s, r, "Recovery");
     }
   }
-  function exposure(s, r, direction, id) {
+  function exposure(s, r, direction, id2) {
     const c = s.consequence, d = ["front", "rear", "side", "attack"].includes(direction) ? direction : "side";
     const candidates = [
       {
@@ -1284,7 +1310,7 @@
       }))
     ];
     const total = candidates.reduce((n, x) => n + x.weight, 0);
-    let pick = drawConsequence(s, "component", id, r.id, d) * total;
+    let pick = drawConsequence(s, "component", id2, r.id, d) * total;
     return candidates.find((x) => {
       pick -= x.weight;
       return pick < 0;
@@ -1299,10 +1325,10 @@
     if (active && !ram && (!(closing > c.renewedSpeed && !side) || last?.time === s.time))
       return;
     if (!active) s.contacts.push(pair);
-    const id = `contact:${s.nextImpact++}`;
-    s.contactHistory[pair] = { time: s.time, id };
+    const id2 = `contact:${s.nextImpact++}`;
+    s.contactHistory[pair] = { time: s.time, id: id2 };
     emit(s, "CONTACT", [a.id, b.id], {
-      contactId: id,
+      contactId: id2,
       cause,
       closing,
       parentId,
@@ -1316,7 +1342,7 @@
     const energy = 0.5 * effective * relative * relative;
     if (relative < c.minimumImpact) return;
     s.pendingImpacts.push({
-      id,
+      id: id2,
       a: a.id,
       b: b.id,
       energy,
@@ -1331,17 +1357,17 @@
     const last = s.contactHistory[pair];
     if (last && (last.time === s.time || speed <= s.consequence.renewedSpeed))
       return;
-    const id = `contact:${s.nextImpact++}`;
-    s.contactHistory[pair] = { time: s.time, id };
+    const id2 = `contact:${s.nextImpact++}`;
+    s.contactHistory[pair] = { time: s.time, id: id2 };
     const mass = s.consequence[h.type + "Mass"];
     const effective = r.derived.mass * mass / (r.derived.mass + mass);
     emit(s, "INCIDENT_IMPACT", [r.id], {
-      contactId: id,
+      contactId: id2,
       incidentId: h.id,
       type: h.type
     });
     s.pendingImpacts.push({
-      id,
+      id: id2,
       a: r.id,
       b: null,
       energy: 0.5 * effective * speed * speed,
@@ -1359,11 +1385,11 @@
     const before = new Map(s.entrants.map((r) => [r.id, structuredClone(r)]));
     const effects = [];
     for (const impact of impacts.sort((a, b) => a.id.localeCompare(b.id))) {
-      for (const [id, direction, share] of [
+      for (const [id2, direction, share] of [
         [impact.a, impact.direction, impact.b ? 0.5 : 1],
         ...impact.b ? [[impact.b, impact.side ? "side" : "rear", 0.5]] : []
       ]) {
-        const r = before.get(id), live = s.entrants.find((x) => x.id === id), target = exposure(s, live, direction, impact.id);
+        const r = before.get(id2), live = s.entrants.find((x) => x.id === id2), target = exposure(s, live, direction, impact.id);
         const protection = 1 + r.ru.chariot.protection / 100 * s.consequence.protectionStrength;
         const surface = location(r.q, r.lane, s.config, s.track).surface;
         const resistance = Math.max(0.1, r.derived.collisionResistance) * Math.max(
@@ -1383,7 +1409,7 @@
           emit(
             s,
             "WRECK_IMPACT",
-            [id, impact.a === id ? impact.b : impact.a].filter(Boolean),
+            [id2, impact.a === id2 ? impact.b : impact.a].filter(Boolean),
             { contactId: impact.id, energy: impact.energy, wreckId: r.id }
           );
       }
@@ -1403,12 +1429,12 @@
       });
     }
     const touched = [...new Set(effects.map((e) => e.r.id))].sort();
-    for (const id of touched) {
-      const r = s.entrants.find((r2) => r2.id === id), own = effects.filter((e) => e.r.id === id);
+    for (const id2 of touched) {
+      const r = s.entrants.find((r2) => r2.id === id2), own = effects.filter((e) => e.r.id === id2);
       r.instability += own.reduce((n, e) => n + e.shock, 0);
       if (r.physical !== "Wreck")
         r.speed *= own.some(
-          (e) => !e.impact.side && e.impact.a === id && e.impact.kind !== "attack"
+          (e) => !e.impact.side && e.impact.a === id2 && e.impact.kind !== "attack"
         ) ? 0 : own.some((e) => e.impact.side) ? s.consequence.sideSpeedRetention : own.some((e) => e.impact.kind !== "attack") ? s.consequence.struckSpeedRetention : s.consequence.attackSpeedRetention;
       refresh(r);
       updateControl(s, r, own.map((e) => e.impact.id).join(","));
@@ -1440,20 +1466,20 @@
         continue;
       }
       a.nextAttackTime = s.time + c.attackCooldown;
-      const id = `attack:${s.nextAttack++}`, react = b.reactionsRemaining > 0 && b.control !== "Out of Control";
+      const id2 = `attack:${s.nextAttack++}`, react = b.reactionsRemaining > 0 && b.control !== "Out of Control";
       if (react) {
         b.reactionsRemaining--;
         emit(s, "REACTION", [b.id, a.id], {
-          attackId: id,
+          attackId: id2,
           remaining: b.reactionsRemaining,
           defending: b.defending
         });
       }
-      const attack = a.derived.combat * c.attackSkillMultiplier + (drawConsequence(s, id, "attacker") * 2 - 1) * c.contestNoise;
-      const defense = b.ru.driver.driving * c.defenseDriving + b.derived.combat * c.defenseCombat + b.derived.control * c.defenseControl + (react ? c.reactionBonus : 0) + (react && b.defending ? c.defendingBonus : 0) + (drawConsequence(s, id, "defender") * 2 - 1) * c.contestNoise;
+      const attack = a.derived.combat * c.attackSkillMultiplier + (drawConsequence(s, id2, "attacker") * 2 - 1) * c.contestNoise;
+      const defense = b.ru.driver.driving * c.defenseDriving + b.derived.combat * c.defenseCombat + b.derived.control * c.defenseControl + (react ? c.reactionBonus : 0) + (react && b.defending ? c.defendingBonus : 0) + (drawConsequence(s, id2, "defender") * 2 - 1) * c.contestNoise;
       const margin = attack - defense, success = margin > 0;
       emit(s, "ATTACK", [a.id, b.id], {
-        attackId: id,
+        attackId: id2,
         attacker: a.id,
         defender: b.id,
         action: intent.action,
@@ -1463,17 +1489,17 @@
         success,
         reacted: react
       });
-      resolveAction(s, a, intent.decisionId, "position", true, null, { combatResult: success ? "Hit" : "Defended", attackId: id });
+      resolveAction(s, a, intent.decisionId, "position", true, null, { combatResult: success ? "Hit" : "Defended", attackId: id2 });
       if (!success) continue;
       if (intent.action === "ram")
         queueImpact(s, a, b, "Deliberate lateral ram", {
           side: true,
           ram: true,
-          parentId: id
+          parentId: id2
         });
       else
         s.pendingImpacts.push({
-          id,
+          id: id2,
           a: b.id,
           b: null,
           energy: 0,
@@ -1543,7 +1569,7 @@
       requests.push({ type, duration: c.incidentDuration });
     }
     for (const request of requests) {
-      const id = `incident:${s.nextIncident++}`;
+      const id2 = `incident:${s.nextIncident++}`;
       const occupied = new Set(
         s.entrants.filter((r) => r.physical !== "Exited" && r.status !== "DNS").map((r) => key(r.q, r.lane, s.track))
       );
@@ -1557,7 +1583,7 @@
           }
       let placement;
       if (request.tile === void 0) {
-        let pick = drawConsequence(s, "incident-placement", id) * eligible.reduce((sum, cell) => sum + cell.weight, 0);
+        let pick = drawConsequence(s, "incident-placement", id2) * eligible.reduce((sum, cell) => sum + cell.weight, 0);
         placement = eligible.find((cell) => {
           pick -= cell.weight;
           return pick < 0;
@@ -1567,14 +1593,14 @@
       }
       if (!placement) {
         emit(s, "INCIDENT_SKIPPED", [], {
-          incidentId: id,
+          incidentId: id2,
           reason: "No eligible unoccupied tile",
           requested: request
         });
         continue;
       }
       const hazard = {
-        id,
+        id: id2,
         type: request.type,
         lane: placement.lane,
         q: placement.tile,
@@ -1974,9 +2000,9 @@
       ["condition", 100]
     ]);
   }
-  function defaultRU(id, value = 50) {
+  function defaultRU(id2, value = 50) {
     return {
-      id,
+      id: id2,
       driver: { ...component(driverAttributes, value), strain: 0 },
       beasts: [0, 1].map(() => ({
         ...component(beastAttributes, value),
@@ -2665,8 +2691,8 @@
     }));
     if (!input.length || input.length > 64)
       throw new Error("Expected 1..64 entrants");
-    for (const [id, patch] of Object.entries(surfaces)) {
-      const segment2 = t.segments.find((x) => x.id === id);
+    for (const [id2, patch] of Object.entries(surfaces)) {
+      const segment2 = t.segments.find((x) => x.id === id2);
       if (!segment2 || !patch || typeof patch !== "object")
         throw new Error("Invalid surface");
       for (const [k, v] of Object.entries(patch))
@@ -2939,7 +2965,7 @@
     return random(s.seed, ...keys);
   }
   function contact(s, ids, cause, options = {}) {
-    const [a, b] = ids.map((id) => s.entrants.find((r) => r.id === id));
+    const [a, b] = ids.map((id2) => s.entrants.find((r) => r.id === id2));
     queueImpact(s, a, b, cause, options);
   }
   function flush(s) {
@@ -3249,15 +3275,15 @@
       movers.map((r) => [r.id, { r, next: Math.floor(r.q) + 1 }])
     );
     const decisions = /* @__PURE__ */ new Map(), visiting = /* @__PURE__ */ new Set();
-    function allowed(id) {
-      if (decisions.has(id)) return decisions.get(id);
-      if (visiting.has(id)) return false;
-      visiting.add(id);
-      const { r, next } = intents.get(id), blocker = occupied.get(key(next, r.lane, s.track));
+    function allowed(id2) {
+      if (decisions.has(id2)) return decisions.get(id2);
+      if (visiting.has(id2)) return false;
+      visiting.add(id2);
+      const { r, next } = intents.get(id2), blocker = occupied.get(key(next, r.lane, s.track));
       const hazard = s.consequences && hazardAt(s, next, r.lane);
-      const ok = !hazard && (!blocker || blocker.id !== id && intents.has(blocker.id) && allowed(blocker.id));
-      visiting.delete(id);
-      decisions.set(id, ok);
+      const ok = !hazard && (!blocker || blocker.id !== id2 && intents.has(blocker.id) && allowed(blocker.id));
+      visiting.delete(id2);
+      decisions.set(id2, ok);
       return ok;
     }
     for (const r of movers) allowed(r.id);
@@ -3470,7 +3496,7 @@
       s.diagnostics.subevents += groups;
       s.diagnostics.maxGroups = Math.max(groups, s.diagnostics.maxGroups);
       s.contacts = s.contacts.filter((pair) => {
-        const [a, b] = pair.split("|").map((id) => s.entrants.find((r) => r.id === id));
+        const [a, b] = pair.split("|").map((id2) => s.entrants.find((r) => r.id === id2));
         return physical(a) && physical(b) && Math.abs(a.lane - b.lane) <= 1 && Math.abs(gap(a.q, b.q, s.track)) < 1.01;
       });
       logRacecraft(s);
@@ -3482,8 +3508,8 @@
       s.status = "Error";
       emit(s, "INTEGRITY_ERROR", [], {
         message: error.message,
-        context: sorted(s).map(({ id, q, lane, speed }) => ({
-          id,
+        context: sorted(s).map(({ id: id2, q, lane, speed }) => ({
+          id: id2,
           q,
           lane,
           speed
@@ -3572,17 +3598,17 @@
       setup: structuredClone(s.setup)
     };
   }
-  function parseConfiguration(text) {
-    const doc = JSON.parse(text);
+  function parseConfiguration(text2) {
+    const doc = JSON.parse(text2);
     if (doc.kind !== "BNT-configuration" || doc.schema !== 1 || doc.version !== VERSION && doc.version !== "0.5.0-courses" && !(doc.version === "0.4.3-combat-ai" && (!doc.setup?.course || doc.setup.course === "oval")))
       throw new Error("Unsupported configuration version");
     return configuration(doc.setup);
   }
-  function editConfiguration(doc, { id, path, value }) {
+  function editConfiguration(doc, { id: id2, path, value }) {
     const next = structuredClone(doc);
     let count = 0;
     for (const e of next.setup.entrants)
-      if ((id === "all" || e.ru.id === id) && (id !== "all" || supportsPath(e.ru, path))) {
+      if ((id2 === "all" || e.ru.id === id2) && (id2 !== "all" || supportsPath(e.ru, path))) {
         e.ru = editRU(e.ru, path, value).ru;
         count++;
       }
@@ -3602,14 +3628,439 @@
     }
   }
   function loadConfiguration(storage) {
-    let text;
+    let text2;
     try {
-      text = storage.getItem("bnt.configuration.v1");
+      text2 = storage.getItem("bnt.configuration.v1");
     } catch (e) {
       throw new Error(`Storage unavailable: ${e.message}`);
     }
-    if (!text) throw new Error("No saved configuration");
-    return parseConfiguration(text);
+    if (!text2) throw new Error("No saved configuration");
+    return parseConfiguration(text2);
+  }
+
+  // src/career/state.js
+  var CAREER_SCHEMA = 1;
+  var MAX_RECEIPTS = 1e3;
+  var MAX_MARKS = 2e3;
+  var TYPE = "developer.treasury.adjust";
+  var idPattern = /^[a-zA-Z0-9_-]{1,64}$/;
+  function id(value) {
+    if (typeof value !== "string" || !idPattern.test(value) || ["__proto__", "constructor", "prototype", "all"].includes(value)) throw Error("Invalid persistent ID");
+  }
+  function exact(value, fields2, label = "object") {
+    if (!value || typeof value !== "object" || Array.isArray(value) || ![Object.prototype, null].includes(Object.getPrototypeOf(value)) || Object.keys(value).length !== fields2.length || fields2.some((k) => !Object.hasOwn(value, k))) throw Error("Invalid " + label + " fields");
+  }
+  function text(value, max = 100) {
+    if (typeof value !== "string" || !value.trim() || value.length > max) throw Error("Invalid text");
+  }
+  function integer(value, min = 0) {
+    if (!Number.isSafeInteger(value) || value < min) throw Error("Invalid financial/revision integer");
+  }
+  function validateMark(mark) {
+    exact(mark, ["id", "profileId", "careerId", "type", "reason", "delta", "revision"], "provenance");
+    for (const key2 of ["id", "profileId", "careerId"]) id(mark[key2]);
+    if (mark.type !== TYPE || !Number.isSafeInteger(mark.delta)) throw Error("Unsupported developer provenance");
+    integer(mark.revision, 1);
+    text(mark.reason, 500);
+  }
+  function mergeMarks(...lists) {
+    const marks = /* @__PURE__ */ new Map();
+    for (const mark of lists.flat()) {
+      validateMark(mark);
+      if (marks.has(mark.id) && canonical(marks.get(mark.id)) !== canonical(mark)) throw Error("Conflicting transaction provenance ID");
+      marks.set(mark.id, structuredClone(mark));
+    }
+    const owners = /* @__PURE__ */ new Map();
+    for (const mark of marks.values()) {
+      if (owners.has(mark.careerId) && owners.get(mark.careerId) !== mark.profileId) throw Error("Conflicting career ownership provenance");
+      owners.set(mark.careerId, mark.profileId);
+    }
+    if (marks.size > MAX_MARKS) throw Error("Provenance limit reached; no records were discarded");
+    return [...marks.values()].sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+  }
+  function validateTransaction(tx) {
+    exact(tx, ["id", "profileId", "careerId", "expectedRevision", "type", "delta", "reason"], "transaction");
+    for (const key2 of ["id", "profileId", "careerId"]) id(tx[key2]);
+    integer(tx.expectedRevision);
+    text(tx.reason, 500);
+    if (tx.type !== TYPE || !Number.isSafeInteger(tx.delta)) throw Error("Unsupported transaction or invalid treasury adjustment");
+  }
+  function transactionMark(tx) {
+    return { id: tx.id, profileId: tx.profileId, careerId: tx.careerId, type: tx.type, reason: tx.reason, delta: tx.delta, revision: tx.expectedRevision + 1 };
+  }
+  function validateState(state2) {
+    exact(state2, ["kind", "schema", "revision", "profile", "career", "pendingRace", "transactions", "provenance"], "career state");
+    if (state2.kind !== "BNT-career-state" || state2.schema !== CAREER_SCHEMA) throw Error("Unsupported career state schema");
+    integer(state2.revision);
+    exact(state2.profile, ["id", "name", "legacy", "developerEdited"], "Owner Profile");
+    exact(state2.profile.legacy, ["records"], "Owner Legacy");
+    if (!Array.isArray(state2.profile.legacy.records) || state2.profile.legacy.records.length) throw Error("Owner Legacy progression is not supported by M1");
+    exact(state2.career, ["id", "ownerProfileId", "name", "status", "treasury", "developerEdited"], "Career State");
+    id(state2.profile.id);
+    id(state2.career.id);
+    id(state2.career.ownerProfileId);
+    text(state2.profile.name);
+    text(state2.career.name);
+    integer(state2.career.treasury);
+    if (state2.profile.id === state2.career.id || state2.career.ownerProfileId !== state2.profile.id || state2.career.status !== "Foundation") throw Error("Invalid career ownership/status reference");
+    if (!Array.isArray(state2.transactions) || state2.transactions.length > MAX_RECEIPTS || state2.revision !== state2.transactions.length || !Array.isArray(state2.provenance) || state2.provenance.length > MAX_MARKS) throw Error("Invalid transaction history");
+    const marks = mergeMarks(state2.provenance), seen = /* @__PURE__ */ new Set();
+    if (marks.length !== state2.provenance.length) throw Error("Duplicate provenance");
+    for (const mark of marks) if (mark.profileId !== state2.profile.id) throw Error("Invalid provenance entity reference");
+    let balance = 0n;
+    for (const [index, receipt] of state2.transactions.entries()) {
+      exact(receipt, ["transaction", "resultRevision", "balanceAfter"], "receipt");
+      const tx = receipt.transaction;
+      validateTransaction(tx);
+      if (seen.has(tx.id) || tx.profileId !== state2.profile.id || tx.careerId !== state2.career.id || tx.expectedRevision !== index || receipt.resultRevision !== index + 1) throw Error("Invalid receipt ID/revision/reference");
+      seen.add(tx.id);
+      balance += BigInt(tx.delta);
+      if (balance < 0n || balance > BigInt(Number.MAX_SAFE_INTEGER) || receipt.balanceAfter !== Number(balance)) throw Error("Inconsistent treasury ledger");
+      if (!marks.some((m) => canonical(m) === canonical(transactionMark(tx)))) throw Error("Missing developer provenance");
+    }
+    if (Number(balance) !== state2.career.treasury || state2.profile.developerEdited !== Boolean(marks.length) || state2.career.developerEdited !== marks.some((m) => m.careerId === state2.career.id)) throw Error("Inconsistent financial/developer-edited state");
+    if (state2.pendingRace !== null) {
+      const p = state2.pendingRace;
+      exact(p, ["id", "careerId", "engineVersion", "setup"], "pending race checkpoint");
+      id(p.id);
+      id(p.careerId);
+      if (p.id === state2.career.id || p.id === state2.profile.id || p.careerId !== state2.career.id || p.engineVersion !== VERSION) throw Error("Incompatible pending race version/reference");
+      const normalized = configuration(p.setup).setup;
+      if (canonical(normalized) !== canonical(p.setup)) throw Error("Pending race requires a complete normalized starting configuration");
+    }
+    return state2;
+  }
+  function withProvenance(state2, knownMarks) {
+    const next = structuredClone(validateState(state2));
+    if (knownMarks.some((m) => m.careerId === next.career.id && m.profileId !== next.profile.id)) throw Error("Career provenance belongs to a different Owner Profile");
+    next.provenance = mergeMarks(next.provenance, knownMarks.filter((m) => m.profileId === next.profile.id));
+    next.profile.developerEdited = Boolean(next.provenance.length);
+    next.career.developerEdited = next.provenance.some((m) => m.careerId === next.career.id);
+    return validateState(next);
+  }
+  function createCareer({ profileId, careerId, ownerName = "Owner", careerName = "M1 Foundation", pendingRace = null }) {
+    return validateState({
+      kind: "BNT-career-state",
+      schema: CAREER_SCHEMA,
+      revision: 0,
+      profile: { id: profileId, name: ownerName, legacy: { records: [] }, developerEdited: false },
+      career: { id: careerId, ownerProfileId: profileId, name: careerName, status: "Foundation", treasury: 0, developerEdited: false },
+      pendingRace: structuredClone(pendingRace),
+      transactions: [],
+      provenance: []
+    });
+  }
+  function transact(state2, transaction) {
+    validateState(state2);
+    validateTransaction(transaction);
+    if (transaction.profileId !== state2.profile.id || transaction.careerId !== state2.career.id) throw Error("Transaction entity reference mismatch");
+    const previous2 = state2.transactions.find((r) => r.transaction.id === transaction.id);
+    if (previous2) {
+      if (canonical(previous2.transaction) !== canonical(transaction)) throw Error("Conflicting transaction ID");
+      return { state: structuredClone(state2), duplicate: true, receipt: structuredClone(previous2) };
+    }
+    if (state2.provenance.some((m) => m.id === transaction.id)) throw Error("Transaction ID belongs to a previous imported/recovered timeline");
+    if (transaction.expectedRevision !== state2.revision) throw Error("Stale career revision");
+    if (state2.transactions.length >= MAX_RECEIPTS) throw Error("Transaction limit reached; no receipts were pruned");
+    const balance = BigInt(state2.career.treasury) + BigInt(transaction.delta);
+    if (balance < 0n || balance > BigInt(Number.MAX_SAFE_INTEGER)) throw Error("Treasury must be a nonnegative safe integer");
+    const next = structuredClone(state2), receipt = { transaction: structuredClone(transaction), resultRevision: state2.revision + 1, balanceAfter: Number(balance) };
+    next.revision++;
+    next.career.treasury = Number(balance);
+    next.transactions.push(receipt);
+    next.provenance = mergeMarks(next.provenance, [transactionMark(transaction)]);
+    next.profile.developerEdited = next.career.developerEdited = true;
+    validateState(next);
+    return { state: next, duplicate: false, receipt: structuredClone(receipt) };
+  }
+
+  // src/persistence/envelope.js
+  var SAVE_KEY = "bnt.career.save.v1";
+  var MAX_SAVE_BYTES = 2 * 1024 * 1024;
+  function seal(value) {
+    return { value: structuredClone(value), digest: checksum(value) };
+  }
+  function unseal(record) {
+    exact(record, ["value", "digest"], "sealed checkpoint");
+    if (typeof record.digest !== "string" || !/^[0-9a-f]{8}$/.test(record.digest) || checksum(record.value) !== record.digest) throw Error("Checkpoint integrity mismatch");
+    return record.value;
+  }
+  function inspectEnvelope(text2) {
+    if (typeof text2 !== "string" || new TextEncoder().encode(text2).length > MAX_SAVE_BYTES) throw Error("Invalid or oversized career save");
+    const envelope = JSON.parse(text2);
+    exact(envelope, ["kind", "schema", "primary", "recovery", "provenance"], "game save");
+    if (envelope.kind !== "BNT-game-save" || envelope.schema !== 1) throw Error("Incompatible game save type/schema");
+    const rawMarks = unseal(envelope.provenance);
+    if (!Array.isArray(rawMarks)) throw Error("Invalid provenance registry");
+    const marks = mergeMarks(rawMarks);
+    if (marks.length !== rawMarks.length) throw Error("Duplicate provenance registry");
+    const errors = {}, valid = {};
+    for (const key2 of ["primary", "recovery"]) {
+      if (key2 === "recovery" && envelope[key2] === null) {
+        valid[key2] = null;
+        continue;
+      }
+      try {
+        const state2 = validateState(unseal(envelope[key2]));
+        for (const m of state2.provenance) if (!marks.some((k) => canonical(k) === canonical(m))) throw Error("Checkpoint provenance missing from registry");
+        if (key2 === "primary" && canonical(withProvenance(state2, marks)) !== canonical(state2)) throw Error("Primary clears known developer provenance");
+        valid[key2] = structuredClone(state2);
+      } catch (e) {
+        errors[key2] = e.message;
+        valid[key2] = null;
+      }
+    }
+    return { envelope, marks, primary: valid.primary, recovery: valid.recovery, errors };
+  }
+  function parseEnvelope(text2) {
+    const result = inspectEnvelope(text2);
+    if (!result.primary || Object.keys(result.errors).length) throw Error("Invalid career save: " + JSON.stringify(result.errors));
+    return result;
+  }
+  function makeEnvelope(primary, recovery = null, knownMarks = []) {
+    const marks = mergeMarks(knownMarks, primary.provenance, recovery?.provenance ?? []);
+    const state2 = withProvenance(primary, marks);
+    const envelope = { kind: "BNT-game-save", schema: 1, primary: seal(state2), recovery: recovery ? seal(validateState(recovery)) : null, provenance: seal(marks) };
+    const text2 = JSON.stringify(envelope);
+    parseEnvelope(text2);
+    return { envelope, text: text2, state: state2 };
+  }
+
+  // src/persistence/career-store.js
+  var CareerStore = class {
+    constructor(storage) {
+      this.storage = storage;
+      this.mode = "automatic";
+      this.current = null;
+      this.recovery = null;
+      this.marks = [];
+      this.raw = null;
+      this.quarantine = null;
+      this.problem = "";
+      this.requiresCheckpoint = false;
+      this.exportToken = null;
+      this.recoveryPending = false;
+    }
+    get state() {
+      return this.current ? structuredClone(this.current) : null;
+    }
+    open() {
+      try {
+        this.raw = this.storage.getItem(SAVE_KEY);
+      } catch (e) {
+        this.mode = "manual";
+        this.problem = "Browser storage unavailable: " + e.message;
+        return;
+      }
+      if (this.raw === null) return;
+      try {
+        const read = inspectEnvelope(this.raw);
+        this.marks = read.marks;
+        this.recovery = read.recovery;
+        if (!read.primary || Object.keys(read.errors).length) {
+          this.mode = read.recovery ? "recovery-required" : "blocked";
+          this.recoveryPending = Boolean(read.recovery);
+          this.quarantine = this.raw;
+          this.current = read.primary;
+          this.problem = "Saved checkpoint is corrupt; automatic writes are blocked and original bytes preserved. " + (read.primary ? "Valid primary available for export. " : "No primary loaded. ") + JSON.stringify(read.errors);
+          return;
+        }
+        this.current = read.primary;
+      } catch (e) {
+        this.mode = "blocked";
+        this.quarantine = this.raw;
+        this.problem = e.message + "; original bytes preserved.";
+      }
+    }
+    requireManualCheckpoint() {
+      if (this.mode === "manual" && this.requiresCheckpoint) throw Error("Export and explicitly confirm this manual checkpoint before another change");
+    }
+    publish(candidate, { allowBlocked = false } = {}) {
+      if (["blocked", "recovery-required"].includes(this.mode) && !allowBlocked) throw Error("Resolve corrupt save explicitly before changing state");
+      if (this.mode !== "manual") {
+        let raw;
+        try {
+          raw = this.storage.getItem(SAVE_KEY);
+        } catch (e) {
+          this.mode = "manual";
+          this.problem = "Storage denied; attempted change was rolled back. Retry in manual mode. " + e.message;
+          this.requiresCheckpoint = Boolean(this.current);
+          throw Error(this.problem);
+        }
+        if (raw !== this.raw) throw Error("Browser save changed in another window; reload before editing");
+        try {
+          this.storage.setItem(SAVE_KEY, candidate.text);
+        } catch (e) {
+          this.mode = "manual";
+          this.problem = "Storage write failed; attempted change was rolled back. Retry in manual mode. " + e.message;
+          this.requiresCheckpoint = Boolean(this.current);
+          throw Error(this.problem);
+        }
+        this.raw = candidate.text;
+        this.mode = "automatic";
+        this.problem = "";
+      }
+      const read = parseEnvelope(candidate.text);
+      this.current = read.primary;
+      this.recovery = read.recovery;
+      this.marks = read.marks;
+      this.requiresCheckpoint = this.mode === "manual";
+      this.exportToken = null;
+      this.recoveryPending = false;
+      if (this.mode === "manual") this.problem = "Manual session: changes are in memory only; browser storage is not being updated. Export before leaving.";
+    }
+    create(state2, { confirmed = false } = {}) {
+      if ((this.current || this.raw !== null || this.quarantine) && confirmed !== true) throw Error("Confirm replacement of existing career/save");
+      this.requireManualCheckpoint();
+      const candidate = makeEnvelope(state2, this.current, this.marks);
+      this.publish(candidate, { allowBlocked: confirmed });
+      return this.state;
+    }
+    transaction(tx) {
+      if (!this.current) throw Error("No career loaded");
+      const result = transact(this.current, tx);
+      if (result.duplicate) return result;
+      this.requireManualCheckpoint();
+      this.publish(makeEnvelope(result.state, this.current, this.marks));
+      return { ...result, state: this.state };
+    }
+    importSave(text2, { confirmed = false } = {}) {
+      const incoming = parseEnvelope(text2);
+      if (confirmed !== true) throw Error("Confirm complete save replacement; Owner Legacy is replaced, never merged");
+      this.requireManualCheckpoint();
+      const marks = mergeMarks(this.marks, incoming.marks);
+      const state2 = withProvenance(incoming.primary, marks);
+      const recovery = incoming.recovery;
+      this.publish(makeEnvelope(state2, recovery, marks), { allowBlocked: true });
+      return this.state;
+    }
+    recover({ confirmed = false } = {}) {
+      if (!this.recoveryPending || !this.recovery) throw Error("No valid recovery checkpoint is available");
+      if (confirmed !== true) throw Error("Explicit recovery confirmation required");
+      const state2 = withProvenance(this.recovery, this.marks);
+      this.publish(makeEnvelope(state2, this.recovery, this.marks), { allowBlocked: true });
+      return this.state;
+    }
+    export() {
+      if (!this.current) throw Error("No valid loaded career to export");
+      const candidate = makeEnvelope(this.current, this.recovery, this.marks);
+      this.exportToken = candidate.envelope.primary.digest;
+      return structuredClone(candidate.envelope);
+    }
+    acknowledgeExport(token) {
+      if (!this.current || !this.exportToken || token !== this.exportToken || token !== makeEnvelope(this.current, this.recovery, this.marks).envelope.primary.digest) throw Error("Export the current checkpoint first");
+      this.requiresCheckpoint = false;
+    }
+  };
+
+  // src/ui/career-saves.js
+  var $ = (id2) => document.getElementById(id2);
+  var sequence = 0;
+  function newId(prefix) {
+    let suffix;
+    try {
+      suffix = globalThis.crypto.randomUUID();
+    } catch {
+      suffix = Date.now().toString(36) + "-" + (++sequence).toString(36);
+    }
+    return prefix + "-" + suffix;
+  }
+  function mountCareerSaves({ download }) {
+    let storage;
+    try {
+      storage = window.localStorage;
+    } catch {
+    }
+    const store = new CareerStore(storage);
+    store.open();
+    let staged = null, lastToken = null, notice = "", queue = Promise.resolve();
+    function render2() {
+      const state2 = store.state;
+      $("careerSaveStatus").textContent = `${store.mode.toUpperCase()} \xB7 ${state2 ? `Revision ${state2.revision} \xB7 Treasury ${state2.career.treasury} Gold \xB7 ${state2.profile.developerEdited || state2.career.developerEdited ? "DEVELOPER-EDITED (persistent)" : "Unedited foundation"}` : "No career loaded"}${store.requiresCheckpoint ? " \xB7 CHECKPOINT REQUIRED: export, save the file and confirm before another change." : ""}`;
+      $("careerSaveNotice").textContent = [store.problem, notice].filter(Boolean).join(" ");
+      $("careerSaveInspect").textContent = JSON.stringify(state2 ?? { status: store.mode, recoveryAvailable: Boolean(store.recovery) }, null, 2);
+      $("careerAdjust").disabled = !state2 || ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint;
+      $("careerExport").disabled = !state2;
+      $("careerAcknowledge").disabled = !state2 || !lastToken;
+      $("careerRecover").disabled = !store.recoveryPending;
+      $("careerRawExport").disabled = !store.quarantine;
+      $("careerImportApply").disabled = !staged;
+    }
+    async function exclusive(fn) {
+      if (navigator.locks?.request) return navigator.locks.request(SAVE_KEY + ".writer", fn);
+      return fn();
+    }
+    const act = (fn) => () => {
+      queue = queue.catch(() => {
+      }).then(() => exclusive(fn)).catch((e) => {
+        notice = e.message;
+      }).finally(render2);
+      return queue;
+    };
+    $("careerCreate").onclick = act(() => {
+      const existing = store.state || store.raw !== null || store.quarantine;
+      if (existing && !window.confirm("Replace the current Owner Profile and Career State with an empty M1 foundation? Export a backup first. Owner Legacy will not be merged.")) return;
+      store.create(createCareer({ profileId: newId("profile"), careerId: newId("career"), ownerName: $("careerOwnerName").value, careerName: $("careerName").value }), { confirmed: Boolean(existing) });
+      notice = "Empty M1 foundation created: 0 Gold, no roster, championships or Legacy progression. This is not the M2 starting stable.";
+      lastToken = null;
+    });
+    $("careerAdjust").onclick = act(() => {
+      const state2 = store.state;
+      if (!state2) throw Error("No career loaded");
+      const rawDelta = $("careerTreasuryDelta").value;
+      if (!rawDelta.trim() || !Number.isSafeInteger(Number(rawDelta))) throw Error("Enter a whole-number treasury change");
+      const delta = Number(rawDelta), reason = $("careerEditReason").value;
+      if (!window.confirm("Apply this developer treasury transaction? It permanently marks this profile and career developer-edited.")) return;
+      store.transaction({ id: newId("tx"), profileId: state2.profile.id, careerId: state2.career.id, expectedRevision: state2.revision, type: "developer.treasury.adjust", delta, reason });
+      notice = "Developer transaction committed. This provenance cannot be cleared by ordinary actions.";
+      lastToken = null;
+    });
+    $("careerExport").onclick = act(() => {
+      const envelope = store.export();
+      lastToken = store.exportToken;
+      download(envelope, "BNT-game-save.json");
+      notice = "Download requested. This exports the complete persistent state, not the running race. The browser cannot verify that you saved it durably. In manual mode, save the file before confirming the checkpoint.";
+    });
+    $("careerAcknowledge").onclick = act(() => {
+      if (!window.confirm("Have you saved this exact exported checkpoint? This records your confirmation only; the game cannot verify disk durability.")) return;
+      store.acknowledgeExport(lastToken);
+      notice = "Checkpoint confirmed by you for this session; disk durability was not independently verified.";
+    });
+    $("careerImportFile").onchange = act(async () => {
+      staged = null;
+      const file = $("careerImportFile").files[0];
+      $("careerImportFile").value = "";
+      if (!file) return;
+      if (!file.name.toLowerCase().endsWith(".json") || file.size > MAX_SAVE_BYTES) throw Error("Choose a career .json file within the 2 MiB limit");
+      const text2 = await file.text(), parsed = parseEnvelope(text2);
+      staged = text2;
+      notice = `Import validated: ${parsed.primary.profile.name} / ${parsed.primary.career.name}, revision ${parsed.primary.revision}. Nothing was replaced. Use Confirm replacement to proceed.`;
+    });
+    $("careerImportApply").onclick = act(() => {
+      if (!staged) throw Error("Select and validate an import first");
+      if (!window.confirm("Replace the entire loaded Owner Profile, Career State and pending checkpoint with this file? Export your current state first. Owner Legacy is replaced, never merged; known matching developer provenance is retained.")) return;
+      store.importSave(staged, { confirmed: true });
+      staged = null;
+      lastToken = null;
+      notice = "Complete persistent state imported. Owner Legacy was not merged. Retained developer provenance may keep an older imported checkpoint marked edited.";
+    });
+    $("careerRecover").onclick = act(() => {
+      if (!window.confirm("Recover the previous valid checkpoint? The current corrupt bytes remain available for diagnostic export. No financial recovery transaction or reward will be created.")) return;
+      store.recover({ confirmed: true });
+      lastToken = null;
+      notice = "Previous checkpoint selected explicitly. Known developer provenance retained; no transaction, reward or revision was invented.";
+    });
+    $("careerRawExport").onclick = act(() => {
+      download({ kind: "BNT-corrupt-save-diagnostic", raw: store.quarantine }, "BNT-corrupt-save-diagnostic.json");
+      notice = "Original corrupt bytes included in a diagnostic download request. This is not an importable game save or a verified durable backup.";
+    });
+    window.addEventListener("storage", (e) => {
+      if (e.key === SAVE_KEY) {
+        notice = "Career storage changed in another window. Reload before further editing. Use only one active writer when Web Locks are unavailable.";
+        render2();
+      }
+    });
+    render2();
   }
 
   // src/replay/replay.js
@@ -3894,10 +4345,10 @@
   }
 
   // src/dev/batch.js
-  function parseSeeds(text) {
-    if (typeof text !== "string") throw new Error("Invalid seed list");
+  function parseSeeds(text2) {
+    if (typeof text2 !== "string") throw new Error("Invalid seed list");
     const result = [];
-    for (const token of text.split(",").map((x) => x.trim()).filter(Boolean)) {
+    for (const token of text2.split(",").map((x) => x.trim()).filter(Boolean)) {
       const range = token.match(/^(\d+)\s*-\s*(\d+)$/);
       if (range) {
         const a = Number(range[1]), b = Number(range[2]);
@@ -3985,7 +4436,7 @@
   }
 
   // src/ui/workbench.js
-  var $ = (id) => document.getElementById(id);
+  var $2 = (id2) => document.getElementById(id2);
   function downloadJSON(value, name) {
     const url = URL.createObjectURL(
       new Blob([JSON.stringify(value, null, 2)], { type: "application/json" })
@@ -4004,8 +4455,8 @@
     render: render2
   }) {
     let replay = null, batchAbort = null, batchResult = null;
-    const message = (text) => {
-      $("developerStatus").textContent = text;
+    const message = (text2) => {
+      $2("developerStatus").textContent = text2;
     };
     const act = (fn) => async () => {
       try {
@@ -4016,40 +4467,40 @@
       render2();
     };
     function setEditor(setup) {
-      $("setupJSON").value = JSON.stringify(configuration(setup), null, 2);
-      const selected = $("surfaceSegment").value;
-      $("surfaceSegment").replaceChildren(...getState().track.segments.map((s) => new Option(s.id, s.id)));
-      if ([...$("surfaceSegment").options].some((o) => o.value === selected)) $("surfaceSegment").value = selected;
+      $2("setupJSON").value = JSON.stringify(configuration(setup), null, 2);
+      const selected = $2("surfaceSegment").value;
+      $2("surfaceSegment").replaceChildren(...getState().track.segments.map((s) => new Option(s.id, s.id)));
+      if ([...$2("surfaceSegment").options].some((o) => o.value === selected)) $2("surfaceSegment").value = selected;
       refreshComponents();
       refreshParameter();
     }
     function apply(doc) {
       replay = null;
-      $("replayStatus").textContent = "Live race";
+      $2("replayStatus").textContent = "Live race";
       setState(createRace(doc.setup));
       setEditor(doc.setup);
       message("Configuration applied to a new race.");
     }
     function selectedRU() {
-      return getState().entrants.find((r) => r.id === $("componentScope").value) ?? getState().entrants[0];
+      return getState().entrants.find((r) => r.id === $2("componentScope").value) ?? getState().entrants[0];
     }
     function refreshComponents() {
-      const selection = $("componentScope").value;
-      $("componentScope").replaceChildren();
+      const selection = $2("componentScope").value;
+      $2("componentScope").replaceChildren();
       for (const [value, label] of [
         ["all", `All ${getState().entrants.length} RUs`],
         ...getState().entrants.map((r) => [r.id, r.id])
       ]) {
         const o = new Option(label, value);
-        $("componentScope").append(o);
+        $2("componentScope").append(o);
       }
-      if ([...$("componentScope").options].some((o) => o.value === selection))
-        $("componentScope").value = selection;
+      if ([...$2("componentScope").options].some((o) => o.value === selection))
+        $2("componentScope").value = selection;
       refreshObjects();
     }
     function refreshObjects() {
-      const ru = selectedRU(), previous2 = $("componentObject").value;
-      $("componentObject").replaceChildren();
+      const ru = selectedRU(), previous2 = $2("componentObject").value;
+      $2("componentObject").replaceChildren();
       for (const value of [
         "driver",
         "driver.personality",
@@ -4058,23 +4509,23 @@
         "beasts.*",
         ...ru.ru.beasts.map((_, i) => `beasts.${i}`)
       ])
-        $("componentObject").append(new Option(value, value));
-      if ([...$("componentObject").options].some((o) => o.value === previous2))
-        $("componentObject").value = previous2;
+        $2("componentObject").append(new Option(value, value));
+      if ([...$2("componentObject").options].some((o) => o.value === previous2))
+        $2("componentObject").value = previous2;
       refreshFields();
     }
     function refreshFields() {
-      const ru = selectedRU().ru, path = $("componentObject").value.replace("*", "0"), obj = path.split(".").reduce((n, k) => n[k], ru);
-      $("componentField").replaceChildren();
+      const ru = selectedRU().ru, path = $2("componentObject").value.replace("*", "0"), obj = path.split(".").reduce((n, k) => n[k], ru);
+      $2("componentField").replaceChildren();
       for (const [key2, v] of Object.entries(obj))
         if (typeof v === "number")
-          $("componentField").append(new Option(key2, key2));
+          $2("componentField").append(new Option(key2, key2));
       refreshValue();
     }
     function refreshValue() {
-      const path = $("componentObject").value.replace("*", "0") + "." + $("componentField").value;
-      $("componentValue").value = path.split(".").reduce((n, k) => n[k], selectedRU().ru);
-      $("componentSummary").textContent = `Scope: ${$("componentScope").value}; ${$("componentObject").value}.${$("componentField").value}. Wildcard beasts.* edits every team member.`;
+      const path = $2("componentObject").value.replace("*", "0") + "." + $2("componentField").value;
+      $2("componentValue").value = path.split(".").reduce((n, k) => n[k], selectedRU().ru);
+      $2("componentSummary").textContent = `Scope: ${$2("componentScope").value}; ${$2("componentObject").value}.${$2("componentField").value}. Wildcard beasts.* edits every team member.`;
     }
     const parameterGroups = {
       config: { target: "config", source: () => getState().config, defaults },
@@ -4107,26 +4558,26 @@
       }
     };
     function refreshParameter() {
-      const g = parameterGroups[$("parameterGroup").value], previous2 = $("parameterField").value;
-      $("parameterField").replaceChildren();
+      const g = parameterGroups[$2("parameterGroup").value], previous2 = $2("parameterField").value;
+      $2("parameterField").replaceChildren();
       for (const [key2, v] of Object.entries(g.source()))
         if (typeof v === "number")
-          $("parameterField").append(new Option(key2, key2));
-      if ([...$("parameterField").options].some((o) => o.value === previous2))
-        $("parameterField").value = previous2;
+          $2("parameterField").append(new Option(key2, key2));
+      if ([...$2("parameterField").options].some((o) => o.value === previous2))
+        $2("parameterField").value = previous2;
       refreshParameterValue();
     }
     function refreshParameterValue() {
-      const g = parameterGroups[$("parameterGroup").value], key2 = $("parameterField").value;
-      $("parameterValue").value = g.source()[key2];
+      const g = parameterGroups[$2("parameterGroup").value], key2 = $2("parameterField").value;
+      $2("parameterValue").value = g.source()[key2];
       const bounds = rules[key2];
-      $("parameterSummary").textContent = `Default ${(typeof g.defaults === "function" ? g.defaults() : g.defaults)[key2]}; ${bounds ? `${bounds[0]}..${bounds[1]} ${bounds[2]}` : $("parameterGroup").value === "model" ? "0..2; normalized weight groups must sum to 1" : "See validated ranges in the configuration documentation"}. Structural settings require a new race.`;
+      $2("parameterSummary").textContent = `Default ${(typeof g.defaults === "function" ? g.defaults() : g.defaults)[key2]}; ${bounds ? `${bounds[0]}..${bounds[1]} ${bounds[2]}` : $2("parameterGroup").value === "model" ? "0..2; normalized weight groups must sum to 1" : "See validated ranges in the configuration documentation"}. Structural settings require a new race.`;
     }
-    $("applySetup").onclick = act(
-      () => apply(parseConfiguration($("setupJSON").value))
+    $2("applySetup").onclick = act(
+      () => apply(parseConfiguration($2("setupJSON").value))
     );
-    $("resetSetup").onclick = act(() => apply(configuration({})));
-    $("captureSetup").onclick = act(() => {
+    $2("resetSetup").onclick = act(() => apply(configuration({})));
+    $2("captureSetup").onclick = act(() => {
       const s = getState(), setup = structuredClone(s.setup);
       setup.overrides = s.config;
       setup.autonomous = s.autonomous;
@@ -4139,8 +4590,8 @@
         "Copied current component conditions and tuning into the configuration editor; apply to start a new race."
       );
     });
-    $("saveSetup").onclick = act(() => {
-      const doc = parseConfiguration($("setupJSON").value);
+    $2("saveSetup").onclick = act(() => {
+      const doc = parseConfiguration($2("setupJSON").value);
       let storage;
       try {
         storage = window.localStorage;
@@ -4149,29 +4600,29 @@
       const result = saveConfiguration(storage, doc);
       message(result.ok ? "Configuration saved locally." : result.message);
     });
-    $("loadSetup").onclick = act(
+    $2("loadSetup").onclick = act(
       () => apply(loadConfiguration(window.localStorage))
     );
-    $("exportSetup").onclick = act(
+    $2("exportSetup").onclick = act(
       () => downloadJSON(
-        parseConfiguration($("setupJSON").value),
+        parseConfiguration($2("setupJSON").value),
         "BNT-configuration.json"
       )
     );
-    $("setupFile").onchange = act(async () => {
-      const file = $("setupFile").files[0];
+    $2("setupFile").onchange = act(async () => {
+      const file = $2("setupFile").files[0];
       if (file) apply(parseConfiguration(await file.text()));
     });
-    $("componentScope").onchange = refreshObjects;
-    $("componentObject").onchange = refreshFields;
-    $("componentField").onchange = refreshValue;
-    $("applyComponent").onclick = act(() => {
+    $2("componentScope").onchange = refreshObjects;
+    $2("componentObject").onchange = refreshFields;
+    $2("componentField").onchange = refreshValue;
+    $2("applyComponent").onclick = act(() => {
       const edit = {
-        id: $("componentScope").value,
-        path: $("componentObject").value + "." + $("componentField").value,
-        value: Number($("componentValue").value)
+        id: $2("componentScope").value,
+        path: $2("componentObject").value + "." + $2("componentField").value,
+        value: Number($2("componentValue").value)
       };
-      if ($("componentMode").value === "live") {
+      if ($2("componentMode").value === "live") {
         if (replay) throw new Error("Replay is read-only");
         queueOverride(
           getState(),
@@ -4182,14 +4633,14 @@
           `Component edit queued for tick ${getState().tick}. Step or Resume to apply.`
         );
       } else
-        apply(editConfiguration(parseConfiguration($("setupJSON").value), edit));
+        apply(editConfiguration(parseConfiguration($2("setupJSON").value), edit));
     });
-    $("parameterGroup").onchange = refreshParameter;
-    $("parameterField").onchange = refreshParameterValue;
-    $("applyParameter").onclick = act(() => {
+    $2("parameterGroup").onchange = refreshParameter;
+    $2("parameterField").onchange = refreshParameterValue;
+    $2("applyParameter").onclick = act(() => {
       var _a;
-      const g = parameterGroups[$("parameterGroup").value], path = (g.prefix ?? "") + $("parameterField").value, value = Number($("parameterValue").value);
-      if ($("parameterMode").value === "live") {
+      const g = parameterGroups[$2("parameterGroup").value], path = (g.prefix ?? "") + $2("parameterField").value, value = Number($2("parameterValue").value);
+      if ($2("parameterMode").value === "live") {
         if (replay) throw new Error("Replay is read-only");
         queueOverride(
           getState(),
@@ -4200,7 +4651,7 @@
           `Parameter edit queued for tick ${getState().tick}. Step or Resume to apply.`
         );
       } else {
-        const doc = parseConfiguration($("setupJSON").value), field = g.target === "config" ? "overrides" : g.target === "environment" ? "environmentOverrides" : g.target;
+        const doc = parseConfiguration($2("setupJSON").value), field = g.target === "config" ? "overrides" : g.target === "environment" ? "environmentOverrides" : g.target;
         (_a = doc.setup)[field] ?? (_a[field] = {});
         let obj = doc.setup[field];
         const keys = path.split(".");
@@ -4209,53 +4660,53 @@
         apply(configuration(doc.setup));
       }
     });
-    $("applySurface").onclick = act(() => {
+    $2("applySurface").onclick = act(() => {
       var _a, _b;
-      const doc = parseConfiguration($("setupJSON").value);
-      (_a = doc.setup.surfaces)[_b = $("surfaceSegment").value] ?? (_a[_b] = {});
-      doc.setup.surfaces[$("surfaceSegment").value][$("surfaceField").value] = Number($("surfaceValue").value);
+      const doc = parseConfiguration($2("setupJSON").value);
+      (_a = doc.setup.surfaces)[_b = $2("surfaceSegment").value] ?? (_a[_b] = {});
+      doc.setup.surfaces[$2("surfaceSegment").value][$2("surfaceField").value] = Number($2("surfaceValue").value);
       apply(configuration(doc.setup));
     });
-    $("replayFile").onchange = act(async () => {
-      const file = $("replayFile").files[0];
+    $2("replayFile").onchange = act(async () => {
+      const file = $2("replayFile").files[0];
       if (!file) return;
       pause();
-      $("replayStatus").textContent = "Verifying events and checkpoints\u2026";
+      $2("replayStatus").textContent = "Verifying events and checkpoints\u2026";
       const record = JSON.parse(await file.text());
       const verified = await verifyReplayAsync(record);
       replay = startReplay(record);
       setState(replay.state);
       setEditor(record.setup);
-      $("replayStatus").textContent = `Verified ${verified.events} events and ${verified.checkpoints} checkpoints. Press Start or Step to reconstruct playback.`;
+      $2("replayStatus").textContent = `Verified ${verified.events} events and ${verified.checkpoints} checkpoints. Press Start or Step to reconstruct playback.`;
       message(
         "Verified deterministic replay. Developer edits and sign input are disabled during playback."
       );
     });
-    $("restartReplay").onclick = act(() => {
+    $2("restartReplay").onclick = act(() => {
       if (!replay) throw new Error("Import a replay first");
       pause();
       replay = startReplay(replay.record);
       setState(replay.state);
-      $("replayStatus").textContent = "Replay reset to initial setup.";
+      $2("replayStatus").textContent = "Replay reset to initial setup.";
     });
-    $("verifyReplay").onclick = act(async () => {
+    $2("verifyReplay").onclick = act(async () => {
       pause();
       const verified = await verifyReplayAsync(capture(getState()));
-      $("replayStatus").textContent = `Verified ${verified.events} events, ${verified.checkpoints} checkpoints, checksum ${verified.checksum}.`;
+      $2("replayStatus").textContent = `Verified ${verified.events} events, ${verified.checkpoints} checkpoints, checksum ${verified.checksum}.`;
     });
-    $("batchRun").onclick = act(async () => {
+    $2("batchRun").onclick = act(async () => {
       if (batchAbort) throw new Error("A batch is already running");
-      const setup = parseConfiguration($("setupJSON").value).setup, seeds = parseSeeds($("batchSeeds").value);
+      const setup = parseConfiguration($2("setupJSON").value).setup, seeds = parseSeeds($2("batchSeeds").value);
       batchAbort = new AbortController();
       try {
         batchResult = await batch(setup, seeds, {
           signal: batchAbort.signal,
           onProgress: (n, total) => {
-            $("batchStatus").textContent = `Completed ${n}/${total}`;
+            $2("batchStatus").textContent = `Completed ${n}/${total}`;
           }
         });
-        $("batchStatus").textContent = `${batchResult.cancelled ? "Cancelled; " : "Finished; "}${batchResult.completed} completed races`;
-        $("batchOutput").textContent = JSON.stringify(
+        $2("batchStatus").textContent = `${batchResult.cancelled ? "Cancelled; " : "Finished; "}${batchResult.completed} completed races`;
+        $2("batchOutput").textContent = JSON.stringify(
           {
             completed: batchResult.completed,
             cancelled: batchResult.cancelled,
@@ -4270,19 +4721,20 @@
         batchAbort = null;
       }
     });
-    $("batchCancel").onclick = () => batchAbort?.abort();
-    $("batchExport").onclick = act(() => {
+    $2("batchCancel").onclick = () => batchAbort?.abort();
+    $2("batchExport").onclick = act(() => {
       if (!batchResult) throw new Error("Run a batch first");
       downloadJSON(batchResult, "BNT-batch.json");
     });
     setEditor(getState().setup);
+    mountCareerSaves({ download: downloadJSON });
     return {
       advance() {
         if (replay) {
           advanceReplay(replay);
           if (replay.done) {
             pause();
-            $("replayStatus").textContent = `Replay verified through tick ${replay.state.tick}, including final checksum.`;
+            $2("replayStatus").textContent = `Replay verified through tick ${replay.state.tick}, including final checksum.`;
           }
           return replay.state;
         }
@@ -4292,14 +4744,14 @@
       isDone: () => replay?.done ?? false,
       clearReplay() {
         replay = null;
-        $("replayStatus").textContent = "Live race";
+        $2("replayStatus").textContent = "Live race";
       },
       refreshSetup: setEditor,
       render() {
         const s = getState();
-        $("overrideStatus").textContent = `Configuration revision ${s.configRevision}; ${s.pendingOverrides.length} pending overrides. Last change: ${JSON.stringify(s.events.filter((e) => e.type === "OVERRIDE_APPLIED").at(-1)?.effects ?? "none")}`;
-        for (const id of ["queueSign", "cancelSign", "lowerSign"])
-          $(id).disabled = !!replay || !["Ready", "Running"].includes(s.status) || s.entrants.find((r) => r.id === s.playerId).status !== "Racing";
+        $2("overrideStatus").textContent = `Configuration revision ${s.configRevision}; ${s.pendingOverrides.length} pending overrides. Last change: ${JSON.stringify(s.events.filter((e) => e.type === "OVERRIDE_APPLIED").at(-1)?.effects ?? "none")}`;
+        for (const id2 of ["queueSign", "cancelSign", "lowerSign"])
+          $2(id2).disabled = !!replay || !["Ready", "Running"].includes(s.status) || s.entrants.find((r) => r.id === s.playerId).status !== "Racing";
       }
     };
   }
@@ -4377,7 +4829,7 @@
     if (Object.keys(o.terrainWeights).some((k) => !Object.hasOwn(rallyTerrainProfiles.balanced, k)) || Object.values(o.terrainWeights).some((v) => !Number.isFinite(v) || v < 0 || v > 100) || !Object.values(o.terrainWeights).some((v) => v > 0)) throw Error("Invalid terrain distribution");
     const library = input.chunkLibrary ?? rallyChunks;
     if (!library || typeof library !== "object" || Array.isArray(library) || !Object.keys(library).length || Object.keys(library).length > 64) throw Error("Invalid chunk library");
-    for (const [id, items] of Object.entries(library)) if (!/^[a-z0-9-]{1,40}$/.test(id) || !Array.isArray(items) || !items.length || items.length > 5 || items.some((s) => !s || Object.keys(s).some((k) => !["length", "turn"].includes(k)) || !Number.isFinite(s.length) || s.length < 1 || s.length > 200 || !Number.isFinite(s.turn) || Math.abs(s.turn) > 170)) throw Error("Invalid chunk " + id);
+    for (const [id2, items] of Object.entries(library)) if (!/^[a-z0-9-]{1,40}$/.test(id2) || !Array.isArray(items) || !items.length || items.length > 5 || items.some((s) => !s || Object.keys(s).some((k) => !["length", "turn"].includes(k)) || !Number.isFinite(s.length) || s.length < 1 || s.length > 200 || !Number.isFinite(s.turn) || Math.abs(s.turn) > 170)) throw Error("Invalid chunk " + id2);
     return { ...o, chunkLibrary: structuredClone(library) };
   }
   function pickTerrain(o, draw3, key2) {
@@ -4391,25 +4843,25 @@
       const draw3 = (...key2) => random(o.seed, "rally-generator-v1", attempt, ...key2), parts = [], used = [];
       for (let i = 0; i < o.chunks; i++) {
         const turning = !fallback2 && draw3("turn", i) < o.turnFrequency;
-        let choices = Object.entries(o.chunkLibrary).filter(([id2, items2]) => {
+        let choices = Object.entries(o.chunkLibrary).filter(([id3, items2]) => {
           const hasTurn = items2.some((s) => s.turn !== 0), severe = items2.some((s) => Math.abs(s.turn) > 90);
           const peak = Math.max(...items2.map((s) => Math.abs(s.turn)));
           return hasTurn === turning && peak <= 45 + 125 * o.turnSeverity && (!severe || draw3("severity", i) < o.turnSeverity);
         });
-        const fresh = choices.filter(([id2]) => !used.slice(-2).includes(id2));
+        const fresh = choices.filter(([id3]) => !used.slice(-2).includes(id3));
         if (fresh.length) choices = fresh;
-        let id, items;
+        let id2, items;
         if (!choices.length) {
-          id = fallback2 ? "fallback-straight" : "safe-straight";
+          id2 = fallback2 ? "fallback-straight" : "safe-straight";
           items = [line(85)];
-        } else [id, items] = choices[Math.floor(draw3("chunk", i) * choices.length)];
+        } else [id2, items] = choices[Math.floor(draw3("chunk", i) * choices.length)];
         if (fallback2) {
-          id = "fallback-straight";
+          id2 = "fallback-straight";
           items = [line(85)];
         }
-        used.push(id);
+        used.push(id2);
         const terrain = pickTerrain(o, draw3, i);
-        for (let j = 0; j < items.length; j++) parts.push([items[j].length, items[j].turn, id === "terrain-transition" ? pickTerrain(o, draw3, i + "-" + j) : terrain]);
+        for (let j = 0; j < items.length; j++) parts.push([items[j].length, items[j].turn, id2 === "terrain-transition" ? pickTerrain(o, draw3, i + "-" + j) : terrain]);
       }
       const course = rally("rally-" + o.category + "-" + String(o.seed).replace("-", "n"), "Generated " + o.category + " Rally \xB7 " + o.seed, [[80, 0, "dirt"], ...parts, [80, 0, "dirt"]]);
       course.segments[0].terrain = pickTerrain(o, draw3, "start");
@@ -4431,7 +4883,7 @@
   }
 
   // src/ui/app.js
-  var $2 = (id) => document.getElementById(id);
+  var $3 = (id2) => document.getElementById(id2);
   var colors = [
     "#ecbd6c",
     "#67bbd4",
@@ -4444,23 +4896,23 @@
   ];
   var presetId = (course) => typeof course === "string" ? course : course?.generation ? "generated-" + course.generation.category : course?.id ?? "oval";
   function populateTracks(course = null) {
-    const kind = $2("raceKind").value, choices = trackChoices(kind), id = presetId(course);
-    if (course && !choices.some(([key2]) => key2 === id)) choices.push([id, course.name ?? id]);
-    $2("trackPreset").replaceChildren(...choices.map(([id2, name]) => new Option(name, id2)));
-    if (course) $2("trackPreset").value = id;
-    else if (kind === "Oval") $2("trackPreset").value = "oval";
-    else if (kind === "Rally") $2("trackPreset").value = "generated-" + $2("rallyCategory").value;
-    $2("lapCount").disabled = kind === "Rally";
-    $2("rallyControls").hidden = kind !== "Rally";
+    const kind = $3("raceKind").value, choices = trackChoices(kind), id2 = presetId(course);
+    if (course && !choices.some(([key2]) => key2 === id2)) choices.push([id2, course.name ?? id2]);
+    $3("trackPreset").replaceChildren(...choices.map(([id3, name]) => new Option(name, id3)));
+    if (course) $3("trackPreset").value = id2;
+    else if (kind === "Oval") $3("trackPreset").value = "oval";
+    else if (kind === "Rally") $3("trackPreset").value = "generated-" + $3("rallyCategory").value;
+    $3("lapCount").disabled = kind === "Rally";
+    $3("rallyControls").hidden = kind !== "Rally";
   }
-  $2("raceKind").onchange = () => populateTracks();
-  $2("trackPreset").onchange = () => {
-    if ($2("trackPreset").value.startsWith("generated-")) $2("rallyCategory").value = $2("trackPreset").value.slice(10);
+  $3("raceKind").onchange = () => populateTracks();
+  $3("trackPreset").onchange = () => {
+    if ($3("trackPreset").value.startsWith("generated-")) $3("rallyCategory").value = $3("trackPreset").value.slice(10);
   };
-  $2("rallyCategory").onchange = () => $2("trackPreset").value = "generated-" + $2("rallyCategory").value;
-  $2("regenerateRally").onclick = () => reset(true);
+  $3("rallyCategory").onchange = () => $3("trackPreset").value = "generated-" + $3("rallyCategory").value;
+  $3("regenerateRally").onclick = () => reset(true);
   populateTracks();
-  $2("trackPreset").value = "oval";
+  $3("trackPreset").value = "oval";
   var state = createRace();
   var playing = false;
   var previous = null;
@@ -4470,23 +4922,23 @@
   var radio = new Commentary();
   var completing = false;
   var transportEpoch = 0;
-  var canvas = $2("race");
+  var canvas = $3("race");
   var ctx = canvas.getContext("2d");
   function reset(forceGeneration = false) {
     try {
-      const selected = $2("trackPreset").value, previous2 = presetId(devSetup.course);
+      const selected = $3("trackPreset").value, previous2 = presetId(devSetup.course);
       let course = selected === "oval" ? null : selected === previous2 ? devSetup.course : selected;
-      const overrides = { ...devSetup.overrides, laps: Number($2("lapCount").value) };
+      const overrides = { ...devSetup.overrides, laps: Number($3("lapCount").value) };
       if (Object.hasOwn(ovalPresets, selected) && selected !== previous2) Object.assign(overrides, ovalPresets[selected].overrides);
       if (selected.startsWith("generated-")) {
-        const old = devSetup.course?.generation, category = selected.slice(10), terrainProfile = $2("rallyTerrain").value;
+        const old = devSetup.course?.generation, category = selected.slice(10), terrainProfile = $3("rallyTerrain").value;
         const options = {
           ...old?.category === category ? old.options : {},
-          seed: Number($2("rallySeed").value),
+          seed: Number($3("rallySeed").value),
           category,
           terrainProfile,
-          turnFrequency: Number($2("rallyTurns").value),
-          turnSeverity: Number($2("rallyComplexity").value),
+          turnFrequency: Number($3("rallyTurns").value),
+          turnSeverity: Number($3("rallyComplexity").value),
           laneWidth: overrides.laneWidth ?? 4
         };
         if (old?.terrainProfile !== terrainProfile) delete options.terrainWeights;
@@ -4498,13 +4950,13 @@
         course,
         surfaces: selected === previous2 && !forceGeneration ? devSetup.surfaces : {},
         overrides,
-        seed: Number($2("seed").value),
-        weather: $2("weather").value,
-        format: $2("format").value,
+        seed: Number($3("seed").value),
+        weather: $3("weather").value,
+        format: $3("format").value,
         consequence: {
           ...devSetup.consequence,
-          damageScale: Number($2("damageScale").value),
-          incidentRate: Number($2("incidentRate").value)
+          damageScale: Number($3("damageScale").value),
+          incidentRate: Number($3("incidentRate").value)
         },
         autonomous: {
           ...devSetup.autonomous,
@@ -4514,17 +4966,17 @@
               Number(input.value)
             ])
           ),
-          signStrength: Number($2("signStrength").value),
-          fatigueRate: Number($2("fatigueRate").value)
+          signStrength: Number($3("signStrength").value),
+          fatigueRate: Number($3("fatigueRate").value)
         }
       });
       replaceRace(next);
       workbench?.clearReplay();
       workbench?.refreshSetup(next.setup);
-      $2("error").textContent = "";
+      $3("error").textContent = "";
       render();
     } catch (e) {
-      $2("error").textContent = e.message;
+      $3("error").textContent = e.message;
     }
   }
   function draw2() {
@@ -4547,9 +4999,9 @@
       };
     }
     const overview = framing;
-    const follow = t.course && !t.closed && ($2("cameraMode").value === "follow" || $2("cameraMode").value === "auto" && t.length > 1600 && state.status !== "Ready");
+    const follow = t.course && !t.closed && ($3("cameraMode").value === "follow" || $3("cameraMode").value === "auto" && t.length > 1600 && state.status !== "Ready");
     if (follow) {
-      const actor = state.entrants.find((r) => r.id === $2("inspect").value) ?? state.entrants.find((r) => r.id === state.playerId);
+      const actor = state.entrants.find((r) => r.id === $3("inspect").value) ?? state.entrants.find((r) => r.id === state.playerId);
       const p = point(actor.q, actor.lane, c, t);
       framing = { x: p.x, y: p.y, scale: 1.8 };
     }
@@ -4606,7 +5058,7 @@
       ctx.strokeStyle = "#91a3a066";
       ctx.stroke();
     }
-    for (const [q, text, color] of [
+    for (const [q, text2, color] of [
       [0, t.course && !t.closed ? "START" : "START / FINISH", "#f3d69c"],
       [t.course && !t.closed ? t.cells : c.exitTiles, t.course && !t.closed ? "FINISH \u2192" : "EXIT \u2192", "#7cc5ae"],
       ...t.course && !t.closed ? t.checkpoints.map((cp) => [cp.q, cp.id, "#82cde0"]) : []
@@ -4620,7 +5072,7 @@
       ctx.stroke();
       ctx.fillStyle = color;
       ctx.font = "12px system-ui";
-      ctx.fillText(text, a[0] - 35, t.course && q === 0 ? Math.min(a[1], b[1]) - 12 : b[1] - (q === 0 ? 15 : 35));
+      ctx.fillText(text2, a[0] - 35, t.course && q === 0 ? Math.min(a[1], b[1]) - 12 : b[1] - (q === 0 ? 15 : 35));
     }
     ctx.textAlign = "center";
     ctx.fillStyle = "#a9b8bd";
@@ -4708,30 +5160,30 @@
   function render() {
     workbench?.render();
     syncSignOptions();
-    $2("playerLabel").textContent = state.playerId;
-    $2("trackDiagnostics").textContent = JSON.stringify(trackDiagnostics(state), null, 2);
+    $3("playerLabel").textContent = state.playerId;
+    $3("trackDiagnostics").textContent = JSON.stringify(trackDiagnostics(state), null, 2);
     const rally2 = state.track.course && !state.track.closed;
-    $2("progressHeading").textContent = rally2 ? "Course %" : "Full laps";
-    $2("standingsNote").textContent = (rally2 ? "Common terminal finish; signs activate at intermediate checkpoints. " : "Initial line entry starts lap 1; it does not complete a lap. ") + "Official ties share a place. DNF/DNS remain separate from finishers.";
+    $3("progressHeading").textContent = rally2 ? "Course %" : "Full laps";
+    $3("standingsNote").textContent = (rally2 ? "Common terminal finish; signs activate at intermediate checkpoints. " : "Initial line entry starts lap 1; it does not complete a lap. ") + "Official ties share a place. DNF/DNS remain separate from finishers.";
     const lines = radio.consume(state.events, {
-      enabled: $2("commentaryEnabled").checked
+      enabled: $3("commentaryEnabled").checked
     });
-    $2("commentary").replaceChildren(
-      ...($2("commentaryEnabled").checked ? lines : []).slice(-60).map((line2) => {
+    $3("commentary").replaceChildren(
+      ...($3("commentaryEnabled").checked ? lines : []).slice(-60).map((line2) => {
         const p = document.createElement("p");
         p.textContent = `${line2.time.toFixed(2)} \xB7 ${line2.text}`;
         return p;
       })
     );
-    if (!lines.length && $2("commentaryEnabled").checked) {
+    if (!lines.length && $3("commentaryEnabled").checked) {
       const p = document.createElement("p");
       p.className = "radio-empty";
       p.textContent = "Ready at the starting signal. Commentary follows verified race events.";
-      $2("commentary").append(p);
+      $3("commentary").append(p);
     }
-    $2("commentary").scrollTop = $2("commentary").scrollHeight;
-    const report = results(state), view = $2("resultsView").value;
-    const output = $2("resultsOutput");
+    $3("commentary").scrollTop = $3("commentary").scrollHeight;
+    const report = results(state), view = $3("resultsView").value;
+    const output = $3("resultsOutput");
     output.replaceChildren();
     if (view === "official") {
       if (state.status === "Ready") {
@@ -4740,7 +5192,7 @@
         output.append(p);
       } else {
         const table = document.createElement("table"), header = document.createElement("tr");
-        for (const text of [
+        for (const text2 of [
           "Place",
           "RU",
           "Status",
@@ -4750,7 +5202,7 @@
           "Reason"
         ]) {
           const th = document.createElement("th");
-          th.textContent = text;
+          th.textContent = text2;
           header.append(th);
         }
         table.append(header);
@@ -4786,11 +5238,11 @@
       output.append(pre);
     }
     document.querySelector(".legend").textContent = `${state.track.name ?? "Existing Oval"} \xB7 ${state.track.raceType ?? "Oval"} \xB7 ${state.config.lanes} lanes \xB7 ${state.track.course && !state.track.closed ? "Terminal finish; no laps" : state.config.laps + " full laps after initial line entry"} \xB7 ${state.weather} \xB7 Exit beyond finish \xB7 Wrecks remain through race end`;
-    $2("consequenceStatus").textContent = `${state.format} \xB7 ${state.weather} \xB7 Attacks ${state.events.filter((e) => e.type === "ATTACK").length} \xB7 Damage events ${state.events.filter((e) => e.type === "DAMAGE").length} \xB7 Wrecks ${Object.keys(state.wrecks).length} \xB7 Incidents ${state.events.filter((e) => e.type === "INCIDENT").length}`;
+    $3("consequenceStatus").textContent = `${state.format} \xB7 ${state.weather} \xB7 Attacks ${state.events.filter((e) => e.type === "ATTACK").length} \xB7 Damage events ${state.events.filter((e) => e.type === "DAMAGE").length} \xB7 Wrecks ${Object.keys(state.wrecks).length} \xB7 Incidents ${state.events.filter((e) => e.type === "INCIDENT").length}`;
     const player = state.entrants.find((r2) => r2.id === state.playerId);
-    $2("signStatus").textContent = `Uses ${player.signs.remaining} \xB7 Pending: ${player.signs.pending ?? "none"} \xB7 Active: ${player.signs.active ?? "none"} \xB7 ${player.signs.active ? player.ai.diagnostics?.compliance ?? "Awaiting evaluation" : "Base autonomous AI"}${state.track.course && !state.track.closed ? " \xB7 Next checkpoint: " + (state.track.checkpoints[player.checkpointCursor] ? `${state.track.checkpoints[player.checkpointCursor].id} at ${state.track.checkpoints[player.checkpointCursor].distance.toFixed(0)} m` : "none before finish") : ""}`;
-    const inspect = state.entrants.find((r2) => r2.id === $2("inspect").value) ?? player;
-    $2("aiDiagnostics").textContent = JSON.stringify(
+    $3("signStatus").textContent = `Uses ${player.signs.remaining} \xB7 Pending: ${player.signs.pending ?? "none"} \xB7 Active: ${player.signs.active ?? "none"} \xB7 ${player.signs.active ? player.ai.diagnostics?.compliance ?? "Awaiting evaluation" : "Base autonomous AI"}${state.track.course && !state.track.closed ? " \xB7 Next checkpoint: " + (state.track.checkpoints[player.checkpointCursor] ? `${state.track.checkpoints[player.checkpointCursor].id} at ${state.track.checkpoints[player.checkpointCursor].distance.toFixed(0)} m` : "none before finish") : ""}`;
+    const inspect = state.entrants.find((r2) => r2.id === $3("inspect").value) ?? player;
+    $3("aiDiagnostics").textContent = JSON.stringify(
       {
         control: inspect.control,
         instability: inspect.instability,
@@ -4811,16 +5263,16 @@
       2
     );
     draw2();
-    $2("clock").textContent = state.time.toFixed(3);
-    $2("state").textContent = state.status;
-    $2("tick").textContent = state.tick;
-    $2("play").textContent = playing || completing ? "Pause" : state.status === "Ready" ? "Start race" : "Resume";
+    $3("clock").textContent = state.time.toFixed(3);
+    $3("state").textContent = state.status;
+    $3("tick").textContent = state.tick;
+    $3("play").textContent = playing || completing ? "Pause" : state.status === "Ready" ? "Start race" : "Resume";
     const official = classification(state), rows = state.status === "Ended" ? official : [...official].sort((a, b) => {
       const ar = state.entrants.find((r2) => r2.id === a.id), br = state.entrants.find((r2) => r2.id === b.id);
       const category = (r2) => r2.finishTime !== null ? 0 : r2.status === "Racing" ? 1 : r2.status === "Retired" ? 2 : 3;
       return category(ar) - category(br) || (ar.finishTime !== null && br.finishTime !== null ? ar.finishTime - br.finishTime : (br.retirement?.progress ?? br.q) - (ar.retirement?.progress ?? ar.q));
     });
-    $2("standings").replaceChildren(
+    $3("standings").replaceChildren(
       ...rows.map((row) => {
         const r2 = state.entrants.find((r3) => r3.id === row.id), tr = document.createElement("tr");
         tr.title = r2.retirement?.reason ?? r2.physical;
@@ -4837,14 +5289,14 @@
         return tr;
       })
     );
-    if (!$2("inspect").options.length)
+    if (!$3("inspect").options.length)
       for (const r2 of state.entrants) {
         const o = document.createElement("option");
         o.value = o.textContent = r2.id;
-        $2("inspect").append(o);
+        $3("inspect").append(o);
       }
-    const r = state.entrants.find((r2) => r2.id === $2("inspect").value) ?? state.entrants[0], d = r.derived;
-    $2("derived").textContent = `
+    const r = state.entrants.find((r2) => r2.id === $3("inspect").value) ?? state.entrants[0], d = r.derived;
+    $3("derived").textContent = `
 Team speed     ${d.team.speed.toFixed(2)}
 Team power     ${d.team.power.toFixed(2)}
 Coordination   ${d.coordination.toFixed(3)}
@@ -4860,7 +5312,7 @@ Combat score   ${d.combat.toFixed(2)}
 Braking        ${d.braking.toFixed(3)} m/s\xB2
 Corner lateral ${d.lateral.toFixed(3)} m/s\xB2
 Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
-    $2("derivedDetails").textContent = JSON.stringify(
+    $3("derivedDetails").textContent = JSON.stringify(
       {
         base: r.ru,
         normalized: {
@@ -4885,20 +5337,20 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
       null,
       2
     );
-    $2("log").textContent = state.events.slice($2("fullLog").checked ? 0 : -60).map(
+    $3("log").textContent = state.events.slice($3("fullLog").checked ? 0 : -60).map(
       (e) => `${e.time.toFixed(6)}  ${e.type}  ${e.participants.join(", ")}  ${JSON.stringify(e.effects)}`
     ).join("\n");
     const terminal = ["Ended", "Stalled", "Error"].includes(state.status) || workbench?.isDone();
-    for (const id of ["play", "step", "complete"])
-      $2(id).disabled = terminal || id === "complete" && completing;
+    for (const id2 of ["play", "step", "complete"])
+      $3(id2).disabled = terminal || id2 === "complete" && completing;
     if (terminal) {
       playing = false;
-      $2("play").textContent = "Race ended";
-      $2("checksum").textContent = `Checksum ${digest(state)}`;
-    } else $2("checksum").textContent = "";
-    $2("log").scrollTop = $2("log").scrollHeight;
+      $3("play").textContent = "Race ended";
+      $3("checksum").textContent = `Checksum ${digest(state)}`;
+    } else $3("checksum").textContent = "";
+    $3("log").scrollTop = $3("log").scrollHeight;
     if (state.status === "Error")
-      $2("error").textContent = JSON.stringify(
+      $3("error").textContent = JSON.stringify(
         state.events.at(-1).effects,
         null,
         2
@@ -4926,61 +5378,61 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
     input.value = m2Defaults[key2];
     input.dataset.key = key2;
     label.append(input);
-    $2("tuners").append(label);
+    $3("tuners").append(label);
   }
   for (const weather of Object.keys(weatherPresets)) {
     const option = document.createElement("option");
     option.value = option.textContent = weather;
-    $2("weather").append(option);
+    $3("weather").append(option);
   }
   for (const sign of signs) {
     const option = document.createElement("option");
     option.value = option.textContent = sign;
-    $2("sign").append(option);
+    $3("sign").append(option);
   }
-  for (const [id, action] of [
+  for (const [id2, action] of [
     ["queueSign", "queue"],
     ["cancelSign", "cancel"],
     ["lowerSign", "lower"]
   ])
-    $2(id).onclick = () => {
+    $3(id2).onclick = () => {
       if (!workbench?.isReplay())
         issueSign(
           state,
           action,
-          action === "queue" ? $2("sign").value : void 0
+          action === "queue" ? $3("sign").value : void 0
         );
       render();
     };
   function syncSignOptions() {
-    for (const option of $2("sign").options)
+    for (const option of $3("sign").options)
       option.disabled = option.value === "Engage Rivals" && state.format === "Pure";
-    if ($2("sign").selectedOptions[0]?.disabled) $2("sign").value = signs[0];
+    if ($3("sign").selectedOptions[0]?.disabled) $3("sign").value = signs[0];
   }
-  $2("format").onchange = syncSignOptions;
+  $3("format").onchange = syncSignOptions;
   syncSignOptions();
-  $2("reset").onclick = () => reset();
-  $2("play").onclick = () => {
+  $3("reset").onclick = () => reset();
+  $3("play").onclick = () => {
     if (completing) pausePlayback();
     else playing = !playing;
     render();
   };
-  $2("step").onclick = () => {
+  $3("step").onclick = () => {
     pausePlayback();
     advance2();
     render();
   };
-  $2("inspect").onchange = render;
-  $2("complete").onclick = () => {
+  $3("inspect").onchange = render;
+  $3("complete").onclick = () => {
     playing = false;
     complete();
   };
-  $2("export").textContent = "Export replay & evidence";
-  $2("export").onclick = () => downloadJSON(capture(state), `BNT-M4-seed-${state.seed}.json`);
-  $2("exportResults").onclick = () => downloadJSON(results(state), `BNT-results-${state.seed}.json`);
-  $2("resultsView").onchange = render;
-  $2("fullLog").onchange = render;
-  $2("commentaryEnabled").onchange = render;
+  $3("export").textContent = "Export replay & evidence";
+  $3("export").onclick = () => downloadJSON(capture(state), `BNT-M4-seed-${state.seed}.json`);
+  $3("exportResults").onclick = () => downloadJSON(results(state), `BNT-results-${state.seed}.json`);
+  $3("resultsView").onchange = render;
+  $3("fullLog").onchange = render;
+  $3("commentaryEnabled").onchange = render;
   function pausePlayback() {
     playing = false;
     completing = false;
@@ -4990,29 +5442,29 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
     pausePlayback();
     state = next;
     devSetup = next.setup;
-    $2("raceKind").value = next.track.raceType ?? "Oval";
+    $3("raceKind").value = next.track.raceType ?? "Oval";
     populateTracks(next.setup.course);
     if (next.setup.course?.generation) {
       const g = next.setup.course.generation;
-      $2("rallySeed").value = g.seed;
-      $2("rallyCategory").value = g.category;
-      $2("rallyTerrain").value = g.terrainProfile;
-      $2("rallyTurns").value = g.options.turnFrequency;
-      $2("rallyComplexity").value = g.options.turnSeverity;
+      $3("rallySeed").value = g.seed;
+      $3("rallyCategory").value = g.category;
+      $3("rallyTerrain").value = g.terrainProfile;
+      $3("rallyTurns").value = g.options.turnFrequency;
+      $3("rallyComplexity").value = g.options.turnSeverity;
     }
-    $2("lapCount").value = next.config.laps;
-    $2("lapCount").disabled = next.track.course && !next.track.closed;
+    $3("lapCount").value = next.config.laps;
+    $3("lapCount").disabled = next.track.course && !next.track.closed;
     playing = false;
     accumulator = 0;
     radio = new Commentary();
-    $2("inspect").replaceChildren();
-    $2("seed").value = next.seed;
-    $2("weather").value = next.weather;
-    $2("format").value = next.format;
-    $2("damageScale").value = next.consequence.damageScale;
-    $2("incidentRate").value = next.consequence.incidentRate;
-    $2("signStrength").value = next.autonomous.signStrength;
-    $2("fatigueRate").value = next.autonomous.fatigueRate;
+    $3("inspect").replaceChildren();
+    $3("seed").value = next.seed;
+    $3("weather").value = next.weather;
+    $3("format").value = next.format;
+    $3("damageScale").value = next.consequence.damageScale;
+    $3("incidentRate").value = next.consequence.incidentRate;
+    $3("signStrength").value = next.autonomous.signStrength;
+    $3("fatigueRate").value = next.autonomous.fatigueRate;
     for (const input of document.querySelectorAll("#tuners input"))
       input.value = next.autonomous[input.dataset.key];
   }
@@ -5024,7 +5476,7 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
       return true;
     } catch (e) {
       playing = false;
-      $2("error").textContent = e.details ? JSON.stringify(e.details, null, 2) : e.message;
+      $3("error").textContent = e.details ? JSON.stringify(e.details, null, 2) : e.message;
       return false;
     }
   }
@@ -5050,7 +5502,7 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
       accumulator = advanceFrames(
         accumulator,
         (now - previous) / 1e3,
-        Number($2("speed").value),
+        Number($3("speed").value),
         state.config.dt,
         advance2,
         () => !playing || ["Ended", "Stalled", "Error"].includes(state.status) || workbench?.isDone()
@@ -5084,13 +5536,13 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
   });
   var signbar = document.createElement("div");
   signbar.className = "signbar";
-  var signControls = $2("sign").parentElement;
-  signbar.append(signControls, $2("signStatus"));
+  var signControls = $3("sign").parentElement;
+  signbar.append(signControls, $3("signStatus"));
   document.querySelector(".metrics").before(signbar);
   document.querySelector("aside").prepend(document.querySelector(".commentary-panel"));
   var topControls = document.querySelector("main .panel .controls");
-  topControls.insertBefore($2("weather").parentElement, $2("reset"));
-  topControls.insertBefore($2("format").parentElement, $2("reset"));
+  topControls.insertBefore($3("weather").parentElement, $3("reset"));
+  topControls.insertBefore($3("format").parentElement, $3("reset"));
   render();
   requestAnimationFrame(frame);
 })();

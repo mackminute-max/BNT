@@ -606,6 +606,32 @@
           </div>
           <p class="note">Hazard modifier: 0–2, neutral 1. Weights incident placement on this segment; 0 excludes it. Incident frequency and the disabled-incidents setting remain unchanged.</p>
           <h2>Track diagnostics</h2><pre id="trackDiagnostics"></pre>
+          <details id="careerSaves">
+            <summary>Career State / Save Management — M1 foundation</summary>
+            <p class="note">Separate from developer race configurations and replays. Empty M1 states contain no roster or championship. Full exports contain Owner Profile, Career State, provenance, recovery and any optional race-start checkpoint; no mid-race saving. Use one active window when Web Locks are unavailable.</p>
+            <p id="careerSaveStatus" role="status"></p>
+            <p id="careerSaveNotice" class="note" role="alert"></p>
+            <div class="controls">
+              <label>Owner name<input id="careerOwnerName" value="Owner" maxlength="100" /></label>
+              <label>Career name<input id="careerName" value="M1 Foundation" maxlength="100" /></label>
+              <button id="careerCreate">Create empty M1 state</button>
+            </div>
+            <div class="controls">
+              <label>Treasury change / Gold<input id="careerTreasuryDelta" type="number" step="1" value="100" /></label>
+              <label>Developer reason<input id="careerEditReason" value="Persistence test" maxlength="500" /></label>
+              <button id="careerAdjust">Commit developer treasury edit</button>
+            </div>
+            <div class="controls">
+              <button id="careerExport">Export complete persistent game state</button>
+              <button id="careerAcknowledge">I saved this checkpoint</button>
+              <label>Import game save<input id="careerImportFile" type="file" accept=".json,application/json" /></label>
+              <button id="careerImportApply">Confirm replacement</button>
+              <button id="careerRecover">Recover previous valid checkpoint</button>
+              <button id="careerRawExport">Export corrupt-save diagnostic</button>
+            </div>
+            <p class="note">Manual mode requires export and your explicit checkpoint confirmation between changes. A download request is not proof of durable saving. Import replaces the whole profile; Owner Legacy progression is never merged. Developer-edit status/provenance persists. Moving or renaming the HTML may change browser storage access.</p>
+            <details><summary>Career metadata and serialized state (read-only)</summary><pre id="careerSaveInspect"></pre></details>
+          </details>
           <h2>Complete configuration and lineup</h2>
           <p class="note">
             Edit entrants, beasts, equipment, starting lanes/positions, player

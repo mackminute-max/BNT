@@ -1,0 +1,95 @@
+import { createCareer } from '../career/state.js';
+import { CareerStore } from '../persistence/career-store.js';
+import { SAVE_KEY, MAX_SAVE_BYTES, parseEnvelope } from '../persistence/envelope.js';
+
+const $ = id => document.getElementById(id);
+let sequence = 0;
+function newId(prefix) {
+  // UI identity only; never consumes racing RNG or determines a racing outcome.
+  let suffix;
+  try { suffix = globalThis.crypto.randomUUID(); }
+  catch { suffix = Date.now().toString(36) + '-' + (++sequence).toString(36); }
+  return prefix + '-' + suffix;
+}
+export function mountCareerSaves({ download }) {
+  let storage;
+  try { storage = window.localStorage; } catch {}
+  const store = new CareerStore(storage);
+  store.open();
+  let staged = null, lastToken = null, notice = '', queue = Promise.resolve();
+  function render() {
+    const state = store.state;
+    $('careerSaveStatus').textContent = `${store.mode.toUpperCase()} · ${state ? `Revision ${state.revision} · Treasury ${state.career.treasury} Gold · ${(state.profile.developerEdited || state.career.developerEdited) ? 'DEVELOPER-EDITED (persistent)' : 'Unedited foundation'}` : 'No career loaded'}${store.requiresCheckpoint ? ' · CHECKPOINT REQUIRED: export, save the file and confirm before another change.' : ''}`;
+    $('careerSaveNotice').textContent = [store.problem, notice].filter(Boolean).join(' ');
+    $('careerSaveInspect').textContent = JSON.stringify(state ?? { status: store.mode, recoveryAvailable: Boolean(store.recovery) }, null, 2);
+    $('careerAdjust').disabled = !state || ['blocked', 'recovery-required'].includes(store.mode) || store.requiresCheckpoint;
+    $('careerExport').disabled = !state;
+    $('careerAcknowledge').disabled = !state || !lastToken;
+    $('careerRecover').disabled = !store.recoveryPending;
+    $('careerRawExport').disabled = !store.quarantine;
+    $('careerImportApply').disabled = !staged;
+  }
+  async function exclusive(fn) {
+    // Web Locks serialize cooperating windows when supported. The storage adapter
+    // also rejects stale bytes. Without locks, use one active window only.
+    if (navigator.locks?.request) return navigator.locks.request(SAVE_KEY + '.writer', fn);
+    return fn();
+  }
+  const act = fn => () => {
+    queue = queue.catch(() => {}).then(() => exclusive(fn)).catch(e => { notice = e.message; }).finally(render);
+    return queue;
+  };
+  $('careerCreate').onclick = act(() => {
+    const existing = store.state || store.raw !== null || store.quarantine;
+    if (existing && !window.confirm('Replace the current Owner Profile and Career State with an empty M1 foundation? Export a backup first. Owner Legacy will not be merged.')) return;
+    store.create(createCareer({ profileId: newId('profile'), careerId: newId('career'), ownerName: $('careerOwnerName').value, careerName: $('careerName').value }), { confirmed: Boolean(existing) });
+    notice = 'Empty M1 foundation created: 0 Gold, no roster, championships or Legacy progression. This is not the M2 starting stable.'; lastToken = null;
+  });
+  $('careerAdjust').onclick = act(() => {
+    const state = store.state;
+    if (!state) throw Error('No career loaded');
+    const rawDelta = $('careerTreasuryDelta').value;
+    if (!rawDelta.trim() || !Number.isSafeInteger(Number(rawDelta))) throw Error('Enter a whole-number treasury change');
+    const delta = Number(rawDelta), reason = $('careerEditReason').value;
+    if (!window.confirm('Apply this developer treasury transaction? It permanently marks this profile and career developer-edited.')) return;
+    store.transaction({ id: newId('tx'), profileId: state.profile.id, careerId: state.career.id, expectedRevision: state.revision, type: 'developer.treasury.adjust', delta, reason });
+    notice = 'Developer transaction committed. This provenance cannot be cleared by ordinary actions.'; lastToken = null;
+  });
+  $('careerExport').onclick = act(() => {
+    const envelope = store.export(); lastToken = store.exportToken;
+    download(envelope, 'BNT-game-save.json');
+    notice = 'Download requested. This exports the complete persistent state, not the running race. The browser cannot verify that you saved it durably. In manual mode, save the file before confirming the checkpoint.';
+  });
+  $('careerAcknowledge').onclick = act(() => {
+    if (!window.confirm('Have you saved this exact exported checkpoint? This records your confirmation only; the game cannot verify disk durability.')) return;
+    store.acknowledgeExport(lastToken); notice = 'Checkpoint confirmed by you for this session; disk durability was not independently verified.';
+  });
+  $('careerImportFile').onchange = act(async () => {
+    staged = null;
+    const file = $('careerImportFile').files[0];
+    $('careerImportFile').value = ''; // Allow selecting the same filename again after a replacement.
+    if (!file) return;
+    if (!file.name.toLowerCase().endsWith('.json') || file.size > MAX_SAVE_BYTES) throw Error('Choose a career .json file within the 2 MiB limit');
+    const text = await file.text(), parsed = parseEnvelope(text);
+    staged = text;
+    notice = `Import validated: ${parsed.primary.profile.name} / ${parsed.primary.career.name}, revision ${parsed.primary.revision}. Nothing was replaced. Use Confirm replacement to proceed.`;
+  });
+  $('careerImportApply').onclick = act(() => {
+    if (!staged) throw Error('Select and validate an import first');
+    if (!window.confirm('Replace the entire loaded Owner Profile, Career State and pending checkpoint with this file? Export your current state first. Owner Legacy is replaced, never merged; known matching developer provenance is retained.')) return;
+    store.importSave(staged, { confirmed: true }); staged = null; lastToken = null;
+    notice = 'Complete persistent state imported. Owner Legacy was not merged. Retained developer provenance may keep an older imported checkpoint marked edited.';
+  });
+  $('careerRecover').onclick = act(() => {
+    if (!window.confirm('Recover the previous valid checkpoint? The current corrupt bytes remain available for diagnostic export. No financial recovery transaction or reward will be created.')) return;
+    store.recover({ confirmed: true }); lastToken = null; notice = 'Previous checkpoint selected explicitly. Known developer provenance retained; no transaction, reward or revision was invented.';
+  });
+  $('careerRawExport').onclick = act(() => {
+    download({ kind: 'BNT-corrupt-save-diagnostic', raw: store.quarantine }, 'BNT-corrupt-save-diagnostic.json');
+    notice = 'Original corrupt bytes included in a diagnostic download request. This is not an importable game save or a verified durable backup.';
+  });
+  window.addEventListener('storage', e => {
+    if (e.key === SAVE_KEY) { notice = 'Career storage changed in another window. Reload before further editing. Use only one active writer when Web Locks are unavailable.'; render(); }
+  });
+  render();
+}

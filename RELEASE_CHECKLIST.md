@@ -1,3 +1,18 @@
+# Current M0/M1 acceptance record
+
+- [x] M1 profile/career schema, complete persistent-state export/import, automatic primary/recovery checkpoint, manual-save gating and separate developer configuration storage implemented.
+- [x] Controlled treasury transactions, revision/ownership/financial validation, duplicate/conflict protection, rollback and persistent developer provenance implemented; Legacy is never merged.
+- [x] Baseline 212 tests passed; final 237 tests passed including 25 new persistence cases.
+- [x] 18 new and 23 retained browser functional check groups pass with zero page errors/runtime requests; injected denial/quota faults labelled explicitly.
+- [x] Standalone rebuilt; unchanged racing source/behavior and exact browser/Node race parity retained. Artifact hash in current implementation report.
+- [ ] M0 independent direct-file/offline Windows save/load/recovery acceptance: actual managed navigation administrator-blocked. HTTP testing does not satisfy this item.
+- [ ] Final owner acceptance; download durability and OS failure survival are not claimed.
+- [ ] M2 or later implementation: not authorized or started.
+
+See [report](docs/persistence-foundation/M0_M1_IMPLEMENTATION_REPORT.md) and [Windows checklist](docs/persistence-foundation/WINDOWS_TESTING.md). Previous acceptance records follow as historical evidence.
+
+---
+
 # Current track expansion acceptance record — 0.6.0-tracks
 
 - [x] Three ovals, twelve distinct circuits, seeded Short/Medium/Long Rally generator integrated with the existing engine.

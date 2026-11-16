@@ -1,6 +1,6 @@
 # Blood and Thunder — racing prototype development
 
-The numbered production specifications remain authoritative. Current version `0.6.0-tracks` expands the existing authoritative engine with a fixed track catalogue and seeded Rally generation. See [the implementation report](docs/track-expansion/TRACK_SYSTEM_EXPANSION_REPORT.md) and [reproduction guide](docs/track-expansion/README.md). Stable economy, campaigns and persistent roster progression remain outside this prototype. The owner confirms offline operation of the pre-corrective 0.4.1 file; managed direct-file navigation remains policy-blocked, and each new artifact requires its own local confirmation. See `IMPLEMENTATION_STATUS.md` and `docs/audits/CORRECTIVE_PASS_0_4_2.md`.
+The numbered production specifications remain authoritative. Current simulation `0.6.0-tracks` retains the existing track catalogue and seeded Rally generation; independent career/envelope schema 1 now supplies the M0/M1 persistence foundation. See [the save implementation report](docs/persistence-foundation/M0_M1_IMPLEMENTATION_REPORT.md). See [the implementation report](docs/track-expansion/TRACK_SYSTEM_EXPANSION_REPORT.md) and [reproduction guide](docs/track-expansion/README.md). Stable economy, campaigns and persistent roster progression remain outside this prototype. The owner confirms offline operation of the pre-corrective 0.4.1 file; managed direct-file navigation remains policy-blocked, and each new artifact requires its own local confirmation. See `IMPLEMENTATION_STATUS.md` and `docs/audits/CORRECTIVE_PASS_0_4_2.md`.
 
 ## Build and validate
 
@@ -121,3 +121,12 @@ Direct `createRace({course:'mixed-rally', format:'Combat'})` uses the shared eng
 ## Track catalogue test build — 0.6.0
 
 `npm run build` also emits the identical `dist/Blood-and-Thunder-Track-Test.html`. Use [player instructions](docs/track-expansion/USER_TESTING_INSTRUCTIONS.md) for the three-oval/twelve-circuit catalogue, procedural Rally controls, camera and diagnostics. [Verification scripts and archived evidence](docs/track-expansion/README.md) cover the fixed catalogue, 300 generator seeds, complete races, replay and browser/Node parity. Run memory-heavy evaluations sequentially. The retained browser harness emits progress and bounded mismatch diagnostics while preserving full comparison assertions. Managed direct-file launch remains blocked by policy; browser HTTP functional checks are reported separately.
+
+
+## M0/M1 career persistence foundation
+
+The developer panel now has **Career State / Save Management**. `bnt.career.save.v1` is separate from `bnt.configuration.v1`. Create an explicit empty M1 state (0 Gold, no roster), inspect metadata, and use controlled developer treasury adjustments. Every accepted edit retains a receipt/provenance and marks the affected career/Owner Profile. Game-save import stages and requires explicit full replacement; Owner Legacy is not merged. Corrupt browser saves block automatic writes until explicit recovery/replacement; original text remains exportable for that session.
+
+Manual mode retains memory only. Export the complete persistent state, save the file, then explicitly confirm the checkpoint before another change. The UI cannot verify durable downloads. Full export/import is not a current race snapshot; optional normalized pending start data is schema support only, with no M3 race-bridge behavior. No M2 gameplay exists.
+
+`node --test tests/persistence.test.js` runs 25 focused cases. `node scripts/persistence-browser.mjs` writes dedicated evidence and intentionally exits nonzero if actual file launch is blocked, despite successful HTTP diagnostic checks. See [Windows instructions](docs/persistence-foundation/WINDOWS_TESTING.md) and [API/reproduction guide](docs/persistence-foundation/README.md). Future entity/action types and schema migrations need explicit implementation/tests rather than weakening validation.

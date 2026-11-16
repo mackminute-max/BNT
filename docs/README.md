@@ -37,3 +37,8 @@ The investigation, raw datasets, deterministic replay evidence and recommendatio
 ## Track catalogue and procedural Rally expansion — 0.6.0
 
 [Implementation/test report](track-expansion/TRACK_SYSTEM_EXPANSION_REPORT.md), [player instructions](track-expansion/USER_TESTING_INSTRUCTIONS.md), [reproduction guide and evidence](track-expansion/README.md). Includes three ovals, twelve handcrafted circuits, seeded chunk-based rallies, 300-seed validation and complete-race/replay/browser evidence. Direct-file acceptance is separately identified as policy-blocked.
+
+
+## M0/M1 persistence foundation — career save schema 1
+
+[Implementation/verification report](persistence-foundation/M0_M1_IMPLEMENTATION_REPORT.md), [Windows file-origin checklist](persistence-foundation/WINDOWS_TESTING.md), [APIs/reproduction/evidence](persistence-foundation/README.md). Adds the isolated persistence/developer transaction foundation; racing engine unchanged. M0 file-origin acceptance remains policy-blocked and no M2 gameplay was implemented.
