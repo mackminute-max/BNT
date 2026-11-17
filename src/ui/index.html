@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Blood and Thunder · Racing Prototype</title>
     <style>
+      [hidden] { display: none !important; }
       :root {
         color-scheme: dark;
         font:
@@ -607,7 +608,7 @@
           <p class="note">Hazard modifier: 0–2, neutral 1. Weights incident placement on this segment; 0 excludes it. Incident frequency and the disabled-incidents setting remain unchanged.</p>
           <h2>Track diagnostics</h2><pre id="trackDiagnostics"></pre>
           <details id="careerSaves">
-            <summary>Career State / Save Management — M2-B stable foundation</summary>
+            <summary>Career State / Save Management — stable and economy</summary>
             <p class="note">Separate from developer race configurations and replays. Empty M1 states contain no roster or championship. Full exports contain Owner Profile, Career State, provenance, recovery and any optional race-start checkpoint; no mid-race saving. Use one active window when Web Locks are unavailable.</p>
             <p id="careerSaveStatus" role="status"></p>
             <p id="careerSaveNotice" class="note" role="alert"></p>
@@ -652,6 +653,29 @@
               </div>
               <p class="note">Baseline / no weather or surface adjustment. Management driver fatigue remains separate from engine strain. Assembled and eligible does not mean committed to a competition.</p>
               <pre id="stableRUPreview"></pre>
+            </details>
+            <details id="stableEconomy">
+              <summary>M2-C stable economy</summary>
+              <p class="note">Use the starting-stable controls above first. Economy migration is explicit and one-time. No races, championships, wage payments, XP awards, expiry, market refresh or management cycles are added.</p>
+              <p id="economyStatus" role="status"></p>
+              <div class="controls"><button id="economyPreviewMigration">Preview economy migration</button><button id="economyConfirmMigration">Confirm economy migration</button><button id="economyExportPreview">Export preview</button></div>
+              <details><summary>Read-only migration manifest</summary><pre id="economyMigrationPreview"></pre></details>
+              <p>Stable capacities: <span id="economyCapacity"></span></p>
+              <details><summary>Initial market — fixed 23 offers, no replenishment</summary><div style="overflow-x:auto"><table><thead><tr><th>Offer</th><th>Category</th><th>Tier</th><th>Price</th><th>Status</th><th>Action</th></tr></thead><tbody id="economyMarketRows"></tbody></table></div></details>
+              <details><summary>Owned roster and condition</summary><div style="overflow-x:auto"><table><thead><tr><th>Name</th><th>Kind</th><th>Condition label</th><th>Native condition</th><th>Fatigue</th><th>Strain</th><th>Integrity</th><th>Wear</th><th>XP</th><th>Acquisition basis</th><th>Assignment</th></tr></thead><tbody id="economyRosterRows"></tbody></table></div></details>
+              <details><summary>Personnel contracts — future wages, no accrual</summary><table><thead><tr><th>Person</th><th>Term</th><th>Cycles remaining</th><th>Base wage</th><th>Contract wage</th><th>Origin</th></tr></thead><tbody id="economyContractRows"></tbody></table></details>
+              <details><summary>Facilities</summary><table><thead><tr><th>Facility</th><th>Benefit status</th></tr></thead><tbody id="economyFacilityRows"></tbody></table></details>
+              <div id="economyControls">
+                <label>Management action<select id="economyAction"></select></label>
+                <div id="economyOfferFields" class="controls"><label>Market offer<select id="economyOffer"></select></label><label>Personnel contract term<select id="economyTerm"></select></label></div>
+                <div id="economyAssetFields"><label>Owned target<select id="economyAsset"></select></label></div>
+                <div id="economyFacilityFields"><label>Facility upgrade<select id="economyUpgrade"></select></label></div>
+                <div id="economyServiceFields" class="controls"><label>Care / treatment<select id="economyService"></select></label><label>Requested repair points (repair only)<input id="economyAmount" type="number" min="0.01" max="100" step="any" value="10" /></label></div>
+                <div id="economyTrainingFields" class="controls"><label>Native rating<select id="economyAttribute"></select></label><label>Full increments<input id="economyPoints" type="number" min="1" max="5" step="1" value="1" /></label></div>
+                <button id="economyCommit">Confirm management action</button>
+              </div>
+              <p class="note">Quotes are read-only. Equipment must be explicitly detached before resale. Personnel cannot be resold. Training uses existing XP; M2-C does not award XP. Chariot repair changes management integrity only; refurbishment changes native wear only.</p>
+              <pre id="economyQuote" role="status"></pre>
             </details>
             <details><summary>Career metadata and serialized state (read-only)</summary><pre id="careerSaveInspect"></pre></details>
           </details>

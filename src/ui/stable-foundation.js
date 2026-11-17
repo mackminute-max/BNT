@@ -1,3 +1,4 @@
+import { previewRU3 } from '../career/economy/reducers.js';
 import { createUninitializedCareer } from '../career/state.js';
 import { STARTING_PACKAGES, CATALOG_VERSION, buildPackage, assetId } from '../career/packages.js';
 import { assertPristine, initializationEffect, assignmentEffect } from '../career/domain-commands.js';
@@ -11,7 +12,7 @@ export function mountStableFoundation({store,act,newId,setNotice}) {
   }
   function currentSelection() { return {driverId:$('stableDriver').value,beastIds:[$('stableBeastA').value,$('stableBeastB').value],chariotId:$('stableChariot').value}; }
   function render() {
-    const s=store.state, ready=s?.schema===2 && s.management.initialized, blocked=['blocked','recovery-required'].includes(store.mode)||store.requiresCheckpoint;
+    const s=store.state, ready=s?.schema>=2 && s.management.initialized, blocked=['blocked','recovery-required'].includes(store.mode)||store.requiresCheckpoint;
     if (ready) $('stablePackage').value=Object.values(s.management.registries.properties)[0].packageId;
     const packageId=$('stablePackage').value,p=STARTING_PACKAGES[packageId];
     $('stablePackagePreview').textContent=JSON.stringify({catalogVersion:CATALOG_VERSION,...p,purchasePrice:0,property:{tier:'Basic',drivers:2,specialists:0,beasts:4,chariots:1},equipmentEffects:{mass:0,combat:0},facilityEffects:'Descriptive only',initialRU:'Primary driver, Lead A, Lead B, sole chariot; reserves unassigned'},null,2);
@@ -30,7 +31,7 @@ export function mountStableFoundation({store,act,newId,setNotice}) {
       select.disabled=!ready;
     }
     $('stableRoster').textContent=r?JSON.stringify({package:Object.values(r.properties)[0].packageId,capacities:Object.values(r.properties)[0].capacities,roster:r,lastReceipt:s.transactions.at(-1)},null,2):'No owned assets. Previewing a package grants nothing.';
-    const preview=ready?previewRU(s,currentSelection(),{assignmentId:a?.id??null}):null;
+    const preview=ready?(s.schema===3?previewRU3:previewRU)(s,currentSelection(),{assignmentId:a?.id??null}):null;
     $('stableRUPreview').textContent=preview?JSON.stringify(preview,null,2):'Initialize before assembling.';
     $('stableAssemble').disabled=!ready||blocked||!preview?.eligible;
     $('stableDisassemble').disabled=!a||blocked;
