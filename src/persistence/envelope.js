@@ -1,8 +1,9 @@
+import { isMaintenance } from '../career/economy/maintenance-history.js';
 import { isDomainCommand } from '../career/domain-commands.js';
 import { checksum, canonical } from '../core/determinism.js';
 import { exact, validateState, mergeMarks, withProvenance } from '../career/state.js';
 import { FOUNDATION_LIMITS } from '../career/foundation-catalog.js';
-import { mergeProtected, protectedFromState, completeProtectedRegistry } from '../career/history.js';
+import { mergeProtected, protectedFromState, completeProtectedRegistry } from '../career/economy/protected-registry.js';
 export const SAVE_KEY = 'bnt.career.save.v1';
 export const MAX_SAVE_BYTES = FOUNDATION_LIMITS.schema1SaveBytes;
 export const MAX_IMPORT_BYTES = FOUNDATION_LIMITS.schema2SaveBytes;
@@ -36,6 +37,7 @@ export function inspectEnvelope(text) {
   if (hasHistory) {
     for (const mark of marks) if (!protectedHistory.some(e => e.id === mark.id)) throw Error('Known provenance identity missing from protected registry');
     for (const entry of protectedHistory) {
+      if (isMaintenance(entry) || entry.commandVersion === 2) continue;
       const tx = JSON.parse(entry.request);
       if (!isDomainCommand(tx) && !marks.some(m => m.id === entry.id && m.profileId === tx.profileId && m.careerId === tx.careerId && m.revision === tx.expectedRevision + 1 && m.type === tx.type && m.reason === tx.reason && m.delta === tx.delta)) throw Error('Protected registry/provenance mismatch');
     }
@@ -47,10 +49,10 @@ export function inspectEnvelope(text) {
       const state = validateState(unseal(envelope[key]));
       for (const m of state.provenance) if (!marks.some(k => canonical(k) === canonical(m))) throw Error('Checkpoint provenance missing from registry');
       // Primary cannot clear known marks; a historical recovery checkpoint may predate them.
-      if (state.schema === 2 && !Object.hasOwn(envelope, 'protectedHistory')) throw Error('Schema-2 checkpoint requires protected registry');
-      if (state.schema === 2 && (state.maintenanceRevision > maintenanceClock || (key === 'primary' && state.maintenanceRevision !== maintenanceClock))) throw Error('Maintenance clock/checkpoint mismatch');
-      if (key === 'primary' && state.schema !== 2 && Object.hasOwn(envelope, 'protectedHistory')) throw Error('Cannot downgrade a protected save to schema 1');
-      for (const entry of state.schema === 2 ? state.history.commands : []) {
+      if (state.schema >= 2 && !Object.hasOwn(envelope, 'protectedHistory')) throw Error('Schema-2 checkpoint requires protected registry');
+      if (state.schema >= 2 && (state.maintenanceRevision > maintenanceClock || (key === 'primary' && state.maintenanceRevision !== maintenanceClock))) throw Error('Maintenance clock/checkpoint mismatch');
+      if (key === 'primary' && state.schema < 2 && Object.hasOwn(envelope, 'protectedHistory')) throw Error('Cannot downgrade a protected save to schema 1');
+      for (const entry of state.schema >= 2 ? state.history.commands : []) {
         if (!protectedHistory.some(e => e.id === entry.id && e.request === entry.request && (entry.balanceAfter === null || e.balanceAfter === entry.balanceAfter))) throw Error('Checkpoint loses protected identity/effect facts');
       }
       if (key === 'primary' && canonical(withProvenance(state, marks, protectedHistory)) !== canonical(state)) throw Error('Primary clears known developer provenance');
@@ -66,7 +68,7 @@ export function parseEnvelope(text) {
 }
 export function makeEnvelope(primary, recovery = null, knownMarks = [], knownHistory = [], knownMaintenance = 0) {
   const marks = mergeMarks(knownMarks, primary.provenance, recovery?.provenance ?? []);
-  const useHistory = primary.schema === 2 || recovery?.schema === 2 || knownHistory.length > 0;
+  const useHistory = primary.schema >= 2 || recovery?.schema >= 2 || knownHistory.length > 0;
   const protectedHistory = useHistory ? completeProtectedRegistry(mergeProtected(knownHistory, protectedFromState(primary), protectedFromState(recovery)), marks) : [];
   const state = withProvenance(primary, marks, protectedHistory);
   const maintenanceClock = Math.max(knownMaintenance, primary.maintenanceRevision ?? 0, recovery?.maintenanceRevision ?? 0);

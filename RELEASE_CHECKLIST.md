@@ -1,3 +1,22 @@
+# Current M2-C review gate
+
+- [x] Revision 2.1 fixture correction: mean 50 Standard, basis 325 G, current-H resale 138 G.
+- [x] Strict additive maintenance variant under outer history 1; old validators/receipts unchanged; no gameplay migration receipt; maintenance +1 once.
+- [x] Five exact migrations, protected retry/restore behavior, immutable basis and grandfathered contracts with no debit.
+- [x] Deterministic fixed 23-offer market (9/10/4), independent Python/Node/browser golden vectors.
+- [x] Atomic purchase/resale/detach/termination/upgrades/services/training/engineering and strict source/native/graph/ledger checks.
+- [x] All 351 Node tests pass; 86 managed browser functional groups; 12 M2-B capture/replay comparisons and five native adapters match.
+- [x] Both self-contained HTML aliases built identically; checksum, five manifests and evidence in M2-C report.
+- [ ] Actual Windows file-origin/offline/persistence acceptance of this new checksum: managed Chromium blocks navigation.
+- [ ] Owner M2-C acceptance and any remote push/merge authorization.
+- [ ] M2-D/E or M3: not started; separate authorization required.
+
+[Report](docs/m2-c/M2_C_IMPLEMENTATION_REPORT.md) · [Windows checklist](docs/m2-c/WINDOWS_ACCEPTANCE.md). No acceptance gate is waived.
+
+---
+
+## Historical review records below (M2-B was subsequently owner-accepted and merged)
+
 # Current M2-B owner review gate
 
 - [x] Five exact approved Draft 3 packages, Basic capacities, neutral equipment and descriptive facilities.

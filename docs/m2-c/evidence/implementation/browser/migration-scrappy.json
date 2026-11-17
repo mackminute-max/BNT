@@ -1,0 +1,2922 @@
+{
+  "source": {
+    "kind": "BNT-career-state",
+    "schema": 2,
+    "revision": 1,
+    "profile": {
+      "id": "owner",
+      "name": "Owner",
+      "legacy": {
+        "records": []
+      },
+      "developerEdited": false
+    },
+    "career": {
+      "id": "browser-scrappy",
+      "ownerProfileId": "owner",
+      "name": "M1 Foundation",
+      "status": "Foundation",
+      "treasury": 750,
+      "developerEdited": false
+    },
+    "pendingRace": null,
+    "transactions": [
+      {
+        "transaction": {
+          "id": "initialize-scrappy",
+          "profileId": "owner",
+          "careerId": "browser-scrappy",
+          "expectedRevision": 0,
+          "expectedMaintenanceRevision": 1,
+          "commandVersion": 1,
+          "type": "career.initialize",
+          "effectId": "initialize-browser-scrappy",
+          "delta": 750,
+          "reason": "Approved starting package",
+          "packageId": "scrappy",
+          "catalogVersion": 3,
+          "confirmed": true
+        },
+        "resultRevision": 1,
+        "balanceAfter": 750,
+        "result": {
+          "packageId": "scrappy",
+          "catalogVersion": 3,
+          "treasuryGrant": 750,
+          "grantedIds": [
+            "starter-9e94abd9-beast-0",
+            "starter-9e94abd9-beast-1",
+            "starter-9e94abd9-beast-2",
+            "starter-9e94abd9-chariot",
+            "starter-9e94abd9-driver-0",
+            "starter-9e94abd9-driver-1",
+            "starter-9e94abd9-equipment-0",
+            "starter-9e94abd9-equipment-1",
+            "starter-9e94abd9-facility",
+            "starter-9e94abd9-property",
+            "starter-9e94abd9-ru"
+          ]
+        }
+      }
+    ],
+    "provenance": [],
+    "maintenanceRevision": 1,
+    "management": {
+      "initialized": true,
+      "registrySchema": 2,
+      "registries": {
+        "personnel": {
+          "starter-9e94abd9-driver-0": {
+            "id": "starter-9e94abd9-driver-0",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "assignment": [
+                "starter-9e94abd9-ru"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Scrappy Underdog Primary Driver",
+            "role": "driver",
+            "attributes": {
+              "driving": 40,
+              "beastHandling": 50,
+              "combat": 40,
+              "awareness": 50,
+              "nerve": 60
+            },
+            "condition": 100,
+            "injury": "Healthy",
+            "fatigue": 0,
+            "strain": 0,
+            "xp": 0,
+            "available": true
+          },
+          "starter-9e94abd9-driver-1": {
+            "id": "starter-9e94abd9-driver-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 1,
+            "name": "Scrappy Underdog Reserve Driver",
+            "role": "driver",
+            "attributes": {
+              "driving": 30,
+              "beastHandling": 40,
+              "combat": 40,
+              "awareness": 40,
+              "nerve": 50
+            },
+            "condition": 100,
+            "injury": "Healthy",
+            "fatigue": 0,
+            "strain": 0,
+            "xp": 0,
+            "available": true
+          }
+        },
+        "specialists": {},
+        "beasts": {
+          "starter-9e94abd9-beast-0": {
+            "id": "starter-9e94abd9-beast-0",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "assignment": [
+                "starter-9e94abd9-ru"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Scrappy Underdog Lead A",
+            "species": "generic_draft_beast",
+            "attributes": {
+              "speed": 40,
+              "power": 50,
+              "agility": 40,
+              "endurance": 60,
+              "discipline": 40,
+              "toughness": 50
+            },
+            "condition": 100,
+            "injury": "Healthy",
+            "fatigue": 0,
+            "xp": 0,
+            "available": true
+          },
+          "starter-9e94abd9-beast-1": {
+            "id": "starter-9e94abd9-beast-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "assignment": [
+                "starter-9e94abd9-ru"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Scrappy Underdog Lead B",
+            "species": "generic_draft_beast",
+            "attributes": {
+              "speed": 50,
+              "power": 40,
+              "agility": 40,
+              "endurance": 60,
+              "discipline": 40,
+              "toughness": 50
+            },
+            "condition": 100,
+            "injury": "Healthy",
+            "fatigue": 0,
+            "xp": 0,
+            "available": true
+          },
+          "starter-9e94abd9-beast-2": {
+            "id": "starter-9e94abd9-beast-2",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 1,
+            "name": "Scrappy Underdog Reserve Beast",
+            "species": "generic_draft_beast",
+            "attributes": {
+              "speed": 40,
+              "power": 40,
+              "agility": 50,
+              "endurance": 60,
+              "discipline": 50,
+              "toughness": 50
+            },
+            "condition": 100,
+            "injury": "Healthy",
+            "fatigue": 0,
+            "xp": 0,
+            "available": true
+          }
+        },
+        "chariots": {
+          "starter-9e94abd9-chariot": {
+            "id": "starter-9e94abd9-chariot",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "equipment": [
+                "starter-9e94abd9-equipment-0",
+                "starter-9e94abd9-equipment-1"
+              ],
+              "assignment": [
+                "starter-9e94abd9-ru"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Salvaged racing chariot",
+            "attributes": {
+              "stability": 40,
+              "durability": 40,
+              "protection": 40,
+              "rollingEfficiency": 40,
+              "maneuverability": 40
+            },
+            "condition": 100,
+            "wear": 0,
+            "integrity": 100,
+            "status": "Functional",
+            "weight": 180,
+            "capacity": 400,
+            "xp": 0,
+            "available": true
+          }
+        },
+        "equipment": {
+          "starter-9e94abd9-equipment-0": {
+            "id": "starter-9e94abd9-equipment-0",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "installedOn": [
+                "starter-9e94abd9-chariot"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Patched harness",
+            "mass": 0,
+            "combat": 0
+          },
+          "starter-9e94abd9-equipment-1": {
+            "id": "starter-9e94abd9-equipment-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "installedOn": [
+                "starter-9e94abd9-chariot"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Worn wheels",
+            "mass": 0,
+            "combat": 0
+          }
+        },
+        "contracts": {},
+        "candidates": {},
+        "recruitmentOffers": {},
+        "marketOffers": {},
+        "properties": {
+          "starter-9e94abd9-property": {
+            "id": "starter-9e94abd9-property",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "facilities": [
+                "starter-9e94abd9-facility"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Basic Property",
+            "tier": "Basic",
+            "capacities": {
+              "drivers": 2,
+              "specialists": 0,
+              "beasts": 4,
+              "chariots": 1
+            },
+            "packageId": "scrappy",
+            "catalogVersion": 3
+          }
+        },
+        "facilities": {
+          "starter-9e94abd9-facility": {
+            "id": "starter-9e94abd9-facility",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "property": [
+                "starter-9e94abd9-property"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Makeshift Yard",
+            "descriptiveOnly": true
+          }
+        },
+        "projects": {},
+        "assignments": {
+          "starter-9e94abd9-ru": {
+            "id": "starter-9e94abd9-ru",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "subject": [
+                "starter-9e94abd9-driver-0",
+                "starter-9e94abd9-beast-0",
+                "starter-9e94abd9-beast-1",
+                "starter-9e94abd9-chariot"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Prospective Racing Unit",
+            "kind": "prospectiveRU",
+            "driverId": "starter-9e94abd9-driver-0",
+            "beastIds": [
+              "starter-9e94abd9-beast-0",
+              "starter-9e94abd9-beast-1"
+            ],
+            "chariotId": "starter-9e94abd9-chariot"
+          }
+        },
+        "obligations": {},
+        "advancementChoices": {},
+        "achievements": {}
+      }
+    },
+    "history": {
+      "schema": 1,
+      "commands": [
+        {
+          "id": "initialize-scrappy",
+          "profileId": "owner",
+          "careerId": "browser-scrappy",
+          "commandVersion": 1,
+          "request": "{\"careerId\":\"browser-scrappy\",\"catalogVersion\":3,\"commandVersion\":1,\"confirmed\":true,\"delta\":750,\"effectId\":\"initialize-browser-scrappy\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":0,\"id\":\"initialize-scrappy\",\"packageId\":\"scrappy\",\"profileId\":\"owner\",\"reason\":\"Approved starting package\",\"type\":\"career.initialize\"}",
+          "fingerprint": "5b489942",
+          "resultRevision": 1,
+          "effectId": "initialize-browser-scrappy",
+          "delta": 750,
+          "balanceAfter": 750,
+          "retention": "P0",
+          "result": {
+            "packageId": "scrappy",
+            "catalogVersion": 3,
+            "treasuryGrant": 750,
+            "grantedIds": [
+              "starter-9e94abd9-beast-0",
+              "starter-9e94abd9-beast-1",
+              "starter-9e94abd9-beast-2",
+              "starter-9e94abd9-chariot",
+              "starter-9e94abd9-driver-0",
+              "starter-9e94abd9-driver-1",
+              "starter-9e94abd9-equipment-0",
+              "starter-9e94abd9-equipment-1",
+              "starter-9e94abd9-facility",
+              "starter-9e94abd9-property",
+              "starter-9e94abd9-ru"
+            ]
+          }
+        }
+      ]
+    },
+    "migration": {
+      "fromSchema": 1,
+      "toSchema": 2,
+      "sourceProfileId": "owner",
+      "sourceCareerId": "browser-scrappy",
+      "sourceRevision": 0,
+      "sourceTreasury": 0,
+      "sourcePendingDigest": null,
+      "sourceStateDigest": "cb65b8ef"
+    }
+  },
+  "preview": {
+    "sourceFingerprint": "4f14b015faa37cbd8a13a6c692c182e40012b44e9fe32cb1d918a7b8adf0fb03",
+    "expectedRevision": 1,
+    "expectedMaintenanceRevision": 1,
+    "migrationVersion": "m2c-migration-v1",
+    "adapterVersion": "valuation-health-v1",
+    "generatorVersion": "market-generator-v1",
+    "manifest": {
+      "sourceSchema": 2,
+      "targetSchema": 3,
+      "sourceFingerprint": "4f14b015faa37cbd8a13a6c692c182e40012b44e9fe32cb1d918a7b8adf0fb03",
+      "migrationVersion": "m2c-migration-v1",
+      "adapterVersion": "valuation-health-v1",
+      "generatorVersion": "market-generator-v1",
+      "treasury": 750,
+      "gameplayRevision": 1,
+      "maintenanceRevision": 2,
+      "assetIds": [
+        "starter-9e94abd9-beast-0",
+        "starter-9e94abd9-beast-1",
+        "starter-9e94abd9-beast-2",
+        "starter-9e94abd9-chariot",
+        "starter-9e94abd9-driver-0",
+        "starter-9e94abd9-driver-1",
+        "starter-9e94abd9-equipment-0",
+        "starter-9e94abd9-equipment-1"
+      ],
+      "contracts": [
+        {
+          "id": "contract-c2b1102022faf0b5a5f1b090011703c4",
+          "ownerCareerId": "browser-scrappy",
+          "references": {
+            "employee": [
+              "starter-9e94abd9-driver-0"
+            ]
+          },
+          "recordVersion": 2,
+          "name": "Scrappy Underdog Primary Driver contract",
+          "term": "standard",
+          "cyclesRemaining": 8,
+          "baseWage": 35,
+          "wage": 35,
+          "grandfathered": true,
+          "sourceOfferId": null
+        },
+        {
+          "id": "contract-f09520df51864c5f1d864a15cedc57ad",
+          "ownerCareerId": "browser-scrappy",
+          "references": {
+            "employee": [
+              "starter-9e94abd9-driver-1"
+            ]
+          },
+          "recordVersion": 2,
+          "name": "Scrappy Underdog Reserve Driver contract",
+          "term": "standard",
+          "cyclesRemaining": 8,
+          "baseWage": 20,
+          "wage": 20,
+          "grandfathered": true,
+          "sourceOfferId": null
+        }
+      ],
+      "valuations": [
+        {
+          "id": "starter-9e94abd9-driver-0",
+          "kind": "personnel",
+          "tier": "Standard",
+          "quality": 0.994,
+          "baseAttributes": {
+            "driving": 40,
+            "beastHandling": 50,
+            "combat": 40,
+            "awareness": 50,
+            "nerve": 60
+          },
+          "originalHealth": 100,
+          "acquisitionBasis": 0,
+          "sourceOfferId": null,
+          "wageQuality": 1,
+          "baseWage": 35
+        },
+        {
+          "id": "starter-9e94abd9-driver-1",
+          "kind": "personnel",
+          "tier": "Budget",
+          "quality": 0.97,
+          "baseAttributes": {
+            "driving": 30,
+            "beastHandling": 40,
+            "combat": 40,
+            "awareness": 40,
+            "nerve": 50
+          },
+          "originalHealth": 100,
+          "acquisitionBasis": 0,
+          "sourceOfferId": null,
+          "wageQuality": 1,
+          "baseWage": 20
+        },
+        {
+          "id": "starter-9e94abd9-beast-0",
+          "kind": "beasts",
+          "tier": "Standard",
+          "quality": 0.99,
+          "baseAttributes": {
+            "speed": 40,
+            "power": 50,
+            "agility": 40,
+            "endurance": 60,
+            "discipline": 40,
+            "toughness": 50
+          },
+          "originalHealth": 100,
+          "acquisitionBasis": 320,
+          "sourceOfferId": null,
+          "wageQuality": null,
+          "baseWage": null
+        },
+        {
+          "id": "starter-9e94abd9-beast-1",
+          "kind": "beasts",
+          "tier": "Standard",
+          "quality": 0.99,
+          "baseAttributes": {
+            "speed": 50,
+            "power": 40,
+            "agility": 40,
+            "endurance": 60,
+            "discipline": 40,
+            "toughness": 50
+          },
+          "originalHealth": 100,
+          "acquisitionBasis": 320,
+          "sourceOfferId": null,
+          "wageQuality": null,
+          "baseWage": null
+        },
+        {
+          "id": "starter-9e94abd9-beast-2",
+          "kind": "beasts",
+          "tier": "Standard",
+          "quality": 0.995,
+          "baseAttributes": {
+            "speed": 40,
+            "power": 40,
+            "agility": 50,
+            "endurance": 60,
+            "discipline": 50,
+            "toughness": 50
+          },
+          "originalHealth": 100,
+          "acquisitionBasis": 325,
+          "sourceOfferId": null,
+          "wageQuality": null,
+          "baseWage": null
+        },
+        {
+          "id": "starter-9e94abd9-chariot",
+          "kind": "chariots",
+          "tier": "Budget",
+          "quality": 0.97,
+          "baseAttributes": {
+            "stability": 40,
+            "durability": 40,
+            "protection": 40,
+            "rollingEfficiency": 40,
+            "maneuverability": 40
+          },
+          "originalHealth": 100,
+          "acquisitionBasis": 365,
+          "sourceOfferId": null,
+          "wageQuality": null,
+          "baseWage": null
+        },
+        {
+          "id": "starter-9e94abd9-equipment-0",
+          "kind": "equipment",
+          "tier": "Budget",
+          "quality": 1,
+          "baseAttributes": null,
+          "originalHealth": null,
+          "acquisitionBasis": 100,
+          "sourceOfferId": null,
+          "wageQuality": null,
+          "baseWage": null
+        },
+        {
+          "id": "starter-9e94abd9-equipment-1",
+          "kind": "equipment",
+          "tier": "Budget",
+          "quality": 1,
+          "baseAttributes": null,
+          "originalHealth": null,
+          "acquisitionBasis": 100,
+          "sourceOfferId": null,
+          "wageQuality": null,
+          "baseWage": null
+        }
+      ],
+      "properties": [
+        {
+          "id": "starter-9e94abd9-property",
+          "ownerCareerId": "browser-scrappy",
+          "references": {
+            "facilities": [
+              "starter-9e94abd9-facility"
+            ]
+          },
+          "recordVersion": 2,
+          "name": "Basic Property",
+          "tier": "Basic",
+          "capacities": {
+            "drivers": 2,
+            "specialists": 0,
+            "beasts": 4,
+            "chariots": 1
+          },
+          "packageId": "scrappy",
+          "catalogVersion": 3
+        }
+      ],
+      "facilities": [
+        {
+          "id": "starter-9e94abd9-facility",
+          "ownerCareerId": "browser-scrappy",
+          "references": {
+            "property": [
+              "starter-9e94abd9-property"
+            ]
+          },
+          "recordVersion": 1,
+          "name": "Makeshift Yard",
+          "descriptiveOnly": true
+        }
+      ],
+      "assignments": [
+        {
+          "id": "starter-9e94abd9-ru",
+          "ownerCareerId": "browser-scrappy",
+          "references": {
+            "subject": [
+              "starter-9e94abd9-driver-0",
+              "starter-9e94abd9-beast-0",
+              "starter-9e94abd9-beast-1",
+              "starter-9e94abd9-chariot"
+            ]
+          },
+          "recordVersion": 1,
+          "name": "Prospective Racing Unit",
+          "kind": "prospectiveRU",
+          "driverId": "starter-9e94abd9-driver-0",
+          "beastIds": [
+            "starter-9e94abd9-beast-0",
+            "starter-9e94abd9-beast-1"
+          ],
+          "chariotId": "starter-9e94abd9-chariot"
+        }
+      ],
+      "market": [
+        {
+          "id": "m2c-offer-driver-budget-1",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Budget driver 1",
+          "category": "driver",
+          "tier": "Budget",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 1.07,
+          "wageQuality": 0.91,
+          "health": 79,
+          "price": 200,
+          "available": true,
+          "template": {
+            "attributes": {
+              "driving": 33,
+              "beastHandling": 34,
+              "combat": 39,
+              "awareness": 43,
+              "nerve": 41
+            },
+            "condition": 79,
+            "strain": 0,
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-driver-budget-2",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Budget driver 2",
+          "category": "driver",
+          "tier": "Budget",
+          "ordinal": 2,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 0.95,
+          "wageQuality": 0.94,
+          "health": 87,
+          "price": 185,
+          "available": true,
+          "template": {
+            "attributes": {
+              "driving": 34,
+              "beastHandling": 39,
+              "combat": 42,
+              "awareness": 43,
+              "nerve": 33
+            },
+            "condition": 87,
+            "strain": 0,
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-driver-standard-1",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard driver 1",
+          "category": "driver",
+          "tier": "Standard",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 1.11,
+          "wageQuality": 0.95,
+          "health": 78,
+          "price": 415,
+          "available": true,
+          "template": {
+            "attributes": {
+              "driving": 56,
+              "beastHandling": 53,
+              "combat": 58,
+              "awareness": 62,
+              "nerve": 66
+            },
+            "condition": 78,
+            "strain": 0,
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-driver-standard-2",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard driver 2",
+          "category": "driver",
+          "tier": "Standard",
+          "ordinal": 2,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 1.06,
+          "wageQuality": 1.07,
+          "health": 86,
+          "price": 405,
+          "available": true,
+          "template": {
+            "attributes": {
+              "driving": 51,
+              "beastHandling": 66,
+              "combat": 69,
+              "awareness": 69,
+              "nerve": 69
+            },
+            "condition": 86,
+            "strain": 0,
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-driver-premium-1",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Premium driver 1",
+          "category": "driver",
+          "tier": "Premium",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 0.89,
+          "wageQuality": 0.94,
+          "health": 75,
+          "price": 660,
+          "available": true,
+          "template": {
+            "attributes": {
+              "driving": 82,
+              "beastHandling": 85,
+              "combat": 82,
+              "awareness": 72,
+              "nerve": 74
+            },
+            "condition": 75,
+            "strain": 0,
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-beast-budget-1",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Budget beast 1",
+          "category": "beast",
+          "tier": "Budget",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 1.06,
+          "wageQuality": null,
+          "health": 89,
+          "price": 155,
+          "available": true,
+          "template": {
+            "attributes": {
+              "speed": 44,
+              "power": 45,
+              "agility": 31,
+              "endurance": 32,
+              "discipline": 39,
+              "toughness": 47
+            },
+            "condition": 89,
+            "species": "generic_draft_beast",
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-beast-budget-2",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Budget beast 2",
+          "category": "beast",
+          "tier": "Budget",
+          "ordinal": 2,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 0.93,
+          "wageQuality": null,
+          "health": 84,
+          "price": 135,
+          "available": true,
+          "template": {
+            "attributes": {
+              "speed": 46,
+              "power": 30,
+              "agility": 35,
+              "endurance": 37,
+              "discipline": 46,
+              "toughness": 34
+            },
+            "condition": 84,
+            "species": "generic_draft_beast",
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-beast-standard-1",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard beast 1",
+          "category": "beast",
+          "tier": "Standard",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 1.12,
+          "wageQuality": null,
+          "health": 79,
+          "price": 340,
+          "available": true,
+          "template": {
+            "attributes": {
+              "speed": 53,
+              "power": 67,
+              "agility": 53,
+              "endurance": 64,
+              "discipline": 52,
+              "toughness": 61
+            },
+            "condition": 79,
+            "species": "generic_draft_beast",
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-beast-standard-2",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard beast 2",
+          "category": "beast",
+          "tier": "Standard",
+          "ordinal": 2,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 0.99,
+          "wageQuality": null,
+          "health": 98,
+          "price": 320,
+          "available": true,
+          "template": {
+            "attributes": {
+              "speed": 50,
+              "power": 61,
+              "agility": 65,
+              "endurance": 52,
+              "discipline": 58,
+              "toughness": 62
+            },
+            "condition": 98,
+            "species": "generic_draft_beast",
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-beast-standard-3",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard beast 3",
+          "category": "beast",
+          "tier": "Standard",
+          "ordinal": 3,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 1.11,
+          "wageQuality": null,
+          "health": 74,
+          "price": 335,
+          "available": true,
+          "template": {
+            "attributes": {
+              "speed": 52,
+              "power": 53,
+              "agility": 56,
+              "endurance": 50,
+              "discipline": 62,
+              "toughness": 50
+            },
+            "condition": 74,
+            "species": "generic_draft_beast",
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-beast-premium-1",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Premium beast 1",
+          "category": "beast",
+          "tier": "Premium",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 0.85,
+          "wageQuality": null,
+          "health": 77,
+          "price": 515,
+          "available": true,
+          "template": {
+            "attributes": {
+              "speed": 84,
+              "power": 73,
+              "agility": 88,
+              "endurance": 81,
+              "discipline": 82,
+              "toughness": 80
+            },
+            "condition": 77,
+            "species": "generic_draft_beast",
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-chariot-budget-1",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Budget chariot 1",
+          "category": "chariot",
+          "tier": "Budget",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 0.89,
+          "wageQuality": null,
+          "health": 73,
+          "price": 305,
+          "available": true,
+          "template": {
+            "attributes": {
+              "stability": 38,
+              "durability": 36,
+              "protection": 33,
+              "rollingEfficiency": 36,
+              "maneuverability": 32
+            },
+            "condition": 82,
+            "integrity": 73,
+            "wear": 0,
+            "weight": 180,
+            "capacity": 400,
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-chariot-standard-1",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard chariot 1",
+          "category": "chariot",
+          "tier": "Standard",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 1.04,
+          "wageQuality": null,
+          "health": 83,
+          "price": 615,
+          "available": true,
+          "template": {
+            "attributes": {
+              "stability": 54,
+              "durability": 54,
+              "protection": 67,
+              "rollingEfficiency": 66,
+              "maneuverability": 67
+            },
+            "condition": 97,
+            "integrity": 83,
+            "wear": 0,
+            "weight": 180,
+            "capacity": 400,
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-chariot-premium-1",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Premium chariot 1",
+          "category": "chariot",
+          "tier": "Premium",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 1.04,
+          "wageQuality": null,
+          "health": 98,
+          "price": 1190,
+          "available": true,
+          "template": {
+            "attributes": {
+              "stability": 75,
+              "durability": 70,
+              "protection": 87,
+              "rollingEfficiency": 86,
+              "maneuverability": 75
+            },
+            "condition": 94,
+            "integrity": 98,
+            "wear": 0,
+            "weight": 180,
+            "capacity": 400,
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-specialist-budget-1",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Budget specialist 1",
+          "category": "specialist",
+          "tier": "Budget",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 0.87,
+          "wageQuality": 0.93,
+          "health": null,
+          "price": 175,
+          "available": true,
+          "template": {
+            "role": "Beast Handler",
+            "injury": "Healthy"
+          }
+        },
+        {
+          "id": "m2c-offer-specialist-standard-1",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard specialist 1",
+          "category": "specialist",
+          "tier": "Standard",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 0.88,
+          "wageQuality": 0.92,
+          "health": null,
+          "price": 330,
+          "available": true,
+          "template": {
+            "role": "Mechanic",
+            "injury": "Healthy"
+          }
+        },
+        {
+          "id": "m2c-offer-specialist-premium-1",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Premium specialist 1",
+          "category": "specialist",
+          "tier": "Premium",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 0.88,
+          "wageQuality": 0.95,
+          "health": null,
+          "price": 550,
+          "available": true,
+          "template": {
+            "role": "Physician",
+            "injury": "Healthy"
+          }
+        },
+        {
+          "id": "m2c-offer-equipment-budget-1",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Basic equipment 1",
+          "category": "equipment",
+          "tier": "Budget",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 0.99,
+          "wageQuality": null,
+          "health": null,
+          "price": 100,
+          "available": true,
+          "template": {
+            "mass": 0,
+            "combat": 0
+          }
+        },
+        {
+          "id": "m2c-offer-equipment-budget-2",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Basic equipment 2",
+          "category": "equipment",
+          "tier": "Budget",
+          "ordinal": 2,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 0.85,
+          "wageQuality": null,
+          "health": null,
+          "price": 85,
+          "available": true,
+          "template": {
+            "mass": 0,
+            "combat": 0
+          }
+        },
+        {
+          "id": "m2c-offer-equipment-budget-3",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Basic equipment 3",
+          "category": "equipment",
+          "tier": "Budget",
+          "ordinal": 3,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 1.02,
+          "wageQuality": null,
+          "health": null,
+          "price": 100,
+          "available": true,
+          "template": {
+            "mass": 0,
+            "combat": 0
+          }
+        },
+        {
+          "id": "m2c-offer-equipment-standard-1",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard equipment 1",
+          "category": "equipment",
+          "tier": "Standard",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 1.13,
+          "wageQuality": null,
+          "health": null,
+          "price": 310,
+          "available": true,
+          "template": {
+            "mass": 0,
+            "combat": 0
+          }
+        },
+        {
+          "id": "m2c-offer-equipment-standard-2",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard equipment 2",
+          "category": "equipment",
+          "tier": "Standard",
+          "ordinal": 2,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 1.01,
+          "wageQuality": null,
+          "health": null,
+          "price": 280,
+          "available": true,
+          "template": {
+            "mass": 0,
+            "combat": 0
+          }
+        },
+        {
+          "id": "m2c-offer-equipment-standard-3",
+          "ownerCareerId": "browser-scrappy",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard equipment 3",
+          "category": "equipment",
+          "tier": "Standard",
+          "ordinal": 3,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+          "quality": 1.06,
+          "wageQuality": null,
+          "health": null,
+          "price": 290,
+          "available": true,
+          "template": {
+            "mass": 0,
+            "combat": 0
+          }
+        }
+      ]
+    },
+    "manifestDigest": "d32985ffc417b39159d5e4c11fa300b7acbed225d538120d68c24a96f6bce964"
+  },
+  "target": {
+    "kind": "BNT-career-state",
+    "schema": 3,
+    "revision": 1,
+    "profile": {
+      "id": "owner",
+      "name": "Owner",
+      "legacy": {
+        "records": []
+      },
+      "developerEdited": false
+    },
+    "career": {
+      "id": "browser-scrappy",
+      "ownerProfileId": "owner",
+      "name": "M1 Foundation",
+      "status": "Foundation",
+      "treasury": 750,
+      "developerEdited": false
+    },
+    "pendingRace": null,
+    "transactions": [
+      {
+        "transaction": {
+          "id": "initialize-scrappy",
+          "profileId": "owner",
+          "careerId": "browser-scrappy",
+          "expectedRevision": 0,
+          "expectedMaintenanceRevision": 1,
+          "commandVersion": 1,
+          "type": "career.initialize",
+          "effectId": "initialize-browser-scrappy",
+          "delta": 750,
+          "reason": "Approved starting package",
+          "packageId": "scrappy",
+          "catalogVersion": 3,
+          "confirmed": true
+        },
+        "resultRevision": 1,
+        "balanceAfter": 750,
+        "result": {
+          "packageId": "scrappy",
+          "catalogVersion": 3,
+          "treasuryGrant": 750,
+          "grantedIds": [
+            "starter-9e94abd9-beast-0",
+            "starter-9e94abd9-beast-1",
+            "starter-9e94abd9-beast-2",
+            "starter-9e94abd9-chariot",
+            "starter-9e94abd9-driver-0",
+            "starter-9e94abd9-driver-1",
+            "starter-9e94abd9-equipment-0",
+            "starter-9e94abd9-equipment-1",
+            "starter-9e94abd9-facility",
+            "starter-9e94abd9-property",
+            "starter-9e94abd9-ru"
+          ]
+        }
+      }
+    ],
+    "provenance": [],
+    "maintenanceRevision": 2,
+    "management": {
+      "initialized": true,
+      "registrySchema": 3,
+      "registries": {
+        "personnel": {
+          "starter-9e94abd9-driver-0": {
+            "id": "starter-9e94abd9-driver-0",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "assignment": [
+                "starter-9e94abd9-ru"
+              ],
+              "contract": [
+                "contract-c2b1102022faf0b5a5f1b090011703c4"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Scrappy Underdog Primary Driver",
+            "role": "driver",
+            "attributes": {
+              "driving": 40,
+              "beastHandling": 50,
+              "combat": 40,
+              "awareness": 50,
+              "nerve": 60
+            },
+            "condition": 100,
+            "injury": "Healthy",
+            "fatigue": 0,
+            "strain": 0,
+            "xp": 0,
+            "available": true,
+            "economics": {
+              "tier": "Standard",
+              "quality": 0.994,
+              "baseAttributes": {
+                "driving": 40,
+                "beastHandling": 50,
+                "combat": 40,
+                "awareness": 50,
+                "nerve": 60
+              },
+              "originalHealth": 100,
+              "acquisitionBasis": 0,
+              "sourceOfferId": null,
+              "wageQuality": 1,
+              "baseWage": 35
+            },
+            "training": {
+              "driving": 0,
+              "beastHandling": 0,
+              "combat": 0,
+              "awareness": 0,
+              "nerve": 0
+            }
+          },
+          "starter-9e94abd9-driver-1": {
+            "id": "starter-9e94abd9-driver-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "contract": [
+                "contract-f09520df51864c5f1d864a15cedc57ad"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Scrappy Underdog Reserve Driver",
+            "role": "driver",
+            "attributes": {
+              "driving": 30,
+              "beastHandling": 40,
+              "combat": 40,
+              "awareness": 40,
+              "nerve": 50
+            },
+            "condition": 100,
+            "injury": "Healthy",
+            "fatigue": 0,
+            "strain": 0,
+            "xp": 0,
+            "available": true,
+            "economics": {
+              "tier": "Budget",
+              "quality": 0.97,
+              "baseAttributes": {
+                "driving": 30,
+                "beastHandling": 40,
+                "combat": 40,
+                "awareness": 40,
+                "nerve": 50
+              },
+              "originalHealth": 100,
+              "acquisitionBasis": 0,
+              "sourceOfferId": null,
+              "wageQuality": 1,
+              "baseWage": 20
+            },
+            "training": {
+              "driving": 0,
+              "beastHandling": 0,
+              "combat": 0,
+              "awareness": 0,
+              "nerve": 0
+            }
+          }
+        },
+        "specialists": {},
+        "beasts": {
+          "starter-9e94abd9-beast-0": {
+            "id": "starter-9e94abd9-beast-0",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "assignment": [
+                "starter-9e94abd9-ru"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Scrappy Underdog Lead A",
+            "species": "generic_draft_beast",
+            "attributes": {
+              "speed": 40,
+              "power": 50,
+              "agility": 40,
+              "endurance": 60,
+              "discipline": 40,
+              "toughness": 50
+            },
+            "condition": 100,
+            "injury": "Healthy",
+            "fatigue": 0,
+            "xp": 0,
+            "available": true,
+            "economics": {
+              "tier": "Standard",
+              "quality": 0.99,
+              "baseAttributes": {
+                "speed": 40,
+                "power": 50,
+                "agility": 40,
+                "endurance": 60,
+                "discipline": 40,
+                "toughness": 50
+              },
+              "originalHealth": 100,
+              "acquisitionBasis": 320,
+              "sourceOfferId": null,
+              "wageQuality": null,
+              "baseWage": null
+            },
+            "training": {
+              "speed": 0,
+              "power": 0,
+              "agility": 0,
+              "endurance": 0,
+              "discipline": 0,
+              "toughness": 0
+            }
+          },
+          "starter-9e94abd9-beast-1": {
+            "id": "starter-9e94abd9-beast-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "assignment": [
+                "starter-9e94abd9-ru"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Scrappy Underdog Lead B",
+            "species": "generic_draft_beast",
+            "attributes": {
+              "speed": 50,
+              "power": 40,
+              "agility": 40,
+              "endurance": 60,
+              "discipline": 40,
+              "toughness": 50
+            },
+            "condition": 100,
+            "injury": "Healthy",
+            "fatigue": 0,
+            "xp": 0,
+            "available": true,
+            "economics": {
+              "tier": "Standard",
+              "quality": 0.99,
+              "baseAttributes": {
+                "speed": 50,
+                "power": 40,
+                "agility": 40,
+                "endurance": 60,
+                "discipline": 40,
+                "toughness": 50
+              },
+              "originalHealth": 100,
+              "acquisitionBasis": 320,
+              "sourceOfferId": null,
+              "wageQuality": null,
+              "baseWage": null
+            },
+            "training": {
+              "speed": 0,
+              "power": 0,
+              "agility": 0,
+              "endurance": 0,
+              "discipline": 0,
+              "toughness": 0
+            }
+          },
+          "starter-9e94abd9-beast-2": {
+            "id": "starter-9e94abd9-beast-2",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Scrappy Underdog Reserve Beast",
+            "species": "generic_draft_beast",
+            "attributes": {
+              "speed": 40,
+              "power": 40,
+              "agility": 50,
+              "endurance": 60,
+              "discipline": 50,
+              "toughness": 50
+            },
+            "condition": 100,
+            "injury": "Healthy",
+            "fatigue": 0,
+            "xp": 0,
+            "available": true,
+            "economics": {
+              "tier": "Standard",
+              "quality": 0.995,
+              "baseAttributes": {
+                "speed": 40,
+                "power": 40,
+                "agility": 50,
+                "endurance": 60,
+                "discipline": 50,
+                "toughness": 50
+              },
+              "originalHealth": 100,
+              "acquisitionBasis": 325,
+              "sourceOfferId": null,
+              "wageQuality": null,
+              "baseWage": null
+            },
+            "training": {
+              "speed": 0,
+              "power": 0,
+              "agility": 0,
+              "endurance": 0,
+              "discipline": 0,
+              "toughness": 0
+            }
+          }
+        },
+        "chariots": {
+          "starter-9e94abd9-chariot": {
+            "id": "starter-9e94abd9-chariot",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "equipment": [
+                "starter-9e94abd9-equipment-0",
+                "starter-9e94abd9-equipment-1"
+              ],
+              "assignment": [
+                "starter-9e94abd9-ru"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Salvaged racing chariot",
+            "attributes": {
+              "stability": 40,
+              "durability": 40,
+              "protection": 40,
+              "rollingEfficiency": 40,
+              "maneuverability": 40
+            },
+            "condition": 100,
+            "wear": 0,
+            "integrity": 100,
+            "status": "Functional",
+            "weight": 180,
+            "capacity": 400,
+            "xp": 0,
+            "available": true,
+            "economics": {
+              "tier": "Budget",
+              "quality": 0.97,
+              "baseAttributes": {
+                "stability": 40,
+                "durability": 40,
+                "protection": 40,
+                "rollingEfficiency": 40,
+                "maneuverability": 40
+              },
+              "originalHealth": 100,
+              "acquisitionBasis": 365,
+              "sourceOfferId": null,
+              "wageQuality": null,
+              "baseWage": null
+            },
+            "engineering": {
+              "increments": {
+                "stability": 0,
+                "durability": 0,
+                "protection": 0,
+                "rollingEfficiency": 0,
+                "maneuverability": 0
+              },
+              "spentGold": 0
+            }
+          }
+        },
+        "equipment": {
+          "starter-9e94abd9-equipment-0": {
+            "id": "starter-9e94abd9-equipment-0",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "installedOn": [
+                "starter-9e94abd9-chariot"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Patched harness",
+            "mass": 0,
+            "combat": 0,
+            "economics": {
+              "tier": "Budget",
+              "quality": 1,
+              "baseAttributes": null,
+              "originalHealth": null,
+              "acquisitionBasis": 100,
+              "sourceOfferId": null,
+              "wageQuality": null,
+              "baseWage": null
+            }
+          },
+          "starter-9e94abd9-equipment-1": {
+            "id": "starter-9e94abd9-equipment-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "installedOn": [
+                "starter-9e94abd9-chariot"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Worn wheels",
+            "mass": 0,
+            "combat": 0,
+            "economics": {
+              "tier": "Budget",
+              "quality": 1,
+              "baseAttributes": null,
+              "originalHealth": null,
+              "acquisitionBasis": 100,
+              "sourceOfferId": null,
+              "wageQuality": null,
+              "baseWage": null
+            }
+          }
+        },
+        "contracts": {
+          "contract-c2b1102022faf0b5a5f1b090011703c4": {
+            "id": "contract-c2b1102022faf0b5a5f1b090011703c4",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "employee": [
+                "starter-9e94abd9-driver-0"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Scrappy Underdog Primary Driver contract",
+            "term": "standard",
+            "cyclesRemaining": 8,
+            "baseWage": 35,
+            "wage": 35,
+            "grandfathered": true,
+            "sourceOfferId": null
+          },
+          "contract-f09520df51864c5f1d864a15cedc57ad": {
+            "id": "contract-f09520df51864c5f1d864a15cedc57ad",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "employee": [
+                "starter-9e94abd9-driver-1"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Scrappy Underdog Reserve Driver contract",
+            "term": "standard",
+            "cyclesRemaining": 8,
+            "baseWage": 20,
+            "wage": 20,
+            "grandfathered": true,
+            "sourceOfferId": null
+          }
+        },
+        "candidates": {},
+        "recruitmentOffers": {},
+        "marketOffers": {
+          "m2c-offer-driver-budget-1": {
+            "id": "m2c-offer-driver-budget-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Budget driver 1",
+            "category": "driver",
+            "tier": "Budget",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 1.07,
+            "wageQuality": 0.91,
+            "health": 79,
+            "price": 200,
+            "available": true,
+            "template": {
+              "attributes": {
+                "driving": 33,
+                "beastHandling": 34,
+                "combat": 39,
+                "awareness": 43,
+                "nerve": 41
+              },
+              "condition": 79,
+              "strain": 0,
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-driver-budget-2": {
+            "id": "m2c-offer-driver-budget-2",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Budget driver 2",
+            "category": "driver",
+            "tier": "Budget",
+            "ordinal": 2,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 0.95,
+            "wageQuality": 0.94,
+            "health": 87,
+            "price": 185,
+            "available": true,
+            "template": {
+              "attributes": {
+                "driving": 34,
+                "beastHandling": 39,
+                "combat": 42,
+                "awareness": 43,
+                "nerve": 33
+              },
+              "condition": 87,
+              "strain": 0,
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-driver-standard-1": {
+            "id": "m2c-offer-driver-standard-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard driver 1",
+            "category": "driver",
+            "tier": "Standard",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 1.11,
+            "wageQuality": 0.95,
+            "health": 78,
+            "price": 415,
+            "available": true,
+            "template": {
+              "attributes": {
+                "driving": 56,
+                "beastHandling": 53,
+                "combat": 58,
+                "awareness": 62,
+                "nerve": 66
+              },
+              "condition": 78,
+              "strain": 0,
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-driver-standard-2": {
+            "id": "m2c-offer-driver-standard-2",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard driver 2",
+            "category": "driver",
+            "tier": "Standard",
+            "ordinal": 2,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 1.06,
+            "wageQuality": 1.07,
+            "health": 86,
+            "price": 405,
+            "available": true,
+            "template": {
+              "attributes": {
+                "driving": 51,
+                "beastHandling": 66,
+                "combat": 69,
+                "awareness": 69,
+                "nerve": 69
+              },
+              "condition": 86,
+              "strain": 0,
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-driver-premium-1": {
+            "id": "m2c-offer-driver-premium-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Premium driver 1",
+            "category": "driver",
+            "tier": "Premium",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 0.89,
+            "wageQuality": 0.94,
+            "health": 75,
+            "price": 660,
+            "available": true,
+            "template": {
+              "attributes": {
+                "driving": 82,
+                "beastHandling": 85,
+                "combat": 82,
+                "awareness": 72,
+                "nerve": 74
+              },
+              "condition": 75,
+              "strain": 0,
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-beast-budget-1": {
+            "id": "m2c-offer-beast-budget-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Budget beast 1",
+            "category": "beast",
+            "tier": "Budget",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 1.06,
+            "wageQuality": null,
+            "health": 89,
+            "price": 155,
+            "available": true,
+            "template": {
+              "attributes": {
+                "speed": 44,
+                "power": 45,
+                "agility": 31,
+                "endurance": 32,
+                "discipline": 39,
+                "toughness": 47
+              },
+              "condition": 89,
+              "species": "generic_draft_beast",
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-beast-budget-2": {
+            "id": "m2c-offer-beast-budget-2",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Budget beast 2",
+            "category": "beast",
+            "tier": "Budget",
+            "ordinal": 2,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 0.93,
+            "wageQuality": null,
+            "health": 84,
+            "price": 135,
+            "available": true,
+            "template": {
+              "attributes": {
+                "speed": 46,
+                "power": 30,
+                "agility": 35,
+                "endurance": 37,
+                "discipline": 46,
+                "toughness": 34
+              },
+              "condition": 84,
+              "species": "generic_draft_beast",
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-beast-standard-1": {
+            "id": "m2c-offer-beast-standard-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard beast 1",
+            "category": "beast",
+            "tier": "Standard",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 1.12,
+            "wageQuality": null,
+            "health": 79,
+            "price": 340,
+            "available": true,
+            "template": {
+              "attributes": {
+                "speed": 53,
+                "power": 67,
+                "agility": 53,
+                "endurance": 64,
+                "discipline": 52,
+                "toughness": 61
+              },
+              "condition": 79,
+              "species": "generic_draft_beast",
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-beast-standard-2": {
+            "id": "m2c-offer-beast-standard-2",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard beast 2",
+            "category": "beast",
+            "tier": "Standard",
+            "ordinal": 2,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 0.99,
+            "wageQuality": null,
+            "health": 98,
+            "price": 320,
+            "available": true,
+            "template": {
+              "attributes": {
+                "speed": 50,
+                "power": 61,
+                "agility": 65,
+                "endurance": 52,
+                "discipline": 58,
+                "toughness": 62
+              },
+              "condition": 98,
+              "species": "generic_draft_beast",
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-beast-standard-3": {
+            "id": "m2c-offer-beast-standard-3",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard beast 3",
+            "category": "beast",
+            "tier": "Standard",
+            "ordinal": 3,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 1.11,
+            "wageQuality": null,
+            "health": 74,
+            "price": 335,
+            "available": true,
+            "template": {
+              "attributes": {
+                "speed": 52,
+                "power": 53,
+                "agility": 56,
+                "endurance": 50,
+                "discipline": 62,
+                "toughness": 50
+              },
+              "condition": 74,
+              "species": "generic_draft_beast",
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-beast-premium-1": {
+            "id": "m2c-offer-beast-premium-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Premium beast 1",
+            "category": "beast",
+            "tier": "Premium",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 0.85,
+            "wageQuality": null,
+            "health": 77,
+            "price": 515,
+            "available": true,
+            "template": {
+              "attributes": {
+                "speed": 84,
+                "power": 73,
+                "agility": 88,
+                "endurance": 81,
+                "discipline": 82,
+                "toughness": 80
+              },
+              "condition": 77,
+              "species": "generic_draft_beast",
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-chariot-budget-1": {
+            "id": "m2c-offer-chariot-budget-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Budget chariot 1",
+            "category": "chariot",
+            "tier": "Budget",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 0.89,
+            "wageQuality": null,
+            "health": 73,
+            "price": 305,
+            "available": true,
+            "template": {
+              "attributes": {
+                "stability": 38,
+                "durability": 36,
+                "protection": 33,
+                "rollingEfficiency": 36,
+                "maneuverability": 32
+              },
+              "condition": 82,
+              "integrity": 73,
+              "wear": 0,
+              "weight": 180,
+              "capacity": 400,
+              "xp": 0
+            }
+          },
+          "m2c-offer-chariot-standard-1": {
+            "id": "m2c-offer-chariot-standard-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard chariot 1",
+            "category": "chariot",
+            "tier": "Standard",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 1.04,
+            "wageQuality": null,
+            "health": 83,
+            "price": 615,
+            "available": true,
+            "template": {
+              "attributes": {
+                "stability": 54,
+                "durability": 54,
+                "protection": 67,
+                "rollingEfficiency": 66,
+                "maneuverability": 67
+              },
+              "condition": 97,
+              "integrity": 83,
+              "wear": 0,
+              "weight": 180,
+              "capacity": 400,
+              "xp": 0
+            }
+          },
+          "m2c-offer-chariot-premium-1": {
+            "id": "m2c-offer-chariot-premium-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Premium chariot 1",
+            "category": "chariot",
+            "tier": "Premium",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 1.04,
+            "wageQuality": null,
+            "health": 98,
+            "price": 1190,
+            "available": true,
+            "template": {
+              "attributes": {
+                "stability": 75,
+                "durability": 70,
+                "protection": 87,
+                "rollingEfficiency": 86,
+                "maneuverability": 75
+              },
+              "condition": 94,
+              "integrity": 98,
+              "wear": 0,
+              "weight": 180,
+              "capacity": 400,
+              "xp": 0
+            }
+          },
+          "m2c-offer-specialist-budget-1": {
+            "id": "m2c-offer-specialist-budget-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Budget specialist 1",
+            "category": "specialist",
+            "tier": "Budget",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 0.87,
+            "wageQuality": 0.93,
+            "health": null,
+            "price": 175,
+            "available": true,
+            "template": {
+              "role": "Beast Handler",
+              "injury": "Healthy"
+            }
+          },
+          "m2c-offer-specialist-standard-1": {
+            "id": "m2c-offer-specialist-standard-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard specialist 1",
+            "category": "specialist",
+            "tier": "Standard",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 0.88,
+            "wageQuality": 0.92,
+            "health": null,
+            "price": 330,
+            "available": true,
+            "template": {
+              "role": "Mechanic",
+              "injury": "Healthy"
+            }
+          },
+          "m2c-offer-specialist-premium-1": {
+            "id": "m2c-offer-specialist-premium-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Premium specialist 1",
+            "category": "specialist",
+            "tier": "Premium",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 0.88,
+            "wageQuality": 0.95,
+            "health": null,
+            "price": 550,
+            "available": true,
+            "template": {
+              "role": "Physician",
+              "injury": "Healthy"
+            }
+          },
+          "m2c-offer-equipment-budget-1": {
+            "id": "m2c-offer-equipment-budget-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Basic equipment 1",
+            "category": "equipment",
+            "tier": "Budget",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 0.99,
+            "wageQuality": null,
+            "health": null,
+            "price": 100,
+            "available": true,
+            "template": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "m2c-offer-equipment-budget-2": {
+            "id": "m2c-offer-equipment-budget-2",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Basic equipment 2",
+            "category": "equipment",
+            "tier": "Budget",
+            "ordinal": 2,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 0.85,
+            "wageQuality": null,
+            "health": null,
+            "price": 85,
+            "available": true,
+            "template": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "m2c-offer-equipment-budget-3": {
+            "id": "m2c-offer-equipment-budget-3",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Basic equipment 3",
+            "category": "equipment",
+            "tier": "Budget",
+            "ordinal": 3,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 1.02,
+            "wageQuality": null,
+            "health": null,
+            "price": 100,
+            "available": true,
+            "template": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "m2c-offer-equipment-standard-1": {
+            "id": "m2c-offer-equipment-standard-1",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard equipment 1",
+            "category": "equipment",
+            "tier": "Standard",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 1.13,
+            "wageQuality": null,
+            "health": null,
+            "price": 310,
+            "available": true,
+            "template": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "m2c-offer-equipment-standard-2": {
+            "id": "m2c-offer-equipment-standard-2",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard equipment 2",
+            "category": "equipment",
+            "tier": "Standard",
+            "ordinal": 2,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 1.01,
+            "wageQuality": null,
+            "health": null,
+            "price": 280,
+            "available": true,
+            "template": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "m2c-offer-equipment-standard-3": {
+            "id": "m2c-offer-equipment-standard-3",
+            "ownerCareerId": "browser-scrappy",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard equipment 3",
+            "category": "equipment",
+            "tier": "Standard",
+            "ordinal": 3,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-scrappy",
+            "quality": 1.06,
+            "wageQuality": null,
+            "health": null,
+            "price": 290,
+            "available": true,
+            "template": {
+              "mass": 0,
+              "combat": 0
+            }
+          }
+        },
+        "properties": {
+          "starter-9e94abd9-property": {
+            "id": "starter-9e94abd9-property",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "facilities": [
+                "starter-9e94abd9-facility"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Basic Property",
+            "tier": "Basic",
+            "capacities": {
+              "drivers": 2,
+              "specialists": 0,
+              "beasts": 4,
+              "chariots": 1
+            },
+            "packageId": "scrappy",
+            "catalogVersion": 3
+          }
+        },
+        "facilities": {
+          "starter-9e94abd9-facility": {
+            "id": "starter-9e94abd9-facility",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "property": [
+                "starter-9e94abd9-property"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Makeshift Yard",
+            "descriptiveOnly": true
+          }
+        },
+        "projects": {},
+        "assignments": {
+          "starter-9e94abd9-ru": {
+            "id": "starter-9e94abd9-ru",
+            "ownerCareerId": "browser-scrappy",
+            "references": {
+              "subject": [
+                "starter-9e94abd9-driver-0",
+                "starter-9e94abd9-beast-0",
+                "starter-9e94abd9-beast-1",
+                "starter-9e94abd9-chariot"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Prospective Racing Unit",
+            "kind": "prospectiveRU",
+            "driverId": "starter-9e94abd9-driver-0",
+            "beastIds": [
+              "starter-9e94abd9-beast-0",
+              "starter-9e94abd9-beast-1"
+            ],
+            "chariotId": "starter-9e94abd9-chariot"
+          }
+        },
+        "obligations": {},
+        "advancementChoices": {},
+        "achievements": {}
+      }
+    },
+    "history": {
+      "schema": 1,
+      "commands": [
+        {
+          "id": "initialize-scrappy",
+          "profileId": "owner",
+          "careerId": "browser-scrappy",
+          "commandVersion": 1,
+          "request": "{\"careerId\":\"browser-scrappy\",\"catalogVersion\":3,\"commandVersion\":1,\"confirmed\":true,\"delta\":750,\"effectId\":\"initialize-browser-scrappy\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":0,\"id\":\"initialize-scrappy\",\"packageId\":\"scrappy\",\"profileId\":\"owner\",\"reason\":\"Approved starting package\",\"type\":\"career.initialize\"}",
+          "fingerprint": "5b489942",
+          "resultRevision": 1,
+          "effectId": "initialize-browser-scrappy",
+          "delta": 750,
+          "balanceAfter": 750,
+          "retention": "P0",
+          "result": {
+            "packageId": "scrappy",
+            "catalogVersion": 3,
+            "treasuryGrant": 750,
+            "grantedIds": [
+              "starter-9e94abd9-beast-0",
+              "starter-9e94abd9-beast-1",
+              "starter-9e94abd9-beast-2",
+              "starter-9e94abd9-chariot",
+              "starter-9e94abd9-driver-0",
+              "starter-9e94abd9-driver-1",
+              "starter-9e94abd9-equipment-0",
+              "starter-9e94abd9-equipment-1",
+              "starter-9e94abd9-facility",
+              "starter-9e94abd9-property",
+              "starter-9e94abd9-ru"
+            ]
+          }
+        },
+        {
+          "kind": "migration-maintenance",
+          "recordVersion": 1,
+          "id": "migration-66207f53-f455-4fbc-b644-9e588a4dd794",
+          "profileId": "owner",
+          "careerId": "browser-scrappy",
+          "request": "{\"adapterVersion\":\"valuation-health-v1\",\"careerId\":\"browser-scrappy\",\"confirmed\":true,\"effectId\":\"migrate-browser-scrappy-2-3\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":1,\"generatorVersion\":\"market-generator-v1\",\"id\":\"migration-66207f53-f455-4fbc-b644-9e588a4dd794\",\"maintenanceVersion\":1,\"migrationVersion\":\"m2c-migration-v1\",\"profileId\":\"owner\",\"sourceFingerprint\":\"4f14b015faa37cbd8a13a6c692c182e40012b44e9fe32cb1d918a7b8adf0fb03\",\"sourceSchema\":2,\"targetSchema\":3,\"type\":\"career.migrate\"}",
+          "fingerprint": "40611a3c2d421ab6458cf0a1b736c4a07b4e9a869768b99fd8221cd64214fa9a",
+          "effectId": "migrate-browser-scrappy-2-3",
+          "revision": 1,
+          "maintenanceRevision": 2,
+          "manifestDigest": "d32985ffc417b39159d5e4c11fa300b7acbed225d538120d68c24a96f6bce964",
+          "acknowledgment": {
+            "kind": "BNT-migration-ack",
+            "sourceFingerprint": "4f14b015faa37cbd8a13a6c692c182e40012b44e9fe32cb1d918a7b8adf0fb03",
+            "manifestDigest": "d32985ffc417b39159d5e4c11fa300b7acbed225d538120d68c24a96f6bce964",
+            "careerSchema": 3,
+            "revision": 1,
+            "maintenanceRevision": 2
+          },
+          "retention": "P0"
+        }
+      ]
+    },
+    "migration": {
+      "fromSchema": 1,
+      "toSchema": 2,
+      "sourceProfileId": "owner",
+      "sourceCareerId": "browser-scrappy",
+      "sourceRevision": 0,
+      "sourceTreasury": 0,
+      "sourcePendingDigest": null,
+      "sourceStateDigest": "cb65b8ef"
+    },
+    "economy": {
+      "schema": 1,
+      "rulesVersion": "m2c-economy-v1",
+      "origin": {
+        "kind": "BNT-career-state",
+        "schema": 2,
+        "revision": 1,
+        "profile": {
+          "id": "owner",
+          "name": "Owner",
+          "legacy": {
+            "records": []
+          },
+          "developerEdited": false
+        },
+        "career": {
+          "id": "browser-scrappy",
+          "ownerProfileId": "owner",
+          "name": "M1 Foundation",
+          "status": "Foundation",
+          "treasury": 750,
+          "developerEdited": false
+        },
+        "pendingRace": null,
+        "transactions": [
+          {
+            "transaction": {
+              "id": "initialize-scrappy",
+              "profileId": "owner",
+              "careerId": "browser-scrappy",
+              "expectedRevision": 0,
+              "expectedMaintenanceRevision": 1,
+              "commandVersion": 1,
+              "type": "career.initialize",
+              "effectId": "initialize-browser-scrappy",
+              "delta": 750,
+              "reason": "Approved starting package",
+              "packageId": "scrappy",
+              "catalogVersion": 3,
+              "confirmed": true
+            },
+            "resultRevision": 1,
+            "balanceAfter": 750,
+            "result": {
+              "packageId": "scrappy",
+              "catalogVersion": 3,
+              "treasuryGrant": 750,
+              "grantedIds": [
+                "starter-9e94abd9-beast-0",
+                "starter-9e94abd9-beast-1",
+                "starter-9e94abd9-beast-2",
+                "starter-9e94abd9-chariot",
+                "starter-9e94abd9-driver-0",
+                "starter-9e94abd9-driver-1",
+                "starter-9e94abd9-equipment-0",
+                "starter-9e94abd9-equipment-1",
+                "starter-9e94abd9-facility",
+                "starter-9e94abd9-property",
+                "starter-9e94abd9-ru"
+              ]
+            }
+          }
+        ],
+        "provenance": [],
+        "maintenanceRevision": 1,
+        "management": {
+          "initialized": true,
+          "registrySchema": 2,
+          "registries": {
+            "personnel": {
+              "starter-9e94abd9-driver-0": {
+                "id": "starter-9e94abd9-driver-0",
+                "ownerCareerId": "browser-scrappy",
+                "references": {
+                  "assignment": [
+                    "starter-9e94abd9-ru"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Scrappy Underdog Primary Driver",
+                "role": "driver",
+                "attributes": {
+                  "driving": 40,
+                  "beastHandling": 50,
+                  "combat": 40,
+                  "awareness": 50,
+                  "nerve": 60
+                },
+                "condition": 100,
+                "injury": "Healthy",
+                "fatigue": 0,
+                "strain": 0,
+                "xp": 0,
+                "available": true
+              },
+              "starter-9e94abd9-driver-1": {
+                "id": "starter-9e94abd9-driver-1",
+                "ownerCareerId": "browser-scrappy",
+                "references": {},
+                "recordVersion": 1,
+                "name": "Scrappy Underdog Reserve Driver",
+                "role": "driver",
+                "attributes": {
+                  "driving": 30,
+                  "beastHandling": 40,
+                  "combat": 40,
+                  "awareness": 40,
+                  "nerve": 50
+                },
+                "condition": 100,
+                "injury": "Healthy",
+                "fatigue": 0,
+                "strain": 0,
+                "xp": 0,
+                "available": true
+              }
+            },
+            "specialists": {},
+            "beasts": {
+              "starter-9e94abd9-beast-0": {
+                "id": "starter-9e94abd9-beast-0",
+                "ownerCareerId": "browser-scrappy",
+                "references": {
+                  "assignment": [
+                    "starter-9e94abd9-ru"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Scrappy Underdog Lead A",
+                "species": "generic_draft_beast",
+                "attributes": {
+                  "speed": 40,
+                  "power": 50,
+                  "agility": 40,
+                  "endurance": 60,
+                  "discipline": 40,
+                  "toughness": 50
+                },
+                "condition": 100,
+                "injury": "Healthy",
+                "fatigue": 0,
+                "xp": 0,
+                "available": true
+              },
+              "starter-9e94abd9-beast-1": {
+                "id": "starter-9e94abd9-beast-1",
+                "ownerCareerId": "browser-scrappy",
+                "references": {
+                  "assignment": [
+                    "starter-9e94abd9-ru"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Scrappy Underdog Lead B",
+                "species": "generic_draft_beast",
+                "attributes": {
+                  "speed": 50,
+                  "power": 40,
+                  "agility": 40,
+                  "endurance": 60,
+                  "discipline": 40,
+                  "toughness": 50
+                },
+                "condition": 100,
+                "injury": "Healthy",
+                "fatigue": 0,
+                "xp": 0,
+                "available": true
+              },
+              "starter-9e94abd9-beast-2": {
+                "id": "starter-9e94abd9-beast-2",
+                "ownerCareerId": "browser-scrappy",
+                "references": {},
+                "recordVersion": 1,
+                "name": "Scrappy Underdog Reserve Beast",
+                "species": "generic_draft_beast",
+                "attributes": {
+                  "speed": 40,
+                  "power": 40,
+                  "agility": 50,
+                  "endurance": 60,
+                  "discipline": 50,
+                  "toughness": 50
+                },
+                "condition": 100,
+                "injury": "Healthy",
+                "fatigue": 0,
+                "xp": 0,
+                "available": true
+              }
+            },
+            "chariots": {
+              "starter-9e94abd9-chariot": {
+                "id": "starter-9e94abd9-chariot",
+                "ownerCareerId": "browser-scrappy",
+                "references": {
+                  "equipment": [
+                    "starter-9e94abd9-equipment-0",
+                    "starter-9e94abd9-equipment-1"
+                  ],
+                  "assignment": [
+                    "starter-9e94abd9-ru"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Salvaged racing chariot",
+                "attributes": {
+                  "stability": 40,
+                  "durability": 40,
+                  "protection": 40,
+                  "rollingEfficiency": 40,
+                  "maneuverability": 40
+                },
+                "condition": 100,
+                "wear": 0,
+                "integrity": 100,
+                "status": "Functional",
+                "weight": 180,
+                "capacity": 400,
+                "xp": 0,
+                "available": true
+              }
+            },
+            "equipment": {
+              "starter-9e94abd9-equipment-0": {
+                "id": "starter-9e94abd9-equipment-0",
+                "ownerCareerId": "browser-scrappy",
+                "references": {
+                  "installedOn": [
+                    "starter-9e94abd9-chariot"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Patched harness",
+                "mass": 0,
+                "combat": 0
+              },
+              "starter-9e94abd9-equipment-1": {
+                "id": "starter-9e94abd9-equipment-1",
+                "ownerCareerId": "browser-scrappy",
+                "references": {
+                  "installedOn": [
+                    "starter-9e94abd9-chariot"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Worn wheels",
+                "mass": 0,
+                "combat": 0
+              }
+            },
+            "contracts": {},
+            "candidates": {},
+            "recruitmentOffers": {},
+            "marketOffers": {},
+            "properties": {
+              "starter-9e94abd9-property": {
+                "id": "starter-9e94abd9-property",
+                "ownerCareerId": "browser-scrappy",
+                "references": {
+                  "facilities": [
+                    "starter-9e94abd9-facility"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Basic Property",
+                "tier": "Basic",
+                "capacities": {
+                  "drivers": 2,
+                  "specialists": 0,
+                  "beasts": 4,
+                  "chariots": 1
+                },
+                "packageId": "scrappy",
+                "catalogVersion": 3
+              }
+            },
+            "facilities": {
+              "starter-9e94abd9-facility": {
+                "id": "starter-9e94abd9-facility",
+                "ownerCareerId": "browser-scrappy",
+                "references": {
+                  "property": [
+                    "starter-9e94abd9-property"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Makeshift Yard",
+                "descriptiveOnly": true
+              }
+            },
+            "projects": {},
+            "assignments": {
+              "starter-9e94abd9-ru": {
+                "id": "starter-9e94abd9-ru",
+                "ownerCareerId": "browser-scrappy",
+                "references": {
+                  "subject": [
+                    "starter-9e94abd9-driver-0",
+                    "starter-9e94abd9-beast-0",
+                    "starter-9e94abd9-beast-1",
+                    "starter-9e94abd9-chariot"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Prospective Racing Unit",
+                "kind": "prospectiveRU",
+                "driverId": "starter-9e94abd9-driver-0",
+                "beastIds": [
+                  "starter-9e94abd9-beast-0",
+                  "starter-9e94abd9-beast-1"
+                ],
+                "chariotId": "starter-9e94abd9-chariot"
+              }
+            },
+            "obligations": {},
+            "advancementChoices": {},
+            "achievements": {}
+          }
+        },
+        "history": {
+          "schema": 1,
+          "commands": [
+            {
+              "id": "initialize-scrappy",
+              "profileId": "owner",
+              "careerId": "browser-scrappy",
+              "commandVersion": 1,
+              "request": "{\"careerId\":\"browser-scrappy\",\"catalogVersion\":3,\"commandVersion\":1,\"confirmed\":true,\"delta\":750,\"effectId\":\"initialize-browser-scrappy\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":0,\"id\":\"initialize-scrappy\",\"packageId\":\"scrappy\",\"profileId\":\"owner\",\"reason\":\"Approved starting package\",\"type\":\"career.initialize\"}",
+              "fingerprint": "5b489942",
+              "resultRevision": 1,
+              "effectId": "initialize-browser-scrappy",
+              "delta": 750,
+              "balanceAfter": 750,
+              "retention": "P0",
+              "result": {
+                "packageId": "scrappy",
+                "catalogVersion": 3,
+                "treasuryGrant": 750,
+                "grantedIds": [
+                  "starter-9e94abd9-beast-0",
+                  "starter-9e94abd9-beast-1",
+                  "starter-9e94abd9-beast-2",
+                  "starter-9e94abd9-chariot",
+                  "starter-9e94abd9-driver-0",
+                  "starter-9e94abd9-driver-1",
+                  "starter-9e94abd9-equipment-0",
+                  "starter-9e94abd9-equipment-1",
+                  "starter-9e94abd9-facility",
+                  "starter-9e94abd9-property",
+                  "starter-9e94abd9-ru"
+                ]
+              }
+            }
+          ]
+        },
+        "migration": {
+          "fromSchema": 1,
+          "toSchema": 2,
+          "sourceProfileId": "owner",
+          "sourceCareerId": "browser-scrappy",
+          "sourceRevision": 0,
+          "sourceTreasury": 0,
+          "sourcePendingDigest": null,
+          "sourceStateDigest": "cb65b8ef"
+        }
+      },
+      "migrationRequest": {
+        "id": "migration-66207f53-f455-4fbc-b644-9e588a4dd794",
+        "profileId": "owner",
+        "careerId": "browser-scrappy",
+        "type": "career.migrate",
+        "maintenanceVersion": 1,
+        "expectedRevision": 1,
+        "expectedMaintenanceRevision": 1,
+        "sourceSchema": 2,
+        "targetSchema": 3,
+        "sourceFingerprint": "4f14b015faa37cbd8a13a6c692c182e40012b44e9fe32cb1d918a7b8adf0fb03",
+        "migrationVersion": "m2c-migration-v1",
+        "adapterVersion": "valuation-health-v1",
+        "generatorVersion": "market-generator-v1",
+        "confirmed": true,
+        "effectId": "migrate-browser-scrappy-2-3"
+      },
+      "manifestDigest": "d32985ffc417b39159d5e4c11fa300b7acbed225d538120d68c24a96f6bce964"
+    }
+  }
+}

@@ -1,6 +1,9 @@
+import { previewMigration, buildEconomyBase } from '../career/economy/base.js';
+import { validateStateV3 } from '../career/economy/schema3.js';
+import { validateMigrationRequest, protectMaintenance, lookupMaintenance, migrationEffect } from '../career/economy/maintenance-history.js';
 import { transact, withProvenance, mergeMarks, migrateStateV1, assertRevision, id } from '../career/state.js';
 import { immutableHistoryView } from '../career/schema2.js';
-import { mergeProtected, lookupCommitted, completeProtectedRegistry } from '../career/history.js';
+import { mergeProtected, lookupCommitted, completeProtectedRegistry } from '../career/economy/protected-registry.js';
 import { SAVE_KEY, inspectEnvelope, parseEnvelope, makeEnvelope } from './envelope.js';
 
 // Synchronous storage adapter: callers serialize UI actions and use Web Locks where available.
@@ -11,7 +14,7 @@ export class CareerStore {
     this.marks = []; this.protectedHistory = []; this.maintenanceClock = 0; this.schema2Session = false; this.raw = null; this.quarantine = null; this.problem = '';
     this.requiresCheckpoint = false; this.exportToken = null; this.recoveryPending = false;
   }
-  get state() { return this.current?.schema === 2 ? immutableHistoryView(this.current) : this.current ? structuredClone(this.current) : null; }
+  get state() { return this.current?.schema >= 2 ? immutableHistoryView(this.current) : this.current ? structuredClone(this.current) : null; }
   open() {
     try { this.raw = this.storage.getItem(SAVE_KEY); }
     catch (e) { this.mode = 'manual'; this.problem = 'Browser storage unavailable: ' + e.message; return; }
@@ -46,8 +49,8 @@ export class CareerStore {
   create(state, { confirmed = false } = {}) {
     if ((this.current || this.raw !== null || this.quarantine) && confirmed !== true) throw Error('Confirm replacement of existing career/save');
     this.requireManualCheckpoint();
-    if (this.schema2Session && state.schema !== 2) throw Error('Protected session requires explicit schema-2 creation, not downgrade');
-    if (state.schema === 2 && this.schema2Session) { state = structuredClone(state); state.maintenanceRevision = Math.max(state.maintenanceRevision, this.maintenanceClock + 1); }
+    if (this.schema2Session && state.schema < 2) throw Error('Protected session requires explicit schema-2 creation, not downgrade');
+    if (state.schema >= 2 && this.schema2Session) { state = structuredClone(state); state.maintenanceRevision = Math.max(state.maintenanceRevision, this.maintenanceClock + 1); }
     const candidate = makeEnvelope(state, this.current, this.marks, this.protectedHistory, this.maintenanceClock); this.publish(candidate, { allowBlocked: confirmed });
     return this.state;
   }
@@ -57,15 +60,33 @@ export class CareerStore {
     id(profileId); id(careerId);
     if (profileId !== this.current.profile.id || careerId !== this.current.career.id) throw Error('Migration ownership mismatch');
     assertRevision(this.current, expectedRevision, expectedMaintenanceRevision);
-    if (this.current.schema === 2) return { migrated: false, state: this.state };
+    if (this.current.schema >= 2) return { migrated: false, state: this.state };
     this.requireManualCheckpoint();
     const state = migrateStateV1(this.current);
     this.publish(makeEnvelope(state, this.current, this.marks, this.protectedHistory, this.maintenanceClock));
     return { migrated: true, state: this.state };
   }
+  previewEconomy() {
+    if (!this.current || this.current.schema !== 2) throw Error('Load an initialized schema-2 stable to preview migration');
+    if (this.protectedHistory.some(e=>e.careerId===this.current.career.id && e.effectId===migrationEffect(this.current.career.id))) throw Error('Migration already protected on a retained timeline; restore a valid post-migration backup. No economy is regenerated.');
+    return previewMigration(this.current);
+  }
+  migrateEconomy(request) {
+    if (!this.current) throw Error('No career loaded');
+    validateMigrationRequest(request);
+    const previous=lookupMaintenance(this.protectedHistory,request);
+    if (previous) return {...previous,state:this.state};
+    if (this.protectedHistory.some(e=>e.careerId===request.careerId && e.effectId===request.effectId)) throw Error('Migration effect already protected; no regeneration');
+    if (this.current.schema !== 2) throw Error('Explicit schema-2 source required');
+    const next=buildEconomyBase(this.current,request),entry=protectMaintenance(request,next.economy.manifestDigest);
+    next.history.commands=mergeProtected(next.history.commands,[entry]);validateStateV3(next);
+    this.requireManualCheckpoint();
+    this.publish(makeEnvelope(next,this.current,this.marks,mergeProtected(this.protectedHistory,[entry]),this.maintenanceClock));
+    return {duplicate:false,acknowledgment:structuredClone(entry.acknowledgment),state:this.state};
+  }
   transaction(tx) {
     if (!this.current) throw Error('No career loaded');
-    if (this.current.schema === 2) {
+    if (this.current.schema >= 2) {
       const prior = lookupCommitted(this.protectedHistory, tx, this.current.transactions);
       if (prior) return { ...prior, state: this.state };
       if (this.protectedHistory.some(e => e.careerId === tx.careerId && e.effectId === tx.effectId)) throw Error('Effect identity already committed on a retained timeline');
@@ -81,7 +102,7 @@ export class CareerStore {
     if (confirmed !== true) throw Error('Confirm complete save replacement; Owner Legacy is replaced, never merged');
     this.requireManualCheckpoint();
     const marks = mergeMarks(this.marks, incoming.marks);
-    const useProtected = this.schema2Session || incoming.primary.schema === 2 || incoming.protectedHistory.length || migrateLegacy === true;
+    const useProtected = this.schema2Session || incoming.primary.schema >= 2 || incoming.protectedHistory.length || migrateLegacy === true;
     const protectedHistory = useProtected ? completeProtectedRegistry(mergeProtected(this.protectedHistory, incoming.protectedHistory), marks) : [];
     let target = incoming.primary;
     if (target.schema === 1 && (this.schema2Session || protectedHistory.length || migrateLegacy)) {
@@ -89,7 +110,7 @@ export class CareerStore {
       target = migrateStateV1(target);
     }
     let state = withProvenance(target, marks, protectedHistory);
-    if (state.schema === 2 && (this.current || this.schema2Session)) state.maintenanceRevision = Math.max(state.maintenanceRevision, this.maintenanceClock, incoming.maintenanceClock) + 1;
+    if (state.schema >= 2 && (this.current || this.schema2Session)) state.maintenanceRevision = Math.max(state.maintenanceRevision, this.maintenanceClock, incoming.maintenanceClock) + 1;
     // Full-save import retains the imported recovery checkpoint; it never merges Legacy.
     const recovery = incoming.recovery;
     this.publish(makeEnvelope(state, recovery, marks, protectedHistory, Math.max(this.maintenanceClock, incoming.maintenanceClock)), { allowBlocked: true });
@@ -101,7 +122,7 @@ export class CareerStore {
     let target = this.recovery;
     if (target.schema === 1 && (this.schema2Session || this.protectedHistory.length)) target = migrateStateV1(target);
     const state = withProvenance(target, this.marks, this.protectedHistory);
-    if (state.schema === 2) state.maintenanceRevision = Math.max(state.maintenanceRevision, this.maintenanceClock) + 1;
+    if (state.schema >= 2) state.maintenanceRevision = Math.max(state.maintenanceRevision, this.maintenanceClock) + 1;
     // Selecting a checkpoint is not a financial transaction or invented reward.
     this.publish(makeEnvelope(state, this.recovery, this.marks, this.protectedHistory, this.maintenanceClock), { allowBlocked: true });
     return this.state;

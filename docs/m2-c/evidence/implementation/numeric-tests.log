@@ -1,0 +1,25 @@
+✔ M2-C exact price fixtures: native H, neutral specialist/equipment and positive decimal ties (1.413884ms)
+✔ M2-C corrected R2.1 starter fixture: mean 50 is Standard, basis 325 and current-H resale 138 (97.93472ms)
+✔ M2-C valuation-health-v1 keeps integrity/condition/wear and fatigue separate (56.345198ms)
+✔ M2-C fractional training and engineering cost bands use each pre-increment native rating (0.392378ms)
+✔ M2-C fixed market counts, templates, roles and neutral item records across deterministic careers (4.550276ms)
+✔ M2-C generator rejection sampling handles inclusive edges without modulo bias (0.185994ms)
+✔ M2-C synthetic service fixtures: fixed partial recovery, injury treatment, repair and native-field separation (137.365495ms)
+✔ M2-C synthetic funded XP reducer: fractional progression, exact discount and no saved XP grant (107.398877ms)
+✔ M2-C synthetic discounted service fixtures require active qualified specialist and purchased facility (479.349676ms)
+✔ M2-C independent golden market vector career (0.588187ms)
+✔ M2-C independent golden market vector A (0.336656ms)
+✔ M2-C independent golden market vector career_42 (0.295846ms)
+✔ M2-C independent golden market vector aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (0.27821ms)
+✔ M2-C exact decimal helpers handle high precision and subnormal finite native inputs (261.427566ms)
+✔ M2-C synthetic contract fixtures: short/standard/long wages, signing terms and termination fees (89.604824ms)
+✔ M2-C synthetic Beast Handler discount: care rounds 25.5 to 26; treatment plus ward is 60 (371.022861ms)
+✔ M2-C synthetic Training Grounds applies one final XP ceiling after summing increments (139.056532ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1881.693515

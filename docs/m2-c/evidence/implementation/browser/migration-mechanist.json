@@ -1,0 +1,2659 @@
+{
+  "source": {
+    "kind": "BNT-career-state",
+    "schema": 2,
+    "revision": 1,
+    "profile": {
+      "id": "owner",
+      "name": "Owner",
+      "legacy": {
+        "records": []
+      },
+      "developerEdited": false
+    },
+    "career": {
+      "id": "browser-mechanist",
+      "ownerProfileId": "owner",
+      "name": "M1 Foundation",
+      "status": "Foundation",
+      "treasury": 800,
+      "developerEdited": false
+    },
+    "pendingRace": null,
+    "transactions": [
+      {
+        "transaction": {
+          "id": "initialize-mechanist",
+          "profileId": "owner",
+          "careerId": "browser-mechanist",
+          "expectedRevision": 0,
+          "expectedMaintenanceRevision": 1,
+          "commandVersion": 1,
+          "type": "career.initialize",
+          "effectId": "initialize-browser-mechanist",
+          "delta": 800,
+          "reason": "Approved starting package",
+          "packageId": "mechanist",
+          "catalogVersion": 3,
+          "confirmed": true
+        },
+        "resultRevision": 1,
+        "balanceAfter": 800,
+        "result": {
+          "packageId": "mechanist",
+          "catalogVersion": 3,
+          "treasuryGrant": 800,
+          "grantedIds": [
+            "starter-747a9640-beast-0",
+            "starter-747a9640-beast-1",
+            "starter-747a9640-chariot",
+            "starter-747a9640-driver-0",
+            "starter-747a9640-equipment-0",
+            "starter-747a9640-equipment-1",
+            "starter-747a9640-facility",
+            "starter-747a9640-property",
+            "starter-747a9640-ru"
+          ]
+        }
+      }
+    ],
+    "provenance": [],
+    "maintenanceRevision": 1,
+    "management": {
+      "initialized": true,
+      "registrySchema": 2,
+      "registries": {
+        "personnel": {
+          "starter-747a9640-driver-0": {
+            "id": "starter-747a9640-driver-0",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "assignment": [
+                "starter-747a9640-ru"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Mechanist Workshop Primary Driver",
+            "role": "driver",
+            "attributes": {
+              "driving": 50,
+              "beastHandling": 40,
+              "combat": 50,
+              "awareness": 60,
+              "nerve": 50
+            },
+            "condition": 100,
+            "injury": "Healthy",
+            "fatigue": 0,
+            "strain": 0,
+            "xp": 0,
+            "available": true
+          }
+        },
+        "specialists": {},
+        "beasts": {
+          "starter-747a9640-beast-0": {
+            "id": "starter-747a9640-beast-0",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "assignment": [
+                "starter-747a9640-ru"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Mechanist Workshop Lead A",
+            "species": "generic_draft_beast",
+            "attributes": {
+              "speed": 50,
+              "power": 50,
+              "agility": 50,
+              "endurance": 50,
+              "discipline": 50,
+              "toughness": 50
+            },
+            "condition": 100,
+            "injury": "Healthy",
+            "fatigue": 0,
+            "xp": 0,
+            "available": true
+          },
+          "starter-747a9640-beast-1": {
+            "id": "starter-747a9640-beast-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "assignment": [
+                "starter-747a9640-ru"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Mechanist Workshop Lead B",
+            "species": "generic_draft_beast",
+            "attributes": {
+              "speed": 50,
+              "power": 50,
+              "agility": 50,
+              "endurance": 50,
+              "discipline": 50,
+              "toughness": 50
+            },
+            "condition": 100,
+            "injury": "Healthy",
+            "fatigue": 0,
+            "xp": 0,
+            "available": true
+          }
+        },
+        "chariots": {
+          "starter-747a9640-chariot": {
+            "id": "starter-747a9640-chariot",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "equipment": [
+                "starter-747a9640-equipment-0",
+                "starter-747a9640-equipment-1"
+              ],
+              "assignment": [
+                "starter-747a9640-ru"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Workshop-tuned chariot",
+            "attributes": {
+              "stability": 70,
+              "durability": 70,
+              "protection": 60,
+              "rollingEfficiency": 70,
+              "maneuverability": 70
+            },
+            "condition": 100,
+            "wear": 0,
+            "integrity": 100,
+            "status": "Functional",
+            "weight": 180,
+            "capacity": 400,
+            "xp": 0,
+            "available": true
+          }
+        },
+        "equipment": {
+          "starter-747a9640-equipment-0": {
+            "id": "starter-747a9640-equipment-0",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "installedOn": [
+                "starter-747a9640-chariot"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Reinforced harness",
+            "mass": 0,
+            "combat": 0
+          },
+          "starter-747a9640-equipment-1": {
+            "id": "starter-747a9640-equipment-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "installedOn": [
+                "starter-747a9640-chariot"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Precision wheels",
+            "mass": 0,
+            "combat": 0
+          }
+        },
+        "contracts": {},
+        "candidates": {},
+        "recruitmentOffers": {},
+        "marketOffers": {},
+        "properties": {
+          "starter-747a9640-property": {
+            "id": "starter-747a9640-property",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "facilities": [
+                "starter-747a9640-facility"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Basic Property",
+            "tier": "Basic",
+            "capacities": {
+              "drivers": 2,
+              "specialists": 0,
+              "beasts": 4,
+              "chariots": 1
+            },
+            "packageId": "mechanist",
+            "catalogVersion": 3
+          }
+        },
+        "facilities": {
+          "starter-747a9640-facility": {
+            "id": "starter-747a9640-facility",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "property": [
+                "starter-747a9640-property"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Workshop Shed",
+            "descriptiveOnly": true
+          }
+        },
+        "projects": {},
+        "assignments": {
+          "starter-747a9640-ru": {
+            "id": "starter-747a9640-ru",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "subject": [
+                "starter-747a9640-driver-0",
+                "starter-747a9640-beast-0",
+                "starter-747a9640-beast-1",
+                "starter-747a9640-chariot"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Prospective Racing Unit",
+            "kind": "prospectiveRU",
+            "driverId": "starter-747a9640-driver-0",
+            "beastIds": [
+              "starter-747a9640-beast-0",
+              "starter-747a9640-beast-1"
+            ],
+            "chariotId": "starter-747a9640-chariot"
+          }
+        },
+        "obligations": {},
+        "advancementChoices": {},
+        "achievements": {}
+      }
+    },
+    "history": {
+      "schema": 1,
+      "commands": [
+        {
+          "id": "initialize-mechanist",
+          "profileId": "owner",
+          "careerId": "browser-mechanist",
+          "commandVersion": 1,
+          "request": "{\"careerId\":\"browser-mechanist\",\"catalogVersion\":3,\"commandVersion\":1,\"confirmed\":true,\"delta\":800,\"effectId\":\"initialize-browser-mechanist\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":0,\"id\":\"initialize-mechanist\",\"packageId\":\"mechanist\",\"profileId\":\"owner\",\"reason\":\"Approved starting package\",\"type\":\"career.initialize\"}",
+          "fingerprint": "98a8b618",
+          "resultRevision": 1,
+          "effectId": "initialize-browser-mechanist",
+          "delta": 800,
+          "balanceAfter": 800,
+          "retention": "P0",
+          "result": {
+            "packageId": "mechanist",
+            "catalogVersion": 3,
+            "treasuryGrant": 800,
+            "grantedIds": [
+              "starter-747a9640-beast-0",
+              "starter-747a9640-beast-1",
+              "starter-747a9640-chariot",
+              "starter-747a9640-driver-0",
+              "starter-747a9640-equipment-0",
+              "starter-747a9640-equipment-1",
+              "starter-747a9640-facility",
+              "starter-747a9640-property",
+              "starter-747a9640-ru"
+            ]
+          }
+        }
+      ]
+    },
+    "migration": {
+      "fromSchema": 1,
+      "toSchema": 2,
+      "sourceProfileId": "owner",
+      "sourceCareerId": "browser-mechanist",
+      "sourceRevision": 0,
+      "sourceTreasury": 0,
+      "sourcePendingDigest": null,
+      "sourceStateDigest": "9e2f81f5"
+    }
+  },
+  "preview": {
+    "sourceFingerprint": "471a67e9faf93f380e8454c49985360d8a4ef6d970085a6af62f91ff68310a06",
+    "expectedRevision": 1,
+    "expectedMaintenanceRevision": 1,
+    "migrationVersion": "m2c-migration-v1",
+    "adapterVersion": "valuation-health-v1",
+    "generatorVersion": "market-generator-v1",
+    "manifest": {
+      "sourceSchema": 2,
+      "targetSchema": 3,
+      "sourceFingerprint": "471a67e9faf93f380e8454c49985360d8a4ef6d970085a6af62f91ff68310a06",
+      "migrationVersion": "m2c-migration-v1",
+      "adapterVersion": "valuation-health-v1",
+      "generatorVersion": "market-generator-v1",
+      "treasury": 800,
+      "gameplayRevision": 1,
+      "maintenanceRevision": 2,
+      "assetIds": [
+        "starter-747a9640-beast-0",
+        "starter-747a9640-beast-1",
+        "starter-747a9640-chariot",
+        "starter-747a9640-driver-0",
+        "starter-747a9640-equipment-0",
+        "starter-747a9640-equipment-1"
+      ],
+      "contracts": [
+        {
+          "id": "contract-3601d4d666c11ea7682b2b06eb11478f",
+          "ownerCareerId": "browser-mechanist",
+          "references": {
+            "employee": [
+              "starter-747a9640-driver-0"
+            ]
+          },
+          "recordVersion": 2,
+          "name": "Mechanist Workshop Primary Driver contract",
+          "term": "standard",
+          "cyclesRemaining": 8,
+          "baseWage": 35,
+          "wage": 35,
+          "grandfathered": true,
+          "sourceOfferId": null
+        }
+      ],
+      "valuations": [
+        {
+          "id": "starter-747a9640-driver-0",
+          "kind": "personnel",
+          "tier": "Standard",
+          "quality": 1,
+          "baseAttributes": {
+            "driving": 50,
+            "beastHandling": 40,
+            "combat": 50,
+            "awareness": 60,
+            "nerve": 50
+          },
+          "originalHealth": 100,
+          "acquisitionBasis": 0,
+          "sourceOfferId": null,
+          "wageQuality": 1,
+          "baseWage": 35
+        },
+        {
+          "id": "starter-747a9640-beast-0",
+          "kind": "beasts",
+          "tier": "Standard",
+          "quality": 1,
+          "baseAttributes": {
+            "speed": 50,
+            "power": 50,
+            "agility": 50,
+            "endurance": 50,
+            "discipline": 50,
+            "toughness": 50
+          },
+          "originalHealth": 100,
+          "acquisitionBasis": 325,
+          "sourceOfferId": null,
+          "wageQuality": null,
+          "baseWage": null
+        },
+        {
+          "id": "starter-747a9640-beast-1",
+          "kind": "beasts",
+          "tier": "Standard",
+          "quality": 1,
+          "baseAttributes": {
+            "speed": 50,
+            "power": 50,
+            "agility": 50,
+            "endurance": 50,
+            "discipline": 50,
+            "toughness": 50
+          },
+          "originalHealth": 100,
+          "acquisitionBasis": 325,
+          "sourceOfferId": null,
+          "wageQuality": null,
+          "baseWage": null
+        },
+        {
+          "id": "starter-747a9640-chariot",
+          "kind": "chariots",
+          "tier": "Premium",
+          "quality": 1.054,
+          "baseAttributes": {
+            "stability": 70,
+            "durability": 70,
+            "protection": 60,
+            "rollingEfficiency": 70,
+            "maneuverability": 70
+          },
+          "originalHealth": 100,
+          "acquisitionBasis": 1210,
+          "sourceOfferId": null,
+          "wageQuality": null,
+          "baseWage": null
+        },
+        {
+          "id": "starter-747a9640-equipment-0",
+          "kind": "equipment",
+          "tier": "Budget",
+          "quality": 1,
+          "baseAttributes": null,
+          "originalHealth": null,
+          "acquisitionBasis": 100,
+          "sourceOfferId": null,
+          "wageQuality": null,
+          "baseWage": null
+        },
+        {
+          "id": "starter-747a9640-equipment-1",
+          "kind": "equipment",
+          "tier": "Budget",
+          "quality": 1,
+          "baseAttributes": null,
+          "originalHealth": null,
+          "acquisitionBasis": 100,
+          "sourceOfferId": null,
+          "wageQuality": null,
+          "baseWage": null
+        }
+      ],
+      "properties": [
+        {
+          "id": "starter-747a9640-property",
+          "ownerCareerId": "browser-mechanist",
+          "references": {
+            "facilities": [
+              "starter-747a9640-facility"
+            ]
+          },
+          "recordVersion": 2,
+          "name": "Basic Property",
+          "tier": "Basic",
+          "capacities": {
+            "drivers": 2,
+            "specialists": 0,
+            "beasts": 4,
+            "chariots": 1
+          },
+          "packageId": "mechanist",
+          "catalogVersion": 3
+        }
+      ],
+      "facilities": [
+        {
+          "id": "starter-747a9640-facility",
+          "ownerCareerId": "browser-mechanist",
+          "references": {
+            "property": [
+              "starter-747a9640-property"
+            ]
+          },
+          "recordVersion": 1,
+          "name": "Workshop Shed",
+          "descriptiveOnly": true
+        }
+      ],
+      "assignments": [
+        {
+          "id": "starter-747a9640-ru",
+          "ownerCareerId": "browser-mechanist",
+          "references": {
+            "subject": [
+              "starter-747a9640-driver-0",
+              "starter-747a9640-beast-0",
+              "starter-747a9640-beast-1",
+              "starter-747a9640-chariot"
+            ]
+          },
+          "recordVersion": 1,
+          "name": "Prospective Racing Unit",
+          "kind": "prospectiveRU",
+          "driverId": "starter-747a9640-driver-0",
+          "beastIds": [
+            "starter-747a9640-beast-0",
+            "starter-747a9640-beast-1"
+          ],
+          "chariotId": "starter-747a9640-chariot"
+        }
+      ],
+      "market": [
+        {
+          "id": "m2c-offer-driver-budget-1",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Budget driver 1",
+          "category": "driver",
+          "tier": "Budget",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 1.1,
+          "wageQuality": 0.96,
+          "health": 77,
+          "price": 205,
+          "available": true,
+          "template": {
+            "attributes": {
+              "driving": 47,
+              "beastHandling": 43,
+              "combat": 33,
+              "awareness": 33,
+              "nerve": 32
+            },
+            "condition": 77,
+            "strain": 0,
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-driver-budget-2",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Budget driver 2",
+          "category": "driver",
+          "tier": "Budget",
+          "ordinal": 2,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 1,
+          "wageQuality": 0.99,
+          "health": 85,
+          "price": 190,
+          "available": true,
+          "template": {
+            "attributes": {
+              "driving": 36,
+              "beastHandling": 34,
+              "combat": 42,
+              "awareness": 45,
+              "nerve": 34
+            },
+            "condition": 85,
+            "strain": 0,
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-driver-standard-1",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard driver 1",
+          "category": "driver",
+          "tier": "Standard",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 1.03,
+          "wageQuality": 0.91,
+          "health": 91,
+          "price": 400,
+          "available": true,
+          "template": {
+            "attributes": {
+              "driving": 55,
+              "beastHandling": 55,
+              "combat": 52,
+              "awareness": 62,
+              "nerve": 59
+            },
+            "condition": 91,
+            "strain": 0,
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-driver-standard-2",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard driver 2",
+          "category": "driver",
+          "tier": "Standard",
+          "ordinal": 2,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 1.03,
+          "wageQuality": 1.06,
+          "health": 73,
+          "price": 380,
+          "available": true,
+          "template": {
+            "attributes": {
+              "driving": 57,
+              "beastHandling": 54,
+              "combat": 60,
+              "awareness": 61,
+              "nerve": 67
+            },
+            "condition": 73,
+            "strain": 0,
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-driver-premium-1",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Premium driver 1",
+          "category": "driver",
+          "tier": "Premium",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 1.13,
+          "wageQuality": 1.05,
+          "health": 79,
+          "price": 845,
+          "available": true,
+          "template": {
+            "attributes": {
+              "driving": 74,
+              "beastHandling": 82,
+              "combat": 80,
+              "awareness": 85,
+              "nerve": 86
+            },
+            "condition": 79,
+            "strain": 0,
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-beast-budget-1",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Budget beast 1",
+          "category": "beast",
+          "tier": "Budget",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 1.13,
+          "wageQuality": null,
+          "health": 71,
+          "price": 155,
+          "available": true,
+          "template": {
+            "attributes": {
+              "speed": 43,
+              "power": 37,
+              "agility": 41,
+              "endurance": 41,
+              "discipline": 47,
+              "toughness": 48
+            },
+            "condition": 71,
+            "species": "generic_draft_beast",
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-beast-budget-2",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Budget beast 2",
+          "category": "beast",
+          "tier": "Budget",
+          "ordinal": 2,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 1.07,
+          "wageQuality": null,
+          "health": 72,
+          "price": 145,
+          "available": true,
+          "template": {
+            "attributes": {
+              "speed": 45,
+              "power": 30,
+              "agility": 43,
+              "endurance": 30,
+              "discipline": 46,
+              "toughness": 41
+            },
+            "condition": 72,
+            "species": "generic_draft_beast",
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-beast-standard-1",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard beast 1",
+          "category": "beast",
+          "tier": "Standard",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 0.92,
+          "wageQuality": null,
+          "health": 80,
+          "price": 280,
+          "available": true,
+          "template": {
+            "attributes": {
+              "speed": 67,
+              "power": 67,
+              "agility": 59,
+              "endurance": 68,
+              "discipline": 50,
+              "toughness": 59
+            },
+            "condition": 80,
+            "species": "generic_draft_beast",
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-beast-standard-2",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard beast 2",
+          "category": "beast",
+          "tier": "Standard",
+          "ordinal": 2,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 0.99,
+          "wageQuality": null,
+          "health": 92,
+          "price": 315,
+          "available": true,
+          "template": {
+            "attributes": {
+              "speed": 55,
+              "power": 69,
+              "agility": 60,
+              "endurance": 66,
+              "discipline": 52,
+              "toughness": 54
+            },
+            "condition": 92,
+            "species": "generic_draft_beast",
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-beast-standard-3",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard beast 3",
+          "category": "beast",
+          "tier": "Standard",
+          "ordinal": 3,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 1.12,
+          "wageQuality": null,
+          "health": 72,
+          "price": 335,
+          "available": true,
+          "template": {
+            "attributes": {
+              "speed": 53,
+              "power": 67,
+              "agility": 51,
+              "endurance": 64,
+              "discipline": 59,
+              "toughness": 68
+            },
+            "condition": 72,
+            "species": "generic_draft_beast",
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-beast-premium-1",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Premium beast 1",
+          "category": "beast",
+          "tier": "Premium",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 1.15,
+          "wageQuality": null,
+          "health": 100,
+          "price": 750,
+          "available": true,
+          "template": {
+            "attributes": {
+              "speed": 87,
+              "power": 85,
+              "agility": 82,
+              "endurance": 86,
+              "discipline": 70,
+              "toughness": 75
+            },
+            "condition": 100,
+            "species": "generic_draft_beast",
+            "fatigue": 0,
+            "injury": "Healthy",
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-chariot-budget-1",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Budget chariot 1",
+          "category": "chariot",
+          "tier": "Budget",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 1.06,
+          "wageQuality": null,
+          "health": 79,
+          "price": 370,
+          "available": true,
+          "template": {
+            "attributes": {
+              "stability": 44,
+              "durability": 38,
+              "protection": 45,
+              "rollingEfficiency": 42,
+              "maneuverability": 48
+            },
+            "condition": 87,
+            "integrity": 79,
+            "wear": 0,
+            "weight": 180,
+            "capacity": 400,
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-chariot-standard-1",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard chariot 1",
+          "category": "chariot",
+          "tier": "Standard",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 0.9,
+          "wageQuality": null,
+          "health": 74,
+          "price": 520,
+          "available": true,
+          "template": {
+            "attributes": {
+              "stability": 63,
+              "durability": 69,
+              "protection": 60,
+              "rollingEfficiency": 57,
+              "maneuverability": 57
+            },
+            "condition": 81,
+            "integrity": 74,
+            "wear": 0,
+            "weight": 180,
+            "capacity": 400,
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-chariot-premium-1",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Premium chariot 1",
+          "category": "chariot",
+          "tier": "Premium",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 0.87,
+          "wageQuality": null,
+          "health": 73,
+          "price": 920,
+          "available": true,
+          "template": {
+            "attributes": {
+              "stability": 71,
+              "durability": 75,
+              "protection": 74,
+              "rollingEfficiency": 87,
+              "maneuverability": 84
+            },
+            "condition": 91,
+            "integrity": 73,
+            "wear": 0,
+            "weight": 180,
+            "capacity": 400,
+            "xp": 0
+          }
+        },
+        {
+          "id": "m2c-offer-specialist-budget-1",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Budget specialist 1",
+          "category": "specialist",
+          "tier": "Budget",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 0.97,
+          "wageQuality": 0.91,
+          "health": null,
+          "price": 195,
+          "available": true,
+          "template": {
+            "role": "Beast Handler",
+            "injury": "Healthy"
+          }
+        },
+        {
+          "id": "m2c-offer-specialist-standard-1",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard specialist 1",
+          "category": "specialist",
+          "tier": "Standard",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 0.92,
+          "wageQuality": 1.09,
+          "health": null,
+          "price": 345,
+          "available": true,
+          "template": {
+            "role": "Mechanic",
+            "injury": "Healthy"
+          }
+        },
+        {
+          "id": "m2c-offer-specialist-premium-1",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Premium specialist 1",
+          "category": "specialist",
+          "tier": "Premium",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 1.02,
+          "wageQuality": 1.08,
+          "health": null,
+          "price": 640,
+          "available": true,
+          "template": {
+            "role": "Physician",
+            "injury": "Healthy"
+          }
+        },
+        {
+          "id": "m2c-offer-equipment-budget-1",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Basic equipment 1",
+          "category": "equipment",
+          "tier": "Budget",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 1,
+          "wageQuality": null,
+          "health": null,
+          "price": 100,
+          "available": true,
+          "template": {
+            "mass": 0,
+            "combat": 0
+          }
+        },
+        {
+          "id": "m2c-offer-equipment-budget-2",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Basic equipment 2",
+          "category": "equipment",
+          "tier": "Budget",
+          "ordinal": 2,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 0.95,
+          "wageQuality": null,
+          "health": null,
+          "price": 95,
+          "available": true,
+          "template": {
+            "mass": 0,
+            "combat": 0
+          }
+        },
+        {
+          "id": "m2c-offer-equipment-budget-3",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Basic equipment 3",
+          "category": "equipment",
+          "tier": "Budget",
+          "ordinal": 3,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 0.96,
+          "wageQuality": null,
+          "health": null,
+          "price": 95,
+          "available": true,
+          "template": {
+            "mass": 0,
+            "combat": 0
+          }
+        },
+        {
+          "id": "m2c-offer-equipment-standard-1",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard equipment 1",
+          "category": "equipment",
+          "tier": "Standard",
+          "ordinal": 1,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 0.91,
+          "wageQuality": null,
+          "health": null,
+          "price": 250,
+          "available": true,
+          "template": {
+            "mass": 0,
+            "combat": 0
+          }
+        },
+        {
+          "id": "m2c-offer-equipment-standard-2",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard equipment 2",
+          "category": "equipment",
+          "tier": "Standard",
+          "ordinal": 2,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 1.06,
+          "wageQuality": null,
+          "health": null,
+          "price": 290,
+          "available": true,
+          "template": {
+            "mass": 0,
+            "combat": 0
+          }
+        },
+        {
+          "id": "m2c-offer-equipment-standard-3",
+          "ownerCareerId": "browser-mechanist",
+          "references": {},
+          "recordVersion": 2,
+          "name": "Standard equipment 3",
+          "category": "equipment",
+          "tier": "Standard",
+          "ordinal": 3,
+          "generatorVersion": "market-generator-v1",
+          "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+          "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+          "quality": 1.02,
+          "wageQuality": null,
+          "health": null,
+          "price": 280,
+          "available": true,
+          "template": {
+            "mass": 0,
+            "combat": 0
+          }
+        }
+      ]
+    },
+    "manifestDigest": "f1020433eb3830e23f5337984425a218f2e453304f559d518bfc8bb81bf0e2b4"
+  },
+  "target": {
+    "kind": "BNT-career-state",
+    "schema": 3,
+    "revision": 1,
+    "profile": {
+      "id": "owner",
+      "name": "Owner",
+      "legacy": {
+        "records": []
+      },
+      "developerEdited": false
+    },
+    "career": {
+      "id": "browser-mechanist",
+      "ownerProfileId": "owner",
+      "name": "M1 Foundation",
+      "status": "Foundation",
+      "treasury": 800,
+      "developerEdited": false
+    },
+    "pendingRace": null,
+    "transactions": [
+      {
+        "transaction": {
+          "id": "initialize-mechanist",
+          "profileId": "owner",
+          "careerId": "browser-mechanist",
+          "expectedRevision": 0,
+          "expectedMaintenanceRevision": 1,
+          "commandVersion": 1,
+          "type": "career.initialize",
+          "effectId": "initialize-browser-mechanist",
+          "delta": 800,
+          "reason": "Approved starting package",
+          "packageId": "mechanist",
+          "catalogVersion": 3,
+          "confirmed": true
+        },
+        "resultRevision": 1,
+        "balanceAfter": 800,
+        "result": {
+          "packageId": "mechanist",
+          "catalogVersion": 3,
+          "treasuryGrant": 800,
+          "grantedIds": [
+            "starter-747a9640-beast-0",
+            "starter-747a9640-beast-1",
+            "starter-747a9640-chariot",
+            "starter-747a9640-driver-0",
+            "starter-747a9640-equipment-0",
+            "starter-747a9640-equipment-1",
+            "starter-747a9640-facility",
+            "starter-747a9640-property",
+            "starter-747a9640-ru"
+          ]
+        }
+      }
+    ],
+    "provenance": [],
+    "maintenanceRevision": 2,
+    "management": {
+      "initialized": true,
+      "registrySchema": 3,
+      "registries": {
+        "personnel": {
+          "starter-747a9640-driver-0": {
+            "id": "starter-747a9640-driver-0",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "assignment": [
+                "starter-747a9640-ru"
+              ],
+              "contract": [
+                "contract-3601d4d666c11ea7682b2b06eb11478f"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Mechanist Workshop Primary Driver",
+            "role": "driver",
+            "attributes": {
+              "driving": 50,
+              "beastHandling": 40,
+              "combat": 50,
+              "awareness": 60,
+              "nerve": 50
+            },
+            "condition": 100,
+            "injury": "Healthy",
+            "fatigue": 0,
+            "strain": 0,
+            "xp": 0,
+            "available": true,
+            "economics": {
+              "tier": "Standard",
+              "quality": 1,
+              "baseAttributes": {
+                "driving": 50,
+                "beastHandling": 40,
+                "combat": 50,
+                "awareness": 60,
+                "nerve": 50
+              },
+              "originalHealth": 100,
+              "acquisitionBasis": 0,
+              "sourceOfferId": null,
+              "wageQuality": 1,
+              "baseWage": 35
+            },
+            "training": {
+              "driving": 0,
+              "beastHandling": 0,
+              "combat": 0,
+              "awareness": 0,
+              "nerve": 0
+            }
+          }
+        },
+        "specialists": {},
+        "beasts": {
+          "starter-747a9640-beast-0": {
+            "id": "starter-747a9640-beast-0",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "assignment": [
+                "starter-747a9640-ru"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Mechanist Workshop Lead A",
+            "species": "generic_draft_beast",
+            "attributes": {
+              "speed": 50,
+              "power": 50,
+              "agility": 50,
+              "endurance": 50,
+              "discipline": 50,
+              "toughness": 50
+            },
+            "condition": 100,
+            "injury": "Healthy",
+            "fatigue": 0,
+            "xp": 0,
+            "available": true,
+            "economics": {
+              "tier": "Standard",
+              "quality": 1,
+              "baseAttributes": {
+                "speed": 50,
+                "power": 50,
+                "agility": 50,
+                "endurance": 50,
+                "discipline": 50,
+                "toughness": 50
+              },
+              "originalHealth": 100,
+              "acquisitionBasis": 325,
+              "sourceOfferId": null,
+              "wageQuality": null,
+              "baseWage": null
+            },
+            "training": {
+              "speed": 0,
+              "power": 0,
+              "agility": 0,
+              "endurance": 0,
+              "discipline": 0,
+              "toughness": 0
+            }
+          },
+          "starter-747a9640-beast-1": {
+            "id": "starter-747a9640-beast-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "assignment": [
+                "starter-747a9640-ru"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Mechanist Workshop Lead B",
+            "species": "generic_draft_beast",
+            "attributes": {
+              "speed": 50,
+              "power": 50,
+              "agility": 50,
+              "endurance": 50,
+              "discipline": 50,
+              "toughness": 50
+            },
+            "condition": 100,
+            "injury": "Healthy",
+            "fatigue": 0,
+            "xp": 0,
+            "available": true,
+            "economics": {
+              "tier": "Standard",
+              "quality": 1,
+              "baseAttributes": {
+                "speed": 50,
+                "power": 50,
+                "agility": 50,
+                "endurance": 50,
+                "discipline": 50,
+                "toughness": 50
+              },
+              "originalHealth": 100,
+              "acquisitionBasis": 325,
+              "sourceOfferId": null,
+              "wageQuality": null,
+              "baseWage": null
+            },
+            "training": {
+              "speed": 0,
+              "power": 0,
+              "agility": 0,
+              "endurance": 0,
+              "discipline": 0,
+              "toughness": 0
+            }
+          }
+        },
+        "chariots": {
+          "starter-747a9640-chariot": {
+            "id": "starter-747a9640-chariot",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "equipment": [
+                "starter-747a9640-equipment-0",
+                "starter-747a9640-equipment-1"
+              ],
+              "assignment": [
+                "starter-747a9640-ru"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Workshop-tuned chariot",
+            "attributes": {
+              "stability": 70,
+              "durability": 70,
+              "protection": 60,
+              "rollingEfficiency": 70,
+              "maneuverability": 70
+            },
+            "condition": 100,
+            "wear": 0,
+            "integrity": 100,
+            "status": "Functional",
+            "weight": 180,
+            "capacity": 400,
+            "xp": 0,
+            "available": true,
+            "economics": {
+              "tier": "Premium",
+              "quality": 1.054,
+              "baseAttributes": {
+                "stability": 70,
+                "durability": 70,
+                "protection": 60,
+                "rollingEfficiency": 70,
+                "maneuverability": 70
+              },
+              "originalHealth": 100,
+              "acquisitionBasis": 1210,
+              "sourceOfferId": null,
+              "wageQuality": null,
+              "baseWage": null
+            },
+            "engineering": {
+              "increments": {
+                "stability": 0,
+                "durability": 0,
+                "protection": 0,
+                "rollingEfficiency": 0,
+                "maneuverability": 0
+              },
+              "spentGold": 0
+            }
+          }
+        },
+        "equipment": {
+          "starter-747a9640-equipment-0": {
+            "id": "starter-747a9640-equipment-0",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "installedOn": [
+                "starter-747a9640-chariot"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Reinforced harness",
+            "mass": 0,
+            "combat": 0,
+            "economics": {
+              "tier": "Budget",
+              "quality": 1,
+              "baseAttributes": null,
+              "originalHealth": null,
+              "acquisitionBasis": 100,
+              "sourceOfferId": null,
+              "wageQuality": null,
+              "baseWage": null
+            }
+          },
+          "starter-747a9640-equipment-1": {
+            "id": "starter-747a9640-equipment-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "installedOn": [
+                "starter-747a9640-chariot"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Precision wheels",
+            "mass": 0,
+            "combat": 0,
+            "economics": {
+              "tier": "Budget",
+              "quality": 1,
+              "baseAttributes": null,
+              "originalHealth": null,
+              "acquisitionBasis": 100,
+              "sourceOfferId": null,
+              "wageQuality": null,
+              "baseWage": null
+            }
+          }
+        },
+        "contracts": {
+          "contract-3601d4d666c11ea7682b2b06eb11478f": {
+            "id": "contract-3601d4d666c11ea7682b2b06eb11478f",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "employee": [
+                "starter-747a9640-driver-0"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Mechanist Workshop Primary Driver contract",
+            "term": "standard",
+            "cyclesRemaining": 8,
+            "baseWage": 35,
+            "wage": 35,
+            "grandfathered": true,
+            "sourceOfferId": null
+          }
+        },
+        "candidates": {},
+        "recruitmentOffers": {},
+        "marketOffers": {
+          "m2c-offer-driver-budget-1": {
+            "id": "m2c-offer-driver-budget-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Budget driver 1",
+            "category": "driver",
+            "tier": "Budget",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 1.1,
+            "wageQuality": 0.96,
+            "health": 77,
+            "price": 205,
+            "available": true,
+            "template": {
+              "attributes": {
+                "driving": 47,
+                "beastHandling": 43,
+                "combat": 33,
+                "awareness": 33,
+                "nerve": 32
+              },
+              "condition": 77,
+              "strain": 0,
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-driver-budget-2": {
+            "id": "m2c-offer-driver-budget-2",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Budget driver 2",
+            "category": "driver",
+            "tier": "Budget",
+            "ordinal": 2,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 1,
+            "wageQuality": 0.99,
+            "health": 85,
+            "price": 190,
+            "available": true,
+            "template": {
+              "attributes": {
+                "driving": 36,
+                "beastHandling": 34,
+                "combat": 42,
+                "awareness": 45,
+                "nerve": 34
+              },
+              "condition": 85,
+              "strain": 0,
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-driver-standard-1": {
+            "id": "m2c-offer-driver-standard-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard driver 1",
+            "category": "driver",
+            "tier": "Standard",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 1.03,
+            "wageQuality": 0.91,
+            "health": 91,
+            "price": 400,
+            "available": true,
+            "template": {
+              "attributes": {
+                "driving": 55,
+                "beastHandling": 55,
+                "combat": 52,
+                "awareness": 62,
+                "nerve": 59
+              },
+              "condition": 91,
+              "strain": 0,
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-driver-standard-2": {
+            "id": "m2c-offer-driver-standard-2",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard driver 2",
+            "category": "driver",
+            "tier": "Standard",
+            "ordinal": 2,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 1.03,
+            "wageQuality": 1.06,
+            "health": 73,
+            "price": 380,
+            "available": true,
+            "template": {
+              "attributes": {
+                "driving": 57,
+                "beastHandling": 54,
+                "combat": 60,
+                "awareness": 61,
+                "nerve": 67
+              },
+              "condition": 73,
+              "strain": 0,
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-driver-premium-1": {
+            "id": "m2c-offer-driver-premium-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Premium driver 1",
+            "category": "driver",
+            "tier": "Premium",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 1.13,
+            "wageQuality": 1.05,
+            "health": 79,
+            "price": 845,
+            "available": true,
+            "template": {
+              "attributes": {
+                "driving": 74,
+                "beastHandling": 82,
+                "combat": 80,
+                "awareness": 85,
+                "nerve": 86
+              },
+              "condition": 79,
+              "strain": 0,
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-beast-budget-1": {
+            "id": "m2c-offer-beast-budget-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Budget beast 1",
+            "category": "beast",
+            "tier": "Budget",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 1.13,
+            "wageQuality": null,
+            "health": 71,
+            "price": 155,
+            "available": true,
+            "template": {
+              "attributes": {
+                "speed": 43,
+                "power": 37,
+                "agility": 41,
+                "endurance": 41,
+                "discipline": 47,
+                "toughness": 48
+              },
+              "condition": 71,
+              "species": "generic_draft_beast",
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-beast-budget-2": {
+            "id": "m2c-offer-beast-budget-2",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Budget beast 2",
+            "category": "beast",
+            "tier": "Budget",
+            "ordinal": 2,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 1.07,
+            "wageQuality": null,
+            "health": 72,
+            "price": 145,
+            "available": true,
+            "template": {
+              "attributes": {
+                "speed": 45,
+                "power": 30,
+                "agility": 43,
+                "endurance": 30,
+                "discipline": 46,
+                "toughness": 41
+              },
+              "condition": 72,
+              "species": "generic_draft_beast",
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-beast-standard-1": {
+            "id": "m2c-offer-beast-standard-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard beast 1",
+            "category": "beast",
+            "tier": "Standard",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 0.92,
+            "wageQuality": null,
+            "health": 80,
+            "price": 280,
+            "available": true,
+            "template": {
+              "attributes": {
+                "speed": 67,
+                "power": 67,
+                "agility": 59,
+                "endurance": 68,
+                "discipline": 50,
+                "toughness": 59
+              },
+              "condition": 80,
+              "species": "generic_draft_beast",
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-beast-standard-2": {
+            "id": "m2c-offer-beast-standard-2",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard beast 2",
+            "category": "beast",
+            "tier": "Standard",
+            "ordinal": 2,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 0.99,
+            "wageQuality": null,
+            "health": 92,
+            "price": 315,
+            "available": true,
+            "template": {
+              "attributes": {
+                "speed": 55,
+                "power": 69,
+                "agility": 60,
+                "endurance": 66,
+                "discipline": 52,
+                "toughness": 54
+              },
+              "condition": 92,
+              "species": "generic_draft_beast",
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-beast-standard-3": {
+            "id": "m2c-offer-beast-standard-3",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard beast 3",
+            "category": "beast",
+            "tier": "Standard",
+            "ordinal": 3,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 1.12,
+            "wageQuality": null,
+            "health": 72,
+            "price": 335,
+            "available": true,
+            "template": {
+              "attributes": {
+                "speed": 53,
+                "power": 67,
+                "agility": 51,
+                "endurance": 64,
+                "discipline": 59,
+                "toughness": 68
+              },
+              "condition": 72,
+              "species": "generic_draft_beast",
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-beast-premium-1": {
+            "id": "m2c-offer-beast-premium-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Premium beast 1",
+            "category": "beast",
+            "tier": "Premium",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 1.15,
+            "wageQuality": null,
+            "health": 100,
+            "price": 750,
+            "available": true,
+            "template": {
+              "attributes": {
+                "speed": 87,
+                "power": 85,
+                "agility": 82,
+                "endurance": 86,
+                "discipline": 70,
+                "toughness": 75
+              },
+              "condition": 100,
+              "species": "generic_draft_beast",
+              "fatigue": 0,
+              "injury": "Healthy",
+              "xp": 0
+            }
+          },
+          "m2c-offer-chariot-budget-1": {
+            "id": "m2c-offer-chariot-budget-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Budget chariot 1",
+            "category": "chariot",
+            "tier": "Budget",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 1.06,
+            "wageQuality": null,
+            "health": 79,
+            "price": 370,
+            "available": true,
+            "template": {
+              "attributes": {
+                "stability": 44,
+                "durability": 38,
+                "protection": 45,
+                "rollingEfficiency": 42,
+                "maneuverability": 48
+              },
+              "condition": 87,
+              "integrity": 79,
+              "wear": 0,
+              "weight": 180,
+              "capacity": 400,
+              "xp": 0
+            }
+          },
+          "m2c-offer-chariot-standard-1": {
+            "id": "m2c-offer-chariot-standard-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard chariot 1",
+            "category": "chariot",
+            "tier": "Standard",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 0.9,
+            "wageQuality": null,
+            "health": 74,
+            "price": 520,
+            "available": true,
+            "template": {
+              "attributes": {
+                "stability": 63,
+                "durability": 69,
+                "protection": 60,
+                "rollingEfficiency": 57,
+                "maneuverability": 57
+              },
+              "condition": 81,
+              "integrity": 74,
+              "wear": 0,
+              "weight": 180,
+              "capacity": 400,
+              "xp": 0
+            }
+          },
+          "m2c-offer-chariot-premium-1": {
+            "id": "m2c-offer-chariot-premium-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Premium chariot 1",
+            "category": "chariot",
+            "tier": "Premium",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 0.87,
+            "wageQuality": null,
+            "health": 73,
+            "price": 920,
+            "available": true,
+            "template": {
+              "attributes": {
+                "stability": 71,
+                "durability": 75,
+                "protection": 74,
+                "rollingEfficiency": 87,
+                "maneuverability": 84
+              },
+              "condition": 91,
+              "integrity": 73,
+              "wear": 0,
+              "weight": 180,
+              "capacity": 400,
+              "xp": 0
+            }
+          },
+          "m2c-offer-specialist-budget-1": {
+            "id": "m2c-offer-specialist-budget-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Budget specialist 1",
+            "category": "specialist",
+            "tier": "Budget",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 0.97,
+            "wageQuality": 0.91,
+            "health": null,
+            "price": 195,
+            "available": true,
+            "template": {
+              "role": "Beast Handler",
+              "injury": "Healthy"
+            }
+          },
+          "m2c-offer-specialist-standard-1": {
+            "id": "m2c-offer-specialist-standard-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard specialist 1",
+            "category": "specialist",
+            "tier": "Standard",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 0.92,
+            "wageQuality": 1.09,
+            "health": null,
+            "price": 345,
+            "available": true,
+            "template": {
+              "role": "Mechanic",
+              "injury": "Healthy"
+            }
+          },
+          "m2c-offer-specialist-premium-1": {
+            "id": "m2c-offer-specialist-premium-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Premium specialist 1",
+            "category": "specialist",
+            "tier": "Premium",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 1.02,
+            "wageQuality": 1.08,
+            "health": null,
+            "price": 640,
+            "available": true,
+            "template": {
+              "role": "Physician",
+              "injury": "Healthy"
+            }
+          },
+          "m2c-offer-equipment-budget-1": {
+            "id": "m2c-offer-equipment-budget-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Basic equipment 1",
+            "category": "equipment",
+            "tier": "Budget",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 1,
+            "wageQuality": null,
+            "health": null,
+            "price": 100,
+            "available": true,
+            "template": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "m2c-offer-equipment-budget-2": {
+            "id": "m2c-offer-equipment-budget-2",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Basic equipment 2",
+            "category": "equipment",
+            "tier": "Budget",
+            "ordinal": 2,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 0.95,
+            "wageQuality": null,
+            "health": null,
+            "price": 95,
+            "available": true,
+            "template": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "m2c-offer-equipment-budget-3": {
+            "id": "m2c-offer-equipment-budget-3",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Basic equipment 3",
+            "category": "equipment",
+            "tier": "Budget",
+            "ordinal": 3,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 0.96,
+            "wageQuality": null,
+            "health": null,
+            "price": 95,
+            "available": true,
+            "template": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "m2c-offer-equipment-standard-1": {
+            "id": "m2c-offer-equipment-standard-1",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard equipment 1",
+            "category": "equipment",
+            "tier": "Standard",
+            "ordinal": 1,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 0.91,
+            "wageQuality": null,
+            "health": null,
+            "price": 250,
+            "available": true,
+            "template": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "m2c-offer-equipment-standard-2": {
+            "id": "m2c-offer-equipment-standard-2",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard equipment 2",
+            "category": "equipment",
+            "tier": "Standard",
+            "ordinal": 2,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 1.06,
+            "wageQuality": null,
+            "health": null,
+            "price": 290,
+            "available": true,
+            "template": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "m2c-offer-equipment-standard-3": {
+            "id": "m2c-offer-equipment-standard-3",
+            "ownerCareerId": "browser-mechanist",
+            "references": {},
+            "recordVersion": 2,
+            "name": "Standard equipment 3",
+            "category": "equipment",
+            "tier": "Standard",
+            "ordinal": 3,
+            "generatorVersion": "market-generator-v1",
+            "algorithm": "fnv1a32-utf8-mulberry32-rejection-v1",
+            "seedMaterial": "BNT|M2-C|market-generator-v1|browser-mechanist",
+            "quality": 1.02,
+            "wageQuality": null,
+            "health": null,
+            "price": 280,
+            "available": true,
+            "template": {
+              "mass": 0,
+              "combat": 0
+            }
+          }
+        },
+        "properties": {
+          "starter-747a9640-property": {
+            "id": "starter-747a9640-property",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "facilities": [
+                "starter-747a9640-facility"
+              ]
+            },
+            "recordVersion": 2,
+            "name": "Basic Property",
+            "tier": "Basic",
+            "capacities": {
+              "drivers": 2,
+              "specialists": 0,
+              "beasts": 4,
+              "chariots": 1
+            },
+            "packageId": "mechanist",
+            "catalogVersion": 3
+          }
+        },
+        "facilities": {
+          "starter-747a9640-facility": {
+            "id": "starter-747a9640-facility",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "property": [
+                "starter-747a9640-property"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Workshop Shed",
+            "descriptiveOnly": true
+          }
+        },
+        "projects": {},
+        "assignments": {
+          "starter-747a9640-ru": {
+            "id": "starter-747a9640-ru",
+            "ownerCareerId": "browser-mechanist",
+            "references": {
+              "subject": [
+                "starter-747a9640-driver-0",
+                "starter-747a9640-beast-0",
+                "starter-747a9640-beast-1",
+                "starter-747a9640-chariot"
+              ]
+            },
+            "recordVersion": 1,
+            "name": "Prospective Racing Unit",
+            "kind": "prospectiveRU",
+            "driverId": "starter-747a9640-driver-0",
+            "beastIds": [
+              "starter-747a9640-beast-0",
+              "starter-747a9640-beast-1"
+            ],
+            "chariotId": "starter-747a9640-chariot"
+          }
+        },
+        "obligations": {},
+        "advancementChoices": {},
+        "achievements": {}
+      }
+    },
+    "history": {
+      "schema": 1,
+      "commands": [
+        {
+          "id": "initialize-mechanist",
+          "profileId": "owner",
+          "careerId": "browser-mechanist",
+          "commandVersion": 1,
+          "request": "{\"careerId\":\"browser-mechanist\",\"catalogVersion\":3,\"commandVersion\":1,\"confirmed\":true,\"delta\":800,\"effectId\":\"initialize-browser-mechanist\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":0,\"id\":\"initialize-mechanist\",\"packageId\":\"mechanist\",\"profileId\":\"owner\",\"reason\":\"Approved starting package\",\"type\":\"career.initialize\"}",
+          "fingerprint": "98a8b618",
+          "resultRevision": 1,
+          "effectId": "initialize-browser-mechanist",
+          "delta": 800,
+          "balanceAfter": 800,
+          "retention": "P0",
+          "result": {
+            "packageId": "mechanist",
+            "catalogVersion": 3,
+            "treasuryGrant": 800,
+            "grantedIds": [
+              "starter-747a9640-beast-0",
+              "starter-747a9640-beast-1",
+              "starter-747a9640-chariot",
+              "starter-747a9640-driver-0",
+              "starter-747a9640-equipment-0",
+              "starter-747a9640-equipment-1",
+              "starter-747a9640-facility",
+              "starter-747a9640-property",
+              "starter-747a9640-ru"
+            ]
+          }
+        },
+        {
+          "kind": "migration-maintenance",
+          "recordVersion": 1,
+          "id": "migration-9c80fc55-944a-45fe-9963-a662b094158c",
+          "profileId": "owner",
+          "careerId": "browser-mechanist",
+          "request": "{\"adapterVersion\":\"valuation-health-v1\",\"careerId\":\"browser-mechanist\",\"confirmed\":true,\"effectId\":\"migrate-browser-mechanist-2-3\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":1,\"generatorVersion\":\"market-generator-v1\",\"id\":\"migration-9c80fc55-944a-45fe-9963-a662b094158c\",\"maintenanceVersion\":1,\"migrationVersion\":\"m2c-migration-v1\",\"profileId\":\"owner\",\"sourceFingerprint\":\"471a67e9faf93f380e8454c49985360d8a4ef6d970085a6af62f91ff68310a06\",\"sourceSchema\":2,\"targetSchema\":3,\"type\":\"career.migrate\"}",
+          "fingerprint": "9a00b64ffa2d84b1b63f4b07cc0e1de0823c7232f3844522f1ffb620ad79ad21",
+          "effectId": "migrate-browser-mechanist-2-3",
+          "revision": 1,
+          "maintenanceRevision": 2,
+          "manifestDigest": "f1020433eb3830e23f5337984425a218f2e453304f559d518bfc8bb81bf0e2b4",
+          "acknowledgment": {
+            "kind": "BNT-migration-ack",
+            "sourceFingerprint": "471a67e9faf93f380e8454c49985360d8a4ef6d970085a6af62f91ff68310a06",
+            "manifestDigest": "f1020433eb3830e23f5337984425a218f2e453304f559d518bfc8bb81bf0e2b4",
+            "careerSchema": 3,
+            "revision": 1,
+            "maintenanceRevision": 2
+          },
+          "retention": "P0"
+        }
+      ]
+    },
+    "migration": {
+      "fromSchema": 1,
+      "toSchema": 2,
+      "sourceProfileId": "owner",
+      "sourceCareerId": "browser-mechanist",
+      "sourceRevision": 0,
+      "sourceTreasury": 0,
+      "sourcePendingDigest": null,
+      "sourceStateDigest": "9e2f81f5"
+    },
+    "economy": {
+      "schema": 1,
+      "rulesVersion": "m2c-economy-v1",
+      "origin": {
+        "kind": "BNT-career-state",
+        "schema": 2,
+        "revision": 1,
+        "profile": {
+          "id": "owner",
+          "name": "Owner",
+          "legacy": {
+            "records": []
+          },
+          "developerEdited": false
+        },
+        "career": {
+          "id": "browser-mechanist",
+          "ownerProfileId": "owner",
+          "name": "M1 Foundation",
+          "status": "Foundation",
+          "treasury": 800,
+          "developerEdited": false
+        },
+        "pendingRace": null,
+        "transactions": [
+          {
+            "transaction": {
+              "id": "initialize-mechanist",
+              "profileId": "owner",
+              "careerId": "browser-mechanist",
+              "expectedRevision": 0,
+              "expectedMaintenanceRevision": 1,
+              "commandVersion": 1,
+              "type": "career.initialize",
+              "effectId": "initialize-browser-mechanist",
+              "delta": 800,
+              "reason": "Approved starting package",
+              "packageId": "mechanist",
+              "catalogVersion": 3,
+              "confirmed": true
+            },
+            "resultRevision": 1,
+            "balanceAfter": 800,
+            "result": {
+              "packageId": "mechanist",
+              "catalogVersion": 3,
+              "treasuryGrant": 800,
+              "grantedIds": [
+                "starter-747a9640-beast-0",
+                "starter-747a9640-beast-1",
+                "starter-747a9640-chariot",
+                "starter-747a9640-driver-0",
+                "starter-747a9640-equipment-0",
+                "starter-747a9640-equipment-1",
+                "starter-747a9640-facility",
+                "starter-747a9640-property",
+                "starter-747a9640-ru"
+              ]
+            }
+          }
+        ],
+        "provenance": [],
+        "maintenanceRevision": 1,
+        "management": {
+          "initialized": true,
+          "registrySchema": 2,
+          "registries": {
+            "personnel": {
+              "starter-747a9640-driver-0": {
+                "id": "starter-747a9640-driver-0",
+                "ownerCareerId": "browser-mechanist",
+                "references": {
+                  "assignment": [
+                    "starter-747a9640-ru"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Mechanist Workshop Primary Driver",
+                "role": "driver",
+                "attributes": {
+                  "driving": 50,
+                  "beastHandling": 40,
+                  "combat": 50,
+                  "awareness": 60,
+                  "nerve": 50
+                },
+                "condition": 100,
+                "injury": "Healthy",
+                "fatigue": 0,
+                "strain": 0,
+                "xp": 0,
+                "available": true
+              }
+            },
+            "specialists": {},
+            "beasts": {
+              "starter-747a9640-beast-0": {
+                "id": "starter-747a9640-beast-0",
+                "ownerCareerId": "browser-mechanist",
+                "references": {
+                  "assignment": [
+                    "starter-747a9640-ru"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Mechanist Workshop Lead A",
+                "species": "generic_draft_beast",
+                "attributes": {
+                  "speed": 50,
+                  "power": 50,
+                  "agility": 50,
+                  "endurance": 50,
+                  "discipline": 50,
+                  "toughness": 50
+                },
+                "condition": 100,
+                "injury": "Healthy",
+                "fatigue": 0,
+                "xp": 0,
+                "available": true
+              },
+              "starter-747a9640-beast-1": {
+                "id": "starter-747a9640-beast-1",
+                "ownerCareerId": "browser-mechanist",
+                "references": {
+                  "assignment": [
+                    "starter-747a9640-ru"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Mechanist Workshop Lead B",
+                "species": "generic_draft_beast",
+                "attributes": {
+                  "speed": 50,
+                  "power": 50,
+                  "agility": 50,
+                  "endurance": 50,
+                  "discipline": 50,
+                  "toughness": 50
+                },
+                "condition": 100,
+                "injury": "Healthy",
+                "fatigue": 0,
+                "xp": 0,
+                "available": true
+              }
+            },
+            "chariots": {
+              "starter-747a9640-chariot": {
+                "id": "starter-747a9640-chariot",
+                "ownerCareerId": "browser-mechanist",
+                "references": {
+                  "equipment": [
+                    "starter-747a9640-equipment-0",
+                    "starter-747a9640-equipment-1"
+                  ],
+                  "assignment": [
+                    "starter-747a9640-ru"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Workshop-tuned chariot",
+                "attributes": {
+                  "stability": 70,
+                  "durability": 70,
+                  "protection": 60,
+                  "rollingEfficiency": 70,
+                  "maneuverability": 70
+                },
+                "condition": 100,
+                "wear": 0,
+                "integrity": 100,
+                "status": "Functional",
+                "weight": 180,
+                "capacity": 400,
+                "xp": 0,
+                "available": true
+              }
+            },
+            "equipment": {
+              "starter-747a9640-equipment-0": {
+                "id": "starter-747a9640-equipment-0",
+                "ownerCareerId": "browser-mechanist",
+                "references": {
+                  "installedOn": [
+                    "starter-747a9640-chariot"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Reinforced harness",
+                "mass": 0,
+                "combat": 0
+              },
+              "starter-747a9640-equipment-1": {
+                "id": "starter-747a9640-equipment-1",
+                "ownerCareerId": "browser-mechanist",
+                "references": {
+                  "installedOn": [
+                    "starter-747a9640-chariot"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Precision wheels",
+                "mass": 0,
+                "combat": 0
+              }
+            },
+            "contracts": {},
+            "candidates": {},
+            "recruitmentOffers": {},
+            "marketOffers": {},
+            "properties": {
+              "starter-747a9640-property": {
+                "id": "starter-747a9640-property",
+                "ownerCareerId": "browser-mechanist",
+                "references": {
+                  "facilities": [
+                    "starter-747a9640-facility"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Basic Property",
+                "tier": "Basic",
+                "capacities": {
+                  "drivers": 2,
+                  "specialists": 0,
+                  "beasts": 4,
+                  "chariots": 1
+                },
+                "packageId": "mechanist",
+                "catalogVersion": 3
+              }
+            },
+            "facilities": {
+              "starter-747a9640-facility": {
+                "id": "starter-747a9640-facility",
+                "ownerCareerId": "browser-mechanist",
+                "references": {
+                  "property": [
+                    "starter-747a9640-property"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Workshop Shed",
+                "descriptiveOnly": true
+              }
+            },
+            "projects": {},
+            "assignments": {
+              "starter-747a9640-ru": {
+                "id": "starter-747a9640-ru",
+                "ownerCareerId": "browser-mechanist",
+                "references": {
+                  "subject": [
+                    "starter-747a9640-driver-0",
+                    "starter-747a9640-beast-0",
+                    "starter-747a9640-beast-1",
+                    "starter-747a9640-chariot"
+                  ]
+                },
+                "recordVersion": 1,
+                "name": "Prospective Racing Unit",
+                "kind": "prospectiveRU",
+                "driverId": "starter-747a9640-driver-0",
+                "beastIds": [
+                  "starter-747a9640-beast-0",
+                  "starter-747a9640-beast-1"
+                ],
+                "chariotId": "starter-747a9640-chariot"
+              }
+            },
+            "obligations": {},
+            "advancementChoices": {},
+            "achievements": {}
+          }
+        },
+        "history": {
+          "schema": 1,
+          "commands": [
+            {
+              "id": "initialize-mechanist",
+              "profileId": "owner",
+              "careerId": "browser-mechanist",
+              "commandVersion": 1,
+              "request": "{\"careerId\":\"browser-mechanist\",\"catalogVersion\":3,\"commandVersion\":1,\"confirmed\":true,\"delta\":800,\"effectId\":\"initialize-browser-mechanist\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":0,\"id\":\"initialize-mechanist\",\"packageId\":\"mechanist\",\"profileId\":\"owner\",\"reason\":\"Approved starting package\",\"type\":\"career.initialize\"}",
+              "fingerprint": "98a8b618",
+              "resultRevision": 1,
+              "effectId": "initialize-browser-mechanist",
+              "delta": 800,
+              "balanceAfter": 800,
+              "retention": "P0",
+              "result": {
+                "packageId": "mechanist",
+                "catalogVersion": 3,
+                "treasuryGrant": 800,
+                "grantedIds": [
+                  "starter-747a9640-beast-0",
+                  "starter-747a9640-beast-1",
+                  "starter-747a9640-chariot",
+                  "starter-747a9640-driver-0",
+                  "starter-747a9640-equipment-0",
+                  "starter-747a9640-equipment-1",
+                  "starter-747a9640-facility",
+                  "starter-747a9640-property",
+                  "starter-747a9640-ru"
+                ]
+              }
+            }
+          ]
+        },
+        "migration": {
+          "fromSchema": 1,
+          "toSchema": 2,
+          "sourceProfileId": "owner",
+          "sourceCareerId": "browser-mechanist",
+          "sourceRevision": 0,
+          "sourceTreasury": 0,
+          "sourcePendingDigest": null,
+          "sourceStateDigest": "9e2f81f5"
+        }
+      },
+      "migrationRequest": {
+        "id": "migration-9c80fc55-944a-45fe-9963-a662b094158c",
+        "profileId": "owner",
+        "careerId": "browser-mechanist",
+        "type": "career.migrate",
+        "maintenanceVersion": 1,
+        "expectedRevision": 1,
+        "expectedMaintenanceRevision": 1,
+        "sourceSchema": 2,
+        "targetSchema": 3,
+        "sourceFingerprint": "471a67e9faf93f380e8454c49985360d8a4ef6d970085a6af62f91ff68310a06",
+        "migrationVersion": "m2c-migration-v1",
+        "adapterVersion": "valuation-health-v1",
+        "generatorVersion": "market-generator-v1",
+        "confirmed": true,
+        "effectId": "migrate-browser-mechanist-2-3"
+      },
+      "manifestDigest": "f1020433eb3830e23f5337984425a218f2e453304f559d518bfc8bb81bf0e2b4"
+    }
+  }
+}

@@ -1,7 +1,8 @@
+import { mountStableEconomy } from './stable-economy.js';
 import { mountStableFoundation } from './stable-foundation.js';
 import { createCareer, createUninitializedCareer } from '../career/state.js';
 import { CareerStore } from '../persistence/career-store.js';
-import { historyRetentionPlan } from '../career/history.js';
+import { historyRetentionPlan } from '../career/economy/protected-registry.js';
 import { SAVE_KEY, MAX_IMPORT_BYTES, parseEnvelope } from '../persistence/envelope.js';
 
 const $ = id => document.getElementById(id);
@@ -19,7 +20,7 @@ export function mountCareerSaves({ download }) {
   const store = new CareerStore(storage);
   store.open();
   let staged = null, lastToken = null, notice = '', queue = Promise.resolve();
-  let renderStable = () => {};
+  let renderStable = () => {}, renderEconomy = () => {};
   function render() {
     const state = store.state;
     $('careerSaveStatus').textContent = `${store.mode.toUpperCase()} · ${state ? `Schema ${state.schema} · Revision ${state.revision} · Maintenance ${state.maintenanceRevision ?? 0} · Treasury ${state.career.treasury} Gold · ${(state.profile.developerEdited || state.career.developerEdited) ? 'DEVELOPER-EDITED (persistent)' : 'Unedited foundation'}` : 'No career loaded'}${store.requiresCheckpoint ? ' · CHECKPOINT REQUIRED: export, save the file and confirm before another change.' : ''}`;
@@ -35,6 +36,7 @@ export function mountCareerSaves({ download }) {
     $('careerRawExport').disabled = !store.quarantine;
     $('careerImportApply').disabled = !staged;
     renderStable();
+    renderEconomy();
   }
   async function exclusive(fn) {
     // Web Locks serialize cooperating windows when supported. The storage adapter
@@ -67,7 +69,7 @@ export function mountCareerSaves({ download }) {
     if (!rawDelta.trim() || !Number.isSafeInteger(Number(rawDelta))) throw Error('Enter a whole-number treasury change');
     const delta = Number(rawDelta), reason = $('careerEditReason').value;
     if (!window.confirm('Apply this developer treasury transaction? It permanently marks this profile and career developer-edited.')) return;
-    store.transaction({ id: newId('tx'), profileId: state.profile.id, careerId: state.career.id, expectedRevision: state.revision, type: 'developer.treasury.adjust', delta, reason, ...(state.schema === 2 ? { commandVersion: 1, expectedMaintenanceRevision: state.maintenanceRevision, effectId: newId('effect') } : {}) });
+    store.transaction({ id: newId('tx'), profileId: state.profile.id, careerId: state.career.id, expectedRevision: state.revision, type: 'developer.treasury.adjust', delta, reason, ...(state.schema >= 2 ? { commandVersion: 1, expectedMaintenanceRevision: state.maintenanceRevision, effectId: newId('effect') } : {}) });
     notice = 'Developer transaction committed. This provenance cannot be cleared by ordinary actions.'; lastToken = null;
   });
   $('careerExport').onclick = act(() => {
@@ -108,5 +110,6 @@ export function mountCareerSaves({ download }) {
     if (e.key === SAVE_KEY) { notice = 'Career storage changed in another window. Reload before further editing. Use only one active writer when Web Locks are unavailable.'; render(); }
   });
   renderStable = mountStableFoundation({store,act,newId,setNotice:message=>{notice=message;lastToken=null;}});
+  renderEconomy = mountStableEconomy({store,act,newId,setNotice:message=>{notice=message;lastToken=null;},download});
   render();
 }

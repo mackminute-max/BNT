@@ -7,7 +7,7 @@ import assert from 'node:assert/strict';
 import {createUninitializedCareer} from '../src/career/state.js';
 import {STARTING_PACKAGES} from '../src/career/packages.js';
 import {SAVE_KEY,makeEnvelope} from '../src/persistence/envelope.js';
-const out='docs/m2-b/evidence/implementation';await mkdir(out,{recursive:true});
+const out=process.env.BNT_M2B_EVIDENCE_DIR??'docs/m2-b/evidence/implementation';await mkdir(out,{recursive:true});
 const html=await readFile('dist/Blood_and_Thunder.html','utf8'),fileURL=pathToFileURL(resolve('dist/Blood_and_Thunder.html')).href;
 const report={checks:[],errors:[],requests:[],fileLaunch:'not attempted'};
 const browser=await chromium.launch({executablePath:process.env.BNT_BROWSER_PATH??'/usr/bin/chromium',headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});let server;

@@ -1,0 +1,34 @@
+✔ M2-C migration traditional: exact source preservation, wages, basis, one maintenance increment and market (133.410732ms)
+✔ M2-C migration beastmaster: exact source preservation, wages, basis, one maintenance increment and market (76.794535ms)
+✔ M2-C migration mechanist: exact source preservation, wages, basis, one maintenance increment and market (99.432962ms)
+✔ M2-C migration veteran: exact source preservation, wages, basis, one maintenance increment and market (87.983192ms)
+✔ M2-C migration scrappy: exact source preservation, wages, basis, one maintenance increment and market (88.70194ms)
+✔ M2-C persistent migration rejects stale canonical preview, both revisions, missing assets and malformed legacy injury (16.251416ms)
+✔ M2-C exact roundtrip retains all fields and accepts a subsequent command v2 beside v1 (333.024608ms)
+✔ M2-C exact canonical retry returns original receipt; conflicting payload, IDs and effects never duplicate (105.379654ms)
+✔ M2-C separate business operations have distinct effect IDs even at the same revision (104.821631ms)
+✔ M2-C failed gameplay publish rolls back all state, offers, Gold and protected facts then manual retry is explicit (181.166439ms)
+✔ M2-C failed migration publication retains original valid schema-2 bytes and manual retry migrates once (84.157224ms)
+✔ M2-C restoring pre-migration save preserves migration fact and blocks regeneration under new fingerprint (55.465357ms)
+✔ M2-C older schema-3 restore retains purchased business effect; no offer can be purchased twice (151.481264ms)
+✔ M2-C metadata, price, ledger, native stats and forged receipt imports are rejected without replacement (426.190663ms)
+✔ M2-C state snapshots and migration plans are immutable; no storage writes during quote/preview (45.441458ms)
+✔ M2-C acquisition enforces capacities, consumes one offer and provides persistent employment terms (274.364782ms)
+✔ M2-C explicit detach updates both references; installed sale and assigned chariot sale reject (351.337435ms)
+✔ M2-C v1 disassembly/reassembly survives migration and does not consume Gold, XP or time (143.077983ms)
+✔ M2-C schema-3 injury preview flags ineligible RU without changing assignment; native condition remains separate (43.113362ms)
+✔ M2-C seven permanent upgrades total 3050, increase correct capacities and never upgrade descriptive facilities (594.465094ms)
+✔ M2-C engineering has exact incremental cost, persistent ledger, no resale uplift and ten lifetime increments (229.003207ms)
+✔ M2-C real training rejects insufficient XP; no persistent grant or unapproved domain action exists (62.402048ms)
+✔ M2-C cost, revision, ownership, bounds and invalid native field reject without mutations (62.328671ms)
+✔ M2-C entire initial market can be consumed without replenishment while releasing capacity explicitly (23403.621972ms)
+✔ M2-C protected migration without retained acknowledgment returns null without writes (72.25601ms)
+✔ M2-C import size bound and stale browser writer preserve current aggregate (196.874935ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 27592.587283

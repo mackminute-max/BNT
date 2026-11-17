@@ -1,5 +1,10 @@
 # Blood and Thunder — racing prototype development
 
+Current stage: [M2-C implementation review](docs/m2-c/M2_C_IMPLEMENTATION_REPORT.md). See [schema/API](docs/m2-c/SCHEMA_AND_TRANSACTION_API.md), [reproduction commands](docs/m2-c/README.md) and [Windows acceptance](docs/m2-c/WINDOWS_ACCEPTANCE.md). Explicit economy migration preserves gameplay revisions and original receipts; old factories/readers remain. No market refresh, XP awards, wage accrual, cycles or championships. M2-D/E and M3 are not started.
+
+Earlier development context follows; its stage/review labels are historical.
+
+
 Current stage: [M2-B starting stable review](docs/m2-b/M2_B_IMPLEMENTATION_REPORT.md). See the [schema/API contract](docs/m2-b/SCHEMA_AND_TRANSACTION_API.md), [reproduction commands](docs/m2-b/README.md) and [Windows acceptance checklist](docs/m2-b/WINDOWS_ACCEPTANCE.md). M2-B adds explicit starting grants and prospective RU assembly only; no race-entry or management-cycle integration. Later stages remain unauthorized.
 
 

@@ -1,3 +1,17 @@
+# Current implementation status — M2-C review
+
+M2-C is implemented on local review branch `feat/m2-c-economy` under the owner's explicit production authorization and Revision 2.1. M2-B was owner-accepted and merged at `105bce8`. M2-C adds an explicit maintenance-only schema-3 migration, fixed 23-offer market, contracts/valuation, atomic economic actions, facilities, immediate services and training/engineering quotes/ledgers. Existing simulation source and strict old history/legacy/schema-2 validators are unchanged.
+
+Verification: **351 tests passed**, including all 293 baseline tests and 58 new cases; **86 browser functional groups passed**; twelve full race captures/replays matched accepted M2-B and all five starter native adapters matched. The first additive maintenance compatibility gate passed before persistent migration was enabled. Direct managed file navigation remains administrator-blocked; Windows file-origin acceptance of this exact new artifact is outstanding. No gate is waived.
+
+[Report](docs/m2-c/M2_C_IMPLEMENTATION_REPORT.md) · [API](docs/m2-c/SCHEMA_AND_TRANSACTION_API.md) · [Windows checklist](docs/m2-c/WINDOWS_ACCEPTANCE.md) · [Reproduce](docs/m2-c/README.md).
+
+Standalone aliases: **380462 bytes**, SHA-256 `13b2b1e3898c5df30f5b97b9b37c2bb033fc01c5ae9f43fd64bd89a3fc3e938f`. No runtime server/network/dependency required by the architecture. No push, merge, deployment or final M2-C owner acceptance is claimed. M2-D/E and M3 have not started.
+
+---
+
+## Historical implementation records below (their review/status wording is historical)
+
 # Current implementation status — M2-B review
 
 M2-B implements the approved five starting packages, explicit pristine one-time initialization, typed owned assets, prospective RU assembly/disassembly and minimal save-panel UI. Racing engine/formulas/AI/track/replay and M1 compatibility source remain unchanged. M2-A passed owner-reported local testing; M2-B awaits owner review and merge approval.

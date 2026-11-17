@@ -1,3 +1,4 @@
+import { generateMarket, seedInteger, marketStream } from '../career/economy/market.js';
 import { advanceFrames } from "./clock.js";
 import { mountWorkbench, downloadJSON } from "./workbench.js";
 import { Commentary, narrative } from "../reporting/commentary.js";
@@ -683,6 +684,7 @@ function frame(now) {
 }
 // Read-only data access plus headless run entrypoint for artifact parity tests.
 window.BNT = {
+  managementDiagnostics: { generateMarket, seedInteger, marketStream },
   createRace,
   run,
   step,
