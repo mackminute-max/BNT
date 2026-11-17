@@ -1,0 +1,12 @@
+
+> blood-and-thunder@0.6.0 build
+> node scripts/build.mjs
+
+file:///workspace/BNT/scripts/build.mjs:21
+  throw new Error("External runtime dependency found");
+        ^
+
+Error: External runtime dependency found
+    at file:///workspace/BNT/scripts/build.mjs:21:9
+
+Node.js v24.22.1

@@ -1,0 +1,88 @@
+{
+  "checks": [
+    {
+      "kind": "weapon",
+      "checksum": "d7e49133",
+      "replay": true,
+      "firstAction": "attack"
+    },
+    {
+      "kind": "ram",
+      "checksum": "c4e42141",
+      "replay": true,
+      "firstAction": "ram"
+    },
+    {
+      "kind": "unsafe-ram",
+      "checksum": "7c473e1c",
+      "replay": true,
+      "firstAction": "attack"
+    },
+    {
+      "kind": "damaged",
+      "checksum": "30de538a",
+      "replay": true,
+      "firstAction": "hold"
+    },
+    {
+      "kind": "race-on",
+      "checksum": "6490c2fc",
+      "replay": true,
+      "firstAction": "hold"
+    },
+    {
+      "id": "DR-healthy-0-0-Combat",
+      "checksum": "0b7ee0f4",
+      "observerParity": true,
+      "metricsExact": true,
+      "replay": true
+    },
+    {
+      "id": "DR-mixed-0-0-Combat",
+      "checksum": "f30e4cbb",
+      "observerParity": true,
+      "metricsExact": true,
+      "replay": true
+    },
+    {
+      "id": "DR-high-risk-0-0-Combat",
+      "checksum": "f55a4b96",
+      "observerParity": true,
+      "metricsExact": true,
+      "replay": true
+    },
+    {
+      "id": "DR-mixed-13-2-Combat",
+      "checksum": "1971aa9a",
+      "observerParity": true,
+      "metricsExact": true,
+      "replay": true
+    },
+    {
+      "dataset": "baseline/races",
+      "n": 300,
+      "valid": true
+    },
+    {
+      "dataset": "current",
+      "n": 300,
+      "valid": true
+    },
+    {
+      "unchangedMechanics": true,
+      "files": 21
+    },
+    {
+      "referenceMechanics": "Pure",
+      "eventsIdentical": true
+    },
+    {
+      "referenceMechanics": "Combat",
+      "eventsIdentical": true
+    }
+  ],
+  "artifact": {
+    "bytes": 169883,
+    "sha256": "29d3b74f0503f7a0538e7e4ee16728af82f9f5f6cb9c93bc6eacbedd28e765ac"
+  }
+}

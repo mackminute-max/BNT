@@ -1,0 +1,166 @@
+[
+  {
+    "job": {
+      "id": "baseline-Pure",
+      "setup": {
+        "format": "Pure",
+        "seed": 145,
+        "checkpointInterval": 10000
+      }
+    },
+    "checksum": "245466a9",
+    "eventsSHA256": "ea4dabf2822c8a4d793a31f8ccf100f4f2798999756bcc629691647570c304e9",
+    "rng": {
+      "algorithm": "keyed-fnv-avalanche-v1",
+      "draws": 31507
+    },
+    "official": [
+      {
+        "id": "RU6",
+        "place": 1,
+        "status": "Finished",
+        "time": 123.66477659238019,
+        "completedLaps": 3,
+        "progress": 240
+      },
+      {
+        "id": "RU3",
+        "place": 2,
+        "status": "Finished",
+        "time": 124.84361201842002,
+        "completedLaps": 3,
+        "progress": 240
+      },
+      {
+        "id": "RU8",
+        "place": 3,
+        "status": "Finished",
+        "time": 124.89721709068723,
+        "completedLaps": 3,
+        "progress": 240
+      },
+      {
+        "id": "RU1",
+        "place": 4,
+        "status": "Finished",
+        "time": 126.28377721589082,
+        "completedLaps": 3,
+        "progress": 240
+      },
+      {
+        "id": "RU5",
+        "place": 5,
+        "status": "Finished",
+        "time": 126.66621072083007,
+        "completedLaps": 3,
+        "progress": 240
+      },
+      {
+        "id": "RU7",
+        "place": 6,
+        "status": "Finished",
+        "time": 127.68328001682413,
+        "completedLaps": 3,
+        "progress": 240
+      },
+      {
+        "id": "RU2",
+        "place": 7,
+        "status": "Finished",
+        "time": 132.8037812379999,
+        "completedLaps": 3,
+        "progress": 240
+      },
+      {
+        "id": "RU4",
+        "place": 8,
+        "status": "Finished",
+        "time": 140.36556164083393,
+        "completedLaps": 3,
+        "progress": 240
+      }
+    ]
+  },
+  {
+    "job": {
+      "id": "baseline-Combat",
+      "setup": {
+        "format": "Combat",
+        "seed": 145,
+        "checkpointInterval": 10000
+      }
+    },
+    "checksum": "89931df4",
+    "eventsSHA256": "f94adafff1b92e61c80f5c534d0231192066d178704fb9aa95eed37e995c8ca8",
+    "rng": {
+      "algorithm": "keyed-fnv-avalanche-v1",
+      "draws": 34836
+    },
+    "official": [
+      {
+        "id": "RU8",
+        "place": 1,
+        "status": "Finished",
+        "time": 122.9026996400631,
+        "completedLaps": 3,
+        "progress": 240
+      },
+      {
+        "id": "RU6",
+        "place": 2,
+        "status": "Finished",
+        "time": 123.66477659237931,
+        "completedLaps": 3,
+        "progress": 240
+      },
+      {
+        "id": "RU3",
+        "place": 3,
+        "status": "Finished",
+        "time": 124.84361201841931,
+        "completedLaps": 3,
+        "progress": 240
+      },
+      {
+        "id": "RU1",
+        "place": 4,
+        "status": "Finished",
+        "time": 126.34160574246008,
+        "completedLaps": 3,
+        "progress": 240
+      },
+      {
+        "id": "RU5",
+        "place": 5,
+        "status": "Finished",
+        "time": 127.77895455033787,
+        "completedLaps": 3,
+        "progress": 240
+      },
+      {
+        "id": "RU7",
+        "place": 6,
+        "status": "Finished",
+        "time": 128.6602815442927,
+        "completedLaps": 3,
+        "progress": 240
+      },
+      {
+        "id": "RU2",
+        "place": 7,
+        "status": "Finished",
+        "time": 131.67446607003774,
+        "completedLaps": 3,
+        "progress": 240
+      },
+      {
+        "id": "RU4",
+        "place": 8,
+        "status": "Finished",
+        "time": 140.36556164083245,
+        "completedLaps": 3,
+        "progress": 240
+      }
+    ]
+  }
+]

@@ -1,0 +1,86 @@
+{
+  "completed": 80,
+  "wallSeconds": 44.822374684,
+  "tracks": {
+    "fast-circuit": {
+      "races": 20,
+      "pure": 10,
+      "combat": 10,
+      "weatherPresets": 5,
+      "statuses": {
+        "Ended": 20
+      },
+      "finishes": 160,
+      "dnfs": 0,
+      "damage": 78.66497563111307,
+      "attacks": 0,
+      "invalidatedAttacks": 0,
+      "laneChanges": 657,
+      "overtakes": 926,
+      "checkpointCrossings": 0,
+      "meanDuration": 434.0075,
+      "integrityFailures": 0,
+      "maxGroups": 18
+    },
+    "mixed-rally": {
+      "races": 20,
+      "pure": 10,
+      "combat": 10,
+      "weatherPresets": 5,
+      "statuses": {
+        "Ended": 20
+      },
+      "finishes": 160,
+      "dnfs": 0,
+      "damage": 189.0940311293785,
+      "attacks": 0,
+      "invalidatedAttacks": 0,
+      "laneChanges": 622,
+      "overtakes": 738,
+      "checkpointCrossings": 480,
+      "meanDuration": 84.26750000000001,
+      "integrityFailures": 0,
+      "maxGroups": 16
+    },
+    "technical-circuit": {
+      "races": 20,
+      "pure": 10,
+      "combat": 10,
+      "weatherPresets": 5,
+      "statuses": {
+        "Ended": 20
+      },
+      "finishes": 160,
+      "dnfs": 0,
+      "damage": 147.0541010361801,
+      "attacks": 0,
+      "invalidatedAttacks": 0,
+      "laneChanges": 758,
+      "overtakes": 1186,
+      "checkpointCrossings": 0,
+      "meanDuration": 300.4575,
+      "integrityFailures": 0,
+      "maxGroups": 17
+    },
+    "technical-rally": {
+      "races": 20,
+      "pure": 10,
+      "combat": 10,
+      "weatherPresets": 5,
+      "statuses": {
+        "Ended": 20
+      },
+      "finishes": 160,
+      "dnfs": 0,
+      "damage": 189.589112810237,
+      "attacks": 0,
+      "invalidatedAttacks": 0,
+      "laneChanges": 528,
+      "overtakes": 477,
+      "checkpointCrossings": 480,
+      "meanDuration": 65.64000000000001,
+      "integrityFailures": 0,
+      "maxGroups": 17
+    }
+  }
+}

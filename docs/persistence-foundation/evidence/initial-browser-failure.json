@@ -1,0 +1,32 @@
+{
+  "checks": [
+    "M0 diagnostic origin storage write/read/remove succeeds; actual protocol recorded",
+    "Empty M1 career/profile created and automatically stored independently of race configuration",
+    "Validated developer treasury edit commits revision, receipt and persistent provenance",
+    "Invalid negative treasury leaves loaded state and browser checkpoint unchanged",
+    "Cooperating windows serialize through available locks and stale save bytes reject lost updates",
+    "Automatic reload and external JSON export retain IDs, fields and developer-edited status; configuration key untouched",
+    "Import stages without mutation, cancellation preserves career, explicit replacement swaps the whole profile without Legacy merge",
+    "Complete save import/export preserves every serialized field, ID, receipt, recovery and provenance",
+    "Malformed, developer-configuration and future-schema imports preserve the previous valid career",
+    "Corrupt primary is preserved until explicit recovery; previous checkpoint restored without invented transactions or lost edit provenance",
+    "Original corrupt bytes remain available for explicit diagnostic export",
+    "Simulated quota denial rolls back the attempted transaction and activates manual mode",
+    "Manual mode requires export plus explicit user acknowledgement between changes; download alone is not treated as durable saving",
+    "Career save/edit/recovery operations do not change the race state or RNG",
+    "Storage getter denial permits manual create/export/reload/import while retaining IDs and provenance"
+  ],
+  "errors": [
+    "page.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#careerAcknowledge')\u001b[22m\n\u001b[2m    - locator resolved to <button disabled id=\"careerAcknowledge\">I saved this checkpoint</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    56 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /workspace/BNT/scripts/persistence-browser.mjs:53:11"
+  ],
+  "requests": [],
+  "fileLaunch": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///workspace/BNT/dist/Blood-and-Thunder-Track-Test.html",
+  "browser": "156.0.8078.79",
+  "mode": "HTTP diagnostic origin only; offline after each document load",
+  "storageProbe": {
+    "writeReadRemove": true,
+    "protocol": "http:"
+  },
+  "functional": "FAIL",
+  "result": "FAIL"
+}

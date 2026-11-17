@@ -1,0 +1,20 @@
+[
+  {
+    "name": "closing20",
+    "seed": 1,
+    "action": "none",
+    "checksum": "55c5fe4c"
+  },
+  {
+    "name": "closing20",
+    "seed": 1,
+    "action": "attack",
+    "checksum": "d4737749"
+  },
+  {
+    "name": "closing20",
+    "seed": 1,
+    "action": "ram",
+    "checksum": "f6acda3d"
+  }
+]

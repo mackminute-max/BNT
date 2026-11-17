@@ -1,0 +1,49 @@
+# Blood and Thunder project documentation
+
+## Phase 2 — simulation evaluation and balance analysis
+
+The [evaluation package](phase2/README.md) records 1,130 races: the planned 500 Pure/500 Combat runs plus a separately declared rear-row sign panel of 60 Pure/70 Combat runs. No Phase 2 gameplay tuning was applied.
+
+- [Simulation analysis and charts](phase2/PHASE2_SIMULATION_ANALYSIS.md)
+- [Findings and prioritized recommendations](phase2/PHASE2_FINDINGS_AND_RECOMMENDATIONS.md)
+- [Methodology and experimental allocation](phase2/PHASE2_EVALUATION_PLAN.md)
+- [Immutable baseline manifest](phase2/PHASE2_BASELINE_MANIFEST.md)
+- [Dataset dictionary and reproduction instructions](phase2/DATA_DICTIONARY.md)
+- [Tests, instrumentation and limitations](phase2/PHASE2_TEST_AND_INSTRUMENTATION_REPORT.md)
+- [Results datasets](phase2/data/) and [supplemental results](phase2/supplement/)
+- [Summary figure](phase2/figures/phase2-summary.png)
+
+## Corrective pass and historical audits
+
+- [v0.4.2 corrective-pass report](audits/CORRECTIVE_PASS_0_4_2.md)
+- [Original establishment-document audit](audits/ESTABLISHMENT_DOCUMENTS_AUDIT.md)
+- [M4 update audit](audits/M4_UPDATE_AUDIT.md)
+
+The ten numbered establishment documents remain at the project root. Historical audit records and baseline manifests retain the revisions and verification scope applicable when they were written. Recommendations require owner review before gameplay tuning.
+
+## Phase 2.1 — Dangerous Racing investigation
+
+The investigation, raw datasets, deterministic replay evidence and recommendations are in [phase2/dangerous-racing](phase2/dangerous-racing/README.md). Start with [full-race results](phase2/dangerous-racing/DANGEROUS_RACING_RESULTS.md) and [recommendations](phase2/dangerous-racing/DANGEROUS_RACING_RECOMMENDATIONS.md). This evaluation changes no gameplay or standalone application bytes.
+
+## Combat AI refinement — 0.4.3
+
+[Implementation report](combat-ai-refinement/COMBAT_AI_REFINEMENT_REPORT.md), [baseline/comparative datasets and reproduction](combat-ai-refinement/README.md), and regression/browser/replay evidence are under `combat-ai-refinement/`. Gameplay changes are limited to contextual AI evaluation; physical rules remain unchanged.
+
+## Circuit and Rally expansion — 0.5.0
+
+[Implementation report](circuit-rally/CIRCUIT_AND_RALLY_IMPLEMENTATION_REPORT.md), [configuration/reproduction guide](circuit-rally/README.md), source baseline,80-race smoke outcomes, replay records and browser screenshots are in `circuit-rally/`. Existing Oval, two irregular circuits and two point-to-point rallies share the authoritative engine.
+
+
+## Track catalogue and procedural Rally expansion — 0.6.0
+
+[Implementation/test report](track-expansion/TRACK_SYSTEM_EXPANSION_REPORT.md), [player instructions](track-expansion/USER_TESTING_INSTRUCTIONS.md), [reproduction guide and evidence](track-expansion/README.md). Includes three ovals, twelve handcrafted circuits, seeded chunk-based rallies, 300-seed validation and complete-race/replay/browser evidence. Direct-file acceptance is separately identified as policy-blocked.
+
+
+## M0/M1 persistence foundation — career save schema 1
+
+[Implementation/verification report](persistence-foundation/M0_M1_IMPLEMENTATION_REPORT.md), [Windows file-origin checklist](persistence-foundation/WINDOWS_TESTING.md), [APIs/reproduction/evidence](persistence-foundation/README.md). Adds the isolated persistence/developer transaction foundation; racing engine unchanged. M0 file-origin acceptance remains policy-blocked and no M2 gameplay was implemented.
+
+
+## M2-A — persistence/domain foundation review
+
+[Implementation report](m2-a/M2_A_IMPLEMENTATION_REPORT.md), [schema/migration/transaction/reference contract](m2-a/SCHEMA_AND_TRANSACTION_API.md), [Windows checklist](m2-a/WINDOWS_ACCEPTANCE.md), [reproduction/evidence](m2-a/README.md). Explicit schema-2 migration with empty uninitialized registries, P0 identities/effects and sealed maintenance clock. M1 and racing regressions retained; M2-B–E not implemented. Direct-file acceptance remains policy-blocked.

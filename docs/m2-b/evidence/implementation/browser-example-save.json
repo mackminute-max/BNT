@@ -1,0 +1,1019 @@
+{
+  "kind": "BNT-game-save",
+  "schema": 1,
+  "primary": {
+    "value": {
+      "kind": "BNT-career-state",
+      "schema": 2,
+      "revision": 4,
+      "profile": {
+        "id": "browser-owner",
+        "name": "Owner",
+        "legacy": {
+          "records": []
+        },
+        "developerEdited": false
+      },
+      "career": {
+        "id": "browser-scrappy",
+        "ownerProfileId": "browser-owner",
+        "name": "M1 Foundation",
+        "status": "Foundation",
+        "treasury": 750,
+        "developerEdited": false
+      },
+      "pendingRace": null,
+      "transactions": [
+        {
+          "transaction": {
+            "id": "domain-5e6fe9d4-cc49-47cf-89d3-a62b3d595afa",
+            "profileId": "browser-owner",
+            "careerId": "browser-scrappy",
+            "expectedRevision": 0,
+            "expectedMaintenanceRevision": 1,
+            "commandVersion": 1,
+            "type": "career.initialize",
+            "reason": "M2-B career.initialize",
+            "delta": 750,
+            "effectId": "initialize-browser-scrappy",
+            "packageId": "scrappy",
+            "catalogVersion": 3,
+            "confirmed": true
+          },
+          "resultRevision": 1,
+          "balanceAfter": 750,
+          "result": {
+            "packageId": "scrappy",
+            "catalogVersion": 3,
+            "treasuryGrant": 750,
+            "grantedIds": [
+              "starter-9e94abd9-beast-0",
+              "starter-9e94abd9-beast-1",
+              "starter-9e94abd9-beast-2",
+              "starter-9e94abd9-chariot",
+              "starter-9e94abd9-driver-0",
+              "starter-9e94abd9-driver-1",
+              "starter-9e94abd9-equipment-0",
+              "starter-9e94abd9-equipment-1",
+              "starter-9e94abd9-facility",
+              "starter-9e94abd9-property",
+              "starter-9e94abd9-ru"
+            ]
+          }
+        },
+        {
+          "transaction": {
+            "id": "domain-cc2efadb-f394-477e-ac44-237e3586792b",
+            "profileId": "browser-owner",
+            "careerId": "browser-scrappy",
+            "expectedRevision": 1,
+            "expectedMaintenanceRevision": 1,
+            "commandVersion": 1,
+            "type": "ru.assemble",
+            "reason": "M2-B ru.assemble",
+            "delta": 0,
+            "effectId": "assembly-browser-scrappy-1-1",
+            "assignmentId": "starter-9e94abd9-ru",
+            "driverId": "starter-9e94abd9-driver-1",
+            "beastIds": [
+              "starter-9e94abd9-beast-0",
+              "starter-9e94abd9-beast-2"
+            ],
+            "chariotId": "starter-9e94abd9-chariot"
+          },
+          "resultRevision": 2,
+          "balanceAfter": 750,
+          "result": {
+            "assignmentId": "starter-9e94abd9-ru",
+            "assembled": true
+          }
+        },
+        {
+          "transaction": {
+            "id": "domain-17968cf0-1181-411c-af65-9c80040e62da",
+            "profileId": "browser-owner",
+            "careerId": "browser-scrappy",
+            "expectedRevision": 2,
+            "expectedMaintenanceRevision": 1,
+            "commandVersion": 1,
+            "type": "ru.disassemble",
+            "reason": "M2-B ru.disassemble",
+            "delta": 0,
+            "effectId": "assembly-browser-scrappy-2-1",
+            "assignmentId": "starter-9e94abd9-ru"
+          },
+          "resultRevision": 3,
+          "balanceAfter": 750,
+          "result": {
+            "assignmentId": "starter-9e94abd9-ru",
+            "assembled": false
+          }
+        },
+        {
+          "transaction": {
+            "id": "domain-880beb7b-296f-4cb1-9a0f-5f2f7b308dfc",
+            "profileId": "browser-owner",
+            "careerId": "browser-scrappy",
+            "expectedRevision": 3,
+            "expectedMaintenanceRevision": 1,
+            "commandVersion": 1,
+            "type": "ru.assemble",
+            "reason": "M2-B ru.assemble",
+            "delta": 0,
+            "effectId": "assembly-browser-scrappy-3-1",
+            "assignmentId": "starter-9e94abd9-ru",
+            "driverId": "starter-9e94abd9-driver-1",
+            "beastIds": [
+              "starter-9e94abd9-beast-0",
+              "starter-9e94abd9-beast-2"
+            ],
+            "chariotId": "starter-9e94abd9-chariot"
+          },
+          "resultRevision": 4,
+          "balanceAfter": 750,
+          "result": {
+            "assignmentId": "starter-9e94abd9-ru",
+            "assembled": true
+          }
+        }
+      ],
+      "provenance": [],
+      "maintenanceRevision": 1,
+      "management": {
+        "initialized": true,
+        "registrySchema": 2,
+        "registries": {
+          "personnel": {
+            "starter-9e94abd9-driver-0": {
+              "id": "starter-9e94abd9-driver-0",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "assignment": []
+              },
+              "recordVersion": 1,
+              "name": "Scrappy Underdog Primary Driver",
+              "role": "driver",
+              "attributes": {
+                "driving": 40,
+                "beastHandling": 50,
+                "combat": 40,
+                "awareness": 50,
+                "nerve": 60
+              },
+              "condition": 100,
+              "injury": "Healthy",
+              "fatigue": 0,
+              "strain": 0,
+              "xp": 0,
+              "available": true
+            },
+            "starter-9e94abd9-driver-1": {
+              "id": "starter-9e94abd9-driver-1",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "assignment": [
+                  "starter-9e94abd9-ru"
+                ]
+              },
+              "recordVersion": 1,
+              "name": "Scrappy Underdog Reserve Driver",
+              "role": "driver",
+              "attributes": {
+                "driving": 30,
+                "beastHandling": 40,
+                "combat": 40,
+                "awareness": 40,
+                "nerve": 50
+              },
+              "condition": 100,
+              "injury": "Healthy",
+              "fatigue": 0,
+              "strain": 0,
+              "xp": 0,
+              "available": true
+            }
+          },
+          "specialists": {},
+          "beasts": {
+            "starter-9e94abd9-beast-0": {
+              "id": "starter-9e94abd9-beast-0",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "assignment": [
+                  "starter-9e94abd9-ru"
+                ]
+              },
+              "recordVersion": 1,
+              "name": "Scrappy Underdog Lead A",
+              "species": "generic_draft_beast",
+              "attributes": {
+                "speed": 40,
+                "power": 50,
+                "agility": 40,
+                "endurance": 60,
+                "discipline": 40,
+                "toughness": 50
+              },
+              "condition": 100,
+              "injury": "Healthy",
+              "fatigue": 0,
+              "xp": 0,
+              "available": true
+            },
+            "starter-9e94abd9-beast-1": {
+              "id": "starter-9e94abd9-beast-1",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "assignment": []
+              },
+              "recordVersion": 1,
+              "name": "Scrappy Underdog Lead B",
+              "species": "generic_draft_beast",
+              "attributes": {
+                "speed": 50,
+                "power": 40,
+                "agility": 40,
+                "endurance": 60,
+                "discipline": 40,
+                "toughness": 50
+              },
+              "condition": 100,
+              "injury": "Healthy",
+              "fatigue": 0,
+              "xp": 0,
+              "available": true
+            },
+            "starter-9e94abd9-beast-2": {
+              "id": "starter-9e94abd9-beast-2",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "assignment": [
+                  "starter-9e94abd9-ru"
+                ]
+              },
+              "recordVersion": 1,
+              "name": "Scrappy Underdog Reserve Beast",
+              "species": "generic_draft_beast",
+              "attributes": {
+                "speed": 40,
+                "power": 40,
+                "agility": 50,
+                "endurance": 60,
+                "discipline": 50,
+                "toughness": 50
+              },
+              "condition": 100,
+              "injury": "Healthy",
+              "fatigue": 0,
+              "xp": 0,
+              "available": true
+            }
+          },
+          "chariots": {
+            "starter-9e94abd9-chariot": {
+              "id": "starter-9e94abd9-chariot",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "equipment": [
+                  "starter-9e94abd9-equipment-0",
+                  "starter-9e94abd9-equipment-1"
+                ],
+                "assignment": [
+                  "starter-9e94abd9-ru"
+                ]
+              },
+              "recordVersion": 1,
+              "name": "Salvaged racing chariot",
+              "attributes": {
+                "stability": 40,
+                "durability": 40,
+                "protection": 40,
+                "rollingEfficiency": 40,
+                "maneuverability": 40
+              },
+              "condition": 100,
+              "wear": 0,
+              "integrity": 100,
+              "status": "Functional",
+              "weight": 180,
+              "capacity": 400,
+              "xp": 0,
+              "available": true
+            }
+          },
+          "equipment": {
+            "starter-9e94abd9-equipment-0": {
+              "id": "starter-9e94abd9-equipment-0",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "installedOn": [
+                  "starter-9e94abd9-chariot"
+                ]
+              },
+              "recordVersion": 1,
+              "name": "Patched harness",
+              "mass": 0,
+              "combat": 0
+            },
+            "starter-9e94abd9-equipment-1": {
+              "id": "starter-9e94abd9-equipment-1",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "installedOn": [
+                  "starter-9e94abd9-chariot"
+                ]
+              },
+              "recordVersion": 1,
+              "name": "Worn wheels",
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "contracts": {},
+          "candidates": {},
+          "recruitmentOffers": {},
+          "marketOffers": {},
+          "properties": {
+            "starter-9e94abd9-property": {
+              "id": "starter-9e94abd9-property",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "facilities": [
+                  "starter-9e94abd9-facility"
+                ]
+              },
+              "recordVersion": 1,
+              "name": "Basic Property",
+              "tier": "Basic",
+              "capacities": {
+                "drivers": 2,
+                "specialists": 0,
+                "beasts": 4,
+                "chariots": 1
+              },
+              "packageId": "scrappy",
+              "catalogVersion": 3
+            }
+          },
+          "facilities": {
+            "starter-9e94abd9-facility": {
+              "id": "starter-9e94abd9-facility",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "property": [
+                  "starter-9e94abd9-property"
+                ]
+              },
+              "recordVersion": 1,
+              "name": "Makeshift Yard",
+              "descriptiveOnly": true
+            }
+          },
+          "projects": {},
+          "assignments": {
+            "starter-9e94abd9-ru": {
+              "id": "starter-9e94abd9-ru",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "subject": [
+                  "starter-9e94abd9-driver-1",
+                  "starter-9e94abd9-beast-0",
+                  "starter-9e94abd9-beast-2",
+                  "starter-9e94abd9-chariot"
+                ]
+              },
+              "recordVersion": 1,
+              "name": "Prospective Racing Unit",
+              "kind": "prospectiveRU",
+              "driverId": "starter-9e94abd9-driver-1",
+              "beastIds": [
+                "starter-9e94abd9-beast-0",
+                "starter-9e94abd9-beast-2"
+              ],
+              "chariotId": "starter-9e94abd9-chariot"
+            }
+          },
+          "obligations": {},
+          "advancementChoices": {},
+          "achievements": {}
+        }
+      },
+      "history": {
+        "schema": 1,
+        "commands": [
+          {
+            "id": "domain-17968cf0-1181-411c-af65-9c80040e62da",
+            "profileId": "browser-owner",
+            "careerId": "browser-scrappy",
+            "commandVersion": 1,
+            "request": "{\"assignmentId\":\"starter-9e94abd9-ru\",\"careerId\":\"browser-scrappy\",\"commandVersion\":1,\"delta\":0,\"effectId\":\"assembly-browser-scrappy-2-1\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":2,\"id\":\"domain-17968cf0-1181-411c-af65-9c80040e62da\",\"profileId\":\"browser-owner\",\"reason\":\"M2-B ru.disassemble\",\"type\":\"ru.disassemble\"}",
+            "fingerprint": "89cd8df2",
+            "resultRevision": 3,
+            "effectId": "assembly-browser-scrappy-2-1",
+            "delta": 0,
+            "balanceAfter": 750,
+            "retention": "P0",
+            "result": {
+              "assignmentId": "starter-9e94abd9-ru",
+              "assembled": false
+            }
+          },
+          {
+            "id": "domain-5e6fe9d4-cc49-47cf-89d3-a62b3d595afa",
+            "profileId": "browser-owner",
+            "careerId": "browser-scrappy",
+            "commandVersion": 1,
+            "request": "{\"careerId\":\"browser-scrappy\",\"catalogVersion\":3,\"commandVersion\":1,\"confirmed\":true,\"delta\":750,\"effectId\":\"initialize-browser-scrappy\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":0,\"id\":\"domain-5e6fe9d4-cc49-47cf-89d3-a62b3d595afa\",\"packageId\":\"scrappy\",\"profileId\":\"browser-owner\",\"reason\":\"M2-B career.initialize\",\"type\":\"career.initialize\"}",
+            "fingerprint": "d031c906",
+            "resultRevision": 1,
+            "effectId": "initialize-browser-scrappy",
+            "delta": 750,
+            "balanceAfter": 750,
+            "retention": "P0",
+            "result": {
+              "packageId": "scrappy",
+              "catalogVersion": 3,
+              "treasuryGrant": 750,
+              "grantedIds": [
+                "starter-9e94abd9-beast-0",
+                "starter-9e94abd9-beast-1",
+                "starter-9e94abd9-beast-2",
+                "starter-9e94abd9-chariot",
+                "starter-9e94abd9-driver-0",
+                "starter-9e94abd9-driver-1",
+                "starter-9e94abd9-equipment-0",
+                "starter-9e94abd9-equipment-1",
+                "starter-9e94abd9-facility",
+                "starter-9e94abd9-property",
+                "starter-9e94abd9-ru"
+              ]
+            }
+          },
+          {
+            "id": "domain-880beb7b-296f-4cb1-9a0f-5f2f7b308dfc",
+            "profileId": "browser-owner",
+            "careerId": "browser-scrappy",
+            "commandVersion": 1,
+            "request": "{\"assignmentId\":\"starter-9e94abd9-ru\",\"beastIds\":[\"starter-9e94abd9-beast-0\",\"starter-9e94abd9-beast-2\"],\"careerId\":\"browser-scrappy\",\"chariotId\":\"starter-9e94abd9-chariot\",\"commandVersion\":1,\"delta\":0,\"driverId\":\"starter-9e94abd9-driver-1\",\"effectId\":\"assembly-browser-scrappy-3-1\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":3,\"id\":\"domain-880beb7b-296f-4cb1-9a0f-5f2f7b308dfc\",\"profileId\":\"browser-owner\",\"reason\":\"M2-B ru.assemble\",\"type\":\"ru.assemble\"}",
+            "fingerprint": "8745a05f",
+            "resultRevision": 4,
+            "effectId": "assembly-browser-scrappy-3-1",
+            "delta": 0,
+            "balanceAfter": 750,
+            "retention": "P0",
+            "result": {
+              "assignmentId": "starter-9e94abd9-ru",
+              "assembled": true
+            }
+          },
+          {
+            "id": "domain-cc2efadb-f394-477e-ac44-237e3586792b",
+            "profileId": "browser-owner",
+            "careerId": "browser-scrappy",
+            "commandVersion": 1,
+            "request": "{\"assignmentId\":\"starter-9e94abd9-ru\",\"beastIds\":[\"starter-9e94abd9-beast-0\",\"starter-9e94abd9-beast-2\"],\"careerId\":\"browser-scrappy\",\"chariotId\":\"starter-9e94abd9-chariot\",\"commandVersion\":1,\"delta\":0,\"driverId\":\"starter-9e94abd9-driver-1\",\"effectId\":\"assembly-browser-scrappy-1-1\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":1,\"id\":\"domain-cc2efadb-f394-477e-ac44-237e3586792b\",\"profileId\":\"browser-owner\",\"reason\":\"M2-B ru.assemble\",\"type\":\"ru.assemble\"}",
+            "fingerprint": "c6314426",
+            "resultRevision": 2,
+            "effectId": "assembly-browser-scrappy-1-1",
+            "delta": 0,
+            "balanceAfter": 750,
+            "retention": "P0",
+            "result": {
+              "assignmentId": "starter-9e94abd9-ru",
+              "assembled": true
+            }
+          }
+        ]
+      },
+      "migration": {
+        "fromSchema": 1,
+        "toSchema": 2,
+        "sourceProfileId": "browser-owner",
+        "sourceCareerId": "browser-scrappy",
+        "sourceRevision": 0,
+        "sourceTreasury": 0,
+        "sourcePendingDigest": null,
+        "sourceStateDigest": "8910f3e3"
+      }
+    },
+    "digest": "3dba481f"
+  },
+  "recovery": {
+    "value": {
+      "kind": "BNT-career-state",
+      "schema": 2,
+      "revision": 3,
+      "profile": {
+        "id": "browser-owner",
+        "name": "Owner",
+        "legacy": {
+          "records": []
+        },
+        "developerEdited": false
+      },
+      "career": {
+        "id": "browser-scrappy",
+        "ownerProfileId": "browser-owner",
+        "name": "M1 Foundation",
+        "status": "Foundation",
+        "treasury": 750,
+        "developerEdited": false
+      },
+      "pendingRace": null,
+      "transactions": [
+        {
+          "transaction": {
+            "id": "domain-5e6fe9d4-cc49-47cf-89d3-a62b3d595afa",
+            "profileId": "browser-owner",
+            "careerId": "browser-scrappy",
+            "expectedRevision": 0,
+            "expectedMaintenanceRevision": 1,
+            "commandVersion": 1,
+            "type": "career.initialize",
+            "reason": "M2-B career.initialize",
+            "delta": 750,
+            "effectId": "initialize-browser-scrappy",
+            "packageId": "scrappy",
+            "catalogVersion": 3,
+            "confirmed": true
+          },
+          "resultRevision": 1,
+          "balanceAfter": 750,
+          "result": {
+            "packageId": "scrappy",
+            "catalogVersion": 3,
+            "treasuryGrant": 750,
+            "grantedIds": [
+              "starter-9e94abd9-beast-0",
+              "starter-9e94abd9-beast-1",
+              "starter-9e94abd9-beast-2",
+              "starter-9e94abd9-chariot",
+              "starter-9e94abd9-driver-0",
+              "starter-9e94abd9-driver-1",
+              "starter-9e94abd9-equipment-0",
+              "starter-9e94abd9-equipment-1",
+              "starter-9e94abd9-facility",
+              "starter-9e94abd9-property",
+              "starter-9e94abd9-ru"
+            ]
+          }
+        },
+        {
+          "transaction": {
+            "id": "domain-cc2efadb-f394-477e-ac44-237e3586792b",
+            "profileId": "browser-owner",
+            "careerId": "browser-scrappy",
+            "expectedRevision": 1,
+            "expectedMaintenanceRevision": 1,
+            "commandVersion": 1,
+            "type": "ru.assemble",
+            "reason": "M2-B ru.assemble",
+            "delta": 0,
+            "effectId": "assembly-browser-scrappy-1-1",
+            "assignmentId": "starter-9e94abd9-ru",
+            "driverId": "starter-9e94abd9-driver-1",
+            "beastIds": [
+              "starter-9e94abd9-beast-0",
+              "starter-9e94abd9-beast-2"
+            ],
+            "chariotId": "starter-9e94abd9-chariot"
+          },
+          "resultRevision": 2,
+          "balanceAfter": 750,
+          "result": {
+            "assignmentId": "starter-9e94abd9-ru",
+            "assembled": true
+          }
+        },
+        {
+          "transaction": {
+            "id": "domain-17968cf0-1181-411c-af65-9c80040e62da",
+            "profileId": "browser-owner",
+            "careerId": "browser-scrappy",
+            "expectedRevision": 2,
+            "expectedMaintenanceRevision": 1,
+            "commandVersion": 1,
+            "type": "ru.disassemble",
+            "reason": "M2-B ru.disassemble",
+            "delta": 0,
+            "effectId": "assembly-browser-scrappy-2-1",
+            "assignmentId": "starter-9e94abd9-ru"
+          },
+          "resultRevision": 3,
+          "balanceAfter": 750,
+          "result": {
+            "assignmentId": "starter-9e94abd9-ru",
+            "assembled": false
+          }
+        }
+      ],
+      "provenance": [],
+      "maintenanceRevision": 1,
+      "management": {
+        "initialized": true,
+        "registrySchema": 2,
+        "registries": {
+          "personnel": {
+            "starter-9e94abd9-driver-0": {
+              "id": "starter-9e94abd9-driver-0",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "assignment": []
+              },
+              "recordVersion": 1,
+              "name": "Scrappy Underdog Primary Driver",
+              "role": "driver",
+              "attributes": {
+                "driving": 40,
+                "beastHandling": 50,
+                "combat": 40,
+                "awareness": 50,
+                "nerve": 60
+              },
+              "condition": 100,
+              "injury": "Healthy",
+              "fatigue": 0,
+              "strain": 0,
+              "xp": 0,
+              "available": true
+            },
+            "starter-9e94abd9-driver-1": {
+              "id": "starter-9e94abd9-driver-1",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "assignment": []
+              },
+              "recordVersion": 1,
+              "name": "Scrappy Underdog Reserve Driver",
+              "role": "driver",
+              "attributes": {
+                "driving": 30,
+                "beastHandling": 40,
+                "combat": 40,
+                "awareness": 40,
+                "nerve": 50
+              },
+              "condition": 100,
+              "injury": "Healthy",
+              "fatigue": 0,
+              "strain": 0,
+              "xp": 0,
+              "available": true
+            }
+          },
+          "specialists": {},
+          "beasts": {
+            "starter-9e94abd9-beast-0": {
+              "id": "starter-9e94abd9-beast-0",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "assignment": []
+              },
+              "recordVersion": 1,
+              "name": "Scrappy Underdog Lead A",
+              "species": "generic_draft_beast",
+              "attributes": {
+                "speed": 40,
+                "power": 50,
+                "agility": 40,
+                "endurance": 60,
+                "discipline": 40,
+                "toughness": 50
+              },
+              "condition": 100,
+              "injury": "Healthy",
+              "fatigue": 0,
+              "xp": 0,
+              "available": true
+            },
+            "starter-9e94abd9-beast-1": {
+              "id": "starter-9e94abd9-beast-1",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "assignment": []
+              },
+              "recordVersion": 1,
+              "name": "Scrappy Underdog Lead B",
+              "species": "generic_draft_beast",
+              "attributes": {
+                "speed": 50,
+                "power": 40,
+                "agility": 40,
+                "endurance": 60,
+                "discipline": 40,
+                "toughness": 50
+              },
+              "condition": 100,
+              "injury": "Healthy",
+              "fatigue": 0,
+              "xp": 0,
+              "available": true
+            },
+            "starter-9e94abd9-beast-2": {
+              "id": "starter-9e94abd9-beast-2",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "assignment": []
+              },
+              "recordVersion": 1,
+              "name": "Scrappy Underdog Reserve Beast",
+              "species": "generic_draft_beast",
+              "attributes": {
+                "speed": 40,
+                "power": 40,
+                "agility": 50,
+                "endurance": 60,
+                "discipline": 50,
+                "toughness": 50
+              },
+              "condition": 100,
+              "injury": "Healthy",
+              "fatigue": 0,
+              "xp": 0,
+              "available": true
+            }
+          },
+          "chariots": {
+            "starter-9e94abd9-chariot": {
+              "id": "starter-9e94abd9-chariot",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "equipment": [
+                  "starter-9e94abd9-equipment-0",
+                  "starter-9e94abd9-equipment-1"
+                ],
+                "assignment": []
+              },
+              "recordVersion": 1,
+              "name": "Salvaged racing chariot",
+              "attributes": {
+                "stability": 40,
+                "durability": 40,
+                "protection": 40,
+                "rollingEfficiency": 40,
+                "maneuverability": 40
+              },
+              "condition": 100,
+              "wear": 0,
+              "integrity": 100,
+              "status": "Functional",
+              "weight": 180,
+              "capacity": 400,
+              "xp": 0,
+              "available": true
+            }
+          },
+          "equipment": {
+            "starter-9e94abd9-equipment-0": {
+              "id": "starter-9e94abd9-equipment-0",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "installedOn": [
+                  "starter-9e94abd9-chariot"
+                ]
+              },
+              "recordVersion": 1,
+              "name": "Patched harness",
+              "mass": 0,
+              "combat": 0
+            },
+            "starter-9e94abd9-equipment-1": {
+              "id": "starter-9e94abd9-equipment-1",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "installedOn": [
+                  "starter-9e94abd9-chariot"
+                ]
+              },
+              "recordVersion": 1,
+              "name": "Worn wheels",
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "contracts": {},
+          "candidates": {},
+          "recruitmentOffers": {},
+          "marketOffers": {},
+          "properties": {
+            "starter-9e94abd9-property": {
+              "id": "starter-9e94abd9-property",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "facilities": [
+                  "starter-9e94abd9-facility"
+                ]
+              },
+              "recordVersion": 1,
+              "name": "Basic Property",
+              "tier": "Basic",
+              "capacities": {
+                "drivers": 2,
+                "specialists": 0,
+                "beasts": 4,
+                "chariots": 1
+              },
+              "packageId": "scrappy",
+              "catalogVersion": 3
+            }
+          },
+          "facilities": {
+            "starter-9e94abd9-facility": {
+              "id": "starter-9e94abd9-facility",
+              "ownerCareerId": "browser-scrappy",
+              "references": {
+                "property": [
+                  "starter-9e94abd9-property"
+                ]
+              },
+              "recordVersion": 1,
+              "name": "Makeshift Yard",
+              "descriptiveOnly": true
+            }
+          },
+          "projects": {},
+          "assignments": {},
+          "obligations": {},
+          "advancementChoices": {},
+          "achievements": {}
+        }
+      },
+      "history": {
+        "schema": 1,
+        "commands": [
+          {
+            "id": "domain-17968cf0-1181-411c-af65-9c80040e62da",
+            "profileId": "browser-owner",
+            "careerId": "browser-scrappy",
+            "commandVersion": 1,
+            "request": "{\"assignmentId\":\"starter-9e94abd9-ru\",\"careerId\":\"browser-scrappy\",\"commandVersion\":1,\"delta\":0,\"effectId\":\"assembly-browser-scrappy-2-1\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":2,\"id\":\"domain-17968cf0-1181-411c-af65-9c80040e62da\",\"profileId\":\"browser-owner\",\"reason\":\"M2-B ru.disassemble\",\"type\":\"ru.disassemble\"}",
+            "fingerprint": "89cd8df2",
+            "resultRevision": 3,
+            "effectId": "assembly-browser-scrappy-2-1",
+            "delta": 0,
+            "balanceAfter": 750,
+            "retention": "P0",
+            "result": {
+              "assignmentId": "starter-9e94abd9-ru",
+              "assembled": false
+            }
+          },
+          {
+            "id": "domain-5e6fe9d4-cc49-47cf-89d3-a62b3d595afa",
+            "profileId": "browser-owner",
+            "careerId": "browser-scrappy",
+            "commandVersion": 1,
+            "request": "{\"careerId\":\"browser-scrappy\",\"catalogVersion\":3,\"commandVersion\":1,\"confirmed\":true,\"delta\":750,\"effectId\":\"initialize-browser-scrappy\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":0,\"id\":\"domain-5e6fe9d4-cc49-47cf-89d3-a62b3d595afa\",\"packageId\":\"scrappy\",\"profileId\":\"browser-owner\",\"reason\":\"M2-B career.initialize\",\"type\":\"career.initialize\"}",
+            "fingerprint": "d031c906",
+            "resultRevision": 1,
+            "effectId": "initialize-browser-scrappy",
+            "delta": 750,
+            "balanceAfter": 750,
+            "retention": "P0",
+            "result": {
+              "packageId": "scrappy",
+              "catalogVersion": 3,
+              "treasuryGrant": 750,
+              "grantedIds": [
+                "starter-9e94abd9-beast-0",
+                "starter-9e94abd9-beast-1",
+                "starter-9e94abd9-beast-2",
+                "starter-9e94abd9-chariot",
+                "starter-9e94abd9-driver-0",
+                "starter-9e94abd9-driver-1",
+                "starter-9e94abd9-equipment-0",
+                "starter-9e94abd9-equipment-1",
+                "starter-9e94abd9-facility",
+                "starter-9e94abd9-property",
+                "starter-9e94abd9-ru"
+              ]
+            }
+          },
+          {
+            "id": "domain-cc2efadb-f394-477e-ac44-237e3586792b",
+            "profileId": "browser-owner",
+            "careerId": "browser-scrappy",
+            "commandVersion": 1,
+            "request": "{\"assignmentId\":\"starter-9e94abd9-ru\",\"beastIds\":[\"starter-9e94abd9-beast-0\",\"starter-9e94abd9-beast-2\"],\"careerId\":\"browser-scrappy\",\"chariotId\":\"starter-9e94abd9-chariot\",\"commandVersion\":1,\"delta\":0,\"driverId\":\"starter-9e94abd9-driver-1\",\"effectId\":\"assembly-browser-scrappy-1-1\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":1,\"id\":\"domain-cc2efadb-f394-477e-ac44-237e3586792b\",\"profileId\":\"browser-owner\",\"reason\":\"M2-B ru.assemble\",\"type\":\"ru.assemble\"}",
+            "fingerprint": "c6314426",
+            "resultRevision": 2,
+            "effectId": "assembly-browser-scrappy-1-1",
+            "delta": 0,
+            "balanceAfter": 750,
+            "retention": "P0",
+            "result": {
+              "assignmentId": "starter-9e94abd9-ru",
+              "assembled": true
+            }
+          }
+        ]
+      },
+      "migration": {
+        "fromSchema": 1,
+        "toSchema": 2,
+        "sourceProfileId": "browser-owner",
+        "sourceCareerId": "browser-scrappy",
+        "sourceRevision": 0,
+        "sourceTreasury": 0,
+        "sourcePendingDigest": null,
+        "sourceStateDigest": "8910f3e3"
+      }
+    },
+    "digest": "977eb2e8"
+  },
+  "provenance": {
+    "value": [],
+    "digest": "2af16fb5"
+  },
+  "protectedHistory": {
+    "value": [
+      {
+        "id": "domain-17968cf0-1181-411c-af65-9c80040e62da",
+        "profileId": "browser-owner",
+        "careerId": "browser-scrappy",
+        "commandVersion": 1,
+        "request": "{\"assignmentId\":\"starter-9e94abd9-ru\",\"careerId\":\"browser-scrappy\",\"commandVersion\":1,\"delta\":0,\"effectId\":\"assembly-browser-scrappy-2-1\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":2,\"id\":\"domain-17968cf0-1181-411c-af65-9c80040e62da\",\"profileId\":\"browser-owner\",\"reason\":\"M2-B ru.disassemble\",\"type\":\"ru.disassemble\"}",
+        "fingerprint": "89cd8df2",
+        "resultRevision": 3,
+        "effectId": "assembly-browser-scrappy-2-1",
+        "delta": 0,
+        "balanceAfter": 750,
+        "retention": "P0",
+        "result": {
+          "assignmentId": "starter-9e94abd9-ru",
+          "assembled": false
+        }
+      },
+      {
+        "id": "domain-5e6fe9d4-cc49-47cf-89d3-a62b3d595afa",
+        "profileId": "browser-owner",
+        "careerId": "browser-scrappy",
+        "commandVersion": 1,
+        "request": "{\"careerId\":\"browser-scrappy\",\"catalogVersion\":3,\"commandVersion\":1,\"confirmed\":true,\"delta\":750,\"effectId\":\"initialize-browser-scrappy\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":0,\"id\":\"domain-5e6fe9d4-cc49-47cf-89d3-a62b3d595afa\",\"packageId\":\"scrappy\",\"profileId\":\"browser-owner\",\"reason\":\"M2-B career.initialize\",\"type\":\"career.initialize\"}",
+        "fingerprint": "d031c906",
+        "resultRevision": 1,
+        "effectId": "initialize-browser-scrappy",
+        "delta": 750,
+        "balanceAfter": 750,
+        "retention": "P0",
+        "result": {
+          "packageId": "scrappy",
+          "catalogVersion": 3,
+          "treasuryGrant": 750,
+          "grantedIds": [
+            "starter-9e94abd9-beast-0",
+            "starter-9e94abd9-beast-1",
+            "starter-9e94abd9-beast-2",
+            "starter-9e94abd9-chariot",
+            "starter-9e94abd9-driver-0",
+            "starter-9e94abd9-driver-1",
+            "starter-9e94abd9-equipment-0",
+            "starter-9e94abd9-equipment-1",
+            "starter-9e94abd9-facility",
+            "starter-9e94abd9-property",
+            "starter-9e94abd9-ru"
+          ]
+        }
+      },
+      {
+        "id": "domain-880beb7b-296f-4cb1-9a0f-5f2f7b308dfc",
+        "profileId": "browser-owner",
+        "careerId": "browser-scrappy",
+        "commandVersion": 1,
+        "request": "{\"assignmentId\":\"starter-9e94abd9-ru\",\"beastIds\":[\"starter-9e94abd9-beast-0\",\"starter-9e94abd9-beast-2\"],\"careerId\":\"browser-scrappy\",\"chariotId\":\"starter-9e94abd9-chariot\",\"commandVersion\":1,\"delta\":0,\"driverId\":\"starter-9e94abd9-driver-1\",\"effectId\":\"assembly-browser-scrappy-3-1\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":3,\"id\":\"domain-880beb7b-296f-4cb1-9a0f-5f2f7b308dfc\",\"profileId\":\"browser-owner\",\"reason\":\"M2-B ru.assemble\",\"type\":\"ru.assemble\"}",
+        "fingerprint": "8745a05f",
+        "resultRevision": 4,
+        "effectId": "assembly-browser-scrappy-3-1",
+        "delta": 0,
+        "balanceAfter": 750,
+        "retention": "P0",
+        "result": {
+          "assignmentId": "starter-9e94abd9-ru",
+          "assembled": true
+        }
+      },
+      {
+        "id": "domain-cc2efadb-f394-477e-ac44-237e3586792b",
+        "profileId": "browser-owner",
+        "careerId": "browser-scrappy",
+        "commandVersion": 1,
+        "request": "{\"assignmentId\":\"starter-9e94abd9-ru\",\"beastIds\":[\"starter-9e94abd9-beast-0\",\"starter-9e94abd9-beast-2\"],\"careerId\":\"browser-scrappy\",\"chariotId\":\"starter-9e94abd9-chariot\",\"commandVersion\":1,\"delta\":0,\"driverId\":\"starter-9e94abd9-driver-1\",\"effectId\":\"assembly-browser-scrappy-1-1\",\"expectedMaintenanceRevision\":1,\"expectedRevision\":1,\"id\":\"domain-cc2efadb-f394-477e-ac44-237e3586792b\",\"profileId\":\"browser-owner\",\"reason\":\"M2-B ru.assemble\",\"type\":\"ru.assemble\"}",
+        "fingerprint": "c6314426",
+        "resultRevision": 2,
+        "effectId": "assembly-browser-scrappy-1-1",
+        "delta": 0,
+        "balanceAfter": 750,
+        "retention": "P0",
+        "result": {
+          "assignmentId": "starter-9e94abd9-ru",
+          "assembled": true
+        }
+      }
+    ],
+    "digest": "3f64bc97"
+  },
+  "maintenanceClock": {
+    "value": 1,
+    "digest": "1a8f0daf"
+  }
+}

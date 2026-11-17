@@ -1,0 +1,101 @@
+{
+  "B01": {
+    "reproduced": true,
+    "actualLane": 0,
+    "actualPace": "Push",
+    "chosen": {
+      "pace": "Push",
+      "position": "outward"
+    },
+    "reportedExecuted": {
+      "pace": "Push",
+      "position": "outward"
+    },
+    "compliance": "Prevented",
+    "perceivedHazards": [],
+    "totals": {
+      "Prevented": 1
+    },
+    "events": [
+      {
+        "id": 8,
+        "type": "LANE_CHANGE_REJECTED",
+        "time": 0,
+        "tick": 0,
+        "fraction": 0,
+        "participants": [
+          "A"
+        ],
+        "effects": {
+          "lane": 1,
+          "reason": "Swept tile contains an incident"
+        }
+      },
+      {
+        "id": 10,
+        "type": "AI_EXECUTION_RESULT",
+        "time": 0,
+        "tick": 0,
+        "fraction": 0,
+        "participants": [
+          "A"
+        ],
+        "effects": {
+          "compliance": "Prevented",
+          "reason": "Physical execution blocked"
+        }
+      }
+    ]
+  },
+  "B02": {
+    "surfaceFields": [
+      "grip",
+      "roughness",
+      "rollingResistance"
+    ],
+    "illustrativeUnknownField": "hazardModifier",
+    "error": "Invalid surface modifier"
+  },
+  "B03": {
+    "reproduced": true,
+    "before": {
+      "tick": 602,
+      "status": "Running",
+      "id": "A",
+      "finishTime": 30.06830885492538,
+      "reportedFatigueAtFinish": 2.8272161057982124
+    },
+    "after": {
+      "tick": 603,
+      "status": "Running",
+      "finishTime": 30.06830885492538,
+      "reportedFatigueAtFinish": 100,
+      "finishes": 1
+    }
+  },
+  "B04": {
+    "status": "Ended",
+    "rows": [
+      {
+        "id": "A",
+        "place": 1,
+        "status": "Finished",
+        "time": 41.5557402640795,
+        "completedLaps": 1,
+        "progress": 80
+      },
+      {
+        "id": "B",
+        "place": 2,
+        "status": "Finished",
+        "time": 42.40616306718724,
+        "completedLaps": 1,
+        "progress": 80
+      }
+    ],
+    "fixtureCommands": [],
+    "finishTimeGap": 0.8504228031077332,
+    "tolerance": 0.001,
+    "distinctPlaces": true
+  }
+}

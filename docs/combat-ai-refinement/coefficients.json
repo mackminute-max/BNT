@@ -1,0 +1,86 @@
+{
+  "combatDamageValue": {
+    "default": 4,
+    "minimum": 0,
+    "maximum": 100,
+    "meaning": "Resisted target-condition benefit"
+  },
+  "combatDisruptionValue": {
+    "default": 4,
+    "minimum": 0,
+    "maximum": 100,
+    "meaning": "Relative speed disruption / damage-impairment proxy"
+  },
+  "combatSelfRisk": {
+    "default": 4,
+    "minimum": 0,
+    "maximum": 100,
+    "meaning": "Expected resisted bilateral recoil cost"
+  },
+  "combatControlRisk": {
+    "default": 8,
+    "minimum": 0,
+    "maximum": 100,
+    "meaning": "Squared component-failure/control-margin risk cost"
+  },
+  "combatProgressCost": {
+    "default": 1,
+    "minimum": 0,
+    "maximum": 100,
+    "meaning": "Clear track, passing, local lead, final lap and own speed-loss cost"
+  },
+  "combatRetaliationCost": {
+    "default": 1,
+    "minimum": 0,
+    "maximum": 100,
+    "meaning": "Estimated retaliation/exposure cost"
+  },
+  "combatConditionCost": {
+    "default": 3,
+    "minimum": 0,
+    "maximum": 100,
+    "meaning": "Own weak components and current instability cost"
+  },
+  "combatFutilityCost": {
+    "default": 3,
+    "minimum": 0,
+    "maximum": 100,
+    "meaning": "Low estimated chance-of-success cost"
+  },
+  "combatDamageUnit": {
+    "default": 10,
+    "minimum": 0,
+    "maximum": 100,
+    "meaning": "Condition points per normalized damage unit (effective minimum1)"
+  },
+  "combatSpeedUnit": {
+    "default": 2,
+    "minimum": 0,
+    "maximum": 100,
+    "meaning": "m/s per normalized relative speed-loss unit (effective minimum1)"
+  },
+  "combatUnknownSkill": {
+    "default": 50,
+    "minimum": 0,
+    "maximum": 100,
+    "meaning": "Prior opponent Driving/Control/Combat-base score"
+  },
+  "combatUnknownProtection": {
+    "default": 50,
+    "minimum": 0,
+    "maximum": 100,
+    "meaning": "Prior rival protection (%)"
+  },
+  "combatUnknownCondition": {
+    "default": 100,
+    "minimum": 0,
+    "maximum": 100,
+    "meaning": "Prior rival healthy component condition (%)"
+  },
+  "combatUnknownMassRatio": {
+    "default": 1,
+    "minimum": 0,
+    "maximum": 100,
+    "meaning": "Prior rival mass / configured referenceMass"
+  }
+}

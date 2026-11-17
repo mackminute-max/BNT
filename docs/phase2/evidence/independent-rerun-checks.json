@@ -1,0 +1,51 @@
+[
+  {
+    "id": "A-Combat-0-0-default",
+    "checksum": "f837d3d6",
+    "eventsSHA256": "d516fa0419fdc2c53c462e37bc9f899694cbc087e284ceb3627eb9afdb4ae243",
+    "deepMetricEquality": true,
+    "freshAuthoritativeChecksum": true
+  },
+  {
+    "id": "B-Combat-0-0-mixed-archetypes",
+    "checksum": "38e856fb",
+    "eventsSHA256": "ba7afc929890a08d052760bfba7ccc3dd7e03e22f0ffe3d6f5c3cbf9e3b000b0",
+    "deepMetricEquality": true,
+    "freshAuthoritativeChecksum": true
+  },
+  {
+    "id": "C-Combat-0-0-mixed-personalities",
+    "checksum": "6e081475",
+    "eventsSHA256": "2009290717f74704a3936ff363120114da80af9381a8510863b9939d69dc59c8",
+    "deepMetricEquality": true,
+    "freshAuthoritativeChecksum": true
+  },
+  {
+    "id": "S-Combat-beasts.agility-0-beasts.agility-control",
+    "checksum": "3d760435",
+    "eventsSHA256": "da3f59ba1d202dcbd31efe87641ffa343fe27efb5d836ee4009316eb1138ac99",
+    "deepMetricEquality": true,
+    "freshAuthoritativeChecksum": true
+  },
+  {
+    "id": "D-Combat-0-0-Conserve Strength",
+    "checksum": "9c45cde6",
+    "eventsSHA256": "918f6ce1ce02cde391d1a4dfd164d59a80288097796889d9999ed604aa345510",
+    "deepMetricEquality": true,
+    "freshAuthoritativeChecksum": true
+  },
+  {
+    "id": "E-Combat-0-0-degraded",
+    "checksum": "fc591ba0",
+    "eventsSHA256": "8c07264780b2315d1147897e65f67a68db16885c476cea59ca757f9fde83abfe",
+    "deepMetricEquality": true,
+    "freshAuthoritativeChecksum": true
+  },
+  {
+    "id": "Drear-Combat-0-0-Conserve Strength",
+    "checksum": "b19b7417",
+    "eventsSHA256": "861446b1a4ebceb63e7b9e5a93052cd1ad0460f81607bcefaa3157713ed2b882",
+    "deepMetricEquality": true,
+    "freshAuthoritativeChecksum": true
+  }
+]

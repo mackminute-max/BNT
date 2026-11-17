@@ -1,0 +1,5 @@
+
+> blood-and-thunder@0.4.2 build
+> node scripts/build.mjs
+
+Built dist/Blood_and_Thunder.html (163579 bytes)

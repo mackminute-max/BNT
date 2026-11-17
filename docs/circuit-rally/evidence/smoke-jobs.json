@@ -1,0 +1,962 @@
+[
+  {
+    "id": "technical-circuit-0",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 701,
+      "format": "Pure",
+      "weather": "Clear",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 0
+  },
+  {
+    "id": "technical-circuit-1",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 702,
+      "format": "Combat",
+      "weather": "Clear",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 1
+  },
+  {
+    "id": "technical-circuit-2",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 703,
+      "format": "Pure",
+      "weather": "Rain",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 2
+  },
+  {
+    "id": "technical-circuit-3",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 704,
+      "format": "Combat",
+      "weather": "Rain",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 3
+  },
+  {
+    "id": "technical-circuit-4",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 705,
+      "format": "Pure",
+      "weather": "Heavy Rain/Mud",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 4
+  },
+  {
+    "id": "technical-circuit-5",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 706,
+      "format": "Combat",
+      "weather": "Heavy Rain/Mud",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 5
+  },
+  {
+    "id": "technical-circuit-6",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 707,
+      "format": "Pure",
+      "weather": "Dust/Wind",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 6
+  },
+  {
+    "id": "technical-circuit-7",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 708,
+      "format": "Combat",
+      "weather": "Dust/Wind",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 7
+  },
+  {
+    "id": "technical-circuit-8",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 709,
+      "format": "Pure",
+      "weather": "Extreme Heat",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 8
+  },
+  {
+    "id": "technical-circuit-9",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 710,
+      "format": "Combat",
+      "weather": "Extreme Heat",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 9
+  },
+  {
+    "id": "technical-circuit-10",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 711,
+      "format": "Pure",
+      "weather": "Clear",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 10
+  },
+  {
+    "id": "technical-circuit-11",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 712,
+      "format": "Combat",
+      "weather": "Clear",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 11
+  },
+  {
+    "id": "technical-circuit-12",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 713,
+      "format": "Pure",
+      "weather": "Rain",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 12
+  },
+  {
+    "id": "technical-circuit-13",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 714,
+      "format": "Combat",
+      "weather": "Rain",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 13
+  },
+  {
+    "id": "technical-circuit-14",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 715,
+      "format": "Pure",
+      "weather": "Heavy Rain/Mud",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 14
+  },
+  {
+    "id": "technical-circuit-15",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 716,
+      "format": "Combat",
+      "weather": "Heavy Rain/Mud",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 15
+  },
+  {
+    "id": "technical-circuit-16",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 717,
+      "format": "Pure",
+      "weather": "Dust/Wind",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 16
+  },
+  {
+    "id": "technical-circuit-17",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 718,
+      "format": "Combat",
+      "weather": "Dust/Wind",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 17
+  },
+  {
+    "id": "technical-circuit-18",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 719,
+      "format": "Pure",
+      "weather": "Extreme Heat",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 18
+  },
+  {
+    "id": "technical-circuit-19",
+    "setup": {
+      "course": "technical-circuit",
+      "seed": 720,
+      "format": "Combat",
+      "weather": "Extreme Heat",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 19
+  },
+  {
+    "id": "fast-circuit-0",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 701,
+      "format": "Pure",
+      "weather": "Clear",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 0
+  },
+  {
+    "id": "fast-circuit-1",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 702,
+      "format": "Combat",
+      "weather": "Clear",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 1
+  },
+  {
+    "id": "fast-circuit-2",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 703,
+      "format": "Pure",
+      "weather": "Rain",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 2
+  },
+  {
+    "id": "fast-circuit-3",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 704,
+      "format": "Combat",
+      "weather": "Rain",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 3
+  },
+  {
+    "id": "fast-circuit-4",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 705,
+      "format": "Pure",
+      "weather": "Heavy Rain/Mud",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 4
+  },
+  {
+    "id": "fast-circuit-5",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 706,
+      "format": "Combat",
+      "weather": "Heavy Rain/Mud",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 5
+  },
+  {
+    "id": "fast-circuit-6",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 707,
+      "format": "Pure",
+      "weather": "Dust/Wind",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 6
+  },
+  {
+    "id": "fast-circuit-7",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 708,
+      "format": "Combat",
+      "weather": "Dust/Wind",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 7
+  },
+  {
+    "id": "fast-circuit-8",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 709,
+      "format": "Pure",
+      "weather": "Extreme Heat",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 8
+  },
+  {
+    "id": "fast-circuit-9",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 710,
+      "format": "Combat",
+      "weather": "Extreme Heat",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 9
+  },
+  {
+    "id": "fast-circuit-10",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 711,
+      "format": "Pure",
+      "weather": "Clear",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 10
+  },
+  {
+    "id": "fast-circuit-11",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 712,
+      "format": "Combat",
+      "weather": "Clear",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 11
+  },
+  {
+    "id": "fast-circuit-12",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 713,
+      "format": "Pure",
+      "weather": "Rain",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 12
+  },
+  {
+    "id": "fast-circuit-13",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 714,
+      "format": "Combat",
+      "weather": "Rain",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 13
+  },
+  {
+    "id": "fast-circuit-14",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 715,
+      "format": "Pure",
+      "weather": "Heavy Rain/Mud",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 14
+  },
+  {
+    "id": "fast-circuit-15",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 716,
+      "format": "Combat",
+      "weather": "Heavy Rain/Mud",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 15
+  },
+  {
+    "id": "fast-circuit-16",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 717,
+      "format": "Pure",
+      "weather": "Dust/Wind",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 16
+  },
+  {
+    "id": "fast-circuit-17",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 718,
+      "format": "Combat",
+      "weather": "Dust/Wind",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 17
+  },
+  {
+    "id": "fast-circuit-18",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 719,
+      "format": "Pure",
+      "weather": "Extreme Heat",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 18
+  },
+  {
+    "id": "fast-circuit-19",
+    "setup": {
+      "course": "fast-circuit",
+      "seed": 720,
+      "format": "Combat",
+      "weather": "Extreme Heat",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 19
+  },
+  {
+    "id": "mixed-rally-0",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 701,
+      "format": "Pure",
+      "weather": "Clear",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 0
+  },
+  {
+    "id": "mixed-rally-1",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 702,
+      "format": "Combat",
+      "weather": "Clear",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 1
+  },
+  {
+    "id": "mixed-rally-2",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 703,
+      "format": "Pure",
+      "weather": "Rain",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 2
+  },
+  {
+    "id": "mixed-rally-3",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 704,
+      "format": "Combat",
+      "weather": "Rain",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 3
+  },
+  {
+    "id": "mixed-rally-4",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 705,
+      "format": "Pure",
+      "weather": "Heavy Rain/Mud",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 4
+  },
+  {
+    "id": "mixed-rally-5",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 706,
+      "format": "Combat",
+      "weather": "Heavy Rain/Mud",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 5
+  },
+  {
+    "id": "mixed-rally-6",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 707,
+      "format": "Pure",
+      "weather": "Dust/Wind",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 6
+  },
+  {
+    "id": "mixed-rally-7",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 708,
+      "format": "Combat",
+      "weather": "Dust/Wind",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 7
+  },
+  {
+    "id": "mixed-rally-8",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 709,
+      "format": "Pure",
+      "weather": "Extreme Heat",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 8
+  },
+  {
+    "id": "mixed-rally-9",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 710,
+      "format": "Combat",
+      "weather": "Extreme Heat",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 9
+  },
+  {
+    "id": "mixed-rally-10",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 711,
+      "format": "Pure",
+      "weather": "Clear",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 10
+  },
+  {
+    "id": "mixed-rally-11",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 712,
+      "format": "Combat",
+      "weather": "Clear",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 11
+  },
+  {
+    "id": "mixed-rally-12",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 713,
+      "format": "Pure",
+      "weather": "Rain",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 12
+  },
+  {
+    "id": "mixed-rally-13",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 714,
+      "format": "Combat",
+      "weather": "Rain",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 13
+  },
+  {
+    "id": "mixed-rally-14",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 715,
+      "format": "Pure",
+      "weather": "Heavy Rain/Mud",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 14
+  },
+  {
+    "id": "mixed-rally-15",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 716,
+      "format": "Combat",
+      "weather": "Heavy Rain/Mud",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 15
+  },
+  {
+    "id": "mixed-rally-16",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 717,
+      "format": "Pure",
+      "weather": "Dust/Wind",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 16
+  },
+  {
+    "id": "mixed-rally-17",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 718,
+      "format": "Combat",
+      "weather": "Dust/Wind",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 17
+  },
+  {
+    "id": "mixed-rally-18",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 719,
+      "format": "Pure",
+      "weather": "Extreme Heat",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 18
+  },
+  {
+    "id": "mixed-rally-19",
+    "setup": {
+      "course": "mixed-rally",
+      "seed": 720,
+      "format": "Combat",
+      "weather": "Extreme Heat",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 19
+  },
+  {
+    "id": "technical-rally-0",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 701,
+      "format": "Pure",
+      "weather": "Clear",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 0
+  },
+  {
+    "id": "technical-rally-1",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 702,
+      "format": "Combat",
+      "weather": "Clear",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 1
+  },
+  {
+    "id": "technical-rally-2",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 703,
+      "format": "Pure",
+      "weather": "Rain",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 2
+  },
+  {
+    "id": "technical-rally-3",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 704,
+      "format": "Combat",
+      "weather": "Rain",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 3
+  },
+  {
+    "id": "technical-rally-4",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 705,
+      "format": "Pure",
+      "weather": "Heavy Rain/Mud",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 4
+  },
+  {
+    "id": "technical-rally-5",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 706,
+      "format": "Combat",
+      "weather": "Heavy Rain/Mud",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 5
+  },
+  {
+    "id": "technical-rally-6",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 707,
+      "format": "Pure",
+      "weather": "Dust/Wind",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 6
+  },
+  {
+    "id": "technical-rally-7",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 708,
+      "format": "Combat",
+      "weather": "Dust/Wind",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 7
+  },
+  {
+    "id": "technical-rally-8",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 709,
+      "format": "Pure",
+      "weather": "Extreme Heat",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 8
+  },
+  {
+    "id": "technical-rally-9",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 710,
+      "format": "Combat",
+      "weather": "Extreme Heat",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 9
+  },
+  {
+    "id": "technical-rally-10",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 711,
+      "format": "Pure",
+      "weather": "Clear",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 10
+  },
+  {
+    "id": "technical-rally-11",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 712,
+      "format": "Combat",
+      "weather": "Clear",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 11
+  },
+  {
+    "id": "technical-rally-12",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 713,
+      "format": "Pure",
+      "weather": "Rain",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 12
+  },
+  {
+    "id": "technical-rally-13",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 714,
+      "format": "Combat",
+      "weather": "Rain",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 13
+  },
+  {
+    "id": "technical-rally-14",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 715,
+      "format": "Pure",
+      "weather": "Heavy Rain/Mud",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 14
+  },
+  {
+    "id": "technical-rally-15",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 716,
+      "format": "Combat",
+      "weather": "Heavy Rain/Mud",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 15
+  },
+  {
+    "id": "technical-rally-16",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 717,
+      "format": "Pure",
+      "weather": "Dust/Wind",
+      "checkpointInterval": 10000
+    },
+    "sign": "Push the Pace",
+    "index": 16
+  },
+  {
+    "id": "technical-rally-17",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 718,
+      "format": "Combat",
+      "weather": "Dust/Wind",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 17
+  },
+  {
+    "id": "technical-rally-18",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 719,
+      "format": "Pure",
+      "weather": "Extreme Heat",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 18
+  },
+  {
+    "id": "technical-rally-19",
+    "setup": {
+      "course": "technical-rally",
+      "seed": 720,
+      "format": "Combat",
+      "weather": "Extreme Heat",
+      "checkpointInterval": 10000
+    },
+    "sign": null,
+    "index": 19
+  }
+]

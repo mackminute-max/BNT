@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Blood and Thunder · Racing Prototype</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font:
+          15px system-ui,
+          sans-serif;
+        background: #10161b;
+        color: #e8e7dc;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      header {
+        padding: 24px 32px;
+        border-bottom: 1px solid #364149;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      h1 {
+        font:
+          700 30px Georgia,
+          serif;
+        margin: 0;
+        color: #f0d9a6;
+      }
+      h2 {
+        font-size: 16px;
+        margin: 0 0 14px;
+      }
+      p {
+        line-height: 1.5;
+      }
+      header p {
+        margin: 6px 0 0;
+        color: #acb9bc;
+      }
+      .tag {
+        border: 1px solid #b99056;
+        border-radius: 20px;
+        padding: 6px 12px;
+        color: #edc98c;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      main {
+        max-width: 1450px;
+        margin: auto;
+        padding: 24px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 360px;
+        gap: 20px;
+      }
+      .panel {
+        border: 1px solid #364149;
+        border-radius: 10px;
+        background: #182127;
+        padding: 18px;
+        margin-bottom: 18px;
+      }
+      .controls {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      button,
+      input,
+      select {
+        font: inherit;
+        border: 1px solid #53636a;
+        border-radius: 5px;
+        padding: 8px 11px;
+        color: #eee;
+        background: #233038;
+      }
+      button {
+        cursor: pointer;
+      }
+      button:hover {
+        background: #384851;
+      }
+      button:focus-visible,
+      input:focus-visible,
+      select:focus-visible {
+        outline: 2px solid #edc98c;
+        outline-offset: 3px;
+      }
+      button.primary {
+        background: #b58a46;
+        color: #10161b;
+        border-color: #b58a46;
+        font-weight: 700;
+      }
+      input {
+        width: 100px;
+      }
+      label {
+        font-size: 13px;
+        color: #b8c5c9;
+      }
+      .metrics {
+        display: flex;
+        gap: 25px;
+        padding: 16px 0;
+      }
+      .metrics strong {
+        display: block;
+        font:
+          24px ui-monospace,
+          monospace;
+        color: #f0d9a6;
+      }
+      .metrics span {
+        font-size: 12px;
+        color: #b8c5c9;
+      }
+      canvas {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: #111a20;
+        border-radius: 8px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+        text-align: left;
+      }
+      th {
+        font-weight: 500;
+        color: #a9b9bc;
+      }
+      td,
+      th {
+        padding: 9px 4px;
+        border-bottom: 1px solid #303d45;
+      }
+      td:first-child {
+        font-weight: bold;
+      }
+      #error {
+        color: #ffad9f;
+        white-space: pre-wrap;
+      }
+      #log {
+        font:
+          11px/1.6 ui-monospace,
+          monospace;
+        max-height: 260px;
+        overflow: auto;
+        white-space: pre-wrap;
+        color: #bfcccd;
+      }
+      .note {
+        font-size: 12px;
+        color: #afbec3;
+      }
+      #derived {
+        font-size: 12px;
+        white-space: pre-wrap;
+        line-height: 1.7;
+      }
+      .legend {
+        font-size: 12px;
+        color: #b5c0c5;
+        margin-top: 12px;
+      }
+      @media (max-width: 950px) {
+        main {
+          grid-template-columns: 1fr;
+        }
+        header {
+          padding: 20px;
+        }
+        .tag {
+          display: none;
+        }
+      }
+      .panel,
+      aside,
+      main > section {
+        min-width: 0;
+      }
+      #log,
+      #signStatus {
+        overflow-wrap: anywhere;
+      }
+      #aiDiagnostics {
+        max-height: 420px;
+        overflow: auto;
+        overflow-wrap: anywhere;
+      }
+      select {
+        max-width: 100%;
+      }
+      .developer {
+        grid-column: 1/-1;
+      }
+      summary {
+        cursor: pointer;
+        padding: 10px 0;
+      }
+      textarea {
+        width: 100%;
+        min-height: 260px;
+        resize: vertical;
+        background: #10191f;
+        color: #d9e2e1;
+        border: 1px solid #52666e;
+        border-radius: 6px;
+        padding: 12px;
+        font: 12px/1.5 monospace;
+      }
+      pre {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        max-height: 420px;
+        overflow: auto;
+        font: 12px/1.6 monospace;
+      }
+      input[type="checkbox"] {
+        width: auto;
+      }
+      input[type="file"] {
+        width: 240px;
+        max-width: 100%;
+      }
+      .commentary-panel {
+        border-color: #ae8950;
+        background: #202a2d;
+      }
+      #commentary {
+        height: 220px;
+        overflow: auto;
+        font:
+          17px/1.65 Georgia,
+          serif;
+        color: #f3e3bc;
+      }
+      #commentary p {
+        margin: 0 0 8px;
+      }
+      button:disabled {
+        opacity: 0.45;
+        cursor: default;
+      }
+      .controls {
+        margin-bottom: 10px;
+      }
+      #overrideStatus {
+        overflow-wrap: anywhere;
+      }
+      #resultsOutput {
+        max-height: 480px;
+        overflow: auto;
+      }
+      #resultsOutput table {
+        min-width: 500px;
+      }
+      #resultsOutput th,
+      #resultsOutput td {
+        vertical-align: top;
+      }
+      .commentary-panel h2 {
+        line-height: 1.6;
+      }
+      aside #commentary {
+        font-size: 16px;
+      }
+      .radio-empty {
+        color: #becbc8;
+      }
+      [hidden] { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Blood and Thunder</h1>
+        <p>Configure → race → results → tune / replay</p>
+      </div>
+      <span class="tag">PURE & COMBAT RACING</span>
+    </header>
+    <main>
+      <section>
+        <div class="panel">
+          <div class="controls">
+            <label>Race format<select id="raceKind"><option>Oval</option><option>Circuit</option><option>Rally</option></select></label>
+            <label>Track<select id="trackPreset"><option value="oval">Existing Oval</option></select></label>
+            <label>Laps<input id="lapCount" type="number" min="1" max="100" step="1" value="3" /></label>
+            <label
+              >Seed
+              <input id="seed" type="number" value="145" step="1" /></label
+            ><button id="reset">New race</button
+            ><button id="play" class="primary">Start race</button
+            ><button id="step">Step one tick</button
+            ><label
+              >Speed
+              <select id="speed">
+                <option value="1">1×</option>
+                <option value="4">4×</option>
+                <option value="16">16×</option>
+              </select></label
+            >
+          </div>
+          <div id="rallyControls" class="controls" hidden>
+            <label>Track seed<input id="rallySeed" type="number" step="1" value="1" /></label>
+            <label>Length<select id="rallyCategory"><option value="short">Short</option><option value="medium" selected>Medium</option><option value="long">Long</option></select></label>
+            <label>Terrain<select id="rallyTerrain"><option>balanced</option><option>road</option><option>rugged</option></select></label>
+            <label>Turn frequency<input id="rallyTurns" type="number" min="0" max="1" step=".05" value=".55" /></label>
+            <label>Turn complexity<input id="rallyComplexity" type="number" min="0" max="1" step=".05" value=".5" /></label>
+            <button id="regenerateRally">Generate / preview</button>
+          </div>
+          <label>Camera<select id="cameraMode"><option value="auto">Auto</option><option value="overview">Overview</option><option value="follow">Follow selected RU</option></select></label>
+          <div class="metrics">
+            <div>
+              <strong id="clock">0.000</strong><span>RACE CLOCK / s</span>
+            </div>
+            <div><strong id="state">Ready</strong><span>RACE STATE</span></div>
+            <div><strong id="tick">0</strong><span>TICK / 0.05 s</span></div>
+          </div>
+          <canvas
+            id="race"
+            width="1000"
+            height="550"
+            aria-label="Four-lane race course viewer"
+          ></canvas>
+          <div class="legend">
+            Common start / finish line · 3 full laps after initial entry · Exit
+            beyond finish · Inner lanes have shorter, tighter turns
+          </div>
+          <p id="error" role="alert"></p>
+        </div>
+        <div class="panel commentary-panel">
+          <h2>
+            Trackside radio
+            <label
+              ><input id="commentaryEnabled" type="checkbox" checked />
+              Commentary</label
+            >
+          </h2>
+          <div id="commentary" role="log" aria-live="polite"></div>
+        </div>
+        <div class="panel">
+          <h2>Race results</h2>
+          <div class="controls">
+            <label
+              >View
+              <select id="resultsView">
+                <option value="official">Official classification</option>
+                <option value="narrative">Race narrative</option>
+                <option value="technical">Technical report</option>
+              </select></label
+            ><button id="exportResults">Export results</button>
+          </div>
+          <div id="resultsOutput"></div>
+          <div class="controls">
+            <label
+              >Import replay
+              <input
+                type="file"
+                id="replayFile"
+                accept=".json,application/json" /></label
+            ><button id="verifyReplay">Verify current replay</button
+            ><button id="restartReplay">Restart replay</button>
+          </div>
+          <p id="replayStatus">Live race</p>
+        </div>
+        <div class="panel">
+          <h2>Autonomous racing laboratory</h2>
+          <p class="note">
+            Drivers choose pace and racing lines autonomously. Signs influence
+            utility rather than physical stats. Pure prohibits deliberate
+            attacks; incidental contact, damage and persistent wrecks remain
+            active in both formats.
+          </p>
+          <div class="controls">
+            <label
+              >Weather
+              <select id="weather"></select></label
+            ><label
+              >Format
+              <select id="format">
+                <option>Pure</option>
+                <option>Combat</option>
+              </select></label
+            ><label
+              >Sign strength
+              <input
+                id="signStrength"
+                type="number"
+                min="0"
+                max="100"
+                value="5" /></label
+            ><label
+              >Fatigue rate
+              <input
+                id="fatigueRate"
+                type="number"
+                min="0"
+                max="100"
+                step="0.01"
+                value="0.13"
+            /></label>
+          </div>
+          <details>
+            <summary>AI and per-sign tuning (new race)</summary>
+            <div class="controls" id="tuners"></div>
+          </details>
+          <p class="note">
+            Weather and tuning apply to a new race. Player RU:
+            <span id="playerLabel">RU1</span>.
+          </p>
+          <div class="controls">
+            <select id="sign" aria-label="Strategy Sign"></select
+            ><button id="queueSign">Queue / replace</button
+            ><button id="cancelSign">Cancel pending</button
+            ><button id="lowerSign">Lower active</button>
+          </div>
+          <div class="controls">
+            <label
+              >Damage scale
+              <input
+                id="damageScale"
+                type="number"
+                min="0"
+                max="10"
+                step="0.001"
+                value="0.003" /></label
+            ><label
+              >Incident rate / s
+              <input
+                id="incidentRate"
+                type="number"
+                min="0"
+                max="1"
+                step="0.001"
+                value="0.002"
+            /></label>
+          </div>
+          <p id="consequenceStatus" aria-live="polite"></p>
+          <p id="signStatus" aria-live="polite"></p>
+          <div class="controls">
+            <button id="complete">Run to classification</button
+            ><button id="export">Export run inputs & events</button
+            ><span id="checksum" class="note"></span>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>
+            Authoritative event output
+            <label><input id="fullLog" type="checkbox" /> Full log</label>
+          </h2>
+          <div id="log" role="log" aria-label="Simulation event log"></div>
+        </div>
+      </section>
+      <aside>
+        <div class="panel">
+          <h2>Standings / official classification</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>RU</th>
+                <th id="progressHeading">Full laps</th>
+                <th>m/s</th>
+                <th>State / time</th>
+              </tr>
+            </thead>
+            <tbody id="standings"></tbody>
+          </table>
+          <p class="note" id="standingsNote">
+            Initial line entry starts lap 1; it does not complete a lap.
+            Official ties share a place. DNF/DNS remain separate from finishers.
+          </p>
+        </div>
+        <div class="panel">
+          <h2>Derived performance inspection</h2>
+          <label
+            >Racing Unit
+            <select id="inspect"></select
+          ></label>
+          <div id="derived"></div>
+          <details>
+            <summary>
+              Base values, normalized inputs and active modifiers
+            </summary>
+            <pre id="derivedDetails"></pre>
+          </details>
+          <h2>AI diagnostics</h2>
+          <pre
+            id="aiDiagnostics"
+            style="white-space: pre-wrap; font: 11px/1.5 monospace"
+          ></pre>
+        </div>
+        <div class="panel">
+          <h2>Milestone scope</h2>
+          <p class="note">
+            One authoritative headless engine. Fixed-step continuous kinematics,
+            discrete occupancy, chronological tile crossings and full-precision
+            finish timestamps. Display rounding does not affect results.
+          </p>
+          <p class="note">
+            Racing prototype: autonomous racing, signs, combat, persistent
+            wrecks, replay and tuning. Stable economy and campaign progression
+            remain outside this prototype.
+          </p>
+        </div>
+      </aside>
+
+      <section class="developer panel">
+        <details id="developer">
+          <summary>
+            Developer tools · components, configuration, replay and batch
+            analysis
+          </summary>
+          <p id="developerStatus" role="status">
+            Changes are validated. Structural edits start a new race; live edits
+            require Pause and apply at the next tick boundary.
+          </p>
+          <h2>Component and bulk editor</h2>
+          <div class="controls">
+            <label
+              >Scope
+              <select id="componentScope"></select></label
+            ><label
+              >Component
+              <select id="componentObject"></select></label
+            ><label
+              >Attribute
+              <select id="componentField"></select></label
+            ><label
+              >Value
+              <input id="componentValue" type="number" step="any" /></label
+            ><label
+              >Apply to
+              <select id="componentMode">
+                <option value="new">New race</option>
+                <option value="live">Paused live race</option>
+              </select></label
+            ><button id="applyComponent">Apply component edit</button>
+          </div>
+          <p id="componentSummary" class="note"></p>
+          <h2>Simulation parameters</h2>
+          <div class="controls">
+            <label
+              >Group
+              <select id="parameterGroup">
+                <option value="config">Physics / track / administration</option>
+                <option value="model">Derived model coefficients</option>
+                <option value="autonomous">AI / signs / fatigue</option>
+                <option value="utility">AI utility weights</option>
+                <option value="environment">Weather modifiers</option>
+                <option value="consequence">
+                  Combat / damage / incidents / control
+                </option>
+              </select></label
+            ><label
+              >Parameter
+              <select id="parameterField"></select></label
+            ><label
+              >Value
+              <input id="parameterValue" type="number" step="any" /></label
+            ><label
+              >Apply to
+              <select id="parameterMode">
+                <option value="new">New race</option>
+                <option value="live">Paused live race</option>
+              </select></label
+            ><button id="applyParameter">Apply parameter</button>
+          </div>
+          <p id="parameterSummary" class="note"></p>
+          <p id="overrideStatus" class="note"></p>
+          <h2>Segment surfaces</h2>
+          <div class="controls">
+            <select id="surfaceSegment" aria-label="Segment">
+              <option>north</option>
+              <option>east</option>
+              <option>south</option>
+              <option>west</option></select
+            ><select id="surfaceField" aria-label="Surface attribute">
+              <option>grip</option>
+              <option>roughness</option>
+              <option>rollingResistance</option>
+              <option>hazardModifier</option></select
+            ><input
+              id="surfaceValue"
+              aria-label="Surface value"
+              type="number"
+              min="0"
+              max="2"
+              step="0.05"
+              value="1"
+            /><button id="applySurface">Apply to new race</button>
+          </div>
+          <p class="note">Hazard modifier: 0–2, neutral 1. Weights incident placement on this segment; 0 excludes it. Incident frequency and the disabled-incidents setting remain unchanged.</p>
+          <h2>Track diagnostics</h2><pre id="trackDiagnostics"></pre>
+          <details id="careerSaves">
+            <summary>Career State / Save Management — M2-B stable foundation</summary>
+            <p class="note">Separate from developer race configurations and replays. Empty M1 states contain no roster or championship. Full exports contain Owner Profile, Career State, provenance, recovery and any optional race-start checkpoint; no mid-race saving. Use one active window when Web Locks are unavailable.</p>
+            <p id="careerSaveStatus" role="status"></p>
+            <p id="careerSaveNotice" class="note" role="alert"></p>
+            <div class="controls">
+              <label>Owner name<input id="careerOwnerName" value="Owner" maxlength="100" /></label>
+              <label>Career name<input id="careerName" value="M1 Foundation" maxlength="100" /></label>
+              <button id="careerCreate">Create empty M1 state</button>
+              <button id="careerMigrate">Migrate loaded M1 to schema 2 (M2-A)</button>
+            </div>
+            <div class="controls">
+              <label>Treasury change / Gold<input id="careerTreasuryDelta" type="number" step="1" value="100" /></label>
+              <label>Developer reason<input id="careerEditReason" value="Persistence test" maxlength="500" /></label>
+              <button id="careerAdjust">Commit developer treasury edit</button>
+            </div>
+            <div class="controls">
+              <button id="careerExport">Export complete persistent game state</button>
+              <button id="careerAcknowledge">I saved this checkpoint</button>
+              <label>Import game save<input id="careerImportFile" type="file" accept=".json,application/json" /></label>
+              <label><input id="careerImportMigrate" type="checkbox" /> Upgrade schema-1 file on confirmed import (no grants)</label>
+              <button id="careerImportApply">Confirm replacement</button>
+              <button id="careerRecover">Recover previous valid checkpoint</button>
+              <button id="careerRawExport">Export corrupt-save diagnostic</button>
+            </div>
+            <p class="note">Manual mode requires export and your explicit checkpoint confirmation between changes. A download request is not proof of durable saving. Import replaces the whole profile; Owner Legacy progression is never merged. Developer-edit status/provenance persists. Moving or renaming the HTML may change browser storage access.</p>
+            <details><summary>M2-A protected history / compaction preview (read-only)</summary><pre id="careerHistoryPlan"></pre></details>
+            <details id="stableFoundation">
+              <summary>M2-B starting stable and prospective RU</summary>
+              <p class="note">Explicit one-time starting grant. Assembly and baseline previews only; this stable does not enter races or championships. Equipment and facilities are neutral. No markets, repairs, treatments, training or management cycles.</p>
+              <button id="stableNewCareer">Create empty schema-2 career</button>
+              <p id="stableStatus" role="status"></p>
+              <label>Starting package<select id="stablePackage"></select></label>
+              <button id="stableInitialize">Confirm one-time initialization</button>
+              <details><summary>Package preview (no grant)</summary><pre id="stablePackagePreview"></pre></details>
+              <details><summary>Owned roster, capacities and last receipt</summary><pre id="stableRoster"></pre></details>
+              <div class="controls">
+                <label>Driver<select id="stableDriver"></select></label>
+                <label>Lead A<select id="stableBeastA"></select></label>
+                <label>Lead B<select id="stableBeastB"></select></label>
+                <label>Chariot<select id="stableChariot"></select></label>
+                <button id="stableAssemble">Commit prospective RU assembly</button>
+                <button id="stableDisassemble">Disassemble prospective RU</button>
+              </div>
+              <p class="note">Baseline / no weather or surface adjustment. Management driver fatigue remains separate from engine strain. Assembled and eligible does not mean committed to a competition.</p>
+              <pre id="stableRUPreview"></pre>
+            </details>
+            <details><summary>Career metadata and serialized state (read-only)</summary><pre id="careerSaveInspect"></pre></details>
+          </details>
+          <h2>Complete configuration and lineup</h2>
+          <p class="note">
+            Edit entrants, beasts, equipment, starting lanes/positions, player
+            entry, track geometry and all coefficients. Course JSON exposes ordered segments (length in metres, tiles, signed turn in degrees, terrain/surface and next ID) and Rally checkpoint distances in metres along lane 1. Closed-course edits must preserve position/heading closure. Import errors preserve
+            the current valid race. Normalized coefficient groups must remain
+            valid together.
+          </p>
+          <textarea
+            id="setupJSON"
+            aria-label="Versioned configuration JSON"
+            spellcheck="false"
+          ></textarea>
+          <div class="controls">
+            <button id="applySetup">Apply configuration / new race</button
+            ><button id="resetSetup">Reset defaults</button
+            ><button id="captureSetup">
+              Capture current components & tuning</button
+            ><button id="saveSetup">Save locally</button
+            ><button id="loadSetup">Load local save</button
+            ><button id="exportSetup">Export configuration</button
+            ><label
+              >Import configuration
+              <input id="setupFile" type="file" accept=".json,application/json"
+            /></label>
+          </div>
+          <h2>Headless batch analysis</h2>
+          <p class="note">
+            Uses the configuration editor and the same simulator. Seeds may be
+            comma-separated or ranges; cancel keeps completed samples.
+          </p>
+          <div class="controls">
+            <label>Seeds <input id="batchSeeds" value="1-8" /></label
+            ><button id="batchRun">Run batch</button
+            ><button id="batchCancel">Cancel batch</button
+            ><button id="batchExport">Export batch</button
+            ><span id="batchStatus" role="status"></span>
+          </div>
+          <pre id="batchOutput"></pre>
+        </details>
+      </section>
+    </main>
+    <!-- BUNDLE -->
+  </body>
+</html>

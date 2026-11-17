@@ -1,0 +1,7018 @@
+{
+  "target": 1000,
+  "completed": 1000,
+  "cancelled": false,
+  "toolErrors": [],
+  "countsByFormat": {
+    "Pure": 500,
+    "Combat": 500
+  },
+  "statuses": {
+    "Ended": 1000
+  },
+  "bounded": 0,
+  "workers": 4,
+  "wallSeconds": 237.70437555,
+  "runs": [
+    {
+      "id": "B-Pure-0-0-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.8161754300000001
+    },
+    {
+      "id": "B-Combat-0-0-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.146014698
+    },
+    {
+      "id": "A-Pure-0-0-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.612337535
+    },
+    {
+      "id": "A-Combat-0-0-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.709682578
+    },
+    {
+      "id": "C-Combat-0-0-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.499065802
+    },
+    {
+      "id": "C-Pure-0-0-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3351684020000003
+    },
+    {
+      "id": "D-Pure-0-0-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.4315647960000002
+    },
+    {
+      "id": "D-Combat-0-0-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.8305249819999994
+    },
+    {
+      "id": "D-Combat-0-0-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1659091600000002
+    },
+    {
+      "id": "D-Combat-0-0-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1906853070000003
+    },
+    {
+      "id": "D-Pure-0-0-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1994246670000002
+    },
+    {
+      "id": "D-Combat-0-0-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.045799277
+    },
+    {
+      "id": "D-Pure-0-0-lifecycle-replace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2430238550000003
+    },
+    {
+      "id": "D-Pure-0-0-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.09323556
+    },
+    {
+      "id": "D-Pure-0-0-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8267917630000001
+    },
+    {
+      "id": "D-Combat-0-0-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.031904469
+    },
+    {
+      "id": "D-Combat-0-0-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0695708679999998
+    },
+    {
+      "id": "D-Pure-0-0-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0704296029999996
+    },
+    {
+      "id": "D-Combat-0-0-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8993147629999994
+    },
+    {
+      "id": "D-Pure-0-0-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9308760350000003
+    },
+    {
+      "id": "E-Pure-0-0-degraded",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.134016369000001
+    },
+    {
+      "id": "E-Combat-0-0-neutral",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8444118460000009
+    },
+    {
+      "id": "E-Combat-0-0-degraded",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.5163892630000009
+    },
+    {
+      "id": "E-Pure-0-0-neutral",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.017022237000001
+    },
+    {
+      "id": "B-Pure-0-1-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8344453240000003
+    },
+    {
+      "id": "A-Combat-0-1-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2834549260000003
+    },
+    {
+      "id": "B-Combat-0-1-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0267681389999999
+    },
+    {
+      "id": "A-Pure-0-1-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1940370619999994
+    },
+    {
+      "id": "C-Pure-0-1-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8835699550000008
+    },
+    {
+      "id": "C-Combat-0-1-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9866829830000006
+    },
+    {
+      "id": "D-Pure-0-1-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9239747690000004
+    },
+    {
+      "id": "D-Combat-0-1-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0369659690000008
+    },
+    {
+      "id": "D-Combat-0-1-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7927363659999992
+    },
+    {
+      "id": "D-Pure-0-1-lifecycle-cancel",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.822583783
+    },
+    {
+      "id": "D-Combat-0-1-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0168859810000013
+    },
+    {
+      "id": "D-Pure-0-1-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0595758229999992
+    },
+    {
+      "id": "D-Combat-0-1-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9129423670000014
+    },
+    {
+      "id": "D-Combat-0-1-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8025842740000008
+    },
+    {
+      "id": "D-Pure-0-1-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.861863134000001
+    },
+    {
+      "id": "D-Pure-0-1-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0752170600000008
+    },
+    {
+      "id": "D-Combat-0-1-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9878989070000007
+    },
+    {
+      "id": "D-Combat-0-1-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.976444571
+    },
+    {
+      "id": "D-Pure-0-1-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0712275399999998
+    },
+    {
+      "id": "D-Pure-0-1-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8862321780000002
+    },
+    {
+      "id": "E-Combat-0-1-neutral",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.811136117
+    },
+    {
+      "id": "E-Pure-0-1-degraded",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9180232790000009
+    },
+    {
+      "id": "E-Combat-0-1-degraded",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0739083550000015
+    },
+    {
+      "id": "E-Pure-0-1-neutral",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7682035510000005
+    },
+    {
+      "id": "A-Combat-0-10-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9596107319999991
+    },
+    {
+      "id": "A-Pure-0-10-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9530561720000005
+    },
+    {
+      "id": "B-Combat-0-10-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8908600889999998
+    },
+    {
+      "id": "B-Pure-0-10-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8038107960000016
+    },
+    {
+      "id": "C-Combat-0-10-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7204648980000001
+    },
+    {
+      "id": "C-Pure-0-10-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8864759119999999
+    },
+    {
+      "id": "A-Combat-0-11-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9996651910000001
+    },
+    {
+      "id": "A-Pure-0-11-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0045676059999986
+    },
+    {
+      "id": "B-Combat-0-11-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7213167730000005
+    },
+    {
+      "id": "B-Pure-0-11-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7099045400000014
+    },
+    {
+      "id": "C-Pure-0-11-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.814758871
+    },
+    {
+      "id": "C-Combat-0-11-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8327784460000021
+    },
+    {
+      "id": "A-Combat-0-12-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9754771650000003
+    },
+    {
+      "id": "A-Pure-0-12-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9543465130000004
+    },
+    {
+      "id": "B-Pure-0-12-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7976448469999996
+    },
+    {
+      "id": "B-Combat-0-12-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0215653200000014
+    },
+    {
+      "id": "C-Combat-0-12-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8829388760000002
+    },
+    {
+      "id": "C-Pure-0-12-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8175062849999994
+    },
+    {
+      "id": "A-Combat-0-13-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9136265529999983
+    },
+    {
+      "id": "A-Pure-0-13-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.090841891
+    },
+    {
+      "id": "B-Combat-0-13-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1247038850000026
+    },
+    {
+      "id": "B-Pure-0-13-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0583417450000014
+    },
+    {
+      "id": "C-Combat-0-13-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9273886139999995
+    },
+    {
+      "id": "C-Pure-0-13-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9898016329999991
+    },
+    {
+      "id": "A-Pure-0-14-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9489745559999974
+    },
+    {
+      "id": "A-Combat-0-14-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0683114279999972
+    },
+    {
+      "id": "B-Combat-0-14-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9636962469999999
+    },
+    {
+      "id": "B-Pure-0-14-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2112297990000007
+    },
+    {
+      "id": "C-Pure-0-14-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9869876509999994
+    },
+    {
+      "id": "C-Combat-0-14-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.135154760999998
+    },
+    {
+      "id": "A-Combat-0-15-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2062811059999985
+    },
+    {
+      "id": "A-Pure-0-15-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1812131780000017
+    },
+    {
+      "id": "B-Combat-0-15-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0599067619999987
+    },
+    {
+      "id": "B-Pure-0-15-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0197762810000022
+    },
+    {
+      "id": "C-Combat-0-15-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1212169410000024
+    },
+    {
+      "id": "C-Pure-0-15-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8780758969999988
+    },
+    {
+      "id": "A-Pure-0-16-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9318230949999997
+    },
+    {
+      "id": "B-Combat-0-16-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7960706359999967
+    },
+    {
+      "id": "A-Combat-0-16-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1557250850000018
+    },
+    {
+      "id": "B-Pure-0-16-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8079593569999998
+    },
+    {
+      "id": "C-Combat-0-16-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8428742300000013
+    },
+    {
+      "id": "C-Pure-0-16-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7549170269999995
+    },
+    {
+      "id": "A-Combat-0-17-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8778735090000009
+    },
+    {
+      "id": "A-Pure-0-17-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9128348120000009
+    },
+    {
+      "id": "B-Pure-0-17-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7678062619999982
+    },
+    {
+      "id": "B-Combat-0-17-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7837036599999992
+    },
+    {
+      "id": "C-Combat-0-17-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9135418479999972
+    },
+    {
+      "id": "C-Pure-0-17-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7703874320000031
+    },
+    {
+      "id": "A-Pure-0-18-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9939049780000023
+    },
+    {
+      "id": "A-Combat-0-18-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0187519900000006
+    },
+    {
+      "id": "B-Combat-0-18-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7999246160000002
+    },
+    {
+      "id": "B-Pure-0-18-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7679838320000018
+    },
+    {
+      "id": "C-Combat-0-18-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8321074050000025
+    },
+    {
+      "id": "C-Pure-0-18-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9192912610000021
+    },
+    {
+      "id": "A-Combat-0-19-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0640435149999976
+    },
+    {
+      "id": "A-Pure-0-19-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0705260469999993
+    },
+    {
+      "id": "B-Pure-0-19-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7469345020000001
+    },
+    {
+      "id": "B-Combat-0-19-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0680668430000004
+    },
+    {
+      "id": "C-Pure-0-19-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8708108289999982
+    },
+    {
+      "id": "C-Combat-0-19-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1012723499999992
+    },
+    {
+      "id": "A-Pure-0-2-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9593551339999976
+    },
+    {
+      "id": "A-Combat-0-2-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2265847470000009
+    },
+    {
+      "id": "B-Combat-0-2-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7323222700000006
+    },
+    {
+      "id": "B-Pure-0-2-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9027445819999994
+    },
+    {
+      "id": "C-Combat-0-2-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7497112439999982
+    },
+    {
+      "id": "C-Pure-0-2-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7467078440000005
+    },
+    {
+      "id": "D-Combat-0-2-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8579520699999994
+    },
+    {
+      "id": "D-Pure-0-2-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.783271299
+    },
+    {
+      "id": "D-Combat-0-2-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.858731538
+    },
+    {
+      "id": "D-Combat-0-2-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8865625050000017
+    },
+    {
+      "id": "D-Pure-0-2-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.6742975540000007
+    },
+    {
+      "id": "D-Pure-0-2-lifecycle-replace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.745430271000001
+    },
+    {
+      "id": "D-Combat-0-2-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7881498480000009
+    },
+    {
+      "id": "D-Pure-0-2-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7637705920000007
+    },
+    {
+      "id": "D-Combat-0-2-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8048576500000018
+    },
+    {
+      "id": "D-Pure-0-2-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9000189199999986
+    },
+    {
+      "id": "D-Combat-0-2-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8163872599999995
+    },
+    {
+      "id": "D-Combat-0-2-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8570868750000009
+    },
+    {
+      "id": "D-Pure-0-2-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0525589059999985
+    },
+    {
+      "id": "D-Pure-0-2-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7333011419999966
+    },
+    {
+      "id": "A-Combat-0-3-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.999409725999998
+    },
+    {
+      "id": "B-Pure-0-3-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7365730430000039
+    },
+    {
+      "id": "A-Pure-0-3-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9562320509999991
+    },
+    {
+      "id": "B-Combat-0-3-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9108584970000011
+    },
+    {
+      "id": "C-Combat-0-3-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7946250260000015
+    },
+    {
+      "id": "C-Pure-0-3-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7894412800000064
+    },
+    {
+      "id": "D-Combat-0-3-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9095749649999998
+    },
+    {
+      "id": "D-Pure-0-3-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8793706630000016
+    },
+    {
+      "id": "D-Combat-0-3-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7998783919999987
+    },
+    {
+      "id": "D-Combat-0-3-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.795597348999996
+    },
+    {
+      "id": "D-Pure-0-3-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7512509139999966
+    },
+    {
+      "id": "D-Pure-0-3-lifecycle-cancel",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7985346179999978
+    },
+    {
+      "id": "D-Pure-0-3-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.6558186120000028
+    },
+    {
+      "id": "D-Combat-0-3-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7205020290000029
+    },
+    {
+      "id": "D-Combat-0-3-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7404071889999977
+    },
+    {
+      "id": "D-Pure-0-3-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.713174665999999
+    },
+    {
+      "id": "D-Combat-0-3-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7358487890000033
+    },
+    {
+      "id": "D-Pure-0-3-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8264481180000003
+    },
+    {
+      "id": "D-Pure-0-3-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7205457680000036
+    },
+    {
+      "id": "D-Combat-0-3-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8368433020000011
+    },
+    {
+      "id": "A-Pure-0-4-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8839318400000047
+    },
+    {
+      "id": "B-Pure-0-4-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7449909659999976
+    },
+    {
+      "id": "A-Combat-0-4-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.07512083
+    },
+    {
+      "id": "B-Combat-0-4-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.859226496999996
+    },
+    {
+      "id": "C-Combat-0-4-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.754252373999996
+    },
+    {
+      "id": "C-Pure-0-4-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7791532359999983
+    },
+    {
+      "id": "A-Pure-0-5-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8699216489999962
+    },
+    {
+      "id": "A-Combat-0-5-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9699597910000012
+    },
+    {
+      "id": "B-Combat-0-5-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7428582129999995
+    },
+    {
+      "id": "B-Pure-0-5-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.6881519139999945
+    },
+    {
+      "id": "C-Combat-0-5-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7688279289999991
+    },
+    {
+      "id": "C-Pure-0-5-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7270430320000014
+    },
+    {
+      "id": "A-Pure-0-6-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8478631519999981
+    },
+    {
+      "id": "A-Combat-0-6-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.988972139999998
+    },
+    {
+      "id": "B-Combat-0-6-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7450143659999958
+    },
+    {
+      "id": "B-Pure-0-6-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8478464910000039
+    },
+    {
+      "id": "C-Combat-0-6-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9030818660000004
+    },
+    {
+      "id": "C-Pure-0-6-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8097463690000004
+    },
+    {
+      "id": "A-Combat-0-7-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0201697360000035
+    },
+    {
+      "id": "A-Pure-0-7-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9774420190000019
+    },
+    {
+      "id": "B-Pure-0-7-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9132026369999948
+    },
+    {
+      "id": "B-Combat-0-7-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0173676259999993
+    },
+    {
+      "id": "C-Combat-0-7-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8471406270000007
+    },
+    {
+      "id": "C-Pure-0-7-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9731255779999992
+    },
+    {
+      "id": "B-Combat-0-8-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7666888880000042
+    },
+    {
+      "id": "A-Combat-0-8-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9569694679999957
+    },
+    {
+      "id": "B-Pure-0-8-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7098914670000013
+    },
+    {
+      "id": "A-Pure-0-8-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0005186509999986
+    },
+    {
+      "id": "C-Pure-0-8-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7494038150000051
+    },
+    {
+      "id": "C-Combat-0-8-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8088065349999961
+    },
+    {
+      "id": "A-Pure-0-9-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8684895889999971
+    },
+    {
+      "id": "A-Combat-0-9-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0112582120000007
+    },
+    {
+      "id": "B-Combat-0-9-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7167896130000009
+    },
+    {
+      "id": "B-Pure-0-9-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7479146659999969
+    },
+    {
+      "id": "C-Pure-0-9-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.6838367519999956
+    },
+    {
+      "id": "C-Combat-0-9-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8541501070000013
+    },
+    {
+      "id": "A-Pure-1-0-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7945380779999978
+    },
+    {
+      "id": "A-Combat-1-0-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9703619899999976
+    },
+    {
+      "id": "B-Pure-1-0-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7621810849999965
+    },
+    {
+      "id": "B-Combat-1-0-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8325191940000004
+    },
+    {
+      "id": "C-Combat-1-0-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9844821640000009
+    },
+    {
+      "id": "C-Pure-1-0-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9743490909999964
+    },
+    {
+      "id": "D-Combat-1-0-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9730881880000015
+    },
+    {
+      "id": "D-Pure-1-0-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.011915890999997
+    },
+    {
+      "id": "D-Combat-1-0-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9300327629999956
+    },
+    {
+      "id": "D-Combat-1-0-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8759852150000006
+    },
+    {
+      "id": "D-Pure-1-0-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8951779290000049
+    },
+    {
+      "id": "D-Pure-1-0-lifecycle-replace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9563623290000032
+    },
+    {
+      "id": "D-Combat-1-0-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.864818438000002
+    },
+    {
+      "id": "D-Pure-1-0-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8884834780000019
+    },
+    {
+      "id": "D-Combat-1-0-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8188284290000011
+    },
+    {
+      "id": "D-Pure-1-0-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7500449090000039
+    },
+    {
+      "id": "D-Pure-1-0-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7971654550000021
+    },
+    {
+      "id": "D-Combat-1-0-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8702771829999983
+    },
+    {
+      "id": "D-Combat-1-0-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.865956855999997
+    },
+    {
+      "id": "D-Pure-1-0-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8646036319999985
+    },
+    {
+      "id": "E-Pure-1-0-degraded",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0305405080000054
+    },
+    {
+      "id": "E-Combat-1-0-neutral",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.915649145000003
+    },
+    {
+      "id": "E-Pure-1-0-neutral",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8709287320000003
+    },
+    {
+      "id": "E-Combat-1-0-degraded",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1273203040000008
+    },
+    {
+      "id": "B-Pure-1-1-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8759296500000054
+    },
+    {
+      "id": "A-Pure-1-1-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9587269149999993
+    },
+    {
+      "id": "B-Combat-1-1-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0011851240000034
+    },
+    {
+      "id": "A-Combat-1-1-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1776848390000014
+    },
+    {
+      "id": "C-Combat-1-1-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9681123250000019
+    },
+    {
+      "id": "C-Pure-1-1-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1022629789999991
+    },
+    {
+      "id": "D-Combat-1-1-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0304446030000036
+    },
+    {
+      "id": "D-Pure-1-1-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9362013039999947
+    },
+    {
+      "id": "D-Combat-1-1-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0279788939999999
+    },
+    {
+      "id": "D-Pure-1-1-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9560883910000048
+    },
+    {
+      "id": "D-Pure-1-1-lifecycle-cancel",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9375832620000001
+    },
+    {
+      "id": "D-Combat-1-1-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.199514916
+    },
+    {
+      "id": "D-Combat-1-1-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9517287429999997
+    },
+    {
+      "id": "D-Combat-1-1-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9458267330000016
+    },
+    {
+      "id": "D-Pure-1-1-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1791911600000022
+    },
+    {
+      "id": "D-Pure-1-1-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0170717300000034
+    },
+    {
+      "id": "D-Combat-1-1-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8488862520000039
+    },
+    {
+      "id": "D-Pure-1-1-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9723077489999996
+    },
+    {
+      "id": "D-Combat-1-1-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8242023760000011
+    },
+    {
+      "id": "D-Pure-1-1-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8798701010000004
+    },
+    {
+      "id": "E-Combat-1-1-degraded",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0674153700000024
+    },
+    {
+      "id": "E-Pure-1-1-degraded",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9308081569999995
+    },
+    {
+      "id": "E-Combat-1-1-neutral",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8731401830000032
+    },
+    {
+      "id": "E-Pure-1-1-neutral",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8202129080000014
+    },
+    {
+      "id": "A-Combat-1-10-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0097648429999972
+    },
+    {
+      "id": "B-Combat-1-10-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9452591320000066
+    },
+    {
+      "id": "A-Pure-1-10-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9968720079999984
+    },
+    {
+      "id": "B-Pure-1-10-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9981772400000045
+    },
+    {
+      "id": "C-Combat-1-10-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8442789029999985
+    },
+    {
+      "id": "C-Pure-1-10-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7826080299999958
+    },
+    {
+      "id": "A-Combat-1-11-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0053283889999949
+    },
+    {
+      "id": "A-Pure-1-11-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2510797080000047
+    },
+    {
+      "id": "B-Pure-1-11-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.938426109
+    },
+    {
+      "id": "B-Combat-1-11-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1002989119999984
+    },
+    {
+      "id": "C-Combat-1-11-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9736520830000008
+    },
+    {
+      "id": "C-Pure-1-11-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9414859510000024
+    },
+    {
+      "id": "A-Combat-1-12-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9819848520000014
+    },
+    {
+      "id": "A-Pure-1-12-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0753414009999978
+    },
+    {
+      "id": "B-Combat-1-12-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9457447170000014
+    },
+    {
+      "id": "B-Pure-1-12-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8263509479999993
+    },
+    {
+      "id": "C-Combat-1-12-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9014633079999985
+    },
+    {
+      "id": "C-Pure-1-12-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0155391640000015
+    },
+    {
+      "id": "A-Combat-1-13-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0004067799999976
+    },
+    {
+      "id": "A-Pure-1-13-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9906425909999962
+    },
+    {
+      "id": "B-Combat-1-13-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9417285240000056
+    },
+    {
+      "id": "B-Pure-1-13-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8533795949999985
+    },
+    {
+      "id": "C-Combat-1-13-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9182118239999981
+    },
+    {
+      "id": "C-Pure-1-13-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0790315750000008
+    },
+    {
+      "id": "A-Combat-1-14-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9354099380000044
+    },
+    {
+      "id": "B-Combat-1-14-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8581491029999961
+    },
+    {
+      "id": "A-Pure-1-14-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.146758189
+    },
+    {
+      "id": "B-Pure-1-14-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9217242100000003
+    },
+    {
+      "id": "C-Combat-1-14-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8578756150000044
+    },
+    {
+      "id": "C-Pure-1-14-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8035957309999939
+    },
+    {
+      "id": "A-Combat-1-15-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0505889109999988
+    },
+    {
+      "id": "A-Pure-1-15-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.042269244999996
+    },
+    {
+      "id": "B-Combat-1-15-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1470641400000021
+    },
+    {
+      "id": "B-Pure-1-15-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0086090760000006
+    },
+    {
+      "id": "C-Pure-1-15-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0107826410000051
+    },
+    {
+      "id": "C-Combat-1-15-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2178439330000037
+    },
+    {
+      "id": "A-Combat-1-16-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.076641856000002
+    },
+    {
+      "id": "A-Pure-1-16-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2477171659999948
+    },
+    {
+      "id": "B-Combat-1-16-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9688489029999983
+    },
+    {
+      "id": "B-Pure-1-16-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.919643821999991
+    },
+    {
+      "id": "C-Combat-1-16-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8868955099999948
+    },
+    {
+      "id": "C-Pure-1-16-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.984645153000005
+    },
+    {
+      "id": "A-Combat-1-17-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0955720510000102
+    },
+    {
+      "id": "A-Pure-1-17-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1813277020000097
+    },
+    {
+      "id": "B-Combat-1-17-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9927375039999897
+    },
+    {
+      "id": "B-Pure-1-17-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9471819319999922
+    },
+    {
+      "id": "C-Pure-1-17-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9385579419999994
+    },
+    {
+      "id": "C-Combat-1-17-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.281198403000002
+    },
+    {
+      "id": "A-Combat-1-18-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1921929129999917
+    },
+    {
+      "id": "A-Pure-1-18-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1266015970000007
+    },
+    {
+      "id": "B-Combat-1-18-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9561393309999985
+    },
+    {
+      "id": "C-Combat-1-18-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8670481650000001
+    },
+    {
+      "id": "B-Pure-1-18-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1091852519999956
+    },
+    {
+      "id": "C-Pure-1-18-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0499226159999961
+    },
+    {
+      "id": "A-Combat-1-19-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0638430350000125
+    },
+    {
+      "id": "A-Pure-1-19-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9444891119999956
+    },
+    {
+      "id": "B-Combat-1-19-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.961900576
+    },
+    {
+      "id": "B-Pure-1-19-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8748624459999992
+    },
+    {
+      "id": "C-Combat-1-19-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9958997579999995
+    },
+    {
+      "id": "C-Pure-1-19-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9022558879999997
+    },
+    {
+      "id": "A-Pure-1-2-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1070544360000059
+    },
+    {
+      "id": "A-Combat-1-2-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.409610870999997
+    },
+    {
+      "id": "B-Pure-1-2-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8077943929999892
+    },
+    {
+      "id": "B-Combat-1-2-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9257939250000053
+    },
+    {
+      "id": "C-Combat-1-2-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9902611889999972
+    },
+    {
+      "id": "C-Pure-1-2-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0199137409999968
+    },
+    {
+      "id": "D-Combat-1-2-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.174368325000003
+    },
+    {
+      "id": "D-Pure-1-2-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1736211489999986
+    },
+    {
+      "id": "D-Combat-1-2-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9485409519999958
+    },
+    {
+      "id": "D-Combat-1-2-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.006393274000002
+    },
+    {
+      "id": "D-Pure-1-2-lifecycle-replace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8490945030000002
+    },
+    {
+      "id": "D-Pure-1-2-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9656810320000077
+    },
+    {
+      "id": "D-Pure-1-2-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7847955969999894
+    },
+    {
+      "id": "D-Combat-1-2-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0150348959999973
+    },
+    {
+      "id": "D-Pure-1-2-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.6862961709999945
+    },
+    {
+      "id": "D-Combat-1-2-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8868823930000072
+    },
+    {
+      "id": "D-Combat-1-2-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8628692479999881
+    },
+    {
+      "id": "D-Pure-1-2-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8950056889999978
+    },
+    {
+      "id": "D-Pure-1-2-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8334513750000042
+    },
+    {
+      "id": "D-Combat-1-2-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9590290899999964
+    },
+    {
+      "id": "A-Combat-1-3-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9605162259999924
+    },
+    {
+      "id": "A-Pure-1-3-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8634993020000111
+    },
+    {
+      "id": "B-Pure-1-3-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7144122420000057
+    },
+    {
+      "id": "B-Combat-1-3-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.851965537000011
+    },
+    {
+      "id": "C-Pure-1-3-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8568429259999976
+    },
+    {
+      "id": "C-Combat-1-3-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.018176695000002
+    },
+    {
+      "id": "D-Combat-1-3-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0216885400000029
+    },
+    {
+      "id": "D-Pure-1-3-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9380433219999977
+    },
+    {
+      "id": "D-Pure-1-3-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7148014810000023
+    },
+    {
+      "id": "D-Combat-1-3-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9511689590000023
+    },
+    {
+      "id": "D-Pure-1-3-lifecycle-cancel",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7440702089999977
+    },
+    {
+      "id": "D-Combat-1-3-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9425318720000069
+    },
+    {
+      "id": "D-Combat-1-3-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9275235899999971
+    },
+    {
+      "id": "D-Combat-1-3-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8474865080000018
+    },
+    {
+      "id": "D-Pure-1-3-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7828982070000057
+    },
+    {
+      "id": "D-Pure-1-3-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9327242779999942
+    },
+    {
+      "id": "D-Pure-1-3-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9564224410000024
+    },
+    {
+      "id": "D-Pure-1-3-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9419266189999908
+    },
+    {
+      "id": "D-Combat-1-3-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.146139691999997
+    },
+    {
+      "id": "D-Combat-1-3-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1232415940000064
+    },
+    {
+      "id": "A-Pure-1-4-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.879249496000004
+    },
+    {
+      "id": "A-Combat-1-4-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9751737040000007
+    },
+    {
+      "id": "B-Combat-1-4-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8364453470000007
+    },
+    {
+      "id": "B-Pure-1-4-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0051660760000085
+    },
+    {
+      "id": "C-Pure-1-4-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9883200569999899
+    },
+    {
+      "id": "C-Combat-1-4-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0692135550000095
+    },
+    {
+      "id": "A-Combat-1-5-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0100526490000048
+    },
+    {
+      "id": "A-Pure-1-5-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2243803259999986
+    },
+    {
+      "id": "C-Combat-1-5-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8464006070000032
+    },
+    {
+      "id": "B-Combat-1-5-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0281974709999921
+    },
+    {
+      "id": "B-Pure-1-5-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1096554770000076
+    },
+    {
+      "id": "C-Pure-1-5-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0007664870000008
+    },
+    {
+      "id": "A-Combat-1-6-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.153041646999991
+    },
+    {
+      "id": "A-Pure-1-6-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0565437789999996
+    },
+    {
+      "id": "B-Pure-1-6-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7701695679999975
+    },
+    {
+      "id": "B-Combat-1-6-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.146866096999991
+    },
+    {
+      "id": "C-Combat-1-6-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.826358236
+    },
+    {
+      "id": "C-Pure-1-6-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9768525720000034
+    },
+    {
+      "id": "A-Pure-1-7-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8786909610000002
+    },
+    {
+      "id": "A-Combat-1-7-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9514463470000046
+    },
+    {
+      "id": "B-Combat-1-7-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9399869749999925
+    },
+    {
+      "id": "C-Combat-1-7-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7566083539999964
+    },
+    {
+      "id": "C-Pure-1-7-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7615428160000011
+    },
+    {
+      "id": "B-Pure-1-7-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9726711700000015
+    },
+    {
+      "id": "A-Combat-1-8-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9260117449999962
+    },
+    {
+      "id": "A-Pure-1-8-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8378212140000105
+    },
+    {
+      "id": "B-Combat-1-8-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8265088539999997
+    },
+    {
+      "id": "B-Pure-1-8-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9050801650000067
+    },
+    {
+      "id": "C-Combat-1-8-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.832415623000008
+    },
+    {
+      "id": "C-Pure-1-8-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0155655969999935
+    },
+    {
+      "id": "A-Combat-1-9-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2343379489999935
+    },
+    {
+      "id": "A-Pure-1-9-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.165833519000007
+    },
+    {
+      "id": "B-Combat-1-9-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9174218669999973
+    },
+    {
+      "id": "B-Pure-1-9-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0513951970000053
+    },
+    {
+      "id": "C-Combat-1-9-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9370184549999976
+    },
+    {
+      "id": "C-Pure-1-9-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9160161410000001
+    },
+    {
+      "id": "A-Combat-2-0-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2632114759999968
+    },
+    {
+      "id": "A-Pure-2-0-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1129143459999904
+    },
+    {
+      "id": "B-Combat-2-0-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0217858790000027
+    },
+    {
+      "id": "B-Pure-2-0-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0187839379999932
+    },
+    {
+      "id": "C-Combat-2-0-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9386246950000059
+    },
+    {
+      "id": "C-Pure-2-0-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0112005500000087
+    },
+    {
+      "id": "D-Combat-2-0-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0958166320000018
+    },
+    {
+      "id": "D-Pure-2-0-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0674247629999882
+    },
+    {
+      "id": "D-Combat-2-0-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3695438830000057
+    },
+    {
+      "id": "D-Combat-2-0-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1185475880000013
+    },
+    {
+      "id": "D-Pure-2-0-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0296916089999868
+    },
+    {
+      "id": "D-Pure-2-0-lifecycle-replace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.193789772999997
+    },
+    {
+      "id": "D-Pure-2-0-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0778922080000048
+    },
+    {
+      "id": "D-Combat-2-0-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1083027059999877
+    },
+    {
+      "id": "D-Combat-2-0-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1703784140000062
+    },
+    {
+      "id": "D-Pure-2-0-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.106064022999999
+    },
+    {
+      "id": "D-Combat-2-0-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0218364860000002
+    },
+    {
+      "id": "D-Pure-2-0-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0802261909999944
+    },
+    {
+      "id": "D-Pure-2-0-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9711648399999976
+    },
+    {
+      "id": "D-Combat-2-0-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1056839369999942
+    },
+    {
+      "id": "E-Pure-2-0-neutral",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9818185680000024
+    },
+    {
+      "id": "E-Pure-2-0-degraded",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.226674730999992
+    },
+    {
+      "id": "E-Combat-2-0-neutral",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1826233890000004
+    },
+    {
+      "id": "E-Combat-2-0-degraded",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3756661909999965
+    },
+    {
+      "id": "A-Combat-2-1-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.043709268999999
+    },
+    {
+      "id": "B-Pure-2-1-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0608213460000115
+    },
+    {
+      "id": "A-Pure-2-1-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2022810370000079
+    },
+    {
+      "id": "B-Combat-2-1-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2398497410000127
+    },
+    {
+      "id": "C-Combat-2-1-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.208279972999997
+    },
+    {
+      "id": "C-Pure-2-1-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0406458989999956
+    },
+    {
+      "id": "D-Combat-2-1-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0413838810000016
+    },
+    {
+      "id": "D-Pure-2-1-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.077043770000004
+    },
+    {
+      "id": "D-Pure-2-1-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8643941950000008
+    },
+    {
+      "id": "D-Combat-2-1-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9900724159999954
+    },
+    {
+      "id": "D-Combat-2-1-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0163916650000029
+    },
+    {
+      "id": "D-Pure-2-1-lifecycle-cancel",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9544116490000015
+    },
+    {
+      "id": "D-Combat-2-1-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9745129260000104
+    },
+    {
+      "id": "D-Pure-2-1-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9781160110000056
+    },
+    {
+      "id": "D-Combat-2-1-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9864171440000064
+    },
+    {
+      "id": "D-Pure-2-1-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9816528930000059
+    },
+    {
+      "id": "D-Pure-2-1-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.036039598999996
+    },
+    {
+      "id": "D-Combat-2-1-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0681677850000124
+    },
+    {
+      "id": "D-Combat-2-1-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.106639498000004
+    },
+    {
+      "id": "D-Pure-2-1-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0896212999999988
+    },
+    {
+      "id": "E-Pure-2-1-degraded",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.201733963999999
+    },
+    {
+      "id": "E-Combat-2-1-degraded",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2902493079999986
+    },
+    {
+      "id": "E-Pure-2-1-neutral",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1223845109999966
+    },
+    {
+      "id": "E-Combat-2-1-neutral",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2514640819999914
+    },
+    {
+      "id": "B-Combat-2-10-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0313090079999965
+    },
+    {
+      "id": "A-Pure-2-10-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1710195119999989
+    },
+    {
+      "id": "B-Pure-2-10-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.101020002999998
+    },
+    {
+      "id": "A-Combat-2-10-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3239933149999996
+    },
+    {
+      "id": "C-Combat-2-10-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0265353590000013
+    },
+    {
+      "id": "C-Pure-2-10-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.001505428000004
+    },
+    {
+      "id": "A-Pure-2-11-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.172022094
+    },
+    {
+      "id": "A-Combat-2-11-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.233805880999993
+    },
+    {
+      "id": "B-Pure-2-11-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0116468220000097
+    },
+    {
+      "id": "B-Combat-2-11-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1428755579999996
+    },
+    {
+      "id": "C-Combat-2-11-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.175346651
+    },
+    {
+      "id": "C-Pure-2-11-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.279828573000006
+    },
+    {
+      "id": "A-Pure-2-12-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1428138590000017
+    },
+    {
+      "id": "A-Combat-2-12-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2557099509999972
+    },
+    {
+      "id": "B-Combat-2-12-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0362348119999951
+    },
+    {
+      "id": "B-Pure-2-12-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.951484249000001
+    },
+    {
+      "id": "C-Pure-2-12-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9051423729999951
+    },
+    {
+      "id": "C-Combat-2-12-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0057006839999958
+    },
+    {
+      "id": "A-Combat-2-13-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.169368835999994
+    },
+    {
+      "id": "A-Pure-2-13-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1487477030000008
+    },
+    {
+      "id": "B-Combat-2-13-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0382161249999917
+    },
+    {
+      "id": "B-Pure-2-13-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1367749199999961
+    },
+    {
+      "id": "C-Combat-2-13-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0221758180000033
+    },
+    {
+      "id": "C-Pure-2-13-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0507102670000021
+    },
+    {
+      "id": "A-Combat-2-14-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2317005750000098
+    },
+    {
+      "id": "A-Pure-2-14-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1781548389999952
+    },
+    {
+      "id": "B-Combat-2-14-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0982414949999948
+    },
+    {
+      "id": "B-Pure-2-14-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0552589399999996
+    },
+    {
+      "id": "C-Pure-2-14-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.00788235900001
+    },
+    {
+      "id": "C-Combat-2-14-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1510551339999948
+    },
+    {
+      "id": "A-Pure-2-15-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1167607710000012
+    },
+    {
+      "id": "A-Combat-2-15-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.4799402450000052
+    },
+    {
+      "id": "B-Pure-2-15-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.003550636999993
+    },
+    {
+      "id": "B-Combat-2-15-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1215689240000066
+    },
+    {
+      "id": "C-Combat-2-15-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1463748470000137
+    },
+    {
+      "id": "C-Pure-2-15-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0732202760000074
+    },
+    {
+      "id": "A-Pure-2-16-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0430759629999957
+    },
+    {
+      "id": "A-Combat-2-16-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1573750489999948
+    },
+    {
+      "id": "B-Combat-2-16-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1752041619999944
+    },
+    {
+      "id": "B-Pure-2-16-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2674404289999948
+    },
+    {
+      "id": "C-Combat-2-16-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0066312550000003
+    },
+    {
+      "id": "C-Pure-2-16-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0658984320000018
+    },
+    {
+      "id": "A-Combat-2-17-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1549058349999977
+    },
+    {
+      "id": "A-Pure-2-17-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2406852879999932
+    },
+    {
+      "id": "B-Pure-2-17-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0305479870000127
+    },
+    {
+      "id": "B-Combat-2-17-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1096223280000121
+    },
+    {
+      "id": "C-Combat-2-17-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9455239359999977
+    },
+    {
+      "id": "A-Pure-2-18-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.009493241999997
+    },
+    {
+      "id": "C-Pure-2-17-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1563498929999914
+    },
+    {
+      "id": "A-Combat-2-18-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.161261234000005
+    },
+    {
+      "id": "B-Combat-2-18-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9726035569999949
+    },
+    {
+      "id": "B-Pure-2-18-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.86484509599999
+    },
+    {
+      "id": "C-Combat-2-18-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.019081972
+    },
+    {
+      "id": "C-Pure-2-18-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0055237349999953
+    },
+    {
+      "id": "A-Combat-2-19-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1380055310000026
+    },
+    {
+      "id": "A-Pure-2-19-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.10593931300001
+    },
+    {
+      "id": "B-Combat-2-19-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0126146489999956
+    },
+    {
+      "id": "B-Pure-2-19-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9864881590000004
+    },
+    {
+      "id": "C-Combat-2-19-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3542719809999981
+    },
+    {
+      "id": "C-Pure-2-19-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.02502780299999
+    },
+    {
+      "id": "A-Combat-2-2-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1271383369999968
+    },
+    {
+      "id": "A-Pure-2-2-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.182294061000008
+    },
+    {
+      "id": "B-Combat-2-2-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1928655159999908
+    },
+    {
+      "id": "B-Pure-2-2-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.077179019999996
+    },
+    {
+      "id": "C-Pure-2-2-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0209714839999942
+    },
+    {
+      "id": "C-Combat-2-2-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1097707130000054
+    },
+    {
+      "id": "D-Combat-2-2-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0872648869999975
+    },
+    {
+      "id": "D-Pure-2-2-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0668127589999932
+    },
+    {
+      "id": "D-Combat-2-2-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0032183490000024
+    },
+    {
+      "id": "D-Combat-2-2-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0352146939999949
+    },
+    {
+      "id": "D-Pure-2-2-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.033838638000001
+    },
+    {
+      "id": "D-Pure-2-2-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8331717409999982
+    },
+    {
+      "id": "D-Pure-2-2-lifecycle-replace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.125246358000004
+    },
+    {
+      "id": "D-Combat-2-2-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0031989969999995
+    },
+    {
+      "id": "D-Combat-2-2-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9958007999999973
+    },
+    {
+      "id": "D-Pure-2-2-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9712919140000013
+    },
+    {
+      "id": "D-Combat-2-2-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9935922350000037
+    },
+    {
+      "id": "D-Pure-2-2-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0513125310000033
+    },
+    {
+      "id": "D-Combat-2-2-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0478550820000092
+    },
+    {
+      "id": "D-Pure-2-2-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.073138650000008
+    },
+    {
+      "id": "A-Pure-2-3-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1274990049999907
+    },
+    {
+      "id": "A-Combat-2-3-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.241552582000004
+    },
+    {
+      "id": "B-Combat-2-3-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9846190530000022
+    },
+    {
+      "id": "B-Pure-2-3-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9479768079999922
+    },
+    {
+      "id": "C-Combat-2-3-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0855325929999962
+    },
+    {
+      "id": "C-Pure-2-3-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.067862856000007
+    },
+    {
+      "id": "D-Pure-2-3-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9915711690000025
+    },
+    {
+      "id": "D-Combat-2-3-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0778794420000049
+    },
+    {
+      "id": "D-Combat-2-3-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.062750887999995
+    },
+    {
+      "id": "D-Combat-2-3-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1511391550000116
+    },
+    {
+      "id": "D-Pure-2-3-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8754368279999908
+    },
+    {
+      "id": "D-Pure-2-3-lifecycle-cancel",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0256352269999915
+    },
+    {
+      "id": "D-Combat-2-3-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0142421630000027
+    },
+    {
+      "id": "D-Pure-2-3-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9668141060000053
+    },
+    {
+      "id": "D-Combat-2-3-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0148080520000076
+    },
+    {
+      "id": "D-Pure-2-3-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0530757000000013
+    },
+    {
+      "id": "D-Pure-2-3-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9687002550000033
+    },
+    {
+      "id": "D-Combat-2-3-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0246405769999982
+    },
+    {
+      "id": "D-Combat-2-3-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9067740429999976
+    },
+    {
+      "id": "D-Pure-2-3-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.943691822000008
+    },
+    {
+      "id": "A-Combat-2-4-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0069111549999943
+    },
+    {
+      "id": "A-Pure-2-4-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0448658130000112
+    },
+    {
+      "id": "B-Combat-2-4-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9805028730000049
+    },
+    {
+      "id": "B-Pure-2-4-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0279428019999906
+    },
+    {
+      "id": "C-Pure-2-4-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0547476100000057
+    },
+    {
+      "id": "C-Combat-2-4-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2431319270000094
+    },
+    {
+      "id": "A-Combat-2-5-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1713359300000157
+    },
+    {
+      "id": "A-Pure-2-5-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.143930680999998
+    },
+    {
+      "id": "B-Combat-2-5-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0714550089999975
+    },
+    {
+      "id": "B-Pure-2-5-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0314788919999847
+    },
+    {
+      "id": "C-Combat-2-5-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0353128970000252
+    },
+    {
+      "id": "C-Pure-2-5-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0107627950000169
+    },
+    {
+      "id": "A-Pure-2-6-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0390923799999874
+    },
+    {
+      "id": "A-Combat-2-6-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2715448599999946
+    },
+    {
+      "id": "B-Combat-2-6-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2040490449999925
+    },
+    {
+      "id": "B-Pure-2-6-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.071658174000011
+    },
+    {
+      "id": "C-Pure-2-6-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9967701359999773
+    },
+    {
+      "id": "C-Combat-2-6-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2443231620000152
+    },
+    {
+      "id": "A-Pure-2-7-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1116680449999985
+    },
+    {
+      "id": "A-Combat-2-7-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.298706474000006
+    },
+    {
+      "id": "B-Combat-2-7-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9921316769999976
+    },
+    {
+      "id": "B-Pure-2-7-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9209724080000015
+    },
+    {
+      "id": "C-Combat-2-7-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8851185429999896
+    },
+    {
+      "id": "C-Pure-2-7-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9025069220000005
+    },
+    {
+      "id": "A-Combat-2-8-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0134301980000164
+    },
+    {
+      "id": "A-Pure-2-8-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9989436560000177
+    },
+    {
+      "id": "B-Pure-2-8-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8854489799999865
+    },
+    {
+      "id": "B-Combat-2-8-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.94906005
+    },
+    {
+      "id": "C-Combat-2-8-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0707432909999917
+    },
+    {
+      "id": "C-Pure-2-8-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1809815179999859
+    },
+    {
+      "id": "A-Pure-2-9-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1727200699999811
+    },
+    {
+      "id": "A-Combat-2-9-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2307986070000043
+    },
+    {
+      "id": "B-Combat-2-9-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.096114029999997
+    },
+    {
+      "id": "B-Pure-2-9-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0964011319999991
+    },
+    {
+      "id": "C-Pure-2-9-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9870526289999835
+    },
+    {
+      "id": "C-Combat-2-9-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0679452140000067
+    },
+    {
+      "id": "A-Combat-3-0-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8943482510000176
+    },
+    {
+      "id": "B-Combat-3-0-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7738153410000086
+    },
+    {
+      "id": "A-Pure-3-0-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9996398629999894
+    },
+    {
+      "id": "B-Pure-3-0-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9066454469999881
+    },
+    {
+      "id": "C-Combat-3-0-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9970682479999959
+    },
+    {
+      "id": "C-Pure-3-0-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7463713209999842
+    },
+    {
+      "id": "D-Combat-3-0-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9229508489999861
+    },
+    {
+      "id": "D-Pure-3-0-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8052771110000031
+    },
+    {
+      "id": "D-Combat-3-0-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8470232750000141
+    },
+    {
+      "id": "D-Combat-3-0-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8620371540000197
+    },
+    {
+      "id": "D-Pure-3-0-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8776946490000118
+    },
+    {
+      "id": "D-Pure-3-0-lifecycle-replace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9002105710000032
+    },
+    {
+      "id": "D-Pure-3-0-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7670524929999956
+    },
+    {
+      "id": "D-Combat-3-0-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8613219340000069
+    },
+    {
+      "id": "D-Pure-3-0-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7017877729999891
+    },
+    {
+      "id": "D-Combat-3-0-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8389539139999833
+    },
+    {
+      "id": "D-Pure-3-0-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7389850670000014
+    },
+    {
+      "id": "D-Combat-3-0-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8077760849999904
+    },
+    {
+      "id": "D-Combat-3-0-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8013635789999971
+    },
+    {
+      "id": "D-Pure-3-0-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7671313340000051
+    },
+    {
+      "id": "E-Combat-3-0-degraded",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9269364720000012
+    },
+    {
+      "id": "E-Pure-3-0-degraded",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9362600319999911
+    },
+    {
+      "id": "E-Combat-3-0-neutral",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8063063480000128
+    },
+    {
+      "id": "E-Pure-3-0-neutral",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8190819699999993
+    },
+    {
+      "id": "B-Combat-3-1-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.769725838000013
+    },
+    {
+      "id": "A-Pure-3-1-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.847105395999999
+    },
+    {
+      "id": "A-Combat-3-1-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8667375259999827
+    },
+    {
+      "id": "B-Pure-3-1-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8096857279999822
+    },
+    {
+      "id": "C-Pure-3-1-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7583611600000004
+    },
+    {
+      "id": "C-Combat-3-1-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8996818740000017
+    },
+    {
+      "id": "D-Combat-3-1-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.890750858000014
+    },
+    {
+      "id": "D-Pure-3-1-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8784022910000058
+    },
+    {
+      "id": "D-Combat-3-1-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9075375279999862
+    },
+    {
+      "id": "D-Combat-3-1-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.798693105000013
+    },
+    {
+      "id": "D-Pure-3-1-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8531163109999906
+    },
+    {
+      "id": "D-Pure-3-1-lifecycle-cancel",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8706031490000024
+    },
+    {
+      "id": "D-Pure-3-1-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7878224239999836
+    },
+    {
+      "id": "D-Combat-3-1-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8564128060000076
+    },
+    {
+      "id": "D-Pure-3-1-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8610235899999971
+    },
+    {
+      "id": "D-Combat-3-1-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1052270790000038
+    },
+    {
+      "id": "D-Combat-3-1-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0059887759999837
+    },
+    {
+      "id": "D-Combat-3-1-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.902466899000021
+    },
+    {
+      "id": "D-Pure-3-1-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8911088469999959
+    },
+    {
+      "id": "D-Pure-3-1-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1125571200000122
+    },
+    {
+      "id": "E-Combat-3-1-neutral",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.916117556000012
+    },
+    {
+      "id": "E-Pure-3-1-neutral",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.964592891999986
+    },
+    {
+      "id": "E-Pure-3-1-degraded",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1029959080000118
+    },
+    {
+      "id": "E-Combat-3-1-degraded",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2726382049999956
+    },
+    {
+      "id": "A-Combat-3-10-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9283435039999894
+    },
+    {
+      "id": "A-Pure-3-10-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.830621650999994
+    },
+    {
+      "id": "B-Combat-3-10-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8985761340000027
+    },
+    {
+      "id": "B-Pure-3-10-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8977163770000043
+    },
+    {
+      "id": "C-Pure-3-10-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7795418820000195
+    },
+    {
+      "id": "C-Combat-3-10-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9643145810000133
+    },
+    {
+      "id": "A-Pure-3-11-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.941179208000016
+    },
+    {
+      "id": "A-Combat-3-11-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0667828600000067
+    },
+    {
+      "id": "B-Combat-3-11-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8031894500000053
+    },
+    {
+      "id": "B-Pure-3-11-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.813575989999983
+    },
+    {
+      "id": "C-Combat-3-11-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.840699431999994
+    },
+    {
+      "id": "C-Pure-3-11-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7994446079999907
+    },
+    {
+      "id": "A-Combat-3-12-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.030260374000005
+    },
+    {
+      "id": "A-Pure-3-12-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9419328899999964
+    },
+    {
+      "id": "B-Combat-3-12-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0089137380000028
+    },
+    {
+      "id": "B-Pure-3-12-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0206225010000052
+    },
+    {
+      "id": "C-Combat-3-12-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8986842529999849
+    },
+    {
+      "id": "C-Pure-3-12-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8497534770000202
+    },
+    {
+      "id": "A-Pure-3-13-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9864983800000046
+    },
+    {
+      "id": "A-Combat-3-13-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.041119515999977
+    },
+    {
+      "id": "B-Combat-3-13-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7722775370000163
+    },
+    {
+      "id": "B-Pure-3-13-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8600694669999939
+    },
+    {
+      "id": "C-Combat-3-13-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7910751769999915
+    },
+    {
+      "id": "C-Pure-3-13-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8144024229999922
+    },
+    {
+      "id": "A-Combat-3-14-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9036165190000028
+    },
+    {
+      "id": "A-Pure-3-14-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0383136400000075
+    },
+    {
+      "id": "B-Combat-3-14-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.856262979000021
+    },
+    {
+      "id": "B-Pure-3-14-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9028690690000076
+    },
+    {
+      "id": "C-Combat-3-14-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8684336429999967
+    },
+    {
+      "id": "C-Pure-3-14-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.778535498000012
+    },
+    {
+      "id": "A-Combat-3-15-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.101269201999996
+    },
+    {
+      "id": "A-Pure-3-15-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9971615370000072
+    },
+    {
+      "id": "B-Combat-3-15-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9360754810000071
+    },
+    {
+      "id": "B-Pure-3-15-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8046526750000194
+    },
+    {
+      "id": "C-Combat-3-15-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7840726369999756
+    },
+    {
+      "id": "C-Pure-3-15-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8000206190000172
+    },
+    {
+      "id": "A-Pure-3-16-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8084695600000268
+    },
+    {
+      "id": "A-Combat-3-16-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9233083169999882
+    },
+    {
+      "id": "B-Combat-3-16-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7255305599999847
+    },
+    {
+      "id": "B-Pure-3-16-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.748143527999986
+    },
+    {
+      "id": "C-Combat-3-16-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8474880679999769
+    },
+    {
+      "id": "C-Pure-3-16-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8533130560000136
+    },
+    {
+      "id": "A-Combat-3-17-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8637170230000047
+    },
+    {
+      "id": "A-Pure-3-17-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9421699669999943
+    },
+    {
+      "id": "B-Pure-3-17-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.6853132299999998
+    },
+    {
+      "id": "B-Combat-3-17-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8426982549999957
+    },
+    {
+      "id": "C-Pure-3-17-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.720958581999992
+    },
+    {
+      "id": "C-Combat-3-17-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8576316999999981
+    },
+    {
+      "id": "A-Pure-3-18-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7561733499999973
+    },
+    {
+      "id": "A-Combat-3-18-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8981811400000006
+    },
+    {
+      "id": "B-Combat-3-18-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7463679260000062
+    },
+    {
+      "id": "B-Pure-3-18-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7335204789999988
+    },
+    {
+      "id": "C-Pure-3-18-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8627660920000053
+    },
+    {
+      "id": "C-Combat-3-18-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0013219390000159
+    },
+    {
+      "id": "A-Combat-3-19-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1094166169999808
+    },
+    {
+      "id": "A-Pure-3-19-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1458017680000048
+    },
+    {
+      "id": "B-Combat-3-19-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8865181589999993
+    },
+    {
+      "id": "B-Pure-3-19-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8962568339999998
+    },
+    {
+      "id": "C-Pure-3-19-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8796604619999998
+    },
+    {
+      "id": "C-Combat-3-19-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9239220959999948
+    },
+    {
+      "id": "A-Combat-3-2-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8218785329999809
+    },
+    {
+      "id": "A-Pure-3-2-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9252543679999944
+    },
+    {
+      "id": "B-Pure-3-2-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.6624107990000048
+    },
+    {
+      "id": "B-Combat-3-2-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8222718030000106
+    },
+    {
+      "id": "C-Combat-3-2-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.762774379999988
+    },
+    {
+      "id": "C-Pure-3-2-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7310975529999996
+    },
+    {
+      "id": "D-Combat-3-2-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7502684780000127
+    },
+    {
+      "id": "D-Pure-3-2-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8528834000000206
+    },
+    {
+      "id": "D-Combat-3-2-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7162299449999991
+    },
+    {
+      "id": "D-Combat-3-2-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.749351530999993
+    },
+    {
+      "id": "D-Pure-3-2-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7304707389999822
+    },
+    {
+      "id": "D-Pure-3-2-lifecycle-replace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7815536019999999
+    },
+    {
+      "id": "D-Combat-3-2-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7806469660000003
+    },
+    {
+      "id": "D-Pure-3-2-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7183690359999891
+    },
+    {
+      "id": "D-Combat-3-2-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7599681799999962
+    },
+    {
+      "id": "D-Combat-3-2-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7775574539999943
+    },
+    {
+      "id": "D-Pure-3-2-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8404371049999899
+    },
+    {
+      "id": "D-Pure-3-2-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8345426860000007
+    },
+    {
+      "id": "D-Combat-3-2-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9218400369999872
+    },
+    {
+      "id": "D-Pure-3-2-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7821455500000156
+    },
+    {
+      "id": "A-Combat-3-3-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9750214479999849
+    },
+    {
+      "id": "A-Pure-3-3-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9016802150000003
+    },
+    {
+      "id": "B-Pure-3-3-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7623538830000034
+    },
+    {
+      "id": "B-Combat-3-3-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.997707316999993
+    },
+    {
+      "id": "C-Combat-3-3-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8870021600000036
+    },
+    {
+      "id": "C-Pure-3-3-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9340770940000075
+    },
+    {
+      "id": "D-Pure-3-3-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.773569868999999
+    },
+    {
+      "id": "D-Combat-3-3-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8185830359999964
+    },
+    {
+      "id": "D-Combat-3-3-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8182427700000117
+    },
+    {
+      "id": "D-Combat-3-3-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7670648740000033
+    },
+    {
+      "id": "D-Pure-3-3-lifecycle-cancel",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7509244679999829
+    },
+    {
+      "id": "D-Pure-3-3-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7933445490000013
+    },
+    {
+      "id": "D-Combat-3-3-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7869610979999998
+    },
+    {
+      "id": "D-Pure-3-3-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7302076839999936
+    },
+    {
+      "id": "D-Combat-3-3-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8501760739999882
+    },
+    {
+      "id": "D-Pure-3-3-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.878862495999987
+    },
+    {
+      "id": "D-Combat-3-3-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8881041310000001
+    },
+    {
+      "id": "D-Pure-3-3-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9341644530000048
+    },
+    {
+      "id": "D-Combat-3-3-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.765060215000005
+    },
+    {
+      "id": "D-Pure-3-3-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7637928979999852
+    },
+    {
+      "id": "A-Pure-3-4-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9284725670000189
+    },
+    {
+      "id": "A-Combat-3-4-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1248305560000007
+    },
+    {
+      "id": "B-Pure-3-4-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9407495820000186
+    },
+    {
+      "id": "B-Combat-3-4-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0383187559999933
+    },
+    {
+      "id": "C-Combat-3-4-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8177051299999876
+    },
+    {
+      "id": "C-Pure-3-4-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8717249620000075
+    },
+    {
+      "id": "A-Pure-3-5-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0584119939999945
+    },
+    {
+      "id": "A-Combat-3-5-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1511392229999764
+    },
+    {
+      "id": "B-Combat-3-5-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0473109220000043
+    },
+    {
+      "id": "B-Pure-3-5-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0239900159999962
+    },
+    {
+      "id": "C-Pure-3-5-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8705374109999975
+    },
+    {
+      "id": "C-Combat-3-5-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.003350964000012
+    },
+    {
+      "id": "A-Pure-3-6-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1522445759999973
+    },
+    {
+      "id": "A-Combat-3-6-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.318334898000001
+    },
+    {
+      "id": "B-Pure-3-6-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.828054279999982
+    },
+    {
+      "id": "B-Combat-3-6-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.053327277000004
+    },
+    {
+      "id": "C-Combat-3-6-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9498242249999894
+    },
+    {
+      "id": "A-Combat-3-7-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9523901299999852
+    },
+    {
+      "id": "A-Pure-3-7-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9400450929999934
+    },
+    {
+      "id": "C-Pure-3-6-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1538839490000101
+    },
+    {
+      "id": "B-Combat-3-7-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7656346210000047
+    },
+    {
+      "id": "B-Pure-3-7-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7443439880000078
+    },
+    {
+      "id": "C-Combat-3-7-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8226871530000062
+    },
+    {
+      "id": "C-Pure-3-7-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9368366760000063
+    },
+    {
+      "id": "A-Pure-3-8-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8389433429999917
+    },
+    {
+      "id": "A-Combat-3-8-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9159917429999914
+    },
+    {
+      "id": "B-Combat-3-8-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9170471019999823
+    },
+    {
+      "id": "B-Pure-3-8-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8819291950000042
+    },
+    {
+      "id": "C-Pure-3-8-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7236163839999935
+    },
+    {
+      "id": "C-Combat-3-8-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.808902396999998
+    },
+    {
+      "id": "A-Pure-3-9-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8205583449999977
+    },
+    {
+      "id": "A-Combat-3-9-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0377648950000002
+    },
+    {
+      "id": "B-Pure-3-9-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.720099774000002
+    },
+    {
+      "id": "B-Combat-3-9-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8569197550000099
+    },
+    {
+      "id": "C-Combat-3-9-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.838512321999995
+    },
+    {
+      "id": "C-Pure-3-9-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8433016789999965
+    },
+    {
+      "id": "A-Combat-4-0-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9221636109999963
+    },
+    {
+      "id": "A-Pure-4-0-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8583725659999764
+    },
+    {
+      "id": "B-Combat-4-0-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8051360200000054
+    },
+    {
+      "id": "B-Pure-4-0-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7672228119999926
+    },
+    {
+      "id": "C-Combat-4-0-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8276387839999807
+    },
+    {
+      "id": "C-Pure-4-0-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8354586219999764
+    },
+    {
+      "id": "D-Combat-4-0-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.829808281000005
+    },
+    {
+      "id": "D-Pure-4-0-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8679808649999905
+    },
+    {
+      "id": "D-Combat-4-0-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8832937389999861
+    },
+    {
+      "id": "D-Combat-4-0-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9530938389999792
+    },
+    {
+      "id": "D-Pure-4-0-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7250005759999912
+    },
+    {
+      "id": "D-Pure-4-0-lifecycle-replace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8678111249999784
+    },
+    {
+      "id": "D-Combat-4-0-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8271958249999735
+    },
+    {
+      "id": "D-Pure-4-0-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7889449219999951
+    },
+    {
+      "id": "D-Combat-4-0-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.698136050000001
+    },
+    {
+      "id": "D-Pure-4-0-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.6995736770000076
+    },
+    {
+      "id": "D-Combat-4-0-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7794787729999807
+    },
+    {
+      "id": "D-Pure-4-0-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8669008939999913
+    },
+    {
+      "id": "D-Combat-4-0-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8097035890000116
+    },
+    {
+      "id": "D-Pure-4-0-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7831923009999737
+    },
+    {
+      "id": "E-Combat-4-0-neutral",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8693163929999864
+    },
+    {
+      "id": "E-Pure-4-0-neutral",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7921468559999776
+    },
+    {
+      "id": "E-Combat-4-0-degraded",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.145778055999981
+    },
+    {
+      "id": "E-Pure-4-0-degraded",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.043294310999976
+    },
+    {
+      "id": "B-Combat-4-1-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.917531719999999
+    },
+    {
+      "id": "A-Combat-4-1-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0776496270000062
+    },
+    {
+      "id": "A-Pure-4-1-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9701376649999874
+    },
+    {
+      "id": "B-Pure-4-1-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0310439110000151
+    },
+    {
+      "id": "D-Combat-4-1-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.733194141999993
+    },
+    {
+      "id": "C-Combat-4-1-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8120578499999829
+    },
+    {
+      "id": "C-Pure-4-1-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8093066690000124
+    },
+    {
+      "id": "D-Pure-4-1-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.806524099000002
+    },
+    {
+      "id": "D-Combat-4-1-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7854761199999776
+    },
+    {
+      "id": "D-Pure-4-1-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.798395583000005
+    },
+    {
+      "id": "D-Combat-4-1-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8664182079999883
+    },
+    {
+      "id": "D-Pure-4-1-lifecycle-cancel",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8173504390000016
+    },
+    {
+      "id": "D-Combat-4-1-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8690503719999979
+    },
+    {
+      "id": "D-Pure-4-1-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8614695209999919
+    },
+    {
+      "id": "D-Pure-4-1-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7798969429999998
+    },
+    {
+      "id": "D-Combat-4-1-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8839204610000015
+    },
+    {
+      "id": "D-Combat-4-1-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7084443270000047
+    },
+    {
+      "id": "D-Pure-4-1-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7385952269999835
+    },
+    {
+      "id": "D-Pure-4-1-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7093892500000074
+    },
+    {
+      "id": "D-Combat-4-1-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8128225950000051
+    },
+    {
+      "id": "E-Combat-4-1-neutral",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1090959790000052
+    },
+    {
+      "id": "E-Pure-4-1-neutral",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0711621959999902
+    },
+    {
+      "id": "E-Pure-4-1-degraded",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.217874020999996
+    },
+    {
+      "id": "E-Combat-4-1-degraded",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.295939857999998
+    },
+    {
+      "id": "A-Combat-4-10-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8735061280000082
+    },
+    {
+      "id": "A-Pure-4-10-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8871358469999977
+    },
+    {
+      "id": "B-Pure-4-10-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8767292770000058
+    },
+    {
+      "id": "B-Combat-4-10-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9359610399999947
+    },
+    {
+      "id": "C-Pure-4-10-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8116155420000141
+    },
+    {
+      "id": "C-Combat-4-10-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8816111279999895
+    },
+    {
+      "id": "A-Pure-4-11-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9497689679999894
+    },
+    {
+      "id": "A-Combat-4-11-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0546201729999738
+    },
+    {
+      "id": "B-Pure-4-11-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8822648040000058
+    },
+    {
+      "id": "B-Combat-4-11-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0279669189999987
+    },
+    {
+      "id": "C-Combat-4-11-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8978898800000025
+    },
+    {
+      "id": "C-Pure-4-11-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8527297719999914
+    },
+    {
+      "id": "A-Pure-4-12-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8300365929999971
+    },
+    {
+      "id": "A-Combat-4-12-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9555924940000113
+    },
+    {
+      "id": "B-Combat-4-12-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7346644040000101
+    },
+    {
+      "id": "B-Pure-4-12-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7187459380000073
+    },
+    {
+      "id": "C-Pure-4-12-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8037209610000137
+    },
+    {
+      "id": "C-Combat-4-12-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.842890671000001
+    },
+    {
+      "id": "A-Pure-4-13-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8544557239999995
+    },
+    {
+      "id": "A-Combat-4-13-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8901216959999875
+    },
+    {
+      "id": "C-Pure-4-13-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.667044109999988
+    },
+    {
+      "id": "B-Pure-4-13-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7778961009999912
+    },
+    {
+      "id": "B-Combat-4-13-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8706533170000185
+    },
+    {
+      "id": "C-Combat-4-13-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8655749139999971
+    },
+    {
+      "id": "A-Combat-4-14-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8450832069999887
+    },
+    {
+      "id": "A-Pure-4-14-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8072667699999875
+    },
+    {
+      "id": "B-Pure-4-14-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7837473630000023
+    },
+    {
+      "id": "B-Combat-4-14-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8516856160000025
+    },
+    {
+      "id": "A-Combat-4-15-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8680943910000205
+    },
+    {
+      "id": "A-Pure-4-15-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8967718670000031
+    },
+    {
+      "id": "C-Combat-4-14-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0230601880000032
+    },
+    {
+      "id": "C-Pure-4-14-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.036742989999999
+    },
+    {
+      "id": "C-Combat-4-15-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7305817989999778
+    },
+    {
+      "id": "C-Pure-4-15-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7274316380000091
+    },
+    {
+      "id": "B-Pure-4-15-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7728967380000104
+    },
+    {
+      "id": "B-Combat-4-15-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8180480180000014
+    },
+    {
+      "id": "B-Pure-4-16-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8025912020000106
+    },
+    {
+      "id": "A-Pure-4-16-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8618638949999877
+    },
+    {
+      "id": "A-Combat-4-16-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8835557549999794
+    },
+    {
+      "id": "B-Combat-4-16-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9425847200000135
+    },
+    {
+      "id": "C-Pure-4-16-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8360954220000131
+    },
+    {
+      "id": "C-Combat-4-16-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9182402200000069
+    },
+    {
+      "id": "A-Combat-4-17-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9015345680000028
+    },
+    {
+      "id": "A-Pure-4-17-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9757781220000179
+    },
+    {
+      "id": "B-Combat-4-17-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8103115540000144
+    },
+    {
+      "id": "C-Combat-4-17-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8299322119999851
+    },
+    {
+      "id": "B-Pure-4-17-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9292642889999843
+    },
+    {
+      "id": "C-Pure-4-17-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7817651820000028
+    },
+    {
+      "id": "A-Combat-4-18-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9244287900000054
+    },
+    {
+      "id": "A-Pure-4-18-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9042310660000076
+    },
+    {
+      "id": "B-Combat-4-18-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8674141890000028
+    },
+    {
+      "id": "B-Pure-4-18-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8513769459999748
+    },
+    {
+      "id": "C-Combat-4-18-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8587178430000204
+    },
+    {
+      "id": "C-Pure-4-18-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8096872389999917
+    },
+    {
+      "id": "A-Pure-4-19-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9721655369999935
+    },
+    {
+      "id": "A-Combat-4-19-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0335192009999883
+    },
+    {
+      "id": "B-Pure-4-19-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8267182010000106
+    },
+    {
+      "id": "B-Combat-4-19-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8570603849999897
+    },
+    {
+      "id": "C-Pure-4-19-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9811790110000002
+    },
+    {
+      "id": "C-Combat-4-19-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1975514280000061
+    },
+    {
+      "id": "A-Pure-4-2-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.851241268999991
+    },
+    {
+      "id": "A-Combat-4-2-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0074813960000175
+    },
+    {
+      "id": "B-Combat-4-2-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9860560440000263
+    },
+    {
+      "id": "B-Pure-4-2-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8460334640000073
+    },
+    {
+      "id": "C-Combat-4-2-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8735932580000081
+    },
+    {
+      "id": "C-Pure-4-2-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9084635290000006
+    },
+    {
+      "id": "D-Pure-4-2-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7049093669999856
+    },
+    {
+      "id": "D-Combat-4-2-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.827486957999994
+    },
+    {
+      "id": "D-Combat-4-2-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8893570039999904
+    },
+    {
+      "id": "D-Combat-4-2-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7671244939999887
+    },
+    {
+      "id": "D-Pure-4-2-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7715739469999972
+    },
+    {
+      "id": "D-Pure-4-2-lifecycle-replace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8147334010000049
+    },
+    {
+      "id": "D-Combat-4-2-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8144818340000056
+    },
+    {
+      "id": "D-Pure-4-2-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8170832479999808
+    },
+    {
+      "id": "D-Combat-4-2-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9030288669999863
+    },
+    {
+      "id": "D-Pure-4-2-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7959160799999954
+    },
+    {
+      "id": "D-Combat-4-2-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.765918502000015
+    },
+    {
+      "id": "D-Pure-4-2-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8350142760000017
+    },
+    {
+      "id": "D-Combat-4-2-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8027882530000061
+    },
+    {
+      "id": "D-Pure-4-2-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8214906130000018
+    },
+    {
+      "id": "A-Combat-4-3-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8931865280000202
+    },
+    {
+      "id": "A-Pure-4-3-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8789716250000056
+    },
+    {
+      "id": "B-Pure-4-3-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7944373259999847
+    },
+    {
+      "id": "B-Combat-4-3-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8483915470000065
+    },
+    {
+      "id": "C-Combat-4-3-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8699497359999805
+    },
+    {
+      "id": "C-Pure-4-3-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8119334789999993
+    },
+    {
+      "id": "D-Combat-4-3-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8620569399999803
+    },
+    {
+      "id": "D-Pure-4-3-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8816798669999989
+    },
+    {
+      "id": "D-Combat-4-3-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7994681759999949
+    },
+    {
+      "id": "D-Combat-4-3-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7692505710000114
+    },
+    {
+      "id": "D-Pure-4-3-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7222372540000069
+    },
+    {
+      "id": "D-Pure-4-3-lifecycle-cancel",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8662941289999871
+    },
+    {
+      "id": "D-Combat-4-3-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7939426169999934
+    },
+    {
+      "id": "D-Pure-4-3-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7589071450000047
+    },
+    {
+      "id": "D-Combat-4-3-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7769109490000119
+    },
+    {
+      "id": "D-Pure-4-3-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7166816759999783
+    },
+    {
+      "id": "D-Combat-4-3-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.859033442999993
+    },
+    {
+      "id": "D-Pure-4-3-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9552300389999873
+    },
+    {
+      "id": "D-Combat-4-3-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8733987179999821
+    },
+    {
+      "id": "D-Pure-4-3-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8069729579999985
+    },
+    {
+      "id": "A-Combat-4-4-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8859901069999905
+    },
+    {
+      "id": "A-Pure-4-4-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9822387989999842
+    },
+    {
+      "id": "B-Pure-4-4-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7695305480000098
+    },
+    {
+      "id": "B-Combat-4-4-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8655882229999988
+    },
+    {
+      "id": "A-Pure-4-5-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8293234379999922
+    },
+    {
+      "id": "C-Combat-4-4-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1171830149999877
+    },
+    {
+      "id": "C-Pure-4-4-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9330177970000078
+    },
+    {
+      "id": "A-Combat-4-5-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.999570504000003
+    },
+    {
+      "id": "B-Combat-4-5-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.901954567000008
+    },
+    {
+      "id": "C-Pure-4-5-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.811356368000008
+    },
+    {
+      "id": "C-Combat-4-5-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8901936759999953
+    },
+    {
+      "id": "B-Pure-4-5-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.921268133000005
+    },
+    {
+      "id": "A-Pure-4-6-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7884730280000076
+    },
+    {
+      "id": "B-Pure-4-6-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8209860329999937
+    },
+    {
+      "id": "A-Combat-4-6-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9492260260000185
+    },
+    {
+      "id": "B-Combat-4-6-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9296949350000068
+    },
+    {
+      "id": "C-Combat-4-6-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.795594769999996
+    },
+    {
+      "id": "C-Pure-4-6-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7439343999999983
+    },
+    {
+      "id": "A-Pure-4-7-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.772493839999981
+    },
+    {
+      "id": "A-Combat-4-7-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9756226540000061
+    },
+    {
+      "id": "B-Pure-4-7-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8632636080000083
+    },
+    {
+      "id": "C-Combat-4-7-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8104072879999876
+    },
+    {
+      "id": "B-Combat-4-7-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9980321309999853
+    },
+    {
+      "id": "C-Pure-4-7-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8008371520000219
+    },
+    {
+      "id": "A-Combat-4-8-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8760591129999957
+    },
+    {
+      "id": "B-Combat-4-8-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7826490199999826
+    },
+    {
+      "id": "B-Pure-4-8-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.6967833839999803
+    },
+    {
+      "id": "A-Pure-4-8-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9360352730000159
+    },
+    {
+      "id": "C-Combat-4-8-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8662820950000023
+    },
+    {
+      "id": "C-Pure-4-8-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8672992490000033
+    },
+    {
+      "id": "A-Pure-4-9-default",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8422361220000021
+    },
+    {
+      "id": "A-Combat-4-9-default",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9028450550000126
+    },
+    {
+      "id": "B-Combat-4-9-mixed-archetypes",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8067511719999894
+    },
+    {
+      "id": "C-Combat-4-9-mixed-personalities",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7198444559999916
+    },
+    {
+      "id": "B-Pure-4-9-mixed-archetypes",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9004745370000019
+    },
+    {
+      "id": "C-Pure-4-9-mixed-personalities",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9397181299999938
+    },
+    {
+      "id": "S-Pure-beasts.agility-0-beasts.agility-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7687956610000111
+    },
+    {
+      "id": "S-Combat-beasts.agility-0-beasts.agility-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8555186059999978
+    },
+    {
+      "id": "S-Combat-beasts.agility-0-beasts.agility-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8862584679999854
+    },
+    {
+      "id": "S-Pure-beasts.agility-0-beasts.agility-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7772266850000015
+    },
+    {
+      "id": "S-Combat-beasts.agility-1-beasts.agility-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7964731960000063
+    },
+    {
+      "id": "S-Pure-beasts.agility-1-beasts.agility-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7559396300000081
+    },
+    {
+      "id": "S-Pure-beasts.agility-1-beasts.agility-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.699226313000021
+    },
+    {
+      "id": "S-Combat-beasts.agility-1-beasts.agility-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9707007759999833
+    },
+    {
+      "id": "S-Combat-beasts.agility-2-beasts.agility-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0299531359999965
+    },
+    {
+      "id": "S-Pure-beasts.agility-2-beasts.agility-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2676846439999936
+    },
+    {
+      "id": "S-Combat-beasts.agility-2-beasts.agility-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2786056220000028
+    },
+    {
+      "id": "S-Pure-beasts.agility-2-beasts.agility-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2785471520000138
+    },
+    {
+      "id": "S-Combat-beasts.agility-3-beasts.agility-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1159878249999893
+    },
+    {
+      "id": "S-Pure-beasts.agility-3-beasts.agility-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.958728403999994
+    },
+    {
+      "id": "S-Combat-beasts.agility-3-beasts.agility-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9321963270000124
+    },
+    {
+      "id": "S-Pure-beasts.agility-3-beasts.agility-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8922874120000052
+    },
+    {
+      "id": "S-Combat-beasts.endurance-0-beasts.endurance-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8269602720000258
+    },
+    {
+      "id": "S-Pure-beasts.endurance-0-beasts.endurance-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.6996742979999981
+    },
+    {
+      "id": "S-Combat-beasts.endurance-0-beasts.endurance-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.864124335999979
+    },
+    {
+      "id": "S-Pure-beasts.endurance-0-beasts.endurance-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7177585530000214
+    },
+    {
+      "id": "S-Pure-beasts.endurance-1-beasts.endurance-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8462403029999986
+    },
+    {
+      "id": "S-Combat-beasts.endurance-1-beasts.endurance-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9462435819999955
+    },
+    {
+      "id": "S-Combat-beasts.endurance-1-beasts.endurance-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.904708100000018
+    },
+    {
+      "id": "S-Pure-beasts.endurance-1-beasts.endurance-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9167997669999896
+    },
+    {
+      "id": "S-Combat-beasts.endurance-2-beasts.endurance-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9549661849999975
+    },
+    {
+      "id": "S-Pure-beasts.endurance-2-beasts.endurance-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9748356700000004
+    },
+    {
+      "id": "S-Combat-beasts.endurance-2-beasts.endurance-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9466108280000044
+    },
+    {
+      "id": "S-Pure-beasts.endurance-2-beasts.endurance-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9175754259999958
+    },
+    {
+      "id": "S-Combat-beasts.endurance-3-beasts.endurance-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8841276040000084
+    },
+    {
+      "id": "S-Pure-beasts.endurance-3-beasts.endurance-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8765225370000117
+    },
+    {
+      "id": "S-Pure-beasts.endurance-3-beasts.endurance-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8776955920000037
+    },
+    {
+      "id": "S-Combat-beasts.endurance-3-beasts.endurance-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9870171370000171
+    },
+    {
+      "id": "S-Combat-beasts.power-0-beasts.power-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.746851484999992
+    },
+    {
+      "id": "S-Pure-beasts.power-0-beasts.power-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7032352680000186
+    },
+    {
+      "id": "S-Combat-beasts.power-0-beasts.power-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.74481717699999
+    },
+    {
+      "id": "S-Pure-beasts.power-0-beasts.power-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7090609820000245
+    },
+    {
+      "id": "S-Combat-beasts.power-1-beasts.power-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8657807890000113
+    },
+    {
+      "id": "S-Pure-beasts.power-1-beasts.power-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8440520959999994
+    },
+    {
+      "id": "S-Pure-beasts.power-1-beasts.power-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7880085139999865
+    },
+    {
+      "id": "S-Combat-beasts.power-1-beasts.power-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9131738669999758
+    },
+    {
+      "id": "S-Pure-beasts.power-2-beasts.power-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0024907079999976
+    },
+    {
+      "id": "S-Combat-beasts.power-2-beasts.power-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.036089936000004
+    },
+    {
+      "id": "S-Combat-beasts.power-2-beasts.power-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.03964644099999
+    },
+    {
+      "id": "S-Pure-beasts.power-2-beasts.power-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9810781799999823
+    },
+    {
+      "id": "S-Pure-beasts.power-3-beasts.power-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.817410560999997
+    },
+    {
+      "id": "S-Combat-beasts.power-3-beasts.power-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8580013050000125
+    },
+    {
+      "id": "S-Combat-beasts.power-3-beasts.power-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7808327890000073
+    },
+    {
+      "id": "S-Pure-beasts.power-3-beasts.power-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7288703090000199
+    },
+    {
+      "id": "S-Combat-beasts.speed-0-beasts.speed-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7502150520000141
+    },
+    {
+      "id": "S-Pure-beasts.speed-0-beasts.speed-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7237101749999856
+    },
+    {
+      "id": "S-Pure-beasts.speed-0-beasts.speed-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7654394310000061
+    },
+    {
+      "id": "S-Combat-beasts.speed-0-beasts.speed-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9440356099999917
+    },
+    {
+      "id": "S-Pure-beasts.speed-1-beasts.speed-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7430064839999831
+    },
+    {
+      "id": "S-Combat-beasts.speed-1-beasts.speed-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9133328519999923
+    },
+    {
+      "id": "S-Combat-beasts.speed-1-beasts.speed-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8408576469999971
+    },
+    {
+      "id": "S-Pure-beasts.speed-1-beasts.speed-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7147591339999926
+    },
+    {
+      "id": "S-Pure-beasts.speed-2-beasts.speed-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8568065040000075
+    },
+    {
+      "id": "S-Combat-beasts.speed-2-beasts.speed-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0395591830000048
+    },
+    {
+      "id": "S-Combat-beasts.speed-2-beasts.speed-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0381814120000055
+    },
+    {
+      "id": "S-Pure-beasts.speed-2-beasts.speed-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.02106203999999
+    },
+    {
+      "id": "S-Combat-beasts.speed-3-beasts.speed-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9630800879999879
+    },
+    {
+      "id": "S-Pure-beasts.speed-3-beasts.speed-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1545107339999814
+    },
+    {
+      "id": "S-Pure-beasts.speed-3-beasts.speed-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9114136329999892
+    },
+    {
+      "id": "S-Combat-beasts.speed-3-beasts.speed-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0085017769999978
+    },
+    {
+      "id": "S-Combat-driver.driving-0-driver.driving-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8891186809999927
+    },
+    {
+      "id": "S-Pure-driver.driving-0-driver.driving-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7193452450000041
+    },
+    {
+      "id": "S-Combat-driver.driving-0-driver.driving-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7187174360000063
+    },
+    {
+      "id": "S-Pure-driver.driving-0-driver.driving-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8209463800000085
+    },
+    {
+      "id": "S-Pure-driver.driving-1-driver.driving-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7951490250000206
+    },
+    {
+      "id": "S-Combat-driver.driving-1-driver.driving-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8846441049999848
+    },
+    {
+      "id": "S-Combat-driver.driving-1-driver.driving-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8490095589999983
+    },
+    {
+      "id": "S-Pure-driver.driving-1-driver.driving-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7240764820000041
+    },
+    {
+      "id": "S-Pure-driver.driving-2-driver.driving-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9893588630000013
+    },
+    {
+      "id": "S-Combat-driver.driving-2-driver.driving-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0422558720000088
+    },
+    {
+      "id": "S-Combat-driver.driving-2-driver.driving-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0511147819999898
+    },
+    {
+      "id": "S-Pure-driver.driving-2-driver.driving-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.110470002999995
+    },
+    {
+      "id": "S-Combat-driver.driving-3-driver.driving-control",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8720268530000176
+    },
+    {
+      "id": "S-Pure-driver.driving-3-driver.driving-control",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8970672980000091
+    },
+    {
+      "id": "S-Combat-driver.driving-3-driver.driving-plus10",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9041309870000114
+    },
+    {
+      "id": "S-Pure-driver.driving-3-driver.driving-plus10",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8536317360000103
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "target": 300,
+  "completed": 300,
+  "cancelled": false,
+  "errors": [],
+  "statuses": {
+    "Ended": 299,
+    "Stalled": 1
+  },
+  "wallSeconds": 163.42426909099999
+}

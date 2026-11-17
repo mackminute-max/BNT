@@ -1,0 +1,928 @@
+{
+  "target": 130,
+  "completed": 130,
+  "cancelled": false,
+  "toolErrors": [],
+  "countsByFormat": {
+    "Pure": 60,
+    "Combat": 70
+  },
+  "statuses": {
+    "Ended": 130
+  },
+  "bounded": 0,
+  "workers": 4,
+  "wallSeconds": 34.107840785,
+  "runs": [
+    {
+      "id": "Drear-Combat-0-0-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.776622051
+    },
+    {
+      "id": "Drear-Combat-0-0-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.9385230249999998
+    },
+    {
+      "id": "Drear-Combat-0-0-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.024989843
+    },
+    {
+      "id": "Drear-Pure-0-0-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 2.651799571
+    },
+    {
+      "id": "Drear-Combat-0-0-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1965485660000004
+    },
+    {
+      "id": "Drear-Pure-0-0-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3380609749999999
+    },
+    {
+      "id": "Drear-Pure-0-0-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3826100060000004
+    },
+    {
+      "id": "Drear-Combat-0-0-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.205551202
+    },
+    {
+      "id": "Drear-Pure-0-0-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1034261200000002
+    },
+    {
+      "id": "Drear-Combat-0-0-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3943519940000006
+    },
+    {
+      "id": "Drear-Pure-0-0-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2794417880000002
+    },
+    {
+      "id": "Drear-Combat-0-0-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1418189389999998
+    },
+    {
+      "id": "Drear-Pure-0-0-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8895276860000003
+    },
+    {
+      "id": "Drear-Combat-0-1-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9942393139999994
+    },
+    {
+      "id": "Drear-Pure-0-1-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9568340250000001
+    },
+    {
+      "id": "Drear-Combat-0-1-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2202606160000005
+    },
+    {
+      "id": "Drear-Combat-0-1-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.234794734
+    },
+    {
+      "id": "Drear-Combat-0-1-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.041888734
+    },
+    {
+      "id": "Drear-Pure-0-1-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1934894590000003
+    },
+    {
+      "id": "Drear-Pure-0-1-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.949924266
+    },
+    {
+      "id": "Drear-Combat-0-1-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.052129841
+    },
+    {
+      "id": "Drear-Pure-0-1-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9389242589999994
+    },
+    {
+      "id": "Drear-Combat-0-1-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9834480210000002
+    },
+    {
+      "id": "Drear-Combat-0-1-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7644107649999996
+    },
+    {
+      "id": "Drear-Pure-0-1-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9642600479999992
+    },
+    {
+      "id": "Drear-Pure-0-1-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7650682649999999
+    },
+    {
+      "id": "Drear-Combat-1-0-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0246467089999995
+    },
+    {
+      "id": "Drear-Pure-1-0-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9300097589999987
+    },
+    {
+      "id": "Drear-Combat-1-0-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1270165020000005
+    },
+    {
+      "id": "Drear-Combat-1-0-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0408451079999996
+    },
+    {
+      "id": "Drear-Pure-1-0-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.945916838000001
+    },
+    {
+      "id": "Drear-Combat-1-0-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8619431959999984
+    },
+    {
+      "id": "Drear-Pure-1-0-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8005087570000015
+    },
+    {
+      "id": "Drear-Combat-1-0-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9588376669999998
+    },
+    {
+      "id": "Drear-Pure-1-0-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9056284880000003
+    },
+    {
+      "id": "Drear-Combat-1-0-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9252924729999995
+    },
+    {
+      "id": "Drear-Pure-1-0-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0601150670000006
+    },
+    {
+      "id": "Drear-Pure-1-0-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7204570039999999
+    },
+    {
+      "id": "Drear-Combat-1-0-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.901613766999999
+    },
+    {
+      "id": "Drear-Combat-1-1-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8401156080000001
+    },
+    {
+      "id": "Drear-Pure-1-1-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7814809389999992
+    },
+    {
+      "id": "Drear-Combat-1-1-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9526959229999993
+    },
+    {
+      "id": "Drear-Combat-1-1-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1098964869999999
+    },
+    {
+      "id": "Drear-Pure-1-1-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8847883339999989
+    },
+    {
+      "id": "Drear-Combat-1-1-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0872071780000006
+    },
+    {
+      "id": "Drear-Pure-1-1-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8017025109999995
+    },
+    {
+      "id": "Drear-Pure-1-1-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8008086489999987
+    },
+    {
+      "id": "Drear-Combat-1-1-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1759135189999996
+    },
+    {
+      "id": "Drear-Combat-1-1-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.945020747999999
+    },
+    {
+      "id": "Drear-Pure-1-1-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0915554959999991
+    },
+    {
+      "id": "Drear-Combat-1-1-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0081837599999999
+    },
+    {
+      "id": "Drear-Pure-1-1-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.218435852999999
+    },
+    {
+      "id": "Drear-Combat-2-0-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.4841116760000004
+    },
+    {
+      "id": "Drear-Pure-2-0-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3774972479999996
+    },
+    {
+      "id": "Drear-Combat-2-0-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.328106228999999
+    },
+    {
+      "id": "Drear-Combat-2-0-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2767355329999992
+    },
+    {
+      "id": "Drear-Pure-2-0-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9980585250000021
+    },
+    {
+      "id": "Drear-Combat-2-0-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.100108533999999
+    },
+    {
+      "id": "Drear-Pure-2-0-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2778601710000002
+    },
+    {
+      "id": "Drear-Combat-2-0-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1051493769999998
+    },
+    {
+      "id": "Drear-Pure-2-0-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9340492259999992
+    },
+    {
+      "id": "Drear-Combat-2-0-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.107537314000001
+    },
+    {
+      "id": "Drear-Pure-2-0-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2144873340000013
+    },
+    {
+      "id": "Drear-Combat-2-0-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1959790160000012
+    },
+    {
+      "id": "Drear-Pure-2-0-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1505752219999994
+    },
+    {
+      "id": "Drear-Combat-2-1-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.519095427
+    },
+    {
+      "id": "Drear-Combat-2-1-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0141115600000012
+    },
+    {
+      "id": "Drear-Pure-2-1-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.3627301929999993
+    },
+    {
+      "id": "Drear-Combat-2-1-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1252570400000004
+    },
+    {
+      "id": "Drear-Pure-2-1-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.101301575999998
+    },
+    {
+      "id": "Drear-Combat-2-1-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2018407079999998
+    },
+    {
+      "id": "Drear-Pure-2-1-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0866728509999994
+    },
+    {
+      "id": "Drear-Combat-2-1-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1603634960000018
+    },
+    {
+      "id": "Drear-Pure-2-1-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9592748720000018
+    },
+    {
+      "id": "Drear-Combat-2-1-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0232399960000003
+    },
+    {
+      "id": "Drear-Pure-2-1-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.071478160999999
+    },
+    {
+      "id": "Drear-Combat-2-1-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.006883808999999
+    },
+    {
+      "id": "Drear-Pure-2-1-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.046195756000001
+    },
+    {
+      "id": "Drear-Combat-3-0-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8780717000000005
+    },
+    {
+      "id": "Drear-Pure-3-0-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7606746540000022
+    },
+    {
+      "id": "Drear-Combat-3-0-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9312450329999993
+    },
+    {
+      "id": "Drear-Combat-3-0-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8443190990000002
+    },
+    {
+      "id": "Drear-Pure-3-0-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8670092980000008
+    },
+    {
+      "id": "Drear-Combat-3-0-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8186955620000008
+    },
+    {
+      "id": "Drear-Pure-3-0-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7842193899999984
+    },
+    {
+      "id": "Drear-Combat-3-0-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9835001109999976
+    },
+    {
+      "id": "Drear-Pure-3-0-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0360794980000028
+    },
+    {
+      "id": "Drear-Combat-3-0-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.0916153609999966
+    },
+    {
+      "id": "Drear-Pure-3-0-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.119141767000001
+    },
+    {
+      "id": "Drear-Combat-3-0-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1439259360000034
+    },
+    {
+      "id": "Drear-Pure-3-0-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.064877988
+    },
+    {
+      "id": "Drear-Combat-3-1-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.022195074000003
+    },
+    {
+      "id": "Drear-Pure-3-1-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9708349280000003
+    },
+    {
+      "id": "Drear-Combat-3-1-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9296336329999977
+    },
+    {
+      "id": "Drear-Combat-3-1-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8866812209999989
+    },
+    {
+      "id": "Drear-Pure-3-1-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8899017810000005
+    },
+    {
+      "id": "Drear-Combat-3-1-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9233107850000015
+    },
+    {
+      "id": "Drear-Combat-3-1-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7561357839999983
+    },
+    {
+      "id": "Drear-Pure-3-1-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8562347669999981
+    },
+    {
+      "id": "Drear-Pure-3-1-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7556002149999985
+    },
+    {
+      "id": "Drear-Combat-3-1-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7858055719999975
+    },
+    {
+      "id": "Drear-Pure-3-1-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7148910039999974
+    },
+    {
+      "id": "Drear-Pure-3-1-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8154480770000009
+    },
+    {
+      "id": "Drear-Combat-3-1-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8690926339999969
+    },
+    {
+      "id": "Drear-Combat-4-0-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9503483610000003
+    },
+    {
+      "id": "Drear-Pure-4-0-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7871229340000027
+    },
+    {
+      "id": "Drear-Combat-4-0-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7803960719999995
+    },
+    {
+      "id": "Drear-Combat-4-0-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8536237099999998
+    },
+    {
+      "id": "Drear-Pure-4-0-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7878089
+    },
+    {
+      "id": "Drear-Combat-4-0-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.811255935000001
+    },
+    {
+      "id": "Drear-Pure-4-0-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7386713999999993
+    },
+    {
+      "id": "Drear-Combat-4-0-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8188595280000008
+    },
+    {
+      "id": "Drear-Pure-4-0-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8148656439999977
+    },
+    {
+      "id": "Drear-Pure-4-0-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8341014130000003
+    },
+    {
+      "id": "Drear-Combat-4-0-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9449330859999973
+    },
+    {
+      "id": "Drear-Combat-4-0-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8809317840000004
+    },
+    {
+      "id": "Drear-Pure-4-0-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.1493978580000002
+    },
+    {
+      "id": "Drear-Pure-4-1-Conserve Strength",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9608573100000031
+    },
+    {
+      "id": "Drear-Combat-4-1-Conserve Strength",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2347274600000018
+    },
+    {
+      "id": "Drear-Combat-4-1-Engage Rivals",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 1.2224796769999993
+    },
+    {
+      "id": "Drear-Combat-4-1-Hold Position",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9438919120000028
+    },
+    {
+      "id": "Drear-Pure-4-1-Hold Position",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8192251509999987
+    },
+    {
+      "id": "Drear-Combat-4-1-none",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8378610170000029
+    },
+    {
+      "id": "Drear-Pure-4-1-none",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7607742370000051
+    },
+    {
+      "id": "Drear-Pure-4-1-Push the Pace",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7781587680000012
+    },
+    {
+      "id": "Drear-Combat-4-1-Push the Pace",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9745694559999974
+    },
+    {
+      "id": "Drear-Pure-4-1-Race Defensively",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.826070157000002
+    },
+    {
+      "id": "Drear-Combat-4-1-Race Defensively",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.9221105709999974
+    },
+    {
+      "id": "Drear-Pure-4-1-Seek Open Track",
+      "format": "Pure",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.7826880779999992
+    },
+    {
+      "id": "Drear-Combat-4-1-Seek Open Track",
+      "format": "Combat",
+      "status": "Ended",
+      "bounded": false,
+      "wallSeconds": 0.8472041190000018
+    }
+  ]
+}

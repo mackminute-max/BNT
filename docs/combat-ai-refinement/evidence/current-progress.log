@@ -1,0 +1,16 @@
+{"completed":20,"target":300,"seconds":21}
+{"completed":40,"target":300,"seconds":40}
+{"completed":60,"target":300,"seconds":55}
+{"completed":80,"target":300,"seconds":65}
+{"completed":100,"target":300,"seconds":78}
+{"completed":120,"target":300,"seconds":91}
+{"completed":140,"target":300,"seconds":103}
+{"completed":160,"target":300,"seconds":115}
+{"completed":180,"target":300,"seconds":124}
+{"completed":200,"target":300,"seconds":132}
+{"completed":220,"target":300,"seconds":142}
+{"completed":240,"target":300,"seconds":151}
+{"completed":260,"target":300,"seconds":160}
+{"completed":280,"target":300,"seconds":169}
+{"completed":300,"target":300,"seconds":181}
+{"target":300,"completed":300,"cancelled":false,"errors":[],"statuses":{"Ended":299,"Stalled":1},"wallSeconds":181.51129839700002}

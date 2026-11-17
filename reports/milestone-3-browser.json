@@ -1,0 +1,23 @@
+{
+  "browser": "156.0.8078.79",
+  "fileLaunch": "blocked: page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///workspace/BNT/dist/Blood_and_Thunder.html",
+  "checks": [
+    "Artifact loads and Canvas UI initializes",
+    "Step advances exactly one tick and remains paused",
+    "Start and pause control simulation advancement",
+    "Pre-race sign queue, starting activation and free paused lowering work",
+    "Bundled browser eight-RU race matches Node events, commands and checksum exactly",
+    "Input/event export produces valid matching JSON",
+    "Combat format and Engage Rivals reproduce Node events and checksum",
+    "High-damage scenario shows permanent wrecks and DNF classification",
+    "New-race weather, global and per-sign tuning are applied",
+    "800px viewport has no horizontal overflow",
+    "No JavaScript errors or runtime network requests (including initial load)"
+  ],
+  "errors": [],
+  "networkRequests": [],
+  "mode": "http diagnostic only",
+  "combatChecksum": "9640edfa",
+  "checksum": "0d147813",
+  "result": "BLOCKED: functional checks passed over HTTP, actual file launch denied by browser policy"
+}

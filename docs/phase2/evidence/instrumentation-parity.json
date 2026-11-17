@@ -1,0 +1,74 @@
+[
+  {
+    "id": "Pure-none",
+    "cadence": 100,
+    "checksum": "c232f54d",
+    "eventsSHA256": "ea4dabf2822c8a4d793a31f8ccf100f4f2798999756bcc629691647570c304e9",
+    "baselineParity": true
+  },
+  {
+    "id": "Pure-Push the Pace",
+    "cadence": 100,
+    "checksum": "89be7a18",
+    "eventsSHA256": "e5733f8d6a0208532e1866d380bfe711d300bb4041e4b500e4b2623b181b1de8",
+    "baselineParity": true
+  },
+  {
+    "id": "Combat-none",
+    "cadence": 100,
+    "checksum": "4890b9c4",
+    "eventsSHA256": "f94adafff1b92e61c80f5c534d0231192066d178704fb9aa95eed37e995c8ca8",
+    "baselineParity": true
+  },
+  {
+    "id": "Combat-Push the Pace",
+    "cadence": 100,
+    "checksum": "11d74892",
+    "eventsSHA256": "8c58c74c7e0935d14476a89f2546cc96b2df4dd88a34b04da5cd81cbaebf9681",
+    "baselineParity": true
+  },
+  {
+    "id": "Pure-study",
+    "cadence": 10000,
+    "checksum": "245466a9",
+    "baselineParity": true
+  },
+  {
+    "id": "Combat-study",
+    "cadence": 10000,
+    "checksum": "89931df4",
+    "baselineParity": true
+  },
+  {
+    "id": "D-Pure-0-0-lifecycle-replace",
+    "cadence": 10000,
+    "checksum": "3aa9f53c",
+    "eventsSHA256": "5de24425147494b1b54b6de0a90a93c228ff3db9ca0afa9fcb71e401cfff159a",
+    "observedUnobservedParity": true,
+    "replayVerified": true
+  },
+  {
+    "id": "D-Combat-0-0-Engage Rivals",
+    "cadence": 10000,
+    "checksum": "65ac0d86",
+    "eventsSHA256": "8b0c04c0a9d061c4ef023a0f242e63a3357bfdee4d40f61559f07fae149b804f",
+    "observedUnobservedParity": true,
+    "replayVerified": true
+  },
+  {
+    "id": "E-Combat-0-0-degraded",
+    "cadence": 10000,
+    "checksum": "fc591ba0",
+    "eventsSHA256": "8c07264780b2315d1147897e65f67a68db16885c476cea59ca757f9fde83abfe",
+    "observedUnobservedParity": true,
+    "replayVerified": true
+  },
+  {
+    "id": "Drear-Combat-0-0-Engage Rivals",
+    "cadence": 10000,
+    "checksum": "c0914492",
+    "eventsSHA256": "33fb42fb88d75b24aa9771c7ce24434649507891a6bc987093c37ab27cb7a743",
+    "observedUnobservedParity": true,
+    "replayVerified": true
+  }
+]

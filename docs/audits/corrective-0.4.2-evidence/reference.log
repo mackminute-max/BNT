@@ -1,0 +1,11 @@
+
+> blood-and-thunder@0.4.2 reference
+> node scripts/reference.mjs
+
+{"format":"Pure","checksum":"c232f54d","sampleCount":8,"winners":{"RU6":5,"RU8":2,"RU3":1},"means":{"duration":141.375,"fatigueAtFinish":13.21147402668899,"finishes":8,"dnfs":0,"overtakes":64.25,"collisions":10.625,"attacks":0,"successfulAttacks":0,"successfulDefenses":0,"damage":13.402819304877573,"wrecks":0,"incidents":0.125,"signQueues":0},"errors":[],"stalled":[]}
+{"format":"Combat","checksum":"4890b9c4","sampleCount":8,"winners":{"RU6":6,"RU8":1,"RU3":1},"means":{"duration":141.525,"fatigueAtFinish":13.123419951812679,"finishes":8,"dnfs":0,"overtakes":64.75,"collisions":10.5,"attacks":7.25,"successfulAttacks":0.625,"successfulDefenses":6.625,"damage":16.117501510638853,"wrecks":0,"incidents":0.125,"signQueues":0},"errors":[],"stalled":[]}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
