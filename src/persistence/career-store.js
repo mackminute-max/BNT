@@ -1,3 +1,6 @@
+import {previewCycles,buildCycleBase,validateStateV4} from '../career/cycles/schema4.js';
+import {cycleMigrationEffect,protectCycleMigration,validateCycleMigration} from '../career/cycles/contracts.js';
+import {canonical} from '../core/determinism.js';
 import { previewMigration, buildEconomyBase } from '../career/economy/base.js';
 import { validateStateV3 } from '../career/economy/schema3.js';
 import { validateMigrationRequest, protectMaintenance, lookupMaintenance, migrationEffect } from '../career/economy/maintenance-history.js';
@@ -84,14 +87,29 @@ export class CareerStore {
     this.publish(makeEnvelope(next,this.current,this.marks,mergeProtected(this.protectedHistory,[entry]),this.maintenanceClock));
     return {duplicate:false,acknowledgment:structuredClone(entry.acknowledgment),state:this.state};
   }
-  transaction(tx) {
+  previewCycles() {
+    if(this.current?.schema!==3)throw Error('Load schema 3 for explicit cycle migration');
+    if(this.protectedHistory.some(e=>e.careerId===this.current.career.id&&e.effectId===cycleMigrationEffect(this.current.career.id)))throw Error('Cycle migration already consumed; restore a complete newer backup');
+    return previewCycles(this.current);
+  }
+  migrateCycles(request) {
+    if(!this.current)throw Error('No career loaded');validateCycleMigration(request);
+    const prior=this.protectedHistory.find(e=>e.id===request.id);
+    if(prior){if(prior.kind!=='cycle-migration-maintenance'||prior.request!==canonical(request))throw Error('Conflicting cycle migration ID');return {status:'ALREADY_COMMITTED',duplicate:true,acknowledgment:structuredClone(prior.acknowledgment),state:this.state};}
+    if(this.protectedHistory.some(e=>e.careerId===request.careerId&&e.effectId===request.effectId))throw Error('Cycle migration effect already protected');
+    const next=buildCycleBase(this.current,request),entry=protectCycleMigration(request,next.cycles.manifestDigest);
+    next.history.commands=mergeProtected(next.history.commands,[entry]);validateStateV4(next);this.requireManualCheckpoint();
+    this.publish(makeEnvelope(next,this.current,this.marks,mergeProtected(this.protectedHistory,[entry]),this.maintenanceClock));
+    return {duplicate:false,acknowledgment:structuredClone(entry.acknowledgment),state:this.state};
+  }
+  transaction(tx, options = {}) {
     if (!this.current) throw Error('No career loaded');
     if (this.current.schema >= 2) {
       const prior = lookupCommitted(this.protectedHistory, tx, this.current.transactions);
       if (prior) return { ...prior, state: this.state };
       if (this.protectedHistory.some(e => e.careerId === tx.careerId && e.effectId === tx.effectId)) throw Error('Effect identity already committed on a retained timeline');
     }
-    const result = transact(this.current, tx);
+    const result = transact(this.current, tx, options);
     if (result.duplicate) return result;
     this.requireManualCheckpoint();
     this.publish(makeEnvelope(result.state, this.current, this.marks, this.protectedHistory, this.maintenanceClock));

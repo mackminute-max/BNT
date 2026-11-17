@@ -1,3 +1,4 @@
+import {applyPayrollControl,validatePayrollContext} from '../model/payroll-control.js';
 import { resolveAction } from "../ai/telemetry.js";
 import { applyOverride } from "../dev/overrides.js";
 import {
@@ -113,12 +114,13 @@ export function createRace({
         ru.driver.personality[k] > 100
       )
         throw new Error(`Invalid personality ${k}`);
-    const derived = derive(ru, {
+    validatePayrollContext(e.payrollContext);
+    const derived = applyPayrollControl(derive(ru, {
       ...c,
       crowdMorale: environment.crowdMorale,
       grip: c.grip * environment.grip,
       speedReference: c.speedReference / environment.rolling,
-    });
+    }),e.payrollContext);
     if (seen.has(ru.id)) throw new Error(`Duplicate ID ${ru.id}`);
     seen.add(ru.id);
     const lane = e.lane ?? i % c.lanes,
@@ -144,6 +146,7 @@ export function createRace({
       id: ru.id,
       ru,
       derived,
+      ...(e.payrollContext===undefined?{}:{payrollContext:structuredClone(e.payrollContext)}),
       lane,
       q,
       speed,
@@ -225,6 +228,7 @@ export function createRace({
     overrides: { ...c },
     entrants: units.map((r) => ({
       ru: structuredClone(r.ru),
+      ...(r.payrollContext===undefined?{}:{payrollContext:structuredClone(r.payrollContext)}),
       lane: r.lane,
       q: r.q,
       speed: r.speed,
@@ -398,14 +402,14 @@ export function classification(s) {
 }
 function deriveAt(s, r) {
   const surface = location(r.q, r.lane, s.config, s.track).surface;
-  return derive(r.ru, {
+  return applyPayrollControl(derive(r.ru, {
     ...s.config,
     crowdMorale: s.environment.crowdMorale,
     grip: s.config.grip * s.environment.grip * surface.grip,
     speedReference:
       s.config.speedReference /
       (s.environment.rolling * surface.rollingResistance),
-  });
+  }),r.payrollContext);
 }
 function randomDraw(s, ...keys) {
   s.rng.draws++;

@@ -1,3 +1,4 @@
+import {mountStableCycles} from './stable-cycles.js';
 import { mountStableEconomy } from './stable-economy.js';
 import { mountStableFoundation } from './stable-foundation.js';
 import { createCareer, createUninitializedCareer } from '../career/state.js';
@@ -20,13 +21,13 @@ export function mountCareerSaves({ download }) {
   const store = new CareerStore(storage);
   store.open();
   let staged = null, lastToken = null, notice = '', queue = Promise.resolve();
-  let renderStable = () => {}, renderEconomy = () => {};
+  let renderStable = () => {}, renderEconomy = () => {}, renderCycles = () => {};
   function render() {
     const state = store.state;
     $('careerSaveStatus').textContent = `${store.mode.toUpperCase()} · ${state ? `Schema ${state.schema} · Revision ${state.revision} · Maintenance ${state.maintenanceRevision ?? 0} · Treasury ${state.career.treasury} Gold · ${(state.profile.developerEdited || state.career.developerEdited) ? 'DEVELOPER-EDITED (persistent)' : 'Unedited foundation'}` : 'No career loaded'}${store.requiresCheckpoint ? ' · CHECKPOINT REQUIRED: export, save the file and confirm before another change.' : ''}`;
     $('careerSaveNotice').textContent = [store.problem, notice].filter(Boolean).join(' ');
     $('careerSaveInspect').textContent = JSON.stringify(state ?? { status: store.mode, recoveryAvailable: Boolean(store.recovery) }, null, 2);
-    $('careerAdjust').disabled = !state || ['blocked', 'recovery-required'].includes(store.mode) || store.requiresCheckpoint;
+    $('careerAdjust').disabled = !state || state.career.status==='Failed' || ['blocked', 'recovery-required'].includes(store.mode) || store.requiresCheckpoint;
     $('careerExport').disabled = !state;
     $('careerMigrate').disabled = !state || state.schema !== 1 || ['blocked', 'recovery-required'].includes(store.mode) || store.requiresCheckpoint;
     $('careerCreate').textContent = store.schema2Session ? 'Create uninitialized schema-2 foundation' : 'Create empty M1 state';
@@ -37,6 +38,7 @@ export function mountCareerSaves({ download }) {
     $('careerImportApply').disabled = !staged;
     renderStable();
     renderEconomy();
+    renderCycles();
   }
   async function exclusive(fn) {
     // Web Locks serialize cooperating windows when supported. The storage adapter
@@ -111,5 +113,6 @@ export function mountCareerSaves({ download }) {
   });
   renderStable = mountStableFoundation({store,act,newId,setNotice:message=>{notice=message;lastToken=null;}});
   renderEconomy = mountStableEconomy({store,act,newId,setNotice:message=>{notice=message;lastToken=null;},download});
+  renderCycles = mountStableCycles({store,act,newId,setNotice:message=>{notice=message;lastToken=null;}});
   render();
 }

@@ -37,7 +37,7 @@ export function inspectEnvelope(text) {
   if (hasHistory) {
     for (const mark of marks) if (!protectedHistory.some(e => e.id === mark.id)) throw Error('Known provenance identity missing from protected registry');
     for (const entry of protectedHistory) {
-      if (isMaintenance(entry) || entry.commandVersion === 2) continue;
+      if (isMaintenance(entry) || entry.kind==='cycle-migration-maintenance' || entry.commandVersion === 3 || entry.commandVersion === 2) continue;
       const tx = JSON.parse(entry.request);
       if (!isDomainCommand(tx) && !marks.some(m => m.id === entry.id && m.profileId === tx.profileId && m.careerId === tx.careerId && m.revision === tx.expectedRevision + 1 && m.type === tx.type && m.reason === tx.reason && m.delta === tx.delta)) throw Error('Protected registry/provenance mismatch');
     }

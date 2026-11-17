@@ -654,9 +654,28 @@
               <p class="note">Baseline / no weather or surface adjustment. Management driver fatigue remains separate from engine strain. Assembled and eligible does not mean committed to a competition.</p>
               <pre id="stableRUPreview"></pre>
             </details>
+            <details id="stableCycles">
+              <summary>M2-D payroll and contract lifecycle</summary>
+              <p id="cycleStatus" role="status"></p>
+              <div class="controls"><button id="cyclePreviewMigration">Preview M2-D migration</button><button id="cycleConfirmMigration">Confirm M2-D migration</button></div>
+              <pre id="cycleMigrationPreview"></pre>
+              <div id="cycleControls" hidden>
+                <p id="cycleViability"></p>
+                <p id="cycleCompletionStatus"></p>
+                <div class="controls"><button id="cyclePreviewSettlement">Preview championship settlement</button><button id="cycleConfirmSettlement">Confirm settlement once</button></div>
+                <pre id="cycleSettlementPreview"></pre>
+                <div class="controls"><label>Voluntary wage payment (Gold)<input id="cyclePayment" type="number" min="1" step="1" value="1"></label><button id="cyclePay">Pay oldest wage claims</button></div>
+                <div class="controls"><label>Employee<select id="cyclePerson"></select></label><label>Renewal term<select id="cycleTerm"><option value="short">Short — 3 cycles, no signing charge</option><option value="standard" selected>Standard — 8 cycles, 50 G signing</option><option value="long">Long — 16 cycles, 125 G signing</option></select></label><button id="cycleRenew">Renew expired ordinary contract</button></div>
+                <label><input id="cycleResolveAssignment" type="checkbox">Explicitly disassemble this employee's RU on release</label>
+                <div class="controls"><button id="cycleRelease">Release expired employee</button><button id="cycleEmergency">Request driver-only emergency contract</button><button id="cycleFailure">Confirm permanent career failure</button></div>
+                <p class="note">No emergency beasts, chariots, equipment, Gold or staff. Failure remains possible. Confirmed Failed careers allow inspection and export only.</p>
+                <details><summary>Action quotes and blocked reasons</summary><pre id="cycleQuotes"></pre></details>
+                <details><summary>Wage claims, immutable statements and archived contracts</summary><pre id="cycleInspect"></pre></details>
+              </div>
+            </details>
             <details id="stableEconomy">
               <summary>M2-C stable economy</summary>
-              <p class="note">Use the starting-stable controls above first. Economy migration is explicit and one-time. No races, championships, wage payments, XP awards, expiry, market refresh or management cycles are added.</p>
+              <p class="note">Use the starting-stable controls above first. Economy migration is explicit and one-time. M2-C adds no races, championships or cycles. Explicit M2-D migration enables payroll and contract lifecycle; a future authoritative championship controller is still required.</p>
               <p id="economyStatus" role="status"></p>
               <div class="controls"><button id="economyPreviewMigration">Preview economy migration</button><button id="economyConfirmMigration">Confirm economy migration</button><button id="economyExportPreview">Export preview</button></div>
               <details><summary>Read-only migration manifest</summary><pre id="economyMigrationPreview"></pre></details>

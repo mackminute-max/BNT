@@ -1,0 +1,13 @@
+{
+  "version": "m2d-payroll-golden-v1",
+  "basis": "Traditional starter, single Standard driver with exact 35 G wage, zero opening Gold, zero championship income, no payments",
+  "cycles": [
+    {"cycle": 1, "wage": 35, "arrears": 35, "status": "Overdue", "multiplier": 1},
+    {"cycle": 2, "wage": 35, "arrears": 70, "status": "Delinquent", "multiplier": 0.95},
+    {"cycle": 3, "wage": 35, "arrears": 105, "status": "Critical", "multiplier": 0.9},
+    {"cycle": 4, "wage": 35, "arrears": 140, "status": "Default", "multiplier": 0.85},
+    {"cycle": 5, "wage": 35, "arrears": 175, "status": "Default", "multiplier": 0.85}
+  ],
+  "explicitLongRenewal": {"signing": 125, "duration": 16, "wage": 30},
+  "emergencyProfile": {"version": "m2d-emergency-driver-v1", "ratings": [40,40,40,40,40], "personality": [50,50,50,50,50,50], "condition": 100, "fatigue": 0, "strain": 0, "xp": 0, "signing": 0, "duration": 1, "wage": 20}
+}

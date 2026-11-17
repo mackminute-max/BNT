@@ -1,3 +1,4 @@
+import {applyPayrollControl} from '../model/payroll-control.js';
 import { rescheduleIncidents } from "../sim/incidents.js";
 import { config } from "../config/config.js";
 import { m2Config, environmentConfig } from "../sim/environment.js";
@@ -167,14 +168,14 @@ export function applyOverride(s, edit) {
       r.reactionsRemaining = s.consequence.reactionBudget;
   for (const r of s.entrants) {
     const surface = location(r.q, r.lane, s.config, s.track).surface;
-    r.derived = derive(r.ru, {
+    r.derived = applyPayrollControl(derive(r.ru, {
       ...s.config,
       crowdMorale: s.environment.crowdMorale,
       grip: s.config.grip * s.environment.grip * surface.grip,
       speedReference:
         s.config.speedReference /
         (s.environment.rolling * surface.rollingResistance),
-    });
+    }),r.payrollContext);
     r.ai.nextDecision = s.tick;
   }
 }
