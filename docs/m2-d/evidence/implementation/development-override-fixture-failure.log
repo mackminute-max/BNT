@@ -1,0 +1,31 @@
+✔ M2-D payroll-control-v1 Current applies only effective control (3.196471ms)
+✔ M2-D payroll-control-v1 Overdue applies only effective control (0.458105ms)
+✔ M2-D payroll-control-v1 Delinquent applies only effective control (0.388603ms)
+✔ M2-D payroll-control-v1 Critical applies only effective control (0.48189ms)
+✔ M2-D payroll-control-v1 Default applies only effective control (0.533886ms)
+✔ M2-D missing context preserves neutral race bytes and replay; explicit Current is deterministic (2625.473664ms)
+✔ M2-D payroll context isolates entrants, persists every derivation and snapshot cannot change via caller mutation (255.51841ms)
+✔ M2-D malformed payroll context rejects {"version":1,"rulesVersion":"payroll-control-v1","careerId":"career","championshipId":"championship","status":"Default","multiplier":1} (0.884964ms)
+✔ M2-D malformed payroll context rejects {"version":2,"rulesVersion":"payroll-control-v1","careerId":"career","championshipId":"championship","status":"Current","multiplier":1} (0.343547ms)
+✔ M2-D malformed payroll context rejects {"version":1,"rulesVersion":"payroll-control-v1","careerId":"career","championshipId":"championship","status":"Current","multiplier":1,"extra":true} (0.428051ms)
+✔ M2-D malformed payroll context rejects null (0.240635ms)
+✖ M2-D payroll context survives paused native override and reference-driver derivation (1.138668ms)
+✔ M2-D entrant commitment snapshots status and rejects expired contract without changing native source (96.702831ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3130.202428
+
+✖ failing tests:
+
+test at tests/m2-d-racing.test.js:10:1
+✖ M2-D payroll context survives paused native override and reference-driver derivation (1.138668ms)
+  Error: Pause at a resolved tick boundary before editing
+      at queueOverride (file:///workspace/BNT/src/dev/overrides.js:128:11)
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/m2-d-racing.test.js:10:336)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

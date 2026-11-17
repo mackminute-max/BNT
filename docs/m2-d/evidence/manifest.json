@@ -1,0 +1,59 @@
+{
+  "sourceRevision": "f66ec90a6659dd6bb675815bff4cc33e9850a643",
+  "acceptedImplementation": "79447d84a73f4d95eb65974cc79c59d191b111e7",
+  "sourceTree": "4173d9427b2c79d03ddd5ebd00bc0cb4b8c445f9",
+  "initialWorkingTree": "clean",
+  "node": "v24.22.1",
+  "npm": "11.9.0",
+  "tests": {
+    "pass": 351,
+    "fail": 0,
+    "skip": 0,
+    "exitCode": 0
+  },
+  "browser": {
+    "m2c": {
+      "groups": 20,
+      "errors": [],
+      "result": "FUNCTIONAL_PASS_FILE_BLOCKED",
+      "exitCode": 1,
+      "fileLaunch": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///tmp/bnt-m2d-preflight/checkout/dist/Blood_and_Thunder.html"
+    },
+    "m2b": {
+      "groups": 13,
+      "errors": [],
+      "result": "FUNCTIONAL_PASS_FILE_BLOCKED",
+      "exitCode": 1,
+      "fileLaunch": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///tmp/bnt-m2d-preflight/checkout/dist/Blood_and_Thunder.html"
+    },
+    "m2a": {
+      "groups": 12,
+      "errors": [],
+      "result": "FUNCTIONAL_PASS_FILE_BLOCKED",
+      "exitCode": 1,
+      "fileLaunch": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///tmp/bnt-m2d-preflight/checkout/dist/Blood_and_Thunder.html"
+    },
+    "m1": {
+      "groups": 18,
+      "errors": [],
+      "result": "FUNCTIONAL_PASS_FILE_BLOCKED",
+      "exitCode": 1,
+      "fileLaunch": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///tmp/bnt-m2d-preflight/checkout/dist/Blood-and-Thunder-Track-Test.html"
+    },
+    "racing": {
+      "groups": 23,
+      "errors": [],
+      "result": "BLOCKED: functional checks passed over HTTP, actual file launch denied by browser policy",
+      "exitCode": 1,
+      "fileLaunch": "blocked: page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///tmp/bnt-m2d-preflight/checkout/dist/Blood_and_Thunder.html"
+    }
+  },
+  "replays": 12,
+  "artifact": {
+    "bytes": 380462,
+    "sha256": "13b2b1e3898c5df30f5b97b9b37c2bb033fc01c5ae9f43fd64bd89a3fc3e938f",
+    "isolatedBuildMatched": true
+  },
+  "productionChanges": false,
+  "handoffSHA256": "4ba1b9a88abb0463f97d7d91d817e351c4464c69822e48b3719694ef5354d490"
+}

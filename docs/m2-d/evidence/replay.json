@@ -1,0 +1,158 @@
+[
+  {
+    "setup": {
+      "seed": 145,
+      "format": "Pure",
+      "course": "oval",
+      "overrides": {
+        "laps": 1
+      },
+      "driverMode": "reference"
+    },
+    "checksum": "fe1bfab8",
+    "matched": true
+  },
+  {
+    "setup": {
+      "seed": 145,
+      "format": "Pure",
+      "course": "C01",
+      "overrides": {
+        "laps": 1
+      },
+      "driverMode": "reference"
+    },
+    "checksum": "1e9d7e68",
+    "matched": true
+  },
+  {
+    "setup": {
+      "seed": 145,
+      "format": "Pure",
+      "course": "mixed-rally",
+      "overrides": {
+        "laps": 1
+      },
+      "driverMode": "reference"
+    },
+    "checksum": "d13a8fdf",
+    "matched": true
+  },
+  {
+    "setup": {
+      "seed": 145,
+      "format": "Combat",
+      "course": "oval",
+      "overrides": {
+        "laps": 1
+      },
+      "driverMode": "reference"
+    },
+    "checksum": "79dec048",
+    "matched": true
+  },
+  {
+    "setup": {
+      "seed": 145,
+      "format": "Combat",
+      "course": "C01",
+      "overrides": {
+        "laps": 1
+      },
+      "driverMode": "reference"
+    },
+    "checksum": "cd29b4b3",
+    "matched": true
+  },
+  {
+    "setup": {
+      "seed": 145,
+      "format": "Combat",
+      "course": "mixed-rally",
+      "overrides": {
+        "laps": 1
+      },
+      "driverMode": "reference"
+    },
+    "checksum": "38fdb4e1",
+    "matched": true
+  },
+  {
+    "setup": {
+      "seed": 145,
+      "format": "Pure",
+      "course": "oval",
+      "overrides": {
+        "laps": 1
+      },
+      "driverMode": "autonomous"
+    },
+    "checksum": "821eca67",
+    "matched": true
+  },
+  {
+    "setup": {
+      "seed": 145,
+      "format": "Pure",
+      "course": "C01",
+      "overrides": {
+        "laps": 1
+      },
+      "driverMode": "autonomous"
+    },
+    "checksum": "c1730efa",
+    "matched": true
+  },
+  {
+    "setup": {
+      "seed": 145,
+      "format": "Pure",
+      "course": "mixed-rally",
+      "overrides": {
+        "laps": 1
+      },
+      "driverMode": "autonomous"
+    },
+    "checksum": "4120f7c5",
+    "matched": true
+  },
+  {
+    "setup": {
+      "seed": 145,
+      "format": "Combat",
+      "course": "oval",
+      "overrides": {
+        "laps": 1
+      },
+      "driverMode": "autonomous"
+    },
+    "checksum": "c8fd3ca0",
+    "matched": true
+  },
+  {
+    "setup": {
+      "seed": 145,
+      "format": "Combat",
+      "course": "C01",
+      "overrides": {
+        "laps": 1
+      },
+      "driverMode": "autonomous"
+    },
+    "checksum": "3ef47ff6",
+    "matched": true
+  },
+  {
+    "setup": {
+      "seed": 145,
+      "format": "Combat",
+      "course": "mixed-rally",
+      "overrides": {
+        "laps": 1
+      },
+      "driverMode": "autonomous"
+    },
+    "checksum": "fd015e71",
+    "matched": true
+  }
+]

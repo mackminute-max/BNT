@@ -1,0 +1,124 @@
+{
+  "authority": "M2-D Implementation Authorization Revision 1",
+  "baselineCommit": "f66ec90a6659dd6bb675815bff4cc33e9850a643",
+  "baselineTree": "4173d9427b2c79d03ddd5ebd00bc0cb4b8c445f9",
+  "implementationCommit": "c8371a8e26115c04f86ff91e7f45f2cda4bafb13",
+  "branch": "feat/m2-d-payroll-lifecycle",
+  "node": "v24.22.1",
+  "npm": "11.9.0",
+  "browser": "156.0.8078.79",
+  "versions": {
+    "career": 4,
+    "registry": 4,
+    "driverRecord": 3,
+    "contractRecord": 3,
+    "command": 3,
+    "cycles": 1,
+    "completion": 1,
+    "outerHistory": 1,
+    "envelope": 1,
+    "rules": "m2d-cycles-v1",
+    "payroll": "payroll-control-v1",
+    "emergency": "m2d-emergency-driver-v1"
+  },
+  "tests": {
+    "baselinePassed": 351,
+    "firstGatePassed": 11,
+    "stage1Passed": 362,
+    "firstFullPassed": 399,
+    "focusedPassed": 56,
+    "finalPassed": 409,
+    "newTests": 58,
+    "failed": 0,
+    "skipped": 0,
+    "finalExitCode": 0,
+    "finalMilliseconds": 116202.168676
+  },
+  "browserReports": {
+    "M2-D": {
+      "report": "docs/m2-d/evidence/implementation/browser/browser.json",
+      "functionalGroups": 14,
+      "errors": [],
+      "fileLaunch": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///workspace/BNT/dist/Blood_and_Thunder.html",
+      "result": "FUNCTIONAL_PASS_FILE_BLOCKED",
+      "exitCode": 1
+    },
+    "M2-C": {
+      "report": "docs/m2-d/evidence/implementation/m2c-browser/browser.json",
+      "functionalGroups": 20,
+      "errors": [],
+      "fileLaunch": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///tmp/bnt-m2d-current/dist/Blood_and_Thunder.html",
+      "result": "FUNCTIONAL_PASS_FILE_BLOCKED",
+      "exitCode": 1
+    },
+    "M2-B": {
+      "report": "docs/m2-d/evidence/implementation/m2b-browser/browser.json",
+      "functionalGroups": 13,
+      "errors": [],
+      "fileLaunch": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///tmp/bnt-m2d-current/dist/Blood_and_Thunder.html",
+      "result": "FUNCTIONAL_PASS_FILE_BLOCKED",
+      "exitCode": 1
+    },
+    "M2-A": {
+      "report": "docs/m2-d/evidence/implementation/m2a-browser/browser.json",
+      "functionalGroups": 12,
+      "errors": [],
+      "fileLaunch": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///tmp/bnt-m2d-current/dist/Blood_and_Thunder.html",
+      "result": "FUNCTIONAL_PASS_FILE_BLOCKED",
+      "exitCode": 1
+    },
+    "M1": {
+      "report": "docs/m2-d/evidence/implementation/m1-browser/browser.json",
+      "functionalGroups": 18,
+      "errors": [],
+      "fileLaunch": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///tmp/bnt-m2d-current/dist/Blood-and-Thunder-Track-Test.html",
+      "result": "FUNCTIONAL_PASS_FILE_BLOCKED",
+      "exitCode": 1
+    },
+    "Racing": {
+      "report": "docs/m2-d/evidence/implementation/racing-browser/browser-report.json",
+      "functionalGroups": 23,
+      "errors": [],
+      "fileLaunch": "blocked: page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///tmp/bnt-m2d-current/dist/Blood_and_Thunder.html",
+      "result": "BLOCKED: functional checks passed over HTTP, actual file launch denied by browser policy",
+      "exitCode": 1
+    }
+  },
+  "browserFunctionalGroups": 100,
+  "artifact": {
+    "aliases": [
+      "dist/Blood_and_Thunder.html",
+      "dist/Blood-and-Thunder-Track-Test.html"
+    ],
+    "bytes": 436032,
+    "sha256": "d1a586a64066b40e40fb540e090c61d48b975d89cecca92e1377aa5b4af3a1a7",
+    "aliasesIdentical": true,
+    "regressionBrowserArtifactMatched": true,
+    "productionFixtureAuthorityAbsent": true
+  },
+  "determinism": {
+    "historicalReplayCaptures": 12,
+    "nativeMigrationAdapters": 5,
+    "numericCycles": 5,
+    "payrollReplayCaptures": 2,
+    "NodeBrowserPayrollCaptureMatched": true,
+    "browserPayrollChecksum": "d8553fdb"
+  },
+  "limits": {
+    "receipts": 1000,
+    "protectedIdentities": 2000,
+    "envelopeBytes": 8388608
+  },
+  "limitations": [
+    "Managed file navigation blocked by administrator; HTTP diagnostics only",
+    "Windows M2-D direct-file owner acceptance pending",
+    "No live championship controller or completion/reward producer",
+    "Conservative failure proof; unproven cases remain Blocked",
+    "No emergency ordinary early-termination economics invented",
+    "Growing archival validation/storage bounded by existing limits"
+  ],
+  "merged": false,
+  "pushed": false,
+  "deployed": false,
+  "ownerAcceptance": false
+}

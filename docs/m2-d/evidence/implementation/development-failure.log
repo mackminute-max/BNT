@@ -1,0 +1,59 @@
+✖ M2-D A01/A02/A14: trusted completion only, pure preview, exact retry, changed ID/effect/payload and stale fingerprint reject (427.37391ms)
+✔ M2-D A03: exact zero reward/Gold payroll and personal obligation conservation (599.678808ms)
+✔ M2-D A03/A04: older claims before current wages; partial/full voluntary payment clears immediately (2076.459957ms)
+✔ M2-D A05 debt threshold 0 (0.1964ms)
+✔ M2-D A05 debt threshold 1 (0.076643ms)
+✔ M2-D A05 debt threshold 2 (0.151704ms)
+✔ M2-D A05 debt threshold 3 (0.076192ms)
+✔ M2-D A05 debt threshold 4 (0.074059ms)
+✔ M2-D A05 debt threshold 5 (0.194637ms)
+✔ M2-D A05: quotes and reducers prohibit discretionary purchases/training but allow essential service quotes (938.850833ms)
+✔ M2-D A07: final wage assessed before expiry; explicit renewal uses new identity and correct signing/wage (4276.251067ms)
+✔ M2-D A08: no fourth-settlement departure, fifth chooses unpaid unassigned reserve, retains claims (1920.757638ms)
+✔ M2-D A08: unassigned last eligible driver is protected at Default (1937.892808ms)
+✔ M2-D A09: emergency only when ordinary recruitment blocked; fixed one-cycle driver and wage, no other grant (5256.295825ms)
+✔ M2-D A07: expired assigned release requires explicit resolution and preserves debt (4308.782792ms)
+✔ M2-D A11 synthetic reducer: recovery native fields stay separate and Critical never passively heals (52.319584ms)
+✔ M2-D A03: reward overflow and unauthorized/mismatched completion reject atomically (120.589301ms)
+✔ M2-D A10: conservative viability never fails solely for debt, zero Gold or unassembled RU (3737.973208ms)
+✔ M2-D A12: restoring older checkpoint with known debt fails closed, without erasing current bytes (606.382866ms)
+✔ M2-D A12: settlement write denial rolls back; retry in manual requires exported checkpoint (583.950872ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 19
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 26990.861487
+
+✖ failing tests:
+
+test at tests/m2-d-transactions.test.js:13:1
+✖ M2-D A01/A02/A14: trusted completion only, pure preview, exact retry, changed ID/effect/payload and stale fingerprint reject (427.37391ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Stale|already/. Input:
+  
+  'Error: Completion ownership/contract snapshot mismatch'
+  
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/m2-d-transactions.test.js:13:1027)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Completion ownership/contract snapshot mismatch
+        at reduceCycle (file:///workspace/BNT/src/career/cycles/reducers.js:28:119)
+        at quoteCycle (file:///workspace/BNT/src/career/cycles/reducers.js:68:67)
+        at file:///workspace/BNT/tests/m2-d-transactions.test.js:13:1038
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/BNT/tests/m2-d-transactions.test.js:13:1027)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.start (node:internal/test_runner/test:1262:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    expected: /Stale|already/,
+    operator: 'throws',
+    diff: 'simple'
+  }
