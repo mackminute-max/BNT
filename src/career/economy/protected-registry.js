@@ -1,3 +1,4 @@
+import {validateFoundationEntry} from '../championships/contracts.js';
 import {validateCycleMaintenance,validateCycleEntry} from '../cycles/contracts.js';
 import { validateEconomicEntry } from './commands.js';
 // Additive heterogeneous registry. Legacy v0/v1 validators remain untouched and strict.
@@ -6,11 +7,11 @@ import { canonical } from '../../core/determinism.js';
 import { isMaintenance,validateMaintenance } from './maintenance-history.js';
 export { isMaintenance } from './maintenance-history.js';
 export const isLegacyEntry=e=>!Object.hasOwn(e,'kind')&&[0,1].includes(e.commandVersion);
-export function validateEntry(e){return e?.kind==='cycle-migration-maintenance'?validateCycleMaintenance(e):e?.kind==='cycle-gameplay'?validateCycleEntry(e):isMaintenance(e)?validateMaintenance(e):e?.commandVersion===2&&!Object.hasOwn(e,'kind')?validateEconomicEntry(e):legacy.validateProtected(e);}
+export function validateEntry(e){return e?.kind==='foundation-maintenance'?validateFoundationEntry(e):e?.kind==='cycle-migration-maintenance'?validateCycleMaintenance(e):e?.kind==='cycle-gameplay'?validateCycleEntry(e):isMaintenance(e)?validateMaintenance(e):e?.commandVersion===2&&!Object.hasOwn(e,'kind')?validateEconomicEntry(e):legacy.validateProtected(e);}
 export function mergeProtected(...lists){
   const ids=new Map(),effects=new Map(),owners=new Map();
   for(const e of lists.flat()){
-    validateEntry(e);const previous=ids.get(e.id),fact=(isMaintenance(e)||e.kind==='cycle-migration-maintenance')?'acknowledgment':'balanceAfter';
+    validateEntry(e);const previous=ids.get(e.id),fact=(isMaintenance(e)||e.kind==='cycle-migration-maintenance'||e.kind==='foundation-maintenance')?'acknowledgment':'balanceAfter';
     if(previous){
       if(canonical({...previous,[fact]:null})!==canonical({...e,[fact]:null}) || (previous[fact]!==null && e[fact]!==null && canonical(previous[fact])!==canonical(e[fact])))throw Error('Conflicting protected transaction ID');
       if(previous[fact]!==null)continue;

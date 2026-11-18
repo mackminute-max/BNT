@@ -1,3 +1,5 @@
+import {previewFoundation,buildFoundation} from '../career/championships/schema5.js';
+import {validateFoundationMigration,foundationEffect} from '../career/championships/contracts.js';
 import {previewCycles,buildCycleBase,validateStateV4} from '../career/cycles/schema4.js';
 import {cycleMigrationEffect,protectCycleMigration,validateCycleMigration} from '../career/cycles/contracts.js';
 import {canonical} from '../core/determinism.js';
@@ -101,6 +103,16 @@ export class CareerStore {
     next.history.commands=mergeProtected(next.history.commands,[entry]);validateStateV4(next);this.requireManualCheckpoint();
     this.publish(makeEnvelope(next,this.current,this.marks,mergeProtected(this.protectedHistory,[entry]),this.maintenanceClock));
     return {duplicate:false,acknowledgment:structuredClone(entry.acknowledgment),state:this.state};
+  }
+  previewFoundation() { return previewFoundation(this.current); }
+  migrateFoundation(request) {
+    validateFoundationMigration(request);
+    const prior=this.protectedHistory.find(e=>e.id===request.id);
+    if(prior){if(prior.kind!=='foundation-maintenance'||prior.request!==canonical(request))throw Error('Conflicting foundation migration ID');return {duplicate:true,status:'ALREADY_COMMITTED',state:this.state};}
+    if(this.protectedHistory.some(e=>e.careerId===request.careerId&&e.effectId===foundationEffect(request.careerId)))throw Error('Foundation migration already protected');
+    const next=buildFoundation(this.current,request);this.requireManualCheckpoint();
+    this.publish(makeEnvelope(next,this.current,this.marks,this.protectedHistory,this.maintenanceClock));
+    return {duplicate:false,state:this.state};
   }
   transaction(tx, options = {}) {
     if (!this.current) throw Error('No career loaded');
