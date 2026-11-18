@@ -1,0 +1,34 @@
+✔ E1 explicit lossless schema4→5 traditional (1581.130548ms)
+✔ E1 explicit lossless schema4→5 beastmaster (1411.929035ms)
+✔ E1 explicit lossless schema4→5 mechanist (1507.947067ms)
+✔ E1 explicit lossless schema4→5 veteran (1371.707338ms)
+✔ E1 explicit lossless schema4→5 scrappy (1346.427785ms)
+✔ E1 rejects ownership, stale, unconfirmed, unsupported, failed publication and downgrade (1291.30728ms)
+✔ E1 frozen identity validators reject duplicate/unknown references (0.62444ms)
+✔ E4 codec preserves Infinity, undefined, shared identity and property locks; rejects cycles/versions (1.901312ms)
+✔ E4 complete real Pure Oval checkpoint/resume exact parity (3792.03256ms)
+✔ E4 complete real Combat Oval checkpoint/resume exact parity (4488.217555ms)
+✔ E4 complete real Pure C01 checkpoint/resume exact parity (6905.935785ms)
+✔ E4 complete real Combat C01 checkpoint/resume exact parity (9747.640961ms)
+✔ E4 complete real Pure mixed-rally checkpoint/resume exact parity (7830.44273ms)
+✔ E4 complete real Combat mixed-rally checkpoint/resume exact parity (10667.746992ms)
+✔ E4 checkpoint validation rejects incompatible metadata, identity, state and unresolved boundaries (19.154304ms)
+✔ E4 durable ordered paused inputs and duplicate retry consume signs once (368.754127ms)
+✔ E4 corrupted newest generation replays complete tail; missing/reordered journal fails closed (1290.496197ms)
+✔ E4 denied/torn storage write acknowledges no input and rolls back memory; manual mode is explicit (266.48933ms)
+✔ E4 stale writers and changed financial authority cannot overwrite or resume (258.935896ms)
+✔ D5 real cleared result atomically publishes native condition/classification/proof effects once (15195.855315ms)
+✔ D5 uncleared/stalled proof is recoverably blocked with no permanent effects (119.855176ms)
+✔ D5 result storage failure publishes no partial conditions, standings or entitlements (12702.381829ms)
+✔ D5 separate no-starter proof requires complete ineligibility evidence and fabricates no DNS (0.790785ms)
+✔ E4 nonzero incident scheduler and queued collision/override state restore without RNG drift (264.507393ms)
+✔ E4 compression corruption/truncation/oversize and descriptor forgery reject (13.514083ms)
+✔ E4 manual import is confirmed, atomic and cannot rewind a known committed result (9342.695285ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 91943.562989

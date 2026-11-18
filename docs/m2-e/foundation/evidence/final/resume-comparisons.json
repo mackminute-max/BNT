@@ -1,0 +1,50 @@
+[
+  {
+    "format": "Pure",
+    "course": "Oval",
+    "checksum": "43edd74b",
+    "tick": 1156,
+    "checkpointBytes": 67460,
+    "remaining": 1
+  },
+  {
+    "format": "Combat",
+    "course": "Oval",
+    "checksum": "03844c08",
+    "tick": 1156,
+    "checkpointBytes": 97000,
+    "remaining": 1
+  },
+  {
+    "format": "Pure",
+    "course": "C01",
+    "checksum": "801994b2",
+    "tick": 1966,
+    "checkpointBytes": 77480,
+    "remaining": 1
+  },
+  {
+    "format": "Combat",
+    "course": "C01",
+    "checksum": "e4479cb8",
+    "tick": 1966,
+    "checkpointBytes": 107056,
+    "remaining": 1
+  },
+  {
+    "format": "Pure",
+    "course": "mixed-rally",
+    "checksum": "91a581b8",
+    "tick": 1761,
+    "checkpointBytes": 76040,
+    "remaining": 1
+  },
+  {
+    "format": "Combat",
+    "course": "mixed-rally",
+    "checksum": "25aec856",
+    "tick": 1761,
+    "checkpointBytes": 105676,
+    "remaining": 1
+  }
+]

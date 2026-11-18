@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "weapon: exact bundled/headless event/state/checkpoint parity",
+    "ram: exact bundled/headless event/state/checkpoint parity",
+    "unsafe-ram: exact bundled/headless event/state/checkpoint parity",
+    "damaged: exact bundled/headless event/state/checkpoint parity",
+    "race-on: exact bundled/headless event/state/checkpoint parity",
+    "New combat coefficients are exposed in existing utility developer editor",
+    "No page errors or extra runtime requests"
+  ],
+  "errors": [],
+  "requests": [],
+  "fileLaunch": "blocked by administrator; HTTP diagnostic only",
+  "result": "functional checks passed"
+}

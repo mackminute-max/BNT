@@ -1,0 +1,104 @@
+[
+  {
+    "name": "m2d",
+    "script": "scripts/m2-d/browser.mjs",
+    "exit": 1,
+    "seconds": 79.35,
+    "groups": 14,
+    "functional": "PASS",
+    "errors": [],
+    "error": null
+  },
+  {
+    "name": "m2c",
+    "script": "scripts/m2-c/browser.mjs",
+    "exit": 1,
+    "seconds": 42.35,
+    "groups": 20,
+    "functional": "PASS",
+    "errors": [],
+    "error": null
+  },
+  {
+    "name": "m2b",
+    "script": "scripts/m2-b-browser.mjs",
+    "exit": 1,
+    "seconds": 19.84,
+    "groups": 13,
+    "functional": "PASS",
+    "errors": [],
+    "error": null
+  },
+  {
+    "name": "m2a",
+    "script": "scripts/m2-a-browser.mjs",
+    "exit": 1,
+    "seconds": 12.5,
+    "groups": 12,
+    "functional": "PASS",
+    "errors": [],
+    "error": null
+  },
+  {
+    "name": "persistence",
+    "script": "scripts/persistence-browser.mjs",
+    "exit": 1,
+    "seconds": 11.56,
+    "groups": 18,
+    "functional": "PASS",
+    "errors": [],
+    "error": null
+  },
+  {
+    "name": "racing",
+    "script": "scripts/browser-test.mjs",
+    "exit": 1,
+    "seconds": 41.52,
+    "groups": 23,
+    "functional": "BLOCKED: functional checks passed over HTTP, actual file launch denied by browser policy",
+    "errors": [],
+    "error": null
+  },
+  {
+    "name": "tracks",
+    "script": "scripts/track-expansion/browser.mjs",
+    "exit": 0,
+    "seconds": 70.03,
+    "groups": 10,
+    "functional": "PASS",
+    "errors": [],
+    "error": null
+  },
+  {
+    "name": "circuits",
+    "script": "scripts/circuit-rally/browser.mjs",
+    "exit": 1,
+    "seconds": 37.2,
+    "groups": 1,
+    "functional": "FAIL",
+    "errors": [
+      "page.selectOption: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#trackPreset')\u001b[22m\n\u001b[2m    - locator resolved to <select id=\"trackPreset\">\u2026</select>\u001b[22m\n\u001b[2m  - attempting select option action\u001b[22m\n\u001b[2m    2 \u00d7 waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 \u00d7 waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    59 \u00d7 waiting for element to be visible and enabled\u001b[22m\n\u001b[2m       - did not find some options\u001b[22m\n\u001b[2m     - retrying select option action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /tmp/bnt-m2e-verified/scripts/circuit-rally/browser.mjs:11:56"
+    ],
+    "error": null
+  },
+  {
+    "name": "combat",
+    "script": "scripts/combat-ai-refinement/browser.mjs",
+    "exit": 0,
+    "seconds": 1.52,
+    "groups": 7,
+    "functional": "functional checks passed",
+    "errors": [],
+    "error": null
+  },
+  {
+    "name": "foundation",
+    "script": "scripts/m2-e/browser.mjs",
+    "exit": 1,
+    "seconds": 6.05,
+    "groups": 10,
+    "functional": "PASS",
+    "errors": [],
+    "error": null
+  }
+]

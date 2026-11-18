@@ -1,0 +1,56 @@
+[
+  {
+    "name": "m2d",
+    "script": "scripts/m2-d/browser.mjs",
+    "exit": 1,
+    "seconds": 49.55
+  },
+  {
+    "name": "m2c",
+    "script": "scripts/m2-c/browser.mjs",
+    "exit": 1,
+    "seconds": 22.95
+  },
+  {
+    "name": "m2b",
+    "script": "scripts/m2-b-browser.mjs",
+    "exit": 1,
+    "seconds": 7.48
+  },
+  {
+    "name": "m2a",
+    "script": "scripts/m2-a-browser.mjs",
+    "exit": 1,
+    "seconds": 5.0
+  },
+  {
+    "name": "persistence",
+    "script": "scripts/persistence-browser.mjs",
+    "exit": 1,
+    "seconds": 5.75
+  },
+  {
+    "name": "racing",
+    "script": "scripts/browser-test.mjs",
+    "exit": 1,
+    "seconds": 36.02
+  },
+  {
+    "name": "tracks",
+    "script": "scripts/track-expansion/browser.mjs",
+    "exit": 0,
+    "seconds": 59.22
+  },
+  {
+    "name": "circuits",
+    "script": "scripts/circuit-rally/browser.mjs",
+    "exit": 1,
+    "seconds": 36.23
+  },
+  {
+    "name": "combat",
+    "script": "scripts/combat-ai-refinement/browser.mjs",
+    "exit": 0,
+    "seconds": 1.53
+  }
+]

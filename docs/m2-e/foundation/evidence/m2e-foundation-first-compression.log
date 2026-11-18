@@ -1,0 +1,45 @@
+✔ E1 explicit lossless schema4→5 traditional (1806.511996ms)
+✔ E1 explicit lossless schema4→5 beastmaster (1397.549647ms)
+✔ E1 explicit lossless schema4→5 mechanist (1543.458481ms)
+✔ E1 explicit lossless schema4→5 veteran (1378.05516ms)
+✔ E1 explicit lossless schema4→5 scrappy (1359.493655ms)
+✔ E1 rejects ownership, stale, unconfirmed, unsupported, failed publication and downgrade (1312.632376ms)
+✔ E1 frozen identity validators reject duplicate/unknown references (0.602768ms)
+✔ E4 codec preserves Infinity, undefined, shared identity and property locks; rejects cycles/versions (2.204899ms)
+✔ E4 complete real Pure Oval checkpoint/resume exact parity (4762.638978ms)
+✔ E4 complete real Combat Oval checkpoint/resume exact parity (5637.27474ms)
+✔ E4 complete real Pure C01 checkpoint/resume exact parity (8624.839576ms)
+✔ E4 complete real Combat C01 checkpoint/resume exact parity (11037.82439ms)
+✔ E4 complete real Pure mixed-rally checkpoint/resume exact parity (10459.711448ms)
+✖ E4 complete real Combat mixed-rally checkpoint/resume exact parity (10091.644128ms)
+✔ E4 checkpoint validation rejects incompatible metadata, identity, state and unresolved boundaries (34.461738ms)
+✔ E4 durable ordered paused inputs and duplicate retry consume signs once (719.177382ms)
+✔ E4 corrupted newest generation replays complete tail; missing/reordered journal fails closed (2654.72942ms)
+✔ E4 denied/torn storage write acknowledges no input and rolls back memory; manual mode is explicit (451.457962ms)
+✔ E4 stale writers and changed financial authority cannot overwrite or resume (496.050212ms)
+✔ D5 real cleared result atomically publishes native condition/classification/proof effects once (27056.076383ms)
+✔ D5 uncleared/stalled proof is recoverably blocked with no permanent effects (189.859402ms)
+✔ D5 result storage failure publishes no partial conditions, standings or entitlements (21851.04005ms)
+✔ D5 separate no-starter proof requires complete ineligibility evidence and fabricates no DNS (0.600635ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 22
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 113074.78562
+
+✖ failing tests:
+
+test at tests/m2-e-foundation.test.js:40:86
+✖ E4 complete real Combat mixed-rally checkpoint/resume exact parity (10091.644128ms)
+  Error: Checkpoint exceeds 8 MiB
+      at pack (file:///workspace/BNT/src/sim/foundation/codec.js:72:187)
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/m2-e-foundation.test.js:43:203)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

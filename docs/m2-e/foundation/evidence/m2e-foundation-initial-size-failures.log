@@ -1,0 +1,133 @@
+✔ E1 explicit lossless schema4→5 traditional (1669.624877ms)
+✔ E1 explicit lossless schema4→5 beastmaster (1433.564816ms)
+✔ E1 explicit lossless schema4→5 mechanist (1444.822713ms)
+✔ E1 explicit lossless schema4→5 veteran (1365.278858ms)
+✔ E1 explicit lossless schema4→5 scrappy (1403.666611ms)
+✔ E1 rejects ownership, stale, unconfirmed, unsupported, failed publication and downgrade (1221.012242ms)
+✔ E1 frozen identity validators reject duplicate/unknown references (0.50899ms)
+✔ E4 codec preserves Infinity, undefined, shared identity and property locks; rejects cycles/versions (0.910171ms)
+✖ E4 complete real Pure Oval checkpoint/resume exact parity (2138.221405ms)
+✖ E4 complete real Combat Oval checkpoint/resume exact parity (2892.944497ms)
+✖ E4 complete real Pure C01 checkpoint/resume exact parity (4980.785699ms)
+✖ E4 complete real Combat C01 checkpoint/resume exact parity (6143.197258ms)
+✖ E4 complete real Pure mixed-rally checkpoint/resume exact parity (5508.959389ms)
+✖ E4 complete real Combat mixed-rally checkpoint/resume exact parity (6905.245689ms)
+✔ E4 checkpoint validation rejects incompatible metadata, identity, state and unresolved boundaries (26.716978ms)
+✔ E4 durable ordered paused inputs and duplicate retry consume signs once (349.911952ms)
+✔ E4 corrupted newest generation replays complete tail; missing/reordered journal fails closed (1567.289378ms)
+✔ E4 denied/torn storage write acknowledges no input and rolls back memory; manual mode is explicit (232.263104ms)
+✔ E4 stale writers and changed financial authority cannot overwrite or resume (223.092001ms)
+✖ D5 real cleared result atomically publishes native condition/classification/proof effects once (924.125901ms)
+✔ D5 uncleared/stalled proof is recoverably blocked with no permanent effects (126.024441ms)
+✖ D5 result storage failure publishes no partial conditions, standings or entitlements (877.117672ms)
+✔ D5 separate no-starter proof requires complete ineligibility evidence and fabricates no DNS (0.764927ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 15
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 41629.159879
+
+✖ failing tests:
+
+test at tests/m2-e-foundation.test.js:40:86
+✖ E4 complete real Pure Oval checkpoint/resume exact parity (2138.221405ms)
+  Error: Checkpoint exceeds 8 MiB
+      at pack (file:///workspace/BNT/src/sim/foundation/codec.js:28:133)
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/m2-e-foundation.test.js:43:203)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/m2-e-foundation.test.js:40:86
+✖ E4 complete real Combat Oval checkpoint/resume exact parity (2892.944497ms)
+  Error: Checkpoint exceeds 8 MiB
+      at pack (file:///workspace/BNT/src/sim/foundation/codec.js:28:133)
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/m2-e-foundation.test.js:43:203)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/m2-e-foundation.test.js:40:86
+✖ E4 complete real Pure C01 checkpoint/resume exact parity (4980.785699ms)
+  Error: Checkpoint exceeds 8 MiB
+      at pack (file:///workspace/BNT/src/sim/foundation/codec.js:28:133)
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/m2-e-foundation.test.js:43:203)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/m2-e-foundation.test.js:40:86
+✖ E4 complete real Combat C01 checkpoint/resume exact parity (6143.197258ms)
+  Error: Checkpoint exceeds 8 MiB
+      at pack (file:///workspace/BNT/src/sim/foundation/codec.js:28:133)
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/m2-e-foundation.test.js:43:203)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/m2-e-foundation.test.js:40:86
+✖ E4 complete real Pure mixed-rally checkpoint/resume exact parity (5508.959389ms)
+  Error: Checkpoint exceeds 8 MiB
+      at pack (file:///workspace/BNT/src/sim/foundation/codec.js:28:133)
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/m2-e-foundation.test.js:43:203)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/m2-e-foundation.test.js:40:86
+✖ E4 complete real Combat mixed-rally checkpoint/resume exact parity (6905.245689ms)
+  Error: Checkpoint exceeds 8 MiB
+      at pack (file:///workspace/BNT/src/sim/foundation/codec.js:28:133)
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/m2-e-foundation.test.js:43:203)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/m2-e-foundation.test.js:63:1
+✖ D5 real cleared result atomically publishes native condition/classification/proof effects once (924.125901ms)
+  Error: Checkpoint exceeds 8 MiB
+      at pack (file:///workspace/BNT/src/sim/foundation/codec.js:28:133)
+      at stateHash (file:///workspace/BNT/src/persistence/race/session-store.js:10:29)
+      at RaceSessionStore.apply (file:///workspace/BNT/src/persistence/race/session-store.js:94:180)
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/m2-e-foundation.test.js:64:32)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/m2-e-foundation.test.js:70:1
+✖ D5 result storage failure publishes no partial conditions, standings or entitlements (877.117672ms)
+  Error: Checkpoint exceeds 8 MiB
+      at pack (file:///workspace/BNT/src/sim/foundation/codec.js:28:133)
+      at stateHash (file:///workspace/BNT/src/persistence/race/session-store.js:10:29)
+      at RaceSessionStore.apply (file:///workspace/BNT/src/persistence/race/session-store.js:94:180)
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/m2-e-foundation.test.js:71:28)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
