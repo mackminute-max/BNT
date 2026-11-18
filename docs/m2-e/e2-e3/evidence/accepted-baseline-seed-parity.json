@@ -1,0 +1,18 @@
+{
+  "acceptedArtifactSha256": "fe48c76f4a7e6988db88fd334a746b62513e497480bd7cffe2831e806c40299a",
+  "setup": {
+    "seed": 1460515178,
+    "overrides": {
+      "laps": 1
+    }
+  },
+  "node": {
+    "checksum": "f9ba1205",
+    "nextIncidentAt": 313.0384349330031
+  },
+  "browser": {
+    "checksum": "b00ad2d3",
+    "nextIncidentAt": 313.03843493300315
+  },
+  "incidentSourceUnchanged": true
+}

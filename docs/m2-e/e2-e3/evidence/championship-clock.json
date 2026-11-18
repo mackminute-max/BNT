@@ -1,0 +1,33 @@
+{
+  "mode": "HTTP numeric diagnostic; no direct-file claim",
+  "targetInitialStates": 100,
+  "actualInitialStates": 100,
+  "failures": [],
+  "fullRaces": [
+    {
+      "course": "Oval",
+      "format": "Pure",
+      "nodeChecksum": "a74e4f71",
+      "browserChecksum": "a74e4f71",
+      "status": "Ended",
+      "matched": true
+    },
+    {
+      "course": "C01",
+      "format": "Combat",
+      "nodeChecksum": "005252df",
+      "browserChecksum": "005252df",
+      "status": "Ended",
+      "matched": true
+    },
+    {
+      "course": "mixed-rally",
+      "format": "Combat",
+      "nodeChecksum": "069e4340",
+      "browserChecksum": "069e4340",
+      "status": "Ended",
+      "matched": true
+    }
+  ],
+  "pass": true
+}
