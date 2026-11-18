@@ -5,7 +5,7 @@ import {freeze} from '../assets.js';
 export const RECOVERY=freeze({version:1,driverFatigue:20,beastFatigue:20});
 export const debtStatus=streak=>streak===0?'Current':streak===1?'Overdue':streak===2?'Delinquent':streak===3?'Critical':'Default';
 export const moraleMultiplier=status=>({Current:1,Overdue:1,Delinquent:.95,Critical:.9,Default:.85})[status];
-export function requirePreparation(s){if(s.championshipFoundation?.version===2&&s.championshipFoundation.activeId!==null)throw Error('Stable management is read-only during an active or unsettled championship');if(s.cycles.phase!=='STABLE_PREPARATION'||s.career.status==='Failed')throw Error('Career is not in playable stable preparation');}
+export function requirePreparation(s){if(s.championshipFoundation?.version>=2&&s.championshipFoundation.activeId!==null)throw Error('Stable management is read-only during an active or unsettled championship');if(s.cycles.phase!=='STABLE_PREPARATION'||s.career.status==='Failed')throw Error('Career is not in playable stable preparation');}
 export function restrict(s,type){requirePreparation(s);if(s.cycles.streak>=2&&['market.acquire','facility.purchase','training.apply','engineering.apply'].includes(type))throw Error('Payroll '+debtStatus(s.cycles.streak)+': discretionary action restricted');if(s.cycles.streak>=3&&type==='contract.renew')throw Error('Payroll Critical/Default: renewal blocked');}
 export const outstanding=s=>Object.values(s.cycles.obligations).reduce((sum,o)=>plus(sum,o.balance),0);
 export function previewRU4(s,selection,options={}){

@@ -15,7 +15,7 @@ export function raceAwardEffects(rows,rules,{careerId,instanceId,raceId}){
 }
 export function standings(entrantIds,races){
  const rows=entrantIds.map(id=>({id,points:0,places:{},lastRank:Number.MAX_SAFE_INTEGER}));
- for(const race of races)for(const [rank,r] of race.rows.entries()){const row=rows.find(x=>x.id===r.id),effect=race.effects.find(x=>x.entrantId===r.id);if(!row||!effect)throw Error('Unknown standings entrant');row.points+=effect.points;gold(row.points);if(r.status==='Finished')row.places[r.place]=(row.places[r.place]??0)+1;row.lastRank=r.status==='Finished'?r.place:rank+1;}
+ for(const race of races){for(const row of rows)row.lastRank=Number.MAX_SAFE_INTEGER;for(const [rank,r] of race.rows.entries()){const row=rows.find(x=>x.id===r.id),effect=race.effects.find(x=>x.entrantId===r.id);if(!row||!effect)throw Error('Unknown standings entrant');row.points+=effect.points;gold(row.points);if(r.status==='Finished')row.places[r.place]=(row.places[r.place]??0)+1;row.lastRank=r.status==='Finished'?r.place:rank+1;}}
  return rows.sort((a,b)=>{let d=b.points-a.points;if(d)return d;for(let p=1;p<=entrantIds.length;p++){d=(b.places[p]??0)-(a.places[p]??0);if(d)return d;}return a.lastRank-b.lastRank||(a.id<b.id?-1:1);});
 }
 export function titleCandidate(ordered,lastRace){const eligible=ordered.filter(x=>lastRace.some(r=>r.id===x.id&&r.started&&!['DNS','Disqualified','Withdrawn'].includes(r.status)));return eligible[0]?.id??null;}

@@ -749,13 +749,16 @@
   // src/career/championships/api.js
   var api_exports = {};
   __export(api_exports, {
+    CONDITION_MAPPING: () => CONDITION_MAPPING,
     ChampionshipRunner: () => ChampionshipRunner,
     activeChampionship: () => activeChampionship,
     championshipClassification: () => championshipClassification,
     coachingProfile: () => coachingProfile,
     controllerOffers: () => controllerOffers,
     developmentOffer: () => developmentOffer,
+    injuryFromCondition: () => injuryFromCondition,
     makeControllerCommand: () => makeControllerCommand,
+    mapCondition: () => mapCondition,
     prepareRace: () => prepareRace,
     qualifies: () => qualifies,
     raceAwardEffects: () => raceAwardEffects,
@@ -763,6 +766,28 @@
     storedChampionshipAnchor: () => storedChampionshipAnchor,
     titleCandidate: () => titleCandidate
   });
+
+  // src/sim/deterministic-log.js
+  var INCIDENT_CLOCK_VERSION = "m2e-exponential-clock-v1";
+  function deterministicLog(x) {
+    if (!Number.isFinite(x) || x <= 0) throw Error("Deterministic log requires positive finite input");
+    let exponent = 0, m = x;
+    while (m < 1) {
+      m *= 2;
+      exponent--;
+    }
+    while (m >= 2) {
+      m /= 2;
+      exponent++;
+    }
+    const z = (m - 1) / (m + 1), square = z * z;
+    let term = z, sum = 0;
+    for (let n = 1; n <= 79; n += 2) {
+      sum += term / n;
+      term *= square;
+    }
+    return 2 * sum + exponent * 0.6931471805599453;
+  }
 
   // src/core/determinism.js
   function hash(text2) {
@@ -792,68 +817,160 @@
   var byId = (a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
   var clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
 
-  // src/sim/deterministic-log.js
-  var INCIDENT_CLOCK_VERSION = "m2e-exponential-clock-v1";
-  function deterministicLog(x) {
-    if (!Number.isFinite(x) || x <= 0) throw Error("Deterministic log requires positive finite input");
-    let exponent = 0, m = x;
-    while (m < 1) {
-      m *= 2;
-      exponent--;
-    }
-    while (m >= 2) {
-      m /= 2;
-      exponent++;
-    }
-    const z = (m - 1) / (m + 1), square = z * z;
-    let term = z, sum = 0;
-    for (let n = 1; n <= 79; n += 2) {
-      sum += term / n;
-      term *= square;
-    }
-    return 2 * sum + exponent * 0.6931471805599453;
-  }
-
-  // src/ai/coaching.js
-  var coachingAxes = Object.freeze(["aggression", "conservation", "positioning", "riskTolerance"]);
-  var coachingDefaults = Object.freeze({ aggression: 0.5, conservation: 0.5, positioning: 0.5, riskTolerance: 0.5 });
-  function validateCoaching(c) {
-    if (c === void 0 || c === null) return;
-    exact(c, ["version", "axes", "weights"]);
-    if (c.version !== 1) throw Error("Unsupported coaching version");
-    exact(c.axes, coachingAxes);
-    exact(c.weights, coachingAxes);
-    for (const k of coachingAxes) if (!Number.isFinite(c.axes[k]) || c.axes[k] < -1 || c.axes[k] > 1 || !Number.isFinite(c.weights[k]) || c.weights[k] < 0 || c.weights[k] > 2) throw Error("Coaching values outside bounded contract");
-  }
-  function coachingProfile(axes = {}) {
-    const c = { version: 1, axes: Object.fromEntries(coachingAxes.map((k) => [k, axes[k] ?? 0])), weights: { ...coachingDefaults } };
-    validateCoaching(c);
-    return c;
-  }
-  var preference = {
-    aggression: { attack: 1, ram: 1, defendCombat: -1, disengage: -1 },
-    conservation: { Conserve: 1, Push: -1, Sprint: -1 },
-    positioning: { inward: 1, outward: 1, overtake: 1, hold: -1, defend: -1 },
-    riskTolerance: { Sprint: 1, Push: 1, ram: 1, inward: 1, outward: 1, Conserve: -1, avoid: -1, yield: -1, defendCombat: -1 }
+  // src/config/config.js
+  var VERSION = "0.6.0-tracks";
+  var rules = {
+    dt: [1e-3, 1, "s"],
+    epsilon: [1e-12, 1e-7, "s"],
+    positionEpsilon: [1e-10, 1e-5, "tile"],
+    maxSubevents: [1, 1e4, "groups/tick"],
+    laps: [1, 100, "laps"],
+    lanes: [1, 8, "lanes"],
+    straightLength: [1, 2e3, "m"],
+    innerRadius: [2, 500, "m"],
+    laneWidth: [1, 10, "m"],
+    straightTiles: [2, 200, "tiles/straight"],
+    turnTiles: [2, 200, "tiles/turn"],
+    gridGap: [1, 10, "tiles"],
+    gridOffset: [0.05, 0.95, "tile"],
+    grip: [0.1, 2, "multiplier"],
+    speedReference: [1, 100, "m/s"],
+    accelerationReference: [0.1, 30, "m/s\xB2"],
+    accelerationLimit: [0.1, 50, "m/s\xB2"],
+    brakingReference: [0.1, 50, "m/s\xB2"],
+    lateralReference: [0.1, 30, "m/s\xB2"],
+    referenceMass: [1, 5e3, "kg"],
+    referencePower: [1, 1e3, "score"],
+    driverMass: [1, 300, "kg"],
+    beastLoadMass: [0, 1e3, "kg/beast"],
+    bottleneck: [0, 1, "weight"],
+    mismatchWeight: [0, 0.5, "weight"],
+    attributeStrength: [0, 1.8, "strength"],
+    cornerRisk: [0, 10, "risk coefficient"],
+    cornerSpeedLoss: [0, 0.9, "fraction"],
+    clearSpeed: [1, 50, "m/s"],
+    exitTiles: [1, 10, "tiles after line"],
+    finishTolerance: [0, 0.1, "s"],
+    maxRaceTime: [1, 2e4, "s"],
+    stallTime: [1, 1e3, "s"]
   };
-  var conflicts = {
-    "Push the Pace": { conservation: 1, riskTolerance: -1 },
-    "Conserve Strength": { conservation: -1, riskTolerance: 1 },
-    "Seek Open Track": { positioning: -1 },
-    "Race Defensively": { aggression: 1, conservation: -1, riskTolerance: 1 },
-    "Engage Rivals": { aggression: -1, riskTolerance: -1 },
-    "Hold Position": { positioning: 1, riskTolerance: 1 }
+  var defaults = {
+    schema: 1,
+    dt: 0.05,
+    epsilon: 1e-9,
+    positionEpsilon: 1e-8,
+    maxSubevents: 1024,
+    laps: 3,
+    lanes: 4,
+    straightLength: 160,
+    innerRadius: 35,
+    laneWidth: 4,
+    straightTiles: 20,
+    turnTiles: 20,
+    gridGap: 2,
+    gridOffset: 0.5,
+    grip: 1,
+    speedReference: 18,
+    accelerationReference: 3,
+    accelerationLimit: 8,
+    brakingReference: 6,
+    lateralReference: 5,
+    referenceMass: 300,
+    referencePower: 100,
+    driverMass: 75,
+    beastLoadMass: 10,
+    bottleneck: 0.3,
+    mismatchWeight: 0.12,
+    attributeStrength: 0.8,
+    cornerRisk: 0.4,
+    cornerSpeedLoss: 0.25,
+    clearSpeed: 10,
+    exitTiles: 3,
+    finishTolerance: 1e-3,
+    maxRaceTime: 1200,
+    stallTime: 20
   };
-  function coachingUtility(c, action, sign) {
-    validateCoaching(c);
-    if (!c) return 0;
-    let sum = 0;
-    for (const k of coachingAxes) {
-      const axis = c.axes[k];
-      if (conflicts[sign]?.[k] === Math.sign(axis)) continue;
-      sum += axis * c.weights[k] * (preference[k][action] ?? 0);
+  var tuningDefaults = Object.freeze({
+    crowdSensitivity: 0.2,
+    coordinationBase: 0.65,
+    coordinationDiscipline: 0.25,
+    coordinationHandling: 0.2,
+    coordinationMin: 0.5,
+    coordinationMax: 1.1,
+    impairment: 0.5,
+    handlingAgility: 0.35,
+    handlingManeuverability: 0.25,
+    handlingDriving: 0.25,
+    handlingStability: 0.15,
+    controlDiscipline: 0.3,
+    controlDriving: 0.25,
+    controlHandling: 0.25,
+    controlStability: 0.2,
+    massExponent: 0.5,
+    speedMassExponent: 0.25,
+    chariotSpeedFloor: 0.5,
+    combatSkill: 0.6,
+    combatEquipment: 0.2,
+    combatControl: 0.2,
+    paceConserve: 0.6,
+    paceMaintain: 0.85,
+    pacePush: 0.95,
+    paceSprint: 1,
+    safeCornerFraction: 0.95
+  });
+  var integers = /* @__PURE__ */ new Set([
+    "maxSubevents",
+    "laps",
+    "lanes",
+    "straightTiles",
+    "turnTiles",
+    "gridGap",
+    "exitTiles"
+  ]);
+  function config(overrides = {}) {
+    if (!overrides || typeof overrides !== "object" || Array.isArray(overrides))
+      throw new Error("Configuration must be an object");
+    for (const k of Object.keys(overrides))
+      if (!Object.hasOwn(defaults, k) && k !== "tuning")
+        throw new Error(`Unknown configuration field: ${k}`);
+    const tuning = { ...tuningDefaults, ...overrides.tuning };
+    if (overrides.tuning !== void 0 && (!overrides.tuning || typeof overrides.tuning !== "object" || Array.isArray(overrides.tuning)))
+      throw new Error("Invalid tuning object");
+    for (const [k, v] of Object.entries(tuning))
+      if (!Object.hasOwn(tuningDefaults, k) || !Number.isFinite(v) || v < 0 || v > 2)
+        throw new Error(`Invalid tuning.${k}: expected 0..2`);
+    if (tuning.crowdSensitivity > 1 || tuning.impairment > 1 || tuning.chariotSpeedFloor > 1 || tuning.coordinationMin > tuning.coordinationMax)
+      throw new Error("Invalid tuning limits");
+    for (const group of [
+      [
+        "handlingAgility",
+        "handlingManeuverability",
+        "handlingDriving",
+        "handlingStability"
+      ],
+      [
+        "controlDiscipline",
+        "controlDriving",
+        "controlHandling",
+        "controlStability"
+      ],
+      ["combatSkill", "combatEquipment", "combatControl"]
+    ])
+      if (Math.abs(group.reduce((sum, k) => sum + tuning[k], 0) - 1) > 1e-9)
+        throw new Error("Tuning weight group must sum to 1");
+    const c = { ...defaults, ...overrides, tuning: Object.freeze(tuning) };
+    if (c.schema !== 1) throw new Error("Unsupported configuration schema");
+    for (const [k, [lo, hi]] of Object.entries(rules)) {
+      if (!Number.isFinite(c[k]) || c[k] < lo || c[k] > hi || integers.has(k) && !Number.isInteger(c[k]))
+        throw new Error(
+          `Invalid ${k}: expected ${lo}..${hi}${integers.has(k) ? " integer" : ""}`
+        );
     }
-    return sum;
+    if (c.exitTiles >= c.straightTiles - Math.floor(c.straightTiles / 2))
+      throw new Error("Exit must fit inside first straight");
+    if (c.epsilon >= c.dt / 1e3)
+      throw new Error("Event epsilon too large for tick");
+    return Object.freeze(c);
   }
 
   // src/model/payroll-control.js
@@ -867,150 +984,6 @@
     validatePayrollContext(context);
     if (context === void 0 || context.multiplier === 1) return derived;
     return { ...derived, control: clamp(derived.control * context.multiplier, 0, 100) };
-  }
-
-  // src/events/events.js
-  function emit(s, type, participants = [], effects = {}) {
-    const event = {
-      id: s.events.length + 1,
-      type,
-      time: s.time,
-      tick: s.tick,
-      fraction: (s.time - s.tick * s.config.dt) / s.config.dt,
-      participants: [...participants].sort(),
-      effects: structuredClone(effects)
-    };
-    s.events.push(event);
-    return event;
-  }
-
-  // src/ai/signs.js
-  var signs = [
-    "Push the Pace",
-    "Conserve Strength",
-    "Seek Open Track",
-    "Race Defensively",
-    "Engage Rivals",
-    "Hold Position"
-  ];
-  function signCommand(s, cmd) {
-    const r = s.entrants.find((r2) => r2.id === s.playerId);
-    const reject = (reason) => {
-      emit(s, "SIGN_REJECTED", [s.playerId], { reason });
-      return false;
-    };
-    if (!r || r.status !== "Racing") return reject("Player is not racing");
-    if (cmd.action === "queue") {
-      if (!signs.includes(cmd.sign) || cmd.sign === "Engage Rivals" && s.format === "Pure")
-        return reject("Sign illegal for format");
-      if (!r.signs.remaining) return reject("No sign uses remaining");
-      r.signs.remaining--;
-      r.signs.pending = cmd.sign;
-      emit(s, "SIGN_QUEUED", [r.id], {
-        sign: cmd.sign,
-        remaining: r.signs.remaining
-      });
-    } else if (cmd.action === "cancel") {
-      r.signs.pending = null;
-      emit(s, "SIGN_CANCELED", [r.id], { remaining: r.signs.remaining });
-    } else if (cmd.action === "lower") {
-      r.signs.active = null;
-      r.ai.nextDecision = s.tick;
-      emit(s, "SIGN_LOWERED", [r.id]);
-    } else return reject("Unknown sign action");
-    return true;
-  }
-  function activateSign(s, r) {
-    if (r.status !== "Racing" || !r.signs.pending) return;
-    r.signs.active = r.signs.pending;
-    r.signs.pending = null;
-    r.ai.nextDecision = s.tick;
-    emit(s, "SIGN_ACTIVATED", [r.id], { sign: r.signs.active });
-  }
-  function signPreference(sign, action, c) {
-    if (sign === "Push the Pace")
-      return ["Push", "Sprint"].includes(action) ? c.signPush : 0;
-    if (sign === "Conserve Strength")
-      return action === "Conserve" ? c.signConserve : 0;
-    if (sign === "Seek Open Track")
-      return ["inward", "outward", "overtake"].includes(action) ? c.signOpen : 0;
-    if (sign === "Race Defensively")
-      return [
-        "Conserve",
-        "avoid",
-        "yield",
-        "hold",
-        "defendCombat",
-        "disengage"
-      ].includes(action) ? c.signDefensive : 0;
-    if (sign === "Hold Position")
-      return ["hold", "defend", "Maintain"].includes(action) ? c.signHold : 0;
-    if (sign === "Engage Rivals")
-      return ["attack", "ram"].includes(action) ? c.signEngage : 0;
-    return 0;
-  }
-
-  // src/ai/telemetry.js
-  function compliance(d, tuning) {
-    if (!d.sign) return null;
-    if (!d.candidates.some((x) => signPreference(d.sign, x.action, tuning) > 0))
-      return "Inapplicable";
-    if (d.executionError || d.stressError) return "Prevented";
-    const pacePreferred = signPreference(d.sign, d.effective.pace, tuning) > 0;
-    const positionPreferred = signPreference(d.sign, d.effective.position, tuning) > 0;
-    const paceApplied = d.physicalOutcome.pace.status === "Applied" && !(d.sign === "Push the Pace" && d.physicalOutcome.movement.status === "Blocked");
-    const positionStatus = d.physicalOutcome.position.status;
-    if (["Push the Pace", "Conserve Strength"].includes(d.sign))
-      return pacePreferred ? paceApplied ? "Followed" : "Prevented" : "Overridden";
-    if (positionPreferred && positionStatus === "Pending") return null;
-    const paceFollowed = pacePreferred && paceApplied;
-    const positionFollowed = positionPreferred && positionStatus === "Succeeded";
-    if (positionFollowed) return "Followed";
-    if (paceFollowed) return "Partially Followed";
-    if (positionPreferred && positionStatus === "Prevented" || pacePreferred && !paceApplied)
-      return "Prevented";
-    return "Overridden";
-  }
-  function beginDecision(s, r, diagnostic, failed, position) {
-    const pending = !failed && (position?.lane != null || ["attack", "ram"].includes(position?.action));
-    const action = failed ? null : position?.action ?? null;
-    const paceApplied = !failed && r.control !== "Out of Control";
-    r.ai.diagnostics = {
-      ...diagnostic,
-      decisionId: s.events.length + 1,
-      sign: r.signs.active,
-      intended: { ...diagnostic.chosen, lane: position?.lane ?? null, target: position?.target ?? null },
-      effective: { pace: failed ? null : r.pace, position: action, lane: failed ? null : position?.lane ?? null, target: failed ? null : position?.target ?? null },
-      executed: { pace: paceApplied ? r.pace : null, position: pending ? null : action },
-      physicalOutcome: {
-        pace: { action: r.pace, status: paceApplied ? "Applied" : "Prevented", reason: failed ? "Driver error" : paceApplied ? null : "Out of control" },
-        position: { action, status: failed ? "Prevented" : pending ? "Pending" : "Succeeded", lane: r.lane, reason: failed ? "Driver error" : null },
-        movement: { status: r.blocked ? "Blocked" : "Not evaluated" }
-      }
-    };
-    r.ai.diagnostics.compliance = compliance(r.ai.diagnostics, s.autonomous);
-    emit(s, "AI_DECISION", [r.id], r.ai.diagnostics);
-    return r.ai.diagnostics.decisionId;
-  }
-  function resolveAction(s, r, decisionId, domain, succeeded, reason = null, details = {}) {
-    const d = r?.ai.diagnostics;
-    if (!d || decisionId == null || d.decisionId !== decisionId) return;
-    const outcome = domain === "movement" ? { status: succeeded ? "Moving" : "Blocked", reason, ...details } : { ...d.physicalOutcome[domain], status: succeeded ? domain === "pace" ? "Applied" : "Succeeded" : "Prevented", reason, ...details };
-    d.physicalOutcome[domain] = outcome;
-    if (domain === "pace") d.executed.pace = succeeded ? d.effective.pace : null;
-    if (domain === "position") d.executed.position = succeeded ? d.effective.position : null;
-    d.compliance = compliance(d, s.autonomous);
-    if (reason) d.reason = reason;
-    emit(s, "AI_EXECUTION_RESULT", [r.id], {
-      decisionId: d.decisionId,
-      sign: d.sign,
-      domain,
-      effective: d.effective,
-      executed: d.executed,
-      physicalOutcome: d.physicalOutcome,
-      compliance: d.compliance,
-      reason: d.reason
-    });
   }
 
   // src/track/surfaces.js
@@ -1259,6 +1232,150 @@
   }
   function finishQ(s) {
     return s.track.course && !s.track.closed ? s.track.cells : s.config.laps * s.track.cells;
+  }
+
+  // src/events/events.js
+  function emit(s, type, participants = [], effects = {}) {
+    const event = {
+      id: s.events.length + 1,
+      type,
+      time: s.time,
+      tick: s.tick,
+      fraction: (s.time - s.tick * s.config.dt) / s.config.dt,
+      participants: [...participants].sort(),
+      effects: structuredClone(effects)
+    };
+    s.events.push(event);
+    return event;
+  }
+
+  // src/ai/signs.js
+  var signs = [
+    "Push the Pace",
+    "Conserve Strength",
+    "Seek Open Track",
+    "Race Defensively",
+    "Engage Rivals",
+    "Hold Position"
+  ];
+  function signCommand(s, cmd) {
+    const r = s.entrants.find((r2) => r2.id === s.playerId);
+    const reject = (reason) => {
+      emit(s, "SIGN_REJECTED", [s.playerId], { reason });
+      return false;
+    };
+    if (!r || r.status !== "Racing") return reject("Player is not racing");
+    if (cmd.action === "queue") {
+      if (!signs.includes(cmd.sign) || cmd.sign === "Engage Rivals" && s.format === "Pure")
+        return reject("Sign illegal for format");
+      if (!r.signs.remaining) return reject("No sign uses remaining");
+      r.signs.remaining--;
+      r.signs.pending = cmd.sign;
+      emit(s, "SIGN_QUEUED", [r.id], {
+        sign: cmd.sign,
+        remaining: r.signs.remaining
+      });
+    } else if (cmd.action === "cancel") {
+      r.signs.pending = null;
+      emit(s, "SIGN_CANCELED", [r.id], { remaining: r.signs.remaining });
+    } else if (cmd.action === "lower") {
+      r.signs.active = null;
+      r.ai.nextDecision = s.tick;
+      emit(s, "SIGN_LOWERED", [r.id]);
+    } else return reject("Unknown sign action");
+    return true;
+  }
+  function activateSign(s, r) {
+    if (r.status !== "Racing" || !r.signs.pending) return;
+    r.signs.active = r.signs.pending;
+    r.signs.pending = null;
+    r.ai.nextDecision = s.tick;
+    emit(s, "SIGN_ACTIVATED", [r.id], { sign: r.signs.active });
+  }
+  function signPreference(sign, action, c) {
+    if (sign === "Push the Pace")
+      return ["Push", "Sprint"].includes(action) ? c.signPush : 0;
+    if (sign === "Conserve Strength")
+      return action === "Conserve" ? c.signConserve : 0;
+    if (sign === "Seek Open Track")
+      return ["inward", "outward", "overtake"].includes(action) ? c.signOpen : 0;
+    if (sign === "Race Defensively")
+      return [
+        "Conserve",
+        "avoid",
+        "yield",
+        "hold",
+        "defendCombat",
+        "disengage"
+      ].includes(action) ? c.signDefensive : 0;
+    if (sign === "Hold Position")
+      return ["hold", "defend", "Maintain"].includes(action) ? c.signHold : 0;
+    if (sign === "Engage Rivals")
+      return ["attack", "ram"].includes(action) ? c.signEngage : 0;
+    return 0;
+  }
+
+  // src/ai/telemetry.js
+  function compliance(d, tuning) {
+    if (!d.sign) return null;
+    if (!d.candidates.some((x) => signPreference(d.sign, x.action, tuning) > 0))
+      return "Inapplicable";
+    if (d.executionError || d.stressError) return "Prevented";
+    const pacePreferred = signPreference(d.sign, d.effective.pace, tuning) > 0;
+    const positionPreferred = signPreference(d.sign, d.effective.position, tuning) > 0;
+    const paceApplied = d.physicalOutcome.pace.status === "Applied" && !(d.sign === "Push the Pace" && d.physicalOutcome.movement.status === "Blocked");
+    const positionStatus = d.physicalOutcome.position.status;
+    if (["Push the Pace", "Conserve Strength"].includes(d.sign))
+      return pacePreferred ? paceApplied ? "Followed" : "Prevented" : "Overridden";
+    if (positionPreferred && positionStatus === "Pending") return null;
+    const paceFollowed = pacePreferred && paceApplied;
+    const positionFollowed = positionPreferred && positionStatus === "Succeeded";
+    if (positionFollowed) return "Followed";
+    if (paceFollowed) return "Partially Followed";
+    if (positionPreferred && positionStatus === "Prevented" || pacePreferred && !paceApplied)
+      return "Prevented";
+    return "Overridden";
+  }
+  function beginDecision(s, r, diagnostic, failed, position) {
+    const pending = !failed && (position?.lane != null || ["attack", "ram"].includes(position?.action));
+    const action = failed ? null : position?.action ?? null;
+    const paceApplied = !failed && r.control !== "Out of Control";
+    r.ai.diagnostics = {
+      ...diagnostic,
+      decisionId: s.events.length + 1,
+      sign: r.signs.active,
+      intended: { ...diagnostic.chosen, lane: position?.lane ?? null, target: position?.target ?? null },
+      effective: { pace: failed ? null : r.pace, position: action, lane: failed ? null : position?.lane ?? null, target: failed ? null : position?.target ?? null },
+      executed: { pace: paceApplied ? r.pace : null, position: pending ? null : action },
+      physicalOutcome: {
+        pace: { action: r.pace, status: paceApplied ? "Applied" : "Prevented", reason: failed ? "Driver error" : paceApplied ? null : "Out of control" },
+        position: { action, status: failed ? "Prevented" : pending ? "Pending" : "Succeeded", lane: r.lane, reason: failed ? "Driver error" : null },
+        movement: { status: r.blocked ? "Blocked" : "Not evaluated" }
+      }
+    };
+    r.ai.diagnostics.compliance = compliance(r.ai.diagnostics, s.autonomous);
+    emit(s, "AI_DECISION", [r.id], r.ai.diagnostics);
+    return r.ai.diagnostics.decisionId;
+  }
+  function resolveAction(s, r, decisionId, domain, succeeded, reason = null, details = {}) {
+    const d = r?.ai.diagnostics;
+    if (!d || decisionId == null || d.decisionId !== decisionId) return;
+    const outcome = domain === "movement" ? { status: succeeded ? "Moving" : "Blocked", reason, ...details } : { ...d.physicalOutcome[domain], status: succeeded ? domain === "pace" ? "Applied" : "Succeeded" : "Prevented", reason, ...details };
+    d.physicalOutcome[domain] = outcome;
+    if (domain === "pace") d.executed.pace = succeeded ? d.effective.pace : null;
+    if (domain === "position") d.executed.position = succeeded ? d.effective.position : null;
+    d.compliance = compliance(d, s.autonomous);
+    if (reason) d.reason = reason;
+    emit(s, "AI_EXECUTION_RESULT", [r.id], {
+      decisionId: d.decisionId,
+      sign: d.sign,
+      domain,
+      effective: d.effective,
+      executed: d.executed,
+      physicalOutcome: d.physicalOutcome,
+      compliance: d.compliance,
+      reason: d.reason
+    });
   }
 
   // src/sim/consequences.js
@@ -1775,162 +1892,6 @@
   }
   function rescheduleIncidents(s) {
     s.nextIncidentAt = nextRandom(s);
-  }
-
-  // src/config/config.js
-  var VERSION = "0.6.0-tracks";
-  var rules = {
-    dt: [1e-3, 1, "s"],
-    epsilon: [1e-12, 1e-7, "s"],
-    positionEpsilon: [1e-10, 1e-5, "tile"],
-    maxSubevents: [1, 1e4, "groups/tick"],
-    laps: [1, 100, "laps"],
-    lanes: [1, 8, "lanes"],
-    straightLength: [1, 2e3, "m"],
-    innerRadius: [2, 500, "m"],
-    laneWidth: [1, 10, "m"],
-    straightTiles: [2, 200, "tiles/straight"],
-    turnTiles: [2, 200, "tiles/turn"],
-    gridGap: [1, 10, "tiles"],
-    gridOffset: [0.05, 0.95, "tile"],
-    grip: [0.1, 2, "multiplier"],
-    speedReference: [1, 100, "m/s"],
-    accelerationReference: [0.1, 30, "m/s\xB2"],
-    accelerationLimit: [0.1, 50, "m/s\xB2"],
-    brakingReference: [0.1, 50, "m/s\xB2"],
-    lateralReference: [0.1, 30, "m/s\xB2"],
-    referenceMass: [1, 5e3, "kg"],
-    referencePower: [1, 1e3, "score"],
-    driverMass: [1, 300, "kg"],
-    beastLoadMass: [0, 1e3, "kg/beast"],
-    bottleneck: [0, 1, "weight"],
-    mismatchWeight: [0, 0.5, "weight"],
-    attributeStrength: [0, 1.8, "strength"],
-    cornerRisk: [0, 10, "risk coefficient"],
-    cornerSpeedLoss: [0, 0.9, "fraction"],
-    clearSpeed: [1, 50, "m/s"],
-    exitTiles: [1, 10, "tiles after line"],
-    finishTolerance: [0, 0.1, "s"],
-    maxRaceTime: [1, 2e4, "s"],
-    stallTime: [1, 1e3, "s"]
-  };
-  var defaults = {
-    schema: 1,
-    dt: 0.05,
-    epsilon: 1e-9,
-    positionEpsilon: 1e-8,
-    maxSubevents: 1024,
-    laps: 3,
-    lanes: 4,
-    straightLength: 160,
-    innerRadius: 35,
-    laneWidth: 4,
-    straightTiles: 20,
-    turnTiles: 20,
-    gridGap: 2,
-    gridOffset: 0.5,
-    grip: 1,
-    speedReference: 18,
-    accelerationReference: 3,
-    accelerationLimit: 8,
-    brakingReference: 6,
-    lateralReference: 5,
-    referenceMass: 300,
-    referencePower: 100,
-    driverMass: 75,
-    beastLoadMass: 10,
-    bottleneck: 0.3,
-    mismatchWeight: 0.12,
-    attributeStrength: 0.8,
-    cornerRisk: 0.4,
-    cornerSpeedLoss: 0.25,
-    clearSpeed: 10,
-    exitTiles: 3,
-    finishTolerance: 1e-3,
-    maxRaceTime: 1200,
-    stallTime: 20
-  };
-  var tuningDefaults = Object.freeze({
-    crowdSensitivity: 0.2,
-    coordinationBase: 0.65,
-    coordinationDiscipline: 0.25,
-    coordinationHandling: 0.2,
-    coordinationMin: 0.5,
-    coordinationMax: 1.1,
-    impairment: 0.5,
-    handlingAgility: 0.35,
-    handlingManeuverability: 0.25,
-    handlingDriving: 0.25,
-    handlingStability: 0.15,
-    controlDiscipline: 0.3,
-    controlDriving: 0.25,
-    controlHandling: 0.25,
-    controlStability: 0.2,
-    massExponent: 0.5,
-    speedMassExponent: 0.25,
-    chariotSpeedFloor: 0.5,
-    combatSkill: 0.6,
-    combatEquipment: 0.2,
-    combatControl: 0.2,
-    paceConserve: 0.6,
-    paceMaintain: 0.85,
-    pacePush: 0.95,
-    paceSprint: 1,
-    safeCornerFraction: 0.95
-  });
-  var integers = /* @__PURE__ */ new Set([
-    "maxSubevents",
-    "laps",
-    "lanes",
-    "straightTiles",
-    "turnTiles",
-    "gridGap",
-    "exitTiles"
-  ]);
-  function config(overrides = {}) {
-    if (!overrides || typeof overrides !== "object" || Array.isArray(overrides))
-      throw new Error("Configuration must be an object");
-    for (const k of Object.keys(overrides))
-      if (!Object.hasOwn(defaults, k) && k !== "tuning")
-        throw new Error(`Unknown configuration field: ${k}`);
-    const tuning = { ...tuningDefaults, ...overrides.tuning };
-    if (overrides.tuning !== void 0 && (!overrides.tuning || typeof overrides.tuning !== "object" || Array.isArray(overrides.tuning)))
-      throw new Error("Invalid tuning object");
-    for (const [k, v] of Object.entries(tuning))
-      if (!Object.hasOwn(tuningDefaults, k) || !Number.isFinite(v) || v < 0 || v > 2)
-        throw new Error(`Invalid tuning.${k}: expected 0..2`);
-    if (tuning.crowdSensitivity > 1 || tuning.impairment > 1 || tuning.chariotSpeedFloor > 1 || tuning.coordinationMin > tuning.coordinationMax)
-      throw new Error("Invalid tuning limits");
-    for (const group of [
-      [
-        "handlingAgility",
-        "handlingManeuverability",
-        "handlingDriving",
-        "handlingStability"
-      ],
-      [
-        "controlDiscipline",
-        "controlDriving",
-        "controlHandling",
-        "controlStability"
-      ],
-      ["combatSkill", "combatEquipment", "combatControl"]
-    ])
-      if (Math.abs(group.reduce((sum, k) => sum + tuning[k], 0) - 1) > 1e-9)
-        throw new Error("Tuning weight group must sum to 1");
-    const c = { ...defaults, ...overrides, tuning: Object.freeze(tuning) };
-    if (c.schema !== 1) throw new Error("Unsupported configuration schema");
-    for (const [k, [lo, hi]] of Object.entries(rules)) {
-      if (!Number.isFinite(c[k]) || c[k] < lo || c[k] > hi || integers.has(k) && !Number.isInteger(c[k]))
-        throw new Error(
-          `Invalid ${k}: expected ${lo}..${hi}${integers.has(k) ? " integer" : ""}`
-        );
-    }
-    if (c.exitTiles >= c.straightTiles - Math.floor(c.straightTiles / 2))
-      throw new Error("Exit must fit inside first straight");
-    if (c.epsilon >= c.dt / 1e3)
-      throw new Error("Event epsilon too large for tick");
-    return Object.freeze(c);
   }
 
   // src/ai/weights.js
@@ -2787,6 +2748,253 @@
       }), r.payrollContext);
       r.ai.nextDecision = s.tick;
     }
+  }
+
+  // src/dev/configuration.js
+  var fields = /* @__PURE__ */ new Set([
+    "course",
+    "seed",
+    "overrides",
+    "entrants",
+    "format",
+    "driverMode",
+    "weather",
+    "autonomous",
+    "playerId",
+    "surfaces",
+    "consequences",
+    "consequence",
+    "scheduledIncidents",
+    "checkpointInterval",
+    "environmentOverrides"
+  ]);
+  function configuration(setup) {
+    if (!setup || typeof setup !== "object" || Array.isArray(setup) || Object.keys(setup).some((k) => !fields.has(k)))
+      throw new Error("Invalid setup fields");
+    const s = createRace(setup);
+    return {
+      kind: "BNT-configuration",
+      schema: 1,
+      version: VERSION,
+      setup: structuredClone(s.setup)
+    };
+  }
+  function parseConfiguration(text2) {
+    const doc = JSON.parse(text2);
+    if (doc.kind !== "BNT-configuration" || doc.schema !== 1 || doc.version !== VERSION && doc.version !== "0.5.0-courses" && !(doc.version === "0.4.3-combat-ai" && (!doc.setup?.course || doc.setup.course === "oval")))
+      throw new Error("Unsupported configuration version");
+    return configuration(doc.setup);
+  }
+  function editConfiguration(doc, { id: id2, path, value }) {
+    const next = structuredClone(doc);
+    let count = 0;
+    for (const e of next.setup.entrants)
+      if ((id2 === "all" || e.ru.id === id2) && (id2 !== "all" || supportsPath(e.ru, path))) {
+        e.ru = editRU(e.ru, path, value).ru;
+        count++;
+      }
+    if (!count) throw new Error("No eligible components");
+    return configuration(next.setup);
+  }
+  function saveConfiguration(storage, doc) {
+    const valid = configuration(doc.setup);
+    try {
+      storage.setItem("bnt.configuration.v1", JSON.stringify(valid));
+      return { ok: true };
+    } catch (e) {
+      return {
+        ok: false,
+        message: `Storage unavailable: ${e.message}. Use export instead.`
+      };
+    }
+  }
+  function loadConfiguration(storage) {
+    let text2;
+    try {
+      text2 = storage.getItem("bnt.configuration.v1");
+    } catch (e) {
+      throw new Error(`Storage unavailable: ${e.message}`);
+    }
+    if (!text2) throw new Error("No saved configuration");
+    return parseConfiguration(text2);
+  }
+
+  // src/career/legacy-state.js
+  var CAREER_SCHEMA = 1;
+  var MAX_RECEIPTS = 1e3;
+  var MAX_MARKS = 2e3;
+  var TYPE = "developer.treasury.adjust";
+  var idPattern = /^[a-zA-Z0-9_-]{1,64}$/;
+  function id(value) {
+    if (typeof value !== "string" || !idPattern.test(value) || ["__proto__", "constructor", "prototype", "all"].includes(value)) throw Error("Invalid persistent ID");
+  }
+  function exact(value, fields2, label = "object") {
+    if (!value || typeof value !== "object" || Array.isArray(value) || ![Object.prototype, null].includes(Object.getPrototypeOf(value)) || Object.keys(value).length !== fields2.length || fields2.some((k) => !Object.hasOwn(value, k))) throw Error("Invalid " + label + " fields");
+  }
+  function text(value, max = 100) {
+    if (typeof value !== "string" || !value.trim() || value.length > max) throw Error("Invalid text");
+  }
+  function integer(value, min = 0) {
+    if (!Number.isSafeInteger(value) || value < min) throw Error("Invalid financial/revision integer");
+  }
+  function validateMark(mark) {
+    exact(mark, ["id", "profileId", "careerId", "type", "reason", "delta", "revision"], "provenance");
+    for (const key3 of ["id", "profileId", "careerId"]) id(mark[key3]);
+    if (mark.type !== TYPE || !Number.isSafeInteger(mark.delta)) throw Error("Unsupported developer provenance");
+    integer(mark.revision, 1);
+    text(mark.reason, 500);
+  }
+  function mergeMarks(...lists) {
+    const marks = /* @__PURE__ */ new Map();
+    for (const mark of lists.flat()) {
+      validateMark(mark);
+      if (marks.has(mark.id) && canonical(marks.get(mark.id)) !== canonical(mark)) throw Error("Conflicting transaction provenance ID");
+      marks.set(mark.id, structuredClone(mark));
+    }
+    const owners = /* @__PURE__ */ new Map();
+    for (const mark of marks.values()) {
+      if (owners.has(mark.careerId) && owners.get(mark.careerId) !== mark.profileId) throw Error("Conflicting career ownership provenance");
+      owners.set(mark.careerId, mark.profileId);
+    }
+    if (marks.size > MAX_MARKS) throw Error("Provenance limit reached; no records were discarded");
+    return [...marks.values()].sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+  }
+  function validateTransaction(tx) {
+    exact(tx, ["id", "profileId", "careerId", "expectedRevision", "type", "delta", "reason"], "transaction");
+    for (const key3 of ["id", "profileId", "careerId"]) id(tx[key3]);
+    integer(tx.expectedRevision);
+    text(tx.reason, 500);
+    if (tx.type !== TYPE || !Number.isSafeInteger(tx.delta)) throw Error("Unsupported transaction or invalid treasury adjustment");
+  }
+  function transactionMark(tx) {
+    return { id: tx.id, profileId: tx.profileId, careerId: tx.careerId, type: tx.type, reason: tx.reason, delta: tx.delta, revision: tx.expectedRevision + 1 };
+  }
+  function validateState(state2) {
+    exact(state2, ["kind", "schema", "revision", "profile", "career", "pendingRace", "transactions", "provenance"], "career state");
+    if (state2.kind !== "BNT-career-state" || state2.schema !== CAREER_SCHEMA) throw Error("Unsupported career state schema");
+    integer(state2.revision);
+    exact(state2.profile, ["id", "name", "legacy", "developerEdited"], "Owner Profile");
+    exact(state2.profile.legacy, ["records"], "Owner Legacy");
+    if (!Array.isArray(state2.profile.legacy.records) || state2.profile.legacy.records.length) throw Error("Owner Legacy progression is not supported by M1");
+    exact(state2.career, ["id", "ownerProfileId", "name", "status", "treasury", "developerEdited"], "Career State");
+    id(state2.profile.id);
+    id(state2.career.id);
+    id(state2.career.ownerProfileId);
+    text(state2.profile.name);
+    text(state2.career.name);
+    integer(state2.career.treasury);
+    if (state2.profile.id === state2.career.id || state2.career.ownerProfileId !== state2.profile.id || state2.career.status !== "Foundation") throw Error("Invalid career ownership/status reference");
+    if (!Array.isArray(state2.transactions) || state2.transactions.length > MAX_RECEIPTS || state2.revision !== state2.transactions.length || !Array.isArray(state2.provenance) || state2.provenance.length > MAX_MARKS) throw Error("Invalid transaction history");
+    const marks = mergeMarks(state2.provenance), seen = /* @__PURE__ */ new Set();
+    if (marks.length !== state2.provenance.length) throw Error("Duplicate provenance");
+    for (const mark of marks) if (mark.profileId !== state2.profile.id) throw Error("Invalid provenance entity reference");
+    let balance = 0n;
+    for (const [index, receipt] of state2.transactions.entries()) {
+      exact(receipt, ["transaction", "resultRevision", "balanceAfter"], "receipt");
+      const tx = receipt.transaction;
+      validateTransaction(tx);
+      if (seen.has(tx.id) || tx.profileId !== state2.profile.id || tx.careerId !== state2.career.id || tx.expectedRevision !== index || receipt.resultRevision !== index + 1) throw Error("Invalid receipt ID/revision/reference");
+      seen.add(tx.id);
+      balance += BigInt(tx.delta);
+      if (balance < 0n || balance > BigInt(Number.MAX_SAFE_INTEGER) || receipt.balanceAfter !== Number(balance)) throw Error("Inconsistent treasury ledger");
+      if (!marks.some((m) => canonical(m) === canonical(transactionMark(tx)))) throw Error("Missing developer provenance");
+    }
+    if (Number(balance) !== state2.career.treasury || state2.profile.developerEdited !== Boolean(marks.length) || state2.career.developerEdited !== marks.some((m) => m.careerId === state2.career.id)) throw Error("Inconsistent financial/developer-edited state");
+    if (state2.pendingRace !== null) {
+      const p = state2.pendingRace;
+      exact(p, ["id", "careerId", "engineVersion", "setup"], "pending race checkpoint");
+      id(p.id);
+      id(p.careerId);
+      if (p.id === state2.career.id || p.id === state2.profile.id || p.careerId !== state2.career.id || p.engineVersion !== VERSION) throw Error("Incompatible pending race version/reference");
+      const normalized = configuration(p.setup).setup;
+      if (canonical(normalized) !== canonical(p.setup)) throw Error("Pending race requires a complete normalized starting configuration");
+    }
+    return state2;
+  }
+  function withProvenance(state2, knownMarks) {
+    const next = structuredClone(validateState(state2));
+    if (knownMarks.some((m) => m.careerId === next.career.id && m.profileId !== next.profile.id)) throw Error("Career provenance belongs to a different Owner Profile");
+    next.provenance = mergeMarks(next.provenance, knownMarks.filter((m) => m.profileId === next.profile.id));
+    next.profile.developerEdited = Boolean(next.provenance.length);
+    next.career.developerEdited = next.provenance.some((m) => m.careerId === next.career.id);
+    return validateState(next);
+  }
+  function createCareer({ profileId, careerId, ownerName = "Owner", careerName = "M1 Foundation", pendingRace = null }) {
+    return validateState({
+      kind: "BNT-career-state",
+      schema: CAREER_SCHEMA,
+      revision: 0,
+      profile: { id: profileId, name: ownerName, legacy: { records: [] }, developerEdited: false },
+      career: { id: careerId, ownerProfileId: profileId, name: careerName, status: "Foundation", treasury: 0, developerEdited: false },
+      pendingRace: structuredClone(pendingRace),
+      transactions: [],
+      provenance: []
+    });
+  }
+  function transact(state2, transaction) {
+    validateState(state2);
+    validateTransaction(transaction);
+    if (transaction.profileId !== state2.profile.id || transaction.careerId !== state2.career.id) throw Error("Transaction entity reference mismatch");
+    const previous2 = state2.transactions.find((r) => r.transaction.id === transaction.id);
+    if (previous2) {
+      if (canonical(previous2.transaction) !== canonical(transaction)) throw Error("Conflicting transaction ID");
+      return { state: structuredClone(state2), duplicate: true, receipt: structuredClone(previous2) };
+    }
+    if (state2.provenance.some((m) => m.id === transaction.id)) throw Error("Transaction ID belongs to a previous imported/recovered timeline");
+    if (transaction.expectedRevision !== state2.revision) throw Error("Stale career revision");
+    if (state2.transactions.length >= MAX_RECEIPTS) throw Error("Transaction limit reached; no receipts were pruned");
+    const balance = BigInt(state2.career.treasury) + BigInt(transaction.delta);
+    if (balance < 0n || balance > BigInt(Number.MAX_SAFE_INTEGER)) throw Error("Treasury must be a nonnegative safe integer");
+    const next = structuredClone(state2), receipt = { transaction: structuredClone(transaction), resultRevision: state2.revision + 1, balanceAfter: Number(balance) };
+    next.revision++;
+    next.career.treasury = Number(balance);
+    next.transactions.push(receipt);
+    next.provenance = mergeMarks(next.provenance, [transactionMark(transaction)]);
+    next.profile.developerEdited = next.career.developerEdited = true;
+    validateState(next);
+    return { state: next, duplicate: false, receipt: structuredClone(receipt) };
+  }
+
+  // src/ai/coaching.js
+  var coachingAxes = Object.freeze(["aggression", "conservation", "positioning", "riskTolerance"]);
+  var coachingDefaults = Object.freeze({ aggression: 0.5, conservation: 0.5, positioning: 0.5, riskTolerance: 0.5 });
+  function validateCoaching(c) {
+    if (c === void 0 || c === null) return;
+    exact(c, ["version", "axes", "weights"]);
+    if (c.version !== 1) throw Error("Unsupported coaching version");
+    exact(c.axes, coachingAxes);
+    exact(c.weights, coachingAxes);
+    for (const k of coachingAxes) if (!Number.isFinite(c.axes[k]) || c.axes[k] < -1 || c.axes[k] > 1 || !Number.isFinite(c.weights[k]) || c.weights[k] < 0 || c.weights[k] > 2) throw Error("Coaching values outside bounded contract");
+  }
+  function coachingProfile(axes = {}) {
+    const c = { version: 1, axes: Object.fromEntries(coachingAxes.map((k) => [k, axes[k] ?? 0])), weights: { ...coachingDefaults } };
+    validateCoaching(c);
+    return c;
+  }
+  var preference = {
+    aggression: { attack: 1, ram: 1, defendCombat: -1, disengage: -1 },
+    conservation: { Conserve: 1, Push: -1, Sprint: -1 },
+    positioning: { inward: 1, outward: 1, overtake: 1, hold: -1, defend: -1 },
+    riskTolerance: { Sprint: 1, Push: 1, ram: 1, inward: 1, outward: 1, Conserve: -1, avoid: -1, yield: -1, defendCombat: -1 }
+  };
+  var conflicts = {
+    "Push the Pace": { conservation: 1, riskTolerance: -1 },
+    "Conserve Strength": { conservation: -1, riskTolerance: 1 },
+    "Seek Open Track": { positioning: -1 },
+    "Race Defensively": { aggression: 1, conservation: -1, riskTolerance: 1 },
+    "Engage Rivals": { aggression: -1, riskTolerance: -1 },
+    "Hold Position": { positioning: 1, riskTolerance: 1 }
+  };
+  function coachingUtility(c, action, sign) {
+    validateCoaching(c);
+    if (!c) return 0;
+    let sum = 0;
+    for (const k of coachingAxes) {
+      const axis = c.axes[k];
+      if (conflicts[sign]?.[k] === Math.sign(axis)) continue;
+      sum += axis * c.weights[k] * (preference[k][action] ?? 0);
+    }
+    return sum;
   }
 
   // src/sim/kinematics.js
@@ -3754,245 +3962,67 @@
     if (s.championshipContext && r.status === "Racing" && r.progressEvidence.progress !== r.q) r.progressEvidence = { version: 1, progress: r.q, firstTime: s.time, firstTick: s.tick };
   }
 
-  // src/dev/configuration.js
-  var fields = /* @__PURE__ */ new Set([
-    "course",
-    "seed",
-    "overrides",
-    "entrants",
-    "format",
-    "driverMode",
-    "weather",
-    "autonomous",
-    "playerId",
-    "surfaces",
-    "consequences",
-    "consequence",
-    "scheduledIncidents",
-    "checkpointInterval",
-    "environmentOverrides"
-  ]);
-  function configuration(setup) {
-    if (!setup || typeof setup !== "object" || Array.isArray(setup) || Object.keys(setup).some((k) => !fields.has(k)))
-      throw new Error("Invalid setup fields");
-    const s = createRace(setup);
-    return {
-      kind: "BNT-configuration",
-      schema: 1,
-      version: VERSION,
-      setup: structuredClone(s.setup)
-    };
+  // src/career/economy/arithmetic.js
+  function rational(value) {
+    if (typeof value !== "number" || !Number.isFinite(value)) throw Error("Expected finite decimal number");
+    const [mantissa, exp = "0"] = String(value).toLowerCase().split("e"), negative = mantissa.startsWith("-");
+    const unsigned = mantissa.replace("-", ""), [a, b = ""] = unsigned.split(".");
+    let n = BigInt(a + b) * (negative ? -1n : 1n), d = 10n ** BigInt(b.length), e = Number(exp);
+    if (e >= 0) n *= 10n ** BigInt(e);
+    else d *= 10n ** BigInt(-e);
+    return { n, d };
   }
-  function parseConfiguration(text2) {
-    const doc = JSON.parse(text2);
-    if (doc.kind !== "BNT-configuration" || doc.schema !== 1 || doc.version !== VERSION && doc.version !== "0.5.0-courses" && !(doc.version === "0.4.3-combat-ai" && (!doc.setup?.course || doc.setup.course === "oval")))
-      throw new Error("Unsupported configuration version");
-    return configuration(doc.setup);
+  var R = (x) => typeof x === "number" ? rational(x) : x;
+  function add(a, b) {
+    a = R(a);
+    b = R(b);
+    return { n: a.n * b.d + b.n * a.d, d: a.d * b.d };
   }
-  function editConfiguration(doc, { id: id2, path, value }) {
-    const next = structuredClone(doc);
-    let count = 0;
-    for (const e of next.setup.entrants)
-      if ((id2 === "all" || e.ru.id === id2) && (id2 !== "all" || supportsPath(e.ru, path))) {
-        e.ru = editRU(e.ru, path, value).ru;
-        count++;
-      }
-    if (!count) throw new Error("No eligible components");
-    return configuration(next.setup);
+  function mul(a, b) {
+    a = R(a);
+    b = R(b);
+    return { n: a.n * b.n, d: a.d * b.d };
   }
-  function saveConfiguration(storage, doc) {
-    const valid = configuration(doc.setup);
-    try {
-      storage.setItem("bnt.configuration.v1", JSON.stringify(valid));
-      return { ok: true };
-    } catch (e) {
-      return {
-        ok: false,
-        message: `Storage unavailable: ${e.message}. Use export instead.`
-      };
+  function div(a, b) {
+    a = R(a);
+    b = R(b);
+    if (b.n === 0n) throw Error("Zero divisor");
+    return { n: a.n * b.d, d: a.d * b.n };
+  }
+  function compare(a, b) {
+    a = R(a);
+    b = R(b);
+    const n = a.n * b.d - b.n * a.d;
+    return n < 0n ? -1 : n > 0n ? 1 : 0;
+  }
+  function rounded(value, mode = "half-up", unit = 1) {
+    const x = div(value, unit);
+    if (x.n < 0n || x.d <= 0n) throw Error("Economic rounding requires nonnegative amount");
+    let n = x.n / x.d, rem = x.n % x.d;
+    if (mode === "ceil" && rem > 0n || mode === "half-up" && 2n * rem >= x.d) n++;
+    else if (!["floor", "ceil", "half-up"].includes(mode)) throw Error("Unknown rounding mode");
+    const result = n * BigInt(unit);
+    if (result > BigInt(Number.MAX_SAFE_INTEGER)) throw Error("Economic value exceeds safe integer");
+    return Number(result);
+  }
+  function decimal(x) {
+    x = R(x);
+    const sign = x.n < 0n ? "-" : "";
+    let n = x.n < 0n ? -x.n : x.n;
+    const whole = n / x.d;
+    let rem = n % x.d, tail = "";
+    for (let i = 0; rem && i < 360; i++) {
+      rem *= 10n;
+      tail += (rem / x.d).toString();
+      rem %= x.d;
     }
+    return Number(sign + whole.toString() + (tail ? "." + tail : ""));
   }
-  function loadConfiguration(storage) {
-    let text2;
-    try {
-      text2 = storage.getItem("bnt.configuration.v1");
-    } catch (e) {
-      throw new Error(`Storage unavailable: ${e.message}`);
-    }
-    if (!text2) throw new Error("No saved configuration");
-    return parseConfiguration(text2);
+  function mean(values) {
+    return div(values.reduce((s, v) => add(s, v), rational(0)), values.length);
   }
-
-  // src/career/legacy-state.js
-  var CAREER_SCHEMA = 1;
-  var MAX_RECEIPTS = 1e3;
-  var MAX_MARKS = 2e3;
-  var TYPE = "developer.treasury.adjust";
-  var idPattern = /^[a-zA-Z0-9_-]{1,64}$/;
-  function id(value) {
-    if (typeof value !== "string" || !idPattern.test(value) || ["__proto__", "constructor", "prototype", "all"].includes(value)) throw Error("Invalid persistent ID");
-  }
-  function exact(value, fields2, label = "object") {
-    if (!value || typeof value !== "object" || Array.isArray(value) || ![Object.prototype, null].includes(Object.getPrototypeOf(value)) || Object.keys(value).length !== fields2.length || fields2.some((k) => !Object.hasOwn(value, k))) throw Error("Invalid " + label + " fields");
-  }
-  function text(value, max = 100) {
-    if (typeof value !== "string" || !value.trim() || value.length > max) throw Error("Invalid text");
-  }
-  function integer(value, min = 0) {
-    if (!Number.isSafeInteger(value) || value < min) throw Error("Invalid financial/revision integer");
-  }
-  function validateMark(mark) {
-    exact(mark, ["id", "profileId", "careerId", "type", "reason", "delta", "revision"], "provenance");
-    for (const key3 of ["id", "profileId", "careerId"]) id(mark[key3]);
-    if (mark.type !== TYPE || !Number.isSafeInteger(mark.delta)) throw Error("Unsupported developer provenance");
-    integer(mark.revision, 1);
-    text(mark.reason, 500);
-  }
-  function mergeMarks(...lists) {
-    const marks = /* @__PURE__ */ new Map();
-    for (const mark of lists.flat()) {
-      validateMark(mark);
-      if (marks.has(mark.id) && canonical(marks.get(mark.id)) !== canonical(mark)) throw Error("Conflicting transaction provenance ID");
-      marks.set(mark.id, structuredClone(mark));
-    }
-    const owners = /* @__PURE__ */ new Map();
-    for (const mark of marks.values()) {
-      if (owners.has(mark.careerId) && owners.get(mark.careerId) !== mark.profileId) throw Error("Conflicting career ownership provenance");
-      owners.set(mark.careerId, mark.profileId);
-    }
-    if (marks.size > MAX_MARKS) throw Error("Provenance limit reached; no records were discarded");
-    return [...marks.values()].sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
-  }
-  function validateTransaction(tx) {
-    exact(tx, ["id", "profileId", "careerId", "expectedRevision", "type", "delta", "reason"], "transaction");
-    for (const key3 of ["id", "profileId", "careerId"]) id(tx[key3]);
-    integer(tx.expectedRevision);
-    text(tx.reason, 500);
-    if (tx.type !== TYPE || !Number.isSafeInteger(tx.delta)) throw Error("Unsupported transaction or invalid treasury adjustment");
-  }
-  function transactionMark(tx) {
-    return { id: tx.id, profileId: tx.profileId, careerId: tx.careerId, type: tx.type, reason: tx.reason, delta: tx.delta, revision: tx.expectedRevision + 1 };
-  }
-  function validateState(state2) {
-    exact(state2, ["kind", "schema", "revision", "profile", "career", "pendingRace", "transactions", "provenance"], "career state");
-    if (state2.kind !== "BNT-career-state" || state2.schema !== CAREER_SCHEMA) throw Error("Unsupported career state schema");
-    integer(state2.revision);
-    exact(state2.profile, ["id", "name", "legacy", "developerEdited"], "Owner Profile");
-    exact(state2.profile.legacy, ["records"], "Owner Legacy");
-    if (!Array.isArray(state2.profile.legacy.records) || state2.profile.legacy.records.length) throw Error("Owner Legacy progression is not supported by M1");
-    exact(state2.career, ["id", "ownerProfileId", "name", "status", "treasury", "developerEdited"], "Career State");
-    id(state2.profile.id);
-    id(state2.career.id);
-    id(state2.career.ownerProfileId);
-    text(state2.profile.name);
-    text(state2.career.name);
-    integer(state2.career.treasury);
-    if (state2.profile.id === state2.career.id || state2.career.ownerProfileId !== state2.profile.id || state2.career.status !== "Foundation") throw Error("Invalid career ownership/status reference");
-    if (!Array.isArray(state2.transactions) || state2.transactions.length > MAX_RECEIPTS || state2.revision !== state2.transactions.length || !Array.isArray(state2.provenance) || state2.provenance.length > MAX_MARKS) throw Error("Invalid transaction history");
-    const marks = mergeMarks(state2.provenance), seen = /* @__PURE__ */ new Set();
-    if (marks.length !== state2.provenance.length) throw Error("Duplicate provenance");
-    for (const mark of marks) if (mark.profileId !== state2.profile.id) throw Error("Invalid provenance entity reference");
-    let balance = 0n;
-    for (const [index, receipt] of state2.transactions.entries()) {
-      exact(receipt, ["transaction", "resultRevision", "balanceAfter"], "receipt");
-      const tx = receipt.transaction;
-      validateTransaction(tx);
-      if (seen.has(tx.id) || tx.profileId !== state2.profile.id || tx.careerId !== state2.career.id || tx.expectedRevision !== index || receipt.resultRevision !== index + 1) throw Error("Invalid receipt ID/revision/reference");
-      seen.add(tx.id);
-      balance += BigInt(tx.delta);
-      if (balance < 0n || balance > BigInt(Number.MAX_SAFE_INTEGER) || receipt.balanceAfter !== Number(balance)) throw Error("Inconsistent treasury ledger");
-      if (!marks.some((m) => canonical(m) === canonical(transactionMark(tx)))) throw Error("Missing developer provenance");
-    }
-    if (Number(balance) !== state2.career.treasury || state2.profile.developerEdited !== Boolean(marks.length) || state2.career.developerEdited !== marks.some((m) => m.careerId === state2.career.id)) throw Error("Inconsistent financial/developer-edited state");
-    if (state2.pendingRace !== null) {
-      const p = state2.pendingRace;
-      exact(p, ["id", "careerId", "engineVersion", "setup"], "pending race checkpoint");
-      id(p.id);
-      id(p.careerId);
-      if (p.id === state2.career.id || p.id === state2.profile.id || p.careerId !== state2.career.id || p.engineVersion !== VERSION) throw Error("Incompatible pending race version/reference");
-      const normalized = configuration(p.setup).setup;
-      if (canonical(normalized) !== canonical(p.setup)) throw Error("Pending race requires a complete normalized starting configuration");
-    }
-    return state2;
-  }
-  function withProvenance(state2, knownMarks) {
-    const next = structuredClone(validateState(state2));
-    if (knownMarks.some((m) => m.careerId === next.career.id && m.profileId !== next.profile.id)) throw Error("Career provenance belongs to a different Owner Profile");
-    next.provenance = mergeMarks(next.provenance, knownMarks.filter((m) => m.profileId === next.profile.id));
-    next.profile.developerEdited = Boolean(next.provenance.length);
-    next.career.developerEdited = next.provenance.some((m) => m.careerId === next.career.id);
-    return validateState(next);
-  }
-  function createCareer({ profileId, careerId, ownerName = "Owner", careerName = "M1 Foundation", pendingRace = null }) {
-    return validateState({
-      kind: "BNT-career-state",
-      schema: CAREER_SCHEMA,
-      revision: 0,
-      profile: { id: profileId, name: ownerName, legacy: { records: [] }, developerEdited: false },
-      career: { id: careerId, ownerProfileId: profileId, name: careerName, status: "Foundation", treasury: 0, developerEdited: false },
-      pendingRace: structuredClone(pendingRace),
-      transactions: [],
-      provenance: []
-    });
-  }
-  function transact(state2, transaction) {
-    validateState(state2);
-    validateTransaction(transaction);
-    if (transaction.profileId !== state2.profile.id || transaction.careerId !== state2.career.id) throw Error("Transaction entity reference mismatch");
-    const previous2 = state2.transactions.find((r) => r.transaction.id === transaction.id);
-    if (previous2) {
-      if (canonical(previous2.transaction) !== canonical(transaction)) throw Error("Conflicting transaction ID");
-      return { state: structuredClone(state2), duplicate: true, receipt: structuredClone(previous2) };
-    }
-    if (state2.provenance.some((m) => m.id === transaction.id)) throw Error("Transaction ID belongs to a previous imported/recovered timeline");
-    if (transaction.expectedRevision !== state2.revision) throw Error("Stale career revision");
-    if (state2.transactions.length >= MAX_RECEIPTS) throw Error("Transaction limit reached; no receipts were pruned");
-    const balance = BigInt(state2.career.treasury) + BigInt(transaction.delta);
-    if (balance < 0n || balance > BigInt(Number.MAX_SAFE_INTEGER)) throw Error("Treasury must be a nonnegative safe integer");
-    const next = structuredClone(state2), receipt = { transaction: structuredClone(transaction), resultRevision: state2.revision + 1, balanceAfter: Number(balance) };
-    next.revision++;
-    next.career.treasury = Number(balance);
-    next.transactions.push(receipt);
-    next.provenance = mergeMarks(next.provenance, [transactionMark(transaction)]);
-    next.profile.developerEdited = next.career.developerEdited = true;
-    validateState(next);
-    return { state: next, duplicate: false, receipt: structuredClone(receipt) };
-  }
-
-  // src/career/economy/fingerprint.js
-  var K = [1116352408, 1899447441, 3049323471, 3921009573, 961987163, 1508970993, 2453635748, 2870763221, 3624381080, 310598401, 607225278, 1426881987, 1925078388, 2162078206, 2614888103, 3248222580, 3835390401, 4022224774, 264347078, 604807628, 770255983, 1249150122, 1555081692, 1996064986, 2554220882, 2821834349, 2952996808, 3210313671, 3336571891, 3584528711, 113926993, 338241895, 666307205, 773529912, 1294757372, 1396182291, 1695183700, 1986661051, 2177026350, 2456956037, 2730485921, 2820302411, 3259730800, 3345764771, 3516065817, 3600352804, 4094571909, 275423344, 430227734, 506948616, 659060556, 883997877, 958139571, 1322822218, 1537002063, 1747873779, 1955562222, 2024104815, 2227730452, 2361852424, 2428436474, 2756734187, 3204031479, 3329325298];
-  var rotate = (x, n) => x >>> n | x << 32 - n;
-  function sha256(text2) {
-    const bytes = new TextEncoder().encode(text2), length = Math.ceil((bytes.length + 9) / 64) * 64;
-    const data = new Uint8Array(length);
-    data.set(bytes);
-    data[bytes.length] = 128;
-    const view = new DataView(data.buffer);
-    view.setUint32(length - 8, Math.floor(bytes.length / 536870912));
-    view.setUint32(length - 4, bytes.length * 8 >>> 0);
-    const h = [1779033703, 3144134277, 1013904242, 2773480762, 1359893119, 2600822924, 528734635, 1541459225], w = new Uint32Array(64);
-    for (let offset2 = 0; offset2 < length; offset2 += 64) {
-      for (let i = 0; i < 16; i++) w[i] = view.getUint32(offset2 + i * 4);
-      for (let i = 16; i < 64; i++) {
-        const a2 = w[i - 15], b2 = w[i - 2];
-        w[i] = w[i - 16] + (rotate(a2, 7) ^ rotate(a2, 18) ^ a2 >>> 3) + w[i - 7] + (rotate(b2, 17) ^ rotate(b2, 19) ^ b2 >>> 10) >>> 0;
-      }
-      let [a, b, c, d, e, f, g, j] = h;
-      for (let i = 0; i < 64; i++) {
-        const t1 = j + (rotate(e, 6) ^ rotate(e, 11) ^ rotate(e, 25)) + (e & f ^ ~e & g) + K[i] + w[i] >>> 0, t2 = (rotate(a, 2) ^ rotate(a, 13) ^ rotate(a, 22)) + (a & b ^ a & c ^ b & c) >>> 0;
-        j = g;
-        g = f;
-        f = e;
-        e = d + t1 >>> 0;
-        d = c;
-        c = b;
-        b = a;
-        a = t1 + t2 >>> 0;
-      }
-      [a, b, c, d, e, f, g, j].forEach((v, i) => h[i] = h[i] + v >>> 0);
-    }
-    return h.map((n) => n.toString(16).padStart(8, "0")).join("");
-  }
+  var qualityFromRatings = (attributes) => add(0.85, mul(3e-3, mean(Object.values(attributes))));
+  var conditionFactor = (health) => add(0.7, mul(3e-3, health));
 
   // src/career/assets.js
   var BASIC_CAPACITY = Object.freeze({ drivers: 2, specialists: 0, beasts: 4, chariots: 1 });
@@ -4069,6 +4099,66 @@
       const expected = [a.driverId, ...a.beastIds, a.chariotId];
       if (a.references.subject.length !== 4 || expected.some((id2) => !a.references.subject.includes(id2)) || new Set(expected).size !== 4 || !registries.personnel[a.driverId] || !registries.chariots[a.chariotId] || a.beastIds.some((id2) => !registries.beasts[id2])) throw Error("Invalid typed RU assignment");
     }
+  }
+
+  // src/career/economy/catalog.js
+  var PRICES = freeze({ driver: { Budget: 200, Standard: 400, Premium: 800 }, beast: { Budget: 150, Standard: 325, Premium: 650 }, chariot: { Budget: 375, Standard: 625, Premium: 1150 }, specialist: { Budget: 200, Standard: 375, Premium: 625 }, equipment: { Budget: 100, Standard: 275, Premium: 425 } });
+  var COUNTS = freeze({ driver: [2, 2, 1], beast: [2, 3, 1], chariot: [1, 1, 1], specialist: [1, 1, 1], equipment: [3, 3, 0] });
+  var WAGES = freeze({ driver: { Budget: 20, Standard: 35, Premium: 60 }, specialist: { Budget: 15, Standard: 30, Premium: 50 } });
+  var TERMS = freeze({ short: { duration: 3, surcharge: 0, multiplier: 1.25, termination: 1 }, standard: { duration: 8, surcharge: 50, multiplier: 1, termination: 2 }, long: { duration: 16, surcharge: 125, multiplier: 0.85, termination: 3 } });
+  var UPGRADES = freeze({
+    "staff-quarters": { name: "Staff Quarters", cost: 300, capacity: "specialists", amount: 2 },
+    "expanded-stables": { name: "Expanded Stables", cost: 400, capacity: "beasts", amount: 2 },
+    "driver-quarters": { name: "Driver Quarters", cost: 350, capacity: "drivers", amount: 1 },
+    "chariot-bay": { name: "Additional Chariot Bay", cost: 450, capacity: "chariots", amount: 1 },
+    workshop: { name: "Workshop", cost: 500 },
+    "treatment-ward": { name: "Treatment Ward", cost: 450 },
+    "training-grounds": { name: "Training Grounds", cost: 600 }
+  });
+  var SERVICES = freeze({
+    "driver-recovery": { registry: "personnel", field: "fatigue", cost: 40 },
+    "driver-treatment": { registry: "personnel", field: "injury", cost: 100, role: "Physician", ward: true },
+    "beast-care": { registry: "beasts", field: "fatigue", cost: 30, role: "Beast Handler" },
+    "beast-treatment": { registry: "beasts", field: "injury", cost: 80, role: "Beast Handler", ward: true },
+    "chariot-repair": { registry: "chariots", field: "integrity", role: "Mechanic", workshop: true },
+    "chariot-refurbishment": { registry: "chariots", field: "wear", cost: 100, role: "Mechanic", workshop: true }
+  });
+  var INJURIES3 = freeze(["Healthy", "Minor", "Major", "Critical"]);
+  var TIERS = freeze(["Budget", "Standard", "Premium"]);
+
+  // src/career/economy/fingerprint.js
+  var K = [1116352408, 1899447441, 3049323471, 3921009573, 961987163, 1508970993, 2453635748, 2870763221, 3624381080, 310598401, 607225278, 1426881987, 1925078388, 2162078206, 2614888103, 3248222580, 3835390401, 4022224774, 264347078, 604807628, 770255983, 1249150122, 1555081692, 1996064986, 2554220882, 2821834349, 2952996808, 3210313671, 3336571891, 3584528711, 113926993, 338241895, 666307205, 773529912, 1294757372, 1396182291, 1695183700, 1986661051, 2177026350, 2456956037, 2730485921, 2820302411, 3259730800, 3345764771, 3516065817, 3600352804, 4094571909, 275423344, 430227734, 506948616, 659060556, 883997877, 958139571, 1322822218, 1537002063, 1747873779, 1955562222, 2024104815, 2227730452, 2361852424, 2428436474, 2756734187, 3204031479, 3329325298];
+  var rotate = (x, n) => x >>> n | x << 32 - n;
+  function sha256(text2) {
+    const bytes = new TextEncoder().encode(text2), length = Math.ceil((bytes.length + 9) / 64) * 64;
+    const data = new Uint8Array(length);
+    data.set(bytes);
+    data[bytes.length] = 128;
+    const view = new DataView(data.buffer);
+    view.setUint32(length - 8, Math.floor(bytes.length / 536870912));
+    view.setUint32(length - 4, bytes.length * 8 >>> 0);
+    const h = [1779033703, 3144134277, 1013904242, 2773480762, 1359893119, 2600822924, 528734635, 1541459225], w = new Uint32Array(64);
+    for (let offset2 = 0; offset2 < length; offset2 += 64) {
+      for (let i = 0; i < 16; i++) w[i] = view.getUint32(offset2 + i * 4);
+      for (let i = 16; i < 64; i++) {
+        const a2 = w[i - 15], b2 = w[i - 2];
+        w[i] = w[i - 16] + (rotate(a2, 7) ^ rotate(a2, 18) ^ a2 >>> 3) + w[i - 7] + (rotate(b2, 17) ^ rotate(b2, 19) ^ b2 >>> 10) >>> 0;
+      }
+      let [a, b, c, d, e, f, g, j] = h;
+      for (let i = 0; i < 64; i++) {
+        const t1 = j + (rotate(e, 6) ^ rotate(e, 11) ^ rotate(e, 25)) + (e & f ^ ~e & g) + K[i] + w[i] >>> 0, t2 = (rotate(a, 2) ^ rotate(a, 13) ^ rotate(a, 22)) + (a & b ^ a & c ^ b & c) >>> 0;
+        j = g;
+        g = f;
+        f = e;
+        e = d + t1 >>> 0;
+        d = c;
+        c = b;
+        b = a;
+        a = t1 + t2 >>> 0;
+      }
+      [a, b, c, d, e, f, g, j].forEach((v, i) => h[i] = h[i] + v >>> 0);
+    }
+    return h.map((n) => n.toString(16).padStart(8, "0")).join("");
   }
 
   // src/career/cycles/completion.js
@@ -4222,10 +4312,530 @@
     }
   }
 
+  // src/career/championships/condition.js
+  var CONDITION_MAPPING = "m2e-condition-mapping-v1";
+  var rating = (n) => {
+    if (!Number.isFinite(n) || n < 0 || n > 100) throw Error("Condition must be finite 0..100");
+    return n;
+  };
+  var injuryFromCondition = (c) => rating(c) >= 80 ? "Healthy" : c >= 60 ? "Minor" : c >= 30 ? "Major" : "Critical";
+  function worseInjury(old, c) {
+    if (!INJURIES3.includes(old)) throw Error("Invalid management injury");
+    return INJURIES3[Math.max(INJURIES3.indexOf(old), INJURIES3.indexOf(injuryFromCondition(c)))];
+  }
+  function treatmentCondition(c, injury) {
+    rating(c);
+    if (!INJURIES3.includes(injury)) throw Error("Invalid treatment injury");
+    return Math.min(100, Math.max(c, { Healthy: 80, Minor: 60, Major: 30, Critical: 0 }[injury]));
+  }
+  function repairCondition(c, actual) {
+    rating(c);
+    rating(actual);
+    return Math.min(100, c + actual);
+  }
+  function initialCondition(entrant, state2) {
+    const n = entrant.native;
+    if (entrant.player) {
+      const ids = entrant.assetIds, r = state2.management.registries, d = r.personnel[ids.driver], b = ids.beasts.map((id2) => r.beasts[id2]), c = r.chariots[ids.chariot];
+      return { driver: { injury: d.injury, available: d.available }, beasts: b.map((x) => ({ injury: x.injury, available: x.available })), chariot: { integrity: c.integrity, status: c.status, available: c.available } };
+    }
+    return { driver: { injury: "Healthy", available: true }, beasts: n.beasts.map(() => ({ injury: "Healthy", available: true })), chariot: { integrity: 100, status: "Functional", available: true } };
+  }
+  function nativeEligibility(native, persistent) {
+    validateRU(native);
+    const reasons = [];
+    if (!persistent.driver.available || ["Major", "Critical"].includes(persistent.driver.injury)) reasons.push("Unavailable or Major/Critical driver");
+    if (persistent.beasts.some((b) => !b.available || ["Major", "Critical"].includes(b.injury))) reasons.push("Unavailable or Major/Critical beast");
+    if (!persistent.chariot.available || ["Critical", "Destroyed"].includes(persistent.chariot.status)) reasons.push("Ineligible chariot");
+    if (native.driver.condition <= consequenceDefaults.disabledCondition || native.chariot.condition <= consequenceDefaults.disabledCondition || native.beasts.every((b) => b.condition <= consequenceDefaults.minimumTeamCondition)) reasons.push("Native disable threshold");
+    return { eligible: reasons.length === 0, reasons };
+  }
+  function mapCondition({ version = CONDITION_MAPPING, instanceId, eventId, resultId, start, final, persistent, provenance }) {
+    if (version !== CONDITION_MAPPING) throw Error("Unsupported condition mapping");
+    validateRU(start);
+    validateRU(final);
+    if (start.id !== final.id || start.beasts.length !== final.beasts.length || persistent.beasts.length !== final.beasts.length) throw Error("Condition identity/team mismatch");
+    const next = structuredClone(persistent);
+    next.driver.injury = worseInjury(next.driver.injury, final.driver.condition);
+    next.beasts.forEach((b, i) => b.injury = worseInjury(b.injury, final.beasts[i].condition));
+    const loss = Math.max(0, start.chariot.condition - final.chariot.condition);
+    next.chariot.integrity = Math.max(0, Math.min(100, rating(next.chariot.integrity) - loss));
+    next.chariot.status = integrityStatus(next.chariot.integrity);
+    const audit = { version, instanceId, eventId, resultId, entrantId: final.id, source: structuredClone(provenance), startFingerprint: fingerprint(start), finalFingerprint: fingerprint(final), chariotLoss: loss, effectId: "e3-condition-" + fingerprint([instanceId, eventId, resultId, final.id, version]).slice(0, 40) };
+    return freeze({ native: structuredClone(final), persistent: next, eligibility: nativeEligibility(final, next), audit });
+  }
+  function restoreServiceNative(state2, tx, result) {
+    if (tx.commandVersion !== 2 || tx.type !== "service.apply") return;
+    const d = result.details, r = state2.management.registries;
+    const record = r.personnel[d.assetId] ?? r.beasts[d.assetId] ?? r.chariots[d.assetId];
+    if (!record) return;
+    if (d.field === "injury") record.condition = treatmentCondition(record.condition, d.after);
+    if (d.field === "integrity") record.condition = repairCondition(record.condition, decimal(add(d.after, -d.before)));
+  }
+
+  // src/career/economy/records.js
+  var ownedId = (careerId, offerId) => "owned-" + sha256(careerId + "|" + offerId).slice(0, 32);
+  var contractId = (careerId, personId) => "contract-" + sha256(careerId + "|" + personId).slice(0, 32);
+  var upgradeRecordId = (propertyId, upgrade) => "upgrade-" + sha256(propertyId + "|" + upgrade).slice(0, 32);
+  var tierFromRatings = (a) => compare(mean(Object.values(a)), 45) < 0 ? "Budget" : compare(mean(Object.values(a)), 65) < 0 ? "Standard" : "Premium";
+  function valuationHealth(category, record) {
+    const value = category === "chariot" ? record.integrity : record.condition;
+    if (!Number.isFinite(value) || value < 0 || value > 100) throw Error("Invalid valuation-health-v1 input");
+    return value;
+  }
+  function economics(category, record, { tier, quality, wageQuality = null, paid = null, sourceOfferId = null } = {}) {
+    const baseAttributes = record.attributes ? structuredClone(record.attributes) : null;
+    tier ?? (tier = category === "equipment" ? "Budget" : tierFromRatings(record.attributes));
+    quality ?? (quality = baseAttributes ? decimal(qualityFromRatings(baseAttributes)) : 1);
+    const originalHealth = ["driver", "beast", "chariot"].includes(category) ? valuationHealth(category, record) : null;
+    const acquisitionBasis = paid ?? (category === "driver" || category === "specialist" ? 0 : category === "equipment" ? 100 : rounded(mul(mul(PRICES[category][tier], quality), conditionFactor(originalHealth)), "half-up", 5));
+    return { tier, quality, baseAttributes, originalHealth, acquisitionBasis, sourceOfferId, wageQuality, baseWage: wageQuality === null ? null : rounded(mul(WAGES[category][tier], wageQuality)) };
+  }
+  function upgradeStarterRecords(registries) {
+    for (const [registry, category] of [["personnel", "driver"], ["beasts", "beast"], ["chariots", "chariot"], ["equipment", "equipment"]]) for (const r of Object.values(registries[registry])) {
+      r.recordVersion = 2;
+      r.economics = economics(category, r, { wageQuality: category === "driver" ? 1 : null });
+      if (category === "driver" || category === "beast") r.training = Object.fromEntries(Object.keys(r.attributes).map((k) => [k, 0]));
+      if (category === "chariot") r.engineering = { increments: Object.fromEntries(chariotAttributes.map((k) => [k, 0])), spentGold: 0 };
+    }
+    for (const r of Object.values(registries.properties)) r.recordVersion = 2;
+  }
+  function addContract(registries, person, term, { grandfathered = false } = {}) {
+    const terms = TERMS[term];
+    if (!terms) throw Error("Invalid contract term");
+    const key3 = contractId(person.ownerCareerId, person.id);
+    if (registries.contracts[key3]) throw Error("Contract identity already exists");
+    const baseWage = person.economics.baseWage;
+    registries.contracts[key3] = { id: key3, ownerCareerId: person.ownerCareerId, references: { employee: [person.id] }, recordVersion: 2, name: person.name + " contract", term, cyclesRemaining: terms.duration, baseWage, wage: rounded(mul(baseWage, terms.multiplier)), grandfathered, sourceOfferId: person.economics.sourceOfferId };
+    person.references.contract = [key3];
+    return key3;
+  }
+  function acquireRecord(offer, careerId) {
+    const key3 = ownedId(careerId, offer.id), r = { id: key3, ownerCareerId: careerId, references: {}, recordVersion: 2, name: offer.name, ...structuredClone(offer.template) };
+    if (offer.category !== "equipment") r.available = true;
+    if (offer.category === "driver") r.role = "driver";
+    if (offer.category === "chariot") {
+      r.status = integrityStatus(r.integrity);
+      r.engineering = { increments: Object.fromEntries(chariotAttributes.map((k) => [k, 0])), spentGold: 0 };
+    }
+    if (offer.category === "driver" || offer.category === "beast") r.training = Object.fromEntries(Object.keys(r.attributes).map((k) => [k, 0]));
+    r.economics = economics(offer.category, r, { tier: offer.tier, quality: offer.quality, wageQuality: offer.wageQuality, paid: offer.price, sourceOfferId: offer.id });
+    return r;
+  }
+  var ratingKeys = { personnel: driverAttributes, beasts: beastAttributes, chariots: chariotAttributes };
+
+  // src/career/economy/commands.js
+  var ECONOMY_TYPES = Object.freeze(["market.acquire", "asset.sell", "personnel.terminate", "equipment.detach", "facility.purchase", "service.apply", "training.apply", "engineering.apply"]);
+  var SHAPES = { "market.acquire": ["offerId", "term"], "asset.sell": ["assetId"], "personnel.terminate": ["personId"], "equipment.detach": ["equipmentId"], "facility.purchase": ["propertyId", "upgradeId"], "service.apply": ["assetId", "service", "amount"], "training.apply": ["assetId", "attribute", "points"], "engineering.apply": ["assetId", "attribute", "points"] };
+  function validateEconomyCommand(tx) {
+    exact(tx, ["id", "profileId", "careerId", "expectedRevision", "expectedMaintenanceRevision", "commandVersion", "type", "effectId", "delta", "reason", "payload"], "M2-C command v2");
+    for (const key3 of ["id", "profileId", "careerId"]) id(tx[key3]);
+    if (tx.commandVersion !== 2 || !Object.hasOwn(SHAPES, tx.type) || !Number.isSafeInteger(tx.expectedRevision) || tx.expectedRevision < 0 || !Number.isSafeInteger(tx.expectedMaintenanceRevision) || tx.expectedMaintenanceRevision < 1 || !Number.isSafeInteger(tx.delta) || typeof tx.reason !== "string" || !tx.reason.trim() || tx.reason.length > 500 || typeof tx.effectId !== "string" || !/^[a-zA-Z0-9_-]{1,128}$/.test(tx.effectId)) throw Error("Invalid economic command/version/revision");
+    exact(tx.payload, SHAPES[tx.type], "economic payload");
+    for (const key3 of ["offerId", "assetId", "personId", "equipmentId", "propertyId"]) if (Object.hasOwn(tx.payload, key3)) id(tx.payload[key3]);
+    for (const key3 of ["term", "upgradeId", "service", "attribute"]) if (Object.hasOwn(tx.payload, key3) && tx.payload[key3] !== null && (typeof tx.payload[key3] !== "string" || !tx.payload[key3].length || tx.payload[key3].length > 64)) throw Error("Invalid economic selector");
+    if (Object.hasOwn(tx.payload, "points") && (!Number.isInteger(tx.payload.points) || tx.payload.points < 1 || tx.payload.points > 5)) throw Error("Request 1\u20135 full increments");
+    if (Object.hasOwn(tx.payload, "amount") && tx.payload.amount !== null && (!Number.isFinite(tx.payload.amount) || tx.payload.amount <= 0 || tx.payload.amount > 100)) throw Error("Invalid requested service amount");
+  }
+  function economicEffect(state2, type, payload) {
+    let key3;
+    if (type === "market.acquire") key3 = ["acquire", payload.offerId];
+    else if (type === "asset.sell") key3 = ["sell", payload.assetId];
+    else if (type === "personnel.terminate") key3 = ["terminate", payload.personId];
+    else if (type === "equipment.detach") key3 = ["detach", payload.equipmentId];
+    else if (type === "facility.purchase") key3 = ["facility", payload.propertyId, payload.upgradeId];
+    else if (type === "engineering.apply") key3 = ["engineering", payload.assetId, Object.values(state2.management.registries.chariots[payload.assetId]?.engineering.increments ?? {}).reduce((a, b) => a + b, 0)];
+    else key3 = [type, payload.assetId, payload.service ?? payload.attribute, state2.revision, state2.maintenanceRevision];
+    return "economy-" + sha256(canonical([state2.career.id, ...key3])).slice(0, 48);
+  }
+  function validateResult(tx, result) {
+    exact(result, ["type", "cost", "delta", "details"], "economic result");
+    if (result.type !== tx.type || result.delta !== tx.delta || !Number.isSafeInteger(result.cost) || result.cost < 0) throw Error("Inconsistent protected economic result");
+    const fields2 = {
+      "market.acquire": ["offerId", "assetId", "category", "price", "signingSurcharge"],
+      "asset.sell": ["assetId", "name", "category", "proceeds"],
+      "personnel.terminate": ["personId", "kind", "contractId", "fee"],
+      "equipment.detach": ["equipmentId", "chariotId"],
+      "facility.purchase": ["propertyId", "upgradeId", "facilityId"],
+      "service.apply": ["assetId", "service", "field", "before", "after", "basePrice", "discountPercent"],
+      "training.apply": ["assetId", "attribute", "points", "before", "after", "xpCost", "increments"],
+      "engineering.apply": ["assetId", "attribute", "points", "before", "after", "xpCost", "increments"]
+    }[tx.type];
+    exact(result.details, fields2, "economic result details");
+    const d = result.details;
+    for (const key3 of ["assetId", "offerId", "personId", "contractId", "equipmentId", "chariotId", "propertyId", "facilityId"]) if (Object.hasOwn(d, key3)) id(d[key3]);
+    for (const key3 of ["assetId", "offerId", "personId", "equipmentId", "propertyId", "upgradeId", "service", "attribute", "points"]) if (Object.hasOwn(tx.payload, key3) && Object.hasOwn(d, key3) && tx.payload[key3] !== d[key3]) throw Error("Economic result target mismatch");
+    const integer3 = (n) => {
+      if (!Number.isSafeInteger(n) || n < 0) throw Error("Invalid economic result integer");
+    };
+    for (const key3 of ["price", "signingSurcharge", "proceeds", "fee", "basePrice", "discountPercent", "xpCost"]) if (Object.hasOwn(d, key3)) integer3(d[key3]);
+    if (tx.type === "asset.sell") {
+      if (result.cost !== 0 || tx.delta !== d.proceeds) throw Error("Inconsistent resale facts");
+    } else if (tx.delta !== -result.cost) throw Error("Inconsistent economic debit");
+    if (tx.type === "market.acquire" && result.cost !== d.price + d.signingSurcharge) throw Error("Inconsistent acquisition cost");
+    if (tx.type === "personnel.terminate" && result.cost !== d.fee) throw Error("Inconsistent termination fee");
+    if (tx.type === "equipment.detach" && result.cost !== 0) throw Error("Detach must be free");
+    if (tx.type === "service.apply" && d.discountPercent > 25) throw Error("Invalid discount facts");
+    if (["training.apply", "engineering.apply"].includes(tx.type)) {
+      if (!Number.isFinite(d.before) || !Number.isFinite(d.after) || d.before < 0 || d.after > 100 || !Array.isArray(d.increments) || d.increments.length !== tx.payload.points) throw Error("Invalid permanent-increment result");
+      for (const i of d.increments) {
+        exact(i, ["before", "cost"], "increment cost detail");
+        integer3(i.cost);
+        if (!Number.isFinite(i.before) || i.before < 0 || i.before >= 100) throw Error("Invalid incremental rating");
+      }
+      if (tx.type === "training.apply" && result.cost !== 0) throw Error("Training must spend XP only");
+      if (tx.type === "engineering.apply" && d.xpCost !== 0) throw Error("Engineering must spend Gold only");
+    }
+  }
+  function protectEconomic(tx, balanceAfter, result) {
+    validateEconomyCommand(tx);
+    validateResult(tx, result);
+    return { commandVersion: 2, id: tx.id, profileId: tx.profileId, careerId: tx.careerId, request: canonical(tx), fingerprint: sha256(canonical(tx)), effectId: tx.effectId, resultRevision: tx.expectedRevision + 1, delta: tx.delta, balanceAfter, result: structuredClone(result), retention: "P0" };
+  }
+  function validateEconomicEntry(e) {
+    exact(e, ["commandVersion", "id", "profileId", "careerId", "request", "fingerprint", "effectId", "resultRevision", "delta", "balanceAfter", "result", "retention"], "protected economy entry");
+    if (typeof e.request !== "string" || e.request.length > 3e3 || !Number.isSafeInteger(e.balanceAfter) || e.balanceAfter < 0) throw Error("Invalid protected economy request/balance");
+    const request2 = JSON.parse(e.request);
+    const expected = protectEconomic(request2, e.balanceAfter, e.result);
+    if (canonical(expected) !== canonical(e)) throw Error("Protected economy facts mismatch");
+    return e;
+  }
+
+  // src/career/economy/reducers.js
+  var CATEGORY_REGISTRY = { driver: "personnel", beast: "beasts", chariot: "chariots", specialist: "specialists", equipment: "equipment" };
+  function asset(state2, key3, allowed = ["personnel", "beasts", "chariots", "equipment", "specialists"]) {
+    for (const kind of allowed) if (Object.hasOwn(state2.management.registries[kind], key3)) {
+      const record = state2.management.registries[kind][key3];
+      if (record.ownerCareerId !== state2.career.id) throw Error("Foreign owned asset");
+      return { kind, record };
+    }
+    throw Error("Missing eligible owned asset: " + key3);
+  }
+  function hasUpgrade(state2, key3) {
+    return Object.values(state2.management.registries.facilities).some((f) => f.descriptiveOnly === false && f.upgradeId === key3);
+  }
+  function activeRole(state2, role) {
+    const r = state2.management.registries;
+    return Object.values(r.specialists).some((p) => p.role === role && p.available && ["Healthy", "Minor"].includes(p.injury) && p.references.contract?.length === 1 && r.contracts[p.references.contract[0]]?.cyclesRemaining > 0);
+  }
+  function assigned(record) {
+    if (record.references.assignment?.length) throw Error("Asset is assigned: explicitly disassemble the RU first");
+  }
+  function serviceDiscount(state2, service) {
+    let discount = 0;
+    if (service.role && activeRole(state2, service.role)) discount += 15;
+    if (service.workshop && hasUpgrade(state2, "workshop")) discount += 10;
+    if (service.ward && hasUpgrade(state2, "treatment-ward")) discount += 10;
+    return Math.min(25, discount);
+  }
+  function resaleValue(category, record) {
+    const e = record.economics;
+    if (category === "equipment") return Math.min(e.acquisitionBasis, rounded(mul(e.acquisitionBasis, 0.4), "floor"));
+    if (!["beast", "chariot"].includes(category)) throw Error("Personnel cannot be resold");
+    return Math.min(e.acquisitionBasis, rounded(mul(mul(mul(PRICES[category][e.tier], e.quality), conditionFactor(valuationHealth(category, record))), 0.5), "floor"));
+  }
+  function incrementCost(current, points, { engineering = false, discount = false } = {}) {
+    if (!Number.isFinite(current) || current < 0 || current > 100 || !Number.isInteger(points) || points < 1 || points > 5 || compare(add(current, points), 100) > 0) throw Error("Invalid full increments or native cap exceeded");
+    let total = 0;
+    for (let i = 0; i < points; i++) {
+      const value = add(current, i), band = compare(value, 60) < 0 ? 0 : compare(value, 75) < 0 ? 1 : compare(value, 90) < 0 ? 2 : 3;
+      total += (engineering ? [75, 125, 200, 350] : [10, 20, 35, 60])[band];
+    }
+    return discount ? rounded(mul(total, 0.9), "ceil") : total;
+  }
+  function quoteEconomy(state2, type, payload) {
+    if (state2.schema !== 3 || !state2.management.initialized || state2.pendingRace !== null) throw Error("An initialized schema-3 stable without pending race is required");
+    validateEconomyCommand({ id: "quote", profileId: state2.profile.id, careerId: state2.career.id, expectedRevision: state2.revision, expectedMaintenanceRevision: state2.maintenanceRevision, commandVersion: 2, type, effectId: "quote", delta: 0, reason: "Read-only quote", payload });
+    const r = state2.management.registries;
+    let cost = 0, credit = 0, details = {}, xpCost = 0;
+    if (type === "market.acquire") {
+      const offer = r.marketOffers[payload.offerId];
+      if (!offer || !offer.available) throw Error("Offer is unavailable or consumed");
+      const kind = CATEGORY_REGISTRY[offer.category], cap = { personnel: "drivers", specialists: "specialists", beasts: "beasts", chariots: "chariots" }[kind], property = Object.values(r.properties)[0];
+      if (cap && Object.keys(r[kind]).length >= property.capacities[cap]) throw Error("Capacity exceeded: " + cap + (kind === "specialists" ? " (purchase Staff Quarters first)" : ""));
+      const personnel = ["driver", "specialist"].includes(offer.category);
+      if (personnel && !Object.hasOwn(TERMS, payload.term)) throw Error("Choose a contract term");
+      if (!personnel && payload.term !== null) throw Error("Owned assets have no employment term");
+      cost = offer.price + (personnel ? TERMS[payload.term].surcharge : 0);
+      const acquired = acquireRecord(offer, state2.career.id);
+      details = { offerId: offer.id, assetId: acquired.id, category: offer.category, price: offer.price, signingSurcharge: personnel ? TERMS[payload.term].surcharge : 0 };
+    } else if (type === "asset.sell") {
+      const { kind, record } = asset(state2, payload.assetId);
+      assigned(record);
+      const category = { beasts: "beast", chariots: "chariot", equipment: "equipment" }[kind];
+      if (!category) throw Error("Personnel cannot be resold");
+      if (kind === "equipment" && record.references.installedOn?.length) throw Error("EQUIPMENT_INSTALLED: explicitly detach first");
+      if (kind === "chariots" && record.references.equipment?.length) throw Error("Explicitly detach all installed equipment first");
+      credit = resaleValue(category, record);
+      details = { assetId: record.id, name: record.name, category, proceeds: credit };
+    } else if (type === "personnel.terminate") {
+      const { kind, record } = asset(state2, payload.personId, ["personnel", "specialists"]);
+      assigned(record);
+      const contract = r.contracts[record.references.contract?.[0]];
+      if (!contract) throw Error("No active contract");
+      cost = contract.baseWage * TERMS[contract.term].termination;
+      details = { personId: record.id, kind, contractId: contract.id, fee: cost };
+    } else if (type === "equipment.detach") {
+      const { record } = asset(state2, payload.equipmentId, ["equipment"]);
+      const key3 = record.references.installedOn?.[0];
+      if (!key3 || !r.chariots[key3]?.references.equipment?.includes(record.id)) throw Error("Equipment is already detached or references are inconsistent");
+      details = { equipmentId: record.id, chariotId: key3 };
+    } else if (type === "facility.purchase") {
+      const property = r.properties[payload.propertyId], upgrade = UPGRADES[payload.upgradeId];
+      if (!property || !upgrade) throw Error("Invalid property or upgrade");
+      if (hasUpgrade(state2, payload.upgradeId)) throw Error("Upgrade already owned");
+      cost = upgrade.cost;
+      details = { propertyId: property.id, upgradeId: payload.upgradeId, facilityId: upgradeRecordId(property.id, payload.upgradeId) };
+    } else if (type === "service.apply") {
+      const service = SERVICES[payload.service];
+      if (!service) throw Error("Unsupported service");
+      const { record } = asset(state2, payload.assetId, [service.registry]);
+      let before = record[service.field], after;
+      if (service.field === "injury") {
+        const severity = INJURIES3.indexOf(before);
+        if (severity <= 0) throw Error("Service has no effect");
+        after = INJURIES3[severity - 1];
+      } else if (service.field === "integrity") {
+        if (payload.amount === null) throw Error("Specify requested integrity restoration");
+        after = Math.min(100, decimal(add(before, payload.amount)));
+      } else after = Math.max(0, decimal(add(before, -25)));
+      if (service.field !== "integrity" && payload.amount !== null) throw Error("Fixed services do not accept a custom amount");
+      if (before === after) throw Error("Service has no effect");
+      const actual = service.field === "integrity" ? add(after, -before) : null;
+      const base = service.field === "integrity" ? rounded(mul(actual, 1.5), "ceil") : service.cost, discount = serviceDiscount(state2, service);
+      cost = Math.max(1, rounded(mul(base, (100 - discount) / 100)));
+      details = { assetId: record.id, service: payload.service, field: service.field, before, after, basePrice: base, discountPercent: discount };
+    } else if (type === "training.apply" || type === "engineering.apply") {
+      const engineering = type === "engineering.apply", { kind, record } = asset(state2, payload.assetId, engineering ? ["chariots"] : ["personnel", "beasts"]);
+      if (!ratingKeys[kind].includes(payload.attribute)) throw Error("Unsupported native rating field");
+      const before = record.attributes[payload.attribute];
+      if (engineering && Object.values(record.engineering.increments).reduce((a, b) => a + b, 0) + payload.points > 10) throw Error("Lifetime engineering cap of 10 increments exceeded");
+      const amount = incrementCost(before, payload.points, { engineering, discount: !engineering && hasUpgrade(state2, "training-grounds") });
+      if (engineering) cost = amount;
+      else xpCost = amount;
+      details = { assetId: record.id, attribute: payload.attribute, points: payload.points, before, after: decimal(add(before, payload.points)), xpCost, increments: Array.from({ length: payload.points }, (_, i) => ({ before: decimal(add(before, i)), cost: incrementCost(decimal(add(before, i)), 1, { engineering }) })) };
+    }
+    const effectId2 = economicEffect(state2, type, payload);
+    if (state2.history.commands.some((e) => e.effectId === effectId2)) throw Error("Business effect already committed on retained history");
+    const person = payload.assetId ? (() => {
+      try {
+        return asset(state2, payload.assetId).record;
+      } catch {
+        return null;
+      }
+    })() : null;
+    return freeze({ type, cost, credit, delta: credit - cost, xpCost, effectId: effectId2, canAfford: state2.career.treasury >= cost && (!xpCost || person?.xp >= xpCost), details });
+  }
+  function executeEconomy(state2, tx) {
+    const q = quoteEconomy(state2, tx.type, tx.payload);
+    if (tx.delta !== q.delta || tx.effectId !== q.effectId) throw Error("Economic delta/effect differs from authoritative quote");
+    if (!q.canAfford) throw Error(q.xpCost ? "Insufficient XP" : "Insufficient Gold");
+    const r = state2.management.registries, p = tx.payload, d = q.details;
+    if (tx.type === "market.acquire") {
+      const offer = r.marketOffers[p.offerId], record = acquireRecord(offer, state2.career.id), kind = CATEGORY_REGISTRY[offer.category];
+      if (Object.values(r).some((records) => Object.hasOwn(records, record.id))) throw Error("Owned identity already exists");
+      r[kind][record.id] = record;
+      if (["driver", "specialist"].includes(offer.category)) addContract(r, record, p.term);
+      offer.available = false;
+    } else if (tx.type === "asset.sell") {
+      const found = asset(state2, p.assetId);
+      delete r[found.kind][p.assetId];
+    } else if (tx.type === "personnel.terminate") {
+      delete r[d.kind][p.personId];
+      delete r.contracts[d.contractId];
+    } else if (tx.type === "equipment.detach") {
+      r.chariots[d.chariotId].references.equipment = r.chariots[d.chariotId].references.equipment.filter((key3) => key3 !== p.equipmentId);
+      r.equipment[p.equipmentId].references.installedOn = [];
+    } else if (tx.type === "facility.purchase") {
+      const u = UPGRADES[p.upgradeId], property = r.properties[p.propertyId];
+      r.facilities[d.facilityId] = { id: d.facilityId, ownerCareerId: state2.career.id, references: { property: [property.id] }, recordVersion: 2, name: u.name, descriptiveOnly: false, upgradeId: p.upgradeId };
+      property.references.facilities.push(d.facilityId);
+      if (u.capacity) property.capacities[u.capacity] += u.amount;
+    } else if (tx.type === "service.apply") {
+      const { record } = asset(state2, p.assetId);
+      record[d.field] = d.after;
+      if (d.field === "integrity") record.status = integrityStatus(d.after);
+    } else if (tx.type === "training.apply" || tx.type === "engineering.apply") {
+      const { record } = asset(state2, p.assetId);
+      record.attributes[p.attribute] = d.after;
+      if (tx.type === "training.apply") {
+        record.xp -= q.xpCost;
+        record.training[p.attribute] += p.points;
+      } else {
+        record.engineering.increments[p.attribute] += p.points;
+        record.engineering.spentGold += q.cost;
+      }
+    }
+    state2.career.treasury += q.delta;
+    if (!Number.isSafeInteger(state2.career.treasury) || state2.career.treasury < 0) throw Error("Invalid treasury result");
+    return { type: tx.type, cost: q.cost, delta: q.delta, details: structuredClone(q.details) };
+  }
+  function previewRU3(state2, selection, { assignmentId = null } = {}) {
+    const reasons = [], r = state2.management.registries, { driverId, beastIds, chariotId } = selection ?? {}, current = r.assignments[assignmentId];
+    const assembled = Boolean(current && current.driverId === driverId && current.chariotId === chariotId && canonical(current.beastIds) === canonical(beastIds));
+    if (!Array.isArray(beastIds) || beastIds.length !== 2 || new Set(beastIds).size !== 2) reasons.push("Select two distinct beasts");
+    for (const [kind, key3] of [["personnel", driverId], ...(Array.isArray(beastIds) ? beastIds : []).map((k) => ["beasts", k]), ["chariots", chariotId]]) {
+      const a = r[kind][key3];
+      if (!a || a.ownerCareerId !== state2.career.id) {
+        reasons.push("Missing/foreign component");
+        continue;
+      }
+      if (a.references.assignment?.some((k) => k !== assignmentId)) reasons.push("Exclusive assignment conflict");
+      if (!a.available || ["Major", "Critical"].includes(a.injury) || ["Critical", "Destroyed"].includes(a.status)) reasons.push("Unavailable/ineligible component: " + a.name);
+    }
+    if (reasons.length) return freeze({ assembled, eligible: false, reasons, native: null, derived: null });
+    const driver = r.personnel[driverId], beasts = beastIds.map((k) => r.beasts[k]), chariot = r.chariots[chariotId], native = defaultRU("management-preview");
+    native.driver = { ...driver.attributes, condition: driver.condition, strain: driver.strain };
+    native.beasts = beasts.map((b) => ({ ...b.attributes, condition: b.condition, fatigue: b.fatigue }));
+    native.chariot = { ...chariot.attributes, condition: chariot.condition, wear: chariot.wear, weight: chariot.weight, capacity: chariot.capacity };
+    native.equipment = { mass: 0, combat: 0 };
+    if (driver.condition <= consequenceDefaults.disabledCondition || chariot.condition <= consequenceDefaults.disabledCondition || beasts.every((b) => b.condition <= consequenceDefaults.minimumTeamCondition)) reasons.push("Native engine disable threshold");
+    try {
+      validateRU(native);
+    } catch (e) {
+      reasons.push(e.message);
+    }
+    if (reasons.length) return freeze({ assembled, eligible: false, reasons, native: null, derived: null });
+    return freeze({ assembled, eligible: true, reasons: [], native, derived: derive(native, config()), label: "Baseline / no weather or surface adjustment; management fatigue and integrity are separate. Not competition entry." });
+  }
+  function applyAssembly3(state2, tx) {
+    const r = state2.management.registries, key3 = tx.assignmentId;
+    id(key3);
+    const old = r.assignments[key3];
+    if (tx.type === "ru.disassemble" && !old) throw Error("No prospective RU to disassemble");
+    if (tx.type === "ru.assemble") {
+      const preview = previewRU3(state2, tx, { assignmentId: key3 });
+      if (!preview.eligible) throw Error(preview.reasons.join("; "));
+      if ([state2.profile.id, state2.career.id].includes(key3) || Object.entries(r).some(([kind, records]) => kind !== "assignments" && Object.hasOwn(records, key3))) throw Error("Assignment identity collision");
+    }
+    if (old) {
+      for (const subject of old.references.subject) for (const kind of ["personnel", "beasts", "chariots"]) if (r[kind][subject]) r[kind][subject].references.assignment = [];
+      delete r.assignments[key3];
+    }
+    if (tx.type === "ru.assemble") {
+      const subjects = [tx.driverId, ...tx.beastIds, tx.chariotId];
+      r.assignments[key3] = { id: key3, ownerCareerId: state2.career.id, references: { subject: subjects }, recordVersion: 1, name: "Prospective Racing Unit", kind: "prospectiveRU", driverId: tx.driverId, beastIds: [...tx.beastIds], chariotId: tx.chariotId };
+      for (const subject of subjects) for (const kind of ["personnel", "beasts", "chariots"]) if (r[kind][subject]) r[kind][subject].references.assignment = [key3];
+    }
+    return { assignmentId: key3, assembled: tx.type === "ru.assemble" };
+  }
+
+  // src/career/cycles/policy.js
+  var RECOVERY = freeze({ version: 1, driverFatigue: 20, beastFatigue: 20 });
+  var debtStatus = (streak) => streak === 0 ? "Current" : streak === 1 ? "Overdue" : streak === 2 ? "Delinquent" : streak === 3 ? "Critical" : "Default";
+  var moraleMultiplier = (status) => ({ Current: 1, Overdue: 1, Delinquent: 0.95, Critical: 0.9, Default: 0.85 })[status];
+  function requirePreparation(s) {
+    if (s.championshipFoundation?.version >= 2 && s.championshipFoundation.activeId !== null) throw Error("Stable management is read-only during an active or unsettled championship");
+    if (s.cycles.phase !== "STABLE_PREPARATION" || s.career.status === "Failed") throw Error("Career is not in playable stable preparation");
+  }
+  function restrict(s, type) {
+    requirePreparation(s);
+    if (s.cycles.streak >= 2 && ["market.acquire", "facility.purchase", "training.apply", "engineering.apply"].includes(type)) throw Error("Payroll " + debtStatus(s.cycles.streak) + ": discretionary action restricted");
+    if (s.cycles.streak >= 3 && type === "contract.renew") throw Error("Payroll Critical/Default: renewal blocked");
+  }
+  var outstanding = (s) => Object.values(s.cycles.obligations).reduce((sum, o) => plus(sum, o.balance), 0);
+  function previewRU4(s, selection, options2 = {}) {
+    const p = previewRU3(s, selection, options2), d = s.management.registries.personnel[selection?.driverId], c = s.management.registries.contracts[d?.references.contract?.[0]];
+    if (!c || c.lifecycle !== "active" || c.cyclesRemaining < 1) return freeze({ ...p, eligible: false, reasons: [...p.reasons, "Driver contract is expired or unavailable"], native: null, derived: null });
+    if (p.native && d.personality) {
+      const copy = structuredClone(p);
+      copy.native.driver.personality = structuredClone(d.personality);
+      return freeze(copy);
+    }
+    return p;
+  }
+  function eligibleDrivers(s) {
+    return Object.values(s.management.registries.personnel).filter((p) => {
+      const c = s.management.registries.contracts[p.references.contract?.[0]];
+      return p.available && ["Healthy", "Minor"].includes(p.injury) && p.condition > consequenceDefaults.disabledCondition && c?.lifecycle === "active" && c.cyclesRemaining > 0;
+    });
+  }
+  function normalDriverRecruitment(s) {
+    for (const offer of Object.values(s.management.registries.marketOffers).filter((o) => o.category === "driver" && o.available)) try {
+      restrict(s, "market.acquire");
+      const q = quoteEconomy({ ...s, schema: 3 }, "market.acquire", { offerId: offer.id, term: "short" });
+      if (q.canAfford) return true;
+    } catch {
+    }
+    return false;
+  }
+  function assessViability(s) {
+    if (s.career.status === "Failed") return freeze({ status: "Failed", reasons: ["Career failure was explicitly confirmed"], canConfirm: false });
+    const r = structuredClone(s.management.registries);
+    for (const k of ["personnel", "beasts", "chariots"]) for (const a of Object.values(r[k])) a.references.assignment = [];
+    r.assignments = {};
+    const shadow = { ...s, management: { ...s.management, registries: r } }, bs = Object.values(r.beasts);
+    for (const d of eligibleDrivers(shadow)) for (const c of Object.values(r.chariots)) for (let i = 0; i < bs.length; i++) for (let j = i + 1; j < bs.length; j++) if (previewRU4(shadow, { driverId: d.id, beastIds: [bs[i].id, bs[j].id], chariotId: c.id }).eligible) return freeze({ status: "Operational", reasons: ["A legal Racing Unit can be assembled"], canConfirm: false });
+    const potential = (kind) => Object.keys(r[kind]).length + Object.values(r.marketOffers).filter((o) => o.available && o.category === { beasts: "beast", chariots: "chariot" }[kind]).length;
+    const reasons = [];
+    if (potential("beasts") < 2) reasons.push("Fewer than two beasts exist across owned assets and all remaining offers; no beast assistance or refresh exists");
+    if (potential("chariots") < 1) reasons.push("No chariot exists among owned assets or remaining offers; no chariot assistance or refresh exists");
+    return freeze(reasons.length ? { status: "FailurePending", reasons, canConfirm: true } : { status: "Blocked", reasons: ["No legal RU now; permitted recovery reachability is not proven exhausted. Inspect care, sales, renewal, recruitment or driver-only emergency options."], canConfirm: false });
+  }
+
+  // src/career/championships/scoring.js
+  function championshipClassification(proof) {
+    const e = proof.championshipEvidence;
+    if (!e || e.version !== 1) throw Error("Missing authoritative championship participation/progress evidence");
+    const progress = new Map(e.progress.map((x) => [x.id, x]));
+    const finish = proof.classification.filter((x) => x.status === "Finished").map((x) => ({ ...x, nativeStatus: x.status, started: e.starters.includes(x.id) }));
+    const rest = proof.classification.filter((x) => x.status !== "Finished").map((x) => ({ ...x, nativeStatus: x.status, status: x.status === "Retired" ? "DNF" : x.status, started: e.starters.includes(x.id) }));
+    const dnfs = rest.filter((x) => x.status === "DNF").sort((a, b) => b.completedLaps - a.completedLaps || b.progress - a.progress || first(a) - first(b) || (a.id < b.id ? -1 : 1));
+    function first(x) {
+      const p = progress.get(x.id);
+      if (!p || p.progress !== x.progress || !Number.isFinite(p.firstTime)) throw Error("Missing first-reached DNF progress");
+      return p.firstTime;
+    }
+    let cursor = 0;
+    for (let i = 0; i < rest.length; i++) if (rest[i].status === "DNF") rest[i] = dnfs[cursor++];
+    return [...finish, ...rest];
+  }
+  function raceAwardEffects(rows, rules2, { careerId, instanceId, raceId }) {
+    id(careerId);
+    id(instanceId);
+    id(raceId);
+    const seen = /* @__PURE__ */ new Set();
+    return rows.map((row) => {
+      if (seen.has(row.id)) throw Error("Duplicate classification identity");
+      seen.add(row.id);
+      if (row.status === "Finished" && (!row.started || !Number.isInteger(row.place) || row.place < 1)) throw Error("Invalid official finishing participation/place");
+      const points = row.status === "Finished" ? rules2.points[row.place - 1] ?? 0 : row.status === "DNF" && row.started && row.classified === true ? rules2.dnfPoints : 0;
+      gold(points);
+      return { entrantId: row.id, points, finishPlace: row.status === "Finished" ? row.place : null, win: row.status === "Finished" && row.place === 1, pendingEntitlementId: row.started ? "e2-claim-" + fingerprint([careerId, instanceId, raceId, row.id, "placement"]).slice(0, 48) : null };
+    });
+  }
+  function standings(entrantIds, races) {
+    const rows = entrantIds.map((id2) => ({ id: id2, points: 0, places: {}, lastRank: Number.MAX_SAFE_INTEGER }));
+    for (const race of races) {
+      for (const row of rows) row.lastRank = Number.MAX_SAFE_INTEGER;
+      for (const [rank, r] of race.rows.entries()) {
+        const row = rows.find((x) => x.id === r.id), effect = race.effects.find((x) => x.entrantId === r.id);
+        if (!row || !effect) throw Error("Unknown standings entrant");
+        row.points += effect.points;
+        gold(row.points);
+        if (r.status === "Finished") row.places[r.place] = (row.places[r.place] ?? 0) + 1;
+        row.lastRank = r.status === "Finished" ? r.place : rank + 1;
+      }
+    }
+    return rows.sort((a, b) => {
+      let d = b.points - a.points;
+      if (d) return d;
+      for (let p = 1; p <= entrantIds.length; p++) {
+        d = (b.places[p] ?? 0) - (a.places[p] ?? 0);
+        if (d) return d;
+      }
+      return a.lastRank - b.lastRank || (a.id < b.id ? -1 : 1);
+    });
+  }
+  function titleCandidate(ordered, lastRace) {
+    const eligible = ordered.filter((x) => lastRace.some((r) => r.id === x.id && r.started && !["DNS", "Disqualified", "Withdrawn"].includes(r.status)));
+    return eligible[0]?.id ?? null;
+  }
+
   // src/career/championships/controller-contracts.js
   var CONTROLLER_RULES = "m2e-controller-v1";
   var controllerEffect = (careerId, type, instanceId, revision) => "e2-" + fingerprint([careerId, type, instanceId, revision]).slice(0, 48);
-  var shapes2 = { "controller.enable": [], "championship.refreshOffers": ["offers"], "championship.register": ["offer", "selection", "instanceId"], "championship.coach": ["instanceId", "coaching"], "championship.start": ["instanceId"], "championship.bindRace": ["instanceId", "reference"], "championship.stageClearance": ["instanceId", "reference", "candidate", "setupFingerprint"], "championship.withdraw": ["instanceId", "confirmed"] };
+  var shapes2 = { "controller.enable": [], "controller.enableE3": [], "championship.publish": ["instanceId", "reference", "candidate", "setupFingerprint"], "championship.noStarters": ["instanceId", "proof", "evidence"], "championship.blockRace": ["instanceId", "reason", "reference"], "championship.retryRace": ["instanceId", "reference"], "championship.refreshOffers": ["offers"], "championship.register": ["offer", "selection", "instanceId"], "championship.coach": ["instanceId", "coaching"], "championship.start": ["instanceId"], "championship.bindRace": ["instanceId", "reference"], "championship.stageClearance": ["instanceId", "reference", "candidate", "setupFingerprint"], "championship.withdraw": ["instanceId", "confirmed"] };
   function validateControllerCommand(t) {
     exact(t, ["id", "profileId", "careerId", "expectedRevision", "expectedMaintenanceRevision", "commandVersion", "expectedInstanceRevision", "sourceFingerprint", "type", "effectId", "delta", "reason", "payload"]);
     for (const k of ["id", "profileId", "careerId", "effectId"]) id(t[k]);
@@ -4746,93 +5356,6 @@
     return view;
   }
 
-  // src/career/economy/catalog.js
-  var PRICES = freeze({ driver: { Budget: 200, Standard: 400, Premium: 800 }, beast: { Budget: 150, Standard: 325, Premium: 650 }, chariot: { Budget: 375, Standard: 625, Premium: 1150 }, specialist: { Budget: 200, Standard: 375, Premium: 625 }, equipment: { Budget: 100, Standard: 275, Premium: 425 } });
-  var COUNTS = freeze({ driver: [2, 2, 1], beast: [2, 3, 1], chariot: [1, 1, 1], specialist: [1, 1, 1], equipment: [3, 3, 0] });
-  var WAGES = freeze({ driver: { Budget: 20, Standard: 35, Premium: 60 }, specialist: { Budget: 15, Standard: 30, Premium: 50 } });
-  var TERMS = freeze({ short: { duration: 3, surcharge: 0, multiplier: 1.25, termination: 1 }, standard: { duration: 8, surcharge: 50, multiplier: 1, termination: 2 }, long: { duration: 16, surcharge: 125, multiplier: 0.85, termination: 3 } });
-  var UPGRADES = freeze({
-    "staff-quarters": { name: "Staff Quarters", cost: 300, capacity: "specialists", amount: 2 },
-    "expanded-stables": { name: "Expanded Stables", cost: 400, capacity: "beasts", amount: 2 },
-    "driver-quarters": { name: "Driver Quarters", cost: 350, capacity: "drivers", amount: 1 },
-    "chariot-bay": { name: "Additional Chariot Bay", cost: 450, capacity: "chariots", amount: 1 },
-    workshop: { name: "Workshop", cost: 500 },
-    "treatment-ward": { name: "Treatment Ward", cost: 450 },
-    "training-grounds": { name: "Training Grounds", cost: 600 }
-  });
-  var SERVICES = freeze({
-    "driver-recovery": { registry: "personnel", field: "fatigue", cost: 40 },
-    "driver-treatment": { registry: "personnel", field: "injury", cost: 100, role: "Physician", ward: true },
-    "beast-care": { registry: "beasts", field: "fatigue", cost: 30, role: "Beast Handler" },
-    "beast-treatment": { registry: "beasts", field: "injury", cost: 80, role: "Beast Handler", ward: true },
-    "chariot-repair": { registry: "chariots", field: "integrity", role: "Mechanic", workshop: true },
-    "chariot-refurbishment": { registry: "chariots", field: "wear", cost: 100, role: "Mechanic", workshop: true }
-  });
-  var INJURIES3 = freeze(["Healthy", "Minor", "Major", "Critical"]);
-  var TIERS = freeze(["Budget", "Standard", "Premium"]);
-
-  // src/career/economy/arithmetic.js
-  function rational(value) {
-    if (typeof value !== "number" || !Number.isFinite(value)) throw Error("Expected finite decimal number");
-    const [mantissa, exp = "0"] = String(value).toLowerCase().split("e"), negative = mantissa.startsWith("-");
-    const unsigned = mantissa.replace("-", ""), [a, b = ""] = unsigned.split(".");
-    let n = BigInt(a + b) * (negative ? -1n : 1n), d = 10n ** BigInt(b.length), e = Number(exp);
-    if (e >= 0) n *= 10n ** BigInt(e);
-    else d *= 10n ** BigInt(-e);
-    return { n, d };
-  }
-  var R = (x) => typeof x === "number" ? rational(x) : x;
-  function add(a, b) {
-    a = R(a);
-    b = R(b);
-    return { n: a.n * b.d + b.n * a.d, d: a.d * b.d };
-  }
-  function mul(a, b) {
-    a = R(a);
-    b = R(b);
-    return { n: a.n * b.n, d: a.d * b.d };
-  }
-  function div(a, b) {
-    a = R(a);
-    b = R(b);
-    if (b.n === 0n) throw Error("Zero divisor");
-    return { n: a.n * b.d, d: a.d * b.n };
-  }
-  function compare(a, b) {
-    a = R(a);
-    b = R(b);
-    const n = a.n * b.d - b.n * a.d;
-    return n < 0n ? -1 : n > 0n ? 1 : 0;
-  }
-  function rounded(value, mode = "half-up", unit = 1) {
-    const x = div(value, unit);
-    if (x.n < 0n || x.d <= 0n) throw Error("Economic rounding requires nonnegative amount");
-    let n = x.n / x.d, rem = x.n % x.d;
-    if (mode === "ceil" && rem > 0n || mode === "half-up" && 2n * rem >= x.d) n++;
-    else if (!["floor", "ceil", "half-up"].includes(mode)) throw Error("Unknown rounding mode");
-    const result = n * BigInt(unit);
-    if (result > BigInt(Number.MAX_SAFE_INTEGER)) throw Error("Economic value exceeds safe integer");
-    return Number(result);
-  }
-  function decimal(x) {
-    x = R(x);
-    const sign = x.n < 0n ? "-" : "";
-    let n = x.n < 0n ? -x.n : x.n;
-    const whole = n / x.d;
-    let rem = n % x.d, tail = "";
-    for (let i = 0; rem && i < 360; i++) {
-      rem *= 10n;
-      tail += (rem / x.d).toString();
-      rem %= x.d;
-    }
-    return Number(sign + whole.toString() + (tail ? "." + tail : ""));
-  }
-  function mean(values) {
-    return div(values.reduce((s, v) => add(s, v), rational(0)), values.length);
-  }
-  var qualityFromRatings = (attributes) => add(0.85, mul(3e-3, mean(Object.values(attributes))));
-  var conditionFactor = (health) => add(0.7, mul(3e-3, health));
-
   // src/career/economy/maintenance-history.js
   var MIGRATION_VERSION = "m2c-migration-v1";
   var ADAPTER_VERSION = "valuation-health-v1";
@@ -4927,57 +5450,6 @@
     return offers;
   }
 
-  // src/career/economy/records.js
-  var ownedId = (careerId, offerId) => "owned-" + sha256(careerId + "|" + offerId).slice(0, 32);
-  var contractId = (careerId, personId) => "contract-" + sha256(careerId + "|" + personId).slice(0, 32);
-  var upgradeRecordId = (propertyId, upgrade) => "upgrade-" + sha256(propertyId + "|" + upgrade).slice(0, 32);
-  var tierFromRatings = (a) => compare(mean(Object.values(a)), 45) < 0 ? "Budget" : compare(mean(Object.values(a)), 65) < 0 ? "Standard" : "Premium";
-  function valuationHealth(category, record) {
-    const value = category === "chariot" ? record.integrity : record.condition;
-    if (!Number.isFinite(value) || value < 0 || value > 100) throw Error("Invalid valuation-health-v1 input");
-    return value;
-  }
-  function economics(category, record, { tier, quality, wageQuality = null, paid = null, sourceOfferId = null } = {}) {
-    const baseAttributes = record.attributes ? structuredClone(record.attributes) : null;
-    tier ?? (tier = category === "equipment" ? "Budget" : tierFromRatings(record.attributes));
-    quality ?? (quality = baseAttributes ? decimal(qualityFromRatings(baseAttributes)) : 1);
-    const originalHealth = ["driver", "beast", "chariot"].includes(category) ? valuationHealth(category, record) : null;
-    const acquisitionBasis = paid ?? (category === "driver" || category === "specialist" ? 0 : category === "equipment" ? 100 : rounded(mul(mul(PRICES[category][tier], quality), conditionFactor(originalHealth)), "half-up", 5));
-    return { tier, quality, baseAttributes, originalHealth, acquisitionBasis, sourceOfferId, wageQuality, baseWage: wageQuality === null ? null : rounded(mul(WAGES[category][tier], wageQuality)) };
-  }
-  function upgradeStarterRecords(registries) {
-    for (const [registry, category] of [["personnel", "driver"], ["beasts", "beast"], ["chariots", "chariot"], ["equipment", "equipment"]]) for (const r of Object.values(registries[registry])) {
-      r.recordVersion = 2;
-      r.economics = economics(category, r, { wageQuality: category === "driver" ? 1 : null });
-      if (category === "driver" || category === "beast") r.training = Object.fromEntries(Object.keys(r.attributes).map((k) => [k, 0]));
-      if (category === "chariot") r.engineering = { increments: Object.fromEntries(chariotAttributes.map((k) => [k, 0])), spentGold: 0 };
-    }
-    for (const r of Object.values(registries.properties)) r.recordVersion = 2;
-  }
-  function addContract(registries, person, term, { grandfathered = false } = {}) {
-    const terms = TERMS[term];
-    if (!terms) throw Error("Invalid contract term");
-    const key3 = contractId(person.ownerCareerId, person.id);
-    if (registries.contracts[key3]) throw Error("Contract identity already exists");
-    const baseWage = person.economics.baseWage;
-    registries.contracts[key3] = { id: key3, ownerCareerId: person.ownerCareerId, references: { employee: [person.id] }, recordVersion: 2, name: person.name + " contract", term, cyclesRemaining: terms.duration, baseWage, wage: rounded(mul(baseWage, terms.multiplier)), grandfathered, sourceOfferId: person.economics.sourceOfferId };
-    person.references.contract = [key3];
-    return key3;
-  }
-  function acquireRecord(offer, careerId) {
-    const key3 = ownedId(careerId, offer.id), r = { id: key3, ownerCareerId: careerId, references: {}, recordVersion: 2, name: offer.name, ...structuredClone(offer.template) };
-    if (offer.category !== "equipment") r.available = true;
-    if (offer.category === "driver") r.role = "driver";
-    if (offer.category === "chariot") {
-      r.status = integrityStatus(r.integrity);
-      r.engineering = { increments: Object.fromEntries(chariotAttributes.map((k) => [k, 0])), spentGold: 0 };
-    }
-    if (offer.category === "driver" || offer.category === "beast") r.training = Object.fromEntries(Object.keys(r.attributes).map((k) => [k, 0]));
-    r.economics = economics(offer.category, r, { tier: offer.tier, quality: offer.quality, wageQuality: offer.wageQuality, paid: offer.price, sourceOfferId: offer.id });
-    return r;
-  }
-  var ratingKeys = { personnel: driverAttributes, beasts: beastAttributes, chariots: chariotAttributes };
-
   // src/career/economy/base.js
   var RULES_VERSION = "m2c-economy-v1";
   function assertMigrationSource(source) {
@@ -5059,83 +5531,6 @@
     return r;
   }
 
-  // src/career/economy/commands.js
-  var ECONOMY_TYPES = Object.freeze(["market.acquire", "asset.sell", "personnel.terminate", "equipment.detach", "facility.purchase", "service.apply", "training.apply", "engineering.apply"]);
-  var SHAPES = { "market.acquire": ["offerId", "term"], "asset.sell": ["assetId"], "personnel.terminate": ["personId"], "equipment.detach": ["equipmentId"], "facility.purchase": ["propertyId", "upgradeId"], "service.apply": ["assetId", "service", "amount"], "training.apply": ["assetId", "attribute", "points"], "engineering.apply": ["assetId", "attribute", "points"] };
-  function validateEconomyCommand(tx) {
-    exact(tx, ["id", "profileId", "careerId", "expectedRevision", "expectedMaintenanceRevision", "commandVersion", "type", "effectId", "delta", "reason", "payload"], "M2-C command v2");
-    for (const key3 of ["id", "profileId", "careerId"]) id(tx[key3]);
-    if (tx.commandVersion !== 2 || !Object.hasOwn(SHAPES, tx.type) || !Number.isSafeInteger(tx.expectedRevision) || tx.expectedRevision < 0 || !Number.isSafeInteger(tx.expectedMaintenanceRevision) || tx.expectedMaintenanceRevision < 1 || !Number.isSafeInteger(tx.delta) || typeof tx.reason !== "string" || !tx.reason.trim() || tx.reason.length > 500 || typeof tx.effectId !== "string" || !/^[a-zA-Z0-9_-]{1,128}$/.test(tx.effectId)) throw Error("Invalid economic command/version/revision");
-    exact(tx.payload, SHAPES[tx.type], "economic payload");
-    for (const key3 of ["offerId", "assetId", "personId", "equipmentId", "propertyId"]) if (Object.hasOwn(tx.payload, key3)) id(tx.payload[key3]);
-    for (const key3 of ["term", "upgradeId", "service", "attribute"]) if (Object.hasOwn(tx.payload, key3) && tx.payload[key3] !== null && (typeof tx.payload[key3] !== "string" || !tx.payload[key3].length || tx.payload[key3].length > 64)) throw Error("Invalid economic selector");
-    if (Object.hasOwn(tx.payload, "points") && (!Number.isInteger(tx.payload.points) || tx.payload.points < 1 || tx.payload.points > 5)) throw Error("Request 1\u20135 full increments");
-    if (Object.hasOwn(tx.payload, "amount") && tx.payload.amount !== null && (!Number.isFinite(tx.payload.amount) || tx.payload.amount <= 0 || tx.payload.amount > 100)) throw Error("Invalid requested service amount");
-  }
-  function economicEffect(state2, type, payload) {
-    let key3;
-    if (type === "market.acquire") key3 = ["acquire", payload.offerId];
-    else if (type === "asset.sell") key3 = ["sell", payload.assetId];
-    else if (type === "personnel.terminate") key3 = ["terminate", payload.personId];
-    else if (type === "equipment.detach") key3 = ["detach", payload.equipmentId];
-    else if (type === "facility.purchase") key3 = ["facility", payload.propertyId, payload.upgradeId];
-    else if (type === "engineering.apply") key3 = ["engineering", payload.assetId, Object.values(state2.management.registries.chariots[payload.assetId]?.engineering.increments ?? {}).reduce((a, b) => a + b, 0)];
-    else key3 = [type, payload.assetId, payload.service ?? payload.attribute, state2.revision, state2.maintenanceRevision];
-    return "economy-" + sha256(canonical([state2.career.id, ...key3])).slice(0, 48);
-  }
-  function validateResult(tx, result) {
-    exact(result, ["type", "cost", "delta", "details"], "economic result");
-    if (result.type !== tx.type || result.delta !== tx.delta || !Number.isSafeInteger(result.cost) || result.cost < 0) throw Error("Inconsistent protected economic result");
-    const fields2 = {
-      "market.acquire": ["offerId", "assetId", "category", "price", "signingSurcharge"],
-      "asset.sell": ["assetId", "name", "category", "proceeds"],
-      "personnel.terminate": ["personId", "kind", "contractId", "fee"],
-      "equipment.detach": ["equipmentId", "chariotId"],
-      "facility.purchase": ["propertyId", "upgradeId", "facilityId"],
-      "service.apply": ["assetId", "service", "field", "before", "after", "basePrice", "discountPercent"],
-      "training.apply": ["assetId", "attribute", "points", "before", "after", "xpCost", "increments"],
-      "engineering.apply": ["assetId", "attribute", "points", "before", "after", "xpCost", "increments"]
-    }[tx.type];
-    exact(result.details, fields2, "economic result details");
-    const d = result.details;
-    for (const key3 of ["assetId", "offerId", "personId", "contractId", "equipmentId", "chariotId", "propertyId", "facilityId"]) if (Object.hasOwn(d, key3)) id(d[key3]);
-    for (const key3 of ["assetId", "offerId", "personId", "equipmentId", "propertyId", "upgradeId", "service", "attribute", "points"]) if (Object.hasOwn(tx.payload, key3) && Object.hasOwn(d, key3) && tx.payload[key3] !== d[key3]) throw Error("Economic result target mismatch");
-    const integer3 = (n) => {
-      if (!Number.isSafeInteger(n) || n < 0) throw Error("Invalid economic result integer");
-    };
-    for (const key3 of ["price", "signingSurcharge", "proceeds", "fee", "basePrice", "discountPercent", "xpCost"]) if (Object.hasOwn(d, key3)) integer3(d[key3]);
-    if (tx.type === "asset.sell") {
-      if (result.cost !== 0 || tx.delta !== d.proceeds) throw Error("Inconsistent resale facts");
-    } else if (tx.delta !== -result.cost) throw Error("Inconsistent economic debit");
-    if (tx.type === "market.acquire" && result.cost !== d.price + d.signingSurcharge) throw Error("Inconsistent acquisition cost");
-    if (tx.type === "personnel.terminate" && result.cost !== d.fee) throw Error("Inconsistent termination fee");
-    if (tx.type === "equipment.detach" && result.cost !== 0) throw Error("Detach must be free");
-    if (tx.type === "service.apply" && d.discountPercent > 25) throw Error("Invalid discount facts");
-    if (["training.apply", "engineering.apply"].includes(tx.type)) {
-      if (!Number.isFinite(d.before) || !Number.isFinite(d.after) || d.before < 0 || d.after > 100 || !Array.isArray(d.increments) || d.increments.length !== tx.payload.points) throw Error("Invalid permanent-increment result");
-      for (const i of d.increments) {
-        exact(i, ["before", "cost"], "increment cost detail");
-        integer3(i.cost);
-        if (!Number.isFinite(i.before) || i.before < 0 || i.before >= 100) throw Error("Invalid incremental rating");
-      }
-      if (tx.type === "training.apply" && result.cost !== 0) throw Error("Training must spend XP only");
-      if (tx.type === "engineering.apply" && d.xpCost !== 0) throw Error("Engineering must spend Gold only");
-    }
-  }
-  function protectEconomic(tx, balanceAfter, result) {
-    validateEconomyCommand(tx);
-    validateResult(tx, result);
-    return { commandVersion: 2, id: tx.id, profileId: tx.profileId, careerId: tx.careerId, request: canonical(tx), fingerprint: sha256(canonical(tx)), effectId: tx.effectId, resultRevision: tx.expectedRevision + 1, delta: tx.delta, balanceAfter, result: structuredClone(result), retention: "P0" };
-  }
-  function validateEconomicEntry(e) {
-    exact(e, ["commandVersion", "id", "profileId", "careerId", "request", "fingerprint", "effectId", "resultRevision", "delta", "balanceAfter", "result", "retention"], "protected economy entry");
-    if (typeof e.request !== "string" || e.request.length > 3e3 || !Number.isSafeInteger(e.balanceAfter) || e.balanceAfter < 0) throw Error("Invalid protected economy request/balance");
-    const request2 = JSON.parse(e.request);
-    const expected = protectEconomic(request2, e.balanceAfter, e.result);
-    if (canonical(expected) !== canonical(e)) throw Error("Protected economy facts mismatch");
-    return e;
-  }
-
   // src/career/economy/protected-registry.js
   var isLegacyEntry = (e) => !Object.hasOwn(e, "kind") && [0, 1].includes(e.commandVersion);
   function validateEntry(e) {
@@ -5175,225 +5570,6 @@
   function historyRetentionPlan2(state2) {
     if (state2.schema < 3) return historyRetentionPlan(state2);
     return { gameplayRevision: state2.revision, maintenanceRevision: state2.maintenanceRevision, classes: { ...RETENTION_CLASSES }, protectedCommands: state2.history.commands.map((e) => e.id), protectedEffects: state2.history.commands.map((e) => e.effectId), remove: [], summarize: [], canCompact: false, reason: "M2-C preserves all P0 history; compaction is not implemented" };
-  }
-
-  // src/career/economy/reducers.js
-  var CATEGORY_REGISTRY = { driver: "personnel", beast: "beasts", chariot: "chariots", specialist: "specialists", equipment: "equipment" };
-  function asset(state2, key3, allowed = ["personnel", "beasts", "chariots", "equipment", "specialists"]) {
-    for (const kind of allowed) if (Object.hasOwn(state2.management.registries[kind], key3)) {
-      const record = state2.management.registries[kind][key3];
-      if (record.ownerCareerId !== state2.career.id) throw Error("Foreign owned asset");
-      return { kind, record };
-    }
-    throw Error("Missing eligible owned asset: " + key3);
-  }
-  function hasUpgrade(state2, key3) {
-    return Object.values(state2.management.registries.facilities).some((f) => f.descriptiveOnly === false && f.upgradeId === key3);
-  }
-  function activeRole(state2, role) {
-    const r = state2.management.registries;
-    return Object.values(r.specialists).some((p) => p.role === role && p.available && ["Healthy", "Minor"].includes(p.injury) && p.references.contract?.length === 1 && r.contracts[p.references.contract[0]]?.cyclesRemaining > 0);
-  }
-  function assigned(record) {
-    if (record.references.assignment?.length) throw Error("Asset is assigned: explicitly disassemble the RU first");
-  }
-  function serviceDiscount(state2, service) {
-    let discount = 0;
-    if (service.role && activeRole(state2, service.role)) discount += 15;
-    if (service.workshop && hasUpgrade(state2, "workshop")) discount += 10;
-    if (service.ward && hasUpgrade(state2, "treatment-ward")) discount += 10;
-    return Math.min(25, discount);
-  }
-  function resaleValue(category, record) {
-    const e = record.economics;
-    if (category === "equipment") return Math.min(e.acquisitionBasis, rounded(mul(e.acquisitionBasis, 0.4), "floor"));
-    if (!["beast", "chariot"].includes(category)) throw Error("Personnel cannot be resold");
-    return Math.min(e.acquisitionBasis, rounded(mul(mul(mul(PRICES[category][e.tier], e.quality), conditionFactor(valuationHealth(category, record))), 0.5), "floor"));
-  }
-  function incrementCost(current, points, { engineering = false, discount = false } = {}) {
-    if (!Number.isFinite(current) || current < 0 || current > 100 || !Number.isInteger(points) || points < 1 || points > 5 || compare(add(current, points), 100) > 0) throw Error("Invalid full increments or native cap exceeded");
-    let total = 0;
-    for (let i = 0; i < points; i++) {
-      const value = add(current, i), band = compare(value, 60) < 0 ? 0 : compare(value, 75) < 0 ? 1 : compare(value, 90) < 0 ? 2 : 3;
-      total += (engineering ? [75, 125, 200, 350] : [10, 20, 35, 60])[band];
-    }
-    return discount ? rounded(mul(total, 0.9), "ceil") : total;
-  }
-  function quoteEconomy(state2, type, payload) {
-    if (state2.schema !== 3 || !state2.management.initialized || state2.pendingRace !== null) throw Error("An initialized schema-3 stable without pending race is required");
-    validateEconomyCommand({ id: "quote", profileId: state2.profile.id, careerId: state2.career.id, expectedRevision: state2.revision, expectedMaintenanceRevision: state2.maintenanceRevision, commandVersion: 2, type, effectId: "quote", delta: 0, reason: "Read-only quote", payload });
-    const r = state2.management.registries;
-    let cost = 0, credit = 0, details = {}, xpCost = 0;
-    if (type === "market.acquire") {
-      const offer = r.marketOffers[payload.offerId];
-      if (!offer || !offer.available) throw Error("Offer is unavailable or consumed");
-      const kind = CATEGORY_REGISTRY[offer.category], cap = { personnel: "drivers", specialists: "specialists", beasts: "beasts", chariots: "chariots" }[kind], property = Object.values(r.properties)[0];
-      if (cap && Object.keys(r[kind]).length >= property.capacities[cap]) throw Error("Capacity exceeded: " + cap + (kind === "specialists" ? " (purchase Staff Quarters first)" : ""));
-      const personnel = ["driver", "specialist"].includes(offer.category);
-      if (personnel && !Object.hasOwn(TERMS, payload.term)) throw Error("Choose a contract term");
-      if (!personnel && payload.term !== null) throw Error("Owned assets have no employment term");
-      cost = offer.price + (personnel ? TERMS[payload.term].surcharge : 0);
-      const acquired = acquireRecord(offer, state2.career.id);
-      details = { offerId: offer.id, assetId: acquired.id, category: offer.category, price: offer.price, signingSurcharge: personnel ? TERMS[payload.term].surcharge : 0 };
-    } else if (type === "asset.sell") {
-      const { kind, record } = asset(state2, payload.assetId);
-      assigned(record);
-      const category = { beasts: "beast", chariots: "chariot", equipment: "equipment" }[kind];
-      if (!category) throw Error("Personnel cannot be resold");
-      if (kind === "equipment" && record.references.installedOn?.length) throw Error("EQUIPMENT_INSTALLED: explicitly detach first");
-      if (kind === "chariots" && record.references.equipment?.length) throw Error("Explicitly detach all installed equipment first");
-      credit = resaleValue(category, record);
-      details = { assetId: record.id, name: record.name, category, proceeds: credit };
-    } else if (type === "personnel.terminate") {
-      const { kind, record } = asset(state2, payload.personId, ["personnel", "specialists"]);
-      assigned(record);
-      const contract = r.contracts[record.references.contract?.[0]];
-      if (!contract) throw Error("No active contract");
-      cost = contract.baseWage * TERMS[contract.term].termination;
-      details = { personId: record.id, kind, contractId: contract.id, fee: cost };
-    } else if (type === "equipment.detach") {
-      const { record } = asset(state2, payload.equipmentId, ["equipment"]);
-      const key3 = record.references.installedOn?.[0];
-      if (!key3 || !r.chariots[key3]?.references.equipment?.includes(record.id)) throw Error("Equipment is already detached or references are inconsistent");
-      details = { equipmentId: record.id, chariotId: key3 };
-    } else if (type === "facility.purchase") {
-      const property = r.properties[payload.propertyId], upgrade = UPGRADES[payload.upgradeId];
-      if (!property || !upgrade) throw Error("Invalid property or upgrade");
-      if (hasUpgrade(state2, payload.upgradeId)) throw Error("Upgrade already owned");
-      cost = upgrade.cost;
-      details = { propertyId: property.id, upgradeId: payload.upgradeId, facilityId: upgradeRecordId(property.id, payload.upgradeId) };
-    } else if (type === "service.apply") {
-      const service = SERVICES[payload.service];
-      if (!service) throw Error("Unsupported service");
-      const { record } = asset(state2, payload.assetId, [service.registry]);
-      let before = record[service.field], after;
-      if (service.field === "injury") {
-        const severity = INJURIES3.indexOf(before);
-        if (severity <= 0) throw Error("Service has no effect");
-        after = INJURIES3[severity - 1];
-      } else if (service.field === "integrity") {
-        if (payload.amount === null) throw Error("Specify requested integrity restoration");
-        after = Math.min(100, decimal(add(before, payload.amount)));
-      } else after = Math.max(0, decimal(add(before, -25)));
-      if (service.field !== "integrity" && payload.amount !== null) throw Error("Fixed services do not accept a custom amount");
-      if (before === after) throw Error("Service has no effect");
-      const actual = service.field === "integrity" ? add(after, -before) : null;
-      const base = service.field === "integrity" ? rounded(mul(actual, 1.5), "ceil") : service.cost, discount = serviceDiscount(state2, service);
-      cost = Math.max(1, rounded(mul(base, (100 - discount) / 100)));
-      details = { assetId: record.id, service: payload.service, field: service.field, before, after, basePrice: base, discountPercent: discount };
-    } else if (type === "training.apply" || type === "engineering.apply") {
-      const engineering = type === "engineering.apply", { kind, record } = asset(state2, payload.assetId, engineering ? ["chariots"] : ["personnel", "beasts"]);
-      if (!ratingKeys[kind].includes(payload.attribute)) throw Error("Unsupported native rating field");
-      const before = record.attributes[payload.attribute];
-      if (engineering && Object.values(record.engineering.increments).reduce((a, b) => a + b, 0) + payload.points > 10) throw Error("Lifetime engineering cap of 10 increments exceeded");
-      const amount = incrementCost(before, payload.points, { engineering, discount: !engineering && hasUpgrade(state2, "training-grounds") });
-      if (engineering) cost = amount;
-      else xpCost = amount;
-      details = { assetId: record.id, attribute: payload.attribute, points: payload.points, before, after: decimal(add(before, payload.points)), xpCost, increments: Array.from({ length: payload.points }, (_, i) => ({ before: decimal(add(before, i)), cost: incrementCost(decimal(add(before, i)), 1, { engineering }) })) };
-    }
-    const effectId2 = economicEffect(state2, type, payload);
-    if (state2.history.commands.some((e) => e.effectId === effectId2)) throw Error("Business effect already committed on retained history");
-    const person = payload.assetId ? (() => {
-      try {
-        return asset(state2, payload.assetId).record;
-      } catch {
-        return null;
-      }
-    })() : null;
-    return freeze({ type, cost, credit, delta: credit - cost, xpCost, effectId: effectId2, canAfford: state2.career.treasury >= cost && (!xpCost || person?.xp >= xpCost), details });
-  }
-  function executeEconomy(state2, tx) {
-    const q = quoteEconomy(state2, tx.type, tx.payload);
-    if (tx.delta !== q.delta || tx.effectId !== q.effectId) throw Error("Economic delta/effect differs from authoritative quote");
-    if (!q.canAfford) throw Error(q.xpCost ? "Insufficient XP" : "Insufficient Gold");
-    const r = state2.management.registries, p = tx.payload, d = q.details;
-    if (tx.type === "market.acquire") {
-      const offer = r.marketOffers[p.offerId], record = acquireRecord(offer, state2.career.id), kind = CATEGORY_REGISTRY[offer.category];
-      if (Object.values(r).some((records) => Object.hasOwn(records, record.id))) throw Error("Owned identity already exists");
-      r[kind][record.id] = record;
-      if (["driver", "specialist"].includes(offer.category)) addContract(r, record, p.term);
-      offer.available = false;
-    } else if (tx.type === "asset.sell") {
-      const found = asset(state2, p.assetId);
-      delete r[found.kind][p.assetId];
-    } else if (tx.type === "personnel.terminate") {
-      delete r[d.kind][p.personId];
-      delete r.contracts[d.contractId];
-    } else if (tx.type === "equipment.detach") {
-      r.chariots[d.chariotId].references.equipment = r.chariots[d.chariotId].references.equipment.filter((key3) => key3 !== p.equipmentId);
-      r.equipment[p.equipmentId].references.installedOn = [];
-    } else if (tx.type === "facility.purchase") {
-      const u = UPGRADES[p.upgradeId], property = r.properties[p.propertyId];
-      r.facilities[d.facilityId] = { id: d.facilityId, ownerCareerId: state2.career.id, references: { property: [property.id] }, recordVersion: 2, name: u.name, descriptiveOnly: false, upgradeId: p.upgradeId };
-      property.references.facilities.push(d.facilityId);
-      if (u.capacity) property.capacities[u.capacity] += u.amount;
-    } else if (tx.type === "service.apply") {
-      const { record } = asset(state2, p.assetId);
-      record[d.field] = d.after;
-      if (d.field === "integrity") record.status = integrityStatus(d.after);
-    } else if (tx.type === "training.apply" || tx.type === "engineering.apply") {
-      const { record } = asset(state2, p.assetId);
-      record.attributes[p.attribute] = d.after;
-      if (tx.type === "training.apply") {
-        record.xp -= q.xpCost;
-        record.training[p.attribute] += p.points;
-      } else {
-        record.engineering.increments[p.attribute] += p.points;
-        record.engineering.spentGold += q.cost;
-      }
-    }
-    state2.career.treasury += q.delta;
-    if (!Number.isSafeInteger(state2.career.treasury) || state2.career.treasury < 0) throw Error("Invalid treasury result");
-    return { type: tx.type, cost: q.cost, delta: q.delta, details: structuredClone(q.details) };
-  }
-  function previewRU3(state2, selection, { assignmentId = null } = {}) {
-    const reasons = [], r = state2.management.registries, { driverId, beastIds, chariotId } = selection ?? {}, current = r.assignments[assignmentId];
-    const assembled = Boolean(current && current.driverId === driverId && current.chariotId === chariotId && canonical(current.beastIds) === canonical(beastIds));
-    if (!Array.isArray(beastIds) || beastIds.length !== 2 || new Set(beastIds).size !== 2) reasons.push("Select two distinct beasts");
-    for (const [kind, key3] of [["personnel", driverId], ...(Array.isArray(beastIds) ? beastIds : []).map((k) => ["beasts", k]), ["chariots", chariotId]]) {
-      const a = r[kind][key3];
-      if (!a || a.ownerCareerId !== state2.career.id) {
-        reasons.push("Missing/foreign component");
-        continue;
-      }
-      if (a.references.assignment?.some((k) => k !== assignmentId)) reasons.push("Exclusive assignment conflict");
-      if (!a.available || ["Major", "Critical"].includes(a.injury) || ["Critical", "Destroyed"].includes(a.status)) reasons.push("Unavailable/ineligible component: " + a.name);
-    }
-    if (reasons.length) return freeze({ assembled, eligible: false, reasons, native: null, derived: null });
-    const driver = r.personnel[driverId], beasts = beastIds.map((k) => r.beasts[k]), chariot = r.chariots[chariotId], native = defaultRU("management-preview");
-    native.driver = { ...driver.attributes, condition: driver.condition, strain: driver.strain };
-    native.beasts = beasts.map((b) => ({ ...b.attributes, condition: b.condition, fatigue: b.fatigue }));
-    native.chariot = { ...chariot.attributes, condition: chariot.condition, wear: chariot.wear, weight: chariot.weight, capacity: chariot.capacity };
-    native.equipment = { mass: 0, combat: 0 };
-    if (driver.condition <= consequenceDefaults.disabledCondition || chariot.condition <= consequenceDefaults.disabledCondition || beasts.every((b) => b.condition <= consequenceDefaults.minimumTeamCondition)) reasons.push("Native engine disable threshold");
-    try {
-      validateRU(native);
-    } catch (e) {
-      reasons.push(e.message);
-    }
-    if (reasons.length) return freeze({ assembled, eligible: false, reasons, native: null, derived: null });
-    return freeze({ assembled, eligible: true, reasons: [], native, derived: derive(native, config()), label: "Baseline / no weather or surface adjustment; management fatigue and integrity are separate. Not competition entry." });
-  }
-  function applyAssembly3(state2, tx) {
-    const r = state2.management.registries, key3 = tx.assignmentId;
-    id(key3);
-    const old = r.assignments[key3];
-    if (tx.type === "ru.disassemble" && !old) throw Error("No prospective RU to disassemble");
-    if (tx.type === "ru.assemble") {
-      const preview = previewRU3(state2, tx, { assignmentId: key3 });
-      if (!preview.eligible) throw Error(preview.reasons.join("; "));
-      if ([state2.profile.id, state2.career.id].includes(key3) || Object.entries(r).some(([kind, records]) => kind !== "assignments" && Object.hasOwn(records, key3))) throw Error("Assignment identity collision");
-    }
-    if (old) {
-      for (const subject of old.references.subject) for (const kind of ["personnel", "beasts", "chariots"]) if (r[kind][subject]) r[kind][subject].references.assignment = [];
-      delete r.assignments[key3];
-    }
-    if (tx.type === "ru.assemble") {
-      const subjects = [tx.driverId, ...tx.beastIds, tx.chariotId];
-      r.assignments[key3] = { id: key3, ownerCareerId: state2.career.id, references: { subject: subjects }, recordVersion: 1, name: "Prospective Racing Unit", kind: "prospectiveRU", driverId: tx.driverId, beastIds: [...tx.beastIds], chariotId: tx.chariotId };
-      for (const subject of subjects) for (const kind of ["personnel", "beasts", "chariots"]) if (r[kind][subject]) r[kind][subject].references.assignment = [key3];
-    }
-    return { assignmentId: key3, assembled: tx.type === "ru.assemble" };
   }
 
   // src/career/economy/validation.js
@@ -5645,59 +5821,6 @@
     next.transactions.push(receipt);
     next.history.commands = mergeProtected2(next.history.commands, [protect(tx, receipt.balanceAfter, result)]);
     return { state: validateStateV3(next), duplicate: false, receipt: structuredClone(receipt) };
-  }
-
-  // src/career/cycles/policy.js
-  var RECOVERY = freeze({ version: 1, driverFatigue: 20, beastFatigue: 20 });
-  var debtStatus = (streak) => streak === 0 ? "Current" : streak === 1 ? "Overdue" : streak === 2 ? "Delinquent" : streak === 3 ? "Critical" : "Default";
-  var moraleMultiplier = (status) => ({ Current: 1, Overdue: 1, Delinquent: 0.95, Critical: 0.9, Default: 0.85 })[status];
-  function requirePreparation(s) {
-    if (s.championshipFoundation?.version === 2 && s.championshipFoundation.activeId !== null) throw Error("Stable management is read-only during an active or unsettled championship");
-    if (s.cycles.phase !== "STABLE_PREPARATION" || s.career.status === "Failed") throw Error("Career is not in playable stable preparation");
-  }
-  function restrict(s, type) {
-    requirePreparation(s);
-    if (s.cycles.streak >= 2 && ["market.acquire", "facility.purchase", "training.apply", "engineering.apply"].includes(type)) throw Error("Payroll " + debtStatus(s.cycles.streak) + ": discretionary action restricted");
-    if (s.cycles.streak >= 3 && type === "contract.renew") throw Error("Payroll Critical/Default: renewal blocked");
-  }
-  var outstanding = (s) => Object.values(s.cycles.obligations).reduce((sum, o) => plus(sum, o.balance), 0);
-  function previewRU4(s, selection, options2 = {}) {
-    const p = previewRU3(s, selection, options2), d = s.management.registries.personnel[selection?.driverId], c = s.management.registries.contracts[d?.references.contract?.[0]];
-    if (!c || c.lifecycle !== "active" || c.cyclesRemaining < 1) return freeze({ ...p, eligible: false, reasons: [...p.reasons, "Driver contract is expired or unavailable"], native: null, derived: null });
-    if (p.native && d.personality) {
-      const copy = structuredClone(p);
-      copy.native.driver.personality = structuredClone(d.personality);
-      return freeze(copy);
-    }
-    return p;
-  }
-  function eligibleDrivers(s) {
-    return Object.values(s.management.registries.personnel).filter((p) => {
-      const c = s.management.registries.contracts[p.references.contract?.[0]];
-      return p.available && ["Healthy", "Minor"].includes(p.injury) && p.condition > consequenceDefaults.disabledCondition && c?.lifecycle === "active" && c.cyclesRemaining > 0;
-    });
-  }
-  function normalDriverRecruitment(s) {
-    for (const offer of Object.values(s.management.registries.marketOffers).filter((o) => o.category === "driver" && o.available)) try {
-      restrict(s, "market.acquire");
-      const q = quoteEconomy({ ...s, schema: 3 }, "market.acquire", { offerId: offer.id, term: "short" });
-      if (q.canAfford) return true;
-    } catch {
-    }
-    return false;
-  }
-  function assessViability(s) {
-    if (s.career.status === "Failed") return freeze({ status: "Failed", reasons: ["Career failure was explicitly confirmed"], canConfirm: false });
-    const r = structuredClone(s.management.registries);
-    for (const k of ["personnel", "beasts", "chariots"]) for (const a of Object.values(r[k])) a.references.assignment = [];
-    r.assignments = {};
-    const shadow = { ...s, management: { ...s.management, registries: r } }, bs = Object.values(r.beasts);
-    for (const d of eligibleDrivers(shadow)) for (const c of Object.values(r.chariots)) for (let i = 0; i < bs.length; i++) for (let j = i + 1; j < bs.length; j++) if (previewRU4(shadow, { driverId: d.id, beastIds: [bs[i].id, bs[j].id], chariotId: c.id }).eligible) return freeze({ status: "Operational", reasons: ["A legal Racing Unit can be assembled"], canConfirm: false });
-    const potential = (kind) => Object.keys(r[kind]).length + Object.values(r.marketOffers).filter((o) => o.available && o.category === { beasts: "beast", chariots: "chariot" }[kind]).length;
-    const reasons = [];
-    if (potential("beasts") < 2) reasons.push("Fewer than two beasts exist across owned assets and all remaining offers; no beast assistance or refresh exists");
-    if (potential("chariots") < 1) reasons.push("No chariot exists among owned assets or remaining offers; no chariot assistance or refresh exists");
-    return freeze(reasons.length ? { status: "FailurePending", reasons, canConfirm: true } : { status: "Blocked", reasons: ["No legal RU now; permitted recovery reachability is not proven exhausted. Inspect care, sales, renewal, recruitment or driver-only emergency options."], canConfirm: false });
   }
 
   // src/career/cycles/reducers.js
@@ -6083,7 +6206,7 @@
     return validateStateV5(n);
   }
   function validateStateV5(s) {
-    if (s?.championshipFoundation?.version === 2) return validateControllerState(s);
+    if (s?.championshipFoundation?.version >= 2) return validateControllerState(s);
     if (s?.schema !== 5) throw Error("Unsupported foundation schema");
     validateStateV4(project(s));
     const f = s.championshipFoundation;
@@ -6102,7 +6225,7 @@
     return s;
   }
   function transactV5(s, tx, options2) {
-    if (s.championshipFoundation.version === 2 || tx.commandVersion === 4) return transactController(s, tx, options2);
+    if (s.championshipFoundation.version >= 2 || tx.commandVersion === 4) return transactController(s, tx, options2);
     validateStateV5(s);
     const r = transactV4(project(s), tx, options2);
     r.state = { ...r.state, schema: 5, championshipFoundation: structuredClone(s.championshipFoundation) };
@@ -6111,7 +6234,7 @@
   }
   function withKnownHistoryV5(s, marks, history) {
     validateStateV5(s);
-    if (s.championshipFoundation.version === 2) {
+    if (s.championshipFoundation.version >= 2) {
       assertControllerRestore(s, history);
       const n = structuredClone(s);
       n.provenance = mergeMarks(n.provenance, marks.filter((m) => m.profileId === s.profile.id));
@@ -6237,16 +6360,21 @@
   }
 
   // src/career/championships/anchor.js
-  function championshipAnchor(s) {
-    validateState2(s);
-    const f = s.championshipFoundation, x = f.instances?.[f.activeId];
-    if (!x) throw Error("No active championship financial authority");
+  function financialAnchorValue(s, x) {
+    const f = s.championshipFoundation;
     return { profileId: s.profile.id, careerId: s.career.id, revision: x.registrationRevision, maintenanceRevision: x.registrationMaintenanceRevision, fingerprint: fingerprint({ kind: "m2e-financial-anchor-v1", profileId: s.profile.id, career: s.career, management: s.management, cycles: s.cycles, facts: f.facts, instanceId: x.id, registrationId: x.registrationId, offer: x.offer.fingerprint, lockedSelection: x.lockedSelection }) };
   }
-  function storedChampionshipAnchor(storage) {
+  function championshipAnchor(s, raceId) {
+    validateState2(s);
+    const x = s.championshipFoundation.instances?.[s.championshipFoundation.activeId];
+    if (!x) throw Error("No active championship financial authority");
+    const archived = x.raceResults.find((r) => r.raceId === raceId);
+    return archived?.anchor ?? x.raceAnchor ?? financialAnchorValue(s, x);
+  }
+  function storedChampionshipAnchor(storage, raceId) {
     const text2 = storage.getItem(SAVE_KEY);
     if (text2 === null) throw Error("No durable championship career");
-    return championshipAnchor(parseEnvelope(text2).primary);
+    return championshipAnchor(parseEnvelope(text2).primary, raceId);
   }
 
   // src/sim/foundation/codec.js
@@ -6468,6 +6596,130 @@
     const official = classification(s);
     if (official.length !== s.entrants.length || new Set(official.map((x) => x.id)).size !== s.entrants.length) throw Error("RACE_CLEARANCE_BLOCKED: classification identity");
     return { ...s.championshipContext ? { championshipEvidence: { version: 1, context: structuredClone(s.championshipContext), starters: structuredClone(s.events.find((e) => e.type === "RACE_STARTED")?.effects.starters ?? []), progress: s.entrants.map((r) => ({ id: r.id, ...r.progressEvidence })) } } : {}, classification: official, conditions: s.entrants.map((r) => ({ entrantId: r.id, native: structuredClone(r.ru) })) };
+  }
+
+  // src/sim/foundation/no-starters.js
+  function noStarterProof(identity, evidence) {
+    validateIdentity(identity);
+    exact(evidence, ["version", "sourceFingerprint", "registered"], "no-starter evidence");
+    if (evidence.version !== 1 || !/^[a-f0-9]{64}$/.test(evidence.sourceFingerprint) || !Array.isArray(evidence.registered) || evidence.registered.length < 1 || evidence.registered.length > 64) throw Error("Invalid no-starter evidence");
+    const ids = /* @__PURE__ */ new Set();
+    for (const r of evidence.registered) {
+      exact(r, ["entrantId", "mayStart", "reason"]);
+      id(r.entrantId);
+      if (ids.has(r.entrantId) || r.mayStart !== false || typeof r.reason !== "string" || !r.reason.trim() || r.reason.length > 500) throw Error("No-starter proof requires distinct, ineligible registered entrants");
+      ids.add(r.entrantId);
+    }
+    return { kind: "BNT-no-starter-proof", version: 1, identity: structuredClone(identity), sourceFingerprint: wireHash(evidence), classification: [], conditions: [], standingsEffects: [], pendingEntitlementIds: [] };
+  }
+
+  // src/career/championships/progression.js
+  var E3_RULES = "m2e-controller-e3-v1";
+  var raceIdFor = (x, index = x.raceIndex) => "e2-race-" + fingerprint([x.id, index]).slice(0, 40);
+  function enableE3(s) {
+    const f = s.championshipFoundation;
+    if (f.version !== 2) throw Error("Explicit E2 controller source required");
+    f.version = 3;
+    f.rulesVersion = E3_RULES;
+    for (const x of Object.values(f.instances)) {
+      freezeNativeProfiles(x);
+      x.conditionMapping = { version: CONDITION_MAPPING, status: "ACTIVE", historicalFieldsPreserved: true };
+      x.conditionState = Object.fromEntries(x.entrants.map((e) => [e.id, initialCondition(e, s)]));
+      x.eligibility = eligibility(s, x);
+      x.officialFinal = null;
+      x.recoveryLog = [];
+      x.raceAnchor = x.raceId ? financialAnchorValue(s, x) : null;
+    }
+  }
+  function freezeNativeProfiles(x) {
+    const normalized = createRace({ seed: hash(["m2e-registered-profiles-v1", x.id]), entrants: x.entrants.map((e) => ({ ru: e.native })) }).setup.entrants;
+    for (const e of x.entrants) {
+      const native = x.raceSetup?.entrants.find((r) => r.ru.id === e.id)?.ru ?? normalized.find((r) => r.ru.id === e.id).ru;
+      e.native.driver.personality = structuredClone(native.driver.personality);
+    }
+  }
+  function initializeE3Instance(s, x) {
+    freezeNativeProfiles(x);
+    x.conditionMapping = { version: CONDITION_MAPPING, status: "ACTIVE", historicalFieldsPreserved: true };
+    x.conditionState = Object.fromEntries(x.entrants.map((e) => [e.id, initialCondition(e, s)]));
+    x.eligibility = eligibility(s, x);
+    x.officialFinal = null;
+    x.recoveryLog = [];
+    x.raceAnchor = null;
+  }
+  function eligibility(s, x) {
+    return x.entrants.map((e) => {
+      const r = e.player ? previewRU4(s, x.lockedSelection, { assignmentId: x.lockedSelection.assignmentId }) : nativeEligibility(e.native, x.conditionState[e.id]);
+      const withdrawn = e.player && !!x.withdrawal;
+      return { entrantId: e.id, mayStart: !withdrawn && r.eligible, reason: withdrawn ? "Player withdrew" : r.eligible ? "Eligible" : r.reasons.join("; ") };
+    });
+  }
+  function noStarterCandidate(s, x) {
+    if (x.phase !== "NO_STARTERS_PENDING" || !x.eligibility || x.eligibility.some((r) => r.mayStart)) throw Error("No-starter event requires authoritative ineligibility");
+    const current = eligibility(s, x);
+    if (canonical(current) !== canonical(x.eligibility)) throw Error("Eligibility changed");
+    const evidence = { version: 1, sourceFingerprint: fingerprint({ instanceId: x.id, event: x.raceIndex, entrants: x.entrants, condition: x.conditionState, eligibility: current }), registered: current };
+    const proof = noStarterProof({ profileId: s.profile.id, careerId: s.career.id, instanceId: x.id, raceId: x.raceId }, evidence);
+    return { proof, evidence };
+  }
+  function applyPlayer(s, e, mapped) {
+    const r = s.management.registries, ids = e.assetIds, d = r.personnel[ids.driver], c = r.chariots[ids.chariot], n = mapped.native, p = mapped.persistent;
+    d.condition = n.driver.condition;
+    d.strain = n.driver.strain;
+    d.injury = p.driver.injury;
+    ids.beasts.forEach((id2, i) => {
+      const b = r.beasts[id2];
+      b.condition = n.beasts[i].condition;
+      b.fatigue = n.beasts[i].fatigue;
+      b.injury = p.beasts[i].injury;
+    });
+    c.condition = n.chariot.condition;
+    c.wear = n.chariot.wear;
+    c.integrity = p.chariot.integrity;
+    c.status = p.chariot.status;
+  }
+  function publishOfficial(s, x, { candidate, reference, setupFingerprint: setupFingerprint2 }, noStarter = false) {
+    if (x.raceResults.some((r) => r.raceId === x.raceId)) throw Error("Official race identity already committed");
+    const index = x.raceIndex, eventId = raceIdFor(x), resultId = noStarter ? "e3-no-starters-" + fingerprint([x.id, index]).slice(0, 40) : candidate.resultId;
+    if (eventId !== x.raceId) throw Error("Scheduled race identity mismatch");
+    if (Object.values(s.championshipFoundation.instances).some((a) => a.raceResults.some((r) => r.resultId === resultId))) throw Error("Conflicting/reused official result identity");
+    let rows = [], effects = [], mappings = [];
+    if (!noStarter) {
+      if (candidate.kind !== "BNT-cleared-race-proof" || candidate.version !== 1 || candidate.identity.profileId !== s.profile.id || candidate.identity.careerId !== s.career.id || candidate.identity.instanceId !== x.id || candidate.identity.raceId !== x.raceId || candidate.watermark !== reference.watermark || candidate.sourceRevision + 1 !== reference.revision || typeof candidate.resultId !== "string") throw Error("Invalid official proof scope/revision");
+      if (!x.raceSetup || setupFingerprint2 !== fingerprint(x.raceSetup)) throw Error("Official setup mismatch");
+      rows = championshipClassification(candidate);
+      const starters = new Set(x.raceSetup.entrants.map((e) => e.ru.id));
+      if (rows.length !== starters.size || candidate.conditions.length !== starters.size || new Set(candidate.conditions.map((c) => c.entrantId)).size !== starters.size || rows.some((r) => !starters.has(r.id))) throw Error("Official participant identities mismatch");
+      for (const condition of candidate.conditions) {
+        const e = x.entrants.find((e2) => e2.id === condition.entrantId), start = x.raceSetup.entrants.find((e2) => e2.ru.id === condition.entrantId);
+        if (!e || !start || e.native.id !== condition.native.id) throw Error("Foreign native consequence");
+        const mapped = mapCondition({ instanceId: x.id, eventId, resultId, start: start.ru, final: condition.native, persistent: x.conditionState[e.id], provenance: { reference, setupFingerprint: setupFingerprint2, stateFingerprint: candidate.stateFingerprint } });
+        x.conditionState[e.id] = structuredClone(mapped.persistent);
+        e.native = structuredClone(mapped.native);
+        if (e.player) applyPlayer(s, e, mapped);
+        mappings.push(structuredClone(mapped.audit));
+      }
+      effects = raceAwardEffects(rows, { points: x.offer.value.points, dnfPoints: x.offer.value.dnfPoints }, { careerId: s.career.id, instanceId: x.id, raceId: x.raceId });
+    }
+    const participation = x.entrants.map((e) => ({ entrantId: e.id, started: rows.some((r) => r.id === e.id && r.started), eligibility: structuredClone(x.eligibility.find((a) => a.entrantId === e.id)) }));
+    const record = { version: 1, raceId: x.raceId, eventIndex: index, resultId, kind: noStarter ? "NoStarters" : "NativeCleared", proofFingerprint: fingerprint(candidate), proof: structuredClone(candidate), reference: structuredClone(reference), anchor: structuredClone(x.raceAnchor), setupFingerprint: setupFingerprint2, rows, effects, mappings, participation };
+    x.raceResults.push(record);
+    x.pendingClearance = null;
+    x.blockedReason = null;
+    x.checkpointRef = null;
+    x.standings = standings(x.entrants.map((e) => e.id), x.raceResults);
+    x.eligibility = eligibility(s, x);
+    if (index + 1 === x.offer.value.schedule.length) {
+      x.phase = "SETTLEMENT_PENDING";
+      x.officialFinal = { version: 1, standings: structuredClone(x.standings), championId: titleCandidate(x.standings, rows), finalParticipation: participation, resultIds: x.raceResults.map((r) => r.resultId), pendingEntitlementIds: x.raceResults.flatMap((r) => r.effects.map((e) => e.pendingEntitlementId).filter(Boolean)), settled: false };
+      x.officialFinal.fingerprint = fingerprint(x.officialFinal);
+    } else {
+      const player = x.eligibility.find((e) => e.entrantId === x.playerId);
+      if (!x.withdrawal && !player.mayStart) x.withdrawal = { kind: "Forced", raceIndex: index + 1, sourceResultId: resultId, reason: player.reason };
+      x.raceIndex++;
+      x.phase = x.withdrawal ? "AI_CONTINUATION" : "INTERMISSION_READY";
+    }
+    return { instanceId: x.id, raceId: record.raceId, resultId, proofFingerprint: record.proofFingerprint, phase: x.phase, mappingVersion: CONDITION_MAPPING };
   }
 
   // src/persistence/race/session-store.js
@@ -6742,18 +6994,26 @@
 
   // src/career/championships/clearance-transfer.js
   var trusted2 = /* @__PURE__ */ new WeakSet();
+  var liveSources = /* @__PURE__ */ new WeakMap();
   function createClearanceTransfer(session, state2) {
     if (!(session instanceof RaceSessionStore) || session.mode !== "automatic") throw Error("Durable authoritative race session required");
     const raw = session.storage.getItem(session.key);
     if (raw !== session.raw) throw Error("Race authority changed");
     const d = session.decode(raw), a = d.a, x = state2.championshipFoundation.instances?.[state2.championshipFoundation.activeId];
-    if (!x || x.phase !== "RACE_ACTIVE" || a.operational !== "RESULT_COMMITTED" || canonical(a.anchor) !== canonical(championshipAnchor(state2)) || a.identity.instanceId !== x.id || a.identity.raceId !== x.raceId || fingerprint(d.s.setup) !== fingerprint(x.raceSetup)) throw Error("Clearance/career setup authority mismatch");
+    if (!x || !["RACE_ACTIVE", "RECOVERY_REQUIRED", "RACE_CLEARANCE_BLOCKED"].includes(x.phase) || a.operational !== "RESULT_COMMITTED" || canonical(a.anchor) !== canonical(championshipAnchor(state2)) || a.identity.instanceId !== x.id || a.identity.raceId !== x.raceId || fingerprint(d.s.setup) !== fingerprint(x.raceSetup)) throw Error("Clearance/career setup authority mismatch");
     const candidate = unpack(unsealWire(d.r.publication)), reference = { version: 1, storageKey: session.key, identityFingerprint: wireHash(a.identity), revision: a.revision, watermark: a.watermark, authorityHash: wireHash(d.r.authority) };
     const transfer = freeze({ reference, candidate, setupFingerprint: fingerprint(d.s.setup), careerFingerprint: fingerprint(state2) });
     trusted2.add(transfer);
+    liveSources.set(transfer, { session, raw });
     return transfer;
   }
+  function requireLive(transfer) {
+    if (!trusted2.has(transfer)) throw Error("Trusted durable race capability required");
+    const live = liveSources.get(transfer);
+    if (!live || live.session.mode !== "automatic" || live.session.storage.getItem(live.session.key) !== live.raw) throw Error("Durable race authority changed or missing");
+  }
   function requireClearanceTransfer(transfer, payload, state2) {
+    requireLive(transfer);
     if (!trusted2.has(transfer) || transfer.careerFingerprint !== fingerprint(state2) || canonical(transfer.reference) !== canonical(payload.reference) || canonical(transfer.candidate) !== canonical(payload.candidate) || transfer.setupFingerprint !== payload.setupFingerprint) throw Error("Trusted durable clearance transfer required");
   }
   function createBirthTransfer(session, state2) {
@@ -6765,10 +7025,49 @@
     const reference = { version: 1, storageKey: session.key, identityFingerprint: wireHash(d.a.identity), revision: d.a.revision, watermark: 0, authorityHash: wireHash(d.r.authority) };
     const transfer = freeze({ kind: "birth", reference, careerFingerprint: fingerprint(state2) });
     trusted2.add(transfer);
+    liveSources.set(transfer, { session, raw });
     return transfer;
   }
   function requireBirthTransfer(transfer, payload, state2) {
+    requireLive(transfer);
     if (!trusted2.has(transfer) || transfer.kind !== "birth" || transfer.careerFingerprint !== fingerprint(state2) || canonical(transfer.reference) !== canonical(payload.reference)) throw Error("Trusted race birth capability required");
+  }
+  function createNoStarterTransfer(state2) {
+    validateState2(state2);
+    const x = state2.championshipFoundation.instances[state2.championshipFoundation.activeId], data = noStarterCandidate(state2, x), transfer = freeze({ ...data, careerFingerprint: fingerprint(state2) });
+    trusted2.add(transfer);
+    return transfer;
+  }
+  function requireNoStarterTransfer(transfer, payload, state2) {
+    if (!trusted2.has(transfer) || transfer.careerFingerprint !== fingerprint(state2) || canonical(transfer.proof) !== canonical(payload.proof) || canonical(transfer.evidence) !== canonical(payload.evidence)) throw Error("Trusted no-starter eligibility required");
+  }
+  function createRecoveryTransfer(session, state2, { retry = false } = {}) {
+    validateState2(state2);
+    const x = state2.championshipFoundation.instances[state2.championshipFoundation.activeId];
+    let reason = null, reference = null;
+    try {
+      session.open();
+      const d = session.decode(session.raw);
+      reference = { version: 1, storageKey: session.key, identityFingerprint: wireHash(d.a.identity), revision: d.a.revision, watermark: d.a.watermark, authorityHash: wireHash(d.r.authority) };
+      if (!retry) {
+        try {
+          clearedNativeResult(session.state);
+        } catch (e) {
+          reason = e.message;
+        }
+        if (!reason) throw Error("Race is cleared; do not block it");
+      }
+    } catch (e) {
+      if (retry) throw e;
+      reason = e.message;
+      reference = { storageKey: session.key, rawFingerprint: wireHash(session.storage.getItem(session.key)) };
+    }
+    const transfer = freeze({ instanceId: x.id, reference, reason, careerFingerprint: fingerprint(state2), kind: retry ? "retry" : "block" });
+    trusted2.add(transfer);
+    return transfer;
+  }
+  function requireRecoveryTransfer(transfer, payload, state2, kind) {
+    if (!trusted2.has(transfer) || transfer.kind !== kind || transfer.careerFingerprint !== fingerprint(state2) || canonical(transfer.reference) !== canonical(payload.reference) || kind === "block" && transfer.reason !== payload.reason) throw Error("Trusted recovery evidence required");
   }
 
   // src/career/cycles/racing-adapter.js
@@ -6845,7 +7144,7 @@
 
   // src/career/championships/controller.js
   var controllerSource = (s) => fingerprint({ career: s.career, profileId: s.profile.id, revision: s.revision, maintenanceRevision: s.maintenanceRevision, management: s.management, cycles: s.cycles, championshipFoundation: s.championshipFoundation });
-  var controllerActive = (s) => s?.championshipFoundation?.version === 2 && s.championshipFoundation.activeId !== null;
+  var controllerActive = (s) => s?.championshipFoundation?.version >= 2 && s.championshipFoundation.activeId !== null;
   function activeChampionship(s) {
     return controllerActive(s) ? s.championshipFoundation.instances[s.championshipFoundation.activeId] : null;
   }
@@ -6853,13 +7152,14 @@
     return { version: 2, rulesVersion: CONTROLLER_RULES, origin: structuredClone(s), enabledBy: structuredClone(tx), activeId: null, instances: {}, offers: [developmentOffer()], facts: { reputation: 0, trophies: [], victories: {} } };
   }
   function expectedEffect(s, t) {
-    if (t.type === "championship.stageClearance") return controllerEffect(s.career.id, t.type, t.payload.instanceId, s.championshipFoundation.instances[t.payload.instanceId]?.raceId);
-    return controllerEffect(s.career.id, t.type, t.payload.instanceId ?? "foundation", ["controller.enable", "championship.register"].includes(t.type) ? null : s.revision);
+    if (["championship.stageClearance", "championship.publish", "championship.noStarters"].includes(t.type)) return controllerEffect(s.career.id, t.type, t.payload.instanceId, s.championshipFoundation.instances[t.payload.instanceId]?.raceId);
+    return controllerEffect(s.career.id, t.type, t.payload.instanceId ?? "foundation", ["controller.enable", "controller.enableE3", "championship.register"].includes(t.type) ? null : s.revision);
   }
-  function apply(s, t, { historical = false, clearance = null, birth = null, catalog = null } = {}) {
+  function apply(s, t, { historical = false, clearance = null, birth = null, catalog = null, recovery: recovery2 = null, noStarters = null } = {}) {
     if (t.commandVersion !== 4) {
       if (controllerActive(s)) throw Error("Stable management is read-only while championship is active or unsettled");
       const result = executeCareerCandidateV4(s, t, { historical });
+      if (s.championshipFoundation.version === 3) restoreServiceNative(s, t, result);
       s.schema = 5;
       return result;
     }
@@ -6874,8 +7174,11 @@
       details = { version: 2 };
     } else {
       const f = s.championshipFoundation;
-      if (f.version !== 2) throw Error("Enable championship controller explicitly");
-      if (t.type === "championship.refreshOffers") {
+      if (![2, 3].includes(f.version)) throw Error("Enable championship controller explicitly");
+      if (t.type === "controller.enableE3") {
+        enableE3(s);
+        details = { version: 3, rulesVersion: E3_RULES };
+      } else if (t.type === "championship.refreshOffers") {
         if (!historical) requireCatalog(catalog, p.offers);
         if (f.activeId !== null || !Array.isArray(p.offers) || p.offers.length < 1 || p.offers.length > 32) throw Error("Offer refresh requires stable preparation and bounded offers");
         p.offers.forEach(validateOffer);
@@ -6901,6 +7204,7 @@
           entrants.push({ id: entrantId, player: false, native, assetIds: null });
         }
         const instance = { version: 1, id: p.instanceId, revision: 0, phase: "INTERMISSION_READY", offer: structuredClone(p.offer), registrationId: t.id, registrationRevision: s.revision + 1, registrationMaintenanceRevision: s.maintenanceRevision, fee, lockedSelection: structuredClone(p.selection), entrants, playerId: entrants[0].id, coaching: null, raceIndex: 0, raceSetup: null, raceId: null, checkpointRef: null, pendingClearance: null, withdrawal: null, standings: entrants.map((e) => ({ id: e.id, points: 0 })), raceResults: [], conditionMapping: { version: 1, status: "UNAPPROVED" }, blockedReason: null };
+        if (f.version === 3) initializeE3Instance(s, instance);
         for (let i = 0; i < instance.offer.value.schedule.length; i++) prepareRace(instance, i);
         s.career.treasury -= fee;
         f.instances[instance.id] = instance;
@@ -6916,9 +7220,11 @@
           details = { instanceId: x.id, coaching: x.coaching };
         } else if (t.type === "championship.start") {
           if (!["INTERMISSION_READY", "AI_CONTINUATION"].includes(x.phase)) throw Error("Race requires manual start from an eligible intermission");
+          if (f.version === 3) x.eligibility = eligibility(s, x);
           x.raceSetup = prepareRace(x, x.raceIndex);
           x.raceId = "e2-race-" + fingerprint([x.id, x.raceIndex]).slice(0, 40);
-          x.phase = "RACE_START_PENDING";
+          x.phase = x.raceSetup ? "RACE_START_PENDING" : "NO_STARTERS_PENDING";
+          if (f.version === 3) x.raceAnchor = financialAnchorValue(s, x);
           details = { instanceId: x.id, raceId: x.raceId, setupFingerprint: fingerprint(x.raceSetup) };
         } else if (t.type === "championship.bindRace") {
           if (x.phase !== "RACE_START_PENDING") throw Error("Race birth already bound or phase invalid");
@@ -6927,6 +7233,32 @@
           x.checkpointRef = structuredClone(p.reference);
           x.phase = "RACE_ACTIVE";
           details = { instanceId: x.id, reference: x.checkpointRef };
+        } else if (t.type === "championship.publish") {
+          if (f.version !== 3 || !["RACE_ACTIVE", "RECOVERY_REQUIRED", "RACE_CLEARANCE_BLOCKED"].includes(x.phase)) throw Error("No publishable E3 race");
+          validateCheckpointReference(p.reference);
+          if (!historical) requireClearanceTransfer(clearance, p, s);
+          details = publishOfficial(s, x, p);
+        } else if (t.type === "championship.noStarters") {
+          if (f.version !== 3) throw Error("Enable E3");
+          if (!historical) requireNoStarterTransfer(noStarters, p, s);
+          const expected = noStarterCandidate(s, x);
+          if (canonical(expected.proof) !== canonical(p.proof) || canonical(expected.evidence) !== canonical(p.evidence)) throw Error("Unproven no-starter result");
+          details = publishOfficial(s, x, { candidate: p.proof, reference: { kind: "eligibility", evidence: p.evidence }, setupFingerprint: null }, true);
+        } else if (t.type === "championship.blockRace") {
+          if (f.version !== 3 || !["RACE_START_PENDING", "RACE_ACTIVE", "RACE_CLEARANCE_BLOCKED", "RECOVERY_REQUIRED"].includes(x.phase)) throw Error("No blockable race");
+          if (!historical) requireRecoveryTransfer(recovery2, p, s, "block");
+          if (typeof p.reason !== "string" || !p.reason || p.reason.length > 2e3) throw Error("Invalid recovery reason");
+          x.phase = p.reason.startsWith("RACE_CLEARANCE_BLOCKED") ? "RACE_CLEARANCE_BLOCKED" : "RECOVERY_REQUIRED";
+          x.blockedReason = p.reason;
+          x.recoveryLog.push({ kind: "blocked", raceId: x.raceId, reason: p.reason, reference: structuredClone(p.reference) });
+          details = { instanceId: x.id, phase: x.phase, reason: p.reason };
+        } else if (t.type === "championship.retryRace") {
+          if (f.version !== 3 || !["RACE_CLEARANCE_BLOCKED", "RECOVERY_REQUIRED"].includes(x.phase)) throw Error("No recoverable race");
+          if (!historical) requireRecoveryTransfer(recovery2, p, s, "retry");
+          x.phase = x.checkpointRef ? "RACE_ACTIVE" : "RACE_START_PENDING";
+          x.blockedReason = null;
+          x.recoveryLog.push({ kind: "retry", raceId: x.raceId, reference: structuredClone(p.reference) });
+          details = { instanceId: x.id, phase: x.phase };
         } else if (t.type === "championship.stageClearance") {
           if (!["RACE_ACTIVE", "RECOVERY_REQUIRED"].includes(x.phase)) throw Error("No active race to stage");
           validateCheckpointReference(p.reference);
@@ -6961,8 +7293,11 @@
     const event = instance.offer.value.schedule[index];
     if (!event) throw Error("Invalid race index");
     const seed = hash(["m2e-race-seed-v1", instance.id, index]), gridSeed = hash(["m2e-grid-seed-v1", instance.id, index]);
-    let entrants = instance.entrants.filter((e) => !instance.withdrawal || !e.player).map((e) => ({ ...e }));
-    if (!entrants.length) throw Error("No starters: authoritative eligibility/no-starter controller required");
+    let entrants = instance.entrants.filter((e) => (!instance.withdrawal || !e.player) && (!instance.conditionState || instance.eligibility.find((a) => a.entrantId === e.id)?.mayStart)).map((e) => ({ ...e }));
+    if (!entrants.length) {
+      if (instance.conditionState) return null;
+      throw Error("No starters: authoritative eligibility/no-starter controller required");
+    }
     const seeded = (a, b) => random(gridSeed, a.id) - random(gridSeed, b.id) || (a.id < b.id ? -1 : 1);
     if (index === 0 || event.grid === "random") entrants.sort(seeded);
     else {
@@ -6978,7 +7313,7 @@
   function validateControllerState(s) {
     const f = s.championshipFoundation;
     exact(f, ["version", "rulesVersion", "origin", "enabledBy", "activeId", "instances", "offers", "facts"]);
-    if (f.version !== 2 || f.rulesVersion !== CONTROLLER_RULES || f.origin.championshipFoundation.version !== 1) throw Error("Unsupported controller aggregate");
+    if (![2, 3].includes(f.version) || f.rulesVersion !== (f.version === 2 ? CONTROLLER_RULES : E3_RULES) || f.origin.championshipFoundation.version !== 1) throw Error("Unsupported controller aggregate");
     validateStateV5(f.origin);
     let n = structuredClone(f.origin);
     const start = n.transactions.length;
@@ -7011,7 +7346,7 @@
     return s;
   }
   function transactController(s, t, options2 = {}) {
-    if (s.championshipFoundation.version === 2) validateControllerState(s);
+    if (s.championshipFoundation.version >= 2) validateControllerState(s);
     else validateStateV5(s);
     const old = lookupCommitted2(s.history.commands, t, s.transactions);
     if (old) return { ...old, state: structuredClone(s) };
@@ -7027,11 +7362,11 @@
   }
   function makeControllerCommand(s, type, payload, idValue) {
     const instance = payload.instanceId ? s.championshipFoundation.instances?.[payload.instanceId] : null;
-    return { id: idValue, profileId: s.profile.id, careerId: s.career.id, expectedRevision: s.revision, expectedMaintenanceRevision: s.maintenanceRevision, commandVersion: 4, expectedInstanceRevision: type === "championship.register" || type === "controller.enable" ? null : instance?.revision ?? null, sourceFingerprint: controllerSource(s), type, effectId: controllerEffect(s.career.id, type, payload.instanceId ?? "foundation", ["controller.enable", "championship.register"].includes(type) ? null : type === "championship.stageClearance" ? instance?.raceId : s.revision), delta: type === "championship.register" ? -payload.offer.value.entryFee : 0, reason: "Explicit championship operation", payload: structuredClone(payload) };
+    return { id: idValue, profileId: s.profile.id, careerId: s.career.id, expectedRevision: s.revision, expectedMaintenanceRevision: s.maintenanceRevision, commandVersion: 4, expectedInstanceRevision: type === "championship.register" || type === "controller.enable" ? null : instance?.revision ?? null, sourceFingerprint: controllerSource(s), type, effectId: controllerEffect(s.career.id, type, payload.instanceId ?? "foundation", ["controller.enable", "controller.enableE3", "championship.register"].includes(type) ? null : ["championship.stageClearance", "championship.publish", "championship.noStarters"].includes(type) ? instance?.raceId : s.revision), delta: type === "championship.register" ? -payload.offer.value.entryFee : 0, reason: "Explicit championship operation", payload: structuredClone(payload) };
   }
   function controllerOffers(s, offers = s.championshipFoundation.offers ?? [developmentOffer()]) {
     const f = s.championshipFoundation;
-    return offers.map((offer) => ({ offer, qualified: qualifies(validateOffer(offer).value.qualification, f.version === 2 ? f.facts : { reputation: 0, trophies: [], victories: {} }), active: controllerActive(s), canAfford: s.career.treasury >= offer.value.entryFee }));
+    return offers.map((offer) => ({ offer, qualified: qualifies(validateOffer(offer).value.qualification, f.version >= 2 ? f.facts : { reputation: 0, trophies: [], victories: {} }), active: controllerActive(s), canAfford: s.career.treasury >= offer.value.entryFee }));
   }
 
   // src/career/championships/orchestrator.js
@@ -7046,7 +7381,7 @@
       return { profileId: s.profile.id, careerId: s.career.id, instanceId: x.id, raceId: x.raceId };
     }
     session() {
-      return new RaceSessionStore(this.storage, { identity: this.identity(), getCareerAnchor: () => storedChampionshipAnchor(this.storage) });
+      return new RaceSessionStore(this.storage, { identity: this.identity(), getCareerAnchor: () => storedChampionshipAnchor(this.storage, this.identity().raceId) });
     }
     // Caller holds both the career lock and this race lock; no two-store official
     // consequences are published. Race proof is durable first, then only a protected
@@ -7079,6 +7414,7 @@
       return session;
     }
     stage(id2) {
+      if (this.career.state.championshipFoundation.version === 3) return this.publish(id2);
       const x = activeChampionship(this.career.state);
       if (x.pendingClearance) return { duplicate: true, blocked: true, reason: x.blockedReason };
       const session = this.ensure(), r = session.finalize("e2-result-" + fingerprint([x.id, x.raceId]).slice(0, 40), session.inspect().revision);
@@ -7087,68 +7423,44 @@
       const result = this.career.transaction(tx, { clearance: transfer });
       return { ...result, blocked: true, reason: activeChampionship(this.career.state).blockedReason };
     }
+    command(type, payload, id2, options2 = {}) {
+      return this.career.transaction(makeControllerCommand(this.career.state, type, payload, id2), options2);
+    }
+    publish(id2) {
+      const x = activeChampionship(this.career.state), prior = x.raceResults.find((r) => r.raceId === x.raceId);
+      if (prior) return { duplicate: true, result: structuredClone(prior), durable: true };
+      if (this.career.mode !== "automatic") throw Error("Durable automatic career storage required for official publication");
+      if (x.phase === "NO_STARTERS_PENDING") {
+        const noStarters = createNoStarterTransfer(this.career.state);
+        return this.command("championship.noStarters", { instanceId: x.id, proof: noStarters.proof, evidence: noStarters.evidence }, id2, { noStarters });
+      }
+      if (["RACE_CLEARANCE_BLOCKED", "RECOVERY_REQUIRED"].includes(x.phase)) return { blocked: true, reason: x.blockedReason };
+      let session;
+      try {
+        session = this.ensure();
+        clearedNativeResult(session.state);
+      } catch (e) {
+        const recovery2 = createRecoveryTransfer(this.session(), this.career.state), same = x.recoveryLog.at(-1);
+        if (same?.reason === recovery2.reason && fingerprint(same.reference) === fingerprint(recovery2.reference)) return { blocked: true, reason: recovery2.reason };
+        this.command("championship.blockRace", { instanceId: x.id, reason: recovery2.reason, reference: recovery2.reference }, id2, { recovery: recovery2 });
+        return { blocked: true, reason: recovery2.reason };
+      }
+      session.finalize("e2-result-" + fingerprint([x.id, x.raceId]).slice(0, 40), session.inspect().revision);
+      const clearance = createClearanceTransfer(session, this.career.state);
+      return this.command("championship.publish", { instanceId: x.id, reference: clearance.reference, candidate: clearance.candidate, setupFingerprint: clearance.setupFingerprint }, id2, { clearance });
+    }
+    retry(id2) {
+      const x = activeChampionship(this.career.state);
+      if (!["RACE_CLEARANCE_BLOCKED", "RECOVERY_REQUIRED"].includes(x.phase)) throw Error("No blocked race");
+      const recovery2 = createRecoveryTransfer(this.session(), this.career.state, { retry: true });
+      return this.command("championship.retryRace", { instanceId: x.id, reference: recovery2.reference }, id2, { recovery: recovery2 });
+    }
     async exclusive(operation) {
       const locks = globalThis.navigator?.locks;
       if (!locks?.request) throw Error("Coordinated automatic championship writes require Web Locks; no unsafe fallback");
       return locks.request(SAVE_KEY + ".writer", { mode: "exclusive" }, () => withRaceSessionLock(this.identity(), operation, { locks }));
     }
   };
-
-  // src/career/championships/scoring.js
-  function championshipClassification(proof) {
-    const e = proof.championshipEvidence;
-    if (!e || e.version !== 1) throw Error("Missing authoritative championship participation/progress evidence");
-    const progress = new Map(e.progress.map((x) => [x.id, x]));
-    const finish = proof.classification.filter((x) => x.status === "Finished").map((x) => ({ ...x, nativeStatus: x.status, started: e.starters.includes(x.id) }));
-    const rest = proof.classification.filter((x) => x.status !== "Finished").map((x) => ({ ...x, nativeStatus: x.status, status: x.status === "Retired" ? "DNF" : x.status, started: e.starters.includes(x.id) }));
-    const dnfs = rest.filter((x) => x.status === "DNF").sort((a, b) => b.completedLaps - a.completedLaps || b.progress - a.progress || first(a) - first(b) || (a.id < b.id ? -1 : 1));
-    function first(x) {
-      const p = progress.get(x.id);
-      if (!p || p.progress !== x.progress || !Number.isFinite(p.firstTime)) throw Error("Missing first-reached DNF progress");
-      return p.firstTime;
-    }
-    let cursor = 0;
-    for (let i = 0; i < rest.length; i++) if (rest[i].status === "DNF") rest[i] = dnfs[cursor++];
-    return [...finish, ...rest];
-  }
-  function raceAwardEffects(rows, rules2, { careerId, instanceId, raceId }) {
-    id(careerId);
-    id(instanceId);
-    id(raceId);
-    const seen = /* @__PURE__ */ new Set();
-    return rows.map((row) => {
-      if (seen.has(row.id)) throw Error("Duplicate classification identity");
-      seen.add(row.id);
-      if (row.status === "Finished" && (!row.started || !Number.isInteger(row.place) || row.place < 1)) throw Error("Invalid official finishing participation/place");
-      const points = row.status === "Finished" ? rules2.points[row.place - 1] ?? 0 : row.status === "DNF" && row.started && row.classified === true ? rules2.dnfPoints : 0;
-      gold(points);
-      return { entrantId: row.id, points, finishPlace: row.status === "Finished" ? row.place : null, win: row.status === "Finished" && row.place === 1, pendingEntitlementId: row.started ? "e2-claim-" + fingerprint([careerId, instanceId, raceId, row.id, "placement"]).slice(0, 48) : null };
-    });
-  }
-  function standings(entrantIds, races) {
-    const rows = entrantIds.map((id2) => ({ id: id2, points: 0, places: {}, lastRank: Number.MAX_SAFE_INTEGER }));
-    for (const race of races) for (const [rank, r] of race.rows.entries()) {
-      const row = rows.find((x) => x.id === r.id), effect = race.effects.find((x) => x.entrantId === r.id);
-      if (!row || !effect) throw Error("Unknown standings entrant");
-      row.points += effect.points;
-      gold(row.points);
-      if (r.status === "Finished") row.places[r.place] = (row.places[r.place] ?? 0) + 1;
-      row.lastRank = r.status === "Finished" ? r.place : rank + 1;
-    }
-    return rows.sort((a, b) => {
-      let d = b.points - a.points;
-      if (d) return d;
-      for (let p = 1; p <= entrantIds.length; p++) {
-        d = (b.places[p] ?? 0) - (a.places[p] ?? 0);
-        if (d) return d;
-      }
-      return a.lastRank - b.lastRank || (a.id < b.id ? -1 : 1);
-    });
-  }
-  function titleCandidate(ordered, lastRace) {
-    const eligible = ordered.filter((x) => lastRace.some((r) => r.id === x.id && r.started && !["DNS", "Disqualified", "Withdrawn"].includes(r.status)));
-    return eligible[0]?.id ?? null;
-  }
 
   // src/sim/foundation/api.js
   var api_exports2 = {};
@@ -7166,21 +7478,6 @@
     withRaceSessionLock: () => withRaceSessionLock
   });
 
-  // src/sim/foundation/no-starters.js
-  function noStarterProof(identity, evidence) {
-    validateIdentity(identity);
-    exact(evidence, ["version", "sourceFingerprint", "registered"], "no-starter evidence");
-    if (evidence.version !== 1 || !/^[a-f0-9]{64}$/.test(evidence.sourceFingerprint) || !Array.isArray(evidence.registered) || evidence.registered.length < 1 || evidence.registered.length > 64) throw Error("Invalid no-starter evidence");
-    const ids = /* @__PURE__ */ new Set();
-    for (const r of evidence.registered) {
-      exact(r, ["entrantId", "mayStart", "reason"]);
-      id(r.entrantId);
-      if (ids.has(r.entrantId) || r.mayStart !== false || typeof r.reason !== "string" || !r.reason.trim() || r.reason.length > 500) throw Error("No-starter proof requires distinct, ineligible registered entrants");
-      ids.add(r.entrantId);
-    }
-    return { kind: "BNT-no-starter-proof", version: 1, identity: structuredClone(identity), sourceFingerprint: wireHash(evidence), classification: [], conditions: [], standingsEffects: [], pendingEntitlementIds: [] };
-  }
-
   // src/ui/clock.js
   function advanceFrames(accumulator2, elapsed, speed, dt, advance3, stopped) {
     if (![accumulator2, elapsed, speed, dt].every(Number.isFinite) || elapsed < 0 || speed < 0 || dt <= 0)
@@ -7197,7 +7494,7 @@
   function mountChampionships({ store, act, newId: newId2, setNotice }) {
     const panel = document.createElement("details");
     panel.id = "championshipController";
-    panel.innerHTML = `<summary>Championship controller \u2014 development fixture</summary><p>No final rewards or settlement. D2 numerical mapping is awaiting owner approval: races may be run and cleared evidence retained, but permanent consequences and advancement remain blocked. Export a backup before registering.</p><p id="champStatus"></p><button id="champFoundation">Enable schema-5 foundation</button><button id="champEnable">Enable E2/E3 controller</button><select id="champOfferSelect"></select><button id="champRegister">Register fixture \u2014 25 Gold</button><button id="champStart">Start next scheduled race</button><button id="champStep">Advance 25 ticks</button><button id="champComplete">Run current race (may take several seconds)</button><button id="champStage">Validate and stage clearance</button><button id="champWithdraw">Withdraw at intermission</button><div id="champCoach"></div><button id="champApplyCoach">Save pre-race coaching</button><select id="champSign"></select><button id="champQueue">Queue Sign</button><button id="champLower">Lower Sign</button><canvas id="champCanvas" width="760" height="320" style="width:100%;max-width:760px"></canvas><pre id="champInspect"></pre><pre id="champStableInspect"></pre>`;
+    panel.innerHTML = `<summary>Championship controller \u2014 development fixture</summary><p id="champScope">No final rewards or settlement. D2 numerical mapping is awaiting owner approval: races may be run and cleared evidence retained, but permanent consequences and advancement remain blocked. Export a backup before registering.</p><p id="champStatus"></p><button id="champFoundation">Enable schema-5 foundation</button><button id="champEnable">Enable E2/E3 controller</button><button id="champEnableE3">Activate approved E3 Mapping v1</button><button id="champRetry">Retry validated race recovery</button><pre id="champResults"></pre><select id="champOfferSelect"></select><button id="champRegister">Register fixture \u2014 25 Gold</button><button id="champStart">Start next scheduled race</button><button id="champStep">Advance 25 ticks</button><button id="champComplete">Run current race (may take several seconds)</button><button id="champStage">Validate and stage clearance</button><button id="champWithdraw">Withdraw at intermission</button><div id="champCoach"></div><button id="champApplyCoach">Save pre-race coaching</button><select id="champSign"></select><button id="champQueue">Queue Sign</button><button id="champLower">Lower Sign</button><canvas id="champCanvas" width="760" height="320" style="width:100%;max-width:760px"></canvas><pre id="champInspect"></pre><pre id="champStableInspect"></pre>`;
     document.getElementById("careerSaves").append(panel);
     const $7 = (id2) => panel.querySelector("#" + id2);
     for (const axis of coachingAxes) {
@@ -7225,11 +7522,14 @@
     $7("champEnable").onclick = act(() => {
       if (confirm("Enable the development championship controller? No fee or reward on enabling.")) operation("controller.enable", {});
     });
+    $7("champEnableE3").onclick = act(() => {
+      if (confirm("Activate approved Mapping v1 for future cleared races and paid services? Historical data will remain unchanged. Final E5 rewards and settlement remain disabled.")) operation("controller.enableE3", {});
+    });
     $7("champRegister").onclick = act(() => {
       if (!navigator.locks?.request) throw Error("Coordinated registration requires Web Locks; no automatic fallback");
       const s = store.state, a = Object.values(s.management.registries.assignments)[0];
       if (!a) throw Error("Assemble a legal Racing Unit first");
-      if (!confirm("Deduct the disclosed entry fee once and lock this RU? Development fixture: D2 approval and E5 settlement are not operational. Export a backup first.")) return;
+      if (!confirm("Deduct the disclosed entry fee once and lock this RU? Development fixture: E5 settlement is not operational; completed championships remain locked pending settlement. Export a backup first.")) return;
       const selected = store.state.championshipFoundation.offers.find((o) => o.fingerprint === $7("champOfferSelect").value);
       if (!selected) throw Error("Select a current offer");
       operation("championship.register", { offer: selected, instanceId: newId2("champ"), selection: { assignmentId: a.id, driverId: a.driverId, beastIds: a.beastIds, chariotId: a.chariotId } });
@@ -7240,6 +7540,11 @@
       const x = activeChampionship(store.state);
       operation("championship.start", { instanceId: x.id });
       const runner = new ChampionshipRunner(store, store.storage);
+      if (activeChampionship(store.state).phase === "NO_STARTERS_PENDING") {
+        setNotice("No eligible starters. Publish the validated no-starter event explicitly.");
+        live = null;
+        return;
+      }
       await withRaceSessionLock(runner.identity(), () => {
         live = runner.ensure().state;
       });
@@ -7256,7 +7561,13 @@
     });
     $7("champStage").onclick = raceAction((r) => {
       const result = r.stage(newId2("stage"));
-      setNotice(result.reason ?? "Clearance candidate staged. No permanent consequences committed.");
+      setNotice(result.reason ?? (store.state.championshipFoundation.version === 3 ? "Official cleared race committed. Future E5 rewards remain pending." : "Clearance candidate staged. No permanent consequences committed."));
+      live = null;
+    });
+    $7("champRetry").onclick = raceAction((r) => {
+      r.retry(newId2("retry"));
+      setNotice("Validated session restored; resume processing or retry publication.");
+      live = null;
     });
     $7("champQueue").onclick = raceAction((r) => {
       live = r.sign(newId2("sign"), "queue", $7("champSign").value).state;
@@ -7269,7 +7580,7 @@
       operation("championship.coach", { instanceId: x.id, coaching: coachingProfile(Object.fromEntries(coachingAxes.map((k) => [k, Number($7("champ-" + k).value)]))) });
     });
     $7("champWithdraw").onclick = act(() => {
-      if (confirm("Withdraw from future races without an entry-fee refund? Opponent continuation still requires cleared consequences and D2 approval.")) operation("championship.withdraw", { instanceId: activeChampionship(store.state).id, confirmed: true });
+      if (confirm("Withdraw from future races without an entry-fee refund? Remaining opponents continue on the frozen schedule; no refund or extra penalty.")) operation("championship.withdraw", { instanceId: activeChampionship(store.state).id, confirmed: true });
     });
     function draw3(s) {
       const canvas2 = $7("champCanvas"), c = canvas2.getContext("2d");
@@ -7299,17 +7610,24 @@
       c.fillText(s.status + " \xB7 tick " + s.tick, 8, 15);
     }
     function render2() {
-      const s = store.state, x = s ? activeChampionship(s) : null, ready = s?.schema === 5, enabled = ready && s.championshipFoundation.version === 2, blocked = ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint;
+      const s = store.state, x = s ? activeChampionship(s) : null, ready = s?.schema === 5, enabled = ready && s.championshipFoundation.version >= 2, blocked = ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint;
       const previous2 = $7("champOfferSelect").value, available = enabled ? controllerOffers(s) : [{ offer, qualified: false, canAfford: false }];
       $7("champOfferSelect").replaceChildren(...available.map((row) => new Option(`${row.offer.value.name} \xB7 ${row.offer.value.entryFee} Gold \xB7 ${row.qualified ? "qualified" : "qualification locked"}`, row.offer.fingerprint)));
       if (available.some((row) => row.offer.fingerprint === previous2)) $7("champOfferSelect").value = previous2;
       const chosen = available.find((row) => row.offer.fingerprint === $7("champOfferSelect").value);
+      const e3 = ready && s.championshipFoundation.version === 3;
+      $7("champEnableE3").disabled = !enabled || e3 || blocked;
+      $7("champScope").textContent = e3 ? "Approved Mapping v1 is active. Cleared races commit condition and standings; manual next-race start is required. E5 rewards and settlement are disabled. Export a backup." : "D2 is not activated for this career. Old staged evidence remains preserved. Activate approved E3 Mapping v1 explicitly to use official publication.";
+      $7("champStage").textContent = e3 ? "Publish official cleared result / no-starter event" : "Validate and stage clearance";
+      $7("champRetry").disabled = !e3 || !x || !["RACE_CLEARANCE_BLOCKED", "RECOVERY_REQUIRED"].includes(x.phase) || blocked;
+      $7("champResults").textContent = x ? JSON.stringify({ standings: x.standings, eligibility: x.eligibility ?? null, races: x.raceResults.map((r) => ({ event: r.eventIndex + 1, kind: r.kind, resultId: r.resultId, classification: r.rows, effects: r.effects })), withdrawal: x.withdrawal, finalPendingSettlement: x.officialFinal ?? null, notice: "Pending entitlements are NOT Gold, XP, reputation or trophy credit." }, null, 2) : "";
       $7("champFoundation").disabled = s?.schema !== 4 || blocked;
       $7("champEnable").disabled = !ready || enabled || blocked;
       $7("champRegister").disabled = !enabled || !!x || blocked || store.mode !== "automatic" || !chosen?.qualified || !chosen?.canAfford;
       $7("champRegister").textContent = "Register selected fixture \u2014 " + (chosen?.offer.value.entryFee ?? 0) + " Gold";
       $7("champStart").disabled = !x || !["INTERMISSION_READY", "AI_CONTINUATION"].includes(x.phase) || blocked;
       for (const k of ["champStep", "champComplete", "champStage", "champQueue", "champLower"]) $7(k).disabled = !x || !["RACE_ACTIVE", "RACE_START_PENDING"].includes(x.phase) || blocked;
+      if (e3 && x?.phase === "NO_STARTERS_PENDING" && !blocked) $7("champStage").disabled = false;
       $7("champApplyCoach").disabled = !x || x.phase !== "INTERMISSION_READY" || blocked;
       $7("champWithdraw").disabled = !x || x.phase !== "INTERMISSION_READY" || blocked;
       $7("champStatus").textContent = x ? `${x.id} \xB7 ${x.phase} \xB7 event ${x.raceIndex + 1}/${x.offer.value.schedule.length} \xB7 ${x.blockedReason ?? "Home Stable is read-only while active/unsettled."}` : "Load/migrate a schema-4/5 career. The selection board below is a development fixture, not the E6 catalog.";
@@ -7320,7 +7638,7 @@
         live = null;
         lastRaceId = x?.raceId ?? null;
       }
-      if (!live && x?.raceId) try {
+      if (!live && x?.raceId && x.phase !== "NO_STARTERS_PENDING") try {
         const session = new ChampionshipRunner(store, store.storage).session();
         session.open();
         live = session.state;

@@ -4,3 +4,4 @@ export {ChampionshipRunner} from './orchestrator.js';
 export {storedChampionshipAnchor} from './anchor.js';
 export {coachingProfile} from '../../ai/coaching.js';
 export {championshipClassification,raceAwardEffects,standings,titleCandidate} from './scoring.js';
+export {CONDITION_MAPPING,mapCondition,injuryFromCondition} from './condition.js';
