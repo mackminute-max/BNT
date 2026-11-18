@@ -1,0 +1,16 @@
+✔ E3 D2 synthetic paid service fixtures retain exact quotes/receipts and add restoration once (219.916406ms)
+✔ E3 Gate D complete real native championship two-event survives reloads without recovery (46782.590695ms)
+✔ E3 Gate D complete real native championship three-format survives reloads without recovery (77801.043333ms)
+✔ E3 Gate D confirmed withdrawal after cleared race preserves points and runs every remaining AI-only race (65273.288ms)
+✔ E3 Gate D synthetic authoritative damage forces player withdrawal, no healing, one rival races finale (34545.237466ms)
+✔ E3 Gate D synthetic all-ineligible field records validated zero starters and null champion without fabricated DNS/awards (19475.066408ms)
+✔ E3 Gate D withdrawn sole registered entrant yields authoritative zero-starter events across complete schedule (9404.678512ms)
+✔ E3 Gate D actual final start followed by synthetic native DNF remains title eligible without victory (18192.516892ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 271894.109803

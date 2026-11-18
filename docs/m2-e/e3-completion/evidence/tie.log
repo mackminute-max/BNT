@@ -1,0 +1,48 @@
+{
+  "kind": "Synthetic native physical photo-finish integration",
+  "attempts": 20,
+  "speed": 49.59268569946289,
+  "gap": 0.0004981983158600656,
+  "tolerance": 0.001,
+  "rows": [
+    {
+      "id": "e2-be4c4c25",
+      "place": 1,
+      "status": "Finished",
+      "time": 42.570522751073824,
+      "completedLaps": 1,
+      "progress": 80,
+      "nativeStatus": "Finished",
+      "started": true
+    },
+    {
+      "id": "e2-f26212da",
+      "place": 1,
+      "status": "Finished",
+      "time": 42.571020949389684,
+      "completedLaps": 1,
+      "progress": 80,
+      "nativeStatus": "Finished",
+      "started": true
+    }
+  ],
+  "effects": [
+    {
+      "entrantId": "e2-be4c4c25",
+      "points": 10,
+      "finishPlace": 1,
+      "win": true,
+      "pendingEntitlementId": "e2-claim-a1a65f49f0bb2f42bbd1b2288444078e76b6a35f52723755"
+    },
+    {
+      "entrantId": "e2-f26212da",
+      "points": 10,
+      "finishPlace": 1,
+      "win": true,
+      "pendingEntitlementId": "e2-claim-90007955ca3ed90ad8ed62300f61d70da3872c657a40e090"
+    }
+  ],
+  "phase": "SETTLEMENT_PENDING",
+  "proofFingerprint": "ca596acc6c5dd6a5016ded25d82f33e39c1b666bb82958be607d0b0a0ed87cf1",
+  "passed": true
+}

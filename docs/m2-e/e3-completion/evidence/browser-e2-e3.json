@@ -1,0 +1,17 @@
+{
+  "checks": [
+    "Explicit foundation migration cancellation and confirmation preserve accepted schema4 assets/Gold",
+    "Explicit controller upgrade is versioned and creates no fee, reward or race",
+    "One confirmed25G registration locks roster/schedule, disables second registration and preserves read-only stable",
+    "Manual start commits a frozen setup and race-birth reference; coaching freezes before native racing",
+    "Real journaled championship race, frozen coaching and native Sign commands reproduce exact Node replay",
+    "D2 approval hold retains validated cleared evidence with no condition, standings, reward or advancement commit",
+    "Reload retains active lock and staged authoritative proof; no reroll, new grant or settlement",
+    "No page errors or runtime network dependencies"
+  ],
+  "errors": [],
+  "requests": [],
+  "file": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///tmp/bnt-e3-final/dist/Blood_and_Thunder.html",
+  "functional": "PASS",
+  "raceChecksum": "63c84daf"
+}

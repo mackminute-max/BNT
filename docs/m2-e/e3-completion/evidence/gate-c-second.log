@@ -1,0 +1,42 @@
+✔ E3 D2 continuous boundary 0 (3.36622ms)
+✔ E3 D2 continuous boundary 5 (0.808261ms)
+✔ E3 D2 continuous boundary 10 (0.878384ms)
+✔ E3 D2 continuous boundary 29.5 (1.477637ms)
+✔ E3 D2 continuous boundary 30 (0.747581ms)
+✔ E3 D2 continuous boundary 59.5 (0.776214ms)
+✔ E3 D2 continuous boundary 60 (0.891774ms)
+✔ E3 D2 continuous boundary 79.5 (0.378368ms)
+✔ E3 D2 continuous boundary 80 (0.413009ms)
+✔ E3 D2 continuous boundary 100 (0.571723ms)
+✔ E3 D2 retains worse injury/unavailability and independent strain/fatigue/wear (1.596192ms)
+✔ E3 D2 net chariot loss only, no wear damage, fractional clamp and no deletion (0.883432ms)
+✔ E3 D2 treatment floors, paid actual repair restoration and preserved mismatch (0.260504ms)
+✔ E3 D2 invalid values, foreign version and teams reject (0.46169ms)
+✔ E3 Gate C real cleared race publishes condition/standings once with immutable recovery authority (18778.29574ms)
+✔ E3 Gate C career-write failure/lost acknowledgement never partially applies or duplicates native effects (31109.588836ms)
+✖ E3 Gate C forged/conflicting proof and missing session fail closed (7515.08095ms)
+✔ E3 controller blocked unfinished race retains native journal and resumes after validated retry (19812.222621ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 77462.154753
+
+✖ failing tests:
+
+test at tests/m2-e-e3-completion.test.js:13:1
+✖ E3 Gate C forged/conflicting proof and missing session fail closed (7515.08095ms)
+  Error: Invalid persistent ID
+      at id (file:///workspace/BNT/src/career/legacy-state.js:11:134)
+      at request (file:///workspace/BNT/src/persistence/race/session-store.js:27:85)
+      at RaceSessionStore.apply (file:///workspace/BNT/src/persistence/race/session-store.js:99:5)
+      at ChampionshipRunner.advance (file:///workspace/BNT/src/career/championships/orchestrator.js:13:140)
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/m2-e-e3-completion.test.js:13:119)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)

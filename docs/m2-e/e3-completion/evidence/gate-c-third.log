@@ -1,0 +1,26 @@
+✔ E3 D2 continuous boundary 0 (3.215919ms)
+✔ E3 D2 continuous boundary 5 (0.859086ms)
+✔ E3 D2 continuous boundary 10 (1.030879ms)
+✔ E3 D2 continuous boundary 29.5 (1.668239ms)
+✔ E3 D2 continuous boundary 30 (0.714212ms)
+✔ E3 D2 continuous boundary 59.5 (0.466578ms)
+✔ E3 D2 continuous boundary 60 (0.345119ms)
+✔ E3 D2 continuous boundary 79.5 (0.267915ms)
+✔ E3 D2 continuous boundary 80 (0.480959ms)
+✔ E3 D2 continuous boundary 100 (0.450334ms)
+✔ E3 D2 retains worse injury/unavailability and independent strain/fatigue/wear (1.011941ms)
+✔ E3 D2 net chariot loss only, no wear damage, fractional clamp and no deletion (0.358758ms)
+✔ E3 D2 treatment floors, paid actual repair restoration and preserved mismatch (0.361252ms)
+✔ E3 D2 invalid values, foreign version and teams reject (0.345449ms)
+✔ E3 Gate C real cleared race publishes condition/standings once with immutable recovery authority (18191.949052ms)
+✔ E3 Gate C career-write failure/lost acknowledgement never partially applies or duplicates native effects (31941.483918ms)
+✔ E3 Gate C forged/conflicting proof and missing session fail closed (16067.546351ms)
+✔ E3 controller blocked unfinished race retains native journal and resumes after validated retry (19289.649205ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 85664.006413
