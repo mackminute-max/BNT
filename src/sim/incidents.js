@@ -1,3 +1,4 @@
+import {deterministicLog,INCIDENT_CLOCK_VERSION} from './deterministic-log.js';
 import { key, mod, location } from "../track/oval.js";
 import { emit } from "../events/events.js";
 import { drawConsequence } from "./consequences.js";
@@ -32,7 +33,7 @@ function nextRandom(s) {
     s.time +
     Math.max(
       s.consequence.incidentMinimumInterval,
-      -Math.log(
+      -(s.championshipContext?.clockVersion===INCIDENT_CLOCK_VERSION?deterministicLog:Math.log)(
         Math.max(
           1e-12,
           1 - drawConsequence(s, "incident-clock", s.nextIncident),

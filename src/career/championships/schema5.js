@@ -1,5 +1,7 @@
+import {validateControllerState,transactController} from './controller.js';
+import {assertControllerRestore} from './controller-contracts.js';
 import {validateStateV4,transactV4,withKnownHistoryV4} from '../cycles/schema4.js';
-import {exact} from '../legacy-state.js';
+import {exact,mergeMarks} from '../legacy-state.js';
 import {canonical} from '../../core/determinism.js';
 import {fingerprint} from '../cycles/contracts.js';
 import {mergeProtected} from '../economy/protected-registry.js';
@@ -14,6 +16,7 @@ export function buildFoundation(s,r){
   n.history.commands=mergeProtected(n.history.commands,[protectFoundationMigration(r)]);return validateStateV5(n);
 }
 export function validateStateV5(s){
+  if(s?.championshipFoundation?.version===2)return validateControllerState(s);
   if(s?.schema!==5)throw Error('Unsupported foundation schema');
   // Reuse the unchanged schema-4 validator: it rejects unknown top-level fields.
   validateStateV4(project(s));
@@ -30,5 +33,5 @@ export function validateStateV5(s){
   exact(f.recovery,['status','reason']);if(f.recovery.status!=='IDLE'||f.recovery.reason!==null)throw Error('Unsupported career recovery state');
   return s;
 }
-export function transactV5(s,tx,options){validateStateV5(s);const r=transactV4(project(s),tx,options);r.state={...r.state,schema:5,championshipFoundation:structuredClone(s.championshipFoundation)};validateStateV5(r.state);return r;}
-export function withKnownHistoryV5(s,marks,history){validateStateV5(s);const p=withKnownHistoryV4(project(s),marks,history);return validateStateV5({...p,schema:5,championshipFoundation:structuredClone(s.championshipFoundation)});}
+export function transactV5(s,tx,options){if(s.championshipFoundation.version===2||tx.commandVersion===4)return transactController(s,tx,options);validateStateV5(s);const r=transactV4(project(s),tx,options);r.state={...r.state,schema:5,championshipFoundation:structuredClone(s.championshipFoundation)};validateStateV5(r.state);return r;}
+export function withKnownHistoryV5(s,marks,history){validateStateV5(s);if(s.championshipFoundation.version===2){assertControllerRestore(s,history);const n=structuredClone(s);n.provenance=mergeMarks(n.provenance,marks.filter(m=>m.profileId===s.profile.id));n.profile.developerEdited=Boolean(n.provenance.length);n.career.developerEdited=n.provenance.some(m=>m.careerId===n.career.id);n.history.commands=mergeProtected(n.history.commands,history.filter(e=>e.careerId===s.career.id));return validateControllerState(n);}const p=withKnownHistoryV4(project(s),marks,history);return validateStateV5({...p,schema:5,championshipFoundation:structuredClone(s.championshipFoundation)});}

@@ -1,9 +1,10 @@
+import {controllerActive} from '../career/championships/controller.js';
 import {canonical} from '../core/determinism.js';
 import {sha256} from '../career/economy/fingerprint.js';
 import {migrationEffect} from '../career/economy/maintenance-history.js';
 import {quoteEconomy as quoteEconomy3} from '../career/economy/reducers.js';
 import {quoteEconomy4} from '../career/cycles/schema4.js';
-const quoteEconomy=(s,...args)=>s.schema===4?quoteEconomy4(s,...args):quoteEconomy3(s,...args);
+const quoteEconomy=(s,...args)=>s.schema>=4?quoteEconomy4(s,...args):quoteEconomy3(s,...args);
 import {UPGRADES,SERVICES} from '../career/economy/catalog.js';
 const $=id=>document.getElementById(id);
 const ACTIONS={'market.acquire':'Acquire market offer','asset.sell':'Sell owned asset','personnel.terminate':'Terminate personnel contract','equipment.detach':'Detach installed equipment','facility.purchase':'Purchase facility upgrade','service.apply':'Apply immediate care or treatment','training.apply':'Train native rating with XP','engineering.apply':'Engineer chariot rating with Gold'};
@@ -25,7 +26,7 @@ export function mountStableEconomy({store,act,newId,setNotice,download}){
   return {assetId,attribute:$('economyAttribute').value,points:Number($('economyPoints').value)};
  }
  function renderAction(){
-  const s=store.state,ready=s?.schema>=3,blocked=['blocked','recovery-required'].includes(store.mode)||store.requiresCheckpoint||s?.career.status==='Failed',type=$('economyAction').value;
+  const s=store.state,ready=s?.schema>=3,blocked=['blocked','recovery-required'].includes(store.mode)||store.requiresCheckpoint||s?.career.status==='Failed'||controllerActive(s),type=$('economyAction').value;
   for(const [key,visible] of [['economyOfferFields',type==='market.acquire'],['economyAssetFields',['asset.sell','personnel.terminate','equipment.detach','service.apply','training.apply','engineering.apply'].includes(type)],['economyFacilityFields',type==='facility.purchase'],['economyServiceFields',type==='service.apply'],['economyTrainingFields',['training.apply','engineering.apply'].includes(type)]])$(key).hidden=!visible;
   $('economyControls').hidden=!ready;$('economyCommit').disabled=true;
   if(!ready){$('economyQuote').textContent='Initialize an M2-B stable, then preview and explicitly confirm the economy migration.';return;}
@@ -37,7 +38,7 @@ export function mountStableEconomy({store,act,newId,setNotice,download}){
   try{const quote=quoteEconomy(s,type,payload(s));$('economyQuote').textContent=JSON.stringify({...quote,funds:s.career.treasury,...(!quote.canAfford?{warning:quote.xpCost?'Insufficient XP. M2-C does not award XP.':'Insufficient Gold.'}:{})},null,2);$('economyCommit').disabled=blocked||!quote.canAfford;}catch(e){$('economyQuote').textContent=e.message;}
  }
  function render(){
-  const s=store.state,ready=s?.schema>=3,blocked=['blocked','recovery-required'].includes(store.mode)||store.requiresCheckpoint||s?.career.status==='Failed';
+  const s=store.state,ready=s?.schema>=3,blocked=['blocked','recovery-required'].includes(store.mode)||store.requiresCheckpoint||s?.career.status==='Failed'||controllerActive(s);
   $('economyPreviewMigration').disabled=!s||s.schema!==2||!s.management.initialized||blocked;
   $('economyConfirmMigration').disabled=!plan||!s||s.schema!==2||blocked;
   if(plan&&s?.schema===2&&plan.sourceFingerprint!==sha256(canonical(s)))$('economyConfirmMigration').disabled=true;

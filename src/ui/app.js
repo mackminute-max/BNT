@@ -1,3 +1,4 @@
+import * as championships from '../career/championships/api.js';
 import * as foundation from '../sim/foundation/api.js';
 import { generateMarket, seedInteger, marketStream } from '../career/economy/market.js';
 import { advanceFrames } from "./clock.js";
@@ -685,6 +686,7 @@ function frame(now) {
 }
 // Read-only data access plus headless run entrypoint for artifact parity tests.
 window.BNT = {
+  championships,
   foundation,
   managementDiagnostics: { generateMarket, seedInteger, marketStream },
   createRace,

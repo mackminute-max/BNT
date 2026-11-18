@@ -1,3 +1,4 @@
+import {validateControllerEntry} from '../championships/controller-contracts.js';
 import {validateFoundationEntry} from '../championships/contracts.js';
 import {validateCycleMaintenance,validateCycleEntry} from '../cycles/contracts.js';
 import { validateEconomicEntry } from './commands.js';
@@ -7,7 +8,7 @@ import { canonical } from '../../core/determinism.js';
 import { isMaintenance,validateMaintenance } from './maintenance-history.js';
 export { isMaintenance } from './maintenance-history.js';
 export const isLegacyEntry=e=>!Object.hasOwn(e,'kind')&&[0,1].includes(e.commandVersion);
-export function validateEntry(e){return e?.kind==='foundation-maintenance'?validateFoundationEntry(e):e?.kind==='cycle-migration-maintenance'?validateCycleMaintenance(e):e?.kind==='cycle-gameplay'?validateCycleEntry(e):isMaintenance(e)?validateMaintenance(e):e?.commandVersion===2&&!Object.hasOwn(e,'kind')?validateEconomicEntry(e):legacy.validateProtected(e);}
+export function validateEntry(e){return e?.kind==='championship-gameplay'?validateControllerEntry(e):e?.kind==='foundation-maintenance'?validateFoundationEntry(e):e?.kind==='cycle-migration-maintenance'?validateCycleMaintenance(e):e?.kind==='cycle-gameplay'?validateCycleEntry(e):isMaintenance(e)?validateMaintenance(e):e?.commandVersion===2&&!Object.hasOwn(e,'kind')?validateEconomicEntry(e):legacy.validateProtected(e);}
 export function mergeProtected(...lists){
   const ids=new Map(),effects=new Map(),owners=new Map();
   for(const e of lists.flat()){

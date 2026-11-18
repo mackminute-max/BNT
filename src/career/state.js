@@ -1,3 +1,4 @@
+import {validateControllerCommand,assertControllerRestore} from './championships/controller-contracts.js';
 import {validateStateV5,withKnownHistoryV5,transactV5} from './championships/schema5.js';
 import {validateStateV4,withKnownHistoryV4,transactV4} from './cycles/schema4.js';
 import {validateCycleCommand,assertCycleRestore} from './cycles/contracts.js';
@@ -14,10 +15,11 @@ export const CAREER_SCHEMA = 5;
 export const createCareer = legacy.createCareer;
 export function createUninitializedCareer(options) { return migrateStateV1(legacy.createCareer(options)); }
 export function validateState(state) { return state?.schema === 5 ? validateStateV5(state) : state?.schema === 4 ? validateStateV4(state) : state?.schema === 3 ? validateStateV3(state) : state?.schema === 2 ? validateStateV2(state) : legacy.validateState(state); }
-export function validateTransaction(tx) { return tx?.commandVersion === 3 ? validateCycleCommand(tx) : tx?.commandVersion === 2 ? validateEconomyCommand(tx) : tx && Object.hasOwn(tx, 'commandVersion') ? validateCommandV1(tx) : legacy.validateTransaction(tx); }
+export function validateTransaction(tx) { return tx?.commandVersion === 4 ? validateControllerCommand(tx) : tx?.commandVersion === 3 ? validateCycleCommand(tx) : tx?.commandVersion === 2 ? validateEconomyCommand(tx) : tx && Object.hasOwn(tx, 'commandVersion') ? validateCommandV1(tx) : legacy.validateTransaction(tx); }
 export function withProvenance(state, marks, protectedHistory = []) {
   if (protectedHistory.some(e=>e.careerId===state.career.id && e.profileId!==state.profile.id)) throw Error('Career history belongs to a different Owner Profile');
   assertCycleRestore(state, protectedHistory);
+  assertControllerRestore(state,protectedHistory);
   if(state?.schema<5&&protectedHistory.some(e=>e.kind==='foundation-maintenance'&&e.careerId===state.career.id))throw Error('Cannot restore pre-foundation career over protected schema-5 migration');
   if(state?.schema===5)return withKnownHistoryV5(state,marks,protectedHistory);
   if(state?.schema===4)return withKnownHistoryV4(state,marks,protectedHistory);

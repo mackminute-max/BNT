@@ -69,9 +69,9 @@ export class RaceSessionStore {
         for(const j of journal.slice(m.watermark)){if(j.before!==stateHash(s))throw Error('Journal before-state mismatch');execute(s,j.request);if(j.after!==stateHash(s))throw Error('Journal replay mismatch');}
         if(stateHash(s)!==a.headHash)throw Error('Authoritative head mismatch');
         if(published!==null){
-          const p=unpack(published);exact(p,['kind','version','resultId','identity','setupFingerprint','stateFingerprint','tick','watermark','sourceRevision','classification','conditions','standingsEffects','pendingEntitlementIds']);id(p.resultId);
+          const p=unpack(published);exact(p,['kind','version','resultId','identity','setupFingerprint','stateFingerprint','tick','watermark','sourceRevision','classification','conditions','standingsEffects','pendingEntitlementIds',...(Object.hasOwn(p,'championshipEvidence')?['championshipEvidence']:[])]);id(p.resultId);
           const native=clearedNativeResult(s);
-          if(p.kind!=='BNT-cleared-race-proof'||p.version!==1||p.setupFingerprint!==a.setupHash||p.tick!==s.tick||p.watermark!==a.watermark||p.sourceRevision!==a.revision-1||wireHash(pack(native.classification))!==wireHash(pack(p.classification))||wireHash(pack(native.conditions))!==wireHash(pack(p.conditions))||wireHash(p.standingsEffects)!==wireHash(native.classification.map(x=>({entrantId:x.id,classified:true})))||wireHash(p.pendingEntitlementIds)!==wireHash(a.proofEntitlementIds))throw Error('Invalid authoritative result/condition proof');
+          if(wireHash(p.championshipEvidence??null)!==wireHash(native.championshipEvidence??null)||p.kind!=='BNT-cleared-race-proof'||p.version!==1||p.setupFingerprint!==a.setupHash||p.tick!==s.tick||p.watermark!==a.watermark||p.sourceRevision!==a.revision-1||wireHash(pack(native.classification))!==wireHash(pack(p.classification))||wireHash(pack(native.conditions))!==wireHash(pack(p.conditions))||wireHash(p.standingsEffects)!==wireHash(native.classification.map(x=>({entrantId:x.id,classified:true})))||wireHash(p.pendingEntitlementIds)!==wireHash(a.proofEntitlementIds))throw Error('Invalid authoritative result/condition proof');
         }
         break;
       }catch(e){s=null;recovered=true;}

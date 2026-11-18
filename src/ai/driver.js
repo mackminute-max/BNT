@@ -1,3 +1,4 @@
+import {coachingUtility} from './coaching.js';
 import { combatValue } from "./combat-value.js";
 import { location } from "../track/oval.js";
 import { beginDecision } from "./telemetry.js";
@@ -135,6 +136,7 @@ export function decide(s, r) {
     const terms = {
       base,
       ...features,
+      ...(r.coachingContext ? {coaching:coachingUtility(r.coachingContext,action,sign)} : {}),
       sign: influence,
       persistence,
       noise: noise(action),

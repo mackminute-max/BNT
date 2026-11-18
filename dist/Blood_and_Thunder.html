@@ -746,20 +746,22 @@
       __defProp(target, name, { get: all[name], enumerable: true });
   };
 
-  // src/sim/foundation/api.js
+  // src/career/championships/api.js
   var api_exports = {};
   __export(api_exports, {
-    RaceSessionStore: () => RaceSessionStore,
-    buildFoundation: () => buildFoundation,
-    careerAnchor: () => careerAnchor,
-    checkpointRace: () => checkpointRace,
-    clearedNativeResult: () => clearedNativeResult,
-    noStarterProof: () => noStarterProof,
-    previewFoundation: () => previewFoundation,
-    restoreRace: () => restoreRace,
-    storedCareerAnchor: () => storedCareerAnchor,
-    validateStateV5: () => validateStateV5,
-    withRaceSessionLock: () => withRaceSessionLock
+    ChampionshipRunner: () => ChampionshipRunner,
+    activeChampionship: () => activeChampionship,
+    championshipClassification: () => championshipClassification,
+    coachingProfile: () => coachingProfile,
+    controllerOffers: () => controllerOffers,
+    developmentOffer: () => developmentOffer,
+    makeControllerCommand: () => makeControllerCommand,
+    prepareRace: () => prepareRace,
+    qualifies: () => qualifies,
+    raceAwardEffects: () => raceAwardEffects,
+    standings: () => standings,
+    storedChampionshipAnchor: () => storedChampionshipAnchor,
+    titleCandidate: () => titleCandidate
   });
 
   // src/core/determinism.js
@@ -789,6 +791,70 @@
   }
   var byId = (a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
   var clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
+
+  // src/sim/deterministic-log.js
+  var INCIDENT_CLOCK_VERSION = "m2e-exponential-clock-v1";
+  function deterministicLog(x) {
+    if (!Number.isFinite(x) || x <= 0) throw Error("Deterministic log requires positive finite input");
+    let exponent = 0, m = x;
+    while (m < 1) {
+      m *= 2;
+      exponent--;
+    }
+    while (m >= 2) {
+      m /= 2;
+      exponent++;
+    }
+    const z = (m - 1) / (m + 1), square = z * z;
+    let term = z, sum = 0;
+    for (let n = 1; n <= 79; n += 2) {
+      sum += term / n;
+      term *= square;
+    }
+    return 2 * sum + exponent * 0.6931471805599453;
+  }
+
+  // src/ai/coaching.js
+  var coachingAxes = Object.freeze(["aggression", "conservation", "positioning", "riskTolerance"]);
+  var coachingDefaults = Object.freeze({ aggression: 0.5, conservation: 0.5, positioning: 0.5, riskTolerance: 0.5 });
+  function validateCoaching(c) {
+    if (c === void 0 || c === null) return;
+    exact(c, ["version", "axes", "weights"]);
+    if (c.version !== 1) throw Error("Unsupported coaching version");
+    exact(c.axes, coachingAxes);
+    exact(c.weights, coachingAxes);
+    for (const k of coachingAxes) if (!Number.isFinite(c.axes[k]) || c.axes[k] < -1 || c.axes[k] > 1 || !Number.isFinite(c.weights[k]) || c.weights[k] < 0 || c.weights[k] > 2) throw Error("Coaching values outside bounded contract");
+  }
+  function coachingProfile(axes = {}) {
+    const c = { version: 1, axes: Object.fromEntries(coachingAxes.map((k) => [k, axes[k] ?? 0])), weights: { ...coachingDefaults } };
+    validateCoaching(c);
+    return c;
+  }
+  var preference = {
+    aggression: { attack: 1, ram: 1, defendCombat: -1, disengage: -1 },
+    conservation: { Conserve: 1, Push: -1, Sprint: -1 },
+    positioning: { inward: 1, outward: 1, overtake: 1, hold: -1, defend: -1 },
+    riskTolerance: { Sprint: 1, Push: 1, ram: 1, inward: 1, outward: 1, Conserve: -1, avoid: -1, yield: -1, defendCombat: -1 }
+  };
+  var conflicts = {
+    "Push the Pace": { conservation: 1, riskTolerance: -1 },
+    "Conserve Strength": { conservation: -1, riskTolerance: 1 },
+    "Seek Open Track": { positioning: -1 },
+    "Race Defensively": { aggression: 1, conservation: -1, riskTolerance: 1 },
+    "Engage Rivals": { aggression: -1, riskTolerance: -1 },
+    "Hold Position": { positioning: 1, riskTolerance: 1 }
+  };
+  function coachingUtility(c, action, sign) {
+    validateCoaching(c);
+    if (!c) return 0;
+    let sum = 0;
+    for (const k of coachingAxes) {
+      const axis = c.axes[k];
+      if (conflicts[sign]?.[k] === Math.sign(axis)) continue;
+      sum += axis * c.weights[k] * (preference[k][action] ?? 0);
+    }
+    return sum;
+  }
 
   // src/model/payroll-control.js
   var MULTIPLIERS = Object.freeze({ Current: 1, Overdue: 1, Delinquent: 0.95, Critical: 0.9, Default: 0.85 });
@@ -1614,7 +1680,7 @@
     if (!s.consequences || s.consequence.incidentRate === 0) return Infinity;
     return s.time + Math.max(
       s.consequence.incidentMinimumInterval,
-      -Math.log(
+      -(s.championshipContext?.clockVersion === INCIDENT_CLOCK_VERSION ? deterministicLog : Math.log)(
         Math.max(
           1e-12,
           1 - drawConsequence(s, "incident-clock", s.nextIncident)
@@ -2400,6 +2466,7 @@
       const terms = {
         base,
         ...features,
+        ...r.coachingContext ? { coaching: coachingUtility(r.coachingContext, action, sign) } : {},
         sign: influence,
         persistence,
         noise: noise(action)
@@ -2753,7 +2820,8 @@
     scheduledIncidents = [],
     checkpointInterval = 100,
     environmentOverrides = {},
-    course = null
+    course = null,
+    championshipContext
   } = {}) {
     if (!Object.hasOwn(weatherPresets, weather))
       throw new Error("Invalid weather");
@@ -2789,6 +2857,8 @@
           throw new Error("Invalid surface modifier");
       Object.assign(segment2.surface, patch);
     }
+    if (championshipContext !== void 0 && (!championshipContext || championshipContext.version !== 1 || (!["instanceId,raceId,version", "clockVersion,instanceId,raceId,version"].includes(Object.keys(championshipContext).sort().join(",")) || championshipContext.clockVersion !== void 0 && championshipContext.clockVersion !== INCIDENT_CLOCK_VERSION) || !["instanceId", "raceId"].every((k) => typeof championshipContext[k] === "string" && /^[a-zA-Z0-9_-]{1,128}$/.test(championshipContext[k])))) throw Error("Invalid championship race context");
+    if (championshipContext) championshipContext = { ...championshipContext, clockVersion: INCIDENT_CLOCK_VERSION };
     const seen = /* @__PURE__ */ new Set();
     const units = input.map((e, i) => {
       var _a;
@@ -2799,6 +2869,8 @@
       for (const k of tendencies)
         if (!Number.isFinite(ru.driver.personality[k]) || ru.driver.personality[k] < 0 || ru.driver.personality[k] > 100)
           throw new Error(`Invalid personality ${k}`);
+      validateCoaching(e.coachingContext);
+      if (e.coachingContext && ru.id !== (playerId ?? input[0].ru.id)) throw Error("Coaching is player-only");
       validatePayrollContext(e.payrollContext);
       const derived = applyPayrollControl(derive(ru, {
         ...c,
@@ -2819,6 +2891,8 @@
         id: ru.id,
         ru,
         derived,
+        ...e.coachingContext ? { coachingContext: freezeCoaching(e.coachingContext) } : {},
+        ...championshipContext ? { progressEvidence: { version: 1, progress: q, firstTime: 0, firstTick: 0 } } : {},
         ...e.payrollContext === void 0 ? {} : { payrollContext: structuredClone(e.payrollContext) },
         lane,
         q,
@@ -2853,6 +2927,7 @@
     });
     const s = {
       version: VERSION,
+      ...championshipContext ? { championshipContext: structuredClone(championshipContext) } : {},
       seed,
       rng: { algorithm: "keyed-fnv-avalanche-v1", draws: 0 },
       config: c,
@@ -2901,6 +2976,7 @@
       overrides: { ...c },
       entrants: units.map((r) => ({
         ru: structuredClone(r.ru),
+        ...r.coachingContext ? { coachingContext: freezeCoaching(r.coachingContext) } : {},
         ...r.payrollContext === void 0 ? {} : { payrollContext: structuredClone(r.payrollContext) },
         lane: r.lane,
         q: r.q,
@@ -2916,6 +2992,7 @@
       consequence: consequenceTuning,
       scheduledIncidents: structuredClone(scheduledIncidents),
       checkpointInterval,
+      ...championshipContext ? { championshipContext: structuredClone(championshipContext) } : {},
       environmentOverrides: structuredClone(environmentOverrides)
     };
     if (driverMode === "autonomous")
@@ -3384,6 +3461,7 @@
       if (decisions.get(r.id)) {
         const previousLocation = s.track.course ? location(r.q, r.lane, s.config, s.track) : null;
         r.q = next;
+        observeProgress(s, r);
         if (s.track.course && r.status === "Racing") {
           const loc = location(r.q, r.lane, s.config, s.track);
           if (previousLocation.segment !== loc.segment) emit(s, "SEGMENT_ENTERED", [r.id], {
@@ -3409,6 +3487,7 @@
         const hazard = s.consequences && hazardAt(s, next, r.lane);
         if (hazard) queueHazardImpact(s, r, hazard, speeds.get(r.id));
         r.q = next - s.config.positionEpsilon;
+        observeProgress(s, r);
         r.speed = 0;
         r.blocked = true;
         resolveAction(s, r, r.ai.diagnostics?.decisionId, "movement", false, "Forward path blocked");
@@ -3456,7 +3535,8 @@
       if (s.status === "Ready") {
         s.status = "Running";
         emit(s, "RACE_STARTED", [], {
-          referenceDrivers: s.driverMode === "reference"
+          referenceDrivers: s.driverMode === "reference",
+          ...s.championshipContext ? { starters: sorted(s).filter((r) => r.status === "Racing").map((r) => r.id) } : {}
         });
         for (const r of sorted(s)) activateSign(s, r);
       }
@@ -3528,6 +3608,7 @@
             r.speed = m.target;
         }
         s.time += elapsed;
+        for (const r of units) observeProgress(s, r);
         if (s.consequences) {
           for (const r of units) recoverControl(s, r, elapsed);
           updateIncidents(s);
@@ -3541,7 +3622,10 @@
           if (movers.length) resolveForward(s, movers);
           for (const r of markers) {
             const m = motions.get(r.id);
-            if (!movers.includes(r)) r.q = m.markerQ;
+            if (!movers.includes(r)) {
+              r.q = m.markerQ;
+              observeProgress(s, r);
+            }
             checkpoints(s, r);
           }
           if (s.driverMode === "autonomous") {
@@ -3659,6 +3743,15 @@
     s.previousProgress = Object.fromEntries(
       sorted(s).map((r) => [r.id, { q: r.q, status: r.status }])
     );
+  }
+  function freezeCoaching(c) {
+    const n = structuredClone(c);
+    Object.freeze(n.axes);
+    Object.freeze(n.weights);
+    return Object.freeze(n);
+  }
+  function observeProgress(s, r) {
+    if (s.championshipContext && r.status === "Racing" && r.progressEvidence.progress !== r.q) r.progressEvidence = { version: 1, progress: r.q, firstTime: s.time, firstTick: s.tick };
   }
 
   // src/dev/configuration.js
@@ -3901,252 +3994,6 @@
     return h.map((n) => n.toString(16).padStart(8, "0")).join("");
   }
 
-  // src/sim/foundation/codec.js
-  var MAX_CHECKPOINT_BYTES = 8 * 1024 * 1024;
-  var wireHash = (x) => sha256(canonical(x));
-  function graphPack(root) {
-    const nodes = [], seen = /* @__PURE__ */ new Map(), active = /* @__PURE__ */ new Set();
-    function visit(x, depth = 0) {
-      if (depth > 128) throw Error("Checkpoint nesting limit");
-      if (x === void 0) return { s: "undefined" };
-      if (typeof x === "number") {
-        if (Number.isNaN(x)) throw Error("NaN cannot be checkpointed");
-        if (!Number.isFinite(x)) return { s: x === Infinity ? "Infinity" : "-Infinity" };
-        if (Object.is(x, -0)) return { s: "-0" };
-      }
-      if (x === null || ["string", "boolean", "number"].includes(typeof x)) return x;
-      if (typeof x !== "object" || ![Object.prototype, null, Array.prototype].includes(Object.getPrototypeOf(x))) throw Error("Unsupported checkpoint object");
-      if (active.has(x)) throw Error("Cyclic checkpoint");
-      if (seen.has(x)) return { r: seen.get(x) };
-      const index = nodes.length;
-      if (index >= 2e5) throw Error("Checkpoint node limit");
-      seen.set(x, index);
-      active.add(x);
-      const n = [Array.isArray(x) ? 1 : 0, Object.isExtensible(x) ? 1 : 0, []];
-      nodes.push(n);
-      for (const k of Object.getOwnPropertyNames(x)) {
-        if (["__proto__", "constructor", "prototype"].includes(k)) throw Error("Unsafe checkpoint key");
-        const d = Object.getOwnPropertyDescriptor(x, k);
-        if (!Object.hasOwn(d, "value")) throw Error("Checkpoint accessors unsupported");
-        const flags = (d.writable ? 4 : 0) | (d.enumerable ? 2 : 0) | (d.configurable ? 1 : 0), row = [k, visit(d.value, depth + 1)];
-        if (flags !== 7) row.push(flags);
-        n[2].push(row);
-      }
-      if (Object.getOwnPropertySymbols(x).length) throw Error("Checkpoint symbols unsupported");
-      active.delete(x);
-      return { r: index };
-    }
-    const wire = { version: 1, root: visit(root), nodes };
-    if (new TextEncoder().encode(JSON.stringify(wire)).length > 32 * 1024 * 1024) throw Error("Decoded checkpoint graph exceeds 32 MiB");
-    return wire;
-  }
-  function graphUnpack(wire) {
-    exact(wire, ["version", "root", "nodes"], "checkpoint codec");
-    if (wire.version !== 1 || !Array.isArray(wire.nodes) || wire.nodes.length > 2e5 || new TextEncoder().encode(JSON.stringify(wire)).length > 32 * 1024 * 1024) throw Error("Unsupported/oversized checkpoint codec");
-    const values = wire.nodes.map((n) => {
-      if (!Array.isArray(n) || n.length !== 3 || ![0, 1].includes(n[0]) || ![0, 1].includes(n[1]) || !Array.isArray(n[2])) throw Error("Invalid codec node");
-      return n[0] ? [] : {};
-    });
-    function token(t) {
-      if (t === null || ["number", "string", "boolean"].includes(typeof t)) {
-        if (typeof t === "number" && !Number.isFinite(t)) throw Error("Invalid numeric token");
-        return t;
-      }
-      if (t && Object.hasOwn(t, "r")) {
-        exact(t, ["r"]);
-        if (!Number.isInteger(t.r) || t.r < 0 || t.r >= values.length) throw Error("Invalid checkpoint reference");
-        return values[t.r];
-      }
-      exact(t, ["s"]);
-      if (!["undefined", "Infinity", "-Infinity", "-0"].includes(t.s)) throw Error("Invalid checkpoint sentinel");
-      return { undefined: void 0, Infinity: Infinity, "-Infinity": -Infinity, "-0": -0 }[t.s];
-    }
-    wire.nodes.forEach((n, i) => {
-      const keys = /* @__PURE__ */ new Set();
-      for (const row of n[2]) {
-        if (!Array.isArray(row) || ![2, 3].includes(row.length)) throw Error("Invalid property encoding");
-        const [k, v, flags = 7] = row;
-        if (typeof k !== "string" || keys.has(k) || ["__proto__", "constructor", "prototype"].includes(k) || !Number.isInteger(flags) || flags < 0 || flags > 7) throw Error("Invalid property descriptor");
-        keys.add(k);
-        Object.defineProperty(values[i], k, { value: token(v), writable: !!(flags & 4), enumerable: !!(flags & 2), configurable: !!(flags & 1) });
-      }
-      if (!n[1]) Object.preventExtensions(values[i]);
-    });
-    const result = token(wire.root);
-    if (JSON.stringify(graphPack(result)) !== JSON.stringify(wire)) throw Error("Noncanonical checkpoint graph");
-    return result;
-  }
-  var sealWire = (value) => ({ value, hash: wireHash(value) });
-  function unsealWire(s) {
-    exact(s, ["value", "hash"]);
-    if (typeof s.hash !== "string" || s.hash !== wireHash(s.value)) throw Error("Checkpoint integrity mismatch");
-    return s.value;
-  }
-  function compress(text2) {
-    const bytes = new TextEncoder().encode(text2);
-    if (bytes.length > 32 * 1024 * 1024) throw Error("Decoded checkpoint exceeds 32 MiB");
-    let dictionary, next;
-    const reset2 = () => {
-      dictionary = /* @__PURE__ */ new Map();
-      for (let i = 0; i < 256; i++) dictionary.set(String.fromCharCode(i), i);
-      next = 257;
-    };
-    reset2();
-    const codes = [];
-    let word = "";
-    for (const b of bytes) {
-      const c = String.fromCharCode(b), both = word + c;
-      if (dictionary.has(both)) {
-        word = both;
-        continue;
-      }
-      codes.push(dictionary.get(word));
-      if (next < 65536) dictionary.set(both, next++);
-      else {
-        codes.push(256);
-        reset2();
-      }
-      word = c;
-    }
-    if (word) codes.push(dictionary.get(word));
-    const packed = new Uint8Array(Math.ceil(codes.length * 16 / 8));
-    let bit = 0;
-    for (const c of codes) {
-      for (let j = 0; j < 16; j++, bit++) if (c & 1 << j) packed[bit >> 3] |= 1 << (bit & 7);
-    }
-    let binary = "";
-    for (let i = 0; i < packed.length; i += 8192) binary += String.fromCharCode(...packed.subarray(i, i + 8192));
-    return { codec: "lzw16-v1", plainBytes: bytes.length, codes: codes.length, data: btoa(binary) };
-  }
-  function decompress(x) {
-    exact(x, ["codec", "plainBytes", "codes", "data"]);
-    if (x.codec !== "lzw16-v1" || !Number.isInteger(x.plainBytes) || x.plainBytes < 0 || x.plainBytes > 32 * 1024 * 1024 || !Number.isInteger(x.codes) || x.codes < 0 || x.codes > MAX_CHECKPOINT_BYTES || typeof x.data !== "string" || x.data.length > MAX_CHECKPOINT_BYTES) throw Error("Invalid compressed checkpoint bounds");
-    const bytes = Uint8Array.from(atob(x.data), (c) => c.charCodeAt(0));
-    if (bytes.length !== Math.ceil(x.codes * 16 / 8)) throw Error("Truncated checkpoint compression");
-    let dictionary, next;
-    const reset2 = () => {
-      dictionary = Array.from({ length: 256 }, (_, i) => String.fromCharCode(i));
-      next = 257;
-    };
-    reset2();
-    const result = new Uint8Array(x.plainBytes);
-    let pos = 0, bit = 0, word = "";
-    for (let i = 0; i < x.codes; i++) {
-      let code = 0;
-      for (let j = 0; j < 16; j++, bit++) if (bytes[bit >> 3] & 1 << (bit & 7)) code |= 1 << j;
-      if (code === 256) {
-        reset2();
-        word = "";
-        continue;
-      }
-      const entry = dictionary[code] ?? (code === next && word ? word + word[0] : null);
-      if (entry === null || pos + entry.length > result.length) throw Error("Invalid compressed checkpoint code");
-      for (let j = 0; j < entry.length; j++) result[pos++] = entry.charCodeAt(j);
-      if (word && next < 65536) dictionary[next++] = word + entry[0];
-      word = entry;
-    }
-    if (pos !== result.length) throw Error("Truncated decoded checkpoint");
-    return new TextDecoder("utf-8", { fatal: true }).decode(result);
-  }
-  function pack(root) {
-    const wire = { version: 1, transport: compress(JSON.stringify(graphPack(root))) };
-    if (new TextEncoder().encode(JSON.stringify(wire)).length > MAX_CHECKPOINT_BYTES) throw Error("Checkpoint exceeds 8 MiB");
-    return wire;
-  }
-  function unpack(wire) {
-    exact(wire, ["version", "transport"]);
-    if (wire.version !== 1) throw Error("Unsupported checkpoint codec");
-    const text2 = decompress(wire.transport), graph = JSON.parse(text2);
-    return graphUnpack(graph);
-  }
-
-  // src/sim/foundation/checkpoint.js
-  var RACE_STATE_VERSION = "m2e-race-state-v1";
-  function validateRaceBoundary(s) {
-    if (!s || s.version !== VERSION || s.resolving !== false || !["Ready", "Running", "Ended", "Stalled"].includes(s.status) || !Number.isSafeInteger(s.tick) || s.tick < 0 || s.tick > 1e6 || !Number.isFinite(s.time) || s.time < 0) throw Error("Invalid/incompatible resolved race boundary");
-    const initial = createRace(s.setup);
-    exact(s, Object.keys(initial), "full race state");
-    if (s.seed !== initial.seed || s.rng.algorithm !== initial.rng.algorithm || !Number.isSafeInteger(s.rng.draws) || s.rng.draws < 0 || wireHash(pack(s.initialRng)) !== wireHash(pack(initial.initialRng))) throw Error("Invalid RNG identity/state");
-    config(s.config);
-    if (s.entrants.length !== initial.entrants.length || new Set(s.entrants.map((r) => r.id)).size !== s.entrants.length || s.entrants.some((r) => !initial.entrants.some((e) => e.id === r.id) || r.id !== r.ru.id)) throw Error("Invalid checkpoint entrant identity");
-    if (!Array.isArray(s.events) || !Array.isArray(s.commands) || !Array.isArray(s.pendingImpacts) || !Array.isArray(s.pendingOverrides) || !Array.isArray(s.checkpoints)) throw Error("Invalid race arrays");
-    if (!(s.nextIncidentAt === Infinity || Number.isFinite(s.nextIncidentAt))) throw Error("Invalid incident sentinel");
-    for (const r of s.entrants) {
-      derive(r.ru, s.config);
-      if (!["Racing", "Finished", "Retired", "DNS"].includes(r.status) || !["Live", "Clearing", "Exited", "Wreck"].includes(r.physical) || !r.ai || !Number.isFinite(r.ai.nextDecision) || !Number.isInteger(r.signs.remaining) || r.signs.remaining < 0) throw Error("Invalid entrant checkpoint state");
-      if (r.finishSnapshot && (!Object.isFrozen(r.finishSnapshot) || Object.getOwnPropertyDescriptor(r, "finishSnapshot").writable !== false)) throw Error("Lost historical finish immutability");
-    }
-    for (const k of Object.keys(s.wrecks)) if (!Object.isFrozen(s.wrecks[k]) || Object.getOwnPropertyDescriptor(s.wrecks, k).writable !== false) throw Error("Lost wreck immutability");
-    assertState(s);
-    return s;
-  }
-  function validateIdentity(x) {
-    exact(x, ["profileId", "careerId", "instanceId", "raceId"]);
-    for (const v of Object.values(x)) id(v);
-    return x;
-  }
-  var setupFingerprint = (s) => wireHash(pack(s.setup));
-  function checkpointRace(s, identity, watermark = 0) {
-    validateIdentity(identity);
-    validateRaceBoundary(s);
-    if (!Number.isSafeInteger(watermark) || watermark < 0) throw Error("Invalid journal watermark");
-    return sealWire({ kind: "BNT-race-checkpoint", version: 1, stateVersion: RACE_STATE_VERSION, simulationVersion: VERSION, identity: structuredClone(identity), setupFingerprint: setupFingerprint(s), watermark, tick: s.tick, state: pack(s) });
-  }
-  function restoreRace(record, { identity, setupHash, watermark } = {}) {
-    const x = unsealWire(record);
-    exact(x, ["kind", "version", "stateVersion", "simulationVersion", "identity", "setupFingerprint", "watermark", "tick", "state"]);
-    validateIdentity(x.identity);
-    if (x.kind !== "BNT-race-checkpoint" || x.version !== 1 || x.stateVersion !== RACE_STATE_VERSION || x.simulationVersion !== VERSION) throw Error("Incompatible race checkpoint version");
-    if (identity && wireHash(identity) !== wireHash(x.identity) || setupHash && setupHash !== x.setupFingerprint || watermark !== void 0 && watermark !== x.watermark) throw Error("Incompatible race checkpoint identity/watermark");
-    const s = validateRaceBoundary(unpack(x.state));
-    if (x.tick !== s.tick || x.setupFingerprint !== setupFingerprint(s) || !Number.isSafeInteger(x.watermark) || x.watermark < 0) throw Error("Checkpoint metadata mismatch");
-    return s;
-  }
-  function clearedNativeResult(s) {
-    validateRaceBoundary(s);
-    if (s.status !== "Ended" || s.pendingImpacts.length || s.pendingOverrides.length || s.entrants.some((r) => r.status === "Racing" || r.physical === "Clearing") || !s.events.some((e) => e.type === "RACE_ENDED")) throw Error("RACE_CLEARANCE_BLOCKED: unresolved authoritative processing");
-    const official = classification(s);
-    if (official.length !== s.entrants.length || new Set(official.map((x) => x.id)).size !== s.entrants.length) throw Error("RACE_CLEARANCE_BLOCKED: classification identity");
-    return { classification: official, conditions: s.entrants.map((r) => ({ entrantId: r.id, native: structuredClone(r.ru) })) };
-  }
-
-  // src/career/economy/maintenance-history.js
-  var MIGRATION_VERSION = "m2c-migration-v1";
-  var ADAPTER_VERSION = "valuation-health-v1";
-  var GENERATOR_VERSION = "market-generator-v1";
-  var isMaintenance = (e) => e?.kind === "migration-maintenance";
-  var migrationEffect = (careerId) => "migrate-" + careerId + "-2-3";
-  function validateMigrationRequest(r) {
-    exact(r, ["id", "profileId", "careerId", "type", "maintenanceVersion", "expectedRevision", "expectedMaintenanceRevision", "sourceSchema", "targetSchema", "sourceFingerprint", "migrationVersion", "adapterVersion", "generatorVersion", "confirmed", "effectId"], "migration maintenance request");
-    for (const k of ["id", "profileId", "careerId"]) id(r[k]);
-    if (r.type !== "career.migrate" || r.maintenanceVersion !== 1 || r.sourceSchema !== 2 || r.targetSchema !== 3 || r.migrationVersion !== MIGRATION_VERSION || r.adapterVersion !== ADAPTER_VERSION || r.generatorVersion !== GENERATOR_VERSION || r.confirmed !== true || r.effectId !== migrationEffect(r.careerId) || !/^[a-f0-9]{64}$/.test(r.sourceFingerprint)) throw Error("Invalid migration contract/version/identity");
-    if (!Number.isSafeInteger(r.expectedRevision) || r.expectedRevision < 0 || !Number.isSafeInteger(r.expectedMaintenanceRevision) || r.expectedMaintenanceRevision < 1 || r.expectedMaintenanceRevision >= Number.MAX_SAFE_INTEGER) throw Error("Invalid migration revisions");
-    return r;
-  }
-  function acknowledgment(r, digest2) {
-    return { kind: "BNT-migration-ack", sourceFingerprint: r.sourceFingerprint, manifestDigest: digest2, careerSchema: 3, revision: r.expectedRevision, maintenanceRevision: r.expectedMaintenanceRevision + 1 };
-  }
-  function protectMaintenance(r, manifestDigest, retainAcknowledgment = true) {
-    validateMigrationRequest(r);
-    if (!/^[a-f0-9]{64}$/.test(manifestDigest)) throw Error("Invalid migration manifest fingerprint");
-    return { kind: "migration-maintenance", recordVersion: 1, id: r.id, profileId: r.profileId, careerId: r.careerId, request: canonical(r), fingerprint: sha256(canonical(r)), effectId: r.effectId, revision: r.expectedRevision, maintenanceRevision: r.expectedMaintenanceRevision + 1, manifestDigest, acknowledgment: retainAcknowledgment ? acknowledgment(r, manifestDigest) : null, retention: "P0" };
-  }
-  function validateMaintenance(e) {
-    exact(e, ["kind", "recordVersion", "id", "profileId", "careerId", "request", "fingerprint", "effectId", "revision", "maintenanceRevision", "manifestDigest", "acknowledgment", "retention"], "protected maintenance identity");
-    if (typeof e.request !== "string" || e.request.length > 3e3) throw Error("Invalid maintenance request");
-    const expected = protectMaintenance(JSON.parse(e.request), e.manifestDigest, e.acknowledgment !== null);
-    if (canonical(e) !== canonical(expected)) throw Error("Protected maintenance facts mismatch");
-    return e;
-  }
-  function lookupMaintenance(entries, request2) {
-    validateMigrationRequest(request2);
-    const e = entries.find((e2) => e2.id === request2.id);
-    if (!e) return null;
-    if (!isMaintenance(e) || e.request !== canonical(request2)) throw Error("Conflicting protected migration ID");
-    validateMaintenance(e);
-    return { status: "ALREADY_COMMITTED", duplicate: true, acknowledgment: structuredClone(e.acknowledgment) };
-  }
-
   // src/career/assets.js
   var BASIC_CAPACITY = Object.freeze({ drivers: 2, specialists: 0, beasts: 4, chariots: 1 });
   var INJURIES = Object.freeze(["Healthy", "Minor", "Moderate", "Severe", "Dead"]);
@@ -4222,6 +4069,188 @@
       const expected = [a.driverId, ...a.beastIds, a.chariotId];
       if (a.references.subject.length !== 4 || expected.some((id2) => !a.references.subject.includes(id2)) || new Set(expected).size !== 4 || !registries.personnel[a.driverId] || !registries.chariots[a.chariotId] || a.beastIds.some((id2) => !registries.beasts[id2])) throw Error("Invalid typed RU assignment");
     }
+  }
+
+  // src/career/cycles/completion.js
+  var trusted = /* @__PURE__ */ new WeakSet();
+  function contractSnapshot(state2) {
+    return Object.values(state2.management.registries.contracts).filter((c) => c.lifecycle === "active").sort((a, b) => a.id < b.id ? -1 : 1).map((c) => ({ contractId: c.id, personId: c.references.employee[0], wage: c.wage, cyclesRemaining: c.cyclesRemaining }));
+  }
+  function validateCompletion(c) {
+    exact(c, ["kind", "version", "profileId", "careerId", "championshipId", "outcome", "completedOnce", "state", "roster", "rulesVersion", "resultVersion", "rewards", "authority", "sourceFingerprint"], "championship completion");
+    for (const k of ["profileId", "careerId", "championshipId", "authority"]) id(c[k]);
+    if (c.kind !== "BNT-championship-completion" || c.version !== 1 || c.rulesVersion !== RULES || c.resultVersion !== 1 || c.completedOnce !== true || c.state !== "CHAMPIONSHIP_COMPLETED" || !["Completed", "Withdrawn", "Disqualified"].includes(c.outcome) || !Array.isArray(c.roster) || c.roster.length > 1e3 || !Array.isArray(c.rewards) || c.rewards.length > 100) throw Error("Invalid authoritative completion");
+    const ids = /* @__PURE__ */ new Set();
+    for (const r of c.roster) {
+      exact(r, ["contractId", "personId", "wage", "cyclesRemaining"], "completion contract");
+      id(r.contractId);
+      id(r.personId);
+      gold(r.wage);
+      gold(r.cyclesRemaining);
+      if (ids.has(r.contractId) || r.cyclesRemaining < 1) throw Error("Invalid completion roster");
+      ids.add(r.contractId);
+    }
+    const rewardIds = /* @__PURE__ */ new Set();
+    for (const r of c.rewards) {
+      exact(r, ["id", "amount"], "authorized income");
+      id(r.id);
+      gold(r.amount);
+      if (rewardIds.has(r.id)) throw Error("Duplicate reward");
+      rewardIds.add(r.id);
+    }
+    if (c.sourceFingerprint !== fingerprint({ ...c, sourceFingerprint: null })) throw Error("Completion source fingerprint mismatch");
+    return c;
+  }
+  var requireTrustedCompletion = (c) => {
+    if (!trusted.has(c)) throw Error("No trusted championship completion producer: arbitrary reward submission rejected");
+    validateCompletion(c);
+  };
+
+  // src/career/cycles/contracts.js
+  var RULES = "m2d-cycles-v1";
+  var fingerprint = (value) => sha256(canonical(value));
+  var key2 = (...parts) => "m2d-" + fingerprint(parts).slice(0, 48);
+  var gold = (n) => {
+    if (!Number.isSafeInteger(n) || n < 0) throw Error("Invalid nonnegative exact Gold");
+    return n;
+  };
+  var plus = (a, b) => {
+    const n = BigInt(gold(a)) + BigInt(gold(b));
+    if (n > BigInt(Number.MAX_SAFE_INTEGER)) throw Error("Gold overflow");
+    return Number(n);
+  };
+  var cycleMigrationEffect = (careerId) => key2("migration", careerId, 3, 4);
+  function validateCycleMigration(r) {
+    exact(r, ["id", "profileId", "careerId", "type", "maintenanceVersion", "expectedRevision", "expectedMaintenanceRevision", "sourceSchema", "targetSchema", "sourceFingerprint", "rulesVersion", "effectId", "confirmed"], "cycle migration");
+    for (const k of ["id", "profileId", "careerId"]) id(r[k]);
+    gold(r.expectedRevision);
+    gold(r.expectedMaintenanceRevision);
+    if (r.type !== "career.cycles.migrate" || r.maintenanceVersion !== 1 || r.sourceSchema !== 3 || r.targetSchema !== 4 || r.rulesVersion !== RULES || r.confirmed !== true || r.effectId !== cycleMigrationEffect(r.careerId) || !/^[a-f0-9]{64}$/.test(r.sourceFingerprint) || r.expectedMaintenanceRevision >= Number.MAX_SAFE_INTEGER) throw Error("Invalid cycle migration contract");
+    return r;
+  }
+  function protectCycleMigration(r, manifestDigest, retained = true) {
+    validateCycleMigration(r);
+    if (!/^[a-f0-9]{64}$/.test(manifestDigest)) throw Error("Invalid cycle manifest");
+    return { kind: "cycle-migration-maintenance", recordVersion: 1, id: r.id, profileId: r.profileId, careerId: r.careerId, request: canonical(r), fingerprint: fingerprint(r), effectId: r.effectId, revision: r.expectedRevision, maintenanceRevision: r.expectedMaintenanceRevision + 1, manifestDigest, acknowledgment: retained ? { kind: "BNT-cycle-migration-ack", careerSchema: 4, revision: r.expectedRevision, maintenanceRevision: r.expectedMaintenanceRevision + 1, manifestDigest } : null, retention: "P0" };
+  }
+  function validateCycleMaintenance(e) {
+    exact(e, ["kind", "recordVersion", "id", "profileId", "careerId", "request", "fingerprint", "effectId", "revision", "maintenanceRevision", "manifestDigest", "acknowledgment", "retention"], "cycle maintenance record");
+    if (typeof e.request !== "string" || e.request.length > 3e3 || canonical(e) !== canonical(protectCycleMigration(JSON.parse(e.request), e.manifestDigest, e.acknowledgment !== null))) throw Error("Invalid cycle maintenance fact");
+    return e;
+  }
+  var shapes = { "cycle.settle": ["completion", "sourceFingerprint"], "payroll.pay": ["amount"], "contract.renew": ["personId", "term"], "contract.release": ["personId", "resolveAssignment"], "emergency.request": [], "career.confirmFailure": ["sourceFingerprint", "confirmed"] };
+  function validateCycleCommand(tx) {
+    exact(tx, ["id", "profileId", "careerId", "expectedRevision", "expectedMaintenanceRevision", "commandVersion", "type", "effectId", "delta", "reason", "payload"], "M2-D command");
+    for (const k of ["id", "profileId", "careerId", "effectId"]) id(tx[k]);
+    gold(tx.expectedRevision);
+    gold(tx.expectedMaintenanceRevision);
+    if (tx.commandVersion !== 3 || !Object.hasOwn(shapes, tx.type) || !Number.isSafeInteger(tx.delta) || typeof tx.reason !== "string" || !tx.reason.trim() || tx.reason.length > 500) throw Error("Invalid cycle command");
+    exact(tx.payload, shapes[tx.type], "cycle payload");
+    if (Object.hasOwn(tx.payload, "personId")) id(tx.payload.personId);
+    if (tx.type === "payroll.pay" && gold(tx.payload.amount) === 0) throw Error("Payment must be positive");
+    if (tx.type === "contract.renew" && !["short", "standard", "long"].includes(tx.payload.term)) throw Error("Invalid renewal term");
+    if (tx.type === "contract.release" && typeof tx.payload.resolveAssignment !== "boolean") throw Error("Explicit assignment decision required");
+    if (["cycle.settle", "career.confirmFailure"].includes(tx.type) && !/^[a-f0-9]{64}$/.test(tx.payload.sourceFingerprint)) throw Error("Invalid source fingerprint");
+    if (tx.type === "career.confirmFailure" && tx.payload.confirmed !== true) throw Error("Explicit failure confirmation required");
+  }
+  function protectCycle(tx, balanceAfter, result) {
+    validateCycleCommand(tx);
+    gold(balanceAfter);
+    exact(result, ["type", "cost", "delta", "details"], "cycle result");
+    gold(result.cost);
+    if (result.type !== tx.type || result.delta !== tx.delta || typeof result.details !== "object" || result.details === null || Array.isArray(result.details)) throw Error("Invalid protected cycle result");
+    const d = result.details;
+    const shapes3 = { "cycle.settle": ["kind", "version", "championshipId", "cycle", "outcome", "completion", "income", "treasuryBefore", "treasuryAfter", "oldPayments", "currentPayments", "assessed", "arrears", "streak", "expired", "departure"], "payroll.pay": ["spent", "allocations"], "contract.renew": ["personId", "contractId", "signing"], "contract.release": ["personId", "contractId", "assignmentIds"], "emergency.request": ["profileVersion", "personId", "contractId", "wage"], "career.confirmFailure": ["assessment", "confirmed"] };
+    exact(d, shapes3[tx.type], "protected cycle result details");
+    for (const k of ["personId", "contractId"]) if (Object.hasOwn(d, k)) id(d[k]);
+    const allocations = (list) => {
+      if (!Array.isArray(list) || list.length > 1e3) throw Error("Invalid allocation list");
+      for (const a of list) {
+        exact(a, ["obligationId", "amount"], "wage allocation");
+        id(a.obligationId);
+        if (gold(a.amount) === 0) throw Error("Zero allocation");
+      }
+      return list.reduce((n, a) => plus(n, a.amount), 0);
+    };
+    if (tx.type === "cycle.settle") {
+      validateCompletion(d.completion);
+      if (canonical(d.completion) !== canonical(tx.payload.completion) || d.kind !== "settlement-statement" || d.version !== 1 || d.championshipId !== d.completion.championshipId || d.outcome !== d.completion.outcome || gold(d.cycle) < 1) throw Error("Invalid protected settlement identity");
+      for (const k of ["income", "treasuryBefore", "treasuryAfter", "arrears", "streak"]) gold(d[k]);
+      const income = d.completion.rewards.reduce((n, r) => plus(n, r.amount), 0), spent = plus(allocations(d.oldPayments), allocations(d.currentPayments));
+      if (income !== d.income || spent !== result.cost || tx.delta !== income - spent || d.treasuryAfter !== balanceAfter || BigInt(d.treasuryBefore) + BigInt(tx.delta) !== BigInt(balanceAfter)) throw Error("Settlement conservation mismatch");
+      for (const list of [d.assessed, d.expired]) {
+        if (!Array.isArray(list) || new Set(list).size !== list.length) throw Error("Invalid settlement identities");
+        list.forEach(id);
+      }
+      exact(d.departure, ["personId", "deferred"], "departure result");
+      if (d.departure.personId !== null) id(d.departure.personId);
+      if (!Array.isArray(d.departure.deferred)) throw Error("Invalid deferred departures");
+      for (const x of d.departure.deferred) {
+        exact(x, ["personId", "reason"], "deferred departure");
+        if (x.personId !== null) id(x.personId);
+        if (typeof x.reason !== "string" || !x.reason.trim()) throw Error("Invalid deferral reason");
+      }
+    } else if (tx.type === "payroll.pay") {
+      if (allocations(d.allocations) !== gold(d.spent) || d.spent !== result.cost || tx.delta !== -d.spent || d.spent !== tx.payload.amount) throw Error("Payment facts mismatch");
+    } else if (tx.type === "contract.renew") {
+      if (d.personId !== tx.payload.personId || gold(d.signing) !== result.cost || tx.delta !== -d.signing) throw Error("Renewal facts mismatch");
+    } else {
+      if (result.cost !== 0 || tx.delta !== 0) throw Error("Free lifecycle action has invalid Gold effect");
+      if (tx.type === "contract.release") {
+        if (d.personId !== tx.payload.personId || !Array.isArray(d.assignmentIds)) throw Error("Release facts mismatch");
+        d.assignmentIds.forEach(id);
+      }
+      if (tx.type === "emergency.request" && (d.profileVersion !== "m2d-emergency-driver-v1" || d.wage !== 20)) throw Error("Emergency facts mismatch");
+      if (tx.type === "career.confirmFailure") {
+        exact(d.assessment, ["status", "reasons", "canConfirm"], "failure assessment");
+        if (d.confirmed !== true || d.assessment.status !== "FailurePending" || d.assessment.canConfirm !== true || !Array.isArray(d.assessment.reasons)) throw Error("Failure facts mismatch");
+      }
+    }
+    return { kind: "cycle-gameplay", recordVersion: 1, commandVersion: 3, id: tx.id, profileId: tx.profileId, careerId: tx.careerId, request: canonical(tx), fingerprint: fingerprint(tx), effectId: tx.effectId, resultRevision: tx.expectedRevision + 1, delta: tx.delta, balanceAfter, result: structuredClone(result), retention: "P0" };
+  }
+  function validateCycleEntry(e) {
+    exact(e, ["kind", "recordVersion", "commandVersion", "id", "profileId", "careerId", "request", "fingerprint", "effectId", "resultRevision", "delta", "balanceAfter", "result", "retention"], "protected cycle fact");
+    if (typeof e.request !== "string" || e.request.length > 64e3 || canonical(e) !== canonical(protectCycle(JSON.parse(e.request), e.balanceAfter, e.result))) throw Error("Invalid protected cycle fact");
+    return e;
+  }
+  function assertCycleRestore(state2, history) {
+    const own = history.filter((e) => e.careerId === state2.career.id);
+    const migrations = own.filter((e) => e.kind === "cycle-migration-maintenance");
+    for (const e of own) {
+      const later = e.kind === "cycle-gameplay" || e.resultRevision !== void 0 && migrations.some((m) => e.resultRevision > m.revision);
+      if (later && !state2.transactions.some((r) => r.transaction.id === e.id && canonical(r.transaction) === e.request)) throw Error("UNSAFE_CYCLE_RESTORE: checkpoint lacks known payroll/lifecycle effects; retain/export current state or restore a complete newer backup");
+    }
+  }
+
+  // src/career/championships/controller-contracts.js
+  var CONTROLLER_RULES = "m2e-controller-v1";
+  var controllerEffect = (careerId, type, instanceId, revision) => "e2-" + fingerprint([careerId, type, instanceId, revision]).slice(0, 48);
+  var shapes2 = { "controller.enable": [], "championship.refreshOffers": ["offers"], "championship.register": ["offer", "selection", "instanceId"], "championship.coach": ["instanceId", "coaching"], "championship.start": ["instanceId"], "championship.bindRace": ["instanceId", "reference"], "championship.stageClearance": ["instanceId", "reference", "candidate", "setupFingerprint"], "championship.withdraw": ["instanceId", "confirmed"] };
+  function validateControllerCommand(t) {
+    exact(t, ["id", "profileId", "careerId", "expectedRevision", "expectedMaintenanceRevision", "commandVersion", "expectedInstanceRevision", "sourceFingerprint", "type", "effectId", "delta", "reason", "payload"]);
+    for (const k of ["id", "profileId", "careerId", "effectId"]) id(t[k]);
+    gold(t.expectedRevision);
+    gold(t.expectedMaintenanceRevision);
+    if (t.expectedInstanceRevision !== null && (!Number.isSafeInteger(t.expectedInstanceRevision) || t.expectedInstanceRevision < 0) || !/^[a-f0-9]{64}$/.test(t.sourceFingerprint)) throw Error("Invalid controller source/operational revision");
+    if (t.commandVersion !== 4 || !Object.hasOwn(shapes2, t.type) || !Number.isSafeInteger(t.delta) || typeof t.reason !== "string" || !t.reason.trim() || t.reason.length > 500) throw Error("Invalid championship command");
+    exact(t.payload, shapes2[t.type]);
+    if (t.payload.instanceId !== void 0) id(t.payload.instanceId);
+    return t;
+  }
+  function protectController(t, balanceAfter, result) {
+    validateControllerCommand(t);
+    gold(balanceAfter);
+    exact(result, ["type", "delta", "details"]);
+    if (result.type !== t.type || result.delta !== t.delta || typeof result.details !== "object" || !result.details) throw Error("Invalid controller result");
+    return { kind: "championship-gameplay", recordVersion: 1, commandVersion: 4, id: t.id, profileId: t.profileId, careerId: t.careerId, request: canonical(t), fingerprint: fingerprint(t), effectId: t.effectId, resultRevision: t.expectedRevision + 1, delta: t.delta, balanceAfter, result: structuredClone(result), retention: "P0" };
+  }
+  function validateControllerEntry(e) {
+    exact(e, ["kind", "recordVersion", "commandVersion", "id", "profileId", "careerId", "request", "fingerprint", "effectId", "resultRevision", "delta", "balanceAfter", "result", "retention"]);
+    if (typeof e.request !== "string" || e.request.length > 256e3 || canonical(e) !== canonical(protectController(JSON.parse(e.request), e.balanceAfter, e.result))) throw Error("Invalid championship protected fact");
+    return e;
+  }
+  function assertControllerRestore(s, history) {
+    for (const e of history.filter((e2) => e2.kind === "championship-gameplay" && e2.careerId === s.career.id)) if (!s.transactions.some((r) => r.transaction.id === e.id && canonical(r.transaction) === e.request)) throw Error("UNSAFE_CHAMPIONSHIP_RESTORE: complete newer checkpoint required");
   }
 
   // src/career/registries.js
@@ -4804,6 +4833,43 @@
   var qualityFromRatings = (attributes) => add(0.85, mul(3e-3, mean(Object.values(attributes))));
   var conditionFactor = (health) => add(0.7, mul(3e-3, health));
 
+  // src/career/economy/maintenance-history.js
+  var MIGRATION_VERSION = "m2c-migration-v1";
+  var ADAPTER_VERSION = "valuation-health-v1";
+  var GENERATOR_VERSION = "market-generator-v1";
+  var isMaintenance = (e) => e?.kind === "migration-maintenance";
+  var migrationEffect = (careerId) => "migrate-" + careerId + "-2-3";
+  function validateMigrationRequest(r) {
+    exact(r, ["id", "profileId", "careerId", "type", "maintenanceVersion", "expectedRevision", "expectedMaintenanceRevision", "sourceSchema", "targetSchema", "sourceFingerprint", "migrationVersion", "adapterVersion", "generatorVersion", "confirmed", "effectId"], "migration maintenance request");
+    for (const k of ["id", "profileId", "careerId"]) id(r[k]);
+    if (r.type !== "career.migrate" || r.maintenanceVersion !== 1 || r.sourceSchema !== 2 || r.targetSchema !== 3 || r.migrationVersion !== MIGRATION_VERSION || r.adapterVersion !== ADAPTER_VERSION || r.generatorVersion !== GENERATOR_VERSION || r.confirmed !== true || r.effectId !== migrationEffect(r.careerId) || !/^[a-f0-9]{64}$/.test(r.sourceFingerprint)) throw Error("Invalid migration contract/version/identity");
+    if (!Number.isSafeInteger(r.expectedRevision) || r.expectedRevision < 0 || !Number.isSafeInteger(r.expectedMaintenanceRevision) || r.expectedMaintenanceRevision < 1 || r.expectedMaintenanceRevision >= Number.MAX_SAFE_INTEGER) throw Error("Invalid migration revisions");
+    return r;
+  }
+  function acknowledgment(r, digest2) {
+    return { kind: "BNT-migration-ack", sourceFingerprint: r.sourceFingerprint, manifestDigest: digest2, careerSchema: 3, revision: r.expectedRevision, maintenanceRevision: r.expectedMaintenanceRevision + 1 };
+  }
+  function protectMaintenance(r, manifestDigest, retainAcknowledgment = true) {
+    validateMigrationRequest(r);
+    if (!/^[a-f0-9]{64}$/.test(manifestDigest)) throw Error("Invalid migration manifest fingerprint");
+    return { kind: "migration-maintenance", recordVersion: 1, id: r.id, profileId: r.profileId, careerId: r.careerId, request: canonical(r), fingerprint: sha256(canonical(r)), effectId: r.effectId, revision: r.expectedRevision, maintenanceRevision: r.expectedMaintenanceRevision + 1, manifestDigest, acknowledgment: retainAcknowledgment ? acknowledgment(r, manifestDigest) : null, retention: "P0" };
+  }
+  function validateMaintenance(e) {
+    exact(e, ["kind", "recordVersion", "id", "profileId", "careerId", "request", "fingerprint", "effectId", "revision", "maintenanceRevision", "manifestDigest", "acknowledgment", "retention"], "protected maintenance identity");
+    if (typeof e.request !== "string" || e.request.length > 3e3) throw Error("Invalid maintenance request");
+    const expected = protectMaintenance(JSON.parse(e.request), e.manifestDigest, e.acknowledgment !== null);
+    if (canonical(e) !== canonical(expected)) throw Error("Protected maintenance facts mismatch");
+    return e;
+  }
+  function lookupMaintenance(entries, request2) {
+    validateMigrationRequest(request2);
+    const e = entries.find((e2) => e2.id === request2.id);
+    if (!e) return null;
+    if (!isMaintenance(e) || e.request !== canonical(request2)) throw Error("Conflicting protected migration ID");
+    validateMaintenance(e);
+    return { status: "ALREADY_COMMITTED", duplicate: true, acknowledgment: structuredClone(e.acknowledgment) };
+  }
+
   // src/career/economy/market.js
   var MARKET_ALGORITHM = "fnv1a32-utf8-mulberry32-rejection-v1";
   function seedInteger(text2) {
@@ -4965,157 +5031,6 @@
     return freeze({ sourceFingerprint: sourceFingerprint2, expectedRevision: source.revision, expectedMaintenanceRevision: source.maintenanceRevision, migrationVersion: MIGRATION_VERSION, adapterVersion: ADAPTER_VERSION, generatorVersion: GENERATOR_VERSION, manifest: migrationManifest(next), manifestDigest: next.economy.manifestDigest });
   }
 
-  // src/career/cycles/completion.js
-  var trusted = /* @__PURE__ */ new WeakSet();
-  function contractSnapshot(state2) {
-    return Object.values(state2.management.registries.contracts).filter((c) => c.lifecycle === "active").sort((a, b) => a.id < b.id ? -1 : 1).map((c) => ({ contractId: c.id, personId: c.references.employee[0], wage: c.wage, cyclesRemaining: c.cyclesRemaining }));
-  }
-  function validateCompletion(c) {
-    exact(c, ["kind", "version", "profileId", "careerId", "championshipId", "outcome", "completedOnce", "state", "roster", "rulesVersion", "resultVersion", "rewards", "authority", "sourceFingerprint"], "championship completion");
-    for (const k of ["profileId", "careerId", "championshipId", "authority"]) id(c[k]);
-    if (c.kind !== "BNT-championship-completion" || c.version !== 1 || c.rulesVersion !== RULES || c.resultVersion !== 1 || c.completedOnce !== true || c.state !== "CHAMPIONSHIP_COMPLETED" || !["Completed", "Withdrawn", "Disqualified"].includes(c.outcome) || !Array.isArray(c.roster) || c.roster.length > 1e3 || !Array.isArray(c.rewards) || c.rewards.length > 100) throw Error("Invalid authoritative completion");
-    const ids = /* @__PURE__ */ new Set();
-    for (const r of c.roster) {
-      exact(r, ["contractId", "personId", "wage", "cyclesRemaining"], "completion contract");
-      id(r.contractId);
-      id(r.personId);
-      gold(r.wage);
-      gold(r.cyclesRemaining);
-      if (ids.has(r.contractId) || r.cyclesRemaining < 1) throw Error("Invalid completion roster");
-      ids.add(r.contractId);
-    }
-    const rewardIds = /* @__PURE__ */ new Set();
-    for (const r of c.rewards) {
-      exact(r, ["id", "amount"], "authorized income");
-      id(r.id);
-      gold(r.amount);
-      if (rewardIds.has(r.id)) throw Error("Duplicate reward");
-      rewardIds.add(r.id);
-    }
-    if (c.sourceFingerprint !== fingerprint({ ...c, sourceFingerprint: null })) throw Error("Completion source fingerprint mismatch");
-    return c;
-  }
-  var requireTrustedCompletion = (c) => {
-    if (!trusted.has(c)) throw Error("No trusted championship completion producer: arbitrary reward submission rejected");
-    validateCompletion(c);
-  };
-
-  // src/career/cycles/contracts.js
-  var RULES = "m2d-cycles-v1";
-  var fingerprint = (value) => sha256(canonical(value));
-  var key2 = (...parts) => "m2d-" + fingerprint(parts).slice(0, 48);
-  var gold = (n) => {
-    if (!Number.isSafeInteger(n) || n < 0) throw Error("Invalid nonnegative exact Gold");
-    return n;
-  };
-  var plus = (a, b) => {
-    const n = BigInt(gold(a)) + BigInt(gold(b));
-    if (n > BigInt(Number.MAX_SAFE_INTEGER)) throw Error("Gold overflow");
-    return Number(n);
-  };
-  var cycleMigrationEffect = (careerId) => key2("migration", careerId, 3, 4);
-  function validateCycleMigration(r) {
-    exact(r, ["id", "profileId", "careerId", "type", "maintenanceVersion", "expectedRevision", "expectedMaintenanceRevision", "sourceSchema", "targetSchema", "sourceFingerprint", "rulesVersion", "effectId", "confirmed"], "cycle migration");
-    for (const k of ["id", "profileId", "careerId"]) id(r[k]);
-    gold(r.expectedRevision);
-    gold(r.expectedMaintenanceRevision);
-    if (r.type !== "career.cycles.migrate" || r.maintenanceVersion !== 1 || r.sourceSchema !== 3 || r.targetSchema !== 4 || r.rulesVersion !== RULES || r.confirmed !== true || r.effectId !== cycleMigrationEffect(r.careerId) || !/^[a-f0-9]{64}$/.test(r.sourceFingerprint) || r.expectedMaintenanceRevision >= Number.MAX_SAFE_INTEGER) throw Error("Invalid cycle migration contract");
-    return r;
-  }
-  function protectCycleMigration(r, manifestDigest, retained = true) {
-    validateCycleMigration(r);
-    if (!/^[a-f0-9]{64}$/.test(manifestDigest)) throw Error("Invalid cycle manifest");
-    return { kind: "cycle-migration-maintenance", recordVersion: 1, id: r.id, profileId: r.profileId, careerId: r.careerId, request: canonical(r), fingerprint: fingerprint(r), effectId: r.effectId, revision: r.expectedRevision, maintenanceRevision: r.expectedMaintenanceRevision + 1, manifestDigest, acknowledgment: retained ? { kind: "BNT-cycle-migration-ack", careerSchema: 4, revision: r.expectedRevision, maintenanceRevision: r.expectedMaintenanceRevision + 1, manifestDigest } : null, retention: "P0" };
-  }
-  function validateCycleMaintenance(e) {
-    exact(e, ["kind", "recordVersion", "id", "profileId", "careerId", "request", "fingerprint", "effectId", "revision", "maintenanceRevision", "manifestDigest", "acknowledgment", "retention"], "cycle maintenance record");
-    if (typeof e.request !== "string" || e.request.length > 3e3 || canonical(e) !== canonical(protectCycleMigration(JSON.parse(e.request), e.manifestDigest, e.acknowledgment !== null))) throw Error("Invalid cycle maintenance fact");
-    return e;
-  }
-  var shapes = { "cycle.settle": ["completion", "sourceFingerprint"], "payroll.pay": ["amount"], "contract.renew": ["personId", "term"], "contract.release": ["personId", "resolveAssignment"], "emergency.request": [], "career.confirmFailure": ["sourceFingerprint", "confirmed"] };
-  function validateCycleCommand(tx) {
-    exact(tx, ["id", "profileId", "careerId", "expectedRevision", "expectedMaintenanceRevision", "commandVersion", "type", "effectId", "delta", "reason", "payload"], "M2-D command");
-    for (const k of ["id", "profileId", "careerId", "effectId"]) id(tx[k]);
-    gold(tx.expectedRevision);
-    gold(tx.expectedMaintenanceRevision);
-    if (tx.commandVersion !== 3 || !Object.hasOwn(shapes, tx.type) || !Number.isSafeInteger(tx.delta) || typeof tx.reason !== "string" || !tx.reason.trim() || tx.reason.length > 500) throw Error("Invalid cycle command");
-    exact(tx.payload, shapes[tx.type], "cycle payload");
-    if (Object.hasOwn(tx.payload, "personId")) id(tx.payload.personId);
-    if (tx.type === "payroll.pay" && gold(tx.payload.amount) === 0) throw Error("Payment must be positive");
-    if (tx.type === "contract.renew" && !["short", "standard", "long"].includes(tx.payload.term)) throw Error("Invalid renewal term");
-    if (tx.type === "contract.release" && typeof tx.payload.resolveAssignment !== "boolean") throw Error("Explicit assignment decision required");
-    if (["cycle.settle", "career.confirmFailure"].includes(tx.type) && !/^[a-f0-9]{64}$/.test(tx.payload.sourceFingerprint)) throw Error("Invalid source fingerprint");
-    if (tx.type === "career.confirmFailure" && tx.payload.confirmed !== true) throw Error("Explicit failure confirmation required");
-  }
-  function protectCycle(tx, balanceAfter, result) {
-    validateCycleCommand(tx);
-    gold(balanceAfter);
-    exact(result, ["type", "cost", "delta", "details"], "cycle result");
-    gold(result.cost);
-    if (result.type !== tx.type || result.delta !== tx.delta || typeof result.details !== "object" || result.details === null || Array.isArray(result.details)) throw Error("Invalid protected cycle result");
-    const d = result.details;
-    const shapes2 = { "cycle.settle": ["kind", "version", "championshipId", "cycle", "outcome", "completion", "income", "treasuryBefore", "treasuryAfter", "oldPayments", "currentPayments", "assessed", "arrears", "streak", "expired", "departure"], "payroll.pay": ["spent", "allocations"], "contract.renew": ["personId", "contractId", "signing"], "contract.release": ["personId", "contractId", "assignmentIds"], "emergency.request": ["profileVersion", "personId", "contractId", "wage"], "career.confirmFailure": ["assessment", "confirmed"] };
-    exact(d, shapes2[tx.type], "protected cycle result details");
-    for (const k of ["personId", "contractId"]) if (Object.hasOwn(d, k)) id(d[k]);
-    const allocations = (list) => {
-      if (!Array.isArray(list) || list.length > 1e3) throw Error("Invalid allocation list");
-      for (const a of list) {
-        exact(a, ["obligationId", "amount"], "wage allocation");
-        id(a.obligationId);
-        if (gold(a.amount) === 0) throw Error("Zero allocation");
-      }
-      return list.reduce((n, a) => plus(n, a.amount), 0);
-    };
-    if (tx.type === "cycle.settle") {
-      validateCompletion(d.completion);
-      if (canonical(d.completion) !== canonical(tx.payload.completion) || d.kind !== "settlement-statement" || d.version !== 1 || d.championshipId !== d.completion.championshipId || d.outcome !== d.completion.outcome || gold(d.cycle) < 1) throw Error("Invalid protected settlement identity");
-      for (const k of ["income", "treasuryBefore", "treasuryAfter", "arrears", "streak"]) gold(d[k]);
-      const income = d.completion.rewards.reduce((n, r) => plus(n, r.amount), 0), spent = plus(allocations(d.oldPayments), allocations(d.currentPayments));
-      if (income !== d.income || spent !== result.cost || tx.delta !== income - spent || d.treasuryAfter !== balanceAfter || BigInt(d.treasuryBefore) + BigInt(tx.delta) !== BigInt(balanceAfter)) throw Error("Settlement conservation mismatch");
-      for (const list of [d.assessed, d.expired]) {
-        if (!Array.isArray(list) || new Set(list).size !== list.length) throw Error("Invalid settlement identities");
-        list.forEach(id);
-      }
-      exact(d.departure, ["personId", "deferred"], "departure result");
-      if (d.departure.personId !== null) id(d.departure.personId);
-      if (!Array.isArray(d.departure.deferred)) throw Error("Invalid deferred departures");
-      for (const x of d.departure.deferred) {
-        exact(x, ["personId", "reason"], "deferred departure");
-        if (x.personId !== null) id(x.personId);
-        if (typeof x.reason !== "string" || !x.reason.trim()) throw Error("Invalid deferral reason");
-      }
-    } else if (tx.type === "payroll.pay") {
-      if (allocations(d.allocations) !== gold(d.spent) || d.spent !== result.cost || tx.delta !== -d.spent || d.spent !== tx.payload.amount) throw Error("Payment facts mismatch");
-    } else if (tx.type === "contract.renew") {
-      if (d.personId !== tx.payload.personId || gold(d.signing) !== result.cost || tx.delta !== -d.signing) throw Error("Renewal facts mismatch");
-    } else {
-      if (result.cost !== 0 || tx.delta !== 0) throw Error("Free lifecycle action has invalid Gold effect");
-      if (tx.type === "contract.release") {
-        if (d.personId !== tx.payload.personId || !Array.isArray(d.assignmentIds)) throw Error("Release facts mismatch");
-        d.assignmentIds.forEach(id);
-      }
-      if (tx.type === "emergency.request" && (d.profileVersion !== "m2d-emergency-driver-v1" || d.wage !== 20)) throw Error("Emergency facts mismatch");
-      if (tx.type === "career.confirmFailure") {
-        exact(d.assessment, ["status", "reasons", "canConfirm"], "failure assessment");
-        if (d.confirmed !== true || d.assessment.status !== "FailurePending" || d.assessment.canConfirm !== true || !Array.isArray(d.assessment.reasons)) throw Error("Failure facts mismatch");
-      }
-    }
-    return { kind: "cycle-gameplay", recordVersion: 1, commandVersion: 3, id: tx.id, profileId: tx.profileId, careerId: tx.careerId, request: canonical(tx), fingerprint: fingerprint(tx), effectId: tx.effectId, resultRevision: tx.expectedRevision + 1, delta: tx.delta, balanceAfter, result: structuredClone(result), retention: "P0" };
-  }
-  function validateCycleEntry(e) {
-    exact(e, ["kind", "recordVersion", "commandVersion", "id", "profileId", "careerId", "request", "fingerprint", "effectId", "resultRevision", "delta", "balanceAfter", "result", "retention"], "protected cycle fact");
-    if (typeof e.request !== "string" || e.request.length > 64e3 || canonical(e) !== canonical(protectCycle(JSON.parse(e.request), e.balanceAfter, e.result))) throw Error("Invalid protected cycle fact");
-    return e;
-  }
-  function assertCycleRestore(state2, history) {
-    const own = history.filter((e) => e.careerId === state2.career.id);
-    const migrations = own.filter((e) => e.kind === "cycle-migration-maintenance");
-    for (const e of own) {
-      const later = e.kind === "cycle-gameplay" || e.resultRevision !== void 0 && migrations.some((m) => e.resultRevision > m.revision);
-      if (later && !state2.transactions.some((r) => r.transaction.id === e.id && canonical(r.transaction) === e.request)) throw Error("UNSAFE_CYCLE_RESTORE: checkpoint lacks known payroll/lifecycle effects; retain/export current state or restore a complete newer backup");
-    }
-  }
-
   // src/career/championships/contracts.js
   var FOUNDATION_VERSION = "m2e-foundation-v1";
   var foundationEffect = (careerId) => "m2e-schema5-" + careerId;
@@ -5135,6 +5050,13 @@
     exact(e, ["kind", "recordVersion", "id", "profileId", "careerId", "request", "fingerprint", "effectId", "revision", "maintenanceRevision", "acknowledgment", "retention"], "foundation history");
     if (typeof e.request !== "string" || e.request.length > 3e3 || canonical(e) !== canonical(protectFoundationMigration(JSON.parse(e.request)))) throw Error("Invalid foundation protected identity");
     return e;
+  }
+  function validateCheckpointReference(r) {
+    exact(r, ["version", "storageKey", "identityFingerprint", "revision", "watermark", "authorityHash"], "checkpoint reference");
+    if (r.version !== 1 || typeof r.storageKey !== "string" || !r.storageKey.startsWith("bnt.race.foundation.v1.") || !["identityFingerprint", "authorityHash"].every((k) => /^[a-f0-9]{64}$/.test(r[k]))) throw Error("Invalid checkpoint manifest reference");
+    gold(r.revision);
+    gold(r.watermark);
+    return r;
   }
 
   // src/career/economy/commands.js
@@ -5217,16 +5139,16 @@
   // src/career/economy/protected-registry.js
   var isLegacyEntry = (e) => !Object.hasOwn(e, "kind") && [0, 1].includes(e.commandVersion);
   function validateEntry(e) {
-    return e?.kind === "foundation-maintenance" ? validateFoundationEntry(e) : e?.kind === "cycle-migration-maintenance" ? validateCycleMaintenance(e) : e?.kind === "cycle-gameplay" ? validateCycleEntry(e) : isMaintenance(e) ? validateMaintenance(e) : e?.commandVersion === 2 && !Object.hasOwn(e, "kind") ? validateEconomicEntry(e) : validateProtected(e);
+    return e?.kind === "championship-gameplay" ? validateControllerEntry(e) : e?.kind === "foundation-maintenance" ? validateFoundationEntry(e) : e?.kind === "cycle-migration-maintenance" ? validateCycleMaintenance(e) : e?.kind === "cycle-gameplay" ? validateCycleEntry(e) : isMaintenance(e) ? validateMaintenance(e) : e?.commandVersion === 2 && !Object.hasOwn(e, "kind") ? validateEconomicEntry(e) : validateProtected(e);
   }
   function mergeProtected2(...lists) {
     const ids = /* @__PURE__ */ new Map(), effects = /* @__PURE__ */ new Map(), owners = /* @__PURE__ */ new Map();
     for (const e of lists.flat()) {
       validateEntry(e);
-      const previous2 = ids.get(e.id), fact = isMaintenance(e) || e.kind === "cycle-migration-maintenance" || e.kind === "foundation-maintenance" ? "acknowledgment" : "balanceAfter";
+      const previous2 = ids.get(e.id), fact2 = isMaintenance(e) || e.kind === "cycle-migration-maintenance" || e.kind === "foundation-maintenance" ? "acknowledgment" : "balanceAfter";
       if (previous2) {
-        if (canonical({ ...previous2, [fact]: null }) !== canonical({ ...e, [fact]: null }) || previous2[fact] !== null && e[fact] !== null && canonical(previous2[fact]) !== canonical(e[fact])) throw Error("Conflicting protected transaction ID");
-        if (previous2[fact] !== null) continue;
+        if (canonical({ ...previous2, [fact2]: null }) !== canonical({ ...e, [fact2]: null }) || previous2[fact2] !== null && e[fact2] !== null && canonical(previous2[fact2]) !== canonical(e[fact2])) throw Error("Conflicting protected transaction ID");
+        if (previous2[fact2] !== null) continue;
       }
       const key3 = e.careerId + ":" + e.effectId;
       if (effects.has(key3) && effects.get(key3) !== e.id) throw Error("Protected effect identity reused by another command");
@@ -5730,6 +5652,7 @@
   var debtStatus = (streak) => streak === 0 ? "Current" : streak === 1 ? "Overdue" : streak === 2 ? "Delinquent" : streak === 3 ? "Critical" : "Default";
   var moraleMultiplier = (status) => ({ Current: 1, Overdue: 1, Delinquent: 0.95, Critical: 0.9, Default: 0.85 })[status];
   function requirePreparation(s) {
+    if (s.championshipFoundation?.version === 2 && s.championshipFoundation.activeId !== null) throw Error("Stable management is read-only during an active or unsettled championship");
     if (s.cycles.phase !== "STABLE_PREPARATION" || s.career.status === "Failed") throw Error("Career is not in playable stable preparation");
   }
   function restrict(s, type) {
@@ -6087,9 +6010,9 @@
       base.maintenanceRevision = tx.expectedMaintenanceRevision;
       const result = execute4(base, tx, { historical: true });
       if (receipt.balanceAfter !== base.career.treasury || canonical(result ?? null) !== canonical(receipt.result ?? null)) throw Error("Cycle receipt does not reconstruct");
-      const fact = protect2(tx, receipt.balanceAfter, result);
-      if (!entries.some((e) => canonical(e) === canonical(fact))) throw Error("Missing cycle protected gameplay");
-      base.history.commands = mergeProtected2(base.history.commands, [fact]);
+      const fact2 = protect2(tx, receipt.balanceAfter, result);
+      if (!entries.some((e) => canonical(e) === canonical(fact2))) throw Error("Missing cycle protected gameplay");
+      base.history.commands = mergeProtected2(base.history.commands, [fact2]);
       base.transactions.push(structuredClone(receipt));
       base.revision++;
     }
@@ -6133,6 +6056,9 @@
     next.history.commands = mergeProtected2(next.history.commands, [protect2(tx, receipt.balanceAfter, result)]);
     return { state: validateStateV4(next), receipt, duplicate: false };
   }
+  function executeCareerCandidateV4(state2, command, options2 = {}) {
+    return execute4(state2, command, options2);
+  }
 
   // src/career/championships/schema5.js
   var project = (s) => {
@@ -6157,6 +6083,7 @@
     return validateStateV5(n);
   }
   function validateStateV5(s) {
+    if (s?.championshipFoundation?.version === 2) return validateControllerState(s);
     if (s?.schema !== 5) throw Error("Unsupported foundation schema");
     validateStateV4(project(s));
     const f = s.championshipFoundation;
@@ -6175,6 +6102,7 @@
     return s;
   }
   function transactV5(s, tx, options2) {
+    if (s.championshipFoundation.version === 2 || tx.commandVersion === 4) return transactController(s, tx, options2);
     validateStateV5(s);
     const r = transactV4(project(s), tx, options2);
     r.state = { ...r.state, schema: 5, championshipFoundation: structuredClone(s.championshipFoundation) };
@@ -6183,6 +6111,15 @@
   }
   function withKnownHistoryV5(s, marks, history) {
     validateStateV5(s);
+    if (s.championshipFoundation.version === 2) {
+      assertControllerRestore(s, history);
+      const n = structuredClone(s);
+      n.provenance = mergeMarks(n.provenance, marks.filter((m) => m.profileId === s.profile.id));
+      n.profile.developerEdited = Boolean(n.provenance.length);
+      n.career.developerEdited = n.provenance.some((m) => m.careerId === n.career.id);
+      n.history.commands = mergeProtected2(n.history.commands, history.filter((e) => e.careerId === s.career.id));
+      return validateControllerState(n);
+    }
     const p = withKnownHistoryV4(project(s), marks, history);
     return validateStateV5({ ...p, schema: 5, championshipFoundation: structuredClone(s.championshipFoundation) });
   }
@@ -6198,6 +6135,7 @@
   function withProvenance2(state2, marks, protectedHistory = []) {
     if (protectedHistory.some((e) => e.careerId === state2.career.id && e.profileId !== state2.profile.id)) throw Error("Career history belongs to a different Owner Profile");
     assertCycleRestore(state2, protectedHistory);
+    assertControllerRestore(state2, protectedHistory);
     if (state2?.schema < 5 && protectedHistory.some((e) => e.kind === "foundation-maintenance" && e.careerId === state2.career.id)) throw Error("Cannot restore pre-foundation career over protected schema-5 migration");
     if (state2?.schema === 5) return withKnownHistoryV5(state2, marks, protectedHistory);
     if (state2?.schema === 4) return withKnownHistoryV4(state2, marks, protectedHistory);
@@ -6252,7 +6190,7 @@
     if (hasHistory) {
       for (const mark of marks) if (!protectedHistory.some((e) => e.id === mark.id)) throw Error("Known provenance identity missing from protected registry");
       for (const entry of protectedHistory) {
-        if (entry.kind === "foundation-maintenance" || isMaintenance(entry) || entry.kind === "cycle-migration-maintenance" || entry.commandVersion === 3 || entry.commandVersion === 2) continue;
+        if (entry.kind === "foundation-maintenance" || isMaintenance(entry) || entry.kind === "cycle-migration-maintenance" || entry.commandVersion === 4 || entry.commandVersion === 3 || entry.commandVersion === 2) continue;
         const tx = JSON.parse(entry.request);
         if (!isDomainCommand(tx) && !marks.some((m) => m.id === entry.id && m.profileId === tx.profileId && m.careerId === tx.careerId && m.revision === tx.expectedRevision + 1 && m.type === tx.type && m.reason === tx.reason && m.delta === tx.delta)) throw Error("Protected registry/provenance mismatch");
       }
@@ -6296,6 +6234,240 @@
     const text2 = JSON.stringify(envelope);
     parseEnvelope(text2);
     return { envelope, text: text2, state: state2 };
+  }
+
+  // src/career/championships/anchor.js
+  function championshipAnchor(s) {
+    validateState2(s);
+    const f = s.championshipFoundation, x = f.instances?.[f.activeId];
+    if (!x) throw Error("No active championship financial authority");
+    return { profileId: s.profile.id, careerId: s.career.id, revision: x.registrationRevision, maintenanceRevision: x.registrationMaintenanceRevision, fingerprint: fingerprint({ kind: "m2e-financial-anchor-v1", profileId: s.profile.id, career: s.career, management: s.management, cycles: s.cycles, facts: f.facts, instanceId: x.id, registrationId: x.registrationId, offer: x.offer.fingerprint, lockedSelection: x.lockedSelection }) };
+  }
+  function storedChampionshipAnchor(storage) {
+    const text2 = storage.getItem(SAVE_KEY);
+    if (text2 === null) throw Error("No durable championship career");
+    return championshipAnchor(parseEnvelope(text2).primary);
+  }
+
+  // src/sim/foundation/codec.js
+  var MAX_CHECKPOINT_BYTES = 8 * 1024 * 1024;
+  var wireHash = (x) => sha256(canonical(x));
+  function graphPack(root) {
+    const nodes = [], seen = /* @__PURE__ */ new Map(), active = /* @__PURE__ */ new Set();
+    function visit(x, depth = 0) {
+      if (depth > 128) throw Error("Checkpoint nesting limit");
+      if (x === void 0) return { s: "undefined" };
+      if (typeof x === "number") {
+        if (Number.isNaN(x)) throw Error("NaN cannot be checkpointed");
+        if (!Number.isFinite(x)) return { s: x === Infinity ? "Infinity" : "-Infinity" };
+        if (Object.is(x, -0)) return { s: "-0" };
+      }
+      if (x === null || ["string", "boolean", "number"].includes(typeof x)) return x;
+      if (typeof x !== "object" || ![Object.prototype, null, Array.prototype].includes(Object.getPrototypeOf(x))) throw Error("Unsupported checkpoint object");
+      if (active.has(x)) throw Error("Cyclic checkpoint");
+      if (seen.has(x)) return { r: seen.get(x) };
+      const index = nodes.length;
+      if (index >= 2e5) throw Error("Checkpoint node limit");
+      seen.set(x, index);
+      active.add(x);
+      const n = [Array.isArray(x) ? 1 : 0, Object.isExtensible(x) ? 1 : 0, []];
+      nodes.push(n);
+      for (const k of Object.getOwnPropertyNames(x)) {
+        if (["__proto__", "constructor", "prototype"].includes(k)) throw Error("Unsafe checkpoint key");
+        const d = Object.getOwnPropertyDescriptor(x, k);
+        if (!Object.hasOwn(d, "value")) throw Error("Checkpoint accessors unsupported");
+        const flags = (d.writable ? 4 : 0) | (d.enumerable ? 2 : 0) | (d.configurable ? 1 : 0), row = [k, visit(d.value, depth + 1)];
+        if (flags !== 7) row.push(flags);
+        n[2].push(row);
+      }
+      if (Object.getOwnPropertySymbols(x).length) throw Error("Checkpoint symbols unsupported");
+      active.delete(x);
+      return { r: index };
+    }
+    const wire = { version: 1, root: visit(root), nodes };
+    if (new TextEncoder().encode(JSON.stringify(wire)).length > 32 * 1024 * 1024) throw Error("Decoded checkpoint graph exceeds 32 MiB");
+    return wire;
+  }
+  function graphUnpack(wire) {
+    exact(wire, ["version", "root", "nodes"], "checkpoint codec");
+    if (wire.version !== 1 || !Array.isArray(wire.nodes) || wire.nodes.length > 2e5 || new TextEncoder().encode(JSON.stringify(wire)).length > 32 * 1024 * 1024) throw Error("Unsupported/oversized checkpoint codec");
+    const values = wire.nodes.map((n) => {
+      if (!Array.isArray(n) || n.length !== 3 || ![0, 1].includes(n[0]) || ![0, 1].includes(n[1]) || !Array.isArray(n[2])) throw Error("Invalid codec node");
+      return n[0] ? [] : {};
+    });
+    function token(t) {
+      if (t === null || ["number", "string", "boolean"].includes(typeof t)) {
+        if (typeof t === "number" && !Number.isFinite(t)) throw Error("Invalid numeric token");
+        return t;
+      }
+      if (t && Object.hasOwn(t, "r")) {
+        exact(t, ["r"]);
+        if (!Number.isInteger(t.r) || t.r < 0 || t.r >= values.length) throw Error("Invalid checkpoint reference");
+        return values[t.r];
+      }
+      exact(t, ["s"]);
+      if (!["undefined", "Infinity", "-Infinity", "-0"].includes(t.s)) throw Error("Invalid checkpoint sentinel");
+      return { undefined: void 0, Infinity: Infinity, "-Infinity": -Infinity, "-0": -0 }[t.s];
+    }
+    wire.nodes.forEach((n, i) => {
+      const keys = /* @__PURE__ */ new Set();
+      for (const row of n[2]) {
+        if (!Array.isArray(row) || ![2, 3].includes(row.length)) throw Error("Invalid property encoding");
+        const [k, v, flags = 7] = row;
+        if (typeof k !== "string" || keys.has(k) || ["__proto__", "constructor", "prototype"].includes(k) || !Number.isInteger(flags) || flags < 0 || flags > 7) throw Error("Invalid property descriptor");
+        keys.add(k);
+        Object.defineProperty(values[i], k, { value: token(v), writable: !!(flags & 4), enumerable: !!(flags & 2), configurable: !!(flags & 1) });
+      }
+      if (!n[1]) Object.preventExtensions(values[i]);
+    });
+    const result = token(wire.root);
+    if (JSON.stringify(graphPack(result)) !== JSON.stringify(wire)) throw Error("Noncanonical checkpoint graph");
+    return result;
+  }
+  var sealWire = (value) => ({ value, hash: wireHash(value) });
+  function unsealWire(s) {
+    exact(s, ["value", "hash"]);
+    if (typeof s.hash !== "string" || s.hash !== wireHash(s.value)) throw Error("Checkpoint integrity mismatch");
+    return s.value;
+  }
+  function compress(text2) {
+    const bytes = new TextEncoder().encode(text2);
+    if (bytes.length > 32 * 1024 * 1024) throw Error("Decoded checkpoint exceeds 32 MiB");
+    let dictionary, next;
+    const reset2 = () => {
+      dictionary = /* @__PURE__ */ new Map();
+      for (let i = 0; i < 256; i++) dictionary.set(String.fromCharCode(i), i);
+      next = 257;
+    };
+    reset2();
+    const codes = [];
+    let word = "";
+    for (const b of bytes) {
+      const c = String.fromCharCode(b), both = word + c;
+      if (dictionary.has(both)) {
+        word = both;
+        continue;
+      }
+      codes.push(dictionary.get(word));
+      if (next < 65536) dictionary.set(both, next++);
+      else {
+        codes.push(256);
+        reset2();
+      }
+      word = c;
+    }
+    if (word) codes.push(dictionary.get(word));
+    const packed = new Uint8Array(Math.ceil(codes.length * 16 / 8));
+    let bit = 0;
+    for (const c of codes) {
+      for (let j = 0; j < 16; j++, bit++) if (c & 1 << j) packed[bit >> 3] |= 1 << (bit & 7);
+    }
+    let binary = "";
+    for (let i = 0; i < packed.length; i += 8192) binary += String.fromCharCode(...packed.subarray(i, i + 8192));
+    return { codec: "lzw16-v1", plainBytes: bytes.length, codes: codes.length, data: btoa(binary) };
+  }
+  function decompress(x) {
+    exact(x, ["codec", "plainBytes", "codes", "data"]);
+    if (x.codec !== "lzw16-v1" || !Number.isInteger(x.plainBytes) || x.plainBytes < 0 || x.plainBytes > 32 * 1024 * 1024 || !Number.isInteger(x.codes) || x.codes < 0 || x.codes > MAX_CHECKPOINT_BYTES || typeof x.data !== "string" || x.data.length > MAX_CHECKPOINT_BYTES) throw Error("Invalid compressed checkpoint bounds");
+    const bytes = Uint8Array.from(atob(x.data), (c) => c.charCodeAt(0));
+    if (bytes.length !== Math.ceil(x.codes * 16 / 8)) throw Error("Truncated checkpoint compression");
+    let dictionary, next;
+    const reset2 = () => {
+      dictionary = Array.from({ length: 256 }, (_, i) => String.fromCharCode(i));
+      next = 257;
+    };
+    reset2();
+    const result = new Uint8Array(x.plainBytes);
+    let pos = 0, bit = 0, word = "";
+    for (let i = 0; i < x.codes; i++) {
+      let code = 0;
+      for (let j = 0; j < 16; j++, bit++) if (bytes[bit >> 3] & 1 << (bit & 7)) code |= 1 << j;
+      if (code === 256) {
+        reset2();
+        word = "";
+        continue;
+      }
+      const entry = dictionary[code] ?? (code === next && word ? word + word[0] : null);
+      if (entry === null || pos + entry.length > result.length) throw Error("Invalid compressed checkpoint code");
+      for (let j = 0; j < entry.length; j++) result[pos++] = entry.charCodeAt(j);
+      if (word && next < 65536) dictionary[next++] = word + entry[0];
+      word = entry;
+    }
+    if (pos !== result.length) throw Error("Truncated decoded checkpoint");
+    return new TextDecoder("utf-8", { fatal: true }).decode(result);
+  }
+  function pack(root) {
+    const wire = { version: 1, transport: compress(JSON.stringify(graphPack(root))) };
+    if (new TextEncoder().encode(JSON.stringify(wire)).length > MAX_CHECKPOINT_BYTES) throw Error("Checkpoint exceeds 8 MiB");
+    return wire;
+  }
+  function unpack(wire) {
+    exact(wire, ["version", "transport"]);
+    if (wire.version !== 1) throw Error("Unsupported checkpoint codec");
+    const text2 = decompress(wire.transport), graph = JSON.parse(text2);
+    return graphUnpack(graph);
+  }
+
+  // src/sim/foundation/checkpoint.js
+  var RACE_STATE_VERSION = "m2e-race-state-v1";
+  var CHAMPIONSHIP_RACE_STATE_VERSION = "m2e-race-state-v2";
+  var stateProtocol = (s) => s.championshipContext || s.entrants.some((r) => r.coachingContext) ? CHAMPIONSHIP_RACE_STATE_VERSION : RACE_STATE_VERSION;
+  function validateRaceBoundary(s) {
+    if (!s || s.version !== VERSION || s.resolving !== false || !["Ready", "Running", "Ended", "Stalled"].includes(s.status) || !Number.isSafeInteger(s.tick) || s.tick < 0 || s.tick > 1e6 || !Number.isFinite(s.time) || s.time < 0) throw Error("Invalid/incompatible resolved race boundary");
+    const initial = createRace(s.setup);
+    exact(s, Object.keys(initial), "full race state");
+    if (s.seed !== initial.seed || s.rng.algorithm !== initial.rng.algorithm || !Number.isSafeInteger(s.rng.draws) || s.rng.draws < 0 || wireHash(pack(s.initialRng)) !== wireHash(pack(initial.initialRng))) throw Error("Invalid RNG identity/state");
+    config(s.config);
+    if (s.entrants.length !== initial.entrants.length || new Set(s.entrants.map((r) => r.id)).size !== s.entrants.length || s.entrants.some((r) => !initial.entrants.some((e) => e.id === r.id) || r.id !== r.ru.id)) throw Error("Invalid checkpoint entrant identity");
+    if (!Array.isArray(s.events) || !Array.isArray(s.commands) || !Array.isArray(s.pendingImpacts) || !Array.isArray(s.pendingOverrides) || !Array.isArray(s.checkpoints)) throw Error("Invalid race arrays");
+    if (!(s.nextIncidentAt === Infinity || Number.isFinite(s.nextIncidentAt))) throw Error("Invalid incident sentinel");
+    if (canonical(s.championshipContext ?? null) !== canonical(initial.championshipContext ?? null)) throw Error("Championship context changed after start");
+    for (const r of s.entrants) {
+      validateCoaching(r.coachingContext);
+      const original = initial.entrants.find((e) => e.id === r.id);
+      if (canonical(r.coachingContext ?? null) !== canonical(original.coachingContext ?? null)) throw Error("Frozen coaching context changed");
+      if (s.championshipContext) {
+        const p = r.progressEvidence;
+        exact(p, ["version", "progress", "firstTime", "firstTick"]);
+        if (p.version !== 1 || !Number.isFinite(p.progress) || !Number.isFinite(p.firstTime) || p.firstTime < 0 || p.firstTime > s.time + s.config.epsilon || !Number.isInteger(p.firstTick) || p.firstTick < 0 || p.firstTick > s.tick || r.status === "Racing" && p.progress !== r.q || r.status === "Retired" && p.progress !== r.retirement?.progress) throw Error("Invalid authoritative first-progress evidence");
+      }
+      derive(r.ru, s.config);
+      if (!["Racing", "Finished", "Retired", "DNS"].includes(r.status) || !["Live", "Clearing", "Exited", "Wreck"].includes(r.physical) || !r.ai || !Number.isFinite(r.ai.nextDecision) || !Number.isInteger(r.signs.remaining) || r.signs.remaining < 0) throw Error("Invalid entrant checkpoint state");
+      if (r.finishSnapshot && (!Object.isFrozen(r.finishSnapshot) || Object.getOwnPropertyDescriptor(r, "finishSnapshot").writable !== false)) throw Error("Lost historical finish immutability");
+    }
+    for (const k of Object.keys(s.wrecks)) if (!Object.isFrozen(s.wrecks[k]) || Object.getOwnPropertyDescriptor(s.wrecks, k).writable !== false) throw Error("Lost wreck immutability");
+    assertState(s);
+    return s;
+  }
+  function validateIdentity(x) {
+    exact(x, ["profileId", "careerId", "instanceId", "raceId"]);
+    for (const v of Object.values(x)) id(v);
+    return x;
+  }
+  var setupFingerprint = (s) => wireHash(pack(s.setup));
+  function checkpointRace(s, identity, watermark = 0) {
+    validateIdentity(identity);
+    validateRaceBoundary(s);
+    if (!Number.isSafeInteger(watermark) || watermark < 0) throw Error("Invalid journal watermark");
+    return sealWire({ kind: "BNT-race-checkpoint", version: 1, stateVersion: stateProtocol(s), simulationVersion: VERSION, identity: structuredClone(identity), setupFingerprint: setupFingerprint(s), watermark, tick: s.tick, state: pack(s) });
+  }
+  function restoreRace(record, { identity, setupHash, watermark } = {}) {
+    const x = unsealWire(record);
+    exact(x, ["kind", "version", "stateVersion", "simulationVersion", "identity", "setupFingerprint", "watermark", "tick", "state"]);
+    validateIdentity(x.identity);
+    if (x.kind !== "BNT-race-checkpoint" || x.version !== 1 || ![RACE_STATE_VERSION, CHAMPIONSHIP_RACE_STATE_VERSION].includes(x.stateVersion) || x.simulationVersion !== VERSION) throw Error("Incompatible race checkpoint version");
+    if (identity && wireHash(identity) !== wireHash(x.identity) || setupHash && setupHash !== x.setupFingerprint || watermark !== void 0 && watermark !== x.watermark) throw Error("Incompatible race checkpoint identity/watermark");
+    const s = validateRaceBoundary(unpack(x.state));
+    if (x.stateVersion !== stateProtocol(s)) throw Error("Incompatible checkpoint behavior version");
+    if (x.tick !== s.tick || x.setupFingerprint !== setupFingerprint(s) || !Number.isSafeInteger(x.watermark) || x.watermark < 0) throw Error("Checkpoint metadata mismatch");
+    return s;
+  }
+  function clearedNativeResult(s) {
+    validateRaceBoundary(s);
+    if (s.status !== "Ended" || s.pendingImpacts.length || s.pendingOverrides.length || s.entrants.some((r) => r.status === "Racing" || r.physical === "Clearing") || !s.events.some((e) => e.type === "RACE_ENDED")) throw Error("RACE_CLEARANCE_BLOCKED: unresolved authoritative processing");
+    const official = classification(s);
+    if (official.length !== s.entrants.length || new Set(official.map((x) => x.id)).size !== s.entrants.length) throw Error("RACE_CLEARANCE_BLOCKED: classification identity");
+    return { ...s.championshipContext ? { championshipEvidence: { version: 1, context: structuredClone(s.championshipContext), starters: structuredClone(s.events.find((e) => e.type === "RACE_STARTED")?.effects.starters ?? []), progress: s.entrants.map((r) => ({ id: r.id, ...r.progressEvidence })) } } : {}, classification: official, conditions: s.entrants.map((r) => ({ entrantId: r.id, native: structuredClone(r.ru) })) };
   }
 
   // src/persistence/race/session-store.js
@@ -6423,10 +6595,10 @@
           if (stateHash(s) !== a.headHash) throw Error("Authoritative head mismatch");
           if (published !== null) {
             const p = unpack(published);
-            exact(p, ["kind", "version", "resultId", "identity", "setupFingerprint", "stateFingerprint", "tick", "watermark", "sourceRevision", "classification", "conditions", "standingsEffects", "pendingEntitlementIds"]);
+            exact(p, ["kind", "version", "resultId", "identity", "setupFingerprint", "stateFingerprint", "tick", "watermark", "sourceRevision", "classification", "conditions", "standingsEffects", "pendingEntitlementIds", ...Object.hasOwn(p, "championshipEvidence") ? ["championshipEvidence"] : []]);
             id(p.resultId);
             const native = clearedNativeResult(s);
-            if (p.kind !== "BNT-cleared-race-proof" || p.version !== 1 || p.setupFingerprint !== a.setupHash || p.tick !== s.tick || p.watermark !== a.watermark || p.sourceRevision !== a.revision - 1 || wireHash(pack(native.classification)) !== wireHash(pack(p.classification)) || wireHash(pack(native.conditions)) !== wireHash(pack(p.conditions)) || wireHash(p.standingsEffects) !== wireHash(native.classification.map((x) => ({ entrantId: x.id, classified: true }))) || wireHash(p.pendingEntitlementIds) !== wireHash(a.proofEntitlementIds)) throw Error("Invalid authoritative result/condition proof");
+            if (wireHash(p.championshipEvidence ?? null) !== wireHash(native.championshipEvidence ?? null) || p.kind !== "BNT-cleared-race-proof" || p.version !== 1 || p.setupFingerprint !== a.setupHash || p.tick !== s.tick || p.watermark !== a.watermark || p.sourceRevision !== a.revision - 1 || wireHash(pack(native.classification)) !== wireHash(pack(p.classification)) || wireHash(pack(native.conditions)) !== wireHash(pack(p.conditions)) || wireHash(p.standingsEffects) !== wireHash(native.classification.map((x) => ({ entrantId: x.id, classified: true }))) || wireHash(p.pendingEntitlementIds) !== wireHash(a.proofEntitlementIds)) throw Error("Invalid authoritative result/condition proof");
           }
           break;
         } catch (e) {
@@ -6568,6 +6740,432 @@
     return locks.request(raceStorageKey(identity), { mode: "exclusive" }, operation);
   }
 
+  // src/career/championships/clearance-transfer.js
+  var trusted2 = /* @__PURE__ */ new WeakSet();
+  function createClearanceTransfer(session, state2) {
+    if (!(session instanceof RaceSessionStore) || session.mode !== "automatic") throw Error("Durable authoritative race session required");
+    const raw = session.storage.getItem(session.key);
+    if (raw !== session.raw) throw Error("Race authority changed");
+    const d = session.decode(raw), a = d.a, x = state2.championshipFoundation.instances?.[state2.championshipFoundation.activeId];
+    if (!x || x.phase !== "RACE_ACTIVE" || a.operational !== "RESULT_COMMITTED" || canonical(a.anchor) !== canonical(championshipAnchor(state2)) || a.identity.instanceId !== x.id || a.identity.raceId !== x.raceId || fingerprint(d.s.setup) !== fingerprint(x.raceSetup)) throw Error("Clearance/career setup authority mismatch");
+    const candidate = unpack(unsealWire(d.r.publication)), reference = { version: 1, storageKey: session.key, identityFingerprint: wireHash(a.identity), revision: a.revision, watermark: a.watermark, authorityHash: wireHash(d.r.authority) };
+    const transfer = freeze({ reference, candidate, setupFingerprint: fingerprint(d.s.setup), careerFingerprint: fingerprint(state2) });
+    trusted2.add(transfer);
+    return transfer;
+  }
+  function requireClearanceTransfer(transfer, payload, state2) {
+    if (!trusted2.has(transfer) || transfer.careerFingerprint !== fingerprint(state2) || canonical(transfer.reference) !== canonical(payload.reference) || canonical(transfer.candidate) !== canonical(payload.candidate) || transfer.setupFingerprint !== payload.setupFingerprint) throw Error("Trusted durable clearance transfer required");
+  }
+  function createBirthTransfer(session, state2) {
+    if (!(session instanceof RaceSessionStore) || session.mode !== "automatic") throw Error("Durable race birth required");
+    const raw = session.storage.getItem(session.key);
+    if (raw !== session.raw) throw Error("Race birth authority changed");
+    const d = session.decode(raw), x = state2.championshipFoundation.instances[state2.championshipFoundation.activeId];
+    if (x.phase !== "RACE_START_PENDING" || d.s.status !== "Ready" || d.s.tick !== 0 || d.a.watermark !== 0 || d.a.identity.raceId !== x.raceId || d.a.identity.instanceId !== x.id || fingerprint(d.s.setup) !== fingerprint(x.raceSetup) || canonical(d.a.anchor) !== canonical(championshipAnchor(state2))) throw Error("Invalid race birth proof");
+    const reference = { version: 1, storageKey: session.key, identityFingerprint: wireHash(d.a.identity), revision: d.a.revision, watermark: 0, authorityHash: wireHash(d.r.authority) };
+    const transfer = freeze({ kind: "birth", reference, careerFingerprint: fingerprint(state2) });
+    trusted2.add(transfer);
+    return transfer;
+  }
+  function requireBirthTransfer(transfer, payload, state2) {
+    if (!trusted2.has(transfer) || transfer.kind !== "birth" || transfer.careerFingerprint !== fingerprint(state2) || canonical(transfer.reference) !== canonical(payload.reference)) throw Error("Trusted race birth capability required");
+  }
+
+  // src/career/cycles/racing-adapter.js
+  function commitEntrant(s, championshipId, selection, options2 = {}) {
+    requirePreparation(s);
+    id(championshipId);
+    const p = previewRU4(s, selection, options2);
+    if (!p.eligible) throw Error(p.reasons.join("; "));
+    const status = debtStatus(s.cycles.streak);
+    return freeze({ ru: structuredClone(p.native), payrollContext: { version: 1, rulesVersion: "payroll-control-v1", careerId: s.career.id, championshipId, status, multiplier: moraleMultiplier(status) } });
+  }
+
+  // src/career/championships/offers.js
+  function qualifies(q, facts) {
+    if (!q || typeof q !== "object" || Array.isArray(q)) throw Error("Invalid qualification");
+    const [type] = Object.keys(q);
+    exact(q, [type]);
+    if (type === "all" || type === "any") {
+      if (!Array.isArray(q[type]) || q[type].length > 32) throw Error("Invalid qualification expression");
+      const a = q[type].map((x) => qualifies(x, facts));
+      return type === "all" ? a.every(Boolean) : a.some(Boolean);
+    }
+    if (type === "reputationAtLeast") {
+      gold(q[type]);
+      return facts.reputation >= q[type];
+    }
+    if (type === "hasTrophy") {
+      id(q[type]);
+      return facts.trophies.includes(q[type]);
+    }
+    if (type === "victoryCountAtLeast") {
+      exact(q[type], ["templateId", "count"]);
+      id(q[type].templateId);
+      gold(q[type].count);
+      return (facts.victories[q[type].templateId] ?? 0) >= q[type].count;
+    }
+    throw Error("Unsupported qualification predicate");
+  }
+  function freezeOffer(t) {
+    exact(t, ["kind", "version", "templateId", "name", "entryFee", "fieldSize", "qualification", "schedule", "points", "dnfPoints"]);
+    if (t.kind !== "BNT-championship-template" || t.version !== 1 || typeof t.name !== "string" || !t.name.trim() || t.name.length > 100 || !Number.isInteger(t.fieldSize) || t.fieldSize < 1 || t.fieldSize > 8 || !Array.isArray(t.schedule) || t.schedule.length < 1 || t.schedule.length > 12 || !Array.isArray(t.points) || t.points.length !== t.fieldSize) throw Error("Invalid championship template");
+    id(t.templateId);
+    gold(t.entryFee);
+    gold(t.dnfPoints);
+    t.points.forEach(gold);
+    qualifies(t.qualification, { reputation: 0, trophies: [], victories: {} });
+    const schedule = t.schedule.map((r, i) => {
+      exact(r, ["course", "format", "weather", "laps", "grid"]);
+      if (!["random", "standings", "reverse"].includes(r.grid)) throw Error("Invalid grid policy");
+      const native = createRace({ course: r.course, format: r.format, weather: r.weather, overrides: { laps: r.laps }, entrants: createRace().setup.entrants.slice(0, t.fieldSize) });
+      return { ...structuredClone(r), course: structuredClone(native.setup.course ?? null), config: structuredClone(native.config), raceOrdinal: i };
+    });
+    const value = { ...structuredClone(t), schedule, rulesVersion: "m2e-controller-v1" };
+    return freeze({ kind: "BNT-championship-offer", version: 1, value, fingerprint: fingerprint(value) });
+  }
+  function validateOffer(o) {
+    exact(o, ["kind", "version", "value", "fingerprint"]);
+    if (o.kind !== "BNT-championship-offer" || o.version !== 1 || o.fingerprint !== fingerprint(o.value)) throw Error("Invalid frozen offer");
+    const t = structuredClone(o.value);
+    if (t.rulesVersion !== "m2e-controller-v1") throw Error("Unsupported offer rules");
+    delete t.rulesVersion;
+    t.schedule = t.schedule.map((r) => {
+      exact(r, ["course", "format", "weather", "laps", "grid", "config", "raceOrdinal"]);
+      return { course: r.course, format: r.format, weather: r.weather, laps: r.laps, grid: r.grid };
+    });
+    if (freezeOffer(t).fingerprint !== o.fingerprint) throw Error("Offer is not canonical/valid");
+    return o;
+  }
+  var developmentOffer = () => freezeOffer({ kind: "BNT-championship-template", version: 1, templateId: "controller-fixture", name: "Development Championship Fixture", entryFee: 25, fieldSize: 4, qualification: { reputationAtLeast: 0 }, schedule: [{ course: null, format: "Pure", weather: "Clear", laps: 1, grid: "random" }, { course: "C01", format: "Combat", weather: "Clear", laps: 1, grid: "standings" }], points: [10, 8, 6, 5], dnfPoints: 0 });
+  var catalogCapabilities = /* @__PURE__ */ new WeakSet();
+  function requireCatalog(cap, offers) {
+    if (!catalogCapabilities.has(cap) || fingerprint(cap) !== fingerprint(offers)) throw Error("Trusted catalog producer required");
+  }
+
+  // src/career/championships/controller.js
+  var controllerSource = (s) => fingerprint({ career: s.career, profileId: s.profile.id, revision: s.revision, maintenanceRevision: s.maintenanceRevision, management: s.management, cycles: s.cycles, championshipFoundation: s.championshipFoundation });
+  var controllerActive = (s) => s?.championshipFoundation?.version === 2 && s.championshipFoundation.activeId !== null;
+  function activeChampionship(s) {
+    return controllerActive(s) ? s.championshipFoundation.instances[s.championshipFoundation.activeId] : null;
+  }
+  function empty(s, tx) {
+    return { version: 2, rulesVersion: CONTROLLER_RULES, origin: structuredClone(s), enabledBy: structuredClone(tx), activeId: null, instances: {}, offers: [developmentOffer()], facts: { reputation: 0, trophies: [], victories: {} } };
+  }
+  function expectedEffect(s, t) {
+    if (t.type === "championship.stageClearance") return controllerEffect(s.career.id, t.type, t.payload.instanceId, s.championshipFoundation.instances[t.payload.instanceId]?.raceId);
+    return controllerEffect(s.career.id, t.type, t.payload.instanceId ?? "foundation", ["controller.enable", "championship.register"].includes(t.type) ? null : s.revision);
+  }
+  function apply(s, t, { historical = false, clearance = null, birth = null, catalog = null } = {}) {
+    if (t.commandVersion !== 4) {
+      if (controllerActive(s)) throw Error("Stable management is read-only while championship is active or unsettled");
+      const result = executeCareerCandidateV4(s, t, { historical });
+      s.schema = 5;
+      return result;
+    }
+    validateControllerCommand(t);
+    if (t.sourceFingerprint !== controllerSource(s)) throw Error("Stale championship source");
+    if (t.effectId !== expectedEffect(s, t)) throw Error("Invalid championship effect identity");
+    const p = t.payload, before = s.career.treasury;
+    let details;
+    if (t.type === "controller.enable") {
+      if (s.championshipFoundation.version !== 1 || t.expectedInstanceRevision !== null) throw Error("Controller already enabled");
+      s.championshipFoundation = empty(s, t);
+      details = { version: 2 };
+    } else {
+      const f = s.championshipFoundation;
+      if (f.version !== 2) throw Error("Enable championship controller explicitly");
+      if (t.type === "championship.refreshOffers") {
+        if (!historical) requireCatalog(catalog, p.offers);
+        if (f.activeId !== null || !Array.isArray(p.offers) || p.offers.length < 1 || p.offers.length > 32) throw Error("Offer refresh requires stable preparation and bounded offers");
+        p.offers.forEach(validateOffer);
+        if (new Set(p.offers.map((o) => o.value.templateId)).size !== p.offers.length) throw Error("Duplicate offer template identities");
+        f.offers = structuredClone(p.offers);
+        details = { offerFingerprints: f.offers.map((o) => o.fingerprint) };
+      } else if (t.type === "championship.register") {
+        if (f.activeId !== null || t.expectedInstanceRevision !== null) throw Error("An active or unsettled championship already exists");
+        id(p.instanceId);
+        validateOffer(p.offer);
+        if (!f.offers.some((o) => o.fingerprint === p.offer.fingerprint)) throw Error("Offer is not on the authoritative board");
+        if (f.instances[p.instanceId]) throw Error("Championship instance identity reused");
+        if (s.career.status === "Failed" || !qualifies(p.offer.value.qualification, f.facts)) throw Error("Championship qualification/career gate failed");
+        exact(p.selection, ["assignmentId", "driverId", "beastIds", "chariotId"]);
+        const committed = commitEntrant(s, p.instanceId, p.selection, { assignmentId: p.selection.assignmentId });
+        const fee = p.offer.value.entryFee;
+        if (fee > s.career.treasury) throw Error("Insufficient entry fee");
+        const r = s.management.registries, chariot = r.chariots[p.selection.chariotId];
+        const entrants = [{ id: "e2-" + hash([p.instanceId, "player"]).toString(16), player: true, native: structuredClone(committed.ru), payrollContext: structuredClone(committed.payrollContext), assetIds: { driver: p.selection.driverId, beasts: [...p.selection.beastIds], chariot: p.selection.chariotId, equipment: [...chariot.references.equipment ?? []] } }];
+        entrants[0].native.id = entrants[0].id;
+        for (let i = 1; i < p.offer.value.fieldSize; i++) {
+          const entrantId = "e2-" + hash([p.instanceId, "rival", i]).toString(16), native = defaultRU(entrantId, 46 + i * 2);
+          entrants.push({ id: entrantId, player: false, native, assetIds: null });
+        }
+        const instance = { version: 1, id: p.instanceId, revision: 0, phase: "INTERMISSION_READY", offer: structuredClone(p.offer), registrationId: t.id, registrationRevision: s.revision + 1, registrationMaintenanceRevision: s.maintenanceRevision, fee, lockedSelection: structuredClone(p.selection), entrants, playerId: entrants[0].id, coaching: null, raceIndex: 0, raceSetup: null, raceId: null, checkpointRef: null, pendingClearance: null, withdrawal: null, standings: entrants.map((e) => ({ id: e.id, points: 0 })), raceResults: [], conditionMapping: { version: 1, status: "UNAPPROVED" }, blockedReason: null };
+        for (let i = 0; i < instance.offer.value.schedule.length; i++) prepareRace(instance, i);
+        s.career.treasury -= fee;
+        f.instances[instance.id] = instance;
+        f.activeId = instance.id;
+        details = { instanceId: instance.id, offerFingerprint: p.offer.fingerprint, entryFee: fee };
+      } else {
+        const x = f.instances[p.instanceId];
+        if (!x || f.activeId !== p.instanceId || t.expectedInstanceRevision !== x.revision) throw Error("Stale or unknown active instance");
+        if (t.type === "championship.coach") {
+          if (x.phase !== "INTERMISSION_READY") throw Error("Coaching is frozen at race start");
+          validateCoaching(p.coaching);
+          x.coaching = structuredClone(p.coaching);
+          details = { instanceId: x.id, coaching: x.coaching };
+        } else if (t.type === "championship.start") {
+          if (!["INTERMISSION_READY", "AI_CONTINUATION"].includes(x.phase)) throw Error("Race requires manual start from an eligible intermission");
+          x.raceSetup = prepareRace(x, x.raceIndex);
+          x.raceId = "e2-race-" + fingerprint([x.id, x.raceIndex]).slice(0, 40);
+          x.phase = "RACE_START_PENDING";
+          details = { instanceId: x.id, raceId: x.raceId, setupFingerprint: fingerprint(x.raceSetup) };
+        } else if (t.type === "championship.bindRace") {
+          if (x.phase !== "RACE_START_PENDING") throw Error("Race birth already bound or phase invalid");
+          validateCheckpointReference(p.reference);
+          if (!historical) requireBirthTransfer(birth, p, s);
+          x.checkpointRef = structuredClone(p.reference);
+          x.phase = "RACE_ACTIVE";
+          details = { instanceId: x.id, reference: x.checkpointRef };
+        } else if (t.type === "championship.stageClearance") {
+          if (!["RACE_ACTIVE", "RECOVERY_REQUIRED"].includes(x.phase)) throw Error("No active race to stage");
+          validateCheckpointReference(p.reference);
+          if (!historical) requireClearanceTransfer(clearance, p, s);
+          const c = p.candidate;
+          if (!c || c.kind !== "BNT-cleared-race-proof" || c.version !== 1 || c.identity.careerId !== s.career.id || c.identity.profileId !== s.profile.id || c.identity.instanceId !== x.id || c.identity.raceId !== x.raceId || p.setupFingerprint !== fingerprint(x.raceSetup) || !Array.isArray(c.conditions) || !Array.isArray(c.classification) || c.conditions.length !== x.raceSetup.entrants.length || c.classification.length !== c.conditions.length) throw Error("Invalid staged clearance evidence");
+          const expected = new Set(x.raceSetup.entrants.map((e) => e.ru.id));
+          for (const row of c.conditions) {
+            if (!expected.delete(row.entrantId) || row.native.id !== row.entrantId) throw Error("Foreign/duplicate cleared native identity");
+            validateRU(row.native);
+          }
+          if (expected.size || new Set(c.classification.map((r) => r.id)).size !== c.conditions.length || c.classification.some((r) => !c.conditions.some((e) => e.entrantId === r.id))) throw Error("Invalid clearance classification identities");
+          x.pendingClearance = { candidate: structuredClone(c), setupFingerprint: p.setupFingerprint, reference: structuredClone(p.reference) };
+          x.checkpointRef = structuredClone(p.reference);
+          x.phase = "RECOVERY_REQUIRED";
+          x.blockedReason = "D2 numerical condition mapping is not owner-approved. Cleared evidence is retained; no official result, condition, standings or entitlement has been committed.";
+          details = { instanceId: x.id, reference: x.checkpointRef, status: x.phase };
+        } else if (t.type === "championship.withdraw") {
+          if (x.phase !== "INTERMISSION_READY" || p.confirmed !== true) throw Error("Withdrawal requires explicit confirmation at intermission");
+          x.withdrawal = { kind: "Voluntary", raceIndex: x.raceIndex };
+          x.phase = "AI_CONTINUATION";
+          details = { instanceId: x.id, withdrawal: x.withdrawal, entryFeeRefund: 0 };
+        } else throw Error("Unsupported controller operation");
+        x.revision++;
+      }
+    }
+    const delta = s.career.treasury - before;
+    if (t.delta !== delta) throw Error("Championship quote/delta mismatch");
+    return { type: t.type, delta, details };
+  }
+  function prepareRace(instance, index) {
+    const event = instance.offer.value.schedule[index];
+    if (!event) throw Error("Invalid race index");
+    const seed = hash(["m2e-race-seed-v1", instance.id, index]), gridSeed = hash(["m2e-grid-seed-v1", instance.id, index]);
+    let entrants = instance.entrants.filter((e) => !instance.withdrawal || !e.player).map((e) => ({ ...e }));
+    if (!entrants.length) throw Error("No starters: authoritative eligibility/no-starter controller required");
+    const seeded = (a, b) => random(gridSeed, a.id) - random(gridSeed, b.id) || (a.id < b.id ? -1 : 1);
+    if (index === 0 || event.grid === "random") entrants.sort(seeded);
+    else {
+      const ranks = new Map(instance.standings.map((x, i) => [x.id, i]));
+      entrants.sort((a, b) => (event.grid === "reverse" ? -1 : 1) * ((ranks.get(a.id) ?? 0) - (ranks.get(b.id) ?? 0)) || seeded(a, b));
+    }
+    const initial = createRace({ course: event.course, overrides: event.config, format: event.format, weather: event.weather, entrants: entrants.map((e) => ({ ru: e.native })) });
+    const nativeEntrants = entrants.map((e, i) => ({ ru: structuredClone(e.native), q: initial.setup.entrants[i].q, lane: initial.setup.entrants[i].lane, ...e.payrollContext ? { payrollContext: e.payrollContext } : {}, ...e.player && instance.coaching ? { coachingContext: instance.coaching } : {} }));
+    const raceId = "e2-race-" + fingerprint([instance.id, index]).slice(0, 40);
+    return createRace({ seed, course: event.course, overrides: event.config, format: event.format, weather: event.weather, entrants: nativeEntrants, playerId: entrants.find((e) => e.player)?.id ?? entrants[0].id, championshipContext: { version: 1, instanceId: instance.id, raceId } }).setup;
+  }
+  var fact = (t, b, r) => t.commandVersion === 4 ? protectController(t, b, r) : t.commandVersion === 3 ? protectCycle(t, b, r) : t.commandVersion === 2 ? protectEconomic(t, b, r) : protectTransaction(t, b);
+  function validateControllerState(s) {
+    const f = s.championshipFoundation;
+    exact(f, ["version", "rulesVersion", "origin", "enabledBy", "activeId", "instances", "offers", "facts"]);
+    if (f.version !== 2 || f.rulesVersion !== CONTROLLER_RULES || f.origin.championshipFoundation.version !== 1) throw Error("Unsupported controller aggregate");
+    validateStateV5(f.origin);
+    let n = structuredClone(f.origin);
+    const start = n.transactions.length;
+    if (s.transactions.length <= start || s.transactions.length > MAX_RECEIPTS || canonical(s.transactions.slice(0, start)) !== canonical(n.transactions) || s.revision !== s.transactions.length) throw Error("Invalid controller transaction lineage");
+    for (const receipt of s.transactions.slice(start)) {
+      const t = receipt.transaction;
+      exact(receipt, ["transaction", "resultRevision", "balanceAfter", ...t.type === "developer.treasury.adjust" ? [] : ["result"]], "controller receipt");
+      if (t.profileId !== n.profile.id || t.careerId !== n.career.id || t.expectedRevision !== n.revision || t.expectedMaintenanceRevision < n.maintenanceRevision || t.expectedMaintenanceRevision > s.maintenanceRevision || receipt.resultRevision !== n.revision + 1) throw Error("Invalid controller revision/ownership");
+      n.maintenanceRevision = t.expectedMaintenanceRevision;
+      const result = apply(n, t, { historical: true });
+      if (receipt.balanceAfter !== n.career.treasury || canonical(result ?? null) !== canonical(receipt.result ?? null)) throw Error("Controller receipt reconstruction failed");
+      n.transactions.push(structuredClone(receipt));
+      n.revision++;
+      n.history.commands = mergeProtected2(n.history.commands, [fact(t, n.career.treasury, result)]);
+    }
+    for (const m of n.provenance) if (!s.provenance.some((x) => canonical(x) === canonical(m))) throw Error("Controller provenance lost");
+    for (const m of s.provenance.filter((x) => x.careerId === s.career.id)) {
+      const e = s.history.commands.find((e2) => e2.id === m.id);
+      if (!e || canonical(transactionMark(JSON.parse(e.request))) !== canonical(m)) throw Error("Forged controller provenance");
+    }
+    const expectedMarks = mergeMarks(s.provenance);
+    if (expectedMarks.some((m) => m.profileId !== s.profile.id)) throw Error("Controller provenance belongs to another Owner Profile");
+    n.profile.developerEdited = Boolean(expectedMarks.length);
+    n.career.developerEdited = expectedMarks.some((x) => x.careerId === n.career.id);
+    n.provenance = expectedMarks;
+    n.maintenanceRevision = s.maintenanceRevision;
+    n.history.commands = mergeProtected2(n.history.commands);
+    if (canonical(n) !== canonical(s)) throw Error("Controller state differs from authoritative reconstruction");
+    assertControllerRestore(s, s.history.commands);
+    return s;
+  }
+  function transactController(s, t, options2 = {}) {
+    if (s.championshipFoundation.version === 2) validateControllerState(s);
+    else validateStateV5(s);
+    const old = lookupCommitted2(s.history.commands, t, s.transactions);
+    if (old) return { ...old, state: structuredClone(s) };
+    if (t.profileId !== s.profile.id || t.careerId !== s.career.id) throw Error("Championship ownership mismatch");
+    assertRevision(s, t.expectedRevision, t.expectedMaintenanceRevision);
+    if (s.transactions.length >= MAX_RECEIPTS || s.history.commands.some((e) => e.effectId === t.effectId)) throw Error("Receipt/effect limit");
+    const n = structuredClone(s), result = apply(n, t, options2), receipt = { transaction: structuredClone(t), resultRevision: s.revision + 1, balanceAfter: n.career.treasury, ...result === void 0 ? {} : { result } };
+    n.transactions.push(receipt);
+    n.revision++;
+    n.history.commands = mergeProtected2(n.history.commands, [fact(t, n.career.treasury, result)]);
+    validateControllerState(n);
+    return { state: n, receipt, duplicate: false };
+  }
+  function makeControllerCommand(s, type, payload, idValue) {
+    const instance = payload.instanceId ? s.championshipFoundation.instances?.[payload.instanceId] : null;
+    return { id: idValue, profileId: s.profile.id, careerId: s.career.id, expectedRevision: s.revision, expectedMaintenanceRevision: s.maintenanceRevision, commandVersion: 4, expectedInstanceRevision: type === "championship.register" || type === "controller.enable" ? null : instance?.revision ?? null, sourceFingerprint: controllerSource(s), type, effectId: controllerEffect(s.career.id, type, payload.instanceId ?? "foundation", ["controller.enable", "championship.register"].includes(type) ? null : type === "championship.stageClearance" ? instance?.raceId : s.revision), delta: type === "championship.register" ? -payload.offer.value.entryFee : 0, reason: "Explicit championship operation", payload: structuredClone(payload) };
+  }
+  function controllerOffers(s, offers = s.championshipFoundation.offers ?? [developmentOffer()]) {
+    const f = s.championshipFoundation;
+    return offers.map((offer) => ({ offer, qualified: qualifies(validateOffer(offer).value.qualification, f.version === 2 ? f.facts : { reputation: 0, trophies: [], victories: {} }), active: controllerActive(s), canAfford: s.career.treasury >= offer.value.entryFee }));
+  }
+
+  // src/career/championships/orchestrator.js
+  var ChampionshipRunner = class {
+    constructor(careerStore, storage) {
+      this.career = careerStore;
+      this.storage = storage;
+    }
+    identity() {
+      const s = this.career.state, x = activeChampionship(s);
+      if (!x?.raceId) throw Error("Start a championship race explicitly first");
+      return { profileId: s.profile.id, careerId: s.career.id, instanceId: x.id, raceId: x.raceId };
+    }
+    session() {
+      return new RaceSessionStore(this.storage, { identity: this.identity(), getCareerAnchor: () => storedChampionshipAnchor(this.storage) });
+    }
+    // Caller holds both the career lock and this race lock; no two-store official
+    // consequences are published. Race proof is durable first, then only a protected
+    // pre-commit candidate is staged in CareerStore. D2 remains approval-blocked.
+    ensure() {
+      if (this.career.mode !== "automatic") throw Error("Durable automatic career storage required for championship racing; export manual checkpoint first");
+      const x = activeChampionship(this.career.state);
+      if (!["RACE_START_PENDING", "RACE_ACTIVE"].includes(x.phase)) throw Error(x.blockedReason ?? "No active race");
+      const session = this.session(), raw = this.storage.getItem(session.key);
+      if (raw === null) {
+        if (x.phase !== "RACE_START_PENDING") throw Error("RECOVERY_REQUIRED: established race data missing; no restart/reroll");
+        session.create(x.raceSetup);
+      } else session.open();
+      if (x.phase === "RACE_START_PENDING") {
+        const birth = createBirthTransfer(session, this.career.state), tx = makeControllerCommand(this.career.state, "championship.bindRace", { instanceId: x.id, reference: birth.reference }, "e2-birth-" + fingerprint([x.id, x.raceId]).slice(0, 40));
+        this.career.transaction(tx, { birth });
+      }
+      return session;
+    }
+    advance(id2, ticks = 1) {
+      const session = this.ensure();
+      if (session.record.authority.value.operational === "RESULT_COMMITTED") return session;
+      session.apply({ id: id2, expectedRevision: session.inspect().revision, tick: session.state.tick, phase: "advance", ticks, commands: [] });
+      return session;
+    }
+    sign(id2, action, sign) {
+      if (activeChampionship(this.career.state).withdrawal) throw Error("Player withdrawn; rival Sign control is forbidden");
+      const session = this.ensure();
+      session.apply({ id: id2, expectedRevision: session.inspect().revision, tick: session.state.tick, phase: "paused", ticks: 0, commands: [{ action, ...sign === void 0 ? {} : { sign } }] });
+      return session;
+    }
+    stage(id2) {
+      const x = activeChampionship(this.career.state);
+      if (x.pendingClearance) return { duplicate: true, blocked: true, reason: x.blockedReason };
+      const session = this.ensure(), r = session.finalize("e2-result-" + fingerprint([x.id, x.raceId]).slice(0, 40), session.inspect().revision);
+      if (r.blocked) return r;
+      const transfer = createClearanceTransfer(session, this.career.state), payload = { instanceId: x.id, reference: transfer.reference, candidate: transfer.candidate, setupFingerprint: transfer.setupFingerprint }, tx = makeControllerCommand(this.career.state, "championship.stageClearance", payload, id2);
+      const result = this.career.transaction(tx, { clearance: transfer });
+      return { ...result, blocked: true, reason: activeChampionship(this.career.state).blockedReason };
+    }
+    async exclusive(operation) {
+      const locks = globalThis.navigator?.locks;
+      if (!locks?.request) throw Error("Coordinated automatic championship writes require Web Locks; no unsafe fallback");
+      return locks.request(SAVE_KEY + ".writer", { mode: "exclusive" }, () => withRaceSessionLock(this.identity(), operation, { locks }));
+    }
+  };
+
+  // src/career/championships/scoring.js
+  function championshipClassification(proof) {
+    const e = proof.championshipEvidence;
+    if (!e || e.version !== 1) throw Error("Missing authoritative championship participation/progress evidence");
+    const progress = new Map(e.progress.map((x) => [x.id, x]));
+    const finish = proof.classification.filter((x) => x.status === "Finished").map((x) => ({ ...x, nativeStatus: x.status, started: e.starters.includes(x.id) }));
+    const rest = proof.classification.filter((x) => x.status !== "Finished").map((x) => ({ ...x, nativeStatus: x.status, status: x.status === "Retired" ? "DNF" : x.status, started: e.starters.includes(x.id) }));
+    const dnfs = rest.filter((x) => x.status === "DNF").sort((a, b) => b.completedLaps - a.completedLaps || b.progress - a.progress || first(a) - first(b) || (a.id < b.id ? -1 : 1));
+    function first(x) {
+      const p = progress.get(x.id);
+      if (!p || p.progress !== x.progress || !Number.isFinite(p.firstTime)) throw Error("Missing first-reached DNF progress");
+      return p.firstTime;
+    }
+    let cursor = 0;
+    for (let i = 0; i < rest.length; i++) if (rest[i].status === "DNF") rest[i] = dnfs[cursor++];
+    return [...finish, ...rest];
+  }
+  function raceAwardEffects(rows, rules2, { careerId, instanceId, raceId }) {
+    id(careerId);
+    id(instanceId);
+    id(raceId);
+    const seen = /* @__PURE__ */ new Set();
+    return rows.map((row) => {
+      if (seen.has(row.id)) throw Error("Duplicate classification identity");
+      seen.add(row.id);
+      if (row.status === "Finished" && (!row.started || !Number.isInteger(row.place) || row.place < 1)) throw Error("Invalid official finishing participation/place");
+      const points = row.status === "Finished" ? rules2.points[row.place - 1] ?? 0 : row.status === "DNF" && row.started && row.classified === true ? rules2.dnfPoints : 0;
+      gold(points);
+      return { entrantId: row.id, points, finishPlace: row.status === "Finished" ? row.place : null, win: row.status === "Finished" && row.place === 1, pendingEntitlementId: row.started ? "e2-claim-" + fingerprint([careerId, instanceId, raceId, row.id, "placement"]).slice(0, 48) : null };
+    });
+  }
+  function standings(entrantIds, races) {
+    const rows = entrantIds.map((id2) => ({ id: id2, points: 0, places: {}, lastRank: Number.MAX_SAFE_INTEGER }));
+    for (const race of races) for (const [rank, r] of race.rows.entries()) {
+      const row = rows.find((x) => x.id === r.id), effect = race.effects.find((x) => x.entrantId === r.id);
+      if (!row || !effect) throw Error("Unknown standings entrant");
+      row.points += effect.points;
+      gold(row.points);
+      if (r.status === "Finished") row.places[r.place] = (row.places[r.place] ?? 0) + 1;
+      row.lastRank = r.status === "Finished" ? r.place : rank + 1;
+    }
+    return rows.sort((a, b) => {
+      let d = b.points - a.points;
+      if (d) return d;
+      for (let p = 1; p <= entrantIds.length; p++) {
+        d = (b.places[p] ?? 0) - (a.places[p] ?? 0);
+        if (d) return d;
+      }
+      return a.lastRank - b.lastRank || (a.id < b.id ? -1 : 1);
+    });
+  }
+  function titleCandidate(ordered, lastRace) {
+    const eligible = ordered.filter((x) => lastRace.some((r) => r.id === x.id && r.started && !["DNS", "Disqualified", "Withdrawn"].includes(r.status)));
+    return eligible[0]?.id ?? null;
+  }
+
+  // src/sim/foundation/api.js
+  var api_exports2 = {};
+  __export(api_exports2, {
+    RaceSessionStore: () => RaceSessionStore,
+    buildFoundation: () => buildFoundation,
+    careerAnchor: () => careerAnchor,
+    checkpointRace: () => checkpointRace,
+    clearedNativeResult: () => clearedNativeResult,
+    noStarterProof: () => noStarterProof,
+    previewFoundation: () => previewFoundation,
+    restoreRace: () => restoreRace,
+    storedCareerAnchor: () => storedCareerAnchor,
+    validateStateV5: () => validateStateV5,
+    withRaceSessionLock: () => withRaceSessionLock
+  });
+
   // src/sim/foundation/no-starters.js
   function noStarterProof(identity, evidence) {
     validateIdentity(identity);
@@ -6595,6 +7193,146 @@
     return accumulator2;
   }
 
+  // src/ui/championships.js
+  function mountChampionships({ store, act, newId: newId2, setNotice }) {
+    const panel = document.createElement("details");
+    panel.id = "championshipController";
+    panel.innerHTML = `<summary>Championship controller \u2014 development fixture</summary><p>No final rewards or settlement. D2 numerical mapping is awaiting owner approval: races may be run and cleared evidence retained, but permanent consequences and advancement remain blocked. Export a backup before registering.</p><p id="champStatus"></p><button id="champFoundation">Enable schema-5 foundation</button><button id="champEnable">Enable E2/E3 controller</button><select id="champOfferSelect"></select><button id="champRegister">Register fixture \u2014 25 Gold</button><button id="champStart">Start next scheduled race</button><button id="champStep">Advance 25 ticks</button><button id="champComplete">Run current race (may take several seconds)</button><button id="champStage">Validate and stage clearance</button><button id="champWithdraw">Withdraw at intermission</button><div id="champCoach"></div><button id="champApplyCoach">Save pre-race coaching</button><select id="champSign"></select><button id="champQueue">Queue Sign</button><button id="champLower">Lower Sign</button><canvas id="champCanvas" width="760" height="320" style="width:100%;max-width:760px"></canvas><pre id="champInspect"></pre><pre id="champStableInspect"></pre>`;
+    document.getElementById("careerSaves").append(panel);
+    const $7 = (id2) => panel.querySelector("#" + id2);
+    for (const axis of coachingAxes) {
+      const label = document.createElement("label");
+      label.textContent = axis + " ";
+      const input = document.createElement("input");
+      input.id = "champ-" + axis;
+      input.type = "number";
+      input.min = "-1";
+      input.max = "1";
+      input.step = "0.25";
+      input.value = "0";
+      label.append(input);
+      $7("champCoach").append(label);
+    }
+    for (const sign of signs) $7("champSign").add(new Option(sign, sign));
+    let live = null, lastRaceId = null;
+    const offer = developmentOffer();
+    const operation = (type, payload) => store.transaction(makeControllerCommand(store.state, type, payload, newId2("champ-op")));
+    $7("champFoundation").onclick = act(() => {
+      const s = store.state;
+      if (!confirm("Explicitly enable schema 5 foundation? No grants or condition conversion.")) return;
+      store.migrateFoundation({ id: newId2("foundation"), profileId: s.profile.id, careerId: s.career.id, type: "career.foundation.migrate", version: 1, sourceSchema: 4, targetSchema: 5, expectedRevision: s.revision, expectedMaintenanceRevision: s.maintenanceRevision, sourceFingerprint: fingerprint(s), effectId: foundationEffect(s.career.id), confirmed: true });
+    });
+    $7("champEnable").onclick = act(() => {
+      if (confirm("Enable the development championship controller? No fee or reward on enabling.")) operation("controller.enable", {});
+    });
+    $7("champRegister").onclick = act(() => {
+      if (!navigator.locks?.request) throw Error("Coordinated registration requires Web Locks; no automatic fallback");
+      const s = store.state, a = Object.values(s.management.registries.assignments)[0];
+      if (!a) throw Error("Assemble a legal Racing Unit first");
+      if (!confirm("Deduct the disclosed entry fee once and lock this RU? Development fixture: D2 approval and E5 settlement are not operational. Export a backup first.")) return;
+      const selected = store.state.championshipFoundation.offers.find((o) => o.fingerprint === $7("champOfferSelect").value);
+      if (!selected) throw Error("Select a current offer");
+      operation("championship.register", { offer: selected, instanceId: newId2("champ"), selection: { assignmentId: a.id, driverId: a.driverId, beastIds: a.beastIds, chariotId: a.chariotId } });
+      live = null;
+    });
+    $7("champStart").onclick = act(async () => {
+      if (!navigator.locks?.request) throw Error("Race coordination unavailable");
+      const x = activeChampionship(store.state);
+      operation("championship.start", { instanceId: x.id });
+      const runner = new ChampionshipRunner(store, store.storage);
+      await withRaceSessionLock(runner.identity(), () => {
+        live = runner.ensure().state;
+      });
+    });
+    const raceAction = (fn) => act(async () => {
+      const runner = new ChampionshipRunner(store, store.storage);
+      await withRaceSessionLock(runner.identity(), () => fn(runner));
+    });
+    $7("champStep").onclick = raceAction((r) => {
+      live = r.advance(newId2("input"), 25).state;
+    });
+    $7("champComplete").onclick = raceAction((r) => {
+      live = r.advance(newId2("input"), 1e4).state;
+    });
+    $7("champStage").onclick = raceAction((r) => {
+      const result = r.stage(newId2("stage"));
+      setNotice(result.reason ?? "Clearance candidate staged. No permanent consequences committed.");
+    });
+    $7("champQueue").onclick = raceAction((r) => {
+      live = r.sign(newId2("sign"), "queue", $7("champSign").value).state;
+    });
+    $7("champLower").onclick = raceAction((r) => {
+      live = r.sign(newId2("sign"), "lower").state;
+    });
+    $7("champApplyCoach").onclick = act(() => {
+      const x = activeChampionship(store.state);
+      operation("championship.coach", { instanceId: x.id, coaching: coachingProfile(Object.fromEntries(coachingAxes.map((k) => [k, Number($7("champ-" + k).value)]))) });
+    });
+    $7("champWithdraw").onclick = act(() => {
+      if (confirm("Withdraw from future races without an entry-fee refund? Opponent continuation still requires cleared consequences and D2 approval.")) operation("championship.withdraw", { instanceId: activeChampionship(store.state).id, confirmed: true });
+    });
+    function draw3(s) {
+      const canvas2 = $7("champCanvas"), c = canvas2.getContext("2d");
+      c.clearRect(0, 0, 760, 320);
+      if (!s) return;
+      const pts = [];
+      for (let q = 0; q <= s.track.cells; q += 0.5) for (const lane of [0, s.config.lanes - 1]) pts.push(point(q, lane, s.config, s.track));
+      const minX = Math.min(...pts.map((p) => p.x)), maxX = Math.max(...pts.map((p) => p.x)), minY = Math.min(...pts.map((p) => p.y)), maxY = Math.max(...pts.map((p) => p.y)), scale = Math.min(700 / (maxX - minX || 1), 260 / (maxY - minY || 1)), xy = (p) => [30 + (p.x - minX) * scale, 30 + (p.y - minY) * scale];
+      for (let lane = 0; lane < s.config.lanes; lane++) {
+        c.beginPath();
+        for (let q = 0; q <= s.track.cells; q += 0.25) {
+          const p = xy(point(q, lane, s.config, s.track));
+          q === 0 ? c.moveTo(...p) : c.lineTo(...p);
+        }
+        c.strokeStyle = "#71624f";
+        c.lineWidth = s.config.laneWidth * scale * 0.85;
+        c.stroke();
+      }
+      for (const r of s.entrants) {
+        const p = xy(point(r.q, r.lane, s.config, s.track));
+        c.fillStyle = r.id === s.playerId ? "#ecbd6c" : r.physical === "Wreck" ? "#aa3333" : "#67bbd4";
+        c.beginPath();
+        c.arc(...p, 4, 0, Math.PI * 2);
+        c.fill();
+      }
+      c.fillStyle = "white";
+      c.fillText(s.status + " \xB7 tick " + s.tick, 8, 15);
+    }
+    function render2() {
+      const s = store.state, x = s ? activeChampionship(s) : null, ready = s?.schema === 5, enabled = ready && s.championshipFoundation.version === 2, blocked = ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint;
+      const previous2 = $7("champOfferSelect").value, available = enabled ? controllerOffers(s) : [{ offer, qualified: false, canAfford: false }];
+      $7("champOfferSelect").replaceChildren(...available.map((row) => new Option(`${row.offer.value.name} \xB7 ${row.offer.value.entryFee} Gold \xB7 ${row.qualified ? "qualified" : "qualification locked"}`, row.offer.fingerprint)));
+      if (available.some((row) => row.offer.fingerprint === previous2)) $7("champOfferSelect").value = previous2;
+      const chosen = available.find((row) => row.offer.fingerprint === $7("champOfferSelect").value);
+      $7("champFoundation").disabled = s?.schema !== 4 || blocked;
+      $7("champEnable").disabled = !ready || enabled || blocked;
+      $7("champRegister").disabled = !enabled || !!x || blocked || store.mode !== "automatic" || !chosen?.qualified || !chosen?.canAfford;
+      $7("champRegister").textContent = "Register selected fixture \u2014 " + (chosen?.offer.value.entryFee ?? 0) + " Gold";
+      $7("champStart").disabled = !x || !["INTERMISSION_READY", "AI_CONTINUATION"].includes(x.phase) || blocked;
+      for (const k of ["champStep", "champComplete", "champStage", "champQueue", "champLower"]) $7(k).disabled = !x || !["RACE_ACTIVE", "RACE_START_PENDING"].includes(x.phase) || blocked;
+      $7("champApplyCoach").disabled = !x || x.phase !== "INTERMISSION_READY" || blocked;
+      $7("champWithdraw").disabled = !x || x.phase !== "INTERMISSION_READY" || blocked;
+      $7("champStatus").textContent = x ? `${x.id} \xB7 ${x.phase} \xB7 event ${x.raceIndex + 1}/${x.offer.value.schedule.length} \xB7 ${x.blockedReason ?? "Home Stable is read-only while active/unsettled."}` : "Load/migrate a schema-4/5 career. The selection board below is a development fixture, not the E6 catalog.";
+      if (store.mode !== "automatic") $7("champStatus").textContent += " \xB7 Championship automatic racing unavailable in manual/recovery mode; export/resolve the career checkpoint.";
+      $7("champInspect").textContent = JSON.stringify(x ?? { offers: enabled ? controllerOffers(s) : [{ offer }], scope: "D2 consequences and E5 rewards remain unavailable" }, null, 2);
+      $7("champStableInspect").textContent = x ? JSON.stringify({ readOnlyStable: s.management, officialStandings: x.standings, conditionMapping: x.conditionMapping }, null, 2) : "";
+      if ((x?.raceId ?? null) !== lastRaceId) {
+        live = null;
+        lastRaceId = x?.raceId ?? null;
+      }
+      if (!live && x?.raceId) try {
+        const session = new ChampionshipRunner(store, store.storage).session();
+        session.open();
+        live = session.state;
+      } catch (e) {
+        $7("champStatus").textContent += " \xB7 " + e.message;
+      }
+      draw3(live);
+    }
+    $7("champOfferSelect").onchange = render2;
+    return render2;
+  }
+
   // src/ui/stable-cycles.js
   var $ = (id2) => document.getElementById(id2);
   function mountStableCycles({ store, act, newId: newId2, setNotice, getCompletion = () => null }) {
@@ -6613,7 +7351,7 @@
       return { personId: $("cyclePerson").value, term: $("cycleTerm").value };
     }
     function render2() {
-      const s = store.state, ready = s?.schema === 4, blocked = ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint, failed = s?.career.status === "Failed";
+      const s = store.state, ready = s?.schema >= 4, blocked = ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint || controllerActive(s), failed = s?.career.status === "Failed";
       $("cyclePreviewMigration").disabled = s?.schema !== 3 || blocked;
       $("cycleConfirmMigration").disabled = !migration || s?.schema !== 3 || blocked;
       $("cycleMigrationPreview").textContent = migration ? JSON.stringify(migration, null, 2) : "Explicit schema 3 \u2192 4 migration. No wages or cycle on migration.";
@@ -6646,15 +7384,15 @@
       $("cycleQuotes").textContent = JSON.stringify(quotes, null, 2);
       $("cycleFailure").disabled = blocked || failed || !viability.canConfirm;
       const completion = getCompletion();
-      let trusted2 = false;
+      let trusted3 = false;
       if (completion) try {
         requireTrustedCompletion(completion);
-        trusted2 = true;
+        trusted3 = true;
       } catch {
       }
-      $("cyclePreviewSettlement").disabled = blocked || failed || !trusted2;
+      $("cyclePreviewSettlement").disabled = blocked || failed || !trusted3;
       $("cycleConfirmSettlement").disabled = blocked || failed || !settlement;
-      $("cycleCompletionStatus").textContent = trusted2 ? "Authoritative championship completion available. Preview before confirming." : "No authoritative championship completion available. Standalone races do not advance payroll. No championship controller is included.";
+      $("cycleCompletionStatus").textContent = trusted3 ? "Authoritative championship completion available. Preview before confirming." : "No authoritative championship completion available. Standalone races do not advance payroll. Final championship settlement is not enabled.";
       $("cycleSettlementPreview").textContent = settlement ? JSON.stringify(settlement.quote, null, 2) : "No pending settlement preview.";
       $("cycleInspect").textContent = JSON.stringify({ arrears: s.cycles.obligations, creditors: s.cycles.creditors, statements: s.cycles.statements, contractArchive: s.cycles.contractArchive }, null, 2);
     }
@@ -6696,7 +7434,7 @@
   }
 
   // src/ui/stable-economy.js
-  var quoteEconomy2 = (s, ...args) => s.schema === 4 ? quoteEconomy4(s, ...args) : quoteEconomy(s, ...args);
+  var quoteEconomy2 = (s, ...args) => s.schema >= 4 ? quoteEconomy4(s, ...args) : quoteEconomy(s, ...args);
   var $2 = (id2) => document.getElementById(id2);
   var ACTIONS = { "market.acquire": "Acquire market offer", "asset.sell": "Sell owned asset", "personnel.terminate": "Terminate personnel contract", "equipment.detach": "Detach installed equipment", "facility.purchase": "Purchase facility upgrade", "service.apply": "Apply immediate care or treatment", "training.apply": "Train native rating with XP", "engineering.apply": "Engineer chariot rating with Gold" };
   function options(select, entries) {
@@ -6732,7 +7470,7 @@
       return { assetId: assetId2, attribute: $2("economyAttribute").value, points: Number($2("economyPoints").value) };
     }
     function renderAction() {
-      const s = store.state, ready = s?.schema >= 3, blocked = ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint || s?.career.status === "Failed", type = $2("economyAction").value;
+      const s = store.state, ready = s?.schema >= 3, blocked = ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint || s?.career.status === "Failed" || controllerActive(s), type = $2("economyAction").value;
       for (const [key3, visible] of [["economyOfferFields", type === "market.acquire"], ["economyAssetFields", ["asset.sell", "personnel.terminate", "equipment.detach", "service.apply", "training.apply", "engineering.apply"].includes(type)], ["economyFacilityFields", type === "facility.purchase"], ["economyServiceFields", type === "service.apply"], ["economyTrainingFields", ["training.apply", "engineering.apply"].includes(type)]]) $2(key3).hidden = !visible;
       $2("economyControls").hidden = !ready;
       $2("economyCommit").disabled = true;
@@ -6756,7 +7494,7 @@
       }
     }
     function render2() {
-      const s = store.state, ready = s?.schema >= 3, blocked = ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint || s?.career.status === "Failed";
+      const s = store.state, ready = s?.schema >= 3, blocked = ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint || s?.career.status === "Failed" || controllerActive(s);
       $2("economyPreviewMigration").disabled = !s || s.schema !== 2 || !s.management.initialized || blocked;
       $2("economyConfirmMigration").disabled = !plan || !s || s.schema !== 2 || blocked;
       if (plan && s?.schema === 2 && plan.sourceFingerprint !== sha256(canonical(s))) $2("economyConfirmMigration").disabled = true;
@@ -6863,7 +7601,7 @@
       return { driverId: $3("stableDriver").value, beastIds: [$3("stableBeastA").value, $3("stableBeastB").value], chariotId: $3("stableChariot").value };
     }
     function render2() {
-      const s = store.state, ready = s?.schema >= 2 && s.management.initialized, blocked = ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint || s?.career.status === "Failed";
+      const s = store.state, ready = s?.schema >= 2 && s.management.initialized, blocked = ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint || s?.career.status === "Failed" || controllerActive(s);
       if (ready) $3("stablePackage").value = Object.values(s.management.registries.properties)[0].packageId;
       const packageId = $3("stablePackage").value, p = STARTING_PACKAGES[packageId];
       $3("stablePackagePreview").textContent = JSON.stringify({ catalogVersion: CATALOG_VERSION, ...p, purchasePrice: 0, property: { tier: "Basic", drivers: 2, specialists: 0, beasts: 4, chariots: 1 }, equipmentEffects: { mass: 0, combat: 0 }, facilityEffects: "Descriptive only", initialRU: "Primary driver, Lead A, Lead B, sole chariot; reserves unassigned" }, null, 2);
@@ -6890,7 +7628,7 @@
         select.disabled = !ready;
       }
       $3("stableRoster").textContent = r ? JSON.stringify({ package: Object.values(r.properties)[0].packageId, capacities: Object.values(r.properties)[0].capacities, roster: r, lastReceipt: s.transactions.at(-1) }, null, 2) : "No owned assets. Previewing a package grants nothing.";
-      const preview = ready ? (s.schema === 4 ? previewRU4 : s.schema === 3 ? previewRU3 : previewRU)(s, currentSelection(), { assignmentId: a?.id ?? null }) : null;
+      const preview = ready ? (s.schema >= 4 ? previewRU4 : s.schema === 3 ? previewRU3 : previewRU)(s, currentSelection(), { assignmentId: a?.id ?? null }) : null;
       $3("stableRUPreview").textContent = preview ? JSON.stringify(preview, null, 2) : "Initialize before assembling.";
       $3("stableAssemble").disabled = !ready || blocked || !preview?.eligible;
       $3("stableDisassemble").disabled = !a || blocked;
@@ -7171,13 +7909,14 @@
     let renderStable = () => {
     }, renderEconomy = () => {
     }, renderCycles = () => {
+    }, renderChampionships = () => {
     };
     function render2() {
       const state2 = store.state;
       $4("careerSaveStatus").textContent = `${store.mode.toUpperCase()} \xB7 ${state2 ? `Schema ${state2.schema} \xB7 Revision ${state2.revision} \xB7 Maintenance ${state2.maintenanceRevision ?? 0} \xB7 Treasury ${state2.career.treasury} Gold \xB7 ${state2.profile.developerEdited || state2.career.developerEdited ? "DEVELOPER-EDITED (persistent)" : "Unedited foundation"}` : "No career loaded"}${store.requiresCheckpoint ? " \xB7 CHECKPOINT REQUIRED: export, save the file and confirm before another change." : ""}`;
       $4("careerSaveNotice").textContent = [store.problem, notice].filter(Boolean).join(" ");
       $4("careerSaveInspect").textContent = JSON.stringify(state2 ?? { status: store.mode, recoveryAvailable: Boolean(store.recovery) }, null, 2);
-      $4("careerAdjust").disabled = !state2 || state2.career.status === "Failed" || ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint;
+      $4("careerAdjust").disabled = !state2 || state2.career.status === "Failed" || controllerActive(state2) || ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint;
       $4("careerExport").disabled = !state2;
       $4("careerMigrate").disabled = !state2 || state2.schema !== 1 || ["blocked", "recovery-required"].includes(store.mode) || store.requiresCheckpoint;
       $4("careerCreate").textContent = store.schema2Session ? "Create uninitialized schema-2 foundation" : "Create empty M1 state";
@@ -7189,6 +7928,7 @@
       renderStable();
       renderEconomy();
       renderCycles();
+      renderChampionships();
     }
     async function exclusive(fn) {
       if (navigator.locks?.request) return navigator.locks.request(SAVE_KEY + ".writer", fn);
@@ -7283,6 +8023,10 @@
       lastToken = null;
     }, download });
     renderCycles = mountStableCycles({ store, act, newId, setNotice: (message) => {
+      notice = message;
+      lastToken = null;
+    } });
+    renderChampionships = mountChampionships({ store, act, newId, setNotice: (message) => {
       notice = message;
       lastToken = null;
     } });
@@ -7700,7 +8444,7 @@
       refreshComponents();
       refreshParameter();
     }
-    function apply(doc) {
+    function apply2(doc) {
       replay = null;
       $5("replayStatus").textContent = "Live race";
       setState(createRace(doc.setup));
@@ -7800,9 +8544,9 @@
       $5("parameterSummary").textContent = `Default ${(typeof g.defaults === "function" ? g.defaults() : g.defaults)[key3]}; ${bounds ? `${bounds[0]}..${bounds[1]} ${bounds[2]}` : $5("parameterGroup").value === "model" ? "0..2; normalized weight groups must sum to 1" : "See validated ranges in the configuration documentation"}. Structural settings require a new race.`;
     }
     $5("applySetup").onclick = act(
-      () => apply(parseConfiguration($5("setupJSON").value))
+      () => apply2(parseConfiguration($5("setupJSON").value))
     );
-    $5("resetSetup").onclick = act(() => apply(configuration({})));
+    $5("resetSetup").onclick = act(() => apply2(configuration({})));
     $5("captureSetup").onclick = act(() => {
       const s = getState(), setup = structuredClone(s.setup);
       setup.overrides = s.config;
@@ -7827,7 +8571,7 @@
       message(result.ok ? "Configuration saved locally." : result.message);
     });
     $5("loadSetup").onclick = act(
-      () => apply(loadConfiguration(window.localStorage))
+      () => apply2(loadConfiguration(window.localStorage))
     );
     $5("exportSetup").onclick = act(
       () => downloadJSON(
@@ -7837,7 +8581,7 @@
     );
     $5("setupFile").onchange = act(async () => {
       const file = $5("setupFile").files[0];
-      if (file) apply(parseConfiguration(await file.text()));
+      if (file) apply2(parseConfiguration(await file.text()));
     });
     $5("componentScope").onchange = refreshObjects;
     $5("componentObject").onchange = refreshFields;
@@ -7859,7 +8603,7 @@
           `Component edit queued for tick ${getState().tick}. Step or Resume to apply.`
         );
       } else
-        apply(editConfiguration(parseConfiguration($5("setupJSON").value), edit));
+        apply2(editConfiguration(parseConfiguration($5("setupJSON").value), edit));
     });
     $5("parameterGroup").onchange = refreshParameter;
     $5("parameterField").onchange = refreshParameterValue;
@@ -7883,7 +8627,7 @@
         const keys = path.split(".");
         for (const k of keys.slice(0, -1)) obj = obj[k];
         obj[keys.at(-1)] = value;
-        apply(configuration(doc.setup));
+        apply2(configuration(doc.setup));
       }
     });
     $5("applySurface").onclick = act(() => {
@@ -7891,7 +8635,7 @@
       const doc = parseConfiguration($5("setupJSON").value);
       (_a = doc.setup.surfaces)[_b = $5("surfaceSegment").value] ?? (_a[_b] = {});
       doc.setup.surfaces[$5("surfaceSegment").value][$5("surfaceField").value] = Number($5("surfaceValue").value);
-      apply(configuration(doc.setup));
+      apply2(configuration(doc.setup));
     });
     $5("replayFile").onchange = act(async () => {
       const file = $5("replayFile").files[0];
@@ -8739,7 +9483,8 @@ Lane / tile    ${r.lane + 1} / ${r.q.toFixed(4)}`;
     requestAnimationFrame(frame);
   }
   window.BNT = {
-    foundation: api_exports,
+    championships: api_exports,
+    foundation: api_exports2,
     managementDiagnostics: { generateMarket, seedInteger, marketStream },
     createRace,
     run,

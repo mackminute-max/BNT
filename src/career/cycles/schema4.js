@@ -88,3 +88,6 @@ export function transactV4(s,tx,options={}){
  if(s.transactions.length>=MAX_RECEIPTS||s.history.commands.some(e=>e.effectId===tx.effectId))throw Error('Receipt limit or already committed effect');
  const next=structuredClone(s),result=execute4(next,tx,options),receipt={transaction:structuredClone(tx),resultRevision:s.revision+1,balanceAfter:next.career.treasury,...(result===undefined?{}:{result})};next.transactions.push(receipt);next.revision++;next.history.commands=mergeProtected(next.history.commands,[protect(tx,receipt.balanceAfter,result)]);return {state:validateStateV4(next),receipt,duplicate:false};
 }
+
+// Additive integration seam; old schema-4 execution and recovery semantics are unchanged.
+export function executeCareerCandidateV4(state,command,options={}){return execute4(state,command,options);}

@@ -1,3 +1,4 @@
+import {controllerActive} from '../career/championships/controller.js';
 import {quoteCycle,sourceFingerprint} from '../career/cycles/reducers.js';
 import {debtStatus,outstanding,assessViability,moraleMultiplier} from '../career/cycles/policy.js';
 import {cycleMigrationEffect,RULES} from '../career/cycles/contracts.js';
@@ -9,7 +10,7 @@ export function mountStableCycles({store,act,newId,setNotice,getCompletion=()=>n
  function commit(type,payload,label){const tx=command(type,payload);if(!window.confirm(label+'? Review the quote below. This commits immediately.'))return;store.transaction(tx);setNotice(label+' committed.');}
  function selection(){return {personId:$('cyclePerson').value,term:$('cycleTerm').value};}
  function render(){
-  const s=store.state,ready=s?.schema===4,blocked=['blocked','recovery-required'].includes(store.mode)||store.requiresCheckpoint,failed=s?.career.status==='Failed';
+  const s=store.state,ready=s?.schema>=4,blocked=['blocked','recovery-required'].includes(store.mode)||store.requiresCheckpoint||controllerActive(s),failed=s?.career.status==='Failed';
   $('cyclePreviewMigration').disabled=s?.schema!==3||blocked;$('cycleConfirmMigration').disabled=!migration||s?.schema!==3||blocked;
   $('cycleMigrationPreview').textContent=migration?JSON.stringify(migration,null,2):'Explicit schema 3 → 4 migration. No wages or cycle on migration.';
   $('cycleControls').hidden=!ready;
@@ -24,7 +25,7 @@ export function mountStableCycles({store,act,newId,setNotice,getCompletion=()=>n
   $('cycleQuotes').textContent=JSON.stringify(quotes,null,2);$('cycleFailure').disabled=blocked||failed||!viability.canConfirm;
   const completion=getCompletion();let trusted=false;if(completion)try{requireTrustedCompletion(completion);trusted=true;}catch{}
   $('cyclePreviewSettlement').disabled=blocked||failed||!trusted;$('cycleConfirmSettlement').disabled=blocked||failed||!settlement;
-  $('cycleCompletionStatus').textContent=trusted?'Authoritative championship completion available. Preview before confirming.':'No authoritative championship completion available. Standalone races do not advance payroll. No championship controller is included.';
+  $('cycleCompletionStatus').textContent=trusted?'Authoritative championship completion available. Preview before confirming.':'No authoritative championship completion available. Standalone races do not advance payroll. Final championship settlement is not enabled.';
   $('cycleSettlementPreview').textContent=settlement?JSON.stringify(settlement.quote,null,2):'No pending settlement preview.';
   $('cycleInspect').textContent=JSON.stringify({arrears:s.cycles.obligations,creditors:s.cycles.creditors,statements:s.cycles.statements,contractArchive:s.cycles.contractArchive},null,2);
  }

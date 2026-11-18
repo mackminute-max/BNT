@@ -1,3 +1,5 @@
+import {INCIDENT_CLOCK_VERSION} from './deterministic-log.js';
+import {validateCoaching} from '../ai/coaching.js';
 import {applyPayrollControl,validatePayrollContext} from '../model/payroll-control.js';
 import { resolveAction } from "../ai/telemetry.js";
 import { applyOverride } from "../dev/overrides.js";
@@ -54,6 +56,7 @@ export function createRace({
   checkpointInterval = 100,
   environmentOverrides = {},
   course = null,
+  championshipContext,
 } = {}) {
   if (!Object.hasOwn(weatherPresets, weather))
     throw new Error("Invalid weather");
@@ -101,6 +104,8 @@ export function createRace({
         throw new Error("Invalid surface modifier");
     Object.assign(segment.surface, patch);
   }
+  if(championshipContext!==undefined&&(!championshipContext||championshipContext.version!==1||(!['instanceId,raceId,version','clockVersion,instanceId,raceId,version'].includes(Object.keys(championshipContext).sort().join(','))||championshipContext.clockVersion!==undefined&&championshipContext.clockVersion!==INCIDENT_CLOCK_VERSION)||!['instanceId','raceId'].every(k=>typeof championshipContext[k]==='string'&&/^[a-zA-Z0-9_-]{1,128}$/.test(championshipContext[k]))))throw Error('Invalid championship race context');
+  if(championshipContext)championshipContext={...championshipContext,clockVersion:INCIDENT_CLOCK_VERSION};
   const seen = new Set();
   const units = input.map((e, i) => {
     const ru = structuredClone(e.ru);
@@ -114,6 +119,8 @@ export function createRace({
         ru.driver.personality[k] > 100
       )
         throw new Error(`Invalid personality ${k}`);
+    validateCoaching(e.coachingContext);
+    if(e.coachingContext&&ru.id!==(playerId??input[0].ru.id))throw Error('Coaching is player-only');
     validatePayrollContext(e.payrollContext);
     const derived = applyPayrollControl(derive(ru, {
       ...c,
@@ -146,6 +153,8 @@ export function createRace({
       id: ru.id,
       ru,
       derived,
+      ...(e.coachingContext ? {coachingContext:freezeCoaching(e.coachingContext)} : {}),
+      ...(championshipContext ? {progressEvidence:{version:1,progress:q,firstTime:0,firstTick:0}} : {}),
       ...(e.payrollContext===undefined?{}:{payrollContext:structuredClone(e.payrollContext)}),
       lane,
       q,
@@ -180,6 +189,7 @@ export function createRace({
   });
   const s = {
     version: VERSION,
+    ...(championshipContext ? {championshipContext:structuredClone(championshipContext)} : {}),
     seed,
     rng: { algorithm: "keyed-fnv-avalanche-v1", draws: 0 },
     config: c,
@@ -228,6 +238,7 @@ export function createRace({
     overrides: { ...c },
     entrants: units.map((r) => ({
       ru: structuredClone(r.ru),
+      ...(r.coachingContext ? {coachingContext:freezeCoaching(r.coachingContext)} : {}),
       ...(r.payrollContext===undefined?{}:{payrollContext:structuredClone(r.payrollContext)}),
       lane: r.lane,
       q: r.q,
@@ -243,6 +254,7 @@ export function createRace({
     consequence: consequenceTuning,
     scheduledIncidents: structuredClone(scheduledIncidents),
     checkpointInterval,
+    ...(championshipContext ? {championshipContext:structuredClone(championshipContext)} : {}),
     environmentOverrides: structuredClone(environmentOverrides),
   };
   if (driverMode === "autonomous")
@@ -819,6 +831,7 @@ function resolveForward(s, movers) {
     if (decisions.get(r.id)) {
       const previousLocation = s.track.course ? location(r.q, r.lane, s.config, s.track) : null;
       r.q = next;
+      observeProgress(s,r);
       if (s.track.course && r.status === "Racing") {
         const loc = location(r.q, r.lane, s.config, s.track);
         if (previousLocation.segment !== loc.segment) emit(s, "SEGMENT_ENTERED", [r.id], {
@@ -844,6 +857,7 @@ function resolveForward(s, movers) {
       const hazard = s.consequences && hazardAt(s, next, r.lane);
       if (hazard) queueHazardImpact(s, r, hazard, speeds.get(r.id));
       r.q = next - s.config.positionEpsilon;
+      observeProgress(s,r);
       r.speed = 0;
       r.blocked = true;
       resolveAction(s, r, r.ai.diagnostics?.decisionId, "movement", false, "Forward path blocked");
@@ -901,6 +915,7 @@ export function step(s, commands = []) {
       s.status = "Running";
       emit(s, "RACE_STARTED", [], {
         referenceDrivers: s.driverMode === "reference",
+        ...(s.championshipContext ? {starters:sorted(s).filter(r=>r.status==='Racing').map(r=>r.id)} : {}),
       });
       for (const r of sorted(s)) activateSign(s, r);
     }
@@ -971,6 +986,7 @@ export function step(s, commands = []) {
           r.speed = m.target;
       }
       s.time += elapsed;
+      for(const r of units)observeProgress(s,r);
       if (s.consequences) {
         for (const r of units) recoverControl(s, r, elapsed);
         updateIncidents(s);
@@ -984,7 +1000,7 @@ export function step(s, commands = []) {
         if (movers.length) resolveForward(s, movers);
         for (const r of markers) {
           const m = motions.get(r.id);
-          if (!movers.includes(r)) r.q = m.markerQ;
+          if (!movers.includes(r)) { r.q = m.markerQ; observeProgress(s,r); }
           checkpoints(s, r);
         }
         if (s.driverMode === "autonomous") {
@@ -1140,3 +1156,6 @@ function logRacecraft(s) {
     sorted(s).map((r) => [r.id, { q: r.q, status: r.status }]),
   );
 }
+
+function freezeCoaching(c){const n=structuredClone(c);Object.freeze(n.axes);Object.freeze(n.weights);return Object.freeze(n);}
+function observeProgress(s,r){if(s.championshipContext&&r.status==='Racing'&&r.progressEvidence.progress!==r.q)r.progressEvidence={version:1,progress:r.q,firstTime:s.time,firstTick:s.tick};}
