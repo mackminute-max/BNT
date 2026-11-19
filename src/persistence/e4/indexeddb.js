@@ -33,7 +33,7 @@ export class IndexedRecords {
   }catch(e){tx.abort();await done.catch(()=>{});throw e;}
   await done;return {durable:true,generation:expectedGeneration+1};
  }
- async discover(legacy){const snapshot=await this.snapshot();let witness=null;try{witness=legacy?.getItem(E4_DISCOVERY);}catch{}if(witness&&!snapshot.migration)throw Error('RECOVERY_REQUIRED: migrated database missing; stale legacy fallback forbidden');return {...snapshot,backend:snapshot.migration?'indexeddb':witness?'blocked':'uninitialized'};}
+ async discover(legacy){const snapshot=await this.snapshot();let witness=null;try{witness=legacy?.getItem(E4_DISCOVERY);}catch{}if((witness||snapshot.generation>0)&&!snapshot.migration)throw Error('RECOVERY_REQUIRED: migrated database missing; stale legacy fallback forbidden');return {...snapshot,backend:snapshot.migration?'indexeddb':witness?'blocked':'uninitialized'};}
  async migrate({legacy,records,confirmed=false,validated=false}){
   if(!confirmed||!validated)throw Error('Explicit confirmation and validated worker records required');
   const old=await this.discover(legacy);if(old.migration)return {duplicate:true,...old};if(old.generation!==0)throw Error('Existing durable authority; migration cannot replace');

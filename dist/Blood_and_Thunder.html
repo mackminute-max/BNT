@@ -832,7 +832,7 @@
         witness = legacy?.getItem(E4_DISCOVERY);
       } catch {
       }
-      if (witness && !snapshot2.migration) throw Error("RECOVERY_REQUIRED: migrated database missing; stale legacy fallback forbidden");
+      if ((witness || snapshot2.generation > 0) && !snapshot2.migration) throw Error("RECOVERY_REQUIRED: migrated database missing; stale legacy fallback forbidden");
       return { ...snapshot2, backend: snapshot2.migration ? "indexeddb" : witness ? "blocked" : "uninitialized" };
     }
     async migrate({ legacy, records, confirmed = false, validated = false }) {

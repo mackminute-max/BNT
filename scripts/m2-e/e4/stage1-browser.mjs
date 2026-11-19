@@ -1,5 +1,5 @@
 import {chromium} from 'playwright-core';import {createServer} from 'node:http';import {readFile,writeFile,mkdir} from 'node:fs/promises';import {gunzipSync} from 'node:zlib';import {resolve} from 'node:path';import {pathToFileURL} from 'node:url';import {build} from 'esbuild';
-const out='/workspace/deliverables/m2e-e4-stage1';await mkdir(out,{recursive:true});const report={checks:[],file:null,errors:[],measurements:[],limits:'Existing 8 MiB logical records; no application bound increased'};
+const out=process.env.BNT_E4_STAGE1_OUT??'/workspace/deliverables/m2e-e4-stage1';await mkdir(out,{recursive:true});const report={checks:[],file:null,errors:[],measurements:[],limits:'Existing 8 MiB logical records; no application bound increased'};
 const server=createServer(async(q,r)=>{r.setHeader('Content-Type','text/html');r.end(await readFile('dist/Blood_and_Thunder.html'));});await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=await chromium.launch({executablePath:'/usr/bin/chromium',headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});const context=await browser.newContext(),page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));
 async function check(name,fn){try{const result=await fn();report.checks.push({name,pass:true,result});console.log('PASS '+name);}catch(e){report.checks.push({name,pass:false,error:e.message});console.log('FAIL '+name+': '+e.message);}await writeFile(out+'/browser.json',JSON.stringify(report,null,2));}
 try{
@@ -30,10 +30,15 @@ try{
   const before=await coordinator.backend.snapshot(),r=await coordinator.worker.call({type:'replay',snapshot:before});
   const t=performance.now(),prepared=await coordinator.operate('nativePrepare',{id:'native-prepare'}),middle=await coordinator.backend.snapshot();
   if(middle.generation!==before.generation+1)throw Error('Native prepare not durable');
-  const published=await coordinator.operate('official',{id:'profile-browser-official'}),after=await coordinator.backend.snapshot();
+  const commit=coordinator.backend.commit.bind(coordinator.backend);coordinator.backend.commit=()=>Promise.reject(Error('Injected interruption before career commit'));let beforeRejected=false;
+  try{await coordinator.operate('official',{id:'profile-browser-official'});}catch{beforeRejected=true;}
+  coordinator.backend.commit=commit;if(!beforeRejected||JSON.stringify((await coordinator.backend.snapshot()).records)!==JSON.stringify(middle.records))throw Error('Partial pre-commit publication');
+  const call=coordinator.worker.call.bind(coordinator.worker);let lose=true;coordinator.worker.call=message=>{if(message.type==='ack'&&lose){lose=false;return Promise.reject(Error('Injected lost acknowledgement after durable career commit'));}return call(message);};
+  let lostAcknowledgement=false;try{await coordinator.operate('official',{id:'profile-browser-official'});}catch{lostAcknowledgement=true;}coordinator.worker.call=call;
+  const after=await coordinator.backend.snapshot();if(!lostAcknowledgement||after.generation!==middle.generation+1)throw Error('Lost-ack fixture did not commit exactly once');
   const retry=await coordinator.operate('official',{id:'profile-browser-official'}),again=await coordinator.backend.snapshot();
-  if(JSON.stringify(after.records)!==JSON.stringify(again.records)||published.phase!=='SETTLEMENT_PENDING')throw Error('Duplicate official effects');
-  return {replays:r.checks,prepared,published,retry,totalMs:performance.now()-t,bytes:after.records.reduce((n,[,v])=>n+new TextEncoder().encode(v).length,0)};
+  if(JSON.stringify(after.records)!==JSON.stringify(again.records)||retry.phase!=='SETTLEMENT_PENDING')throw Error('Duplicate official effects');
+  return {replays:r.checks,prepared,beforeRejected,lostAcknowledgement,retry,totalMs:performance.now()-t,bytes:after.records.reduce((n,[,v])=>n+new TextEncoder().encode(v).length,0)};
  }));
  await check('worker termination rejects pending preparation; restart cold-validates durable data',()=>page.evaluate(async()=>{
   const snapshot=await coordinator.backend.snapshot();const pending=coordinator.worker.call({type:'validate',snapshot});coordinator.worker.restart();let rejected=false;try{await pending;}catch{rejected=true;}if(!rejected)throw Error('False ack');return coordinator.validate();
@@ -52,6 +57,7 @@ try{
   for(const field of ['raceResults','standings','entrants','eligibility'])if(JSON.stringify(x[field])!==JSON.stringify(y[field]))throw Error('Consequence mismatch '+field);
   if(JSON.stringify(primary.management)!==JSON.stringify(reference.management)||primary.career.treasury!==reference.career.treasury)throw Error('Management/Gold mismatch');return {officialResults:x.raceResults.length,treasury:primary.career.treasury,conditionParity:true};
  },expected));
+ if(!process.argv.includes('--publication-only')){
  const large=await fixture('profile-max','eight-twelve-storage');
  await check('eight-entrant twelve-event retained set validated and committed in IndexedDB',()=>page.evaluate(async entries=>{
   window.largeCoordinator=await BNT.e4.open({name:'large-proof'});const started=performance.now();const validated=await largeCoordinator.worker.call({type:'validate',snapshot:{generation:0,records:entries}});const validationMs=performance.now()-started;
@@ -60,6 +66,7 @@ try{
   const replays=await largeCoordinator.worker.call({type:'replay',snapshot:{generation:0,records:entries}});
   return {replays,records:entries.length,bytes:entries.reduce((n,[,v])=>n+new TextEncoder().encode(v).length,0),validationMs,commitMs,commit,warm,quotaEstimate:await navigator.storage.estimate()};
  },large));
+ }
  report.longTasks=await page.evaluate(()=>longTasks);report.chromium=await browser.version();
 }finally{await writeFile(out+'/browser.json',JSON.stringify(report,null,2));await browser.close();await new Promise(r=>server.close(r));}
 console.log(JSON.stringify(report,null,2));if(report.checks.some(x=>!x.pass))process.exitCode=1;
