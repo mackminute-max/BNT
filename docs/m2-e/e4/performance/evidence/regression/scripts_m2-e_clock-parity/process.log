@@ -1,0 +1,18 @@
+{
+  "mode": "HTTP numeric diagnostic only",
+  "setup": {
+    "seed": 1460515178,
+    "overrides": {
+      "laps": 1
+    }
+  },
+  "node": {
+    "nextIncidentAt": 313.0384349330031,
+    "checksum": "f9ba1205"
+  },
+  "browser": {
+    "nextIncidentAt": 313.03843493300315,
+    "checksum": "b00ad2d3"
+  },
+  "pass": false
+}

@@ -1,0 +1,11 @@
+✔ Performance codec preserves exact frozen-baseline bytes including dictionary resets and Unicode (229.45659ms)
+✔ Performance codec still detects mutation, descriptors, aliasing and cold corruption (20.981245ms)
+✔ Canonical output and SHA-256 preserve UTF-8, undefined and mutation semantics (6.20357ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 372.655626

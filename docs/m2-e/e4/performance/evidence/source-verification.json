@@ -1,0 +1,17 @@
+{
+  "branch": "feat/m2-e-e4-persistence-recovery",
+  "runtimeHead": "b8c090057052ac03bbed73d9487093da61381451",
+  "baseline": "a07c3d2ef3a97d47f349440e0533706d24f4a50f",
+  "startingHead": "6b3920037090ef1e74541fc29a5d5fb9df1c4832",
+  "startingSourceDiffFromBaseline": "",
+  "nativeSimulationDiff": "",
+  "runtimeChanges": "src/career/economy/fingerprint.js     |  4 ++--\n src/core/determinism.js               | 20 ++++++++++++----\n src/persistence/e4/indexeddb.js       |  9 ++++---\n src/persistence/e4/worker-service.js  | 30 ++++++++++++++++--------\n src/persistence/race/session-store.js | 11 ++++++---\n src/sim/foundation/codec.js           | 44 +++++++++++++++++++++++++++--------\n 6 files changed, 85 insertions(+), 33 deletions(-)",
+  "node": "v24.22.1",
+  "chromium": "Chromium 156.0.8078.79 built on Debian GNU/Linux 13 (trixie)",
+  "sourceCommits": [
+    "b8c090057052ac03bbed73d9487093da61381451 perf: carry journal state hashes across unchanged validation boundaries",
+    "8334db6a64794e1184a0d7bfec052d933bcdb25f perf: reuse exact known compression inverses while retaining graph validation",
+    "0334ecb94ad9beae6f2dd435978e63cde5f19e84 perf: reuse exact encodings and verified worker state without weakening cold validation",
+    "3d8f7c76b1fa83301a313927288881e9a8ba3a27 perf: preserve LZW16 bytes using numeric dictionary keys and direct byte IO"
+  ]
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "script": "scripts/m2-d/browser.mjs",
+    "exit": 1,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_m2-d_browser"
+  },
+  {
+    "script": "scripts/m2-c/browser.mjs",
+    "exit": 1,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_m2-c_browser"
+  },
+  {
+    "script": "scripts/m2-b-browser.mjs",
+    "exit": 1,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_m2-b-browser"
+  },
+  {
+    "script": "scripts/m2-a-browser.mjs",
+    "exit": 1,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_m2-a-browser"
+  },
+  {
+    "script": "scripts/persistence-browser.mjs",
+    "exit": 1,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_persistence-browser"
+  },
+  {
+    "script": "scripts/browser-test.mjs",
+    "exit": 1,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_browser-test"
+  },
+  {
+    "script": "scripts/track-expansion/browser.mjs",
+    "exit": 0,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_track-expansion_browser"
+  },
+  {
+    "script": "scripts/circuit-rally/browser.mjs",
+    "exit": 1,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_circuit-rally_browser"
+  },
+  {
+    "script": "scripts/combat-ai-refinement/browser.mjs",
+    "exit": 0,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_combat-ai-refinement_browser"
+  },
+  {
+    "script": "scripts/m2-e/browser.mjs",
+    "exit": 1,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_m2-e_browser"
+  },
+  {
+    "script": "scripts/m2-e/e2-e3-browser.mjs",
+    "exit": 1,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_m2-e_e2-e3-browser"
+  },
+  {
+    "script": "scripts/m2-e/e3-completion-browser.mjs",
+    "exit": 1,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_m2-e_e3-completion-browser"
+  },
+  {
+    "script": "scripts/m2-e/championship-clock-parity.mjs",
+    "exit": 0,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_m2-e_championship-clock-parity"
+  },
+  {
+    "script": "scripts/m2-e/clock-parity.mjs",
+    "exit": 1,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_m2-e_clock-parity"
+  },
+  {
+    "script": "scripts/m2-e/e4/stage2-browser.mjs",
+    "exit": 0,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_m2-e_e4_stage2-browser"
+  },
+  {
+    "script": "scripts/m2-e/e4/stage2-files.mjs",
+    "exit": 0,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_m2-e_e4_stage2-files"
+  },
+  {
+    "script": "scripts/m2-e/e4/stage2-reopen.mjs",
+    "exit": 0,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_m2-e_e4_stage2-reopen"
+  },
+  {
+    "script": "scripts/m2-e/e4/stage2-quota.mjs",
+    "exit": 0,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_m2-e_e4_stage2-quota"
+  },
+  {
+    "script": "scripts/m2-e/e4/stage2-retained.mjs",
+    "exit": 0,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_m2-e_e4_stage2-retained"
+  },
+  {
+    "script": "scripts/m2-e/e4/stage1-browser.mjs",
+    "exit": 0,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_m2-e_e4_stage1-browser"
+  },
+  {
+    "script": "scripts/m2-e/e4/stage1-faults.mjs",
+    "exit": 0,
+    "output": "/workspace/deliverables/e4-optimization/regression/scripts_m2-e_e4_stage1-faults"
+  }
+]

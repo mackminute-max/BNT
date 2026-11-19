@@ -1,0 +1,29 @@
+{
+  "checks": [
+    {
+      "name": "automatic tick cadence, speed, pause, queued Sign and full browser close/reopen",
+      "pass": true,
+      "tick": 50,
+      "runtime": {
+        "version": 1,
+        "paused": true,
+        "speed": 16,
+        "cadence": 25
+      }
+    },
+    {
+      "name": "resumed native race equals full ordered replay",
+      "pass": true,
+      "result": {
+        "version": 1,
+        "checks": [
+          {
+            "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+            "checksum": "61144d60"
+          }
+        ],
+        "durable": false
+      }
+    }
+  ]
+}

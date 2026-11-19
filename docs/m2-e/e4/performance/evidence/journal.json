@@ -1,0 +1,20 @@
+[
+  {
+    "label": "baseline",
+    "recoveryMs": 1982.763571999999,
+    "watermark": 3,
+    "tick": 200,
+    "checksum": "1afc6844",
+    "serializedBytes": 576443,
+    "byteIdenticalToBaseline": true
+  },
+  {
+    "label": "candidate",
+    "recoveryMs": 402.3674050000009,
+    "watermark": 3,
+    "tick": 200,
+    "checksum": "1afc6844",
+    "serializedBytes": 576443,
+    "byteIdenticalToBaseline": true
+  }
+]

@@ -1,0 +1,1295 @@
+{
+  "label": "final",
+  "browser": "156.0.8078.79",
+  "controlled": true,
+  "results": [
+    {
+      "id": "one-short",
+      "operations": [
+        {
+          "name": "migration-cold-validation",
+          "ms": 363.29999999701977,
+          "workerPreparationMs": null
+        },
+        {
+          "name": "start",
+          "ms": 1152.9000000059605,
+          "workerPreparationMs": 1120.8999999985099
+        },
+        {
+          "name": "birth",
+          "ms": 991.0999999940395,
+          "workerPreparationMs": 967.8000000044703
+        },
+        {
+          "name": "advance-100",
+          "ms": 94.89999999850988,
+          "workerPreparationMs": 65.5
+        },
+        {
+          "name": "advance-next-100",
+          "ms": 84.30000000447035,
+          "workerPreparationMs": 60
+        },
+        {
+          "name": "warm-inspect",
+          "ms": 17.19999999552965,
+          "workerPreparationMs": null
+        },
+        {
+          "name": "cold-reconstruction",
+          "ms": 379.70000000298023,
+          "workerPreparationMs": null
+        }
+      ],
+      "metrics": [
+        {
+          "operation": "migration-cold-validation",
+          "component": "snapshot",
+          "ms": 2
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "call",
+          "ms": 338.70000000298023
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "snapshot",
+          "ms": 0.7000000029802322
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "commit",
+          "ms": 9.299999997019768
+        },
+        {
+          "operation": "start",
+          "component": "snapshot",
+          "ms": 8.199999995529652
+        },
+        {
+          "operation": "start",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "start",
+          "component": "call",
+          "ms": 1123.8000000044703
+        },
+        {
+          "operation": "start",
+          "component": "commit",
+          "ms": 17.399999998509884
+        },
+        {
+          "operation": "start",
+          "component": "postMessage-sync-clone",
+          "ms": 0
+        },
+        {
+          "operation": "start",
+          "component": "call",
+          "ms": 0.30000000447034836
+        },
+        {
+          "operation": "birth",
+          "component": "snapshot",
+          "ms": 4.600000001490116
+        },
+        {
+          "operation": "birth",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "birth",
+          "component": "call",
+          "ms": 970
+        },
+        {
+          "operation": "birth",
+          "component": "commit",
+          "ms": 12.100000001490116
+        },
+        {
+          "operation": "birth",
+          "component": "postMessage-sync-clone",
+          "ms": 0
+        },
+        {
+          "operation": "birth",
+          "component": "call",
+          "ms": 0.30000000447034836
+        },
+        {
+          "operation": "advance-100",
+          "component": "snapshot",
+          "ms": 10.800000004470348
+        },
+        {
+          "operation": "advance-100",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "advance-100",
+          "component": "call",
+          "ms": 68.29999999701977
+        },
+        {
+          "operation": "advance-100",
+          "component": "commit",
+          "ms": 14.399999998509884
+        },
+        {
+          "operation": "advance-100",
+          "component": "postMessage-sync-clone",
+          "ms": 0
+        },
+        {
+          "operation": "advance-100",
+          "component": "call",
+          "ms": 0.20000000298023224
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "snapshot",
+          "ms": 8.199999995529652
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "postMessage-sync-clone",
+          "ms": 0.20000000298023224
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "call",
+          "ms": 62.5
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "commit",
+          "ms": 9.600000001490116
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "postMessage-sync-clone",
+          "ms": 0
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "call",
+          "ms": 0.29999999701976776
+        },
+        {
+          "operation": "warm-inspect",
+          "component": "snapshot",
+          "ms": 2.9000000059604645
+        },
+        {
+          "operation": "warm-inspect",
+          "component": "postMessage-sync-clone",
+          "ms": 0.09999999403953552
+        },
+        {
+          "operation": "warm-inspect",
+          "component": "call",
+          "ms": 14.199999995529652
+        },
+        {
+          "operation": "cold-reconstruction",
+          "component": "snapshot",
+          "ms": 12.799999997019768
+        },
+        {
+          "operation": "cold-reconstruction",
+          "component": "call",
+          "ms": 366.90000000596046
+        }
+      ],
+      "longTasks": [],
+      "records": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 419447
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 49234
+        }
+      ],
+      "replay": {
+        "version": 1,
+        "checks": [
+          {
+            "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+            "checksum": "40a72f2b"
+          }
+        ],
+        "durable": false
+      },
+      "storage": {
+        "quota": 10737700864,
+        "usage": 282624,
+        "usageDetails": {
+          "indexedDB": 282624
+        }
+      },
+      "heap": 26438513
+    },
+    {
+      "id": "four-circuit",
+      "operations": [
+        {
+          "name": "migration-cold-validation",
+          "ms": 398.70000000298023,
+          "workerPreparationMs": null
+        },
+        {
+          "name": "start",
+          "ms": 1526.6999999955297,
+          "workerPreparationMs": 1452.3999999985099
+        },
+        {
+          "name": "birth",
+          "ms": 1134.9000000059605,
+          "workerPreparationMs": 1113.5
+        },
+        {
+          "name": "advance-100",
+          "ms": 145.30000000447035,
+          "workerPreparationMs": 129
+        },
+        {
+          "name": "advance-next-100",
+          "ms": 296.5,
+          "workerPreparationMs": 268.29999999701977
+        },
+        {
+          "name": "warm-inspect",
+          "ms": 18.600000001490116,
+          "workerPreparationMs": null
+        },
+        {
+          "name": "cold-reconstruction",
+          "ms": 710.5999999940395,
+          "workerPreparationMs": null
+        }
+      ],
+      "metrics": [
+        {
+          "operation": "migration-cold-validation",
+          "component": "snapshot",
+          "ms": 1
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "postMessage-sync-clone",
+          "ms": 0
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "call",
+          "ms": 378.80000000447035
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "snapshot",
+          "ms": 1
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "commit",
+          "ms": 7.899999998509884
+        },
+        {
+          "operation": "start",
+          "component": "snapshot",
+          "ms": 28.799999997019768
+        },
+        {
+          "operation": "start",
+          "component": "postMessage-sync-clone",
+          "ms": 0.19999999552965164
+        },
+        {
+          "operation": "start",
+          "component": "call",
+          "ms": 1458.8000000044703
+        },
+        {
+          "operation": "start",
+          "component": "commit",
+          "ms": 8.299999997019768
+        },
+        {
+          "operation": "start",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "start",
+          "component": "call",
+          "ms": 2.3000000044703484
+        },
+        {
+          "operation": "birth",
+          "component": "snapshot",
+          "ms": 3
+        },
+        {
+          "operation": "birth",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "birth",
+          "component": "call",
+          "ms": 1116.5
+        },
+        {
+          "operation": "birth",
+          "component": "commit",
+          "ms": 10.299999997019768
+        },
+        {
+          "operation": "birth",
+          "component": "postMessage-sync-clone",
+          "ms": 0
+        },
+        {
+          "operation": "birth",
+          "component": "call",
+          "ms": 3.7000000029802322
+        },
+        {
+          "operation": "advance-100",
+          "component": "snapshot",
+          "ms": 3.2000000029802322
+        },
+        {
+          "operation": "advance-100",
+          "component": "postMessage-sync-clone",
+          "ms": 0.09999999403953552
+        },
+        {
+          "operation": "advance-100",
+          "component": "call",
+          "ms": 132.39999999850988
+        },
+        {
+          "operation": "advance-100",
+          "component": "commit",
+          "ms": 6.700000002980232
+        },
+        {
+          "operation": "advance-100",
+          "component": "postMessage-sync-clone",
+          "ms": 0
+        },
+        {
+          "operation": "advance-100",
+          "component": "call",
+          "ms": 0.19999999552965164
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "snapshot",
+          "ms": 3
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "postMessage-sync-clone",
+          "ms": 0.29999999701976776
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "call",
+          "ms": 274.6000000014901
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "commit",
+          "ms": 12.299999997019768
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "postMessage-sync-clone",
+          "ms": 0
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "call",
+          "ms": 0.3999999985098839
+        },
+        {
+          "operation": "warm-inspect",
+          "component": "snapshot",
+          "ms": 3.0999999940395355
+        },
+        {
+          "operation": "warm-inspect",
+          "component": "postMessage-sync-clone",
+          "ms": 0.30000000447034836
+        },
+        {
+          "operation": "warm-inspect",
+          "component": "call",
+          "ms": 15.400000005960464
+        },
+        {
+          "operation": "cold-reconstruction",
+          "component": "snapshot",
+          "ms": 6.0999999940395355
+        },
+        {
+          "operation": "cold-reconstruction",
+          "component": "call",
+          "ms": 704.5
+        }
+      ],
+      "longTasks": [],
+      "records": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 480057
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 234707
+        }
+      ],
+      "replay": {
+        "version": 1,
+        "checks": [
+          {
+            "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+            "checksum": "a8072bc3"
+          }
+        ],
+        "durable": false
+      },
+      "storage": {
+        "quota": 10737995776,
+        "usage": 577536,
+        "usageDetails": {
+          "indexedDB": 577536
+        }
+      },
+      "heap": 33410073
+    },
+    {
+      "id": "eight-oval",
+      "operations": [
+        {
+          "name": "migration-cold-validation",
+          "ms": 343,
+          "workerPreparationMs": null
+        },
+        {
+          "name": "start",
+          "ms": 1173.8999999985099,
+          "workerPreparationMs": 1154.7000000029802
+        },
+        {
+          "name": "birth",
+          "ms": 982.1999999955297,
+          "workerPreparationMs": 968.7000000029802
+        },
+        {
+          "name": "advance-100",
+          "ms": 335.3999999985099,
+          "workerPreparationMs": 308.59999999403954
+        },
+        {
+          "name": "advance-next-100",
+          "ms": 583.1000000014901,
+          "workerPreparationMs": 551.3000000044703
+        },
+        {
+          "name": "warm-inspect",
+          "ms": 26.100000001490116,
+          "workerPreparationMs": null
+        },
+        {
+          "name": "cold-reconstruction",
+          "ms": 818.8999999985099,
+          "workerPreparationMs": null
+        }
+      ],
+      "metrics": [
+        {
+          "operation": "migration-cold-validation",
+          "component": "snapshot",
+          "ms": 1.3999999985098839
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "call",
+          "ms": 319.90000000596046
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "snapshot",
+          "ms": 0.6999999955296516
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "commit",
+          "ms": 9.5
+        },
+        {
+          "operation": "start",
+          "component": "snapshot",
+          "ms": 2.600000001490116
+        },
+        {
+          "operation": "start",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "start",
+          "component": "call",
+          "ms": 1157.8999999985099
+        },
+        {
+          "operation": "start",
+          "component": "commit",
+          "ms": 10
+        },
+        {
+          "operation": "start",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "start",
+          "component": "call",
+          "ms": 0.8000000044703484
+        },
+        {
+          "operation": "birth",
+          "component": "snapshot",
+          "ms": 3
+        },
+        {
+          "operation": "birth",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "birth",
+          "component": "call",
+          "ms": 971
+        },
+        {
+          "operation": "birth",
+          "component": "commit",
+          "ms": 6.399999998509884
+        },
+        {
+          "operation": "birth",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "birth",
+          "component": "call",
+          "ms": 0.19999999552965164
+        },
+        {
+          "operation": "advance-100",
+          "component": "snapshot",
+          "ms": 3.100000001490116
+        },
+        {
+          "operation": "advance-100",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "advance-100",
+          "component": "call",
+          "ms": 312.20000000298023
+        },
+        {
+          "operation": "advance-100",
+          "component": "commit",
+          "ms": 16.399999998509884
+        },
+        {
+          "operation": "advance-100",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "advance-100",
+          "component": "call",
+          "ms": 0.29999999701976776
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "snapshot",
+          "ms": 3.7999999970197678
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "postMessage-sync-clone",
+          "ms": 0.3999999985098839
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "call",
+          "ms": 554.5
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "commit",
+          "ms": 21.19999999552965
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "call",
+          "ms": 0.30000000447034836
+        },
+        {
+          "operation": "warm-inspect",
+          "component": "snapshot",
+          "ms": 5.399999998509884
+        },
+        {
+          "operation": "warm-inspect",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "warm-inspect",
+          "component": "call",
+          "ms": 20.600000001490116
+        },
+        {
+          "operation": "cold-reconstruction",
+          "component": "snapshot",
+          "ms": 7.899999998509884
+        },
+        {
+          "operation": "cold-reconstruction",
+          "component": "call",
+          "ms": 811
+        }
+      ],
+      "longTasks": [],
+      "records": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 444289
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 490889
+        }
+      ],
+      "replay": {
+        "version": 1,
+        "checks": [
+          {
+            "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+            "checksum": "014a80fa"
+          }
+        ],
+        "durable": false
+      },
+      "storage": {
+        "quota": 10738388992,
+        "usage": 970752,
+        "usageDetails": {
+          "indexedDB": 970752
+        }
+      },
+      "heap": 33520760
+    },
+    {
+      "id": "eight-long",
+      "operations": [
+        {
+          "name": "migration-cold-validation",
+          "ms": 408.40000000596046,
+          "workerPreparationMs": null
+        },
+        {
+          "name": "start",
+          "ms": 1623.2999999970198,
+          "workerPreparationMs": 1593.3999999985099
+        },
+        {
+          "name": "birth",
+          "ms": 1367.7000000029802,
+          "workerPreparationMs": 1344.5
+        },
+        {
+          "name": "advance-100",
+          "ms": 416.5,
+          "workerPreparationMs": 372.59999999403954
+        },
+        {
+          "name": "advance-next-100",
+          "ms": 732.2000000029802,
+          "workerPreparationMs": 690.1999999955297
+        },
+        {
+          "name": "warm-inspect",
+          "ms": 35.600000001490116,
+          "workerPreparationMs": null
+        },
+        {
+          "name": "cold-reconstruction",
+          "ms": 1022.7999999970198,
+          "workerPreparationMs": null
+        }
+      ],
+      "metrics": [
+        {
+          "operation": "migration-cold-validation",
+          "component": "snapshot",
+          "ms": 0.5999999940395355
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "postMessage-sync-clone",
+          "ms": 0.20000000298023224
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "call",
+          "ms": 389.3999999985099
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "snapshot",
+          "ms": 0.8999999985098839
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "commit",
+          "ms": 6.399999998509884
+        },
+        {
+          "operation": "start",
+          "component": "snapshot",
+          "ms": 3.2000000029802322
+        },
+        {
+          "operation": "start",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "start",
+          "component": "call",
+          "ms": 1597.6000000014901
+        },
+        {
+          "operation": "start",
+          "component": "commit",
+          "ms": 19.700000002980232
+        },
+        {
+          "operation": "start",
+          "component": "postMessage-sync-clone",
+          "ms": 0
+        },
+        {
+          "operation": "start",
+          "component": "call",
+          "ms": 0.29999999701976776
+        },
+        {
+          "operation": "birth",
+          "component": "snapshot",
+          "ms": 9
+        },
+        {
+          "operation": "birth",
+          "component": "postMessage-sync-clone",
+          "ms": 0.09999999403953552
+        },
+        {
+          "operation": "birth",
+          "component": "call",
+          "ms": 1348.2999999970198
+        },
+        {
+          "operation": "birth",
+          "component": "commit",
+          "ms": 8.700000002980232
+        },
+        {
+          "operation": "birth",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "birth",
+          "component": "call",
+          "ms": 0.29999999701976776
+        },
+        {
+          "operation": "advance-100",
+          "component": "snapshot",
+          "ms": 4.300000004470348
+        },
+        {
+          "operation": "advance-100",
+          "component": "postMessage-sync-clone",
+          "ms": 0.19999999552965164
+        },
+        {
+          "operation": "advance-100",
+          "component": "call",
+          "ms": 378.59999999403954
+        },
+        {
+          "operation": "advance-100",
+          "component": "commit",
+          "ms": 27
+        },
+        {
+          "operation": "advance-100",
+          "component": "postMessage-sync-clone",
+          "ms": 0
+        },
+        {
+          "operation": "advance-100",
+          "component": "call",
+          "ms": 0.4000000059604645
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "snapshot",
+          "ms": 8.399999998509884
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "postMessage-sync-clone",
+          "ms": 0.29999999701976776
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "call",
+          "ms": 694.1000000014901
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "commit",
+          "ms": 26.100000001490116
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "postMessage-sync-clone",
+          "ms": 0
+        },
+        {
+          "operation": "advance-next-100",
+          "component": "call",
+          "ms": 0.29999999701976776
+        },
+        {
+          "operation": "warm-inspect",
+          "component": "snapshot",
+          "ms": 9
+        },
+        {
+          "operation": "warm-inspect",
+          "component": "postMessage-sync-clone",
+          "ms": 0.6000000014901161
+        },
+        {
+          "operation": "warm-inspect",
+          "component": "call",
+          "ms": 26.5
+        },
+        {
+          "operation": "cold-reconstruction",
+          "component": "snapshot",
+          "ms": 16.30000000447035
+        },
+        {
+          "operation": "cold-reconstruction",
+          "component": "call",
+          "ms": 1006.3999999985099
+        }
+      ],
+      "longTasks": [],
+      "records": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 643713
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 575918
+        }
+      ],
+      "replay": {
+        "version": 1,
+        "checks": [
+          {
+            "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+            "checksum": "d8446550"
+          }
+        ],
+        "durable": false
+      },
+      "storage": {
+        "quota": 10738597888,
+        "usage": 1179648,
+        "usageDetails": {
+          "indexedDB": 1179648
+        }
+      },
+      "heap": 11839849
+    },
+    {
+      "id": "retained",
+      "operations": [
+        {
+          "name": "migration-cold-validation",
+          "ms": 23521.20000000298,
+          "workerPreparationMs": null
+        },
+        {
+          "name": "nativePrepare",
+          "ms": 25473.70000000298,
+          "workerPreparationMs": 24245.5
+        },
+        {
+          "name": "official",
+          "ms": 15107.10000000149,
+          "workerPreparationMs": 13973.29999999702
+        },
+        {
+          "name": "backup",
+          "ms": 21366.80000000447,
+          "workerPreparationMs": null
+        },
+        {
+          "name": "warm-inspect",
+          "ms": 528.1000000014901,
+          "workerPreparationMs": null
+        },
+        {
+          "name": "cold-reconstruction",
+          "ms": 23354.60000000149,
+          "workerPreparationMs": null
+        }
+      ],
+      "metrics": [
+        {
+          "operation": "migration-cold-validation",
+          "component": "snapshot",
+          "ms": 3.2999999970197678
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "postMessage-sync-clone",
+          "ms": 24.100000001490116
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "call",
+          "ms": 21940.39999999851
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "snapshot",
+          "ms": 2.1999999955296516
+        },
+        {
+          "operation": "migration-cold-validation",
+          "component": "commit",
+          "ms": 724.2999999970198
+        },
+        {
+          "operation": "nativePrepare",
+          "component": "snapshot",
+          "ms": 175.79999999701977
+        },
+        {
+          "operation": "nativePrepare",
+          "component": "postMessage-sync-clone",
+          "ms": 22
+        },
+        {
+          "operation": "nativePrepare",
+          "component": "call",
+          "ms": 24321.70000000298
+        },
+        {
+          "operation": "nativePrepare",
+          "component": "commit",
+          "ms": 971.2999999970198
+        },
+        {
+          "operation": "nativePrepare",
+          "component": "postMessage-sync-clone",
+          "ms": 0.10000000149011612
+        },
+        {
+          "operation": "nativePrepare",
+          "component": "call",
+          "ms": 0.3999999985098839
+        },
+        {
+          "operation": "official",
+          "component": "snapshot",
+          "ms": 313.8999999985099
+        },
+        {
+          "operation": "official",
+          "component": "postMessage-sync-clone",
+          "ms": 18.100000001490116
+        },
+        {
+          "operation": "official",
+          "component": "call",
+          "ms": 14065.10000000149
+        },
+        {
+          "operation": "official",
+          "component": "commit",
+          "ms": 722.3999999985099
+        },
+        {
+          "operation": "official",
+          "component": "postMessage-sync-clone",
+          "ms": 0.09999999403953552
+        },
+        {
+          "operation": "official",
+          "component": "call",
+          "ms": 0.8999999985098839
+        },
+        {
+          "operation": "backup",
+          "component": "snapshot",
+          "ms": 203.29999999701977
+        },
+        {
+          "operation": "backup",
+          "component": "postMessage-sync-clone",
+          "ms": 166.5
+        },
+        {
+          "operation": "backup",
+          "component": "call",
+          "ms": 20837
+        },
+        {
+          "operation": "backup",
+          "component": "snapshot",
+          "ms": 190.10000000149012
+        },
+        {
+          "operation": "warm-inspect",
+          "component": "snapshot",
+          "ms": 171.69999999552965
+        },
+        {
+          "operation": "warm-inspect",
+          "component": "postMessage-sync-clone",
+          "ms": 18.299999997019768
+        },
+        {
+          "operation": "warm-inspect",
+          "component": "call",
+          "ms": 356.30000000447035
+        },
+        {
+          "operation": "cold-reconstruction",
+          "component": "snapshot",
+          "ms": 183.5
+        },
+        {
+          "operation": "cold-reconstruction",
+          "component": "call",
+          "ms": 23170.89999999851
+        }
+      ],
+      "longTasks": [
+        {
+          "start": 12308.5,
+          "duration": 50
+        },
+        {
+          "start": 24610.30000000447,
+          "duration": 86
+        },
+        {
+          "start": 24698.40000000596,
+          "duration": 525
+        },
+        {
+          "start": 25453.30000000447,
+          "duration": 417
+        },
+        {
+          "start": 25902.5,
+          "duration": 134
+        },
+        {
+          "start": 26294.30000000447,
+          "duration": 88
+        },
+        {
+          "start": 50685.60000000149,
+          "duration": 296
+        },
+        {
+          "start": 51165.30000000447,
+          "duration": 366
+        },
+        {
+          "start": 51687,
+          "duration": 75
+        },
+        {
+          "start": 51765.10000000149,
+          "duration": 142
+        },
+        {
+          "start": 51910.20000000298,
+          "duration": 84
+        },
+        {
+          "start": 66045.30000000447,
+          "duration": 167
+        },
+        {
+          "start": 66242,
+          "duration": 435
+        },
+        {
+          "start": 66804.10000000149,
+          "duration": 50
+        },
+        {
+          "start": 66899.90000000596,
+          "duration": 80
+        },
+        {
+          "start": 67045.20000000298,
+          "duration": 237
+        },
+        {
+          "start": 88073.90000000596,
+          "duration": 69
+        },
+        {
+          "start": 88171.10000000149,
+          "duration": 52
+        },
+        {
+          "start": 88258.40000000596,
+          "duration": 81
+        },
+        {
+          "start": 88797.20000000298,
+          "duration": 88
+        },
+        {
+          "start": 112099.40000000596,
+          "duration": 54
+        },
+        {
+          "start": 112200.60000000149,
+          "duration": 65
+        },
+        {
+          "start": 112365.80000000447,
+          "duration": 67
+        }
+      ],
+      "records": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 2246684
+        },
+        {
+          "key": "bnt.race.foundation.v1.064151803b653644574d1e5df31214f996f565b0fcefc870414ebddfafccf63d",
+          "bytes": 1399543
+        },
+        {
+          "key": "bnt.race.foundation.v1.229e4f5bc0cecfb1b6883fe2d44b1143ebcb219de627f17a75ec5b4c7c0c2531",
+          "bytes": 2422663
+        },
+        {
+          "key": "bnt.race.foundation.v1.25a6c0009aba2f896306bd0561ca067c30abc9ae9286a43d5c9789548d8bc298",
+          "bytes": 1901044
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 897465
+        },
+        {
+          "key": "bnt.race.foundation.v1.80641fd6ed777699508f12b3ad853a0e68b789e430e6b0e53175b88cbb324741",
+          "bytes": 1727579
+        },
+        {
+          "key": "bnt.race.foundation.v1.a199efe7aece0bd503355d8aa5d46d1b0ec0345102561fc2d178aaa9123e0f72",
+          "bytes": 1920975
+        },
+        {
+          "key": "bnt.race.foundation.v1.b4a6a24b907da5027e4448f73f579ac9bde527fca29ed0f658dbf9dc158eb0c9",
+          "bytes": 3553638
+        },
+        {
+          "key": "bnt.race.foundation.v1.c118f013ee21f3ea5e0c2db4a49088169f5ced3b7021bde62b57bd61ccc6a61f",
+          "bytes": 1745430
+        },
+        {
+          "key": "bnt.race.foundation.v1.d40e5dc738b7552473aa5216fc8bc489e9c3917924350dce4122be78d4e0d46c",
+          "bytes": 4886153
+        },
+        {
+          "key": "bnt.race.foundation.v1.df98a92b201d5278e38869bdf38ae24c5ccc01e07cab9ab2257845712b3f4f47",
+          "bytes": 2806676
+        },
+        {
+          "key": "bnt.race.foundation.v1.f53887308fb1dab1613d2dc0b52f574c190f0d7f76d0902984464438cbfd3a7c",
+          "bytes": 2356223
+        },
+        {
+          "key": "bnt.race.foundation.v1.f8325cdbbbc9280da2598969a6080d8344447fa8f87a7c81c1ae677603105e07",
+          "bytes": 2098719
+        }
+      ],
+      "replay": null,
+      "storage": {
+        "quota": 10827407360,
+        "usage": 89989120,
+        "usageDetails": {
+          "indexedDB": 89989120
+        }
+      },
+      "heap": 213225655
+    }
+  ]
+}

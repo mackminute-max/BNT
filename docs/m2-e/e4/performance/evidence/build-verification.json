@@ -1,0 +1,39 @@
+{
+  "source": "b8c090057052ac03bbed73d9487093da61381451",
+  "runs": [
+    {
+      "command": "npm run build",
+      "exit": 0,
+      "artifacts": [
+        {
+          "path": "dist/Blood_and_Thunder.html",
+          "bytes": 1047085,
+          "sha256": "8a9b73409a84517f2b0c72c265499434afcf14d94037a645bec553a6b1cba9a3"
+        },
+        {
+          "path": "dist/Blood-and-Thunder-Track-Test.html",
+          "bytes": 1047085,
+          "sha256": "8a9b73409a84517f2b0c72c265499434afcf14d94037a645bec553a6b1cba9a3"
+        }
+      ]
+    },
+    {
+      "command": "npm run build",
+      "exit": 0,
+      "artifacts": [
+        {
+          "path": "dist/Blood_and_Thunder.html",
+          "bytes": 1047085,
+          "sha256": "8a9b73409a84517f2b0c72c265499434afcf14d94037a645bec553a6b1cba9a3"
+        },
+        {
+          "path": "dist/Blood-and-Thunder-Track-Test.html",
+          "bytes": 1047085,
+          "sha256": "8a9b73409a84517f2b0c72c265499434afcf14d94037a645bec553a6b1cba9a3"
+        }
+      ]
+    }
+  ],
+  "reproducible": true,
+  "matchesCommittedArtifact": true
+}

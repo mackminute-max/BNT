@@ -1,0 +1,44 @@
+[
+  {
+    "iteration": 0,
+    "label": "baseline",
+    "ms": 241.09394699999984,
+    "checksum": "5f24106f",
+    "tick": 2100
+  },
+  {
+    "iteration": 0,
+    "label": "candidate",
+    "ms": 189.98768800000016,
+    "checksum": "5f24106f",
+    "tick": 2100
+  },
+  {
+    "iteration": 1,
+    "label": "baseline",
+    "ms": 228.0897019999993,
+    "checksum": "5f24106f",
+    "tick": 2100
+  },
+  {
+    "iteration": 1,
+    "label": "candidate",
+    "ms": 187.06485599999905,
+    "checksum": "5f24106f",
+    "tick": 2100
+  },
+  {
+    "iteration": 2,
+    "label": "baseline",
+    "ms": 215.3407960000004,
+    "checksum": "5f24106f",
+    "tick": 2100
+  },
+  {
+    "iteration": 2,
+    "label": "candidate",
+    "ms": 216.63320999999996,
+    "checksum": "5f24106f",
+    "tick": 2100
+  }
+]

@@ -1,0 +1,277 @@
+{
+  "instrumentation": "Inclusive/exclusive wall observers; observer overhead included; use uninstrumented profile for target comparisons",
+  "results": [
+    {
+      "id": "one-short",
+      "elapsedMs": 26.533277,
+      "checksum": "ae6517d6",
+      "matchesUninstrumented": true,
+      "observations": {
+        "/sim/consequences.js:resolveAttacks": {
+          "calls": 204,
+          "inclusiveMs": 0.3013309999997773,
+          "exclusiveMs": 0.3013309999997773
+        },
+        "/sim/race.js:attacks": {
+          "calls": 204,
+          "inclusiveMs": 0.5534060000002512,
+          "exclusiveMs": 0.2520750000004739
+        },
+        "/sim/consequences.js:flushImpacts": {
+          "calls": 208,
+          "inclusiveMs": 0.6217780000000346,
+          "exclusiveMs": 0.6217780000000346
+        },
+        "/sim/race.js:laneChanges": {
+          "calls": 204,
+          "inclusiveMs": 2.0354330000001255,
+          "exclusiveMs": 1.4172600000000841
+        },
+        "/events/events.js:emit": {
+          "calls": 14,
+          "inclusiveMs": 0.6679140000001098,
+          "exclusiveMs": 0.6679140000001098
+        },
+        "/sim/incidents.js:updateIncidents": {
+          "calls": 204,
+          "inclusiveMs": 0.5709589999999025,
+          "exclusiveMs": 0.5709589999999025
+        },
+        "/model/ru.js:derive": {
+          "calls": 112,
+          "inclusiveMs": 6.942120999999872,
+          "exclusiveMs": 6.942120999999872
+        },
+        "/sim/race.js:deriveAt": {
+          "calls": 108,
+          "inclusiveMs": 8.80673100000007,
+          "exclusiveMs": 2.034861000000177
+        },
+        "/ai/driver.js:decide": {
+          "calls": 100,
+          "inclusiveMs": 3.67179100000007,
+          "exclusiveMs": 3.1379349999999704
+        },
+        "/sim/race.js:motion": {
+          "calls": 104,
+          "inclusiveMs": 0.9628999999998769,
+          "exclusiveMs": 0.9628999999998769
+        },
+        "/sim/environment.js:integrateCondition": {
+          "calls": 104,
+          "inclusiveMs": 0.7252990000001205,
+          "exclusiveMs": 0.7252990000001205
+        },
+        "/sim/race.js:resolveForward": {
+          "calls": 4,
+          "inclusiveMs": 1.2760710000000017,
+          "exclusiveMs": 0.7960940000000392
+        }
+      }
+    },
+    {
+      "id": "four-circuit",
+      "elapsedMs": 38.270353,
+      "checksum": "e150b514",
+      "matchesUninstrumented": true,
+      "observations": {
+        "/sim/consequences.js:resolveAttacks": {
+          "calls": 214,
+          "inclusiveMs": 0.07422699999986548,
+          "exclusiveMs": 0.07422699999986548
+        },
+        "/sim/race.js:attacks": {
+          "calls": 214,
+          "inclusiveMs": 0.191604000000126,
+          "exclusiveMs": 0.11737700000026052
+        },
+        "/sim/consequences.js:flushImpacts": {
+          "calls": 228,
+          "inclusiveMs": 0.18555599999996275,
+          "exclusiveMs": 0.18555599999996275
+        },
+        "/sim/race.js:laneChanges": {
+          "calls": 214,
+          "inclusiveMs": 1.8453999999999837,
+          "exclusiveMs": 1.6688699999999983
+        },
+        "/events/events.js:emit": {
+          "calls": 50,
+          "inclusiveMs": 2.3878810000000215,
+          "exclusiveMs": 2.3878810000000215
+        },
+        "/sim/incidents.js:updateIncidents": {
+          "calls": 214,
+          "inclusiveMs": 0.17872799999960876,
+          "exclusiveMs": 0.17872799999960876
+        },
+        "/model/ru.js:derive": {
+          "calls": 435,
+          "inclusiveMs": 6.559319000000357,
+          "exclusiveMs": 6.559319000000357
+        },
+        "/sim/race.js:deriveAt": {
+          "calls": 427,
+          "inclusiveMs": 7.124937000000216,
+          "exclusiveMs": 0.6628929999997695
+        },
+        "/ai/driver.js:decide": {
+          "calls": 400,
+          "inclusiveMs": 9.298202000000543,
+          "exclusiveMs": 6.9787000000005435
+        },
+        "/sim/race.js:motion": {
+          "calls": 456,
+          "inclusiveMs": 0.9387989999997615,
+          "exclusiveMs": 0.9387989999997615
+        },
+        "/sim/environment.js:integrateCondition": {
+          "calls": 456,
+          "inclusiveMs": 0.6868599999997684,
+          "exclusiveMs": 0.6868599999997684
+        },
+        "/sim/race.js:resolveForward": {
+          "calls": 14,
+          "inclusiveMs": 1.241677999999979,
+          "exclusiveMs": 0.5137660000000039
+        }
+      }
+    },
+    {
+      "id": "eight-oval",
+      "elapsedMs": 87.44672400000002,
+      "checksum": "9096d261",
+      "matchesUninstrumented": true,
+      "observations": {
+        "/sim/consequences.js:resolveAttacks": {
+          "calls": 234,
+          "inclusiveMs": 0.17974300000008725,
+          "exclusiveMs": 0.17974300000008725
+        },
+        "/sim/race.js:attacks": {
+          "calls": 234,
+          "inclusiveMs": 0.42411500000025626,
+          "exclusiveMs": 0.244372000000169
+        },
+        "/sim/consequences.js:flushImpacts": {
+          "calls": 268,
+          "inclusiveMs": 0.37538799999998673,
+          "exclusiveMs": 0.37538799999998673
+        },
+        "/sim/race.js:laneChanges": {
+          "calls": 234,
+          "inclusiveMs": 3.133350999999948,
+          "exclusiveMs": 2.5952830000000517
+        },
+        "/events/events.js:emit": {
+          "calls": 136,
+          "inclusiveMs": 6.5327400000001035,
+          "exclusiveMs": 6.5327400000001035
+        },
+        "/sim/incidents.js:updateIncidents": {
+          "calls": 234,
+          "inclusiveMs": 0.34088899999954947,
+          "exclusiveMs": 0.34088899999954947
+        },
+        "/model/ru.js:derive": {
+          "calls": 853,
+          "inclusiveMs": 23.40200300000015,
+          "exclusiveMs": 23.40200300000015
+        },
+        "/sim/race.js:deriveAt": {
+          "calls": 845,
+          "inclusiveMs": 25.11587200000139,
+          "exclusiveMs": 1.9086170000010725
+        },
+        "/ai/driver.js:decide": {
+          "calls": 801,
+          "inclusiveMs": 21.410366000000067,
+          "exclusiveMs": 15.299907999999846
+        },
+        "/sim/race.js:motion": {
+          "calls": 1072,
+          "inclusiveMs": 1.9690730000006056,
+          "exclusiveMs": 1.9690730000006056
+        },
+        "/sim/environment.js:integrateCondition": {
+          "calls": 1072,
+          "inclusiveMs": 1.8775109999998563,
+          "exclusiveMs": 1.8775109999998563
+        },
+        "/sim/race.js:resolveForward": {
+          "calls": 34,
+          "inclusiveMs": 3.090027999999961,
+          "exclusiveMs": 1.3100900000000593
+        }
+      }
+    },
+    {
+      "id": "eight-long",
+      "elapsedMs": 118.77727599999997,
+      "checksum": "6b6b679f",
+      "matchesUninstrumented": true,
+      "observations": {
+        "/sim/consequences.js:resolveAttacks": {
+          "calls": 233,
+          "inclusiveMs": 0.1508690000003412,
+          "exclusiveMs": 0.1508690000003412
+        },
+        "/sim/race.js:attacks": {
+          "calls": 233,
+          "inclusiveMs": 0.30195599999916567,
+          "exclusiveMs": 0.15108699999882447
+        },
+        "/sim/consequences.js:flushImpacts": {
+          "calls": 266,
+          "inclusiveMs": 1.1867719999997348,
+          "exclusiveMs": 1.0795039999997584
+        },
+        "/sim/race.js:laneChanges": {
+          "calls": 233,
+          "inclusiveMs": 2.9797079999995617,
+          "exclusiveMs": 2.8297359999996843
+        },
+        "/events/events.js:emit": {
+          "calls": 177,
+          "inclusiveMs": 8.160734000000275,
+          "exclusiveMs": 8.160734000000275
+        },
+        "/sim/incidents.js:updateIncidents": {
+          "calls": 244,
+          "inclusiveMs": 0.2121969999992075,
+          "exclusiveMs": 0.2121969999992075
+        },
+        "/model/ru.js:derive": {
+          "calls": 828,
+          "inclusiveMs": 29.84509899999955,
+          "exclusiveMs": 29.84509899999955
+        },
+        "/sim/race.js:deriveAt": {
+          "calls": 828,
+          "inclusiveMs": 31.634348000000386,
+          "exclusiveMs": 1.7892490000008365
+        },
+        "/ai/driver.js:decide": {
+          "calls": 811,
+          "inclusiveMs": 33.19092399999903,
+          "exclusiveMs": 25.395032999998648
+        },
+        "/sim/race.js:motion": {
+          "calls": 1152,
+          "inclusiveMs": 3.458253999997055,
+          "exclusiveMs": 3.458253999997055
+        },
+        "/sim/environment.js:integrateCondition": {
+          "calls": 1152,
+          "inclusiveMs": 1.75032000000067,
+          "exclusiveMs": 1.75032000000067
+        },
+        "/sim/race.js:resolveForward": {
+          "calls": 33,
+          "inclusiveMs": 3.8863379999999097,
+          "exclusiveMs": 1.2100359999999455
+        }
+      }
+    }
+  ]
+}

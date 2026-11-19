@@ -1,0 +1,52 @@
+{
+  "observations": [
+    {
+      "iteration": 0,
+      "name": "baseline",
+      "encodeMs": 5638.921340999999,
+      "decodeMs": 3849.121658,
+      "encodedBytes": 6955742,
+      "rss": 739295232
+    },
+    {
+      "iteration": 0,
+      "name": "candidate",
+      "encodeMs": 2092.824038999999,
+      "decodeMs": 3965.2184049999996,
+      "encodedBytes": 6955742,
+      "rss": 988766208
+    },
+    {
+      "iteration": 1,
+      "name": "baseline",
+      "encodeMs": 5235.024769,
+      "decodeMs": 3582.2647609999985,
+      "encodedBytes": 6955742,
+      "rss": 1063149568
+    },
+    {
+      "iteration": 1,
+      "name": "candidate",
+      "encodeMs": 2073.5870710000017,
+      "decodeMs": 2683.9460980000003,
+      "encodedBytes": 6955742,
+      "rss": 1069424640
+    },
+    {
+      "iteration": 2,
+      "name": "baseline",
+      "encodeMs": 5486.150125,
+      "decodeMs": 3262.2572539999965,
+      "encodedBytes": 6955742,
+      "rss": 1064898560
+    },
+    {
+      "iteration": 2,
+      "name": "candidate",
+      "encodeMs": 2175.7271580000015,
+      "decodeMs": 3354.1344729999983,
+      "encodedBytes": 6955742,
+      "rss": 1064898560
+    }
+  ]
+}
