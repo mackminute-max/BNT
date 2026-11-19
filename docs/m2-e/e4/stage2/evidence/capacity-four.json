@@ -1,0 +1,179 @@
+{
+  "events": [
+    {
+      "index": 1,
+      "phase": "INTERMISSION_READY",
+      "tick": 929,
+      "status": "Ended",
+      "bytes": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 528847
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 372492
+        }
+      ],
+      "totalBytes": 974749,
+      "ops": [
+        {
+          "name": "start",
+          "ms": 5186.199999999255,
+          "workerMs": 5104.79999999702
+        },
+        {
+          "name": "birth",
+          "ms": 5856.10000000149,
+          "workerMs": 5768.89999999851
+        },
+        {
+          "name": "advance",
+          "ms": 8489.60000000149,
+          "workerMs": 8319.39999999851
+        },
+        {
+          "name": "publication",
+          "ms": 16058.20000000298
+        }
+      ],
+      "totalMs": 39247.39999999851,
+      "results": [
+        {
+          "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+          "resultId": "e2-result-5f62f4eb81a5cf9a51915bc9f146b68861e368d3"
+        }
+      ],
+      "storage": {
+        "quota": 10738294784,
+        "usage": 876544,
+        "usageDetails": {
+          "indexedDB": 876544
+        }
+      },
+      "peakHeap": 19145314
+    },
+    {
+      "index": 2,
+      "phase": "SETTLEMENT_PENDING",
+      "tick": 1717,
+      "status": "Ended",
+      "bytes": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 606965
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 372492
+        },
+        {
+          "key": "bnt.race.foundation.v1.229e4f5bc0cecfb1b6883fe2d44b1143ebcb219de627f17a75ec5b4c7c0c2531",
+          "bytes": 1033426
+        }
+      ],
+      "totalBytes": 2097392,
+      "ops": [
+        {
+          "name": "start",
+          "ms": 6503.800000000745,
+          "workerMs": 6330.89999999851
+        },
+        {
+          "name": "birth",
+          "ms": 7531.699999999255,
+          "workerMs": 7401.10000000149
+        },
+        {
+          "name": "advance",
+          "ms": 15947.20000000298,
+          "workerMs": 15776.5
+        },
+        {
+          "name": "advance",
+          "ms": 32091.10000000149,
+          "workerMs": 31730
+        },
+        {
+          "name": "publication",
+          "ms": 54230.300000000745
+        }
+      ],
+      "totalMs": 123482.5,
+      "results": [
+        {
+          "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+          "resultId": "e2-result-5f62f4eb81a5cf9a51915bc9f146b68861e368d3"
+        },
+        {
+          "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+          "resultId": "e2-result-629e5f3a256d271b21439cd6d5234971427f0eca"
+        }
+      ],
+      "storage": {
+        "quota": 10740371456,
+        "usage": 2953216,
+        "usageDetails": {
+          "indexedDB": 2953216
+        }
+      },
+      "peakHeap": 32989102
+    }
+  ],
+  "errors": [],
+  "replay": {
+    "version": 1,
+    "checks": [
+      {
+        "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+        "checksum": "fa43a07a"
+      },
+      {
+        "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+        "checksum": "bb5a9ce7"
+      }
+    ],
+    "durable": false
+  },
+  "final": {
+    "backupBytes": 4153340,
+    "backupMs": 41689.10000000149,
+    "longTasks": [
+      2417,
+      584,
+      550,
+      531,
+      524,
+      382,
+      312,
+      294,
+      285,
+      211,
+      204,
+      186,
+      178,
+      177,
+      159,
+      134,
+      120,
+      120,
+      118,
+      117
+    ],
+    "storage": {
+      "quota": 10740371456,
+      "usage": 2953216,
+      "usageDetails": {
+        "indexedDB": 2953216
+      }
+    }
+  },
+  "referenceComparison": {
+    "expected": null,
+    "actual": [
+      "fa43a07a",
+      "bb5a9ce7"
+    ],
+    "matched": null
+  }
+}

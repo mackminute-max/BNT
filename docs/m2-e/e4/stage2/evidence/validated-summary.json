@@ -1,0 +1,35 @@
+{
+  "pass": true,
+  "source": "a07c3d2ef3a97d47f349440e0533706d24f4a50f",
+  "node": {
+    "passed": 518,
+    "failed": 0,
+    "exit": 0
+  },
+  "liveCapacityEvents": 12,
+  "fullFieldReplayReferences": [
+    "21d66ebd",
+    "4ab34797",
+    "673e5fd0",
+    "67240955",
+    "9877754d",
+    "24dcb7d5",
+    "e7f766c9",
+    "8748547c",
+    "13466edf",
+    "f86a8fc5",
+    "02f4b543",
+    "964e1d49"
+  ],
+  "longRally": {
+    "tick": 4527,
+    "checkpoints": 46,
+    "browserChecksum": "aebb513e",
+    "nodeChecksum": "3cc91b8c",
+    "inheritedCrossRuntimeDifference": true
+  },
+  "finalUiGroups": 9,
+  "fileUiGroups": 3,
+  "retainedFinalSourceReplays": 12,
+  "rawCapacityProcessExits": "Not retained across tool-session interruption; results validated by this command. Do not infer recorded exits."
+}

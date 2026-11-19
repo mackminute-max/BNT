@@ -1,0 +1,4 @@
+PASS two distinct browser tabs cannot both commit the same generation
+PASS migration interruption at every durable boundary; denied intent and missing database never fall back
+PASS migration retry is independent of Web Storage key enumeration order
+PASS real IndexedDB quota enforcement on a cold origin preserves head

@@ -1,0 +1,19 @@
+{
+  "pass": true,
+  "historicalReferencesCompared": 12,
+  "freshPayrollReferencesCompared": 2,
+  "retainedPayrollReplayed": [
+    {
+      "format": "Pure",
+      "expected": "ad509187",
+      "actual": "ad509187",
+      "matched": true
+    },
+    {
+      "format": "Combat",
+      "expected": "f191ca35",
+      "actual": "f191ca35",
+      "matched": true
+    }
+  ]
+}

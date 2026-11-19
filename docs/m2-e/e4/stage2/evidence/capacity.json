@@ -1,0 +1,1316 @@
+{
+  "events": [
+    {
+      "index": 1,
+      "phase": "INTERMISSION_READY",
+      "tick": 962,
+      "status": "Ended",
+      "bytes": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 992590
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 897461
+        }
+      ],
+      "totalBytes": 2048789,
+      "ops": [
+        {
+          "name": "start",
+          "ms": 3622.199999999255,
+          "workerMs": 3583.7000000029802
+        },
+        {
+          "name": "birth",
+          "ms": 4251.20000000298,
+          "workerMs": 4209.10000000149
+        },
+        {
+          "name": "advance",
+          "ms": 4850.300000000745,
+          "workerMs": 4802.89999999851
+        },
+        {
+          "name": "publication",
+          "ms": 6980.5
+        }
+      ],
+      "totalMs": 22097.300000000745,
+      "results": [
+        {
+          "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+          "resultId": "e2-result-5f62f4eb81a5cf9a51915bc9f146b68861e368d3"
+        }
+      ],
+      "storage": {
+        "quota": 10739367936,
+        "usage": 1949696,
+        "usageDetails": {
+          "indexedDB": 1949696
+        }
+      },
+      "peakHeap": 38785116
+    },
+    {
+      "index": 2,
+      "phase": "INTERMISSION_READY",
+      "tick": 1789,
+      "status": "Ended",
+      "bytes": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 1112146
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 897461
+        },
+        {
+          "key": "bnt.race.foundation.v1.229e4f5bc0cecfb1b6883fe2d44b1143ebcb219de627f17a75ec5b4c7c0c2531",
+          "bytes": 2423004
+        }
+      ],
+      "totalBytes": 4608698,
+      "ops": [
+        {
+          "name": "start",
+          "ms": 4242.900000002235,
+          "workerMs": 4123.199999999255
+        },
+        {
+          "name": "birth",
+          "ms": 6771.89999999851,
+          "workerMs": 6673.60000000149
+        },
+        {
+          "name": "advance",
+          "ms": 9563.300000000745,
+          "workerMs": 9424.300000000745
+        },
+        {
+          "name": "advance",
+          "ms": 17502.10000000149,
+          "workerMs": 17300
+        },
+        {
+          "name": "publication",
+          "ms": 14891.199999999255
+        }
+      ],
+      "totalMs": 57222.199999999255,
+      "results": [
+        {
+          "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+          "resultId": "e2-result-5f62f4eb81a5cf9a51915bc9f146b68861e368d3"
+        },
+        {
+          "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+          "resultId": "e2-result-629e5f3a256d271b21439cd6d5234971427f0eca"
+        }
+      ],
+      "storage": {
+        "quota": 10744250368,
+        "usage": 6832128,
+        "usageDetails": {
+          "indexedDB": 6832128
+        }
+      },
+      "peakHeap": 59068644
+    },
+    {
+      "index": 3,
+      "phase": "INTERMISSION_READY",
+      "tick": 1626,
+      "status": "Ended",
+      "bytes": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 1221881
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 897461
+        },
+        {
+          "key": "bnt.race.foundation.v1.229e4f5bc0cecfb1b6883fe2d44b1143ebcb219de627f17a75ec5b4c7c0c2531",
+          "bytes": 2423004
+        },
+        {
+          "key": "bnt.race.foundation.v1.f8325cdbbbc9280da2598969a6080d8344447fa8f87a7c81c1ae677603105e07",
+          "bytes": 2099092
+        }
+      ],
+      "totalBytes": 6833542,
+      "ops": [
+        {
+          "name": "start",
+          "ms": 5106.300000000745,
+          "workerMs": 4916.60000000149
+        },
+        {
+          "name": "birth",
+          "ms": 7256.300000000745,
+          "workerMs": 7096.300000000745
+        },
+        {
+          "name": "advance",
+          "ms": 10237.60000000149,
+          "workerMs": 10071.10000000149
+        },
+        {
+          "name": "advance",
+          "ms": 16051.79999999702,
+          "workerMs": 15711.60000000149
+        },
+        {
+          "name": "publication",
+          "ms": 17522
+        }
+      ],
+      "totalMs": 61094.39999999851,
+      "results": [
+        {
+          "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+          "resultId": "e2-result-5f62f4eb81a5cf9a51915bc9f146b68861e368d3"
+        },
+        {
+          "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+          "resultId": "e2-result-629e5f3a256d271b21439cd6d5234971427f0eca"
+        },
+        {
+          "raceId": "e2-race-7d1c97d8827024607b476d6968d48dd02f1fdb6d",
+          "resultId": "e2-result-0d82203001c91d2af8011a888832a3600335f102"
+        }
+      ],
+      "storage": {
+        "quota": 10750750720,
+        "usage": 13332480,
+        "usageDetails": {
+          "indexedDB": 13332480
+        }
+      },
+      "peakHeap": 76963933
+    },
+    {
+      "index": 4,
+      "phase": "INTERMISSION_READY",
+      "tick": 1134,
+      "status": "Ended",
+      "bytes": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 1330702
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 897461
+        },
+        {
+          "key": "bnt.race.foundation.v1.229e4f5bc0cecfb1b6883fe2d44b1143ebcb219de627f17a75ec5b4c7c0c2531",
+          "bytes": 2423004
+        },
+        {
+          "key": "bnt.race.foundation.v1.f8325cdbbbc9280da2598969a6080d8344447fa8f87a7c81c1ae677603105e07",
+          "bytes": 2099092
+        },
+        {
+          "key": "bnt.race.foundation.v1.c118f013ee21f3ea5e0c2db4a49088169f5ced3b7021bde62b57bd61ccc6a61f",
+          "bytes": 1745779
+        }
+      ],
+      "totalBytes": 8703939,
+      "ops": [
+        {
+          "name": "start",
+          "ms": 6893.29999999702,
+          "workerMs": 6638.89999999851
+        },
+        {
+          "name": "birth",
+          "ms": 11444,
+          "workerMs": 10990.60000000149
+        },
+        {
+          "name": "advance",
+          "ms": 15592.29999999702,
+          "workerMs": 15114
+        },
+        {
+          "name": "advance",
+          "ms": 21919.20000000298,
+          "workerMs": 21109.89999999851
+        },
+        {
+          "name": "publication",
+          "ms": 38288.5
+        }
+      ],
+      "totalMs": 103906.59999999776,
+      "results": [
+        {
+          "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+          "resultId": "e2-result-5f62f4eb81a5cf9a51915bc9f146b68861e368d3"
+        },
+        {
+          "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+          "resultId": "e2-result-629e5f3a256d271b21439cd6d5234971427f0eca"
+        },
+        {
+          "raceId": "e2-race-7d1c97d8827024607b476d6968d48dd02f1fdb6d",
+          "resultId": "e2-result-0d82203001c91d2af8011a888832a3600335f102"
+        },
+        {
+          "raceId": "e2-race-704fce4943a15907ac94848addb15ffaa6dd1a12",
+          "resultId": "e2-result-e97a27420eb6a783cffeaa09428557c31160b0aa"
+        }
+      ],
+      "storage": {
+        "quota": 10754465792,
+        "usage": 17047552,
+        "usageDetails": {
+          "indexedDB": 17047552
+        }
+      },
+      "peakHeap": 115598967
+    },
+    {
+      "index": 5,
+      "phase": "INTERMISSION_READY",
+      "tick": 1910,
+      "status": "Ended",
+      "bytes": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 1448625
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 897461
+        },
+        {
+          "key": "bnt.race.foundation.v1.229e4f5bc0cecfb1b6883fe2d44b1143ebcb219de627f17a75ec5b4c7c0c2531",
+          "bytes": 2423004
+        },
+        {
+          "key": "bnt.race.foundation.v1.f8325cdbbbc9280da2598969a6080d8344447fa8f87a7c81c1ae677603105e07",
+          "bytes": 2099092
+        },
+        {
+          "key": "bnt.race.foundation.v1.c118f013ee21f3ea5e0c2db4a49088169f5ced3b7021bde62b57bd61ccc6a61f",
+          "bytes": 1745779
+        },
+        {
+          "key": "bnt.race.foundation.v1.a199efe7aece0bd503355d8aa5d46d1b0ec0345102561fc2d178aaa9123e0f72",
+          "bytes": 1921320
+        }
+      ],
+      "totalBytes": 10760495,
+      "ops": [
+        {
+          "name": "start",
+          "ms": 17069.699999999255,
+          "workerMs": 16538.60000000149
+        },
+        {
+          "name": "birth",
+          "ms": 15323.20000000298,
+          "workerMs": 14732
+        },
+        {
+          "name": "advance",
+          "ms": 30308.099999997765,
+          "workerMs": 29112.099999997765
+        },
+        {
+          "name": "advance",
+          "ms": 60663.400000002235,
+          "workerMs": 59059
+        },
+        {
+          "name": "publication",
+          "ms": 38567.79999999702
+        }
+      ],
+      "totalMs": 178264.40000000224,
+      "results": [
+        {
+          "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+          "resultId": "e2-result-5f62f4eb81a5cf9a51915bc9f146b68861e368d3"
+        },
+        {
+          "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+          "resultId": "e2-result-629e5f3a256d271b21439cd6d5234971427f0eca"
+        },
+        {
+          "raceId": "e2-race-7d1c97d8827024607b476d6968d48dd02f1fdb6d",
+          "resultId": "e2-result-0d82203001c91d2af8011a888832a3600335f102"
+        },
+        {
+          "raceId": "e2-race-704fce4943a15907ac94848addb15ffaa6dd1a12",
+          "resultId": "e2-result-e97a27420eb6a783cffeaa09428557c31160b0aa"
+        },
+        {
+          "raceId": "e2-race-65833ef48eeece11a54e5f6cd9b94b82a868f073",
+          "resultId": "e2-result-102bfe194988cf60a2b740fdc87a46cdfa1d2803"
+        }
+      ],
+      "storage": {
+        "quota": 10758549504,
+        "usage": 21131264,
+        "usageDetails": {
+          "indexedDB": 21131264
+        }
+      },
+      "peakHeap": 144221172
+    },
+    {
+      "index": 6,
+      "phase": "INTERMISSION_READY",
+      "tick": 1913,
+      "status": "Ended",
+      "bytes": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 1559105
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 897461
+        },
+        {
+          "key": "bnt.race.foundation.v1.229e4f5bc0cecfb1b6883fe2d44b1143ebcb219de627f17a75ec5b4c7c0c2531",
+          "bytes": 2423004
+        },
+        {
+          "key": "bnt.race.foundation.v1.f8325cdbbbc9280da2598969a6080d8344447fa8f87a7c81c1ae677603105e07",
+          "bytes": 2099092
+        },
+        {
+          "key": "bnt.race.foundation.v1.c118f013ee21f3ea5e0c2db4a49088169f5ced3b7021bde62b57bd61ccc6a61f",
+          "bytes": 1745779
+        },
+        {
+          "key": "bnt.race.foundation.v1.a199efe7aece0bd503355d8aa5d46d1b0ec0345102561fc2d178aaa9123e0f72",
+          "bytes": 1921320
+        },
+        {
+          "key": "bnt.race.foundation.v1.d40e5dc738b7552473aa5216fc8bc489e9c3917924350dce4122be78d4e0d46c",
+          "bytes": 4886550
+        }
+      ],
+      "totalBytes": 15773536,
+      "ops": [
+        {
+          "name": "start",
+          "ms": 24452.199999999255,
+          "workerMs": 23190.599999997765
+        },
+        {
+          "name": "birth",
+          "ms": 27810.400000002235,
+          "workerMs": 26840.10000000149
+        },
+        {
+          "name": "advance",
+          "ms": 80834.89999999851,
+          "workerMs": 79148.80000000075
+        },
+        {
+          "name": "advance",
+          "ms": 189539.3999999985,
+          "workerMs": 188193.6000000015
+        },
+        {
+          "name": "publication",
+          "ms": 117462.80000000075
+        }
+      ],
+      "totalMs": 468725.90000000224,
+      "results": [
+        {
+          "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+          "resultId": "e2-result-5f62f4eb81a5cf9a51915bc9f146b68861e368d3"
+        },
+        {
+          "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+          "resultId": "e2-result-629e5f3a256d271b21439cd6d5234971427f0eca"
+        },
+        {
+          "raceId": "e2-race-7d1c97d8827024607b476d6968d48dd02f1fdb6d",
+          "resultId": "e2-result-0d82203001c91d2af8011a888832a3600335f102"
+        },
+        {
+          "raceId": "e2-race-704fce4943a15907ac94848addb15ffaa6dd1a12",
+          "resultId": "e2-result-e97a27420eb6a783cffeaa09428557c31160b0aa"
+        },
+        {
+          "raceId": "e2-race-65833ef48eeece11a54e5f6cd9b94b82a868f073",
+          "resultId": "e2-result-102bfe194988cf60a2b740fdc87a46cdfa1d2803"
+        },
+        {
+          "raceId": "e2-race-d075ebc061fdbd75a48dec34cf4a417a97709652",
+          "resultId": "e2-result-1b21e2335593d81b55aa850f67252d4868316cbb"
+        }
+      ],
+      "storage": {
+        "quota": 10768551936,
+        "usage": 31133696,
+        "usageDetails": {
+          "indexedDB": 31133696
+        }
+      },
+      "peakHeap": 85550595
+    },
+    {
+      "index": 7,
+      "phase": "INTERMISSION_READY",
+      "tick": 1143,
+      "status": "Ended",
+      "bytes": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 1669336
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 897461
+        },
+        {
+          "key": "bnt.race.foundation.v1.229e4f5bc0cecfb1b6883fe2d44b1143ebcb219de627f17a75ec5b4c7c0c2531",
+          "bytes": 2423004
+        },
+        {
+          "key": "bnt.race.foundation.v1.f8325cdbbbc9280da2598969a6080d8344447fa8f87a7c81c1ae677603105e07",
+          "bytes": 2099092
+        },
+        {
+          "key": "bnt.race.foundation.v1.c118f013ee21f3ea5e0c2db4a49088169f5ced3b7021bde62b57bd61ccc6a61f",
+          "bytes": 1745779
+        },
+        {
+          "key": "bnt.race.foundation.v1.a199efe7aece0bd503355d8aa5d46d1b0ec0345102561fc2d178aaa9123e0f72",
+          "bytes": 1921320
+        },
+        {
+          "key": "bnt.race.foundation.v1.d40e5dc738b7552473aa5216fc8bc489e9c3917924350dce4122be78d4e0d46c",
+          "bytes": 4886550
+        },
+        {
+          "key": "bnt.race.foundation.v1.064151803b653644574d1e5df31214f996f565b0fcefc870414ebddfafccf63d",
+          "bytes": 1399928
+        }
+      ],
+      "totalBytes": 17299478,
+      "ops": [
+        {
+          "name": "start",
+          "ms": 22997.39999999851,
+          "workerMs": 21009.099999997765
+        },
+        {
+          "name": "birth",
+          "ms": 23027.300000000745,
+          "workerMs": 22185.800000000745
+        },
+        {
+          "name": "advance",
+          "ms": 16339.800000000745,
+          "workerMs": 15211.70000000298
+        },
+        {
+          "name": "advance",
+          "ms": 21864.699999999255,
+          "workerMs": 20776
+        },
+        {
+          "name": "publication",
+          "ms": 29251.199999999255
+        }
+      ],
+      "totalMs": 130196.10000000149,
+      "results": [
+        {
+          "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+          "resultId": "e2-result-5f62f4eb81a5cf9a51915bc9f146b68861e368d3"
+        },
+        {
+          "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+          "resultId": "e2-result-629e5f3a256d271b21439cd6d5234971427f0eca"
+        },
+        {
+          "raceId": "e2-race-7d1c97d8827024607b476d6968d48dd02f1fdb6d",
+          "resultId": "e2-result-0d82203001c91d2af8011a888832a3600335f102"
+        },
+        {
+          "raceId": "e2-race-704fce4943a15907ac94848addb15ffaa6dd1a12",
+          "resultId": "e2-result-e97a27420eb6a783cffeaa09428557c31160b0aa"
+        },
+        {
+          "raceId": "e2-race-65833ef48eeece11a54e5f6cd9b94b82a868f073",
+          "resultId": "e2-result-102bfe194988cf60a2b740fdc87a46cdfa1d2803"
+        },
+        {
+          "raceId": "e2-race-d075ebc061fdbd75a48dec34cf4a417a97709652",
+          "resultId": "e2-result-1b21e2335593d81b55aa850f67252d4868316cbb"
+        },
+        {
+          "raceId": "e2-race-91a78219985eb4ac39002059d0865ec767c2718a",
+          "resultId": "e2-result-0934d6a6c8981d863eafd7ee054339d8fd037e61"
+        }
+      ],
+      "storage": {
+        "quota": 10771574784,
+        "usage": 34156544,
+        "usageDetails": {
+          "indexedDB": 34156544
+        }
+      },
+      "peakHeap": 127334554
+    },
+    {
+      "index": 8,
+      "phase": "INTERMISSION_READY",
+      "tick": 1938,
+      "status": "Ended",
+      "bytes": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 1788461
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 897461
+        },
+        {
+          "key": "bnt.race.foundation.v1.229e4f5bc0cecfb1b6883fe2d44b1143ebcb219de627f17a75ec5b4c7c0c2531",
+          "bytes": 2423004
+        },
+        {
+          "key": "bnt.race.foundation.v1.f8325cdbbbc9280da2598969a6080d8344447fa8f87a7c81c1ae677603105e07",
+          "bytes": 2099092
+        },
+        {
+          "key": "bnt.race.foundation.v1.c118f013ee21f3ea5e0c2db4a49088169f5ced3b7021bde62b57bd61ccc6a61f",
+          "bytes": 1745779
+        },
+        {
+          "key": "bnt.race.foundation.v1.a199efe7aece0bd503355d8aa5d46d1b0ec0345102561fc2d178aaa9123e0f72",
+          "bytes": 1921320
+        },
+        {
+          "key": "bnt.race.foundation.v1.d40e5dc738b7552473aa5216fc8bc489e9c3917924350dce4122be78d4e0d46c",
+          "bytes": 4886550
+        },
+        {
+          "key": "bnt.race.foundation.v1.064151803b653644574d1e5df31214f996f565b0fcefc870414ebddfafccf63d",
+          "bytes": 1399928
+        },
+        {
+          "key": "bnt.race.foundation.v1.f53887308fb1dab1613d2dc0b52f574c190f0d7f76d0902984464438cbfd3a7c",
+          "bytes": 2356552
+        }
+      ],
+      "totalBytes": 19792450,
+      "ops": [
+        {
+          "name": "start",
+          "ms": 17617.10000000149,
+          "workerMs": 16828.60000000149
+        },
+        {
+          "name": "birth",
+          "ms": 23991.89999999851,
+          "workerMs": 23089.5
+        },
+        {
+          "name": "advance",
+          "ms": 24390.900000002235,
+          "workerMs": 22113.900000002235
+        },
+        {
+          "name": "advance",
+          "ms": 34165.10000000149,
+          "workerMs": 32495.5
+        },
+        {
+          "name": "publication",
+          "ms": 38042.29999999702
+        }
+      ],
+      "totalMs": 156419.30000000075,
+      "results": [
+        {
+          "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+          "resultId": "e2-result-5f62f4eb81a5cf9a51915bc9f146b68861e368d3"
+        },
+        {
+          "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+          "resultId": "e2-result-629e5f3a256d271b21439cd6d5234971427f0eca"
+        },
+        {
+          "raceId": "e2-race-7d1c97d8827024607b476d6968d48dd02f1fdb6d",
+          "resultId": "e2-result-0d82203001c91d2af8011a888832a3600335f102"
+        },
+        {
+          "raceId": "e2-race-704fce4943a15907ac94848addb15ffaa6dd1a12",
+          "resultId": "e2-result-e97a27420eb6a783cffeaa09428557c31160b0aa"
+        },
+        {
+          "raceId": "e2-race-65833ef48eeece11a54e5f6cd9b94b82a868f073",
+          "resultId": "e2-result-102bfe194988cf60a2b740fdc87a46cdfa1d2803"
+        },
+        {
+          "raceId": "e2-race-d075ebc061fdbd75a48dec34cf4a417a97709652",
+          "resultId": "e2-result-1b21e2335593d81b55aa850f67252d4868316cbb"
+        },
+        {
+          "raceId": "e2-race-91a78219985eb4ac39002059d0865ec767c2718a",
+          "resultId": "e2-result-0934d6a6c8981d863eafd7ee054339d8fd037e61"
+        },
+        {
+          "raceId": "e2-race-e692df0c070c3aa1b2ffb0e18627ef6d71ccc934",
+          "resultId": "e2-result-9d6820c6b0667802022f10c2f29fb763e9f8ba16"
+        }
+      ],
+      "storage": {
+        "quota": 10776530944,
+        "usage": 39112704,
+        "usageDetails": {
+          "indexedDB": 39112704
+        }
+      },
+      "peakHeap": 105516357
+    },
+    {
+      "index": 9,
+      "phase": "INTERMISSION_READY",
+      "tick": 1884,
+      "status": "Ended",
+      "bytes": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 1899278
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 897461
+        },
+        {
+          "key": "bnt.race.foundation.v1.229e4f5bc0cecfb1b6883fe2d44b1143ebcb219de627f17a75ec5b4c7c0c2531",
+          "bytes": 2423004
+        },
+        {
+          "key": "bnt.race.foundation.v1.f8325cdbbbc9280da2598969a6080d8344447fa8f87a7c81c1ae677603105e07",
+          "bytes": 2099092
+        },
+        {
+          "key": "bnt.race.foundation.v1.c118f013ee21f3ea5e0c2db4a49088169f5ced3b7021bde62b57bd61ccc6a61f",
+          "bytes": 1745779
+        },
+        {
+          "key": "bnt.race.foundation.v1.a199efe7aece0bd503355d8aa5d46d1b0ec0345102561fc2d178aaa9123e0f72",
+          "bytes": 1921320
+        },
+        {
+          "key": "bnt.race.foundation.v1.d40e5dc738b7552473aa5216fc8bc489e9c3917924350dce4122be78d4e0d46c",
+          "bytes": 4886550
+        },
+        {
+          "key": "bnt.race.foundation.v1.064151803b653644574d1e5df31214f996f565b0fcefc870414ebddfafccf63d",
+          "bytes": 1399928
+        },
+        {
+          "key": "bnt.race.foundation.v1.f53887308fb1dab1613d2dc0b52f574c190f0d7f76d0902984464438cbfd3a7c",
+          "bytes": 2356552
+        },
+        {
+          "key": "bnt.race.foundation.v1.df98a92b201d5278e38869bdf38ae24c5ccc01e07cab9ab2257845712b3f4f47",
+          "bytes": 2807025
+        }
+      ],
+      "totalBytes": 22726287,
+      "ops": [
+        {
+          "name": "start",
+          "ms": 23934.29999999702,
+          "workerMs": 22966.800000000745
+        },
+        {
+          "name": "birth",
+          "ms": 30362.699999999255,
+          "workerMs": 28336
+        },
+        {
+          "name": "advance",
+          "ms": 20007.699999999255,
+          "workerMs": 18965.70000000298
+        },
+        {
+          "name": "advance",
+          "ms": 43331,
+          "workerMs": 41028.699999999255
+        },
+        {
+          "name": "publication",
+          "ms": 44454.199999999255
+        }
+      ],
+      "totalMs": 180305.59999999776,
+      "results": [
+        {
+          "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+          "resultId": "e2-result-5f62f4eb81a5cf9a51915bc9f146b68861e368d3"
+        },
+        {
+          "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+          "resultId": "e2-result-629e5f3a256d271b21439cd6d5234971427f0eca"
+        },
+        {
+          "raceId": "e2-race-7d1c97d8827024607b476d6968d48dd02f1fdb6d",
+          "resultId": "e2-result-0d82203001c91d2af8011a888832a3600335f102"
+        },
+        {
+          "raceId": "e2-race-704fce4943a15907ac94848addb15ffaa6dd1a12",
+          "resultId": "e2-result-e97a27420eb6a783cffeaa09428557c31160b0aa"
+        },
+        {
+          "raceId": "e2-race-65833ef48eeece11a54e5f6cd9b94b82a868f073",
+          "resultId": "e2-result-102bfe194988cf60a2b740fdc87a46cdfa1d2803"
+        },
+        {
+          "raceId": "e2-race-d075ebc061fdbd75a48dec34cf4a417a97709652",
+          "resultId": "e2-result-1b21e2335593d81b55aa850f67252d4868316cbb"
+        },
+        {
+          "raceId": "e2-race-91a78219985eb4ac39002059d0865ec767c2718a",
+          "resultId": "e2-result-0934d6a6c8981d863eafd7ee054339d8fd037e61"
+        },
+        {
+          "raceId": "e2-race-e692df0c070c3aa1b2ffb0e18627ef6d71ccc934",
+          "resultId": "e2-result-9d6820c6b0667802022f10c2f29fb763e9f8ba16"
+        },
+        {
+          "raceId": "e2-race-e7bfd7739e7afd942bc2f04063e10bf951c9c550",
+          "resultId": "e2-result-52e2c942b6ad277faad129d683db56e0f7cce1fa"
+        }
+      ],
+      "storage": {
+        "quota": 10782371840,
+        "usage": 44953600,
+        "usageDetails": {
+          "indexedDB": 44953600
+        }
+      },
+      "peakHeap": 135664993
+    },
+    {
+      "index": 10,
+      "phase": "INTERMISSION_READY",
+      "tick": 1190,
+      "status": "Ended",
+      "bytes": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 2008953
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 897461
+        },
+        {
+          "key": "bnt.race.foundation.v1.229e4f5bc0cecfb1b6883fe2d44b1143ebcb219de627f17a75ec5b4c7c0c2531",
+          "bytes": 2423004
+        },
+        {
+          "key": "bnt.race.foundation.v1.f8325cdbbbc9280da2598969a6080d8344447fa8f87a7c81c1ae677603105e07",
+          "bytes": 2099092
+        },
+        {
+          "key": "bnt.race.foundation.v1.c118f013ee21f3ea5e0c2db4a49088169f5ced3b7021bde62b57bd61ccc6a61f",
+          "bytes": 1745779
+        },
+        {
+          "key": "bnt.race.foundation.v1.a199efe7aece0bd503355d8aa5d46d1b0ec0345102561fc2d178aaa9123e0f72",
+          "bytes": 1921320
+        },
+        {
+          "key": "bnt.race.foundation.v1.d40e5dc738b7552473aa5216fc8bc489e9c3917924350dce4122be78d4e0d46c",
+          "bytes": 4886550
+        },
+        {
+          "key": "bnt.race.foundation.v1.064151803b653644574d1e5df31214f996f565b0fcefc870414ebddfafccf63d",
+          "bytes": 1399928
+        },
+        {
+          "key": "bnt.race.foundation.v1.f53887308fb1dab1613d2dc0b52f574c190f0d7f76d0902984464438cbfd3a7c",
+          "bytes": 2356552
+        },
+        {
+          "key": "bnt.race.foundation.v1.df98a92b201d5278e38869bdf38ae24c5ccc01e07cab9ab2257845712b3f4f47",
+          "bytes": 2807025
+        },
+        {
+          "key": "bnt.race.foundation.v1.80641fd6ed777699508f12b3ad853a0e68b789e430e6b0e53175b88cbb324741",
+          "bytes": 1727924
+        }
+      ],
+      "totalBytes": 24579661,
+      "ops": [
+        {
+          "name": "start",
+          "ms": 28862,
+          "workerMs": 27425.60000000149
+        },
+        {
+          "name": "birth",
+          "ms": 36445.199999999255,
+          "workerMs": 34952
+        },
+        {
+          "name": "advance",
+          "ms": 33771.400000002235,
+          "workerMs": 30874.800000000745
+        },
+        {
+          "name": "advance",
+          "ms": 41290,
+          "workerMs": 38652.400000002235
+        },
+        {
+          "name": "publication",
+          "ms": 72248.09999999776
+        }
+      ],
+      "totalMs": 243301.5,
+      "results": [
+        {
+          "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+          "resultId": "e2-result-5f62f4eb81a5cf9a51915bc9f146b68861e368d3"
+        },
+        {
+          "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+          "resultId": "e2-result-629e5f3a256d271b21439cd6d5234971427f0eca"
+        },
+        {
+          "raceId": "e2-race-7d1c97d8827024607b476d6968d48dd02f1fdb6d",
+          "resultId": "e2-result-0d82203001c91d2af8011a888832a3600335f102"
+        },
+        {
+          "raceId": "e2-race-704fce4943a15907ac94848addb15ffaa6dd1a12",
+          "resultId": "e2-result-e97a27420eb6a783cffeaa09428557c31160b0aa"
+        },
+        {
+          "raceId": "e2-race-65833ef48eeece11a54e5f6cd9b94b82a868f073",
+          "resultId": "e2-result-102bfe194988cf60a2b740fdc87a46cdfa1d2803"
+        },
+        {
+          "raceId": "e2-race-d075ebc061fdbd75a48dec34cf4a417a97709652",
+          "resultId": "e2-result-1b21e2335593d81b55aa850f67252d4868316cbb"
+        },
+        {
+          "raceId": "e2-race-91a78219985eb4ac39002059d0865ec767c2718a",
+          "resultId": "e2-result-0934d6a6c8981d863eafd7ee054339d8fd037e61"
+        },
+        {
+          "raceId": "e2-race-e692df0c070c3aa1b2ffb0e18627ef6d71ccc934",
+          "resultId": "e2-result-9d6820c6b0667802022f10c2f29fb763e9f8ba16"
+        },
+        {
+          "raceId": "e2-race-e7bfd7739e7afd942bc2f04063e10bf951c9c550",
+          "resultId": "e2-result-52e2c942b6ad277faad129d683db56e0f7cce1fa"
+        },
+        {
+          "raceId": "e2-race-0dc8b4db8e45f67212c463338e2b29f7a9509287",
+          "resultId": "e2-result-0778ea0d5986ab4494abbac75da10085f7935e7a"
+        }
+      ],
+      "storage": {
+        "quota": 10786054144,
+        "usage": 48635904,
+        "usageDetails": {
+          "indexedDB": 48635904
+        }
+      },
+      "peakHeap": 105169973
+    },
+    {
+      "index": 11,
+      "phase": "INTERMISSION_READY",
+      "tick": 2007,
+      "status": "Ended",
+      "bytes": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 2128019
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 897461
+        },
+        {
+          "key": "bnt.race.foundation.v1.229e4f5bc0cecfb1b6883fe2d44b1143ebcb219de627f17a75ec5b4c7c0c2531",
+          "bytes": 2423004
+        },
+        {
+          "key": "bnt.race.foundation.v1.f8325cdbbbc9280da2598969a6080d8344447fa8f87a7c81c1ae677603105e07",
+          "bytes": 2099092
+        },
+        {
+          "key": "bnt.race.foundation.v1.c118f013ee21f3ea5e0c2db4a49088169f5ced3b7021bde62b57bd61ccc6a61f",
+          "bytes": 1745779
+        },
+        {
+          "key": "bnt.race.foundation.v1.a199efe7aece0bd503355d8aa5d46d1b0ec0345102561fc2d178aaa9123e0f72",
+          "bytes": 1921320
+        },
+        {
+          "key": "bnt.race.foundation.v1.d40e5dc738b7552473aa5216fc8bc489e9c3917924350dce4122be78d4e0d46c",
+          "bytes": 4886550
+        },
+        {
+          "key": "bnt.race.foundation.v1.064151803b653644574d1e5df31214f996f565b0fcefc870414ebddfafccf63d",
+          "bytes": 1399928
+        },
+        {
+          "key": "bnt.race.foundation.v1.f53887308fb1dab1613d2dc0b52f574c190f0d7f76d0902984464438cbfd3a7c",
+          "bytes": 2356552
+        },
+        {
+          "key": "bnt.race.foundation.v1.df98a92b201d5278e38869bdf38ae24c5ccc01e07cab9ab2257845712b3f4f47",
+          "bytes": 2807025
+        },
+        {
+          "key": "bnt.race.foundation.v1.80641fd6ed777699508f12b3ad853a0e68b789e430e6b0e53175b88cbb324741",
+          "bytes": 1727924
+        },
+        {
+          "key": "bnt.race.foundation.v1.25a6c0009aba2f896306bd0561ca067c30abc9ae9286a43d5c9789548d8bc298",
+          "bytes": 1901692
+        }
+      ],
+      "totalBytes": 26617742,
+      "ops": [
+        {
+          "name": "start",
+          "ms": 42432.300000000745,
+          "workerMs": 40756.60000000149
+        },
+        {
+          "name": "birth",
+          "ms": 64826.39999999851,
+          "workerMs": 63259.79999999702
+        },
+        {
+          "name": "advance",
+          "ms": 30322.10000000149,
+          "workerMs": 27488.800000000745
+        },
+        {
+          "name": "advance",
+          "ms": 60341.89999999851,
+          "workerMs": 57235.60000000149
+        },
+        {
+          "name": "advance",
+          "ms": 71301.69999999925,
+          "workerMs": 68438.80000000075
+        },
+        {
+          "name": "publication",
+          "ms": 79330.90000000224
+        }
+      ],
+      "totalMs": 392996.80000000075,
+      "results": [
+        {
+          "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+          "resultId": "e2-result-5f62f4eb81a5cf9a51915bc9f146b68861e368d3"
+        },
+        {
+          "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+          "resultId": "e2-result-629e5f3a256d271b21439cd6d5234971427f0eca"
+        },
+        {
+          "raceId": "e2-race-7d1c97d8827024607b476d6968d48dd02f1fdb6d",
+          "resultId": "e2-result-0d82203001c91d2af8011a888832a3600335f102"
+        },
+        {
+          "raceId": "e2-race-704fce4943a15907ac94848addb15ffaa6dd1a12",
+          "resultId": "e2-result-e97a27420eb6a783cffeaa09428557c31160b0aa"
+        },
+        {
+          "raceId": "e2-race-65833ef48eeece11a54e5f6cd9b94b82a868f073",
+          "resultId": "e2-result-102bfe194988cf60a2b740fdc87a46cdfa1d2803"
+        },
+        {
+          "raceId": "e2-race-d075ebc061fdbd75a48dec34cf4a417a97709652",
+          "resultId": "e2-result-1b21e2335593d81b55aa850f67252d4868316cbb"
+        },
+        {
+          "raceId": "e2-race-91a78219985eb4ac39002059d0865ec767c2718a",
+          "resultId": "e2-result-0934d6a6c8981d863eafd7ee054339d8fd037e61"
+        },
+        {
+          "raceId": "e2-race-e692df0c070c3aa1b2ffb0e18627ef6d71ccc934",
+          "resultId": "e2-result-9d6820c6b0667802022f10c2f29fb763e9f8ba16"
+        },
+        {
+          "raceId": "e2-race-e7bfd7739e7afd942bc2f04063e10bf951c9c550",
+          "resultId": "e2-result-52e2c942b6ad277faad129d683db56e0f7cce1fa"
+        },
+        {
+          "raceId": "e2-race-0dc8b4db8e45f67212c463338e2b29f7a9509287",
+          "resultId": "e2-result-0778ea0d5986ab4494abbac75da10085f7935e7a"
+        },
+        {
+          "raceId": "e2-race-4a47a19b056e8f6f51586615a1f4bef90412e804",
+          "resultId": "e2-result-ea523a58eb9db51701e62bd1b10d4ebf0f98a06d"
+        }
+      ],
+      "storage": {
+        "quota": 10790096896,
+        "usage": 52678656,
+        "usageDetails": {
+          "indexedDB": 52678656
+        }
+      },
+      "peakHeap": 86784382
+    },
+    {
+      "index": 12,
+      "phase": "SETTLEMENT_PENDING",
+      "tick": 1794,
+      "status": "Ended",
+      "bytes": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 2247239
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 897461
+        },
+        {
+          "key": "bnt.race.foundation.v1.229e4f5bc0cecfb1b6883fe2d44b1143ebcb219de627f17a75ec5b4c7c0c2531",
+          "bytes": 2423004
+        },
+        {
+          "key": "bnt.race.foundation.v1.f8325cdbbbc9280da2598969a6080d8344447fa8f87a7c81c1ae677603105e07",
+          "bytes": 2099092
+        },
+        {
+          "key": "bnt.race.foundation.v1.c118f013ee21f3ea5e0c2db4a49088169f5ced3b7021bde62b57bd61ccc6a61f",
+          "bytes": 1745779
+        },
+        {
+          "key": "bnt.race.foundation.v1.a199efe7aece0bd503355d8aa5d46d1b0ec0345102561fc2d178aaa9123e0f72",
+          "bytes": 1921320
+        },
+        {
+          "key": "bnt.race.foundation.v1.d40e5dc738b7552473aa5216fc8bc489e9c3917924350dce4122be78d4e0d46c",
+          "bytes": 4886550
+        },
+        {
+          "key": "bnt.race.foundation.v1.064151803b653644574d1e5df31214f996f565b0fcefc870414ebddfafccf63d",
+          "bytes": 1399928
+        },
+        {
+          "key": "bnt.race.foundation.v1.f53887308fb1dab1613d2dc0b52f574c190f0d7f76d0902984464438cbfd3a7c",
+          "bytes": 2356552
+        },
+        {
+          "key": "bnt.race.foundation.v1.df98a92b201d5278e38869bdf38ae24c5ccc01e07cab9ab2257845712b3f4f47",
+          "bytes": 2807025
+        },
+        {
+          "key": "bnt.race.foundation.v1.80641fd6ed777699508f12b3ad853a0e68b789e430e6b0e53175b88cbb324741",
+          "bytes": 1727924
+        },
+        {
+          "key": "bnt.race.foundation.v1.25a6c0009aba2f896306bd0561ca067c30abc9ae9286a43d5c9789548d8bc298",
+          "bytes": 1901692
+        },
+        {
+          "key": "bnt.race.foundation.v1.b4a6a24b907da5027e4448f73f579ac9bde527fca29ed0f658dbf9dc158eb0c9",
+          "bytes": 3553968
+        }
+      ],
+      "totalBytes": 30307461,
+      "ops": [
+        {
+          "name": "start",
+          "ms": 29727.800000000745,
+          "workerMs": 27150.099999997765
+        },
+        {
+          "name": "birth",
+          "ms": 63111.89999999851,
+          "workerMs": 60921.099999997765
+        },
+        {
+          "name": "advance",
+          "ms": 50493.60000000149,
+          "workerMs": 47415.5
+        },
+        {
+          "name": "advance",
+          "ms": 59616.800000000745,
+          "workerMs": 57984.10000000149
+        },
+        {
+          "name": "publication",
+          "ms": 62385.300000000745
+        }
+      ],
+      "totalMs": 296858.19999999925,
+      "results": [
+        {
+          "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+          "resultId": "e2-result-5f62f4eb81a5cf9a51915bc9f146b68861e368d3"
+        },
+        {
+          "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+          "resultId": "e2-result-629e5f3a256d271b21439cd6d5234971427f0eca"
+        },
+        {
+          "raceId": "e2-race-7d1c97d8827024607b476d6968d48dd02f1fdb6d",
+          "resultId": "e2-result-0d82203001c91d2af8011a888832a3600335f102"
+        },
+        {
+          "raceId": "e2-race-704fce4943a15907ac94848addb15ffaa6dd1a12",
+          "resultId": "e2-result-e97a27420eb6a783cffeaa09428557c31160b0aa"
+        },
+        {
+          "raceId": "e2-race-65833ef48eeece11a54e5f6cd9b94b82a868f073",
+          "resultId": "e2-result-102bfe194988cf60a2b740fdc87a46cdfa1d2803"
+        },
+        {
+          "raceId": "e2-race-d075ebc061fdbd75a48dec34cf4a417a97709652",
+          "resultId": "e2-result-1b21e2335593d81b55aa850f67252d4868316cbb"
+        },
+        {
+          "raceId": "e2-race-91a78219985eb4ac39002059d0865ec767c2718a",
+          "resultId": "e2-result-0934d6a6c8981d863eafd7ee054339d8fd037e61"
+        },
+        {
+          "raceId": "e2-race-e692df0c070c3aa1b2ffb0e18627ef6d71ccc934",
+          "resultId": "e2-result-9d6820c6b0667802022f10c2f29fb763e9f8ba16"
+        },
+        {
+          "raceId": "e2-race-e7bfd7739e7afd942bc2f04063e10bf951c9c550",
+          "resultId": "e2-result-52e2c942b6ad277faad129d683db56e0f7cce1fa"
+        },
+        {
+          "raceId": "e2-race-0dc8b4db8e45f67212c463338e2b29f7a9509287",
+          "resultId": "e2-result-0778ea0d5986ab4494abbac75da10085f7935e7a"
+        },
+        {
+          "raceId": "e2-race-4a47a19b056e8f6f51586615a1f4bef90412e804",
+          "resultId": "e2-result-ea523a58eb9db51701e62bd1b10d4ebf0f98a06d"
+        },
+        {
+          "raceId": "e2-race-639a0a5adc69088bba5b2f27b0ae947fc189ace6",
+          "resultId": "e2-result-ad2ea83361e029220c368f46c67e2b001cadbed3"
+        }
+      ],
+      "storage": {
+        "quota": 10797445120,
+        "usage": 60026880,
+        "usageDetails": {
+          "indexedDB": 60026880
+        }
+      },
+      "peakHeap": 200512986
+    }
+  ],
+  "errors": [],
+  "replay": {
+    "version": 1,
+    "checks": [
+      {
+        "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+        "checksum": "21d66ebd"
+      },
+      {
+        "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+        "checksum": "4ab34797"
+      },
+      {
+        "raceId": "e2-race-7d1c97d8827024607b476d6968d48dd02f1fdb6d",
+        "checksum": "673e5fd0"
+      },
+      {
+        "raceId": "e2-race-704fce4943a15907ac94848addb15ffaa6dd1a12",
+        "checksum": "67240955"
+      },
+      {
+        "raceId": "e2-race-65833ef48eeece11a54e5f6cd9b94b82a868f073",
+        "checksum": "9877754d"
+      },
+      {
+        "raceId": "e2-race-d075ebc061fdbd75a48dec34cf4a417a97709652",
+        "checksum": "24dcb7d5"
+      },
+      {
+        "raceId": "e2-race-91a78219985eb4ac39002059d0865ec767c2718a",
+        "checksum": "e7f766c9"
+      },
+      {
+        "raceId": "e2-race-e692df0c070c3aa1b2ffb0e18627ef6d71ccc934",
+        "checksum": "8748547c"
+      },
+      {
+        "raceId": "e2-race-e7bfd7739e7afd942bc2f04063e10bf951c9c550",
+        "checksum": "13466edf"
+      },
+      {
+        "raceId": "e2-race-0dc8b4db8e45f67212c463338e2b29f7a9509287",
+        "checksum": "f86a8fc5"
+      },
+      {
+        "raceId": "e2-race-4a47a19b056e8f6f51586615a1f4bef90412e804",
+        "checksum": "02f4b543"
+      },
+      {
+        "raceId": "e2-race-639a0a5adc69088bba5b2f27b0ae947fc189ace6",
+        "checksum": "964e1d49"
+      }
+    ],
+    "durable": false
+  },
+  "final": {
+    "backupBytes": 60538346,
+    "backupMs": 158869.8999999985,
+    "longTasks": [
+      1518,
+      1382,
+      1308,
+      1289,
+      1213,
+      1165,
+      1138,
+      1130,
+      978,
+      967,
+      960,
+      895,
+      866,
+      863,
+      851,
+      837,
+      816,
+      807,
+      782,
+      771
+    ],
+    "storage": {
+      "quota": 10797445120,
+      "usage": 60026880,
+      "usageDetails": {
+        "indexedDB": 60026880
+      }
+    }
+  }
+}

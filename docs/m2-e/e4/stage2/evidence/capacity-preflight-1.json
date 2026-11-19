@@ -1,0 +1,2430 @@
+{
+  "sourceBaseline": "1cde0b0a6d6f49fc3a87ca886e87fd79cd501948",
+  "fixture": {
+    "course": {
+      "id": "rally-long-1",
+      "name": "Generated long Rally · 1",
+      "kind": "Rally",
+      "closed": false,
+      "lanes": 4,
+      "segments": [
+        {
+          "id": "sector-0",
+          "length": 80,
+          "turn": 0,
+          "terrain": "gravel",
+          "tiles": 10,
+          "next": "sector-1"
+        },
+        {
+          "id": "sector-1",
+          "length": 30,
+          "turn": 0,
+          "terrain": "mud",
+          "tiles": 4,
+          "next": "sector-2"
+        },
+        {
+          "id": "sector-2",
+          "length": 26.878070480712676,
+          "turn": -55,
+          "terrain": "mud",
+          "tiles": 4,
+          "next": "sector-3"
+        },
+        {
+          "id": "sector-3",
+          "length": 26.878070480712676,
+          "turn": 55,
+          "terrain": "mud",
+          "tiles": 4,
+          "next": "sector-4"
+        },
+        {
+          "id": "sector-4",
+          "length": 20,
+          "turn": 0,
+          "terrain": "mud",
+          "tiles": 3,
+          "next": "sector-5"
+        },
+        {
+          "id": "sector-5",
+          "length": 29.845130209103033,
+          "turn": -45,
+          "terrain": "stone",
+          "tiles": 4,
+          "next": "sector-6"
+        },
+        {
+          "id": "sector-6",
+          "length": 59.690260418206066,
+          "turn": 90,
+          "terrain": "stone",
+          "tiles": 8,
+          "next": "sector-7"
+        },
+        {
+          "id": "sector-7",
+          "length": 29.845130209103033,
+          "turn": -45,
+          "terrain": "stone",
+          "tiles": 4,
+          "next": "sector-8"
+        },
+        {
+          "id": "sector-8",
+          "length": 70,
+          "turn": 0,
+          "terrain": "stone",
+          "tiles": 9,
+          "next": "sector-9"
+        },
+        {
+          "id": "sector-9",
+          "length": 145,
+          "turn": 0,
+          "terrain": "dirt",
+          "tiles": 19,
+          "next": "sector-10"
+        },
+        {
+          "id": "sector-10",
+          "length": 33.59758810089084,
+          "turn": 35,
+          "terrain": "stone",
+          "tiles": 5,
+          "next": "sector-11"
+        },
+        {
+          "id": "sector-11",
+          "length": 25,
+          "turn": 0,
+          "terrain": "stone",
+          "tiles": 4,
+          "next": "sector-12"
+        },
+        {
+          "id": "sector-12",
+          "length": 33.59758810089084,
+          "turn": -35,
+          "terrain": "stone",
+          "tiles": 5,
+          "next": "sector-13"
+        },
+        {
+          "id": "sector-13",
+          "length": 180,
+          "turn": 0,
+          "terrain": "sand",
+          "tiles": 23,
+          "next": "sector-14"
+        },
+        {
+          "id": "sector-14",
+          "length": 40.840704496667314,
+          "turn": 65,
+          "terrain": "gravel",
+          "tiles": 6,
+          "next": "sector-15"
+        },
+        {
+          "id": "sector-15",
+          "length": 25,
+          "turn": 0,
+          "terrain": "gravel",
+          "tiles": 4,
+          "next": "sector-16"
+        },
+        {
+          "id": "sector-16",
+          "length": 40.840704496667314,
+          "turn": -65,
+          "terrain": "gravel",
+          "tiles": 6,
+          "next": "sector-17"
+        },
+        {
+          "id": "sector-17",
+          "length": 55,
+          "turn": 0,
+          "terrain": "dirt",
+          "tiles": 7,
+          "next": "sector-18"
+        },
+        {
+          "id": "sector-18",
+          "length": 45,
+          "turn": 0,
+          "terrain": "stone",
+          "tiles": 6,
+          "next": "sector-19"
+        },
+        {
+          "id": "sector-19",
+          "length": 55,
+          "turn": 0,
+          "terrain": "mud",
+          "tiles": 7,
+          "next": "sector-20"
+        },
+        {
+          "id": "sector-20",
+          "length": 145,
+          "turn": 0,
+          "terrain": "gravel",
+          "tiles": 19,
+          "next": "sector-21"
+        },
+        {
+          "id": "sector-21",
+          "length": 30,
+          "turn": 0,
+          "terrain": "dirt",
+          "tiles": 4,
+          "next": "sector-22"
+        },
+        {
+          "id": "sector-22",
+          "length": 26.878070480712676,
+          "turn": -55,
+          "terrain": "dirt",
+          "tiles": 4,
+          "next": "sector-23"
+        },
+        {
+          "id": "sector-23",
+          "length": 26.878070480712676,
+          "turn": 55,
+          "terrain": "dirt",
+          "tiles": 4,
+          "next": "sector-24"
+        },
+        {
+          "id": "sector-24",
+          "length": 20,
+          "turn": 0,
+          "terrain": "dirt",
+          "tiles": 3,
+          "next": "sector-25"
+        },
+        {
+          "id": "sector-25",
+          "length": 180,
+          "turn": 0,
+          "terrain": "stone",
+          "tiles": 23,
+          "next": "sector-26"
+        },
+        {
+          "id": "sector-26",
+          "length": 33.59758810089084,
+          "turn": 35,
+          "terrain": "dirt",
+          "tiles": 5,
+          "next": "sector-27"
+        },
+        {
+          "id": "sector-27",
+          "length": 25,
+          "turn": 0,
+          "terrain": "dirt",
+          "tiles": 4,
+          "next": "sector-28"
+        },
+        {
+          "id": "sector-28",
+          "length": 33.59758810089084,
+          "turn": -35,
+          "terrain": "dirt",
+          "tiles": 5,
+          "next": "sector-29"
+        },
+        {
+          "id": "sector-29",
+          "length": 160,
+          "turn": 0,
+          "terrain": "gravel",
+          "tiles": 20,
+          "next": "sector-30"
+        },
+        {
+          "id": "sector-30",
+          "length": 24.434609527920614,
+          "turn": 20,
+          "terrain": "gravel",
+          "tiles": 4,
+          "next": "sector-31"
+        },
+        {
+          "id": "sector-31",
+          "length": 24.434609527920614,
+          "turn": -20,
+          "terrain": "gravel",
+          "tiles": 4,
+          "next": "sector-32"
+        },
+        {
+          "id": "sector-32",
+          "length": 31.415926535897928,
+          "turn": -60,
+          "terrain": "stone",
+          "tiles": 4,
+          "next": "sector-33"
+        },
+        {
+          "id": "sector-33",
+          "length": 47.12388980384689,
+          "turn": 90,
+          "terrain": "stone",
+          "tiles": 6,
+          "next": "sector-34"
+        },
+        {
+          "id": "sector-34",
+          "length": 15.707963267948964,
+          "turn": -30,
+          "terrain": "stone",
+          "tiles": 2,
+          "next": "sector-35"
+        },
+        {
+          "id": "sector-35",
+          "length": 25,
+          "turn": 0,
+          "terrain": "stone",
+          "tiles": 4,
+          "next": "sector-36"
+        },
+        {
+          "id": "sector-36",
+          "length": 29.845130209103033,
+          "turn": -45,
+          "terrain": "dirt",
+          "tiles": 4,
+          "next": "sector-37"
+        },
+        {
+          "id": "sector-37",
+          "length": 59.690260418206066,
+          "turn": 90,
+          "terrain": "dirt",
+          "tiles": 8,
+          "next": "sector-38"
+        },
+        {
+          "id": "sector-38",
+          "length": 29.845130209103033,
+          "turn": -45,
+          "terrain": "dirt",
+          "tiles": 4,
+          "next": "sector-39"
+        },
+        {
+          "id": "sector-39",
+          "length": 33.59758810089084,
+          "turn": 35,
+          "terrain": "stone",
+          "tiles": 5,
+          "next": "sector-40"
+        },
+        {
+          "id": "sector-40",
+          "length": 25,
+          "turn": 0,
+          "terrain": "stone",
+          "tiles": 4,
+          "next": "sector-41"
+        },
+        {
+          "id": "sector-41",
+          "length": 33.59758810089084,
+          "turn": -35,
+          "terrain": "stone",
+          "tiles": 5,
+          "next": "sector-42"
+        },
+        {
+          "id": "sector-42",
+          "length": 55,
+          "turn": 0,
+          "terrain": "dirt",
+          "tiles": 7,
+          "next": "sector-43"
+        },
+        {
+          "id": "sector-43",
+          "length": 145,
+          "turn": 0,
+          "terrain": "gravel",
+          "tiles": 19,
+          "next": "sector-44"
+        },
+        {
+          "id": "sector-44",
+          "length": 29.845130209103033,
+          "turn": -45,
+          "terrain": "mud",
+          "tiles": 4,
+          "next": "sector-45"
+        },
+        {
+          "id": "sector-45",
+          "length": 59.690260418206066,
+          "turn": 90,
+          "terrain": "mud",
+          "tiles": 8,
+          "next": "sector-46"
+        },
+        {
+          "id": "sector-46",
+          "length": 29.845130209103033,
+          "turn": -45,
+          "terrain": "mud",
+          "tiles": 4,
+          "next": "sector-47"
+        },
+        {
+          "id": "sector-47",
+          "length": 70,
+          "turn": 0,
+          "terrain": "gravel",
+          "tiles": 9,
+          "next": "sector-48"
+        },
+        {
+          "id": "sector-48",
+          "length": 180,
+          "turn": 0,
+          "terrain": "gravel",
+          "tiles": 23,
+          "next": "sector-49"
+        },
+        {
+          "id": "sector-49",
+          "length": 80,
+          "turn": 0,
+          "terrain": "stone",
+          "tiles": 10,
+          "next": null
+        }
+      ],
+      "checkpoints": [
+        {
+          "id": "CP1",
+          "distance": 690.5094451735753
+        },
+        {
+          "id": "CP2",
+          "distance": 1381.0188903471505
+        },
+        {
+          "id": "CP3",
+          "distance": 2071.5283355207257
+        }
+      ],
+      "generation": {
+        "version": 1,
+        "seed": 1,
+        "category": "long",
+        "terrainProfile": "balanced",
+        "attempt": 0,
+        "fallback": false,
+        "chunks": [
+          "narrow-passage",
+          "s-left-right",
+          "rough-section",
+          "long-straight",
+          "gentle-right",
+          "wide-passing",
+          "sharp-right",
+          "short-straight",
+          "terrain-transition",
+          "long-straight",
+          "narrow-passage",
+          "wide-passing",
+          "gentle-right",
+          "fast-open",
+          "technical-combination",
+          "s-left-right",
+          "gentle-right",
+          "short-straight",
+          "long-straight",
+          "s-left-right",
+          "rough-section",
+          "wide-passing"
+        ],
+        "options": {
+          "seed": 1,
+          "category": "long",
+          "terrainProfile": "balanced",
+          "terrainWeights": {
+            "dirt": 4,
+            "stone": 3,
+            "gravel": 2,
+            "sand": 1,
+            "mud": 1
+          },
+          "turnFrequency": 0.55,
+          "turnSeverity": 0.5,
+          "chunks": 22,
+          "maxAttempts": 12,
+          "laneWidth": 4,
+          "chunkLibrary": {
+            "short-straight": [
+              {
+                "length": 55,
+                "turn": 0
+              }
+            ],
+            "medium-straight": [
+              {
+                "length": 90,
+                "turn": 0
+              }
+            ],
+            "long-straight": [
+              {
+                "length": 145,
+                "turn": 0
+              }
+            ],
+            "gentle-left": [
+              {
+                "length": 33.59758810089084,
+                "turn": -35
+              },
+              {
+                "length": 25,
+                "turn": 0
+              },
+              {
+                "length": 33.59758810089084,
+                "turn": 35
+              }
+            ],
+            "gentle-right": [
+              {
+                "length": 33.59758810089084,
+                "turn": 35
+              },
+              {
+                "length": 25,
+                "turn": 0
+              },
+              {
+                "length": 33.59758810089084,
+                "turn": -35
+              }
+            ],
+            "sharp-left": [
+              {
+                "length": 40.840704496667314,
+                "turn": -65
+              },
+              {
+                "length": 25,
+                "turn": 0
+              },
+              {
+                "length": 40.840704496667314,
+                "turn": 65
+              }
+            ],
+            "sharp-right": [
+              {
+                "length": 40.840704496667314,
+                "turn": 65
+              },
+              {
+                "length": 25,
+                "turn": 0
+              },
+              {
+                "length": 40.840704496667314,
+                "turn": -65
+              }
+            ],
+            "hairpin-left": [
+              {
+                "length": 99.48376736367679,
+                "turn": -150
+              },
+              {
+                "length": 40,
+                "turn": 0
+              },
+              {
+                "length": 99.48376736367679,
+                "turn": 150
+              }
+            ],
+            "hairpin-right": [
+              {
+                "length": 99.48376736367679,
+                "turn": 150
+              },
+              {
+                "length": 40,
+                "turn": 0
+              },
+              {
+                "length": 99.48376736367679,
+                "turn": -150
+              }
+            ],
+            "s-left-right": [
+              {
+                "length": 29.845130209103033,
+                "turn": -45
+              },
+              {
+                "length": 59.690260418206066,
+                "turn": 90
+              },
+              {
+                "length": 29.845130209103033,
+                "turn": -45
+              }
+            ],
+            "s-right-left": [
+              {
+                "length": 29.845130209103033,
+                "turn": 45
+              },
+              {
+                "length": 59.690260418206066,
+                "turn": -90
+              },
+              {
+                "length": 29.845130209103033,
+                "turn": 45
+              }
+            ],
+            "narrow-passage": [
+              {
+                "length": 30,
+                "turn": 0
+              },
+              {
+                "length": 26.878070480712676,
+                "turn": -55
+              },
+              {
+                "length": 26.878070480712676,
+                "turn": 55
+              },
+              {
+                "length": 20,
+                "turn": 0
+              }
+            ],
+            "wide-passing": [
+              {
+                "length": 180,
+                "turn": 0
+              }
+            ],
+            "rough-section": [
+              {
+                "length": 70,
+                "turn": 0
+              }
+            ],
+            "terrain-transition": [
+              {
+                "length": 45,
+                "turn": 0
+              },
+              {
+                "length": 55,
+                "turn": 0
+              }
+            ],
+            "technical-combination": [
+              {
+                "length": 31.415926535897928,
+                "turn": -60
+              },
+              {
+                "length": 47.12388980384689,
+                "turn": 90
+              },
+              {
+                "length": 15.707963267948964,
+                "turn": -30
+              },
+              {
+                "length": 25,
+                "turn": 0
+              }
+            ],
+            "fast-open": [
+              {
+                "length": 160,
+                "turn": 0
+              },
+              {
+                "length": 24.434609527920614,
+                "turn": 20
+              },
+              {
+                "length": 24.434609527920614,
+                "turn": -20
+              }
+            ]
+          }
+        }
+      }
+    },
+    "setup": {
+      "course": {
+        "id": "rally-long-1",
+        "name": "Generated long Rally · 1",
+        "kind": "Rally",
+        "closed": false,
+        "lanes": 4,
+        "segments": [
+          {
+            "id": "sector-0",
+            "length": 80,
+            "turn": 0,
+            "terrain": "gravel",
+            "tiles": 10,
+            "next": "sector-1",
+            "surface": {
+              "grip": 0.8,
+              "roughness": 0.3,
+              "rollingResistance": 1.08,
+              "hazardModifier": 1.3
+            }
+          },
+          {
+            "id": "sector-1",
+            "length": 30,
+            "turn": 0,
+            "terrain": "mud",
+            "tiles": 4,
+            "next": "sector-2",
+            "surface": {
+              "grip": 0.6,
+              "roughness": 0.5,
+              "rollingResistance": 1.25,
+              "hazardModifier": 1.4
+            }
+          },
+          {
+            "id": "sector-2",
+            "length": 26.878070480712676,
+            "turn": -55,
+            "terrain": "mud",
+            "tiles": 4,
+            "next": "sector-3",
+            "surface": {
+              "grip": 0.6,
+              "roughness": 0.5,
+              "rollingResistance": 1.25,
+              "hazardModifier": 1.4
+            }
+          },
+          {
+            "id": "sector-3",
+            "length": 26.878070480712676,
+            "turn": 55,
+            "terrain": "mud",
+            "tiles": 4,
+            "next": "sector-4",
+            "surface": {
+              "grip": 0.6,
+              "roughness": 0.5,
+              "rollingResistance": 1.25,
+              "hazardModifier": 1.4
+            }
+          },
+          {
+            "id": "sector-4",
+            "length": 20,
+            "turn": 0,
+            "terrain": "mud",
+            "tiles": 3,
+            "next": "sector-5",
+            "surface": {
+              "grip": 0.6,
+              "roughness": 0.5,
+              "rollingResistance": 1.25,
+              "hazardModifier": 1.4
+            }
+          },
+          {
+            "id": "sector-5",
+            "length": 29.845130209103033,
+            "turn": -45,
+            "terrain": "stone",
+            "tiles": 4,
+            "next": "sector-6",
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          },
+          {
+            "id": "sector-6",
+            "length": 59.690260418206066,
+            "turn": 90,
+            "terrain": "stone",
+            "tiles": 8,
+            "next": "sector-7",
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          },
+          {
+            "id": "sector-7",
+            "length": 29.845130209103033,
+            "turn": -45,
+            "terrain": "stone",
+            "tiles": 4,
+            "next": "sector-8",
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          },
+          {
+            "id": "sector-8",
+            "length": 70,
+            "turn": 0,
+            "terrain": "stone",
+            "tiles": 9,
+            "next": "sector-9",
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          },
+          {
+            "id": "sector-9",
+            "length": 145,
+            "turn": 0,
+            "terrain": "dirt",
+            "tiles": 19,
+            "next": "sector-10",
+            "surface": {
+              "grip": 1,
+              "roughness": 0.12,
+              "rollingResistance": 1,
+              "hazardModifier": 1
+            }
+          },
+          {
+            "id": "sector-10",
+            "length": 33.59758810089084,
+            "turn": 35,
+            "terrain": "stone",
+            "tiles": 5,
+            "next": "sector-11",
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          },
+          {
+            "id": "sector-11",
+            "length": 25,
+            "turn": 0,
+            "terrain": "stone",
+            "tiles": 4,
+            "next": "sector-12",
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          },
+          {
+            "id": "sector-12",
+            "length": 33.59758810089084,
+            "turn": -35,
+            "terrain": "stone",
+            "tiles": 5,
+            "next": "sector-13",
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          },
+          {
+            "id": "sector-13",
+            "length": 180,
+            "turn": 0,
+            "terrain": "sand",
+            "tiles": 23,
+            "next": "sector-14",
+            "surface": {
+              "grip": 0.7,
+              "roughness": 0.4,
+              "rollingResistance": 1.2,
+              "hazardModifier": 0.9
+            }
+          },
+          {
+            "id": "sector-14",
+            "length": 40.840704496667314,
+            "turn": 65,
+            "terrain": "gravel",
+            "tiles": 6,
+            "next": "sector-15",
+            "surface": {
+              "grip": 0.8,
+              "roughness": 0.3,
+              "rollingResistance": 1.08,
+              "hazardModifier": 1.3
+            }
+          },
+          {
+            "id": "sector-15",
+            "length": 25,
+            "turn": 0,
+            "terrain": "gravel",
+            "tiles": 4,
+            "next": "sector-16",
+            "surface": {
+              "grip": 0.8,
+              "roughness": 0.3,
+              "rollingResistance": 1.08,
+              "hazardModifier": 1.3
+            }
+          },
+          {
+            "id": "sector-16",
+            "length": 40.840704496667314,
+            "turn": -65,
+            "terrain": "gravel",
+            "tiles": 6,
+            "next": "sector-17",
+            "surface": {
+              "grip": 0.8,
+              "roughness": 0.3,
+              "rollingResistance": 1.08,
+              "hazardModifier": 1.3
+            }
+          },
+          {
+            "id": "sector-17",
+            "length": 55,
+            "turn": 0,
+            "terrain": "dirt",
+            "tiles": 7,
+            "next": "sector-18",
+            "surface": {
+              "grip": 1,
+              "roughness": 0.12,
+              "rollingResistance": 1,
+              "hazardModifier": 1
+            }
+          },
+          {
+            "id": "sector-18",
+            "length": 45,
+            "turn": 0,
+            "terrain": "stone",
+            "tiles": 6,
+            "next": "sector-19",
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          },
+          {
+            "id": "sector-19",
+            "length": 55,
+            "turn": 0,
+            "terrain": "mud",
+            "tiles": 7,
+            "next": "sector-20",
+            "surface": {
+              "grip": 0.6,
+              "roughness": 0.5,
+              "rollingResistance": 1.25,
+              "hazardModifier": 1.4
+            }
+          },
+          {
+            "id": "sector-20",
+            "length": 145,
+            "turn": 0,
+            "terrain": "gravel",
+            "tiles": 19,
+            "next": "sector-21",
+            "surface": {
+              "grip": 0.8,
+              "roughness": 0.3,
+              "rollingResistance": 1.08,
+              "hazardModifier": 1.3
+            }
+          },
+          {
+            "id": "sector-21",
+            "length": 30,
+            "turn": 0,
+            "terrain": "dirt",
+            "tiles": 4,
+            "next": "sector-22",
+            "surface": {
+              "grip": 1,
+              "roughness": 0.12,
+              "rollingResistance": 1,
+              "hazardModifier": 1
+            }
+          },
+          {
+            "id": "sector-22",
+            "length": 26.878070480712676,
+            "turn": -55,
+            "terrain": "dirt",
+            "tiles": 4,
+            "next": "sector-23",
+            "surface": {
+              "grip": 1,
+              "roughness": 0.12,
+              "rollingResistance": 1,
+              "hazardModifier": 1
+            }
+          },
+          {
+            "id": "sector-23",
+            "length": 26.878070480712676,
+            "turn": 55,
+            "terrain": "dirt",
+            "tiles": 4,
+            "next": "sector-24",
+            "surface": {
+              "grip": 1,
+              "roughness": 0.12,
+              "rollingResistance": 1,
+              "hazardModifier": 1
+            }
+          },
+          {
+            "id": "sector-24",
+            "length": 20,
+            "turn": 0,
+            "terrain": "dirt",
+            "tiles": 3,
+            "next": "sector-25",
+            "surface": {
+              "grip": 1,
+              "roughness": 0.12,
+              "rollingResistance": 1,
+              "hazardModifier": 1
+            }
+          },
+          {
+            "id": "sector-25",
+            "length": 180,
+            "turn": 0,
+            "terrain": "stone",
+            "tiles": 23,
+            "next": "sector-26",
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          },
+          {
+            "id": "sector-26",
+            "length": 33.59758810089084,
+            "turn": 35,
+            "terrain": "dirt",
+            "tiles": 5,
+            "next": "sector-27",
+            "surface": {
+              "grip": 1,
+              "roughness": 0.12,
+              "rollingResistance": 1,
+              "hazardModifier": 1
+            }
+          },
+          {
+            "id": "sector-27",
+            "length": 25,
+            "turn": 0,
+            "terrain": "dirt",
+            "tiles": 4,
+            "next": "sector-28",
+            "surface": {
+              "grip": 1,
+              "roughness": 0.12,
+              "rollingResistance": 1,
+              "hazardModifier": 1
+            }
+          },
+          {
+            "id": "sector-28",
+            "length": 33.59758810089084,
+            "turn": -35,
+            "terrain": "dirt",
+            "tiles": 5,
+            "next": "sector-29",
+            "surface": {
+              "grip": 1,
+              "roughness": 0.12,
+              "rollingResistance": 1,
+              "hazardModifier": 1
+            }
+          },
+          {
+            "id": "sector-29",
+            "length": 160,
+            "turn": 0,
+            "terrain": "gravel",
+            "tiles": 20,
+            "next": "sector-30",
+            "surface": {
+              "grip": 0.8,
+              "roughness": 0.3,
+              "rollingResistance": 1.08,
+              "hazardModifier": 1.3
+            }
+          },
+          {
+            "id": "sector-30",
+            "length": 24.434609527920614,
+            "turn": 20,
+            "terrain": "gravel",
+            "tiles": 4,
+            "next": "sector-31",
+            "surface": {
+              "grip": 0.8,
+              "roughness": 0.3,
+              "rollingResistance": 1.08,
+              "hazardModifier": 1.3
+            }
+          },
+          {
+            "id": "sector-31",
+            "length": 24.434609527920614,
+            "turn": -20,
+            "terrain": "gravel",
+            "tiles": 4,
+            "next": "sector-32",
+            "surface": {
+              "grip": 0.8,
+              "roughness": 0.3,
+              "rollingResistance": 1.08,
+              "hazardModifier": 1.3
+            }
+          },
+          {
+            "id": "sector-32",
+            "length": 31.415926535897928,
+            "turn": -60,
+            "terrain": "stone",
+            "tiles": 4,
+            "next": "sector-33",
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          },
+          {
+            "id": "sector-33",
+            "length": 47.12388980384689,
+            "turn": 90,
+            "terrain": "stone",
+            "tiles": 6,
+            "next": "sector-34",
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          },
+          {
+            "id": "sector-34",
+            "length": 15.707963267948964,
+            "turn": -30,
+            "terrain": "stone",
+            "tiles": 2,
+            "next": "sector-35",
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          },
+          {
+            "id": "sector-35",
+            "length": 25,
+            "turn": 0,
+            "terrain": "stone",
+            "tiles": 4,
+            "next": "sector-36",
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          },
+          {
+            "id": "sector-36",
+            "length": 29.845130209103033,
+            "turn": -45,
+            "terrain": "dirt",
+            "tiles": 4,
+            "next": "sector-37",
+            "surface": {
+              "grip": 1,
+              "roughness": 0.12,
+              "rollingResistance": 1,
+              "hazardModifier": 1
+            }
+          },
+          {
+            "id": "sector-37",
+            "length": 59.690260418206066,
+            "turn": 90,
+            "terrain": "dirt",
+            "tiles": 8,
+            "next": "sector-38",
+            "surface": {
+              "grip": 1,
+              "roughness": 0.12,
+              "rollingResistance": 1,
+              "hazardModifier": 1
+            }
+          },
+          {
+            "id": "sector-38",
+            "length": 29.845130209103033,
+            "turn": -45,
+            "terrain": "dirt",
+            "tiles": 4,
+            "next": "sector-39",
+            "surface": {
+              "grip": 1,
+              "roughness": 0.12,
+              "rollingResistance": 1,
+              "hazardModifier": 1
+            }
+          },
+          {
+            "id": "sector-39",
+            "length": 33.59758810089084,
+            "turn": 35,
+            "terrain": "stone",
+            "tiles": 5,
+            "next": "sector-40",
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          },
+          {
+            "id": "sector-40",
+            "length": 25,
+            "turn": 0,
+            "terrain": "stone",
+            "tiles": 4,
+            "next": "sector-41",
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          },
+          {
+            "id": "sector-41",
+            "length": 33.59758810089084,
+            "turn": -35,
+            "terrain": "stone",
+            "tiles": 5,
+            "next": "sector-42",
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          },
+          {
+            "id": "sector-42",
+            "length": 55,
+            "turn": 0,
+            "terrain": "dirt",
+            "tiles": 7,
+            "next": "sector-43",
+            "surface": {
+              "grip": 1,
+              "roughness": 0.12,
+              "rollingResistance": 1,
+              "hazardModifier": 1
+            }
+          },
+          {
+            "id": "sector-43",
+            "length": 145,
+            "turn": 0,
+            "terrain": "gravel",
+            "tiles": 19,
+            "next": "sector-44",
+            "surface": {
+              "grip": 0.8,
+              "roughness": 0.3,
+              "rollingResistance": 1.08,
+              "hazardModifier": 1.3
+            }
+          },
+          {
+            "id": "sector-44",
+            "length": 29.845130209103033,
+            "turn": -45,
+            "terrain": "mud",
+            "tiles": 4,
+            "next": "sector-45",
+            "surface": {
+              "grip": 0.6,
+              "roughness": 0.5,
+              "rollingResistance": 1.25,
+              "hazardModifier": 1.4
+            }
+          },
+          {
+            "id": "sector-45",
+            "length": 59.690260418206066,
+            "turn": 90,
+            "terrain": "mud",
+            "tiles": 8,
+            "next": "sector-46",
+            "surface": {
+              "grip": 0.6,
+              "roughness": 0.5,
+              "rollingResistance": 1.25,
+              "hazardModifier": 1.4
+            }
+          },
+          {
+            "id": "sector-46",
+            "length": 29.845130209103033,
+            "turn": -45,
+            "terrain": "mud",
+            "tiles": 4,
+            "next": "sector-47",
+            "surface": {
+              "grip": 0.6,
+              "roughness": 0.5,
+              "rollingResistance": 1.25,
+              "hazardModifier": 1.4
+            }
+          },
+          {
+            "id": "sector-47",
+            "length": 70,
+            "turn": 0,
+            "terrain": "gravel",
+            "tiles": 9,
+            "next": "sector-48",
+            "surface": {
+              "grip": 0.8,
+              "roughness": 0.3,
+              "rollingResistance": 1.08,
+              "hazardModifier": 1.3
+            }
+          },
+          {
+            "id": "sector-48",
+            "length": 180,
+            "turn": 0,
+            "terrain": "gravel",
+            "tiles": 23,
+            "next": "sector-49",
+            "surface": {
+              "grip": 0.8,
+              "roughness": 0.3,
+              "rollingResistance": 1.08,
+              "hazardModifier": 1.3
+            }
+          },
+          {
+            "id": "sector-49",
+            "length": 80,
+            "turn": 0,
+            "terrain": "stone",
+            "tiles": 10,
+            "next": null,
+            "surface": {
+              "grip": 1.1,
+              "roughness": 0.03,
+              "rollingResistance": 0.95,
+              "hazardModifier": 0.7
+            }
+          }
+        ],
+        "checkpoints": [
+          {
+            "id": "CP1",
+            "distance": 690.5094451735753
+          },
+          {
+            "id": "CP2",
+            "distance": 1381.0188903471505
+          },
+          {
+            "id": "CP3",
+            "distance": 2071.5283355207257
+          }
+        ],
+        "generation": {
+          "version": 1,
+          "seed": 1,
+          "category": "long",
+          "terrainProfile": "balanced",
+          "attempt": 0,
+          "fallback": false,
+          "chunks": [
+            "narrow-passage",
+            "s-left-right",
+            "rough-section",
+            "long-straight",
+            "gentle-right",
+            "wide-passing",
+            "sharp-right",
+            "short-straight",
+            "terrain-transition",
+            "long-straight",
+            "narrow-passage",
+            "wide-passing",
+            "gentle-right",
+            "fast-open",
+            "technical-combination",
+            "s-left-right",
+            "gentle-right",
+            "short-straight",
+            "long-straight",
+            "s-left-right",
+            "rough-section",
+            "wide-passing"
+          ],
+          "options": {
+            "seed": 1,
+            "category": "long",
+            "terrainProfile": "balanced",
+            "terrainWeights": {
+              "dirt": 4,
+              "stone": 3,
+              "gravel": 2,
+              "sand": 1,
+              "mud": 1
+            },
+            "turnFrequency": 0.55,
+            "turnSeverity": 0.5,
+            "chunks": 22,
+            "maxAttempts": 12,
+            "laneWidth": 4,
+            "chunkLibrary": {
+              "short-straight": [
+                {
+                  "length": 55,
+                  "turn": 0
+                }
+              ],
+              "medium-straight": [
+                {
+                  "length": 90,
+                  "turn": 0
+                }
+              ],
+              "long-straight": [
+                {
+                  "length": 145,
+                  "turn": 0
+                }
+              ],
+              "gentle-left": [
+                {
+                  "length": 33.59758810089084,
+                  "turn": -35
+                },
+                {
+                  "length": 25,
+                  "turn": 0
+                },
+                {
+                  "length": 33.59758810089084,
+                  "turn": 35
+                }
+              ],
+              "gentle-right": [
+                {
+                  "length": 33.59758810089084,
+                  "turn": 35
+                },
+                {
+                  "length": 25,
+                  "turn": 0
+                },
+                {
+                  "length": 33.59758810089084,
+                  "turn": -35
+                }
+              ],
+              "sharp-left": [
+                {
+                  "length": 40.840704496667314,
+                  "turn": -65
+                },
+                {
+                  "length": 25,
+                  "turn": 0
+                },
+                {
+                  "length": 40.840704496667314,
+                  "turn": 65
+                }
+              ],
+              "sharp-right": [
+                {
+                  "length": 40.840704496667314,
+                  "turn": 65
+                },
+                {
+                  "length": 25,
+                  "turn": 0
+                },
+                {
+                  "length": 40.840704496667314,
+                  "turn": -65
+                }
+              ],
+              "hairpin-left": [
+                {
+                  "length": 99.48376736367679,
+                  "turn": -150
+                },
+                {
+                  "length": 40,
+                  "turn": 0
+                },
+                {
+                  "length": 99.48376736367679,
+                  "turn": 150
+                }
+              ],
+              "hairpin-right": [
+                {
+                  "length": 99.48376736367679,
+                  "turn": 150
+                },
+                {
+                  "length": 40,
+                  "turn": 0
+                },
+                {
+                  "length": 99.48376736367679,
+                  "turn": -150
+                }
+              ],
+              "s-left-right": [
+                {
+                  "length": 29.845130209103033,
+                  "turn": -45
+                },
+                {
+                  "length": 59.690260418206066,
+                  "turn": 90
+                },
+                {
+                  "length": 29.845130209103033,
+                  "turn": -45
+                }
+              ],
+              "s-right-left": [
+                {
+                  "length": 29.845130209103033,
+                  "turn": 45
+                },
+                {
+                  "length": 59.690260418206066,
+                  "turn": -90
+                },
+                {
+                  "length": 29.845130209103033,
+                  "turn": 45
+                }
+              ],
+              "narrow-passage": [
+                {
+                  "length": 30,
+                  "turn": 0
+                },
+                {
+                  "length": 26.878070480712676,
+                  "turn": -55
+                },
+                {
+                  "length": 26.878070480712676,
+                  "turn": 55
+                },
+                {
+                  "length": 20,
+                  "turn": 0
+                }
+              ],
+              "wide-passing": [
+                {
+                  "length": 180,
+                  "turn": 0
+                }
+              ],
+              "rough-section": [
+                {
+                  "length": 70,
+                  "turn": 0
+                }
+              ],
+              "terrain-transition": [
+                {
+                  "length": 45,
+                  "turn": 0
+                },
+                {
+                  "length": 55,
+                  "turn": 0
+                }
+              ],
+              "technical-combination": [
+                {
+                  "length": 31.415926535897928,
+                  "turn": -60
+                },
+                {
+                  "length": 47.12388980384689,
+                  "turn": 90
+                },
+                {
+                  "length": 15.707963267948964,
+                  "turn": -30
+                },
+                {
+                  "length": 25,
+                  "turn": 0
+                }
+              ],
+              "fast-open": [
+                {
+                  "length": 160,
+                  "turn": 0
+                },
+                {
+                  "length": 24.434609527920614,
+                  "turn": 20
+                },
+                {
+                  "length": 24.434609527920614,
+                  "turn": -20
+                }
+              ]
+            }
+          }
+        }
+      },
+      "seed": 1499551426,
+      "overrides": {
+        "schema": 1,
+        "dt": 0.05,
+        "epsilon": 1e-9,
+        "positionEpsilon": 1e-8,
+        "maxSubevents": 1024,
+        "laps": 1,
+        "lanes": 4,
+        "straightLength": 160,
+        "innerRadius": 35,
+        "laneWidth": 4,
+        "straightTiles": 20,
+        "turnTiles": 20,
+        "gridGap": 2,
+        "gridOffset": 0.5,
+        "grip": 1,
+        "speedReference": 18,
+        "accelerationReference": 3,
+        "accelerationLimit": 8,
+        "brakingReference": 6,
+        "lateralReference": 5,
+        "referenceMass": 300,
+        "referencePower": 100,
+        "driverMass": 75,
+        "beastLoadMass": 10,
+        "bottleneck": 0.3,
+        "mismatchWeight": 0.12,
+        "attributeStrength": 0.8,
+        "cornerRisk": 0.4,
+        "cornerSpeedLoss": 0.25,
+        "clearSpeed": 10,
+        "exitTiles": 3,
+        "finishTolerance": 0.001,
+        "maxRaceTime": 1200,
+        "stallTime": 20,
+        "tuning": {
+          "crowdSensitivity": 0.2,
+          "coordinationBase": 0.65,
+          "coordinationDiscipline": 0.25,
+          "coordinationHandling": 0.2,
+          "coordinationMin": 0.5,
+          "coordinationMax": 1.1,
+          "impairment": 0.5,
+          "handlingAgility": 0.35,
+          "handlingManeuverability": 0.25,
+          "handlingDriving": 0.25,
+          "handlingStability": 0.15,
+          "controlDiscipline": 0.3,
+          "controlDriving": 0.25,
+          "controlHandling": 0.25,
+          "controlStability": 0.2,
+          "massExponent": 0.5,
+          "speedMassExponent": 0.25,
+          "chariotSpeedFloor": 0.5,
+          "combatSkill": 0.6,
+          "combatEquipment": 0.2,
+          "combatControl": 0.2,
+          "paceConserve": 0.6,
+          "paceMaintain": 0.85,
+          "pacePush": 0.95,
+          "paceSprint": 1,
+          "safeCornerFraction": 0.95
+        }
+      },
+      "entrants": [
+        {
+          "ru": {
+            "id": "e2-b258f93",
+            "driver": {
+              "driving": 58,
+              "beastHandling": 58,
+              "combat": 58,
+              "awareness": 58,
+              "nerve": 58,
+              "condition": 100,
+              "strain": 0,
+              "personality": {
+                "aggression": 72,
+                "caution": 28,
+                "patience": 45,
+                "opportunism": 62,
+                "staminaManagement": 79,
+                "tacticalDiscipline": 35
+              }
+            },
+            "beasts": [
+              {
+                "speed": 58,
+                "power": 58,
+                "agility": 58,
+                "endurance": 58,
+                "discipline": 58,
+                "toughness": 58,
+                "condition": 100,
+                "fatigue": 0
+              },
+              {
+                "speed": 58,
+                "power": 58,
+                "agility": 58,
+                "endurance": 58,
+                "discipline": 58,
+                "toughness": 58,
+                "condition": 100,
+                "fatigue": 0
+              }
+            ],
+            "chariot": {
+              "stability": 58,
+              "durability": 58,
+              "protection": 58,
+              "rollingEfficiency": 58,
+              "maneuverability": 58,
+              "condition": 100,
+              "weight": 180,
+              "capacity": 400,
+              "wear": 0
+            },
+            "equipment": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "lane": 0,
+          "q": -0.5,
+          "speed": 0
+        },
+        {
+          "ru": {
+            "id": "e2-f26212da",
+            "driver": {
+              "driving": 48,
+              "beastHandling": 48,
+              "combat": 48,
+              "awareness": 48,
+              "nerve": 48,
+              "condition": 100,
+              "strain": 0,
+              "personality": {
+                "aggression": 28,
+                "caution": 45,
+                "patience": 62,
+                "opportunism": 79,
+                "staminaManagement": 35,
+                "tacticalDiscipline": 52
+              }
+            },
+            "beasts": [
+              {
+                "speed": 48,
+                "power": 48,
+                "agility": 48,
+                "endurance": 48,
+                "discipline": 48,
+                "toughness": 48,
+                "condition": 100,
+                "fatigue": 0
+              },
+              {
+                "speed": 48,
+                "power": 48,
+                "agility": 48,
+                "endurance": 48,
+                "discipline": 48,
+                "toughness": 48,
+                "condition": 100,
+                "fatigue": 0
+              }
+            ],
+            "chariot": {
+              "stability": 48,
+              "durability": 48,
+              "protection": 48,
+              "rollingEfficiency": 48,
+              "maneuverability": 48,
+              "condition": 100,
+              "weight": 180,
+              "capacity": 400,
+              "wear": 0
+            },
+            "equipment": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "lane": 1,
+          "q": -0.5,
+          "speed": 0
+        },
+        {
+          "ru": {
+            "id": "e2-11ed11c9",
+            "driver": {
+              "driving": 54,
+              "beastHandling": 54,
+              "combat": 54,
+              "awareness": 54,
+              "nerve": 54,
+              "condition": 100,
+              "strain": 0,
+              "personality": {
+                "aggression": 40,
+                "caution": 57,
+                "patience": 74,
+                "opportunism": 30,
+                "staminaManagement": 47,
+                "tacticalDiscipline": 64
+              }
+            },
+            "beasts": [
+              {
+                "speed": 54,
+                "power": 54,
+                "agility": 54,
+                "endurance": 54,
+                "discipline": 54,
+                "toughness": 54,
+                "condition": 100,
+                "fatigue": 0
+              },
+              {
+                "speed": 54,
+                "power": 54,
+                "agility": 54,
+                "endurance": 54,
+                "discipline": 54,
+                "toughness": 54,
+                "condition": 100,
+                "fatigue": 0
+              }
+            ],
+            "chariot": {
+              "stability": 54,
+              "durability": 54,
+              "protection": 54,
+              "rollingEfficiency": 54,
+              "maneuverability": 54,
+              "condition": 100,
+              "weight": 180,
+              "capacity": 400,
+              "wear": 0
+            },
+            "equipment": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "lane": 2,
+          "q": -0.5,
+          "speed": 0
+        },
+        {
+          "ru": {
+            "id": "e2-be4c4c25",
+            "driver": {
+              "driving": 50,
+              "beastHandling": 50,
+              "combat": 50,
+              "awareness": 50,
+              "nerve": 50,
+              "condition": 100,
+              "strain": 0,
+              "personality": {
+                "aggression": 51,
+                "caution": 68,
+                "patience": 85,
+                "opportunism": 41,
+                "staminaManagement": 58,
+                "tacticalDiscipline": 75
+              }
+            },
+            "beasts": [
+              {
+                "speed": 50,
+                "power": 50,
+                "agility": 50,
+                "endurance": 50,
+                "discipline": 50,
+                "toughness": 50,
+                "condition": 100,
+                "fatigue": 0
+              },
+              {
+                "speed": 50,
+                "power": 50,
+                "agility": 50,
+                "endurance": 50,
+                "discipline": 50,
+                "toughness": 50,
+                "condition": 100,
+                "fatigue": 0
+              }
+            ],
+            "chariot": {
+              "stability": 50,
+              "durability": 50,
+              "protection": 50,
+              "rollingEfficiency": 50,
+              "maneuverability": 50,
+              "condition": 100,
+              "wear": 0,
+              "weight": 180,
+              "capacity": 400
+            },
+            "equipment": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "payrollContext": {
+            "version": 1,
+            "rulesVersion": "payroll-control-v1",
+            "careerId": "career",
+            "championshipId": "complete-instance",
+            "status": "Current",
+            "multiplier": 1
+          },
+          "lane": 3,
+          "q": -0.5,
+          "speed": 0
+        },
+        {
+          "ru": {
+            "id": "e2-e536d082",
+            "driver": {
+              "driving": 52,
+              "beastHandling": 52,
+              "combat": 52,
+              "awareness": 52,
+              "nerve": 52,
+              "condition": 100,
+              "strain": 0,
+              "personality": {
+                "aggression": 64,
+                "caution": 81,
+                "patience": 37,
+                "opportunism": 54,
+                "staminaManagement": 71,
+                "tacticalDiscipline": 27
+              }
+            },
+            "beasts": [
+              {
+                "speed": 52,
+                "power": 52,
+                "agility": 52,
+                "endurance": 52,
+                "discipline": 52,
+                "toughness": 52,
+                "condition": 100,
+                "fatigue": 0
+              },
+              {
+                "speed": 52,
+                "power": 52,
+                "agility": 52,
+                "endurance": 52,
+                "discipline": 52,
+                "toughness": 52,
+                "condition": 100,
+                "fatigue": 0
+              }
+            ],
+            "chariot": {
+              "stability": 52,
+              "durability": 52,
+              "protection": 52,
+              "rollingEfficiency": 52,
+              "maneuverability": 52,
+              "condition": 100,
+              "weight": 180,
+              "capacity": 400,
+              "wear": 0
+            },
+            "equipment": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "lane": 0,
+          "q": -2.5,
+          "speed": 0
+        },
+        {
+          "ru": {
+            "id": "e2-ebfd21a5",
+            "driver": {
+              "driving": 56,
+              "beastHandling": 56,
+              "combat": 56,
+              "awareness": 56,
+              "nerve": 56,
+              "condition": 100,
+              "strain": 0,
+              "personality": {
+                "aggression": 35,
+                "caution": 52,
+                "patience": 69,
+                "opportunism": 25,
+                "staminaManagement": 42,
+                "tacticalDiscipline": 59
+              }
+            },
+            "beasts": [
+              {
+                "speed": 56,
+                "power": 56,
+                "agility": 56,
+                "endurance": 56,
+                "discipline": 56,
+                "toughness": 56,
+                "condition": 100,
+                "fatigue": 0
+              },
+              {
+                "speed": 56,
+                "power": 56,
+                "agility": 56,
+                "endurance": 56,
+                "discipline": 56,
+                "toughness": 56,
+                "condition": 100,
+                "fatigue": 0
+              }
+            ],
+            "chariot": {
+              "stability": 56,
+              "durability": 56,
+              "protection": 56,
+              "rollingEfficiency": 56,
+              "maneuverability": 56,
+              "condition": 100,
+              "weight": 180,
+              "capacity": 400,
+              "wear": 0
+            },
+            "equipment": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "lane": 1,
+          "q": -2.5,
+          "speed": 0
+        },
+        {
+          "ru": {
+            "id": "e2-c355a5f4",
+            "driver": {
+              "driving": 60,
+              "beastHandling": 60,
+              "combat": 60,
+              "awareness": 60,
+              "nerve": 60,
+              "condition": 100,
+              "strain": 0,
+              "personality": {
+                "aggression": 52,
+                "caution": 69,
+                "patience": 25,
+                "opportunism": 42,
+                "staminaManagement": 59,
+                "tacticalDiscipline": 76
+              }
+            },
+            "beasts": [
+              {
+                "speed": 60,
+                "power": 60,
+                "agility": 60,
+                "endurance": 60,
+                "discipline": 60,
+                "toughness": 60,
+                "condition": 100,
+                "fatigue": 0
+              },
+              {
+                "speed": 60,
+                "power": 60,
+                "agility": 60,
+                "endurance": 60,
+                "discipline": 60,
+                "toughness": 60,
+                "condition": 100,
+                "fatigue": 0
+              }
+            ],
+            "chariot": {
+              "stability": 60,
+              "durability": 60,
+              "protection": 60,
+              "rollingEfficiency": 60,
+              "maneuverability": 60,
+              "condition": 100,
+              "weight": 180,
+              "capacity": 400,
+              "wear": 0
+            },
+            "equipment": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "lane": 2,
+          "q": -2.5,
+          "speed": 0
+        },
+        {
+          "ru": {
+            "id": "e2-4f391f6c",
+            "driver": {
+              "driving": 50,
+              "beastHandling": 50,
+              "combat": 50,
+              "awareness": 50,
+              "nerve": 50,
+              "condition": 100,
+              "strain": 0,
+              "personality": {
+                "aggression": 45,
+                "caution": 62,
+                "patience": 79,
+                "opportunism": 35,
+                "staminaManagement": 52,
+                "tacticalDiscipline": 69
+              }
+            },
+            "beasts": [
+              {
+                "speed": 50,
+                "power": 50,
+                "agility": 50,
+                "endurance": 50,
+                "discipline": 50,
+                "toughness": 50,
+                "condition": 100,
+                "fatigue": 0
+              },
+              {
+                "speed": 50,
+                "power": 50,
+                "agility": 50,
+                "endurance": 50,
+                "discipline": 50,
+                "toughness": 50,
+                "condition": 100,
+                "fatigue": 0
+              }
+            ],
+            "chariot": {
+              "stability": 50,
+              "durability": 50,
+              "protection": 50,
+              "rollingEfficiency": 50,
+              "maneuverability": 50,
+              "condition": 100,
+              "weight": 180,
+              "capacity": 400,
+              "wear": 0
+            },
+            "equipment": {
+              "mass": 0,
+              "combat": 0
+            }
+          },
+          "lane": 3,
+          "q": -2.5,
+          "speed": 0
+        }
+      ],
+      "format": "Combat",
+      "driverMode": "autonomous",
+      "weather": "Clear",
+      "autonomous": {
+        "decisionTicks": 10,
+        "perceptionTiles": 10,
+        "noise": 0.3,
+        "judgmentError": 0.08,
+        "executionError": 0.06,
+        "stressError": 0.08,
+        "goalTicks": 30,
+        "switchCost": 1.2,
+        "signUses": 3,
+        "signStrength": 5,
+        "fatigueRate": 0.13,
+        "recoveryRate": 0.2,
+        "strainRate": 0.025,
+        "wearRate": 0.001,
+        "recoveryThreshold": 0.6,
+        "exertionConserve": 0.45,
+        "exertionMaintain": 1,
+        "exertionPush": 1.75,
+        "exertionSprint": 3,
+        "signPush": 1,
+        "signConserve": 1,
+        "signOpen": 1,
+        "signDefensive": 1,
+        "signEngage": 1,
+        "signHold": 1,
+        "utility": {
+          "combatDamageValue": 4,
+          "combatDisruptionValue": 4,
+          "combatSelfRisk": 4,
+          "combatControlRisk": 8,
+          "combatProgressCost": 1,
+          "combatRetaliationCost": 1,
+          "combatConditionCost": 3,
+          "combatFutilityCost": 3,
+          "combatDamageUnit": 10,
+          "combatSpeedUnit": 2,
+          "combatUnknownSkill": 50,
+          "combatUnknownProtection": 50,
+          "combatUnknownCondition": 100,
+          "combatUnknownMassRatio": 1,
+          "courseCornerRisk": 2,
+          "courseTerrainRisk": 1,
+          "courseLaneRisk": 0.4,
+          "perceptionBase": 0.2,
+          "perceptionSkill": 0.8,
+          "dangerGap": 1.5,
+          "hazardGap": 2,
+          "passClearance": 2,
+          "passLookahead": 5,
+          "laneTrafficGap": 3,
+          "overtakeGap": 4,
+          "defendGap": 3,
+          "stressInstability": 0.5,
+          "conserveBase": 1,
+          "conserveFatigueBase": 2,
+          "conserveStamina": 6.666666666666667,
+          "conserveCaution": 1,
+          "maintainBase": 2,
+          "maintainPatience": 1,
+          "pushBase": 1.6,
+          "pushAggression": 1.6666666666666667,
+          "pushFatigue": 5,
+          "sprintBase": 0.7,
+          "sprintOpportunity": 2,
+          "sprintAggression": 1,
+          "sprintFatigue": 8,
+          "holdBase": 2,
+          "holdPatience": 1.25,
+          "holdDanger": 5,
+          "laneBase": 0.3,
+          "insideBonus": 0.8,
+          "laneOpportunityBase": 2,
+          "laneOpportunism": 4,
+          "laneTrafficPenalty": 4,
+          "overtakeBase": 2,
+          "overtakeOpportunity": 3.3333333333333335,
+          "overtakeAggression": 1,
+          "avoidBase": 4,
+          "avoidCaution": 3.3333333333333335,
+          "yieldBase": 3,
+          "yieldCaution": 2.5,
+          "defendBase": 1,
+          "defendAggression": 1
+        }
+      },
+      "playerId": "e2-be4c4c25",
+      "surfaces": {},
+      "consequences": true,
+      "consequence": {
+        "componentResistanceBase": 0.5,
+        "damageScale": 0.003,
+        "protectionStrength": 1,
+        "minimumImpact": 0.2,
+        "renewedSpeed": 0.75,
+        "sideSpeed": 1.5,
+        "ramSpeed": 5,
+        "frontGeometry": 1,
+        "sideGeometry": 0.6,
+        "rearGeometry": 0.7,
+        "attackSpeedRetention": 1,
+        "struckSpeedRetention": 0.8,
+        "sideSpeedRetention": 0.9,
+        "maxChainEvents": 128,
+        "attackSkillMultiplier": 1.2,
+        "attackRange": 1.25,
+        "ramRange": 0.75,
+        "attackCooldown": 1.2,
+        "reactionBudget": 1,
+        "contestNoise": 8,
+        "reactionBonus": 10,
+        "defendingBonus": 12,
+        "attackDamage": 7,
+        "marginDamageCap": 1,
+        "defenseDriving": 0.4,
+        "defenseCombat": 0.4,
+        "defenseControl": 0.2,
+        "unstableThreshold": 15,
+        "outOfControlThreshold": 40,
+        "disabledThreshold": 100,
+        "damageInstability": 1,
+        "energyInstability": 0.0002,
+        "controlRecovery": 5,
+        "cornerShock": 22,
+        "disabledCondition": 5,
+        "minimumTeamCondition": 10,
+        "frontBeasts": 4,
+        "frontDriver": 0.5,
+        "frontChariot": 1,
+        "sideBeasts": 1,
+        "sideDriver": 2,
+        "sideChariot": 4,
+        "rearBeasts": 0.5,
+        "rearDriver": 1,
+        "rearChariot": 5,
+        "attackBeasts": 1,
+        "attackDriver": 3,
+        "attackChariot": 1,
+        "attackBase": 0.3,
+        "attackAggression": 3,
+        "attackOpportunity": 1.5,
+        "attackCaution": 2,
+        "ramBase": 0.2,
+        "ramAggression": 3,
+        "ramOpportunity": 1,
+        "ramCaution": 2,
+        "defendBase": 0.5,
+        "defendCaution": 3,
+        "disengageBase": 0.5,
+        "disengageCaution": 2,
+        "disengageFatigue": 2,
+        "incidentRate": 0.002,
+        "incidentDuration": 12,
+        "incidentMinimumInterval": 0.1,
+        "debrisWeight": 6,
+        "animalWeight": 2,
+        "spectatorWeight": 1,
+        "debrisMass": 20,
+        "animalMass": 100,
+        "spectatorMass": 70
+      },
+      "scheduledIncidents": [],
+      "checkpointInterval": 100,
+      "championshipContext": {
+        "version": 1,
+        "instanceId": "complete-instance",
+        "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+        "clockVersion": "m2e-exponential-clock-v1"
+      },
+      "environmentOverrides": {}
+    },
+    "fieldSize": 8,
+    "format": "Combat"
+  },
+  "session": {
+    "result": {
+      "status": "Ended",
+      "tick": 4858,
+      "checksum": "85e1d7b8",
+      "sessionBytes": 5419859
+    },
+    "error": null,
+    "unchangedOnFailure": false,
+    "elapsedMs": 53831.914366,
+    "storedSessionBytes": 5419859,
+    "phase": "RACE_ACTIVE"
+  },
+  "native": {
+    "status": "Ended",
+    "tick": 4858,
+    "checksum": "85e1d7b8",
+    "events": 5222,
+    "packedBytes": 5376498,
+    "packError": null
+  },
+  "limits": {
+    "sessionBytes": 8388608,
+    "decodedGraphBytes": 33554432
+  }
+}

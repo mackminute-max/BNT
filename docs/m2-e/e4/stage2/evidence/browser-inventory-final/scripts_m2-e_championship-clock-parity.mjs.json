@@ -1,0 +1,5 @@
+{
+  "command": "node scripts/m2-e/championship-clock-parity.mjs",
+  "exit": 0,
+  "elapsedSeconds": 75.79888153076172
+}

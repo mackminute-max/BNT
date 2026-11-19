@@ -1,0 +1,719 @@
+PASS atomic IDB abort, generation/read-set rejection, concurrent writer and quota abort
+PASS confirmed legacy migration, immutable cache and witness-denial recovery
+PASS worker replay, durable prepare then exactly-once official publication and lost-ack retry
+PASS worker termination rejects pending preparation; restart cold-validates durable data
+PASS cold corruption and missing official session rejected without durable mutation
+PASS official D2, standings, protected financial history and serialized bytes equal accepted source
+PASS eight-entrant twelve-event retained set validated and committed in IndexedDB
+{
+  "checks": [
+    {
+      "name": "atomic IDB abort, generation/read-set rejection, concurrent writer and quota abort",
+      "pass": true,
+      "result": {
+        "aborted": true,
+        "stale": true,
+        "concurrent": [
+          "fulfilled",
+          "rejected"
+        ],
+        "quota": true
+      }
+    },
+    {
+      "name": "confirmed legacy migration, immutable cache and witness-denial recovery",
+      "pass": true,
+      "result": {
+        "migration": {
+          "durable": true,
+          "generation": 1,
+          "discoveryPublished": true,
+          "recoveryRequired": false
+        },
+        "cold": {
+          "version": 1,
+          "cacheHit": false,
+          "durable": false,
+          "elapsedMs": 16338.400000002235,
+          "revision": 10,
+          "maintenanceRevision": 4
+        },
+        "warm": {
+          "version": 1,
+          "cacheHit": true,
+          "durable": false,
+          "elapsedMs": 62.5,
+          "revision": 10,
+          "maintenanceRevision": 4
+        },
+        "totalMs": 31245.60000000149
+      }
+    },
+    {
+      "name": "worker replay, durable prepare then exactly-once official publication and lost-ack retry",
+      "pass": true,
+      "result": {
+        "replays": [
+          {
+            "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+            "checksum": "bb5a9ce7"
+          },
+          {
+            "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+            "checksum": "fa43a07a"
+          }
+        ],
+        "prepared": {
+          "durable": true,
+          "generation": 2,
+          "phase": "RACE_ACTIVE",
+          "revision": 10,
+          "preparationMs": 21698.39999999851,
+          "capacity": {
+            "requestedBytes": 3951654,
+            "reportedQuota": 10743422976,
+            "reportedUsage": 6004736,
+            "reportedHeadroom": 10737418240,
+            "guaranteed": false
+          },
+          "commitMs": 146,
+          "totalMs": 21952.199999999255
+        },
+        "beforeRejected": true,
+        "lostAcknowledgement": true,
+        "retry": {
+          "durable": true,
+          "generation": 4,
+          "phase": "SETTLEMENT_PENDING",
+          "revision": 11,
+          "preparationMs": 10851.20000000298,
+          "capacity": {
+            "requestedBytes": 4025374,
+            "reportedQuota": 10744864768,
+            "reportedUsage": 7446528,
+            "reportedHeadroom": 10737418240,
+            "guaranteed": false
+          },
+          "commitMs": 91,
+          "totalMs": 10995.099999997765
+        },
+        "totalMs": 81032.30000000075,
+        "bytes": 2012495
+      }
+    },
+    {
+      "name": "worker termination rejects pending preparation; restart cold-validates durable data",
+      "pass": true,
+      "result": {
+        "version": 1,
+        "cacheHit": false,
+        "durable": false,
+        "elapsedMs": 15483.29999999702,
+        "revision": 11,
+        "maintenanceRevision": 4
+      }
+    },
+    {
+      "name": "cold corruption and missing official session rejected without durable mutation",
+      "pass": true,
+      "result": {
+        "rejected": 2
+      }
+    },
+    {
+      "name": "official D2, standings, protected financial history and serialized bytes equal accepted source",
+      "pass": true,
+      "result": {
+        "officialResults": 2,
+        "treasury": 1175,
+        "conditionParity": true
+      }
+    },
+    {
+      "name": "eight-entrant twelve-event retained set validated and committed in IndexedDB",
+      "pass": true,
+      "result": {
+        "replays": {
+          "version": 1,
+          "checks": [
+            {
+              "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+              "checksum": "21d66ebd"
+            },
+            {
+              "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+              "checksum": "4ab34797"
+            },
+            {
+              "raceId": "e2-race-7d1c97d8827024607b476d6968d48dd02f1fdb6d",
+              "checksum": "673e5fd0"
+            },
+            {
+              "raceId": "e2-race-704fce4943a15907ac94848addb15ffaa6dd1a12",
+              "checksum": "67240955"
+            },
+            {
+              "raceId": "e2-race-65833ef48eeece11a54e5f6cd9b94b82a868f073",
+              "checksum": "9877754d"
+            },
+            {
+              "raceId": "e2-race-d075ebc061fdbd75a48dec34cf4a417a97709652",
+              "checksum": "24dcb7d5"
+            },
+            {
+              "raceId": "e2-race-91a78219985eb4ac39002059d0865ec767c2718a",
+              "checksum": "e7f766c9"
+            },
+            {
+              "raceId": "e2-race-e692df0c070c3aa1b2ffb0e18627ef6d71ccc934",
+              "checksum": "8748547c"
+            },
+            {
+              "raceId": "e2-race-e7bfd7739e7afd942bc2f04063e10bf951c9c550",
+              "checksum": "13466edf"
+            },
+            {
+              "raceId": "e2-race-0dc8b4db8e45f67212c463338e2b29f7a9509287",
+              "checksum": "f86a8fc5"
+            },
+            {
+              "raceId": "e2-race-4a47a19b056e8f6f51586615a1f4bef90412e804",
+              "checksum": "02f4b543"
+            },
+            {
+              "raceId": "e2-race-639a0a5adc69088bba5b2f27b0ae947fc189ace6",
+              "checksum": "964e1d49"
+            }
+          ],
+          "durable": false
+        },
+        "records": 13,
+        "bytes": 29962817,
+        "validationMs": 153366.70000000298,
+        "commitMs": 1697.8999999985099,
+        "commit": {
+          "durable": true,
+          "generation": 1
+        },
+        "warm": {
+          "version": 1,
+          "cacheHit": true,
+          "durable": false,
+          "elapsedMs": 672,
+          "revision": 41,
+          "maintenanceRevision": 4
+        },
+        "quotaEstimate": {
+          "quota": 10774933504,
+          "usage": 37515264,
+          "usageDetails": {
+            "indexedDB": 37515264
+          }
+        }
+      }
+    }
+  ],
+  "file": {
+    "navigation": false,
+    "error": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///workspace/BNT/dist/Blood_and_Thunder.html",
+    "windowsOwnerAcceptance": false
+  },
+  "errors": [],
+  "measurements": [],
+  "limits": "Existing 8 MiB logical records; no application bound increased",
+  "longTasks": [
+    {
+      "start": 325.0999999977648,
+      "duration": 50
+    },
+    {
+      "start": 376.8999999985099,
+      "duration": 345
+    },
+    {
+      "start": 769.8999999985099,
+      "duration": 155
+    },
+    {
+      "start": 16668.800000000745,
+      "duration": 51
+    },
+    {
+      "start": 16725.599999997765,
+      "duration": 54
+    },
+    {
+      "start": 21674.39999999851,
+      "duration": 136
+    },
+    {
+      "start": 33408.800000000745,
+      "duration": 65
+    },
+    {
+      "start": 33501.599999997765,
+      "duration": 74
+    },
+    {
+      "start": 42415.89999999851,
+      "duration": 94
+    },
+    {
+      "start": 44596.5,
+      "duration": 110
+    },
+    {
+      "start": 48962.800000000745,
+      "duration": 123
+    },
+    {
+      "start": 62068.199999999255,
+      "duration": 105
+    },
+    {
+      "start": 64201.099999997765,
+      "duration": 70
+    },
+    {
+      "start": 68486.89999999851,
+      "duration": 89
+    },
+    {
+      "start": 74027.30000000075,
+      "duration": 84
+    },
+    {
+      "start": 77997.69999999925,
+      "duration": 324
+    },
+    {
+      "start": 83299.89999999851,
+      "duration": 212
+    },
+    {
+      "start": 87224.19999999925,
+      "duration": 51
+    },
+    {
+      "start": 87305.30000000075,
+      "duration": 58
+    },
+    {
+      "start": 88188.80000000075,
+      "duration": 212
+    },
+    {
+      "start": 90411,
+      "duration": 108
+    },
+    {
+      "start": 90527.30000000075,
+      "duration": 115
+    },
+    {
+      "start": 90642.30000000075,
+      "duration": 94
+    },
+    {
+      "start": 90736.89999999851,
+      "duration": 88
+    },
+    {
+      "start": 95326.5,
+      "duration": 74
+    },
+    {
+      "start": 95401.19999999925,
+      "duration": 73
+    },
+    {
+      "start": 99911,
+      "duration": 200
+    },
+    {
+      "start": 115577.19999999925,
+      "duration": 126
+    },
+    {
+      "start": 118002.19999999925,
+      "duration": 84
+    },
+    {
+      "start": 120628.89999999851,
+      "duration": 396
+    },
+    {
+      "start": 123332.19999999925,
+      "duration": 164
+    },
+    {
+      "start": 123594,
+      "duration": 112
+    },
+    {
+      "start": 123706.09999999776,
+      "duration": 70
+    },
+    {
+      "start": 125864.30000000075,
+      "duration": 575
+    },
+    {
+      "start": 127590.19999999925,
+      "duration": 103
+    },
+    {
+      "start": 128901.59999999776,
+      "duration": 212
+    },
+    {
+      "start": 129291.80000000075,
+      "duration": 124
+    },
+    {
+      "start": 131472.3999999985,
+      "duration": 728
+    },
+    {
+      "start": 134515.80000000075,
+      "duration": 205
+    },
+    {
+      "start": 139342.09999999776,
+      "duration": 284
+    },
+    {
+      "start": 149130.3999999985,
+      "duration": 94
+    },
+    {
+      "start": 149224.59999999776,
+      "duration": 149
+    },
+    {
+      "start": 149816.69999999925,
+      "duration": 59
+    },
+    {
+      "start": 154217.3999999985,
+      "duration": 53
+    },
+    {
+      "start": 190597,
+      "duration": 84
+    },
+    {
+      "start": 227133.69999999925,
+      "duration": 363
+    },
+    {
+      "start": 229793,
+      "duration": 100
+    },
+    {
+      "start": 232012.3999999985,
+      "duration": 62
+    },
+    {
+      "start": 250403.19999999925,
+      "duration": 97
+    },
+    {
+      "start": 252845.80000000075,
+      "duration": 272
+    },
+    {
+      "start": 253124.80000000075,
+      "duration": 81
+    },
+    {
+      "start": 255629.30000000075,
+      "duration": 195
+    },
+    {
+      "start": 255824.8999999985,
+      "duration": 87
+    },
+    {
+      "start": 258289.5,
+      "duration": 122
+    },
+    {
+      "start": 258590.59999999776,
+      "duration": 99
+    },
+    {
+      "start": 260818.59999999776,
+      "duration": 91
+    },
+    {
+      "start": 260968.59999999776,
+      "duration": 65
+    },
+    {
+      "start": 261069.8999999985,
+      "duration": 131
+    },
+    {
+      "start": 261201.09999999776,
+      "duration": 99
+    },
+    {
+      "start": 263539.30000000075,
+      "duration": 56
+    },
+    {
+      "start": 263595.3999999985,
+      "duration": 69
+    },
+    {
+      "start": 266033.5,
+      "duration": 167
+    },
+    {
+      "start": 268318.30000000075,
+      "duration": 95
+    },
+    {
+      "start": 268529.19999999925,
+      "duration": 170
+    },
+    {
+      "start": 270665.19999999925,
+      "duration": 528
+    },
+    {
+      "start": 273307.59999999776,
+      "duration": 226
+    },
+    {
+      "start": 275640.5,
+      "duration": 240
+    },
+    {
+      "start": 282311.59999999776,
+      "duration": 86
+    },
+    {
+      "start": 284765.19999999925,
+      "duration": 56
+    },
+    {
+      "start": 284835.09999999776,
+      "duration": 66
+    },
+    {
+      "start": 284901.19999999925,
+      "duration": 65
+    },
+    {
+      "start": 287135.19999999925,
+      "duration": 125
+    },
+    {
+      "start": 293932.80000000075,
+      "duration": 72
+    },
+    {
+      "start": 296188.80000000075,
+      "duration": 154
+    },
+    {
+      "start": 298503.19999999925,
+      "duration": 170
+    },
+    {
+      "start": 300835.59999999776,
+      "duration": 64
+    },
+    {
+      "start": 307586.09999999776,
+      "duration": 1282
+    },
+    {
+      "start": 308870.69999999925,
+      "duration": 134
+    },
+    {
+      "start": 309379.8999999985,
+      "duration": 139
+    },
+    {
+      "start": 309521,
+      "duration": 556
+    },
+    {
+      "start": 310777.69999999925,
+      "duration": 89
+    },
+    {
+      "start": 328304.59999999776,
+      "duration": 97
+    },
+    {
+      "start": 332832.69999999925,
+      "duration": 64
+    },
+    {
+      "start": 332929.3999999985,
+      "duration": 72
+    },
+    {
+      "start": 335033.09999999776,
+      "duration": 70
+    },
+    {
+      "start": 342963.8999999985,
+      "duration": 52
+    },
+    {
+      "start": 343016.30000000075,
+      "duration": 82
+    },
+    {
+      "start": 343237.8999999985,
+      "duration": 80
+    },
+    {
+      "start": 345631.8999999985,
+      "duration": 66
+    },
+    {
+      "start": 370034.59999999776,
+      "duration": 79
+    },
+    {
+      "start": 376804.19999999925,
+      "duration": 96
+    },
+    {
+      "start": 379211.30000000075,
+      "duration": 101
+    },
+    {
+      "start": 383899,
+      "duration": 182
+    },
+    {
+      "start": 386107.8999999985,
+      "duration": 91
+    },
+    {
+      "start": 386199.59999999776,
+      "duration": 109
+    },
+    {
+      "start": 388397.8999999985,
+      "duration": 118
+    },
+    {
+      "start": 388516.30000000075,
+      "duration": 102
+    },
+    {
+      "start": 390665.8999999985,
+      "duration": 54
+    },
+    {
+      "start": 397423.80000000075,
+      "duration": 72
+    },
+    {
+      "start": 397604,
+      "duration": 104
+    },
+    {
+      "start": 402139.3999999985,
+      "duration": 176
+    },
+    {
+      "start": 404476.80000000075,
+      "duration": 128
+    },
+    {
+      "start": 406612.19999999925,
+      "duration": 209
+    },
+    {
+      "start": 408936.80000000075,
+      "duration": 148
+    },
+    {
+      "start": 413373.3999999985,
+      "duration": 124
+    },
+    {
+      "start": 413499.09999999776,
+      "duration": 84
+    },
+    {
+      "start": 422100.5,
+      "duration": 229
+    },
+    {
+      "start": 424366.30000000075,
+      "duration": 126
+    },
+    {
+      "start": 428720.80000000075,
+      "duration": 88
+    },
+    {
+      "start": 433589.19999999925,
+      "duration": 110
+    },
+    {
+      "start": 433700.09999999776,
+      "duration": 93
+    },
+    {
+      "start": 438041.69999999925,
+      "duration": 61
+    },
+    {
+      "start": 442325.30000000075,
+      "duration": 184
+    },
+    {
+      "start": 453631.80000000075,
+      "duration": 75
+    },
+    {
+      "start": 453810.8999999985,
+      "duration": 86
+    },
+    {
+      "start": 456137.8999999985,
+      "duration": 86
+    },
+    {
+      "start": 460842.3999999985,
+      "duration": 220
+    },
+    {
+      "start": 463418.09999999776,
+      "duration": 147
+    },
+    {
+      "start": 463682.3999999985,
+      "duration": 149
+    },
+    {
+      "start": 466103.8999999985,
+      "duration": 134
+    },
+    {
+      "start": 468578.5,
+      "duration": 315
+    },
+    {
+      "start": 471100.30000000075,
+      "duration": 100
+    },
+    {
+      "start": 471991.8999999985,
+      "duration": 100
+    }
+  ],
+  "chromium": "156.0.8078.79"
+}

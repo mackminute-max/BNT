@@ -1,0 +1,5 @@
+{
+  "command": "node scripts/browser-test.mjs",
+  "exit": 1,
+  "elapsedSeconds": 101.05559754371643
+}

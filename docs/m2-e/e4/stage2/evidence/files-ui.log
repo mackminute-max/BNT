@@ -1,0 +1,21 @@
+{
+  "checks": [
+    {
+      "name": "Visible complete-backup download produces valid container",
+      "pass": true,
+      "bytes": 991482,
+      "filename": "BNT-complete-championship.json"
+    },
+    {
+      "name": "Visible file chooser and confirmation restore complete authority",
+      "pass": true,
+      "tick": 25,
+      "generation": 5
+    },
+    {
+      "name": "Career-only download remains distinct and warns about missing external session",
+      "pass": true,
+      "filename": "BNT-career-only.json"
+    }
+  ]
+}

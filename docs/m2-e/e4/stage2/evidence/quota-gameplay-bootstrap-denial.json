@@ -1,0 +1,5 @@
+{
+  "origin": "http://127.0.0.1:36873",
+  "requestedQuota": 500000,
+  "error": "page.evaluate: QuotaExceededError\n    at /workspace/BNT/scripts/m2-e/e4/stage2-quota.mjs:2:700"
+}

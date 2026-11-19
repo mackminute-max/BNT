@@ -1,0 +1,5 @@
+{
+  "command": "node scripts/m2-e/e2-e3-browser.mjs",
+  "exit": 1,
+  "elapsedSeconds": 105.36316704750061
+}

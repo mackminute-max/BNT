@@ -1,0 +1,10 @@
+{
+  "source": "a07c3d2ef3a97d47f349440e0533706d24f4a50f",
+  "command": "npm run build",
+  "exit": 0,
+  "bytes": 1042502,
+  "sha256": "79a99ed587cef45c47f911bf59caf50c9f73bb9abb84f2f9fba2de6c73997ab5",
+  "matchesPriorArtifact": true,
+  "twoDeliverablesIdentical": true,
+  "externalDependencyGuard": "Passed by build script"
+}
