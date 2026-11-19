@@ -8,6 +8,7 @@ async function operation(m){
  if(["seed","connect"].includes(m.type)&&!/^EXP-|^MEM-|^FAULT-/.test(m.name??""))throw Error("Prototype database prefix required");
  if(m.type==='connect'){backend=await IndexedRecords.open({name:m.name});return {connected:true,durable:false};}
  if(m.type==='seed'){backend=await IndexedRecords.open({name:m.name});const map=new Map(m.records),legacy={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)};await handle({version:1,type:'validate',snapshot:{generation:0,records:m.records}});await backend.migrate({legacy,records:m.records,confirmed:true,validated:true});return {generation:(await backend.snapshot()).generation,durable:true};}
+ if(m.type==='codecStats')return {stats:globalThis.__EXPERIMENT_CODEC_STATS??null,durable:false};
  if(m.type==='reset'){return handle({version:1,type:'reset'});}
  if(m.type==='records')return backend.snapshot();
  if(m.type==='inspect'){const s=await backend.snapshot(),r=await handle({version:1,type:'inspect',snapshot:s});const f=r.state?.championshipFoundation,x=f?.instances?.[f.activeId];return {generation:s.generation,phase:x?.phase,tick:r.frame?.tick??null,valid:!!r.state,reason:r.reason,durable:false};}

@@ -1,0 +1,11 @@
+// EXPERIMENT ONLY. Builds a private worker fork with TWO exact-content entries,
+// sharing a 32 MiB decoded-text budget. Never edits the production codec file.
+import{readFile}from'node:fs/promises';
+export function twoEntryCodec(){return{name:'experimental-two-entry-codec',setup(build){build.onLoad({filter:/\/src\/sim\/foundation\/codec\.js$/},async({path})=>{let text=await readFile(path,'utf8');const inverse="  if(lastTransport&&['codec','plainBytes','codes','data'].every(k=>Object.hasOwn(Object.getOwnPropertyDescriptor(x,k)??{},'value')&&x[k]===lastTransport[k]))return lastGraphText;";if(!text.includes(inverse))throw Error('Frozen codec source mismatch');text=text.replace(inverse,"  for(const e of compressionEntries)if(['codec','plainBytes','codes','data'].every(k=>Object.hasOwn(Object.getOwnPropertyDescriptor(x,k)??{},'value')&&x[k]===e.transport[k])){codecStats.inverseHits++;return e.text;}");const start=text.indexOf('export function pack(root){'),end=text.indexOf('export function unpack',start);text=text.slice(0,start)+`const compressionEntries=[];const codecStats=globalThis.__EXPERIMENT_CODEC_STATS={calls:0,hits:0,misses:0,inverseHits:0,evictions:0,cachedBytes:0};
+export function pack(root){
+ const {text,bytes}=graphPack(root);codecStats.calls++;const i=compressionEntries.findIndex(e=>e.text===text);let transport;
+ if(i>=0){const [entry]=compressionEntries.splice(i,1);compressionEntries.push(entry);transport={...entry.transport};codecStats.hits++;}else{transport=compress(text,bytes);codecStats.misses++;}
+ const wire={version:1,transport};if(new TextEncoder().encode(JSON.stringify(wire)).length>MAX_CHECKPOINT_BYTES)throw Error('Checkpoint exceeds 8 MiB');
+ if(i<0&&text.length>=65536){compressionEntries.push({text,transport:{...transport},bytes:bytes.length});codecStats.cachedBytes+=bytes.length;while(compressionEntries.length>2||codecStats.cachedBytes>32*1024*1024){const old=compressionEntries.shift();codecStats.cachedBytes-=old.bytes;codecStats.evictions++;}}return wire;
+}
+`+text.slice(end);return{contents:text,loader:'js'};});}};}
