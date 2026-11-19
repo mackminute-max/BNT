@@ -9,6 +9,7 @@ export function recoveryStatus(view){
  if(x?.phase==='NO_STARTERS_PENDING')return {code:'NO_STARTERS_PENDING',action:'Publish the authoritative eligibility outcome; no native entrants are fabricated.'};
  if(['RECOVERY_REQUIRED','RACE_CLEARANCE_BLOCKED'].includes(x?.phase))return {code:x.phase,action:x.blockedReason??'Validated retry only; no forced clearance.'};
  if(view.operational==='RESULT_COMMITTED'&&!x?.raceResults.some(r=>r.raceId===x.raceId))return {code:'NATIVE_PREPARED',action:'Native proof is durable; publish official career consequences once.'};
+ if(x?.raceResults.some(r=>r.raceId===x.raceId))return {code:'OFFICIALLY_PUBLISHED',action:'Official consequences are already committed; inspect standings and start the next event manually.'};
  if(view.frame?.status==='Ended')return {code:'CLEARANCE_PENDING',action:'Native processing ended; explicit D5 publication remains required.'};
  if(view.frame?.status==='Stalled')return {code:'RACE_CLEARANCE_BLOCKED',action:'Physical processing is stalled; do not remove wrecks or invent retirements.'};
  if(view.frame)return {code:view.runtime?.paused?'PAUSED':'ACTIVE_RESUME_REQUIRED',action:view.warning??'Latest durable checkpoint and journal loaded; resume explicitly after reopen.'};
