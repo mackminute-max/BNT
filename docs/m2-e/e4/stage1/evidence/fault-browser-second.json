@@ -1,0 +1,36 @@
+[
+  {
+    "name": "two distinct browser tabs cannot both commit the same generation",
+    "pass": true,
+    "result": [
+      {
+        "error": "STALE_WRITER: generation/read-set conflict"
+      },
+      {
+        "durable": true,
+        "generation": 1
+      }
+    ]
+  },
+  {
+    "name": "migration interrupts before commit, after activation, after witness and stale discovery",
+    "pass": true,
+    "result": {
+      "denied": true,
+      "moved": {
+        "durable": true,
+        "generation": 1,
+        "discoveryPublished": false,
+        "recoveryRequired": true
+      },
+      "duplicate": true,
+      "stale": true,
+      "legacyPreserved": true
+    }
+  },
+  {
+    "name": "real IndexedDB quota enforcement through Chromium quota override preserves head",
+    "pass": false,
+    "error": "{\"error\":null,\"generation\":1,\"estimate\":{\"quota\":10738983625,\"usage\":1565385,\"usageDetails\":{\"indexedDB\":1565385}}}"
+  }
+]

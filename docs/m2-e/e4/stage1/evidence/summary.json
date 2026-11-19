@@ -1,0 +1,141 @@
+{
+  "fullSuite": {
+    "revision": "3301eb6fd3f924b3c7facfce422524b76882dceb",
+    "tests": 512,
+    "pass": 512,
+    "fail": 0,
+    "skipped": 0,
+    "exitCode": 0,
+    "durationMs": 486488.855955
+  },
+  "finalRuntimeRevision": "1cde0b0a6d6f49fc3a87ca886e87fd79cd501948",
+  "focusedWorker": {
+    "tests": 5,
+    "pass": 5,
+    "fail": 0
+  },
+  "architectureFullBrowserGroups": 7,
+  "finalRealPublicationGroups": 6,
+  "faultBrowser": {
+    "pass": 3,
+    "fail": 1,
+    "exitCode": 1,
+    "unresolved": "Chromium quota override active but write admitted"
+  },
+  "existingBrowserProcesses": {
+    "zeroExit": 3,
+    "nonzeroExit": 11
+  },
+  "historicalReplayReferences": 12,
+  "payrollReplayReferences": 2,
+  "nativePackageAdapters": 5,
+  "windowsFileProof": "unverified; managed administrator block",
+  "stage2Started": false,
+  "artifact": {
+    "bytes": 988319,
+    "sha256": "5d03542c2f7c45cf76a920a5a0591047b4c571535960864ea2d41bce84135a51"
+  },
+  "routine": {
+    "measurements": [
+      {
+        "label": "confirmed migration",
+        "start": 539.8999999985099,
+        "end": 4872.199999999255,
+        "totalMs": 4332.300000000745,
+        "maxObservedLongTaskMs": 0,
+        "observedLongTasks": [],
+        "result": {
+          "durable": true,
+          "generation": 1,
+          "discoveryPublished": true,
+          "recoveryRequired": false
+        }
+      },
+      {
+        "label": "cold validation after migration",
+        "start": 4904.89999999851,
+        "end": 8372.5,
+        "totalMs": 3467.60000000149,
+        "maxObservedLongTaskMs": 0,
+        "observedLongTasks": [],
+        "result": {
+          "version": 1,
+          "cacheHit": false,
+          "durable": false,
+          "elapsedMs": 3430.099999997765,
+          "revision": 10,
+          "maintenanceRevision": 4
+        }
+      },
+      {
+        "label": "warm exact cache",
+        "start": 8402.800000000745,
+        "end": 8442.39999999851,
+        "totalMs": 39.599999997764826,
+        "maxObservedLongTaskMs": 0,
+        "observedLongTasks": [],
+        "result": {
+          "version": 1,
+          "cacheHit": true,
+          "durable": false,
+          "elapsedMs": 7.899999998509884,
+          "revision": 10,
+          "maintenanceRevision": 4
+        }
+      },
+      {
+        "label": "native prepare durable acknowledgment",
+        "start": 8472.800000000745,
+        "end": 16173.5,
+        "totalMs": 7700.699999999255,
+        "maxObservedLongTaskMs": 0,
+        "observedLongTasks": [],
+        "result": {
+          "durable": true,
+          "generation": 2,
+          "phase": "RACE_ACTIVE",
+          "revision": 10,
+          "preparationMs": 7641.10000000149
+        }
+      },
+      {
+        "label": "official career commit durable acknowledgment",
+        "start": 16203.599999997765,
+        "end": 26691,
+        "totalMs": 10487.400000002235,
+        "maxObservedLongTaskMs": 0,
+        "observedLongTasks": [],
+        "result": {
+          "durable": true,
+          "generation": 3,
+          "phase": "SETTLEMENT_PENDING",
+          "revision": 11,
+          "preparationMs": 10401.699999999255
+        }
+      },
+      {
+        "label": "identical official retry",
+        "start": 26721.199999999255,
+        "end": 26813.800000000745,
+        "totalMs": 92.60000000149012,
+        "maxObservedLongTaskMs": 0,
+        "observedLongTasks": [],
+        "result": {
+          "durable": true,
+          "generation": 4,
+          "phase": "SETTLEMENT_PENDING",
+          "revision": 11,
+          "preparationMs": 29.300000000745058
+        }
+      }
+    ],
+    "duplicateRejected": true,
+    "phase": "SETTLEMENT_PENDING",
+    "officialResults": 2,
+    "treasury": 1175,
+    "longTaskThresholdMs": 50,
+    "browser": "156.0.8078.79",
+    "artifactSha256": "5d03542c2f7c45cf76a920a5a0591047b4c571535960864ea2d41bce84135a51",
+    "measurementScope": "One fixed fixture, no intentionally launched concurrent heavy job; elapsed times are observations, not a statistical speedup claim"
+  }
+}

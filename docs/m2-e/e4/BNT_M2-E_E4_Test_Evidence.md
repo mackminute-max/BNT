@@ -1,3 +1,5 @@
+> **Stage 1 continuation:** The Gate A snapshot below is retained as historical evidence. See [the architecture continuation](stage1/BNT_M2-E_E4_Test_Evidence.md) for the owner-authorized implementation proof and current status. Full E4 remains incomplete.
+
 # BNT M2-E E4 Test Evidence — Gate A stop
 
 Date: November18,2026 (America/Los_Angeles). Runtime source:accepted E3 `8d5abe9442e93cb318ef87d4ef47ee0de0e457e2`; initial documentation HEAD`56111653b7d97e2d16203968e397f305d4e0968f`. Tooling`0d8c061c9b32fce1fadde55469fac5dd3bbed012`, branch`feat/m2-e-e4-persistence-recovery`.

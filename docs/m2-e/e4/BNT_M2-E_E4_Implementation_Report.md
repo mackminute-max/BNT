@@ -1,3 +1,5 @@
+> **Stage 1 continuation:** The Gate A snapshot below is retained as historical evidence. See [the architecture continuation](stage1/BNT_M2-E_E4_Implementation_Report.md) for the owner-authorized implementation proof and current status. Full E4 remains incomplete.
+
 # BNT M2-E E4 Implementation Report
 
 **Status: STOPPED AFTER GATE A. E4 runtime integration is not implemented or accepted.** Date: November18,2026 (America/Los_Angeles).

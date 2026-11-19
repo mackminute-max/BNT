@@ -1,0 +1,131 @@
+{
+  "checks": [
+    {
+      "name": "atomic IDB abort, generation/read-set rejection, concurrent writer and quota abort",
+      "pass": true,
+      "result": {
+        "aborted": true,
+        "stale": true,
+        "concurrent": [
+          "fulfilled",
+          "rejected"
+        ],
+        "quota": true
+      }
+    },
+    {
+      "name": "confirmed legacy migration, immutable cache and witness-denial recovery",
+      "pass": true,
+      "result": {
+        "migration": {
+          "durable": true,
+          "generation": 1,
+          "discoveryPublished": true,
+          "recoveryRequired": false
+        },
+        "cold": {
+          "version": 1,
+          "cacheHit": false,
+          "durable": false,
+          "elapsedMs": 3896.199999999255,
+          "revision": 10,
+          "maintenanceRevision": 4
+        },
+        "warm": {
+          "version": 1,
+          "cacheHit": true,
+          "durable": false,
+          "elapsedMs": 7.300000000745058,
+          "revision": 10,
+          "maintenanceRevision": 4
+        },
+        "totalMs": 8881.400000002235
+      }
+    },
+    {
+      "name": "worker replay, durable prepare then exactly-once official publication and lost-ack retry",
+      "pass": true,
+      "result": {
+        "replays": [
+          {
+            "raceId": "e2-race-a22edcf45ea59d051b651fa3408f5d44cfa49fe5",
+            "checksum": "bb5a9ce7"
+          },
+          {
+            "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+            "checksum": "fa43a07a"
+          }
+        ],
+        "prepared": {
+          "durable": true,
+          "generation": 2,
+          "phase": "RACE_ACTIVE",
+          "revision": 10,
+          "preparationMs": 7845.699999999255
+        },
+        "beforeRejected": true,
+        "lostAcknowledgement": true,
+        "retry": {
+          "durable": true,
+          "generation": 4,
+          "phase": "SETTLEMENT_PENDING",
+          "revision": 11,
+          "preparationMs": 4356.199999999255
+        },
+        "totalMs": 40084.5,
+        "bytes": 2012495
+      }
+    },
+    {
+      "name": "worker termination rejects pending preparation; restart cold-validates durable data",
+      "pass": true,
+      "result": {
+        "version": 1,
+        "cacheHit": false,
+        "durable": false,
+        "elapsedMs": 4841.800000000745,
+        "revision": 11,
+        "maintenanceRevision": 4
+      }
+    },
+    {
+      "name": "cold corruption and missing official session rejected without durable mutation",
+      "pass": true,
+      "result": {
+        "rejected": 2
+      }
+    },
+    {
+      "name": "official D2, standings, protected financial history and serialized bytes equal accepted source",
+      "pass": true,
+      "result": {
+        "officialResults": 2,
+        "treasury": 1175,
+        "conditionParity": true
+      }
+    }
+  ],
+  "file": {
+    "navigation": false,
+    "error": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///workspace/BNT/dist/Blood_and_Thunder.html",
+    "windowsOwnerAcceptance": false
+  },
+  "errors": [],
+  "measurements": [],
+  "limits": "Existing 8 MiB logical records; no application bound increased",
+  "longTasks": [
+    {
+      "start": 166.69999999925494,
+      "duration": 186
+    },
+    {
+      "start": 369.5,
+      "duration": 52
+    },
+    {
+      "start": 49713.5,
+      "duration": 52
+    }
+  ],
+  "chromium": "156.0.8078.79"
+}

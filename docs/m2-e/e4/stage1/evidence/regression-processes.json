@@ -1,0 +1,92 @@
+[
+  {
+    "script": "scripts/m2-d/browser.mjs",
+    "exitCode": 1,
+    "seconds": 55.98,
+    "log": "regression-0.log"
+  },
+  {
+    "script": "scripts/m2-c/browser.mjs",
+    "exitCode": 1,
+    "seconds": 33.94,
+    "log": "regression-1.log"
+  },
+  {
+    "script": "scripts/m2-b-browser.mjs",
+    "exitCode": 1,
+    "seconds": 19.82,
+    "log": "regression-2.log"
+  },
+  {
+    "script": "scripts/m2-a-browser.mjs",
+    "exitCode": 1,
+    "seconds": 15.27,
+    "log": "regression-3.log"
+  },
+  {
+    "script": "scripts/persistence-browser.mjs",
+    "exitCode": 1,
+    "seconds": 15.83,
+    "log": "regression-4.log"
+  },
+  {
+    "script": "scripts/browser-test.mjs",
+    "exitCode": 1,
+    "seconds": 88.66,
+    "log": "regression-5.log"
+  },
+  {
+    "script": "scripts/track-expansion/browser.mjs",
+    "exitCode": 0,
+    "seconds": 104.46,
+    "log": "regression-6.log"
+  },
+  {
+    "script": "scripts/circuit-rally/browser.mjs",
+    "exitCode": 1,
+    "seconds": 42.17,
+    "log": "regression-7.log"
+  },
+  {
+    "script": "scripts/combat-ai-refinement/browser.mjs",
+    "exitCode": 0,
+    "seconds": 2.51,
+    "log": "regression-8.log"
+  },
+  {
+    "script": "scripts/m2-e/browser.mjs",
+    "exitCode": 1,
+    "seconds": 7.21,
+    "log": "regression-9.log"
+  },
+  {
+    "script": "scripts/m2-e/e2-e3-browser.mjs",
+    "exitCode": 1,
+    "seconds": 33.7,
+    "log": "regression-10.log"
+  },
+  {
+    "script": "scripts/m2-e/e3-completion-browser.mjs",
+    "exitCode": 1,
+    "seconds": 85.48,
+    "log": "regression-11.log"
+  },
+  {
+    "script": "scripts/m2-e/championship-clock-parity.mjs",
+    "exitCode": 0,
+    "seconds": 29.3,
+    "log": "regression-12.log"
+  },
+  {
+    "script": "scripts/m2-e/clock-parity.mjs",
+    "exitCode": 1,
+    "seconds": 1.14,
+    "log": "regression-13.log"
+  },
+  {
+    "script": "scripts/m2-d/verify.mjs",
+    "exitCode": 0,
+    "seconds": 26.46,
+    "log": "regression-14.log"
+  }
+]

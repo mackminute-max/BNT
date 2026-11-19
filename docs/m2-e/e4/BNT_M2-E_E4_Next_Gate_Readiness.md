@@ -1,3 +1,5 @@
+> **Stage 1 continuation:** The Gate A snapshot below is retained as historical evidence. See [the architecture continuation](stage1/BNT_M2-E_E4_Next_Gate_Readiness.md) for the owner-authorized implementation proof and current status. Full E4 remains incomplete.
+
 # BNT M2-E E4 Next-Gate Readiness
 
 **Verdict: FAIL / BLOCKED — full E4 is not delivered.** The accepted E3 baseline passes. Gate A found a major persistence-architecture decision that must be reviewed under the owner's Section14.8 stop condition.

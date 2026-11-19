@@ -1,0 +1,14 @@
+M	dist/Blood-and-Thunder-Track-Test.html
+M	dist/Blood_and_Thunder.html
+M	scripts/build.mjs
+A	scripts/m2-e/e4/stage1-browser.mjs
+A	scripts/m2-e/e4/stage1-faults.mjs
+A	scripts/m2-e/e4/stage1-routine-benchmark.mjs
+A	scripts/m2-e/e4/stage1-standalone-smoke.mjs
+A	src/persistence/e4/client.js
+A	src/persistence/e4/indexeddb.js
+A	src/persistence/e4/worker-entry.js
+A	src/persistence/e4/worker-service.js
+M	src/ui/app.js
+M	src/ui/career-saves.js
+A	tests/m2-e-e4-worker.test.js

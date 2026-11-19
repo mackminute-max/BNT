@@ -1,0 +1,24 @@
+[
+  {
+    "command": [
+      "node",
+      "--test",
+      "tests/m2-e-e4-worker.test.js"
+    ],
+    "exitCode": 0
+  },
+  {
+    "command": [
+      "node",
+      "scripts/m2-e/e4/stage1-standalone-smoke.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "command": [
+      "node",
+      "scripts/m2-e/e4/stage1-routine-benchmark.mjs"
+    ],
+    "exitCode": 0
+  }
+]

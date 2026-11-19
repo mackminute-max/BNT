@@ -1,0 +1,60 @@
+[
+  {
+    "name": "two distinct browser tabs cannot both commit the same generation",
+    "pass": true,
+    "result": [
+      {
+        "error": "STALE_WRITER: generation/read-set conflict"
+      },
+      {
+        "durable": true,
+        "generation": 1
+      }
+    ]
+  },
+  {
+    "name": "migration interruption at every durable boundary; denied intent and missing database never fall back",
+    "pass": true,
+    "result": {
+      "rows": [
+        {
+          "boundary": "staged",
+          "backend": "migration-pending",
+          "duplicate": false
+        },
+        {
+          "boundary": "witnessed",
+          "backend": "migration-pending",
+          "duplicate": false
+        },
+        {
+          "boundary": "activated",
+          "backend": "indexeddb",
+          "duplicate": true
+        },
+        {
+          "boundary": "discovered",
+          "backend": "indexeddb",
+          "duplicate": true
+        }
+      ],
+      "intentDeniedWithoutActivation": true
+    }
+  },
+  {
+    "name": "migration retry is independent of Web Storage key enumeration order",
+    "pass": true,
+    "result": {
+      "generation": 1,
+      "canonicalOrder": [
+        "bnt.career.save.v1",
+        "bnt.race.foundation.v1.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ]
+    }
+  },
+  {
+    "name": "real IndexedDB quota enforcement through Chromium quota override preserves head",
+    "pass": false,
+    "error": "{\"error\":null,\"generation\":1,\"estimate\":{\"quota\":10745761608,\"usage\":8343368,\"usageDetails\":{\"indexedDB\":8343368}}}"
+  }
+]

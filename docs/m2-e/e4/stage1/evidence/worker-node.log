@@ -1,0 +1,12 @@
+✔ E4 worker cold validation, exact-byte cache, revision invalidation and corruption rejection (5895.419019ms)
+✔ E4 worker D2 typed-wire parity preserves continuous values and never changes source (3219.874148ms)
+✔ E4 worker candidate has no durable ack, pending work rejects and reset discards candidate (5676.767635ms)
+✔ E4 record bounds and duplicate identities reject before writes (23.659601ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15021.871182
