@@ -52,7 +52,7 @@ export function mountCareerSaves({ download }) {
     try {
       db = await IndexedRecords.open();
       const found = await db.discover(storage);
-      if (found.migration || found.backend === 'blocked') {
+      if (found.migration || ['blocked','migration-pending'].includes(found.backend)) {
         store.mode = 'blocked';
         store.problem = 'IndexedDB migration authority exists. Legacy Web Storage is historical and cannot be edited. Stage-1 coordinator proof is not the completed E4 recovery UI.';
         throw Error(store.problem);

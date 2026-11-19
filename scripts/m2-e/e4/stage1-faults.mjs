@@ -6,18 +6,22 @@ try{for(const page of [p,q]){await page.goto(origin);await page.addScriptTag({co
  await check('two distinct browser tabs cannot both commit the same generation',async()=>{
   const write=page=>page.evaluate(async()=>{try{return await db.commit({expectedGeneration:0,readSet:[],records:[['bnt.career.save.v1','CAS-test']]});}catch(e){return {error:e.message};}}),r=await Promise.all([write(p),write(q)]);if(r.filter(x=>x.durable).length!==1)throw Error('Both tabs committed');return r;
  });
- await check('migration interrupts before commit, after activation, after witness and stale discovery',()=>p.evaluate(async()=>{
-  const records=[['bnt.career.save.v1','previous-validated-by-fixture']],map=new Map(records),legacy={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)};
-  const b=await proof.IndexedRecords.open({name:'migration-interrupt'});let denied=false;
-  try{await b.migrate({legacy,records,confirmed:false,validated:true});}catch{denied=true;}if(!denied||(await b.snapshot()).generation)throw Error('Unconfirmed mutation');
-  const nativeCommit=b.commit.bind(b);b.commit=()=>Promise.reject(Error('Interrupted before IDB commit'));try{await b.migrate({legacy,records,confirmed:true,validated:true});}catch{}
-  if((await b.snapshot()).generation||map.has(proof.E4_DISCOVERY))throw Error('Partial pre-commit migration');b.commit=nativeCommit;
-  // Database activation commits, witness write is denied: database marker alone
-  // forbids fallback. Reopening discovers the committed migration.
-  const deniedWitness={getItem:legacy.getItem,setItem:()=>{throw Error('Interrupted witness');}};const moved=await b.migrate({legacy:deniedWitness,records,confirmed:true,validated:true});b.close();
-  const reopened=await proof.IndexedRecords.open({name:'migration-interrupt'});if((await reopened.discover(legacy)).backend!=='indexeddb')throw Error('Fallback to legacy');
-  map.set(proof.E4_DISCOVERY,'witness');const duplicate=await reopened.migrate({legacy,records,confirmed:true,validated:true});if(!duplicate.duplicate)throw Error('Migration duplicated');
-  const empty=await proof.IndexedRecords.open({name:'missing-migrated-db'});let stale=false;try{await empty.discover(legacy);}catch{stale=true;}if(!stale)throw Error('Missing database uses stale legacy');empty.close();reopened.close();return {denied,moved,duplicate:duplicate.duplicate,stale,legacyPreserved:map.get(records[0][0])===records[0][1]};
+ await check('migration interruption at every durable boundary; denied intent and missing database never fall back',()=>p.evaluate(async()=>{
+  const records=[['bnt.career.save.v1','previous-validated-by-fixture']],rows=[];
+  for(const boundary of ['staged','witnessed','activated','discovered']){
+   const map=new Map(records),legacy={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)},name='migration-'+boundary;
+   let b=await proof.IndexedRecords.open({name}),failed=false;
+   try{await b.migrate({legacy,records,confirmed:true,validated:true,onBoundary:where=>{if(where===boundary)throw Error('Injected interruption at '+where);}});}catch{failed=true;}
+   if(!failed)throw Error('Fault did not execute');b.close();b=await proof.IndexedRecords.open({name});const discovered=await b.discover(legacy);
+   if(['staged','witnessed'].includes(boundary)&&discovered.backend!=='migration-pending')throw Error('Missing pending migration');
+   if(['activated','discovered'].includes(boundary)&&discovered.backend!=='indexeddb')throw Error('Lost activated authority');
+   const resumed=await b.migrate({legacy,records,confirmed:true,validated:true});if((await b.snapshot()).generation!==1||map.get(records[0][0])!==records[0][1])throw Error('Repeated migration or changed legacy');
+   rows.push({boundary,backend:discovered.backend,duplicate:resumed.duplicate??false});b.close();
+   if(boundary==='witnessed'){await new Promise((resolve,reject)=>{const r=indexedDB.deleteDatabase(name);r.onsuccess=resolve;r.onerror=()=>reject(r.error);});const lost=await proof.IndexedRecords.open({name});let denied=false;try{await lost.migrate({legacy,records,confirmed:true,validated:true});}catch{denied=true;}if(!denied)throw Error('Same-name database loss replayed stale legacy');lost.close();}
+   if(map.has(proof.E4_DISCOVERY)){const missing=await proof.IndexedRecords.open({name:'missing-'+boundary});let rejected=false;try{await missing.migrate({legacy,records,confirmed:true,validated:true});}catch{rejected=true;}if(!rejected)throw Error('Database loss re-imported stale legacy');missing.close();}
+  }
+  const map=new Map(records);let denied=true;const legacy={getItem:k=>map.get(k)??null,setItem:(k,v)=>{if(denied)throw Error('Intent denied');map.set(k,v);}},b=await proof.IndexedRecords.open({name:'intent-denial'});let rejected=false;try{await b.migrate({legacy,records,confirmed:true,validated:true});}catch{rejected=true;}
+  if(!rejected||(await b.snapshot()).generation!==0||(await b.discover(legacy)).backend!=='migration-pending')throw Error('Denied intent activated backend');denied=false;await b.migrate({legacy,records,confirmed:true,validated:true});b.close();return {rows,intentDeniedWithoutActivation:rejected};
  }));
  await check('real IndexedDB quota enforcement through Chromium quota override preserves head',async()=>{
   const session=await c.newCDPSession(p);const override=await session.send('Storage.overrideQuotaForOrigin',{origin,quotaSize:200000});const quotaDiagnostic=await session.send('Storage.getUsageAndQuota',{origin});console.log(JSON.stringify({origin,override,quotaDiagnostic}));

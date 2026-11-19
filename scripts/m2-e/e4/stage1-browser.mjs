@@ -23,7 +23,7 @@ try{
   localStorage.clear();for(const[k,v]of entries)localStorage.setItem(k,v);window.coordinator=await BNT.e4.open({name:'native-proof'});
   const start=performance.now();const migration=await coordinator.migrate(localStorage,{confirmed:true});const cold=await coordinator.validate(),warm=await coordinator.validate();if(!migration.durable||!warm.cacheHit)throw Error('Migration/cache missing');
   for(const[k,v]of entries)if(localStorage.getItem(k)!==v)throw Error('Legacy overwritten');
-  const b=await __e4Idb.IndexedRecords.open({name:'witness-proof'});const legacy={getItem:k=>new Map(entries).get(k)??null,setItem:()=>{throw Error('Denied witness');}};const moved=await b.migrate({legacy,records:entries,confirmed:true,validated:true});if(!moved.recoveryRequired||(await b.discover(legacy)).backend!=='indexeddb')throw Error('Stale legacy fallback');b.close();
+  const b=await __e4Idb.IndexedRecords.open({name:'witness-proof'});const legacyMap=new Map(entries);let witnessWrites=0;const legacy={getItem:k=>legacyMap.get(k)??null,setItem:(k,v)=>{if(++witnessWrites===2)throw Error('Denied final discovery witness');legacyMap.set(k,v);}};const moved=await b.migrate({legacy,records:entries,confirmed:true,validated:true});if(!moved.recoveryRequired||(await b.discover(legacy)).backend!=='indexeddb')throw Error('Stale legacy fallback');b.close();
   return {migration,cold,warm,totalMs:performance.now()-start};
  },small));
  await check('worker replay, durable prepare then exactly-once official publication and lost-ack retry',()=>page.evaluate(async()=>{
