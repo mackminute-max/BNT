@@ -8532,15 +8532,27 @@
       renderChampionships();
     }
     async function legacyAuthorityGate() {
-      let db;
+      let db, witness;
+      const block = () => {
+        store.mode = "blocked";
+        store.problem = "IndexedDB migration authority exists. Legacy Web Storage is historical and cannot be edited. Stage-1 coordinator proof is not the completed E4 recovery UI.";
+        throw Error(store.problem);
+      };
       try {
-        db = await IndexedRecords.open();
-        const found = await db.discover(storage);
-        if (found.migration || ["blocked", "migration-pending"].includes(found.backend)) {
-          store.mode = "blocked";
-          store.problem = "IndexedDB migration authority exists. Legacy Web Storage is historical and cannot be edited. Stage-1 coordinator proof is not the completed E4 recovery UI.";
-          throw Error(store.problem);
+        witness = storage?.getItem(E4_DISCOVERY);
+      } catch (error) {
+        if (store.mode !== "manual") throw error;
+      }
+      if (witness) block();
+      try {
+        try {
+          db = await IndexedRecords.open();
+        } catch (error) {
+          if (store.mode === "manual" || error.name === "SecurityError" || error.name === "InvalidStateError" || typeof globalThis.indexedDB === "undefined") return;
+          throw error;
         }
+        const found = await db.discover(storage);
+        if (found.migration || ["blocked", "migration-pending"].includes(found.backend)) block();
       } finally {
         db?.close();
       }

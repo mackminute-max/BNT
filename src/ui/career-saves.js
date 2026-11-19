@@ -1,4 +1,4 @@
-import {IndexedRecords} from '../persistence/e4/indexeddb.js';
+import {IndexedRecords,E4_DISCOVERY} from '../persistence/e4/indexeddb.js';
 import {mountChampionships} from './championships.js';
 import {controllerActive} from '../career/championships/controller.js';
 import {mountStableCycles} from './stable-cycles.js';
@@ -48,17 +48,28 @@ export function mountCareerSaves({ download }) {
     // Stage-1 safety: never edit historical Web Storage after a confirmed backend
     // migration. Full coordinator UI adoption is a later E4 gate. Check the DB
     // marker even when the separate discovery-witness write was interrupted.
-    let db;
+    let db, witness;
+    const block = () => {
+      store.mode = 'blocked';
+      store.problem = 'IndexedDB migration authority exists. Legacy Web Storage is historical and cannot be edited. Stage-1 coordinator proof is not the completed E4 recovery UI.';
+      throw Error(store.problem);
+    };
+    try { witness = storage?.getItem(E4_DISCOVERY); }
+    catch (error) { if (store.mode !== 'manual') throw error; }
+    // Activation requires this durable witness. Never bypass it when IndexedDB
+    // is denied. Without a witness, legacy/manual saves remain supported.
+    if (witness) block();
     try {
-      db = await IndexedRecords.open();
-      const found = await db.discover(storage);
-      if (found.migration || ['blocked','migration-pending'].includes(found.backend)) {
-        store.mode = 'blocked';
-        store.problem = 'IndexedDB migration authority exists. Legacy Web Storage is historical and cannot be edited. Stage-1 coordinator proof is not the completed E4 recovery UI.';
-        throw Error(store.problem);
+      try { db = await IndexedRecords.open(); }
+      catch (error) {
+        if (store.mode === 'manual' || error.name === 'SecurityError' || error.name === 'InvalidStateError' || typeof globalThis.indexedDB === 'undefined') return;
+        throw error;
       }
+      const found = await db.discover(storage);
+      if (found.migration || ['blocked','migration-pending'].includes(found.backend)) block();
     } finally { db?.close(); }
   }
+
   async function exclusive(fn) {
     const checked = async () => { await legacyAuthorityGate(); return fn(); };
     // Web Locks serialize cooperating windows when supported. The storage adapter
