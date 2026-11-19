@@ -65,9 +65,14 @@ export class RaceSessionStore {
       try{
         if(!cp||wireHash(cp)!==h)throw Error('Invalid checkpoint generation');const m=unsealWire(cp);
         s=restoreRace(cp,{identity:this.identity,setupHash:a.setupHash});
-        if(m.watermark>journal.length||m.watermark>0&&journal[m.watermark-1].after!==stateHash(s))throw Error('Checkpoint watermark mismatch');
-        for(const j of journal.slice(m.watermark)){if(j.before!==stateHash(s))throw Error('Journal before-state mismatch');execute(s,j.request);if(j.after!==stateHash(s))throw Error('Journal replay mismatch');}
-        if(stateHash(s)!==a.headHash)throw Error('Authoritative head mismatch');
+        if(m.watermark>journal.length)throw Error('Checkpoint watermark mismatch');
+        // This restored state is local and changes only through execute below.
+        // Carry its exact hash across unchanged boundaries; all comparisons and
+        // full hash recomputation after every accepted input remain required.
+        let currentHash=stateHash(s);
+        if(m.watermark>0&&journal[m.watermark-1].after!==currentHash)throw Error('Checkpoint watermark mismatch');
+        for(const j of journal.slice(m.watermark)){if(j.before!==currentHash)throw Error('Journal before-state mismatch');execute(s,j.request);currentHash=stateHash(s);if(j.after!==currentHash)throw Error('Journal replay mismatch');}
+        if(currentHash!==a.headHash)throw Error('Authoritative head mismatch');
         if(published!==null){
           const p=unpack(published);exact(p,['kind','version','resultId','identity','setupFingerprint','stateFingerprint','tick','watermark','sourceRevision','classification','conditions','standingsEffects','pendingEntitlementIds',...(Object.hasOwn(p,'championshipEvidence')?['championshipEvidence']:[])]);id(p.resultId);
           const native=clearedNativeResult(s);
