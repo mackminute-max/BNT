@@ -1061,6 +1061,14 @@
         return this.backend.migrate({ legacy, records, confirmed, validated: true });
       }));
     }
+    async capacityEstimate(bytes) {
+      try {
+        const estimate = await globalThis.navigator?.storage?.estimate?.();
+        return { requestedBytes: bytes, reportedQuota: estimate?.quota ?? null, reportedUsage: estimate?.usage ?? null, reportedHeadroom: estimate?.quota === void 0 ? null : estimate.quota - (estimate.usage ?? 0), guaranteed: false };
+      } catch {
+        return { requestedBytes: bytes, reportedQuota: null, reportedUsage: null, reportedHeadroom: null, guaranteed: false };
+      }
+    }
     async locked(fn) {
       const locks = globalThis.navigator?.locks;
       if (!locks?.request) throw Error("Coordinated writes require Web Locks");
@@ -1075,12 +1083,14 @@
         if (snapshot2.restoreStage?.state === "PREPARED") throw Error("Recovery required: complete the staged restore before further changes");
         this.progress("Preparing and validating in worker");
         const candidate = await this.worker.call({ type: "prepare", snapshot: snapshot2, operation, ...args });
+        const capacity = await this.capacityEstimate(candidate.records.reduce((n, [k, v]) => n + 2 * (k.length + v.length), 0));
+        if (capacity.reportedHeadroom !== null && capacity.reportedHeadroom < capacity.requestedBytes) this.progress("Reported capacity is low; the atomic write may safely reject");
         try {
           this.progress("Committing IndexedDB generation");
           const commitStarted = performance.now();
           const committed = await this.backend.commit({ expectedGeneration: snapshot2.generation, readSet: snapshot2.records, records: candidate.records, recordsHash: candidate.recordsHash, runtime: args.runtime, ...operation === "repair" ? { previousOverride: { version: 1, generation: snapshot2.generation, records: candidate.records, recordsHash: candidate.recordsHash, runtime: snapshot2.runtime } } : {} });
           await this.worker.call({ type: "ack", token: candidate.token });
-          return { ...committed, phase: candidate.phase, revision: candidate.revision, preparationMs: candidate.elapsedMs, commitMs: performance.now() - commitStarted, totalMs: performance.now() - totalStarted };
+          return { ...committed, phase: candidate.phase, revision: candidate.revision, preparationMs: candidate.elapsedMs, capacity, commitMs: performance.now() - commitStarted, totalMs: performance.now() - totalStarted };
         } catch (e) {
           await this.worker.call({ type: "reset" }).catch(() => {
           });
@@ -1137,6 +1147,8 @@
         const plan = await this.worker.call({ type: "prepareRestore", snapshot: snapshot2, baseline, text: text2 });
         if (plan.duplicate) return { duplicate: true, durable: true, generation: snapshot2.generation };
         const b = { digest: plan.digest };
+        const capacity = await this.capacityEstimate(2 * text2.length + plan.records.reduce((n, [k, v]) => n + 2 * (k.length + v.length), 0));
+        if (capacity.reportedHeadroom !== null && capacity.reportedHeadroom < capacity.requestedBytes) this.progress("Low reported restore capacity; activation remains atomic and may reject");
         const stage = { version: 1, state: "PREPARED", digest: b.digest, baseGeneration: snapshot2.generation, text: text2 };
         await this.backend.stageRestore(stage, { expectedGeneration: snapshot2.generation, readSet: snapshot2.records });
         await onBoundary("staged");
