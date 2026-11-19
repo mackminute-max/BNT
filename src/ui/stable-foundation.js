@@ -38,26 +38,26 @@ export function mountStableFoundation({store,act,newId,setNotice}) {
     $('stableAssemble').disabled=!ready||blocked||!preview?.eligible;
     $('stableDisassemble').disabled=!a||blocked;
   }
-  $('stableNewCareer').onclick=act(()=>{
+  $('stableNewCareer').onclick=act(async()=>{
     const existing=store.state||store.raw!==null||store.quarantine;
     if(existing&&!window.confirm('Replace the loaded career with an empty schema-2 foundation? Export a backup first. Owner Legacy is replaced, never merged.'))return;
-    store.create(createUninitializedCareer({profileId:newId('profile'),careerId:newId('career'),ownerName:$('careerOwnerName').value,careerName:$('careerName').value}),{confirmed:Boolean(existing)});
+    await store.create(createUninitializedCareer({profileId:newId('profile'),careerId:newId('career'),ownerName:$('careerOwnerName').value,careerName:$('careerName').value}),{confirmed:Boolean(existing)});
     setNotice('Empty schema-2 career created. Choose a package and confirm initialization separately.');
   });
-  $('stableInitialize').onclick=act(()=>{
+  $('stableInitialize').onclick=act(async()=>{
     const s=store.state,packageId=$('stablePackage').value,p=STARTING_PACKAGES[packageId];
     if(!window.confirm(`Initialize this career once with ${p.name}, ${p.gold} Gold and the previewed assets? Package selection cannot be changed after initialization.`))return;
-    store.transaction(command('career.initialize',{packageId,catalogVersion:CATALOG_VERSION,confirmed:true,delta:p.gold,effectId:initializationEffect(s.career.id)}));
+    await store.transaction(command('career.initialize',{packageId,catalogVersion:CATALOG_VERSION,confirmed:true,delta:p.gold,effectId:initializationEffect(s.career.id)}));
     setNotice('Starting stable initialized atomically. Initial RU assembled; no race entered.');
   });
-  $('stableAssemble').onclick=act(()=>{
+  $('stableAssemble').onclick=act(async()=>{
     const s=store.state,a=Object.values(s.management.registries.assignments)[0];
-    store.transaction(command('ru.assemble',{assignmentId:a?.id??assetId(s.career.id,'ru'),...currentSelection()}));
+    await store.transaction(command('ru.assemble',{assignmentId:a?.id??assetId(s.career.id,'ru'),...currentSelection()}));
     setNotice('Prospective RU assembly committed. No Gold, time or fatigue consumed; no competition entry.');
   });
-  $('stableDisassemble').onclick=act(()=>{
+  $('stableDisassemble').onclick=act(async()=>{
     const a=Object.values(store.state.management.registries.assignments)[0];
-    store.transaction(command('ru.disassemble',{assignmentId:a.id}));setNotice('Prospective RU disassembled; owned assets retained.');
+    await store.transaction(command('ru.disassemble',{assignmentId:a.id}));setNotice('Prospective RU disassembled; owned assets retained.');
   });
   for(const key of ['stablePackage','stableDriver','stableBeastA','stableBeastB','stableChariot'])$(key).onchange=render;
   return render;

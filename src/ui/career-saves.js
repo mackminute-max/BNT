@@ -1,3 +1,4 @@
+import {mountDurableChampionships} from './durable-championships.js';
 import {IndexedRecords,E4_DISCOVERY} from '../persistence/e4/indexeddb.js';
 import {mountChampionships} from './championships.js';
 import {controllerActive} from '../career/championships/controller.js';
@@ -21,12 +22,14 @@ function newId(prefix) {
 export function mountCareerSaves({ download }) {
   let storage;
   try { storage = window.localStorage; } catch {}
-  const store = new CareerStore(storage);
-  store.open();
+  const legacyStore = new CareerStore(storage);legacyStore.open();let durableUI=null;
+  const mutations=new Set(['transaction','migrateFoundation','migrateCycles','migrateEconomy','migrateSchema','create','importSave','recover']);
+  const store=new Proxy(legacyStore,{get(target,key){if((durableUI?.coordinator&&durableUI.durable)){if(key==='state')return durableUI.view?.state??null;if(key==='mode')return durableUI.view?.reason?'blocked':'automatic';if(key==='problem')return durableUI.view?.reason??'';if(['requiresCheckpoint','recoveryPending'].includes(key))return false;if(key==='schema2Session')return (durableUI.view?.state?.schema??0)>=2;if(key==='exportToken')return null;if(key==='export')return ()=>durableUI.coordinator.legacyExport();if(mutations.has(key))return (...args)=>durableUI.career(key,args);}const v=target[key];return typeof v==='function'?v.bind(target):v;}});
   let staged = null, lastToken = null, notice = '', queue = Promise.resolve();
   let renderStable = () => {}, renderEconomy = () => {}, renderCycles = () => {}, renderChampionships = () => {};
   function render() {
     const state = store.state;
+    if((durableUI?.coordinator&&durableUI.durable)&&controllerActive(state)){for(const e of document.querySelectorAll('#careerSaves button,#careerSaves input,#careerSaves select'))if(!e.closest('#durableChampionships'))e.disabled=true;$('careerSaveStatus').textContent='IndexedDB authoritative career · Home Stable is read-only while active or unsettled';$('careerSaveInspect').textContent='Use the durable championship status and Home Stable inspector below.';durableUI.render();return;}
     $('careerSaveStatus').textContent = `${store.mode.toUpperCase()} · ${state ? `Schema ${state.schema} · Revision ${state.revision} · Maintenance ${state.maintenanceRevision ?? 0} · Treasury ${state.career.treasury} Gold · ${(state.profile.developerEdited || state.career.developerEdited) ? 'DEVELOPER-EDITED (persistent)' : 'Unedited foundation'}` : 'No career loaded'}${store.requiresCheckpoint ? ' · CHECKPOINT REQUIRED: export, save the file and confirm before another change.' : ''}`;
     $('careerSaveNotice').textContent = [store.problem, notice].filter(Boolean).join(' ');
     $('careerSaveInspect').textContent = JSON.stringify(state ?? { status: store.mode, recoveryAvailable: Boolean(store.recovery) }, null, 2);
@@ -42,16 +45,16 @@ export function mountCareerSaves({ download }) {
     renderStable();
     renderEconomy();
     renderCycles();
-    renderChampionships();
+    if(!(durableUI?.coordinator&&durableUI.durable))renderChampionships();else{document.getElementById('championshipController').hidden=true;durableUI.render();}
   }
   async function legacyAuthorityGate() {
-    // Stage-1 safety: never edit historical Web Storage after a confirmed backend
-    // migration. Full coordinator UI adoption is a later E4 gate. Check the DB
+    // Never edit historical Web Storage after a confirmed backend
+    // migration. Only the coordinated durable path may write. Check the DB
     // marker even when the separate discovery-witness write was interrupted.
     let db, witness;
     const block = () => {
       store.mode = 'blocked';
-      store.problem = 'IndexedDB migration authority exists. Legacy Web Storage is historical and cannot be edited. Stage-1 coordinator proof is not the completed E4 recovery UI.';
+      store.problem = 'IndexedDB migration authority exists. Legacy Web Storage is historical and cannot be edited. Open the durable championship recovery panel.';
       throw Error(store.problem);
     };
     try { witness = storage?.getItem(E4_DISCOVERY); }
@@ -71,6 +74,7 @@ export function mountCareerSaves({ download }) {
   }
 
   async function exclusive(fn) {
+    if(fn.e4Operation||(durableUI?.coordinator&&durableUI.durable))return fn();
     const checked = async () => { await legacyAuthorityGate(); return fn(); };
     // Web Locks serialize cooperating windows when supported. The storage adapter
     // also rejects stale bytes. Without locks, use one active window only.
@@ -82,36 +86,36 @@ export function mountCareerSaves({ download }) {
     queue = queue.catch(() => {}).then(() => exclusive(fn)).catch(e => { notice = e.message; }).finally(render);
     return queue;
   };
-  $('careerCreate').onclick = act(() => {
+  $('careerCreate').onclick = act(async () => {
     const existing = store.state || store.raw !== null || store.quarantine;
     if (existing && !window.confirm('Replace the current Owner Profile and Career State with an empty foundation? Export a backup first. Owner Legacy will not be merged.')) return;
     const create = store.schema2Session ? createUninitializedCareer : createCareer;
-    store.create(create({ profileId: newId('profile'), careerId: newId('career'), ownerName: $('careerOwnerName').value, careerName: $('careerName').value }), { confirmed: Boolean(existing) });
+    await store.create(create({ profileId: newId('profile'), careerId: newId('career'), ownerName: $('careerOwnerName').value, careerName: $('careerName').value }), { confirmed: Boolean(existing) });
     notice = 'Empty uninitialized foundation created: 0 Gold, no roster, championships or Legacy progression. Starting packages and explicit initialization require M2-B.'; lastToken = null;
   });
-  $('careerMigrate').onclick = act(() => {
+  $('careerMigrate').onclick = act(async () => {
     const state = store.state;
     if (!state) throw Error('No career loaded');
     if (!window.confirm('Upgrade this M1 career to schema 2? IDs, Gold, gameplay revision, receipts and provenance are preserved. No assets or progress are granted. The previous valid checkpoint is retained. Initialization requires M2-B.')) return;
-    store.migrateSchema({ confirmed: true, profileId: state.profile.id, careerId: state.career.id, expectedRevision: state.revision, expectedMaintenanceRevision: state.maintenanceRevision ?? 0 });
+    await store.migrateSchema({ confirmed: true, profileId: state.profile.id, careerId: state.career.id, expectedRevision: state.revision, expectedMaintenanceRevision: state.maintenanceRevision ?? 0 });
     notice = 'Schema 2 migration committed: management remains uninitialized, registries empty. No Gold, assets, achievements or gameplay revision awarded.'; lastToken = null;
   });
-  $('careerAdjust').onclick = act(() => {
+  $('careerAdjust').onclick = act(async () => {
     const state = store.state;
     if (!state) throw Error('No career loaded');
     const rawDelta = $('careerTreasuryDelta').value;
     if (!rawDelta.trim() || !Number.isSafeInteger(Number(rawDelta))) throw Error('Enter a whole-number treasury change');
     const delta = Number(rawDelta), reason = $('careerEditReason').value;
     if (!window.confirm('Apply this developer treasury transaction? It permanently marks this profile and career developer-edited.')) return;
-    store.transaction({ id: newId('tx'), profileId: state.profile.id, careerId: state.career.id, expectedRevision: state.revision, type: 'developer.treasury.adjust', delta, reason, ...(state.schema >= 2 ? { commandVersion: 1, expectedMaintenanceRevision: state.maintenanceRevision, effectId: newId('effect') } : {}) });
+    await store.transaction({ id: newId('tx'), profileId: state.profile.id, careerId: state.career.id, expectedRevision: state.revision, type: 'developer.treasury.adjust', delta, reason, ...(state.schema >= 2 ? { commandVersion: 1, expectedMaintenanceRevision: state.maintenanceRevision, effectId: newId('effect') } : {}) });
     notice = 'Developer transaction committed. This provenance cannot be cleared by ordinary actions.'; lastToken = null;
   });
-  $('careerExport').onclick = act(() => {
-    const envelope = store.export(); lastToken = store.exportToken;
+  $('careerExport').onclick = act(async () => {
+    const envelope = await store.export(); lastToken = store.exportToken;
     download(envelope, 'BNT-game-save.json');
     notice = 'Download requested. This exports the complete persistent state, not the running race. The browser cannot verify that you saved it durably. In manual mode, save the file before confirming the checkpoint.';
   });
-  $('careerAcknowledge').onclick = act(() => {
+  $('careerAcknowledge').onclick = act(async () => {
     if (!window.confirm('Have you saved this exact exported checkpoint? This records your confirmation only; the game cannot verify disk durability.')) return;
     store.acknowledgeExport(lastToken); notice = 'Checkpoint confirmed by you for this session; disk durability was not independently verified.';
   });
@@ -126,17 +130,17 @@ export function mountCareerSaves({ download }) {
     $('careerImportMigrate').checked = parsed.primary.schema === 1 && store.schema2Session;
     notice = `Import validated: ${parsed.primary.profile.name} / ${parsed.primary.career.name}, schema ${parsed.primary.schema}, revision ${parsed.primary.revision}. ${$('careerImportMigrate').checked ? 'Schema-1 upgrade is selected; no grants or initialization. ' : ''}Nothing was replaced. Use Confirm replacement to proceed.`;
   });
-  $('careerImportApply').onclick = act(() => {
+  $('careerImportApply').onclick = act(async () => {
     if (!staged) throw Error('Select and validate an import first');
     if (!window.confirm('Replace the entire loaded Owner Profile, Career State and pending checkpoint with this file? Export your current state first. Owner Legacy is replaced, never merged; known matching developer provenance is retained. If the schema-1 upgrade checkbox is selected, the file is upgraded without grants.')) return;
-    store.importSave(staged, { confirmed: true, migrateLegacy: $('careerImportMigrate').checked }); staged = null; lastToken = null;
+    await store.importSave(staged, { confirmed: true, migrateLegacy: $('careerImportMigrate').checked }); staged = null; lastToken = null;
     notice = 'Complete persistent state imported. Owner Legacy was not merged. Retained developer provenance may keep an older imported checkpoint marked edited.';
   });
-  $('careerRecover').onclick = act(() => {
+  $('careerRecover').onclick = act(async () => {
     if (!window.confirm('Recover the previous valid checkpoint? The current corrupt bytes remain available for diagnostic export. No financial recovery transaction or reward will be created.')) return;
-    store.recover({ confirmed: true }); lastToken = null; notice = 'Previous checkpoint selected explicitly. Known developer provenance retained; no transaction, reward or revision was invented.';
+    await store.recover({ confirmed: true }); lastToken = null; notice = 'Previous checkpoint selected explicitly. Known developer provenance retained; no transaction, reward or revision was invented.';
   });
-  $('careerRawExport').onclick = act(() => {
+  $('careerRawExport').onclick = act(async () => {
     download({ kind: 'BNT-corrupt-save-diagnostic', raw: store.quarantine }, 'BNT-corrupt-save-diagnostic.json');
     notice = 'Original corrupt bytes included in a diagnostic download request. This is not an importable game save or a verified durable backup.';
   });
@@ -147,5 +151,6 @@ export function mountCareerSaves({ download }) {
   renderEconomy = mountStableEconomy({store,act,newId,setNotice:message=>{notice=message;lastToken=null;},download});
   renderCycles = mountStableCycles({store,act,newId,setNotice:message=>{notice=message;lastToken=null;}});
   renderChampionships=mountChampionships({store,act,newId,setNotice:message=>{notice=message;lastToken=null;}});
+  durableUI=mountDurableChampionships({legacyStorage:storage,getLegacyState:()=>legacyStore.state,act,renderParent:render,newId});
   render();
 }

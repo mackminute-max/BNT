@@ -57,18 +57,18 @@ export function mountStableEconomy({store,act,newId,setNotice,download}){
   }else $('economyCapacity').textContent='No economy roster loaded';
   renderAction();
  }
- $('economyPreviewMigration').onclick=act(()=>{plan=store.previewEconomy();setNotice('Read-only economy migration preview prepared. Nothing saved or granted.');});
- $('economyConfirmMigration').onclick=act(()=>{
+ $('economyPreviewMigration').onclick=act(async()=>{plan=store.previewEconomy();setNotice('Read-only economy migration preview prepared. Nothing saved or granted.');});
+ $('economyConfirmMigration').onclick=act(async()=>{
   if(!plan)throw Error('Preview migration first');const s=store.state;
   if(!window.confirm('Migrate this stable to M2-C? Preserve Gold and owned assets; add grandfathered contracts, valuation metadata and the initial 23-offer market. Export a backup first.'))return;
   const request={id:newId('migration'),profileId:s.profile.id,careerId:s.career.id,type:'career.migrate',maintenanceVersion:1,expectedRevision:plan.expectedRevision,expectedMaintenanceRevision:plan.expectedMaintenanceRevision,sourceSchema:2,targetSchema:3,sourceFingerprint:plan.sourceFingerprint,migrationVersion:plan.migrationVersion,adapterVersion:plan.adapterVersion,generatorVersion:plan.generatorVersion,confirmed:true,effectId:migrationEffect(s.career.id)};
-  store.migrateEconomy(request);plan=null;setNotice('Economy migration committed atomically. Gameplay revision and Gold preserved; maintenance advanced once.');
+  await store.migrateEconomy(request);plan=null;setNotice('Economy migration committed atomically. Gameplay revision and Gold preserved; maintenance advanced once.');
  });
- $('economyExportPreview').onclick=act(()=>{if(!plan)throw Error('Preview migration first');download(plan,'BNT-M2C-migration-preview.json');setNotice('Read-only preview download requested; this is not a career save.');});
- $('economyCommit').onclick=act(()=>{
+ $('economyExportPreview').onclick=act(async()=>{if(!plan)throw Error('Preview migration first');download(plan,'BNT-M2C-migration-preview.json');setNotice('Read-only preview download requested; this is not a career save.');});
+ $('economyCommit').onclick=act(async()=>{
   const s=store.state,type=$('economyAction').value,p=payload(s),q=quoteEconomy(s,type,p);
   if(!window.confirm(`${ACTIONS[type]}? Cost ${q.cost} Gold and ${q.xpCost} XP; proceeds ${q.credit} Gold. This action is committed immediately.`))return;
-  store.transaction({id:newId('economy'),profileId:s.profile.id,careerId:s.career.id,expectedRevision:s.revision,expectedMaintenanceRevision:s.maintenanceRevision,commandVersion:2,type,effectId:q.effectId,delta:q.delta,reason:ACTIONS[type],payload:p});plan=null;setNotice('Economy action committed: '+ACTIONS[type]+'. No management cycle advanced.');
+  await store.transaction({id:newId('economy'),profileId:s.profile.id,careerId:s.career.id,expectedRevision:s.revision,expectedMaintenanceRevision:s.maintenanceRevision,commandVersion:2,type,effectId:q.effectId,delta:q.delta,reason:ACTIONS[type],payload:p});plan=null;setNotice('Economy action committed: '+ACTIONS[type]+'. No management cycle advanced.');
  });
  for(const key of ['economyAction','economyOffer','economyTerm','economyAsset','economyUpgrade','economyService','economyAttribute'])$(key).onchange=renderAction;
  for(const key of ['economyAmount','economyPoints'])$(key).oninput=renderAction;

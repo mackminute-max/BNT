@@ -1,3 +1,4 @@
+import {validateRuntime} from './runtime.js';
 import {IndexedRecords,E4_DISCOVERY} from './indexeddb.js';
 // Replaced by esbuild with the embedded bundle. No worker URL or external asset.
 const embedded=typeof BNT_E4_WORKER_SOURCE==='undefined'?'':BNT_E4_WORKER_SOURCE;
@@ -14,7 +15,8 @@ export class InlineWorkerClient {
 }
 export class E4Coordinator {
  static async open(options={}){const backend=await IndexedRecords.open(options);let worker;try{worker=new InlineWorkerClient(options);}catch(e){backend.close();throw e;}return new E4Coordinator(backend,worker);}
- constructor(backend,worker){this.backend=backend;this.worker=worker;this.busy=false;}
+ constructor(backend,worker){this.backend=backend;this.worker=worker;this.busy=false;this.onProgress=()=>{};}
+ progress(stage){this.onProgress({stage});}
  close(){this.worker.close();this.backend.close();}
  async exclusive(operation){if(this.busy)throw Error('Operation pending; duplicate submission blocked');this.busy=true;try{return await operation();}finally{this.busy=false;}}
  async probe(){const worker=await this.worker.call({type:'probe'}),snapshot=await this.backend.snapshot();return {...worker,indexedDB:true,generation:snapshot.generation};}
@@ -25,14 +27,33 @@ export class E4Coordinator {
   await this.worker.call({type:'validate',snapshot:{generation:0,records}});
   return this.backend.migrate({legacy,records,confirmed,validated:true});
  }));}
- async operate(operation,args={}){return this.exclusive(async()=>{
-  const snapshot=await this.backend.snapshot(),candidate=await this.worker.call({type:'prepare',snapshot,operation,...args});
-  try{const committed=await this.backend.commit({expectedGeneration:snapshot.generation,readSet:snapshot.records,records:candidate.records});
+ async locked(fn){const locks=globalThis.navigator?.locks;if(!locks?.request)throw Error('Coordinated writes require Web Locks');return locks.request('bnt.career.save.v1.writer',{mode:'exclusive'},fn);}
+ async operate(operation,args={}){return this.exclusive(()=>this.locked(async()=>{
+  const totalStarted=performance.now();this.progress('Reading durable generation');const snapshot=await this.backend.snapshot();if(args.expectedGeneration!==undefined&&args.expectedGeneration!==snapshot.generation)throw Error('STALE_WRITER: metadata generation changed');if(snapshot.restoreStage?.state==='PREPARED')throw Error('Recovery required: complete the staged restore before further changes');this.progress('Preparing and validating in worker');const candidate=await this.worker.call({type:'prepare',snapshot,operation,...args});
+  try{this.progress('Committing IndexedDB generation');const commitStarted=performance.now();const committed=await this.backend.commit({expectedGeneration:snapshot.generation,readSet:snapshot.records,records:candidate.records,recordsHash:candidate.recordsHash,runtime:args.runtime,...(operation==='repair'?{previousOverride:{version:1,generation:snapshot.generation,records:candidate.records,recordsHash:candidate.recordsHash,runtime:snapshot.runtime}}:{})});
    // If this acknowledgement is lost, caller must reload the backend. It must
    // never retry against the earlier generation as if the write did not happen.
-   await this.worker.call({type:'ack',token:candidate.token});return {...committed,phase:candidate.phase,revision:candidate.revision,preparationMs:candidate.elapsedMs};
+   await this.worker.call({type:'ack',token:candidate.token});return {...committed,phase:candidate.phase,revision:candidate.revision,preparationMs:candidate.elapsedMs,commitMs:performance.now()-commitStarted,totalMs:performance.now()-totalStarted};
   }catch(e){await this.worker.call({type:'reset'}).catch(()=>{});throw e;}
- });}
- async publish(id){await this.operate('nativePrepare',{id:'e4-prepare-'+id});return this.operate('official',{id});}
+ }));}
+ async repair(){const previous=await this.backend.previous();return this.operate('repair',{previous});}
+ async inspect(){return this.exclusive(async()=>{this.progress('Validating durable career and sessions');const snapshot=await this.backend.snapshot(),view=await this.worker.call({type:'inspect',snapshot});return {...view,hasAuthority:!!(snapshot.generation||snapshot.migration||snapshot.migrationStage||snapshot.restoreStage),runtime:snapshot.runtime,generation:snapshot.generation,restoreStage:snapshot.restoreStage,migrationStage:snapshot.migrationStage,migration:snapshot.migration};});}
+ async metadata(patch){const snapshot=await this.backend.snapshot(),runtime=validateRuntime({...snapshot.runtime,...patch});return this.operate('metadata',{runtime,expectedGeneration:snapshot.generation});}
+ async career(method,args){return this.operate('career',{method,args});}
+ async backup(){return this.exclusive(async()=>{this.progress('Validating complete backup');const snapshot=await this.backend.snapshot(),previous=await this.backend.previous(),result=await this.worker.call({type:'backup',snapshot,previous});const again=await this.backend.snapshot();if(again.generation!==snapshot.generation)throw Error('Authority changed during backup; retry');return result.text;});}
+ async legacyExport(){return this.exclusive(async()=>{const snapshot=await this.backend.snapshot();return (await this.worker.call({type:'legacyExport',snapshot})).envelope;});}
+ async restore(text,{confirmed=false,legacy=globalThis.localStorage,onBoundary=()=>{}}={}){return this.exclusive(()=>this.locked(async()=>{
+  if(!confirmed)throw Error('Explicit complete replacement confirmation required');this.progress('Validating complete restore and protected history');const snapshot=await this.backend.snapshot();
+  const baseline=[];if(!snapshot.records.length&&legacy?.getItem('bnt.career.save.v1')){for(let i=0;i<legacy.length;i++){const k=legacy.key(i);if(k==='bnt.career.save.v1'||k?.startsWith('bnt.race.foundation.v1.'))baseline.push([k,legacy.getItem(k)]);}}
+  const plan=await this.worker.call({type:'prepareRestore',snapshot,baseline,text});if(plan.duplicate)return {duplicate:true,durable:true,generation:snapshot.generation};const b={digest:plan.digest};
+  const stage={version:1,state:'PREPARED',digest:b.digest,baseGeneration:snapshot.generation,text};await this.backend.stageRestore(stage,{expectedGeneration:snapshot.generation,readSet:snapshot.records});await onBoundary('staged');
+  const root=plan.rootDigest;legacy.setItem(E4_DISCOVERY,JSON.stringify({version:1,database:this.backend.db.name,state:'PREPARED',digest:root}));await onBoundary('witnessed');
+  this.progress('Activating validated restored generation');const migration=snapshot.migration??{version:2,source:'complete-restore',recordKeys:plan.records.map(([k])=>k),digest:root};
+  const result=await this.backend.commit({expectedGeneration:snapshot.generation,readSet:snapshot.records,records:plan.records,runtime:plan.runtime,migration,...(!snapshot.generation&&plan.previous?{previousOverride:plan.previous,restoredGeneration:plan.sourceGeneration+1}:{}),restore:{digest:b.digest,receipts:plan.receipts}});await onBoundary('activated');
+  try{legacy.setItem(E4_DISCOVERY,JSON.stringify({version:1,database:this.backend.db.name,state:'ACTIVATED',digest:root}));}catch{}
+  await this.worker.call({type:'reset'});return result;
+ }));}
+ async resumeRestore(options={}){const stage=await this.backend.restoreStage();if(!stage||stage.state!=='PREPARED')throw Error('No staged restore');return this.restore(stage.text,options);}
+ async publish(id,{expectedGeneration}={}){const snapshot=await this.backend.snapshot();if(expectedGeneration!==undefined&&snapshot.generation!==expectedGeneration)throw Error('STALE_WRITER: publication source changed');const view=await this.worker.call({type:'inspect',snapshot}),f=view.state?.championshipFoundation,x=f?.instances[f.activeId];if(!x)throw Error('No authoritative active championship');const expectedRaceId=x.raceId;await this.operate('nativePrepare',{id:'e4-prepare-'+id,expectedGeneration:snapshot.generation,expectedRaceId});return this.operate('official',{id,expectedRaceId});}
 }
 export {E4_DISCOVERY};

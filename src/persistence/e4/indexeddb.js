@@ -1,8 +1,10 @@
+import {defaultRuntime,validateRuntime} from './runtime.js';
 // Versioned durable record coordinator. Domain records retain their original bytes
 // and bounds; a completed IDB transaction, never worker preparation, is the ack.
 export const E4_DB_VERSION=1;
 const STORE='authority',HEAD='head',MIGRATION='migration',STAGE='migration-stage';
 export const E4_DISCOVERY='bnt.e4.discovery.v1';
+export const recordsDigest=async records=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(records)))),b=>b.toString(16).padStart(2,'0')).join('');
 export const recordBytes=text=>new TextEncoder().encode(text).length;
 export function checkRecords(records){
  if(!Array.isArray(records))throw Error('Invalid durable records');
@@ -19,21 +21,25 @@ export class IndexedRecords {
  constructor(db){this.db=db;}
  validateHead(head){if(head&&(head.version!==1||!Number.isSafeInteger(head.generation)||head.generation<1))throw Error('Unsupported/corrupt durable head');if(head)checkRecords(head.records);return head;}
  close(){this.db.close();}
- async snapshot(){const tx=this.db.transaction(STORE,'readonly'),done=finished(tx),s=tx.objectStore(STORE);const [head,migration,stage]=await Promise.all([request(s.get(HEAD)),request(s.get(MIGRATION)),request(s.get(STAGE))]);await done;this.validateHead(head);if(migration&&(migration.version!==1||migration.source!=='web-storage'||!Array.isArray(migration.recordKeys)))throw Error('Unsupported migration witness');return {generation:head?.generation??0,records:head?.records??[],migration:migration??null,migrationStage:stage?{version:stage.version,digest:stage.digest,state:stage.state}:null};}
- async commit({expectedGeneration,readSet,records,migration=null,stageDigest=null,abortBeforeComplete=false}){
-  checkRecords(records);checkRecords(readSet);if(!Number.isSafeInteger(expectedGeneration)||expectedGeneration<0)throw Error('Invalid expected generation');
+ async snapshot(){const tx=this.db.transaction(STORE,'readonly'),done=finished(tx),s=tx.objectStore(STORE);const [head,migration,stage,restoreStage,restoreReceipts]=await Promise.all([request(s.get(HEAD)),request(s.get(MIGRATION)),request(s.get(STAGE)),request(s.get('restore-stage')),request(s.get('restore-receipts'))]);await done;this.validateHead(head);if(migration&&(!((migration.version===1&&migration.source==='web-storage')||(migration.version===2&&migration.source==='complete-restore'))||!Array.isArray(migration.recordKeys)))throw Error('Unsupported migration witness');return {recordsHash:head?.recordsHash??null,runtime:validateRuntime(head?.runtime??defaultRuntime()),restoreStage:restoreStage?{version:restoreStage.version,state:restoreStage.state,digest:restoreStage.digest,baseGeneration:restoreStage.baseGeneration}:null,restoreReceipts:restoreReceipts??[],generation:head?.generation??0,records:head?.records??[],migration:migration??null,migrationStage:stage?{version:stage.version,digest:stage.digest,state:stage.state}:null};}
+ async commit({expectedGeneration,readSet,records,migration=null,stageDigest=null,recordsHash,runtime,restore=null,previousOverride,restoredGeneration,abortBeforeComplete=false}){
+  checkRecords(records);checkRecords(readSet);recordsHash=recordsHash??await recordsDigest(records);if(restoredGeneration!==undefined&&(!restore||expectedGeneration!==0||!Number.isSafeInteger(restoredGeneration)||restoredGeneration<1))throw Error('Invalid restored generation');if(!Number.isSafeInteger(expectedGeneration)||expectedGeneration<0)throw Error('Invalid expected generation');
   const tx=this.db.transaction(STORE,'readwrite',{durability:'strict'}),done=finished(tx),s=tx.objectStore(STORE);
   try{const head=this.validateHead(await request(s.get(HEAD))),actual=head?.records??[];
    if((head?.generation??0)!==expectedGeneration||JSON.stringify(actual)!==JSON.stringify(readSet))throw Error('STALE_WRITER: generation/read-set conflict');
    if(stageDigest!==null){const stage=await request(s.get(STAGE));if(!stage||stage.state!=='PREPARED'||stage.digest!==stageDigest)throw Error('Migration stage conflict');s.put({...stage,state:'ACTIVATED'},STAGE);}
    // Previous generation is retained in the same atomic transaction. No pruning
    // of journals, receipts or logical session records occurs.
-   if(head)s.put(head,'previous');s.put({version:1,generation:expectedGeneration+1,records},HEAD);
+   if(previousOverride!==undefined){if(previousOverride!==null)s.put(previousOverride,'previous');}else if(head)s.put(head,'previous');s.put({version:1,generation:restoredGeneration??expectedGeneration+1,records,recordsHash,runtime:validateRuntime(runtime??head?.runtime??defaultRuntime())},HEAD);
+   if(restore){const stage=await request(s.get('restore-stage'));if(!stage||stage.state!=='PREPARED'||stage.digest!==restore.digest||stage.baseGeneration!==expectedGeneration)throw Error('Restore stage conflict');s.put({...stage,state:'ACTIVATED'},'restore-stage');s.put(restore.receipts,'restore-receipts');}
    if(migration!==null)s.put(migration,MIGRATION);
    if(abortBeforeComplete)throw Error('Injected pre-completion interruption');
   }catch(e){tx.abort();await done.catch(()=>{});throw e;}
-  await done;return {durable:true,generation:expectedGeneration+1};
+  await done;return {durable:true,generation:restoredGeneration??expectedGeneration+1};
  }
+ async previous(){const tx=this.db.transaction(STORE,'readonly'),done=finished(tx),head=await request(tx.objectStore(STORE).get('previous'));await done;this.validateHead(head);return head??null;}
+ async restoreStage(){const tx=this.db.transaction(STORE,'readonly'),done=finished(tx),stage=await request(tx.objectStore(STORE).get('restore-stage'));await done;return stage??null;}
+ async stageRestore(stage,{expectedGeneration,readSet}){const tx=this.db.transaction(STORE,'readwrite',{durability:'strict'}),done=finished(tx),s=tx.objectStore(STORE);try{const head=await request(s.get(HEAD));if((head?.generation??0)!==expectedGeneration||JSON.stringify(head?.records??[])!==JSON.stringify(readSet))throw Error('STALE_WRITER: restore source changed');const old=await request(s.get('restore-stage'));if(old?.state==='PREPARED'&&old.digest!==stage.digest)throw Error('Another restore is pending');s.put(stage,'restore-stage');}catch(e){tx.abort();await done.catch(()=>{});throw e;}await done;return {staged:true,durable:true};}
  async discover(legacy){
   const snapshot=await this.snapshot();let witness=null;try{witness=legacy?.getItem(E4_DISCOVERY);}catch{}
   if(witness){let w;try{w=JSON.parse(witness);}catch{throw Error('RECOVERY_REQUIRED: corrupt discovery witness');}
@@ -42,6 +48,7 @@ export class IndexedRecords {
   }
   if(snapshot.migration)return {...snapshot,backend:'indexeddb'};
   if(snapshot.generation>0)throw Error('RECOVERY_REQUIRED: orphaned durable authority; no legacy fallback');
+  if(snapshot.restoreStage?.state==='PREPARED')return {...snapshot,backend:'restore-pending'};
   if(snapshot.migrationStage){if(snapshot.migrationStage.version!==1||snapshot.migrationStage.state!=='PREPARED')throw Error('RECOVERY_REQUIRED: incompatible migration stage');return {...snapshot,backend:'migration-pending'};}
   if(witness)throw Error('RECOVERY_REQUIRED: migrated/staged database missing; stale legacy fallback forbidden');
   return {...snapshot,backend:'uninitialized'};

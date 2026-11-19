@@ -33,9 +33,9 @@ function request(r){
  * Manual acknowledgements are explicitly NOT durable input acknowledgements.
  */
 export class RaceSessionStore {
-  constructor(storage,{identity,getCareerAnchor,interval=100}={}){
+  constructor(storage,{identity,getCareerAnchor,interval=100,fallback='previous'}={}){
     validateIdentity(identity);if(typeof getCareerAnchor!=='function'||!Number.isInteger(interval)||interval<1||interval>10000)throw Error('Career authority/interval required');
-    this.storage=storage;this.identity=clone(identity);this.getCareerAnchor=getCareerAnchor;this.interval=interval;this.key=raceStorageKey(identity);this.raw=null;this.record=null;this.state=null;this.mode='automatic';this.requiresCheckpoint=false;this.problem=null;this.exportToken=null;
+    this.storage=storage;this.identity=clone(identity);this.getCareerAnchor=getCareerAnchor;if(!['previous','birth'].includes(fallback))throw Error('Invalid fallback policy');this.fallback=fallback;this.interval=interval;this.key=raceStorageKey(identity);this.raw=null;this.record=null;this.state=null;this.mode='automatic';this.requiresCheckpoint=false;this.problem=null;this.exportToken=null;
   }
   anchor(){const a=this.getCareerAnchor();exact(a,['profileId','careerId','revision','maintenanceRevision','fingerprint']);if(a.profileId!==this.identity.profileId||a.careerId!==this.identity.careerId||!Number.isSafeInteger(a.revision)||a.revision<0||!Number.isSafeInteger(a.maintenanceRevision)||a.maintenanceRevision<0||!/^[a-f0-9]{64}$/.test(a.fingerprint))throw Error('RECOVERY_REQUIRED: invalid career anchor');return a;}
   assertAnchor(a){if(wireHash(a)!==wireHash(this.anchor()))throw Error('RECOVERY_REQUIRED: career changed; race cannot rewind financial state');}
@@ -104,9 +104,18 @@ export class RaceSessionStore {
     if(journal.length>=1000)throw Error('Journal limit reached; no inputs discarded');
     const s=cloneState(this.state),before=stateHash(s);execute(s,input);const next=[...journal,{sequence:journal.length+1,request:clone(input),requestHash:wireHash(input),before,after:stateHash(s)}],r=clone(this.record);
     r.journal=sealWire(next);
-    if(s.tick-this.record.checkpoint.value.tick>=this.interval||!['Ready','Running'].includes(s.status)){
+    if(this.fallback==='birth'||s.tick-this.record.checkpoint.value.tick>=this.interval||!['Ready','Running'].includes(s.status)){
       try{restoreRace(r.checkpoint);}catch{r.checkpoint=r.previous;}
-      r.previous=r.checkpoint;r.checkpoint=checkpointRace(s,this.identity,next.length);
+      if(this.fallback==='birth'){
+        // Retain a small verified birth image plus the COMPLETE journal. The
+        // IndexedDB coordinator separately retains the immediately prior head.
+        // This avoids two near-terminal full images overflowing one 8 MiB
+        // logical session; no journal or authoritative consequence is removed.
+        let base=r.previous?.value?.watermark===0?r.previous:r.checkpoint?.value?.watermark===0?r.checkpoint:null;
+        if(!base){const initial=createRace(s.setup);if(next[0].before!==stateHash(initial))throw Error('Cannot establish birth checkpoint identity');base=checkpointRace(initial,this.identity,0);const replay=cloneState(initial);for(const j of next){if(j.before!==stateHash(replay))throw Error('Birth rebase journal mismatch');execute(replay,j.request);if(j.after!==stateHash(replay))throw Error('Birth rebase outcome mismatch');}if(stateHash(replay)!==stateHash(s))throw Error('Birth rebase head mismatch');}
+        r.previous=base;
+      }else r.previous=r.checkpoint;
+      r.checkpoint=checkpointRace(s,this.identity,next.length);
     }
     this.publish(r,s,{...a,revision:a.revision+1,watermark:next.length,operational:'ACTIVE',reason:null});return {duplicate:false,durable:this.mode==='automatic',revision:a.revision+1};
   }
