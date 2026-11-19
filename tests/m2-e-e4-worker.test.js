@@ -27,3 +27,10 @@ test('E4 worker candidate has no durable ack, pending work rejects and reset dis
 test('E4 record bounds and duplicate identities reject before writes',()=>{
  assert.throws(()=>checkRecords([['foreign','text']]));assert.throws(()=>checkRecords([['bnt.career.save.v1','x'],['bnt.career.save.v1','x']]));assert.throws(()=>checkRecords([['bnt.career.save.v1','x'.repeat(8*1024*1024+1)]]));
 });
+
+test('E4 validated candidate cache promotes only after matching ack and never crosses a generation',async()=>{
+ const f=fixtureE4({fieldSize:1,courses:[null]}),h=createWorkerService(),snapshot={generation:0,records:[...f.map]};
+ const p=await send(h,'prepare',{snapshot,operation:'start',id:'cache-start'});await send(h,'ack',{token:p.token});
+ const next={generation:1,records:p.records};assert.equal((await send(h,'validate',{snapshot:next})).cacheHit,true);
+ assert.equal((await send(h,'validate',{snapshot:{...next,generation:2}})).cacheHit,false);
+});

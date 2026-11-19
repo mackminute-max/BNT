@@ -1,5 +1,5 @@
 import {CareerStore} from '../career-store.js';
-import {SAVE_KEY,parseEnvelope} from '../envelope.js';
+import {SAVE_KEY} from '../envelope.js';
 import {RaceSessionStore} from '../race/session-store.js';
 import {storedChampionshipAnchor} from '../../career/championships/anchor.js';
 import {ChampionshipRunner} from '../../career/championships/orchestrator.js';
@@ -19,7 +19,7 @@ export function createWorkerService(){
   const key=JSON.stringify(snapshot);
   if(cache?.key===key)return {hit:true,...cache};
   const map=new Map(snapshot.records),storage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)};
-  if(!map.has(SAVE_KEY))throw Error('No career authority');parseEnvelope(map.get(SAVE_KEY));
+  if(!map.has(SAVE_KEY))throw Error('No career authority');// CareerStore.open below performs the full untrusted envelope validation once.
   const career=new CareerStore(storage);career.open();if(career.mode!=='automatic'||!career.current)throw Error('Corrupt/untrusted career authority: '+career.problem);
   for(const x of Object.values(career.state.championshipFoundation?.instances??{})){
    for(const result of x.raceResults??[])if(result.kind==='NativeCleared'&&!map.has(result.reference.storageKey))throw Error('Missing retained official session authority');
@@ -42,7 +42,7 @@ export function createWorkerService(){
   if(message.type==='ack'){
    if(!pending||pending.token!==message.token)throw Error('Unknown candidate acknowledgement');
    // Durable commit is checked by the coordinator, never asserted by this worker.
-   cache=null;pending=null;return {version:1,accepted:true,durable:false};
+   cache=pending.validated;pending=null;return {version:1,accepted:true,durable:false};
   }
   if(pending)throw Error('Candidate pending; commit or reset first');
   if(message.type==='condition')return {version:1,result:pack(mapCondition(unpack(message.input))),durable:false};
@@ -71,7 +71,7 @@ export function createWorkerService(){
    }
    runner.publish(message.id);
   }else throw Error('Unsupported prepared operation');
-  const records=[...map];checkRecords(records);pending={token:'candidate-'+(++serial)};
+  const records=[...map];checkRecords(records);pending={token:'candidate-'+(++serial),validated:{key:JSON.stringify({...message.snapshot,generation:message.snapshot.generation+1,records}),map,storage,career}};
   return {version:1,token:pending.token,records,durable:false,elapsedMs:performance.now()-started,phase:activeChampionship(career.state)?.phase,revision:career.current.revision};
  };
 }
