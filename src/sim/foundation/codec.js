@@ -55,9 +55,20 @@ export function unsealWire(s){exact(s,['value','hash']);if(typeof s.hash!=='stri
 // graph bytes are bounded at 32 MiB to reject decompression bombs. No dependency.
 function compress(text){
   const bytes=new TextEncoder().encode(text);if(bytes.length>32*1024*1024)throw Error('Decoded checkpoint exceeds 32 MiB');
-  let dictionary,next;const reset=()=>{dictionary=new Map();for(let i=0;i<256;i++)dictionary.set(String.fromCharCode(i),i);next=257;};reset();
-  const codes=[];let word='';for(const b of bytes){const c=String.fromCharCode(b),both=word+c;if(dictionary.has(both)){word=both;continue;}codes.push(dictionary.get(word));if(next<65536)dictionary.set(both,next++);else{codes.push(256);reset();}word=c;}if(word)codes.push(dictionary.get(word));
-  const packed=new Uint8Array(Math.ceil(codes.length*16/8));let bit=0;for(const c of codes){for(let j=0;j<16;j++,bit++)if(c&(1<<j))packed[bit>>3]|=1<<(bit&7);}
+  // Prefix-code/byte pairs are exact LZW dictionary identities. Numeric keys
+  // avoid allocating a new phrase string for every input byte. Code assignment,
+  // reset markers and little-endian transport bytes remain lzw16-v1 unchanged.
+  const dictionary=new Map(),codes=[];let next=257,word=bytes.length?bytes[0]:-1;
+  for(let i=1;i<bytes.length;i++){
+    const c=bytes[i],key=word*256+c,found=dictionary.get(key);
+    if(found!==undefined){word=found;continue;}
+    codes.push(word);
+    if(next<65536)dictionary.set(key,next++);else{codes.push(256);dictionary.clear();next=257;}
+    word=c;
+  }
+  if(word!==-1)codes.push(word);
+  const packed=new Uint8Array(codes.length*2);
+  for(let i=0;i<codes.length;i++){packed[i*2]=codes[i]&255;packed[i*2+1]=codes[i]>>>8;}
   let binary='';for(let i=0;i<packed.length;i+=8192)binary+=String.fromCharCode(...packed.subarray(i,i+8192));
   return {codec:'lzw16-v1',plainBytes:bytes.length,codes:codes.length,data:btoa(binary)};
 }
@@ -65,8 +76,8 @@ function decompress(x){
   exact(x,['codec','plainBytes','codes','data']);if(x.codec!=='lzw16-v1'||!Number.isInteger(x.plainBytes)||x.plainBytes<0||x.plainBytes>32*1024*1024||!Number.isInteger(x.codes)||x.codes<0||x.codes>MAX_CHECKPOINT_BYTES||typeof x.data!=='string'||x.data.length>MAX_CHECKPOINT_BYTES)throw Error('Invalid compressed checkpoint bounds');
   const bytes=Uint8Array.from(atob(x.data),c=>c.charCodeAt(0));if(bytes.length!==Math.ceil(x.codes*16/8))throw Error('Truncated checkpoint compression');
   let dictionary,next;const reset=()=>{dictionary=Array.from({length:256},(_,i)=>String.fromCharCode(i));next=257;};reset();
-  const result=new Uint8Array(x.plainBytes);let pos=0,bit=0,word='';
-  for(let i=0;i<x.codes;i++){let code=0;for(let j=0;j<16;j++,bit++)if(bytes[bit>>3]&(1<<(bit&7)))code|=1<<j;if(code===256){reset();word='';continue;}const entry=dictionary[code]??(code===next&&word?word+word[0]:null);if(entry===null||pos+entry.length>result.length)throw Error('Invalid compressed checkpoint code');for(let j=0;j<entry.length;j++)result[pos++]=entry.charCodeAt(j);if(word&&next<65536)dictionary[next++]=word+entry[0];word=entry;}
+  const result=new Uint8Array(x.plainBytes);let pos=0,word='';
+  for(let i=0;i<x.codes;i++){const code=bytes[i*2]|(bytes[i*2+1]<<8);if(code===256){reset();word='';continue;}const entry=dictionary[code]??(code===next&&word?word+word[0]:null);if(entry===null||pos+entry.length>result.length)throw Error('Invalid compressed checkpoint code');for(let j=0;j<entry.length;j++)result[pos++]=entry.charCodeAt(j);if(word&&next<65536)dictionary[next++]=word+entry[0];word=entry;}
   if(pos!==result.length)throw Error('Truncated decoded checkpoint');return new TextDecoder('utf-8',{fatal:true}).decode(result);
 }
 export function pack(root){const wire={version:1,transport:compress(JSON.stringify(graphPack(root)))};if(new TextEncoder().encode(JSON.stringify(wire)).length>MAX_CHECKPOINT_BYTES)throw Error('Checkpoint exceeds 8 MiB');return wire;}
