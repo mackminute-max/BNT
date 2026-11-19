@@ -1,3 +1,4 @@
+import {IndexedRecords} from '../persistence/e4/indexeddb.js';
 import {mountChampionships} from './championships.js';
 import {controllerActive} from '../career/championships/controller.js';
 import {mountStableCycles} from './stable-cycles.js';
@@ -43,12 +44,29 @@ export function mountCareerSaves({ download }) {
     renderCycles();
     renderChampionships();
   }
+  async function legacyAuthorityGate() {
+    // Stage-1 safety: never edit historical Web Storage after a confirmed backend
+    // migration. Full coordinator UI adoption is a later E4 gate. Check the DB
+    // marker even when the separate discovery-witness write was interrupted.
+    let db;
+    try {
+      db = await IndexedRecords.open();
+      const found = await db.discover(storage);
+      if (found.migration || found.backend === 'blocked') {
+        store.mode = 'blocked';
+        store.problem = 'IndexedDB migration authority exists. Legacy Web Storage is historical and cannot be edited. Stage-1 coordinator proof is not the completed E4 recovery UI.';
+        throw Error(store.problem);
+      }
+    } finally { db?.close(); }
+  }
   async function exclusive(fn) {
+    const checked = async () => { await legacyAuthorityGate(); return fn(); };
     // Web Locks serialize cooperating windows when supported. The storage adapter
     // also rejects stale bytes. Without locks, use one active window only.
-    if (navigator.locks?.request) return navigator.locks.request(SAVE_KEY + '.writer', fn);
-    return fn();
+    if (navigator.locks?.request) return navigator.locks.request(SAVE_KEY + '.writer', checked);
+    return checked();
   }
+  legacyAuthorityGate().catch(e => { notice = 'Persistence authority check: ' + e.message; render(); });
   const act = fn => () => {
     queue = queue.catch(() => {}).then(() => exclusive(fn)).catch(e => { notice = e.message; }).finally(render);
     return queue;

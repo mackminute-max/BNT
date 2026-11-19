@@ -1,6 +1,8 @@
 import { build } from "esbuild";
 import { readFile, writeFile, mkdir } from "node:fs/promises";
+const worker = await build({entryPoints:["src/persistence/e4/worker-entry.js"],bundle:true,format:"iife",platform:"browser",target:"es2020",write:false,legalComments:"none"});
 const result = await build({
+  define: {BNT_E4_WORKER_SOURCE: JSON.stringify(worker.outputFiles[0].text)},
   entryPoints: ["src/ui/app.js"],
   bundle: true,
   format: "iife",
