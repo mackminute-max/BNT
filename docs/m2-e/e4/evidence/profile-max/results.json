@@ -1,0 +1,1971 @@
+{
+  "results": [
+    {
+      "id": "eight-twelve",
+      "fieldSize": 8,
+      "courses": [
+        null,
+        "C01",
+        "mixed-rally",
+        null,
+        "C01",
+        "mixed-rally",
+        null,
+        "C01",
+        "mixed-rally",
+        null,
+        "C01",
+        "mixed-rally"
+      ],
+      "events": [
+        {
+          "event": 1,
+          "actualEntrants": 8,
+          "tick": 962,
+          "nativeStatus": "Ended",
+          "blockedReason": null,
+          "proofFingerprint": "d72cb2dbbe0196b04f2c9cf45b3b1ceb3cfd8191c63b1a86a15984f0a842b961",
+          "nativeChecksum": "21d66ebd",
+          "careerBytes": 992548,
+          "sessionBytes": 897465,
+          "sessionCodeUnits": 897465,
+          "journalEntries": 1,
+          "totalBytes": 1890013,
+          "totalCodeUnits": 1890013
+        },
+        {
+          "event": 2,
+          "actualEntrants": 8,
+          "tick": 1789,
+          "nativeStatus": "Ended",
+          "blockedReason": null,
+          "proofFingerprint": "125777b8e0c172fcb35ede744a167840dbd2474873b11da571b50c9452d27bef",
+          "nativeChecksum": "4ab34797",
+          "careerBytes": 1112056,
+          "sessionBytes": 2422663,
+          "sessionCodeUnits": 2422663,
+          "journalEntries": 1,
+          "totalBytes": 4432184,
+          "totalCodeUnits": 4432184
+        },
+        {
+          "event": 3,
+          "actualEntrants": 8,
+          "tick": 1626,
+          "nativeStatus": "Ended",
+          "blockedReason": null,
+          "proofFingerprint": "b8a3a26f888610d1cb2c2b3216ccd21bf6504fb74866f0f6aff6ef62751878de",
+          "nativeChecksum": "673e5fd0",
+          "careerBytes": 1221743,
+          "sessionBytes": 2098719,
+          "sessionCodeUnits": 2098719,
+          "journalEntries": 1,
+          "totalBytes": 6640590,
+          "totalCodeUnits": 6640590
+        },
+        {
+          "event": 4,
+          "actualEntrants": 8,
+          "tick": 1134,
+          "nativeStatus": "Ended",
+          "blockedReason": null,
+          "proofFingerprint": "7ca4b3accbcd26496620c80745bff46cafcb18d5a1f59633226a9bc4325fe471",
+          "nativeChecksum": "67240955",
+          "careerBytes": 1330516,
+          "sessionBytes": 1745430,
+          "sessionCodeUnits": 1745430,
+          "journalEntries": 1,
+          "totalBytes": 8494793,
+          "totalCodeUnits": 8494793
+        },
+        {
+          "event": 5,
+          "actualEntrants": 8,
+          "tick": 1910,
+          "nativeStatus": "Ended",
+          "blockedReason": null,
+          "proofFingerprint": "c239182f066592315d00abccdc720dda29ac6626b7998d804870a048c6af3b44",
+          "nativeChecksum": "9877754d",
+          "careerBytes": 1448391,
+          "sessionBytes": 1920975,
+          "sessionCodeUnits": 1920975,
+          "journalEntries": 1,
+          "totalBytes": 10533643,
+          "totalCodeUnits": 10533643
+        },
+        {
+          "event": 6,
+          "actualEntrants": 8,
+          "tick": 1913,
+          "nativeStatus": "Ended",
+          "blockedReason": null,
+          "proofFingerprint": "ce2aac66b823e44e8ad3e024e84830cd29d6b76507c1ac04c46c22249f629fff",
+          "nativeChecksum": "24dcb7d5",
+          "careerBytes": 1558831,
+          "sessionBytes": 4886153,
+          "sessionCodeUnits": 4886153,
+          "journalEntries": 1,
+          "totalBytes": 15530236,
+          "totalCodeUnits": 15530236
+        },
+        {
+          "event": 7,
+          "actualEntrants": 8,
+          "tick": 1143,
+          "nativeStatus": "Ended",
+          "blockedReason": null,
+          "proofFingerprint": "8483cd62391973b0b893c50f24d6107a2fbc83131203d0251fd6fd52869783ce",
+          "nativeChecksum": "e7f766c9",
+          "careerBytes": 1669022,
+          "sessionBytes": 1399543,
+          "sessionCodeUnits": 1399543,
+          "journalEntries": 1,
+          "totalBytes": 17039970,
+          "totalCodeUnits": 17039970
+        },
+        {
+          "event": 8,
+          "actualEntrants": 8,
+          "tick": 1938,
+          "nativeStatus": "Ended",
+          "blockedReason": null,
+          "proofFingerprint": "7ca59f7919ec3ca1898a573e177a50e54647fdd337a83cfcbd651f5d53904fd1",
+          "nativeChecksum": "8748547c",
+          "careerBytes": 1788107,
+          "sessionBytes": 2356223,
+          "sessionCodeUnits": 2356223,
+          "journalEntries": 1,
+          "totalBytes": 19515278,
+          "totalCodeUnits": 19515278
+        },
+        {
+          "event": 9,
+          "actualEntrants": 8,
+          "tick": 1884,
+          "nativeStatus": "Ended",
+          "blockedReason": null,
+          "proofFingerprint": "c5bdb229e902c24eeaf8382e589bdc7daf7f0f4afc43f354ac8322ef6088eec3",
+          "nativeChecksum": "13466edf",
+          "careerBytes": 1898884,
+          "sessionBytes": 2806676,
+          "sessionCodeUnits": 2806676,
+          "journalEntries": 1,
+          "totalBytes": 22432731,
+          "totalCodeUnits": 22432731
+        },
+        {
+          "event": 10,
+          "actualEntrants": 8,
+          "tick": 1190,
+          "nativeStatus": "Ended",
+          "blockedReason": null,
+          "proofFingerprint": "a4d69896b2164a65703f768f4c6b92cd3da30c7052bb8bdd723cf6a055972188",
+          "nativeChecksum": "f86a8fc5",
+          "careerBytes": 2008519,
+          "sessionBytes": 1727579,
+          "sessionCodeUnits": 1727579,
+          "journalEntries": 1,
+          "totalBytes": 24269945,
+          "totalCodeUnits": 24269945
+        },
+        {
+          "event": 11,
+          "actualEntrants": 8,
+          "tick": 2007,
+          "nativeStatus": "Ended",
+          "blockedReason": null,
+          "proofFingerprint": "1778c5283c545640764bc964189e618448e15f2295251f21ad3131632d2f9a25",
+          "nativeChecksum": "02f4b543",
+          "careerBytes": 2127537,
+          "sessionBytes": 1901044,
+          "sessionCodeUnits": 1901044,
+          "journalEntries": 1,
+          "totalBytes": 26290007,
+          "totalCodeUnits": 26290007
+        },
+        {
+          "event": 12,
+          "actualEntrants": 8,
+          "tick": 1794,
+          "nativeStatus": "Ended",
+          "blockedReason": null,
+          "proofFingerprint": "99e336fc598fb8abac25687679aa4a0a7b4278502cf47b082d71e35bce33b40b",
+          "nativeChecksum": "964e1d49",
+          "careerBytes": 2246709,
+          "sessionBytes": 3553638,
+          "sessionCodeUnits": 3553638,
+          "journalEntries": 1,
+          "totalBytes": 29962817,
+          "totalCodeUnits": 29962817
+        }
+      ],
+      "phase": "SETTLEMENT_PENDING",
+      "nativeReplays": [
+        {
+          "event": 1,
+          "checksum": "21d66ebd"
+        },
+        {
+          "event": 2,
+          "checksum": "4ab34797"
+        },
+        {
+          "event": 3,
+          "checksum": "673e5fd0"
+        },
+        {
+          "event": 4,
+          "checksum": "67240955"
+        },
+        {
+          "event": 5,
+          "checksum": "9877754d"
+        },
+        {
+          "event": 6,
+          "checksum": "24dcb7d5"
+        },
+        {
+          "event": 7,
+          "checksum": "e7f766c9"
+        },
+        {
+          "event": 8,
+          "checksum": "8748547c"
+        },
+        {
+          "event": 9,
+          "checksum": "13466edf"
+        },
+        {
+          "event": 10,
+          "checksum": "f86a8fc5"
+        },
+        {
+          "event": 11,
+          "checksum": "02f4b543"
+        },
+        {
+          "event": 12,
+          "checksum": "964e1d49"
+        }
+      ],
+      "retainedKeys": 13,
+      "encodedBytes": 29962817,
+      "gzipDiagnosticBytes": 20830569,
+      "sha256": "4faee593c171870952388033878b89463aab75681e02dfee963991d47c6a710a"
+    }
+  ],
+  "operations": [
+    {
+      "label": "eight-twelve:new",
+      "elapsedMs": 5266.648051,
+      "rssBefore": 48705536,
+      "rssAfter": 243261440,
+      "maxRssProcessBytes": 253612032
+    },
+    {
+      "label": "eight-twelve:0:start",
+      "elapsedMs": 2577.340397,
+      "rssBefore": 243261440,
+      "rssAfter": 252801024,
+      "maxRssProcessBytes": 255864832
+    },
+    {
+      "label": "eight-twelve:0:native-and-session",
+      "elapsedMs": 18276.129670000002,
+      "rssBefore": 252801024,
+      "rssAfter": 451387392,
+      "maxRssProcessBytes": 491077632
+    },
+    {
+      "label": "eight-twelve:0:official",
+      "elapsedMs": 16898.200531,
+      "rssBefore": 466591744,
+      "rssAfter": 467083264,
+      "maxRssProcessBytes": 570023936
+    },
+    {
+      "label": "eight-twelve:1:start",
+      "elapsedMs": 3321.840323999997,
+      "rssBefore": 468131840,
+      "rssAfter": 473407488,
+      "maxRssProcessBytes": 570023936
+    },
+    {
+      "label": "eight-twelve:1:native-and-session",
+      "elapsedMs": 26290.983559000008,
+      "rssBefore": 473407488,
+      "rssAfter": 615415808,
+      "maxRssProcessBytes": 729210880
+    },
+    {
+      "label": "eight-twelve:1:official",
+      "elapsedMs": 26051.524258999998,
+      "rssBefore": 707973120,
+      "rssAfter": 824872960,
+      "maxRssProcessBytes": 939012096
+    },
+    {
+      "label": "eight-twelve:2:start",
+      "elapsedMs": 4092.801986999999,
+      "rssBefore": 827232256,
+      "rssAfter": 831598592,
+      "maxRssProcessBytes": 939012096
+    },
+    {
+      "label": "eight-twelve:2:native-and-session",
+      "elapsedMs": 30018.05270500001,
+      "rssBefore": 831598592,
+      "rssAfter": 847835136,
+      "maxRssProcessBytes": 972251136
+    },
+    {
+      "label": "eight-twelve:2:official",
+      "elapsedMs": 29337.254067,
+      "rssBefore": 777891840,
+      "rssAfter": 945041408,
+      "maxRssProcessBytes": 972251136
+    },
+    {
+      "label": "eight-twelve:3:start",
+      "elapsedMs": 5224.059172000008,
+      "rssBefore": 947138560,
+      "rssAfter": 953323520,
+      "maxRssProcessBytes": 972251136
+    },
+    {
+      "label": "eight-twelve:3:native-and-session",
+      "elapsedMs": 31424.11153600001,
+      "rssBefore": 953323520,
+      "rssAfter": 881528832,
+      "maxRssProcessBytes": 972251136
+    },
+    {
+      "label": "eight-twelve:3:official",
+      "elapsedMs": 29855.130940000003,
+      "rssBefore": 793096192,
+      "rssAfter": 855613440,
+      "maxRssProcessBytes": 972251136
+    },
+    {
+      "label": "eight-twelve:4:start",
+      "elapsedMs": 6770.352065999992,
+      "rssBefore": 857317376,
+      "rssAfter": 867172352,
+      "maxRssProcessBytes": 972251136
+    },
+    {
+      "label": "eight-twelve:4:native-and-session",
+      "elapsedMs": 38909.763647000014,
+      "rssBefore": 867172352,
+      "rssAfter": 904663040,
+      "maxRssProcessBytes": 979759104
+    },
+    {
+      "label": "eight-twelve:4:official",
+      "elapsedMs": 34640.47480100003,
+      "rssBefore": 854093824,
+      "rssAfter": 981389312,
+      "maxRssProcessBytes": 983285760
+    },
+    {
+      "label": "eight-twelve:5:start",
+      "elapsedMs": 6875.752954000025,
+      "rssBefore": 983355392,
+      "rssAfter": 789082112,
+      "maxRssProcessBytes": 987684864
+    },
+    {
+      "label": "eight-twelve:5:native-and-session",
+      "elapsedMs": 56447.901329999964,
+      "rssBefore": 789082112,
+      "rssAfter": 1050886144,
+      "maxRssProcessBytes": 1161879552
+    },
+    {
+      "label": "eight-twelve:5:official",
+      "elapsedMs": 57332.06682000001,
+      "rssBefore": 1009487872,
+      "rssAfter": 1133142016,
+      "maxRssProcessBytes": 1321447424
+    },
+    {
+      "label": "eight-twelve:6:start",
+      "elapsedMs": 8103.857695999963,
+      "rssBefore": 1137991680,
+      "rssAfter": 1153204224,
+      "maxRssProcessBytes": 1321447424
+    },
+    {
+      "label": "eight-twelve:6:native-and-session",
+      "elapsedMs": 48186.44820300001,
+      "rssBefore": 1153204224,
+      "rssAfter": 1037606912,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:6:official",
+      "elapsedMs": 39078.003879999975,
+      "rssBefore": 1082212352,
+      "rssAfter": 1040809984,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:7:start",
+      "elapsedMs": 9045.379642999964,
+      "rssBefore": 1042251776,
+      "rssAfter": 1058328576,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:7:native-and-session",
+      "elapsedMs": 53907.12045200006,
+      "rssBefore": 1058328576,
+      "rssAfter": 1069473792,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:7:official",
+      "elapsedMs": 46837.71175000002,
+      "rssBefore": 1016299520,
+      "rssAfter": 1197387776,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:8:start",
+      "elapsedMs": 10724.593611999997,
+      "rssBefore": 1193979904,
+      "rssAfter": 1012711424,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:8:native-and-session",
+      "elapsedMs": 62483.59086899995,
+      "rssBefore": 1012711424,
+      "rssAfter": 1068691456,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:8:official",
+      "elapsedMs": 54868.94020199997,
+      "rssBefore": 999911424,
+      "rssAfter": 1198239744,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:9:start",
+      "elapsedMs": 11879.356681999983,
+      "rssBefore": 1200992256,
+      "rssAfter": 1224249344,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:9:native-and-session",
+      "elapsedMs": 65637.33359200007,
+      "rssBefore": 1224249344,
+      "rssAfter": 1066422272,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:9:official",
+      "elapsedMs": 56811.86185300001,
+      "rssBefore": 1136082944,
+      "rssAfter": 1131839488,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:10:start",
+      "elapsedMs": 14138.368060000008,
+      "rssBefore": 1133543424,
+      "rssAfter": 1167663104,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:10:native-and-session",
+      "elapsedMs": 79851.55326200009,
+      "rssBefore": 1167663104,
+      "rssAfter": 1120837632,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:10:official",
+      "elapsedMs": 62044.112301000045,
+      "rssBefore": 1032724480,
+      "rssAfter": 1117663232,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:11:start",
+      "elapsedMs": 15222.636305999942,
+      "rssBefore": 1119498240,
+      "rssAfter": 1147490304,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:11:native-and-session",
+      "elapsedMs": 87197.56504999986,
+      "rssBefore": 1147490304,
+      "rssAfter": 1250934784,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:11:official",
+      "elapsedMs": 74199.90170699987,
+      "rssBefore": 1208504320,
+      "rssAfter": 1292099584,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:reload-0",
+      "elapsedMs": 5230.754829999991,
+      "rssBefore": 1295638528,
+      "rssAfter": 1301630976,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:export-0",
+      "elapsedMs": 8932.41905799997,
+      "rssBefore": 1301630976,
+      "rssAfter": 1323671552,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:reload-1",
+      "elapsedMs": 5110.266799000092,
+      "rssBefore": 1323671552,
+      "rssAfter": 1333575680,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:export-1",
+      "elapsedMs": 8908.28390499996,
+      "rssBefore": 1333575680,
+      "rssAfter": 1359368192,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:serialize-export",
+      "elapsedMs": 8403.08356900001,
+      "rssBefore": 1359368192,
+      "rssAfter": 1380999168,
+      "maxRssProcessBytes": 1405022208
+    },
+    {
+      "label": "eight-twelve:import-validate-0",
+      "elapsedMs": 19796.47258000006,
+      "rssBefore": 1380999168,
+      "rssAfter": 1442148352,
+      "maxRssProcessBytes": 1442848768
+    },
+    {
+      "label": "eight-twelve:import-validate-1",
+      "elapsedMs": 21058.726143999957,
+      "rssBefore": 1442148352,
+      "rssAfter": 1104195584,
+      "maxRssProcessBytes": 1446973440
+    }
+  ],
+  "inclusiveObservations": {
+    "eight-twelve:new": {
+      "CareerStore.open": {
+        "calls": 3,
+        "inclusiveMs": 26.504867000000004
+      },
+      "structuredClone": {
+        "calls": 38386,
+        "inclusiveMs": 738.3247519999385
+      },
+      "JSON.parse": {
+        "calls": 4301,
+        "inclusiveMs": 54.20748199999532
+      },
+      "CareerStore.publish": {
+        "calls": 8,
+        "inclusiveMs": 1614.8641860000005
+      },
+      "CareerStore.transaction": {
+        "calls": 4,
+        "inclusiveMs": 4586.785019999999
+      }
+    },
+    "eight-twelve:0:start": {
+      "structuredClone": {
+        "calls": 26524,
+        "inclusiveMs": 317.8785010000738
+      },
+      "JSON.parse": {
+        "calls": 1128,
+        "inclusiveMs": 29.06911599999512
+      },
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.02247299999999086
+      },
+      "storage.setItem": {
+        "calls": 1,
+        "inclusiveMs": 0.0034450000002834713
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 737.2873759999993
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 2564.617529
+      }
+    },
+    "eight-twelve:0:native-and-session": {
+      "structuredClone": {
+        "calls": 122763,
+        "inclusiveMs": 1585.8492650005255
+      },
+      "storage.getItem": {
+        "calls": 16,
+        "inclusiveMs": 0.5668660000001182
+      },
+      "JSON.parse": {
+        "calls": 5368,
+        "inclusiveMs": 199.41918600002373
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 5399.64328
+      },
+      "storage.setItem": {
+        "calls": 3,
+        "inclusiveMs": 0.08729900000435009
+      },
+      "RaceSessionStore.publish": {
+        "calls": 2,
+        "inclusiveMs": 9532.644939999998
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 852.5186519999988
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 2867.305943999998
+      },
+      "RaceSessionStore.apply": {
+        "calls": 1,
+        "inclusiveMs": 9771.990628
+      }
+    },
+    "eight-twelve:0:official": {
+      "structuredClone": {
+        "calls": 92249,
+        "inclusiveMs": 1160.273558000783
+      },
+      "storage.getItem": {
+        "calls": 12,
+        "inclusiveMs": 0.03969899999719928
+      },
+      "JSON.parse": {
+        "calls": 4405,
+        "inclusiveMs": 242.66317399970285
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 9451.53185
+      },
+      "RaceSessionStore.open": {
+        "calls": 1,
+        "inclusiveMs": 3282.2367589999994
+      },
+      "storage.setItem": {
+        "calls": 2,
+        "inclusiveMs": 0.04330399999162182
+      },
+      "RaceSessionStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 5975.179282999998
+      },
+      "RaceSessionStore.finalize": {
+        "calls": 1,
+        "inclusiveMs": 7049.00102
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 943.0526520000058
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 2996.8007609999986
+      }
+    },
+    "eight-twelve:1:start": {
+      "structuredClone": {
+        "calls": 28923,
+        "inclusiveMs": 337.84005699984846
+      },
+      "JSON.parse": {
+        "calls": 1626,
+        "inclusiveMs": 48.26200899997639
+      },
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.010765999999421183
+      },
+      "storage.setItem": {
+        "calls": 1,
+        "inclusiveMs": 0.003926000004867092
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 984.870842999997
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 3309.3674330000067
+      }
+    },
+    "eight-twelve:1:native-and-session": {
+      "structuredClone": {
+        "calls": 134504,
+        "inclusiveMs": 1556.9585359998673
+      },
+      "storage.getItem": {
+        "calls": 16,
+        "inclusiveMs": 0.048920999965048395
+      },
+      "JSON.parse": {
+        "calls": 7675,
+        "inclusiveMs": 320.79326999957993
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 7925.482383999995
+      },
+      "storage.setItem": {
+        "calls": 3,
+        "inclusiveMs": 0.10593599999992875
+      },
+      "RaceSessionStore.publish": {
+        "calls": 2,
+        "inclusiveMs": 13448.969150000004
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 1023.0344580000019
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 3315.7563299999965
+      },
+      "RaceSessionStore.apply": {
+        "calls": 1,
+        "inclusiveMs": 16491.254433000002
+      }
+    },
+    "eight-twelve:1:official": {
+      "structuredClone": {
+        "calls": 100712,
+        "inclusiveMs": 1220.966499000744
+      },
+      "storage.getItem": {
+        "calls": 12,
+        "inclusiveMs": 0.11458600001060404
+      },
+      "JSON.parse": {
+        "calls": 6226,
+        "inclusiveMs": 407.4139939985762
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 16079.709873999993
+      },
+      "RaceSessionStore.open": {
+        "calls": 1,
+        "inclusiveMs": 5700.185817999998
+      },
+      "storage.setItem": {
+        "calls": 2,
+        "inclusiveMs": 0.024166000002878718
+      },
+      "RaceSessionStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 9678.470109000002
+      },
+      "RaceSessionStore.finalize": {
+        "calls": 1,
+        "inclusiveMs": 10927.545185999988
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 1156.3632310000103
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 3847.721387999991
+      }
+    },
+    "eight-twelve:2:start": {
+      "structuredClone": {
+        "calls": 31568,
+        "inclusiveMs": 367.71337799704634
+      },
+      "JSON.parse": {
+        "calls": 2241,
+        "inclusiveMs": 70.3452259994956
+      },
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.01337000000057742
+      },
+      "storage.setItem": {
+        "calls": 1,
+        "inclusiveMs": 0.004867000010563061
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 1223.483315999998
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 4077.5767119999946
+      }
+    },
+    "eight-twelve:2:native-and-session": {
+      "structuredClone": {
+        "calls": 146814,
+        "inclusiveMs": 1747.2330500012613
+      },
+      "storage.getItem": {
+        "calls": 16,
+        "inclusiveMs": 0.07485000000451691
+      },
+      "JSON.parse": {
+        "calls": 10513,
+        "inclusiveMs": 405.9235589998716
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 8813.767884
+      },
+      "storage.setItem": {
+        "calls": 3,
+        "inclusiveMs": 0.03177700001106132
+      },
+      "RaceSessionStore.publish": {
+        "calls": 2,
+        "inclusiveMs": 15219.380758999978
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 1339.6824520000082
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 4445.257140999995
+      },
+      "RaceSessionStore.apply": {
+        "calls": 1,
+        "inclusiveMs": 17241.52771600001
+      }
+    },
+    "eight-twelve:2:official": {
+      "structuredClone": {
+        "calls": 109953,
+        "inclusiveMs": 1400.9676689998305
+      },
+      "storage.getItem": {
+        "calls": 12,
+        "inclusiveMs": 0.04591899999650195
+      },
+      "JSON.parse": {
+        "calls": 8443,
+        "inclusiveMs": 482.6584529996908
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 17499.711290000036
+      },
+      "RaceSessionStore.open": {
+        "calls": 1,
+        "inclusiveMs": 5782.151066999999
+      },
+      "storage.setItem": {
+        "calls": 2,
+        "inclusiveMs": 0.025498000002698973
+      },
+      "RaceSessionStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 10763.527396999998
+      },
+      "RaceSessionStore.finalize": {
+        "calls": 1,
+        "inclusiveMs": 12442.800341000024
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 1526.6371079999954
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 4787.163688000001
+      }
+    },
+    "eight-twelve:3:start": {
+      "structuredClone": {
+        "calls": 34407,
+        "inclusiveMs": 426.934465998871
+      },
+      "JSON.parse": {
+        "calls": 2973,
+        "inclusiveMs": 101.31338199993479
+      },
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.014762000006157905
+      },
+      "storage.setItem": {
+        "calls": 1,
+        "inclusiveMs": 0.0038960000092629343
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 1619.6749319999944
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 5205.685761000001
+      }
+    },
+    "eight-twelve:3:native-and-session": {
+      "structuredClone": {
+        "calls": 159137,
+        "inclusiveMs": 1876.7835629978508
+      },
+      "storage.getItem": {
+        "calls": 16,
+        "inclusiveMs": 0.10716800004593097
+      },
+      "JSON.parse": {
+        "calls": 13882,
+        "inclusiveMs": 487.4285420017841
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 8676.057073999982
+      },
+      "storage.setItem": {
+        "calls": 3,
+        "inclusiveMs": 0.032519000029424205
+      },
+      "RaceSessionStore.publish": {
+        "calls": 2,
+        "inclusiveMs": 16071.96792699999
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 1667.313930000004
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 5415.212390000001
+      },
+      "RaceSessionStore.apply": {
+        "calls": 1,
+        "inclusiveMs": 15976.704972999985
+      }
+    },
+    "eight-twelve:3:official": {
+      "structuredClone": {
+        "calls": 119796,
+        "inclusiveMs": 1529.0184610016586
+      },
+      "storage.getItem": {
+        "calls": 12,
+        "inclusiveMs": 0.05434100006823428
+      },
+      "JSON.parse": {
+        "calls": 11056,
+        "inclusiveMs": 521.2632559992489
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 15526.30641400002
+      },
+      "RaceSessionStore.open": {
+        "calls": 1,
+        "inclusiveMs": 5300.479600999999
+      },
+      "storage.setItem": {
+        "calls": 2,
+        "inclusiveMs": 0.025457999989157543
+      },
+      "RaceSessionStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 10242.53627500002
+      },
+      "RaceSessionStore.finalize": {
+        "calls": 1,
+        "inclusiveMs": 12223.327416999993
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 1963.2032030000119
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 6471.526369999978
+      }
+    },
+    "eight-twelve:4:start": {
+      "structuredClone": {
+        "calls": 37508,
+        "inclusiveMs": 506.92439599509817
+      },
+      "JSON.parse": {
+        "calls": 3822,
+        "inclusiveMs": 129.60074700100813
+      },
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.014181000005919486
+      },
+      "storage.setItem": {
+        "calls": 1,
+        "inclusiveMs": 0.003985999996075407
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 2083.337530000019
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 6754.382164999988
+      }
+    },
+    "eight-twelve:4:native-and-session": {
+      "structuredClone": {
+        "calls": 173884,
+        "inclusiveMs": 2025.9036440040218
+      },
+      "storage.getItem": {
+        "calls": 16,
+        "inclusiveMs": 0.060547999979462475
+      },
+      "JSON.parse": {
+        "calls": 17782,
+        "inclusiveMs": 637.4747130035539
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 10882.009331999987
+      },
+      "storage.setItem": {
+        "calls": 3,
+        "inclusiveMs": 0.034229999961098656
+      },
+      "RaceSessionStore.publish": {
+        "calls": 2,
+        "inclusiveMs": 19692.003264
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 1859.4857879999909
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 6204.12468399998
+      },
+      "RaceSessionStore.apply": {
+        "calls": 1,
+        "inclusiveMs": 20227.85119800002
+      }
+    },
+    "eight-twelve:4:official": {
+      "structuredClone": {
+        "calls": 130635,
+        "inclusiveMs": 1592.3497069950681
+      },
+      "storage.getItem": {
+        "calls": 12,
+        "inclusiveMs": 0.04808999999659136
+      },
+      "JSON.parse": {
+        "calls": 14065,
+        "inclusiveMs": 607.7451350017218
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 18751.16139600001
+      },
+      "RaceSessionStore.open": {
+        "calls": 1,
+        "inclusiveMs": 6785.329954999965
+      },
+      "storage.setItem": {
+        "calls": 2,
+        "inclusiveMs": 0.019869000010658056
+      },
+      "RaceSessionStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 12417.017931999988
+      },
+      "RaceSessionStore.finalize": {
+        "calls": 1,
+        "inclusiveMs": 14789.408130000054
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 2097.100788999989
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 6551.065225999977
+      }
+    },
+    "eight-twelve:5:start": {
+      "structuredClone": {
+        "calls": 40855,
+        "inclusiveMs": 463.09711999766296
+      },
+      "JSON.parse": {
+        "calls": 4788,
+        "inclusiveMs": 142.39437000226462
+      },
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.01498199999332428
+      },
+      "storage.setItem": {
+        "calls": 1,
+        "inclusiveMs": 0.004176000016741455
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 2139.4481679999735
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 6859.397002999962
+      }
+    },
+    "eight-twelve:5:native-and-session": {
+      "structuredClone": {
+        "calls": 190462,
+        "inclusiveMs": 2302.760381999018
+      },
+      "storage.getItem": {
+        "calls": 16,
+        "inclusiveMs": 0.0724990000599064
+      },
+      "JSON.parse": {
+        "calls": 22213,
+        "inclusiveMs": 965.7583429982769
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 17123.52102299995
+      },
+      "storage.setItem": {
+        "calls": 3,
+        "inclusiveMs": 0.032949999964330345
+      },
+      "RaceSessionStore.publish": {
+        "calls": 2,
+        "inclusiveMs": 28343.522652000014
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 2195.0241440000245
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 7511.81521900004
+      },
+      "RaceSessionStore.apply": {
+        "calls": 1,
+        "inclusiveMs": 34408.706018000026
+      }
+    },
+    "eight-twelve:5:official": {
+      "structuredClone": {
+        "calls": 142252,
+        "inclusiveMs": 1813.3927120105946
+      },
+      "storage.getItem": {
+        "calls": 12,
+        "inclusiveMs": 0.051955999922938645
+      },
+      "JSON.parse": {
+        "calls": 17470,
+        "inclusiveMs": 1149.0790239995113
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 36079.05435499991
+      },
+      "RaceSessionStore.open": {
+        "calls": 1,
+        "inclusiveMs": 12260.97529099998
+      },
+      "storage.setItem": {
+        "calls": 2,
+        "inclusiveMs": 0.022293000016361475
+      },
+      "RaceSessionStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 21513.94462799997
+      },
+      "RaceSessionStore.finalize": {
+        "calls": 1,
+        "inclusiveMs": 24324.114055000013
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 2367.122598999995
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 8023.4965530000045
+      }
+    },
+    "eight-twelve:6:start": {
+      "structuredClone": {
+        "calls": 44396,
+        "inclusiveMs": 484.5102989989682
+      },
+      "JSON.parse": {
+        "calls": 5871,
+        "inclusiveMs": 174.05761300149607
+      },
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.010876000043936074
+      },
+      "storage.setItem": {
+        "calls": 1,
+        "inclusiveMs": 0.0043459999724291265
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 2458.753402000002
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 8082.780337999982
+      }
+    },
+    "eight-twelve:6:native-and-session": {
+      "structuredClone": {
+        "calls": 205101,
+        "inclusiveMs": 2489.605873001623
+      },
+      "storage.getItem": {
+        "calls": 16,
+        "inclusiveMs": 0.14158899983158335
+      },
+      "JSON.parse": {
+        "calls": 27175,
+        "inclusiveMs": 955.8067800034187
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 12960.960872000025
+      },
+      "storage.setItem": {
+        "calls": 3,
+        "inclusiveMs": 0.03148599999258295
+      },
+      "RaceSessionStore.publish": {
+        "calls": 2,
+        "inclusiveMs": 24141.299407000013
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 2850.916474000027
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 9757.18398000003
+      },
+      "RaceSessionStore.apply": {
+        "calls": 1,
+        "inclusiveMs": 22196.012401999964
+      }
+    },
+    "eight-twelve:6:official": {
+      "structuredClone": {
+        "calls": 154471,
+        "inclusiveMs": 1871.436823998578
+      },
+      "storage.getItem": {
+        "calls": 12,
+        "inclusiveMs": 0.05262500006938353
+      },
+      "JSON.parse": {
+        "calls": 21271,
+        "inclusiveMs": 782.4513589922572
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 18528.96962999995
+      },
+      "RaceSessionStore.open": {
+        "calls": 1,
+        "inclusiveMs": 6295.258082000015
+      },
+      "storage.setItem": {
+        "calls": 2,
+        "inclusiveMs": 0.04679899988695979
+      },
+      "RaceSessionStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 13487.928385999927
+      },
+      "RaceSessionStore.finalize": {
+        "calls": 1,
+        "inclusiveMs": 16670.387904999952
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 2799.2703319999855
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 8967.680468000006
+      }
+    },
+    "eight-twelve:7:start": {
+      "structuredClone": {
+        "calls": 48199,
+        "inclusiveMs": 538.2568330278154
+      },
+      "JSON.parse": {
+        "calls": 7071,
+        "inclusiveMs": 208.50124599656556
+      },
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.010975999990478158
+      },
+      "storage.setItem": {
+        "calls": 1,
+        "inclusiveMs": 0.007299999939277768
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 2776.0756180000026
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 9023.912509000045
+      }
+    },
+    "eight-twelve:7:native-and-session": {
+      "structuredClone": {
+        "calls": 222728,
+        "inclusiveMs": 2484.041952978936
+      },
+      "storage.getItem": {
+        "calls": 16,
+        "inclusiveMs": 0.06213999981991947
+      },
+      "JSON.parse": {
+        "calls": 32668,
+        "inclusiveMs": 1037.1246569893556
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 14620.167770000058
+      },
+      "storage.setItem": {
+        "calls": 3,
+        "inclusiveMs": 0.053478999878279865
+      },
+      "RaceSessionStore.publish": {
+        "calls": 2,
+        "inclusiveMs": 26922.725000999984
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 3082.7036620000144
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 9452.405221000081
+      },
+      "RaceSessionStore.apply": {
+        "calls": 1,
+        "inclusiveMs": 26227.818944000057
+      }
+    },
+    "eight-twelve:7:official": {
+      "structuredClone": {
+        "calls": 167686,
+        "inclusiveMs": 1984.7663930109702
+      },
+      "storage.getItem": {
+        "calls": 12,
+        "inclusiveMs": 0.05142600042745471
+      },
+      "JSON.parse": {
+        "calls": 25468,
+        "inclusiveMs": 960.3969179922715
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 23038.343570000143
+      },
+      "RaceSessionStore.open": {
+        "calls": 1,
+        "inclusiveMs": 7689.813579999958
+      },
+      "storage.setItem": {
+        "calls": 2,
+        "inclusiveMs": 0.04245199996512383
+      },
+      "RaceSessionStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 16629.53526500007
+      },
+      "RaceSessionStore.finalize": {
+        "calls": 1,
+        "inclusiveMs": 20365.538689000066
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 2987.911710000015
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 10117.962142999982
+      }
+    },
+    "eight-twelve:8:start": {
+      "structuredClone": {
+        "calls": 52248,
+        "inclusiveMs": 570.1339049898088
+      },
+      "JSON.parse": {
+        "calls": 8388,
+        "inclusiveMs": 254.11324699840043
+      },
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.005707999924197793
+      },
+      "storage.setItem": {
+        "calls": 1,
+        "inclusiveMs": 0.004536000080406666
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 3368.6644999999553
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 10706.43277100008
+      }
+    },
+    "eight-twelve:8:native-and-session": {
+      "structuredClone": {
+        "calls": 242051,
+        "inclusiveMs": 2669.0181170115247
+      },
+      "storage.getItem": {
+        "calls": 16,
+        "inclusiveMs": 0.0567850002553314
+      },
+      "JSON.parse": {
+        "calls": 38692,
+        "inclusiveMs": 1193.4185959880706
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 17550.148964999942
+      },
+      "storage.setItem": {
+        "calls": 3,
+        "inclusiveMs": 0.02837099996395409
+      },
+      "RaceSessionStore.publish": {
+        "calls": 2,
+        "inclusiveMs": 31686.167056999868
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 3200.669154000003
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 10689.896990999929
+      },
+      "RaceSessionStore.apply": {
+        "calls": 1,
+        "inclusiveMs": 31156.965391000034
+      }
+    },
+    "eight-twelve:8:official": {
+      "structuredClone": {
+        "calls": 181679,
+        "inclusiveMs": 2059.041313992697
+      },
+      "storage.getItem": {
+        "calls": 12,
+        "inclusiveMs": 0.05451900023035705
+      },
+      "JSON.parse": {
+        "calls": 30061,
+        "inclusiveMs": 1150.3102959982352
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 28272.987626999966
+      },
+      "RaceSessionStore.open": {
+        "calls": 1,
+        "inclusiveMs": 9598.200826999964
+      },
+      "storage.setItem": {
+        "calls": 2,
+        "inclusiveMs": 0.021662999992258847
+      },
+      "RaceSessionStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 19409.199196
+      },
+      "RaceSessionStore.finalize": {
+        "calls": 1,
+        "inclusiveMs": 23417.384429999976
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 3625.269631000003
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 11407.16285600001
+      }
+    },
+    "eight-twelve:9:start": {
+      "structuredClone": {
+        "calls": 56491,
+        "inclusiveMs": 619.7884170097532
+      },
+      "JSON.parse": {
+        "calls": 9822,
+        "inclusiveMs": 285.2488079996547
+      },
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.01483199989888817
+      },
+      "storage.setItem": {
+        "calls": 1,
+        "inclusiveMs": 0.004006000002846122
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 3666.8034210000187
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 11856.094455000013
+      }
+    },
+    "eight-twelve:9:native-and-session": {
+      "structuredClone": {
+        "calls": 260118,
+        "inclusiveMs": 3029.9015029709553
+      },
+      "storage.getItem": {
+        "calls": 16,
+        "inclusiveMs": 0.06610799964983016
+      },
+      "JSON.parse": {
+        "calls": 45247,
+        "inclusiveMs": 1454.0422370010056
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 17030.220254000043
+      },
+      "storage.setItem": {
+        "calls": 3,
+        "inclusiveMs": 0.03768499998841435
+      },
+      "RaceSessionStore.publish": {
+        "calls": 2,
+        "inclusiveMs": 32736.670131999883
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 3957.024030999979
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 13855.183636999922
+      },
+      "RaceSessionStore.apply": {
+        "calls": 1,
+        "inclusiveMs": 28385.816024000058
+      }
+    },
+    "eight-twelve:9:official": {
+      "structuredClone": {
+        "calls": 196274,
+        "inclusiveMs": 2589.6674689841457
+      },
+      "storage.getItem": {
+        "calls": 12,
+        "inclusiveMs": 0.08981300028972328
+      },
+      "JSON.parse": {
+        "calls": 35050,
+        "inclusiveMs": 1268.5921420159284
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 24999.146057999926
+      },
+      "RaceSessionStore.open": {
+        "calls": 1,
+        "inclusiveMs": 8129.530420000083
+      },
+      "storage.setItem": {
+        "calls": 2,
+        "inclusiveMs": 0.09159500012174249
+      },
+      "RaceSessionStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 20608.87996499997
+      },
+      "RaceSessionStore.finalize": {
+        "calls": 1,
+        "inclusiveMs": 25594.01240399992
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 4025.606527999975
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 13478.942268999992
+      }
+    },
+    "eight-twelve:10:start": {
+      "structuredClone": {
+        "calls": 60996,
+        "inclusiveMs": 708.2078319885768
+      },
+      "JSON.parse": {
+        "calls": 11373,
+        "inclusiveMs": 352.8578220009804
+      },
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.01344999996945262
+      },
+      "storage.setItem": {
+        "calls": 1,
+        "inclusiveMs": 0.0037360000424087048
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 4375.278212000034
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 14116.295996000059
+      }
+    },
+    "eight-twelve:10:native-and-session": {
+      "structuredClone": {
+        "calls": 281257,
+        "inclusiveMs": 3667.414730966557
+      },
+      "storage.getItem": {
+        "calls": 16,
+        "inclusiveMs": 0.0749990000622347
+      },
+      "JSON.parse": {
+        "calls": 52333,
+        "inclusiveMs": 1764.1564400092466
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 21352.743682999862
+      },
+      "storage.setItem": {
+        "calls": 3,
+        "inclusiveMs": 0.032888000016100705
+      },
+      "RaceSessionStore.publish": {
+        "calls": 2,
+        "inclusiveMs": 40289.874661000096
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 4454.885065000039
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 14859.80319399992
+      },
+      "RaceSessionStore.apply": {
+        "calls": 1,
+        "inclusiveMs": 35040.94543199998
+      }
+    },
+    "eight-twelve:10:official": {
+      "structuredClone": {
+        "calls": 211865,
+        "inclusiveMs": 2508.214699947741
+      },
+      "storage.getItem": {
+        "calls": 12,
+        "inclusiveMs": 0.05892699980176985
+      },
+      "JSON.parse": {
+        "calls": 40435,
+        "inclusiveMs": 1382.228759014397
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 27474.272735000006
+      },
+      "RaceSessionStore.open": {
+        "calls": 1,
+        "inclusiveMs": 9166.745659000007
+      },
+      "storage.setItem": {
+        "calls": 2,
+        "inclusiveMs": 0.024585999781265855
+      },
+      "RaceSessionStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 21574.040609000134
+      },
+      "RaceSessionStore.finalize": {
+        "calls": 1,
+        "inclusiveMs": 26799.617155999993
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 4572.536617000122
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 15438.926723999903
+      }
+    },
+    "eight-twelve:11:start": {
+      "structuredClone": {
+        "calls": 65747,
+        "inclusiveMs": 732.1913360133767
+      },
+      "JSON.parse": {
+        "calls": 13041,
+        "inclusiveMs": 385.10906901117414
+      },
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.01090599992312491
+      },
+      "storage.setItem": {
+        "calls": 1,
+        "inclusiveMs": 0.003874999936670065
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 4783.082616999978
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 15196.975053000031
+      }
+    },
+    "eight-twelve:11:native-and-session": {
+      "structuredClone": {
+        "calls": 303292,
+        "inclusiveMs": 3461.5132099769544
+      },
+      "storage.getItem": {
+        "calls": 16,
+        "inclusiveMs": 0.06634000036865473
+      },
+      "JSON.parse": {
+        "calls": 59950,
+        "inclusiveMs": 1883.2098200065084
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 23914.87341799983
+      },
+      "storage.setItem": {
+        "calls": 3,
+        "inclusiveMs": 0.029672999866306782
+      },
+      "RaceSessionStore.publish": {
+        "calls": 2,
+        "inclusiveMs": 43885.8677970001
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 5201.594179000007
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 16126.020949000027
+      },
+      "RaceSessionStore.apply": {
+        "calls": 1,
+        "inclusiveMs": 39708.219545
+      }
+    },
+    "eight-twelve:11:official": {
+      "structuredClone": {
+        "calls": 228244,
+        "inclusiveMs": 2723.2161390217952
+      },
+      "storage.getItem": {
+        "calls": 12,
+        "inclusiveMs": 0.05158799956552684
+      },
+      "JSON.parse": {
+        "calls": 46216,
+        "inclusiveMs": 1600.3955800225958
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 36539.81922199996
+      },
+      "RaceSessionStore.open": {
+        "calls": 1,
+        "inclusiveMs": 12443.708250999916
+      },
+      "storage.setItem": {
+        "calls": 2,
+        "inclusiveMs": 0.024535000091418624
+      },
+      "RaceSessionStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 26043.64619
+      },
+      "RaceSessionStore.finalize": {
+        "calls": 1,
+        "inclusiveMs": 31656.50784799992
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 5044.686436000047
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 16464.05759199988
+      }
+    },
+    "eight-twelve:reload-0": {
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.02115099993534386
+      },
+      "JSON.parse": {
+        "calls": 4329,
+        "inclusiveMs": 131.68527998868376
+      },
+      "structuredClone": {
+        "calls": 21103,
+        "inclusiveMs": 256.5892719835974
+      },
+      "CareerStore.open": {
+        "calls": 1,
+        "inclusiveMs": 5230.4943560000975
+      }
+    },
+    "eight-twelve:export-0": {
+      "JSON.parse": {
+        "calls": 7771,
+        "inclusiveMs": 224.43703299784102
+      },
+      "structuredClone": {
+        "calls": 37197,
+        "inclusiveMs": 456.33897398482077
+      },
+      "CareerStore.export": {
+        "calls": 1,
+        "inclusiveMs": 8932.324327999959
+      }
+    },
+    "eight-twelve:reload-1": {
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.012248000130057335
+      },
+      "JSON.parse": {
+        "calls": 4329,
+        "inclusiveMs": 130.6763369932305
+      },
+      "structuredClone": {
+        "calls": 21103,
+        "inclusiveMs": 241.8539600004442
+      },
+      "CareerStore.open": {
+        "calls": 1,
+        "inclusiveMs": 5110.246018999955
+      }
+    },
+    "eight-twelve:export-1": {
+      "JSON.parse": {
+        "calls": 7771,
+        "inclusiveMs": 223.13056398183107
+      },
+      "structuredClone": {
+        "calls": 37197,
+        "inclusiveMs": 434.7877000228036
+      },
+      "CareerStore.export": {
+        "calls": 1,
+        "inclusiveMs": 8908.26813099999
+      }
+    },
+    "eight-twelve:serialize-export": {
+      "JSON.parse": {
+        "calls": 7771,
+        "inclusiveMs": 211.74717798712663
+      },
+      "structuredClone": {
+        "calls": 37197,
+        "inclusiveMs": 406.1187529985327
+      },
+      "CareerStore.export": {
+        "calls": 1,
+        "inclusiveMs": 8397.696512999944
+      }
+    },
+    "eight-twelve:import-validate-0": {
+      "JSON.parse": {
+        "calls": 18769,
+        "inclusiveMs": 496.61122700641863
+      },
+      "structuredClone": {
+        "calls": 90300,
+        "inclusiveMs": 915.1275979783386
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 4570.08888000017
+      }
+    },
+    "eight-twelve:import-validate-1": {
+      "JSON.parse": {
+        "calls": 18769,
+        "inclusiveMs": 557.5391979953274
+      },
+      "structuredClone": {
+        "calls": 90300,
+        "inclusiveMs": 1055.2143309942912
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 4705.432772000087
+      }
+    }
+  }
+}

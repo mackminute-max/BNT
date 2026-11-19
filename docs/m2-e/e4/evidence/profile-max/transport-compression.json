@@ -1,0 +1,10 @@
+{
+  "scope": "Diagnostic compression of the complete validated synthetic set; not a production storage adapter",
+  "inputBytes": 30302360,
+  "gzipBytes": 20841041,
+  "brotliQuality5Bytes": 20599868,
+  "gzipBase64CodeUnits": 27788056,
+  "idealGzip16BitCodeUnits": 10420521,
+  "idealBrotli16BitCodeUnits": 10299934,
+  "warning": "No universal lower-bound or impossibility claim; alternative authority encodings require separate compatibility proof"
+}

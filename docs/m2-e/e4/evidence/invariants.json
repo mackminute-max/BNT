@@ -1,0 +1,23 @@
+{
+  "acceptedE3TwelveProofFingerprintsMatch": true,
+  "matchedProofs": 12,
+  "repeatedFourEntrantNativeChecksumsMatch": true,
+  "eightTwelveActualEntrantsEachEvent": [
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8
+  ],
+  "allMaximumEventsEnded": true,
+  "maximumSessionsWithin8MiB": true,
+  "maximumCareerWithin8MiB": true,
+  "nativeCaptureReplayAssertions": 32
+}

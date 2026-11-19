@@ -1,0 +1,17 @@
+one-new: completed 1/1 phase SETTLEMENT_PENDING
+four-two: completed 1/2 phase INTERMISSION_READY
+four-two: completed 2/2 phase SETTLEMENT_PENDING
+file:///workspace/BNT/src/career/cycles/contracts.js:8
+export const gold=n=>{if(!Number.isSafeInteger(n)||n<0)throw Error('Invalid nonnegative exact Gold');return n;};
+                                                             ^
+
+Error: Invalid nonnegative exact Gold
+    at gold (file:///workspace/BNT/src/career/cycles/contracts.js:8:62)
+    at Array.forEach (<anonymous>)
+    at freezeOffer (file:///workspace/BNT/src/career/championships/offers.js:13:414)
+    at fixtureE3 (file:///workspace/BNT/tests/m2-e-e3-helpers.js:5:78)
+    at file:///workspace/BNT/scripts/m2-e/e4/profile.mjs:12:35
+    at timed (file:///workspace/BNT/scripts/m2-e/e4/profile.mjs:8:105)
+    at file:///workspace/BNT/scripts/m2-e/e4/profile.mjs:12:10
+
+Node.js v24.22.1

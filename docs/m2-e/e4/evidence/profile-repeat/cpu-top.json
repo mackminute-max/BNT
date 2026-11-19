@@ -1,0 +1,202 @@
+[
+  {
+    "symbol": "canonical file:///workspace/BNT/src/core/determinism.js:17",
+    "samples": 11463,
+    "percent": 22.412309858053415
+  },
+  {
+    "symbol": "sha256 file:///workspace/BNT/src/career/economy/fingerprint.js:5",
+    "samples": 10768,
+    "percent": 21.053454815625855
+  },
+  {
+    "symbol": "compress file:///workspace/BNT/src/sim/foundation/codec.js:56",
+    "samples": 8352,
+    "percent": 16.329722754467603
+  },
+  {
+    "symbol": " file:///workspace/BNT/src/core/determinism.js:22",
+    "samples": 5518,
+    "percent": 10.788722480741407
+  },
+  {
+    "symbol": "structuredClone node:internal/worker/js_transferable:113",
+    "samples": 3420,
+    "percent": 6.686739921010441
+  },
+  {
+    "symbol": "(garbage collector) :0",
+    "samples": 1668,
+    "percent": 3.2612521018261447
+  },
+  {
+    "symbol": "hash file:///workspace/BNT/src/core/determinism.js:2",
+    "samples": 940,
+    "percent": 1.837875884722168
+  },
+  {
+    "symbol": "pack file:///workspace/BNT/src/sim/foundation/codec.js:72",
+    "samples": 720,
+    "percent": 1.4077347202127244
+  },
+  {
+    "symbol": " file:///workspace/BNT/scripts/m2-e/e4/profile.mjs:5",
+    "samples": 621,
+    "percent": 1.2141711961834747
+  },
+  {
+    "symbol": "graphPack file:///workspace/BNT/src/sim/foundation/codec.js:6",
+    "samples": 619,
+    "percent": 1.2102608219606616
+  },
+  {
+    "symbol": "decompress file:///workspace/BNT/src/sim/foundation/codec.js:64",
+    "samples": 595,
+    "percent": 1.163336331286904
+  },
+  {
+    "symbol": "visit file:///workspace/BNT/src/sim/foundation/codec.js:8",
+    "samples": 497,
+    "percent": 0.9717279943690611
+  },
+  {
+    "symbol": "encodeUtf8String :0",
+    "samples": 452,
+    "percent": 0.8837445743557658
+  },
+  {
+    "symbol": "checksum file:///workspace/BNT/src/core/determinism.js:26",
+    "samples": 445,
+    "percent": 0.87005826457592
+  },
+  {
+    "symbol": "graphUnpack file:///workspace/BNT/src/sim/foundation/codec.js:31",
+    "samples": 403,
+    "percent": 0.7879404058968443
+  },
+  {
+    "symbol": " file:///workspace/BNT/src/sim/foundation/codec.js:40",
+    "samples": 290,
+    "percent": 0.5670042623079029
+  },
+  {
+    "symbol": "validateRU file:///workspace/BNT/src/model/ru.js:51",
+    "samples": 267,
+    "percent": 0.522034958745552
+  },
+  {
+    "symbol": "derive file:///workspace/BNT/src/model/ru.js:114",
+    "samples": 178,
+    "percent": 0.34802330583036795
+  },
+  {
+    "symbol": "createRace file:///workspace/BNT/src/sim/race.js:43",
+    "samples": 170,
+    "percent": 0.33238180893911545
+  },
+  {
+    "symbol": "encode node:internal/encoding:355",
+    "samples": 135,
+    "percent": 0.2639502600398858
+  },
+  {
+    "symbol": "validateControllerState file:///workspace/BNT/src/career/championships/controller.js:79",
+    "samples": 134,
+    "percent": 0.26199507292847923
+  },
+  {
+    "symbol": " file:///workspace/BNT/src/sim/race.js:110",
+    "samples": 132,
+    "percent": 0.25808469870566614
+  },
+  {
+    "symbol": "structuredClone :0",
+    "samples": 125,
+    "percent": 0.2443983889258202
+  },
+  {
+    "symbol": "rational file:///workspace/BNT/src/career/economy/arithmetic.js:2",
+    "samples": 107,
+    "percent": 0.20920502092050208
+  },
+  {
+    "symbol": " file:///workspace/BNT/src/model/ru.js:120",
+    "samples": 103,
+    "percent": 0.20138427247487584
+  },
+  {
+    "symbol": "step file:///workspace/BNT/src/sim/race.js:892",
+    "samples": 100,
+    "percent": 0.19551871114065617
+  },
+  {
+    "symbol": " file:///workspace/BNT/src/career/economy/fingerprint.js:17",
+    "samples": 92,
+    "percent": 0.17987721424940367
+  },
+  {
+    "symbol": "config file:///workspace/BNT/src/config/config.js:112",
+    "samples": 86,
+    "percent": 0.1681460915809643
+  },
+  {
+    "symbol": "mergeProtected file:///workspace/BNT/src/career/economy/protected-registry.js:12",
+    "samples": 75,
+    "percent": 0.1466390333554921
+  },
+  {
+    "symbol": "exact file:///workspace/BNT/src/career/legacy-state.js:13",
+    "samples": 72,
+    "percent": 0.14077347202127244
+  },
+  {
+    "symbol": "deriveAt file:///workspace/BNT/src/sim/race.js:415",
+    "samples": 70,
+    "percent": 0.13686309779845932
+  },
+  {
+    "symbol": "consequenceConfig file:///workspace/BNT/src/sim/consequences.js:78",
+    "samples": 69,
+    "percent": 0.13490791068705274
+  },
+  {
+    "symbol": "values file:///workspace/BNT/src/model/ru.js:128",
+    "samples": 66,
+    "percent": 0.12904234935283307
+  },
+  {
+    "symbol": "validateGraph3 file:///workspace/BNT/src/career/economy/validation.js:37",
+    "samples": 56,
+    "percent": 0.10949047823876745
+  },
+  {
+    "symbol": "record file:///workspace/BNT/src/career/packages.js:20",
+    "samples": 52,
+    "percent": 0.1016697297931412
+  },
+  {
+    "symbol": "component file:///workspace/BNT/src/model/ru.js:24",
+    "samples": 52,
+    "percent": 0.1016697297931412
+  },
+  {
+    "symbol": "sorted file:///workspace/BNT/src/sim/race.js:41",
+    "samples": 50,
+    "percent": 0.09775935557032808
+  },
+  {
+    "symbol": "apply file:///workspace/BNT/src/career/championships/controller.js:17",
+    "samples": 46,
+    "percent": 0.08993860712470184
+  },
+  {
+    "symbol": " file:///workspace/BNT/src/track/course.js:27",
+    "samples": 45,
+    "percent": 0.08798342001329527
+  },
+  {
+    "symbol": " file:///workspace/BNT/src/career/legacy-state.js:14",
+    "samples": 43,
+    "percent": 0.08407304579048215
+  }
+]

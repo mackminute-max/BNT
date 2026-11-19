@@ -1,0 +1,376 @@
+{
+  "results": [
+    {
+      "id": "one-new",
+      "fieldSize": 1,
+      "courses": [
+        null
+      ],
+      "formats": [
+        "Pure"
+      ],
+      "events": [
+        {
+          "event": 1,
+          "actualEntrants": 1,
+          "tick": 878,
+          "nativeStatus": "Ended",
+          "blockedReason": null,
+          "proofFingerprint": "05482ed037a7e72dbfc1a5a6ef8db689da90d065010f4ed0720e2cf1bd75879a",
+          "nativeChecksum": "428bd803",
+          "careerBytes": 437788,
+          "sessionBytes": 103098,
+          "sessionCodeUnits": 103098,
+          "journalEntries": 1,
+          "totalBytes": 540886,
+          "totalCodeUnits": 540886
+        }
+      ],
+      "phase": "SETTLEMENT_PENDING",
+      "nativeReplays": [
+        {
+          "event": 1,
+          "checksum": "428bd803"
+        }
+      ],
+      "retainedKeys": 2,
+      "encodedBytes": 540886,
+      "gzipDiagnosticBytes": 108473,
+      "sha256": "5ca70a3f8d7d8b55aced9d9bbbee1cd1dbcd4d858c86599d6c1c139637b1130c"
+    }
+  ],
+  "operations": [
+    {
+      "label": "one-new:new",
+      "elapsedMs": 4404.210706,
+      "rssBefore": 48570368,
+      "rssAfter": 230690816,
+      "maxRssProcessBytes": 230690816
+    },
+    {
+      "label": "one-new:0:start",
+      "elapsedMs": 1243.355829,
+      "rssBefore": 230690816,
+      "rssAfter": 237293568,
+      "maxRssProcessBytes": 238596096
+    },
+    {
+      "label": "one-new:0:native-and-session",
+      "elapsedMs": 6472.215753,
+      "rssBefore": 237293568,
+      "rssAfter": 260005888,
+      "maxRssProcessBytes": 268390400
+    },
+    {
+      "label": "one-new:0:official",
+      "elapsedMs": 5368.980419000001,
+      "rssBefore": 265248768,
+      "rssAfter": 278003712,
+      "maxRssProcessBytes": 282398720
+    },
+    {
+      "label": "one-new:reload-0",
+      "elapsedMs": 500.85850899999787,
+      "rssBefore": 278134784,
+      "rssAfter": 278142976,
+      "maxRssProcessBytes": 282398720
+    },
+    {
+      "label": "one-new:export-0",
+      "elapsedMs": 842.6999379999979,
+      "rssBefore": 278142976,
+      "rssAfter": 279597056,
+      "maxRssProcessBytes": 282775552
+    },
+    {
+      "label": "one-new:reload-1",
+      "elapsedMs": 475.22643400000015,
+      "rssBefore": 279597056,
+      "rssAfter": 281653248,
+      "maxRssProcessBytes": 282775552
+    },
+    {
+      "label": "one-new:export-1",
+      "elapsedMs": 899.9411390000023,
+      "rssBefore": 281653248,
+      "rssAfter": 282574848,
+      "maxRssProcessBytes": 284635136
+    },
+    {
+      "label": "one-new:import-validate-0",
+      "elapsedMs": 2033.1956040000005,
+      "rssBefore": 285560832,
+      "rssAfter": 295985152,
+      "maxRssProcessBytes": 299094016
+    },
+    {
+      "label": "one-new:import-validate-1",
+      "elapsedMs": 2087.176389,
+      "rssBefore": 295985152,
+      "rssAfter": 308727808,
+      "maxRssProcessBytes": 309604352
+    }
+  ],
+  "inclusiveObservations": {
+    "one-new:new": {
+      "CareerStore.open": {
+        "calls": 3,
+        "inclusiveMs": 34.74730400000004
+      },
+      "structuredClone": {
+        "calls": 14169,
+        "inclusiveMs": 480.27578499999765
+      },
+      "JSON.stringify": {
+        "calls": 8052525,
+        "inclusiveMs": 1156.9500220001032
+      },
+      "JSON.parse": {
+        "calls": 4301,
+        "inclusiveMs": 29.990556000036406
+      },
+      "CareerStore.publish": {
+        "calls": 8,
+        "inclusiveMs": 1196.1886319999999
+      },
+      "CareerStore.transaction": {
+        "calls": 4,
+        "inclusiveMs": 3652.764285
+      }
+    },
+    "one-new:0:start": {
+      "structuredClone": {
+        "calls": 4516,
+        "inclusiveMs": 102.77096699997946
+      },
+      "JSON.stringify": {
+        "calls": 2429073,
+        "inclusiveMs": 370.2136190002502
+      },
+      "JSON.parse": {
+        "calls": 1128,
+        "inclusiveMs": 7.858922000019447
+      },
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.01901799999996001
+      },
+      "storage.setItem": {
+        "calls": 1,
+        "inclusiveMs": 0.00432600000021921
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 387.6590099999994
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 1230.0790210000005
+      }
+    },
+    "one-new:0:native-and-session": {
+      "structuredClone": {
+        "calls": 21402,
+        "inclusiveMs": 477.17553099997076
+      },
+      "JSON.stringify": {
+        "calls": 11751982,
+        "inclusiveMs": 1810.686243998618
+      },
+      "storage.getItem": {
+        "calls": 16,
+        "inclusiveMs": 0.04088100000262784
+      },
+      "JSON.parse": {
+        "calls": 5368,
+        "inclusiveMs": 42.20774000000529
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 1586.5224850000013
+      },
+      "storage.setItem": {
+        "calls": 3,
+        "inclusiveMs": 0.06691800000044168
+      },
+      "RaceSessionStore.publish": {
+        "calls": 2,
+        "inclusiveMs": 3085.8423759999996
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 442.62507300000107
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 1384.5823180000007
+      },
+      "RaceSessionStore.apply": {
+        "calls": 1,
+        "inclusiveMs": 2476.032261999999
+      }
+    },
+    "one-new:0:official": {
+      "structuredClone": {
+        "calls": 16799,
+        "inclusiveMs": 379.71486999996523
+      },
+      "JSON.stringify": {
+        "calls": 9310681,
+        "inclusiveMs": 1447.3508719976235
+      },
+      "storage.getItem": {
+        "calls": 12,
+        "inclusiveMs": 0.02724099999977625
+      },
+      "JSON.parse": {
+        "calls": 4405,
+        "inclusiveMs": 41.581004999981815
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 1990.6117040000008
+      },
+      "RaceSessionStore.open": {
+        "calls": 1,
+        "inclusiveMs": 651.9453979999998
+      },
+      "storage.setItem": {
+        "calls": 2,
+        "inclusiveMs": 0.024536999999327236
+      },
+      "RaceSessionStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 1703.3912839999994
+      },
+      "RaceSessionStore.finalize": {
+        "calls": 1,
+        "inclusiveMs": 2241.8380589999997
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 515.342944
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 1692.0944830000008
+      }
+    },
+    "one-new:reload-0": {
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.019669000001158565
+      },
+      "JSON.parse": {
+        "calls": 435,
+        "inclusiveMs": 3.9693030000016734
+      },
+      "JSON.stringify": {
+        "calls": 910349,
+        "inclusiveMs": 139.00324300106877
+      },
+      "structuredClone": {
+        "calls": 1605,
+        "inclusiveMs": 34.523605999929714
+      },
+      "CareerStore.open": {
+        "calls": 1,
+        "inclusiveMs": 500.67377599999963
+      }
+    },
+    "one-new:export-0": {
+      "JSON.stringify": {
+        "calls": 1585343,
+        "inclusiveMs": 244.01199799929964
+      },
+      "JSON.parse": {
+        "calls": 808,
+        "inclusiveMs": 5.9671040000612265
+      },
+      "structuredClone": {
+        "calls": 2865,
+        "inclusiveMs": 62.768809000095644
+      },
+      "CareerStore.export": {
+        "calls": 1,
+        "inclusiveMs": 842.6094749999975
+      }
+    },
+    "one-new:reload-1": {
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.011547000001883134
+      },
+      "JSON.parse": {
+        "calls": 435,
+        "inclusiveMs": 3.8018759999577014
+      },
+      "JSON.stringify": {
+        "calls": 910349,
+        "inclusiveMs": 137.36087000086263
+      },
+      "structuredClone": {
+        "calls": 1605,
+        "inclusiveMs": 35.83332299990434
+      },
+      "CareerStore.open": {
+        "calls": 1,
+        "inclusiveMs": 475.196390000001
+      }
+    },
+    "one-new:export-1": {
+      "JSON.stringify": {
+        "calls": 1585343,
+        "inclusiveMs": 233.99492499999178
+      },
+      "JSON.parse": {
+        "calls": 808,
+        "inclusiveMs": 6.297221000022546
+      },
+      "structuredClone": {
+        "calls": 2865,
+        "inclusiveMs": 61.99363799997809
+      },
+      "CareerStore.export": {
+        "calls": 1,
+        "inclusiveMs": 899.8846059999996
+      }
+    },
+    "one-new:import-validate-0": {
+      "JSON.parse": {
+        "calls": 1939,
+        "inclusiveMs": 14.92443599987746
+      },
+      "JSON.stringify": {
+        "calls": 3848762,
+        "inclusiveMs": 585.6631259968635
+      },
+      "structuredClone": {
+        "calls": 6951,
+        "inclusiveMs": 148.90536899995277
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 446.00464700000157
+      }
+    },
+    "one-new:import-validate-1": {
+      "JSON.parse": {
+        "calls": 1939,
+        "inclusiveMs": 17.444567999900755
+      },
+      "JSON.stringify": {
+        "calls": 3848762,
+        "inclusiveMs": 585.6644300028129
+      },
+      "structuredClone": {
+        "calls": 6951,
+        "inclusiveMs": 158.2611320000724
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 502.7617030000001
+      }
+    }
+  }
+}

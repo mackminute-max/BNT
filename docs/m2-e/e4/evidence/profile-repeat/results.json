@@ -1,0 +1,505 @@
+{
+  "results": [
+    {
+      "id": "four-two",
+      "fieldSize": 4,
+      "courses": [
+        null,
+        "C01"
+      ],
+      "formats": [
+        "Pure",
+        "Combat"
+      ],
+      "events": [
+        {
+          "event": 1,
+          "actualEntrants": 4,
+          "tick": 929,
+          "nativeStatus": "Ended",
+          "blockedReason": null,
+          "proofFingerprint": "8db454387cc63a7a11590280dea87c75aa273cdbe4ff2688d824e53d489d566f",
+          "nativeChecksum": "fa43a07a",
+          "careerBytes": 528805,
+          "sessionBytes": 372496,
+          "sessionCodeUnits": 372496,
+          "journalEntries": 1,
+          "totalBytes": 901301,
+          "totalCodeUnits": 901301
+        },
+        {
+          "event": 2,
+          "actualEntrants": 4,
+          "tick": 1717,
+          "nativeStatus": "Ended",
+          "blockedReason": null,
+          "proofFingerprint": "2ea8f2cd5f63203779840892df020d2dc8a272a2b238d54d21b4c8ad639c04b2",
+          "nativeChecksum": "bb5a9ce7",
+          "careerBytes": 606875,
+          "sessionBytes": 1033089,
+          "sessionCodeUnits": 1033089,
+          "journalEntries": 1,
+          "totalBytes": 2012460,
+          "totalCodeUnits": 2012460
+        }
+      ],
+      "phase": "SETTLEMENT_PENDING",
+      "nativeReplays": [
+        {
+          "event": 1,
+          "checksum": "fa43a07a"
+        },
+        {
+          "event": 2,
+          "checksum": "bb5a9ce7"
+        }
+      ],
+      "retainedKeys": 3,
+      "encodedBytes": 2012460,
+      "gzipDiagnosticBytes": 1098856,
+      "sha256": "c3a457b5b8297362e42042511bfe56c029b2d0328a78d5cf4c0df3397f12c38a"
+    }
+  ],
+  "operations": [
+    {
+      "label": "four-two:new",
+      "elapsedMs": 3615.4297989999995,
+      "rssBefore": 48701440,
+      "rssAfter": 227319808,
+      "maxRssProcessBytes": 229396480
+    },
+    {
+      "label": "four-two:0:start",
+      "elapsedMs": 1132.089912,
+      "rssBefore": 227319808,
+      "rssAfter": 238678016,
+      "maxRssProcessBytes": 241610752
+    },
+    {
+      "label": "four-two:0:native-and-session",
+      "elapsedMs": 7778.7899019999995,
+      "rssBefore": 238678016,
+      "rssAfter": 306180096,
+      "maxRssProcessBytes": 320163840
+    },
+    {
+      "label": "four-two:0:official",
+      "elapsedMs": 6854.935987999999,
+      "rssBefore": 317075456,
+      "rssAfter": 342073344,
+      "maxRssProcessBytes": 345219072
+    },
+    {
+      "label": "four-two:1:start",
+      "elapsedMs": 1669.027302999999,
+      "rssBefore": 342597632,
+      "rssAfter": 349679616,
+      "maxRssProcessBytes": 351612928
+    },
+    {
+      "label": "four-two:1:native-and-session",
+      "elapsedMs": 13070.334067,
+      "rssBefore": 349679616,
+      "rssAfter": 451383296,
+      "maxRssProcessBytes": 451477504
+    },
+    {
+      "label": "four-two:1:official",
+      "elapsedMs": 11784.803192,
+      "rssBefore": 396967936,
+      "rssAfter": 508993536,
+      "maxRssProcessBytes": 509894656
+    },
+    {
+      "label": "four-two:reload-0",
+      "elapsedMs": 575.485603000001,
+      "rssBefore": 506679296,
+      "rssAfter": 511860736,
+      "maxRssProcessBytes": 513146880
+    },
+    {
+      "label": "four-two:export-0",
+      "elapsedMs": 1006.0859100000016,
+      "rssBefore": 511860736,
+      "rssAfter": 521240576,
+      "maxRssProcessBytes": 522498048
+    },
+    {
+      "label": "four-two:reload-1",
+      "elapsedMs": 558.8388639999976,
+      "rssBefore": 521240576,
+      "rssAfter": 526225408,
+      "maxRssProcessBytes": 526835712
+    },
+    {
+      "label": "four-two:export-1",
+      "elapsedMs": 1008.0784769999955,
+      "rssBefore": 526225408,
+      "rssAfter": 534499328,
+      "maxRssProcessBytes": 534855680
+    },
+    {
+      "label": "four-two:serialize-export",
+      "elapsedMs": 1073.437199,
+      "rssBefore": 534499328,
+      "rssAfter": 544088064,
+      "maxRssProcessBytes": 544264192
+    },
+    {
+      "label": "four-two:import-validate-0",
+      "elapsedMs": 2504.7226020000016,
+      "rssBefore": 544088064,
+      "rssAfter": 564965376,
+      "maxRssProcessBytes": 566026240
+    },
+    {
+      "label": "four-two:import-validate-1",
+      "elapsedMs": 2401.786033999997,
+      "rssBefore": 564965376,
+      "rssAfter": 584994816,
+      "maxRssProcessBytes": 585822208
+    }
+  ],
+  "inclusiveObservations": {
+    "four-two:new": {
+      "CareerStore.open": {
+        "calls": 3,
+        "inclusiveMs": 25.287269999999978
+      },
+      "structuredClone": {
+        "calls": 16275,
+        "inclusiveMs": 501.11797899999056
+      },
+      "JSON.parse": {
+        "calls": 4301,
+        "inclusiveMs": 34.283576000001744
+      },
+      "CareerStore.publish": {
+        "calls": 8,
+        "inclusiveMs": 1137.83058
+      },
+      "CareerStore.transaction": {
+        "calls": 4,
+        "inclusiveMs": 2873.5232069999997
+      }
+    },
+    "four-two:0:start": {
+      "structuredClone": {
+        "calls": 6564,
+        "inclusiveMs": 130.32292800002188
+      },
+      "JSON.parse": {
+        "calls": 1128,
+        "inclusiveMs": 11.830059000000347
+      },
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.01634399999966263
+      },
+      "storage.setItem": {
+        "calls": 1,
+        "inclusiveMs": 0.0032550000005358015
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 336.2304720000002
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 1124.2738749999999
+      }
+    },
+    "four-two:0:native-and-session": {
+      "structuredClone": {
+        "calls": 31271,
+        "inclusiveMs": 608.6401439998617
+      },
+      "storage.getItem": {
+        "calls": 16,
+        "inclusiveMs": 0.04629899999963527
+      },
+      "JSON.parse": {
+        "calls": 5368,
+        "inclusiveMs": 76.59117800001695
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 2396.916313999999
+      },
+      "storage.setItem": {
+        "calls": 3,
+        "inclusiveMs": 0.033418999999412335
+      },
+      "RaceSessionStore.publish": {
+        "calls": 2,
+        "inclusiveMs": 3986.268216999999
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 373.6964349999989
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 1208.2257500000005
+      },
+      "RaceSessionStore.apply": {
+        "calls": 1,
+        "inclusiveMs": 4117.113376000001
+      }
+    },
+    "four-two:0:official": {
+      "structuredClone": {
+        "calls": 24137,
+        "inclusiveMs": 459.45862199983094
+      },
+      "storage.getItem": {
+        "calls": 12,
+        "inclusiveMs": 0.10581400000046415
+      },
+      "JSON.parse": {
+        "calls": 4405,
+        "inclusiveMs": 83.55670399997507
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 3569.7414849999986
+      },
+      "RaceSessionStore.open": {
+        "calls": 1,
+        "inclusiveMs": 1199.373932999999
+      },
+      "storage.setItem": {
+        "calls": 2,
+        "inclusiveMs": 0.03035499999896274
+      },
+      "RaceSessionStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 2422.0226580000017
+      },
+      "RaceSessionStore.finalize": {
+        "calls": 1,
+        "inclusiveMs": 2877.005160999999
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 419.22874800000136
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 1437.3000530000027
+      }
+    },
+    "four-two:1:start": {
+      "structuredClone": {
+        "calls": 8339,
+        "inclusiveMs": 153.01179099995716
+      },
+      "JSON.parse": {
+        "calls": 1626,
+        "inclusiveMs": 18.989124999992782
+      },
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.008793000000878237
+      },
+      "storage.setItem": {
+        "calls": 1,
+        "inclusiveMs": 0.003143999998428626
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 548.5345899999993
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 1660.5378629999977
+      }
+    },
+    "four-two:1:native-and-session": {
+      "structuredClone": {
+        "calls": 39831,
+        "inclusiveMs": 722.5681080003451
+      },
+      "storage.getItem": {
+        "calls": 16,
+        "inclusiveMs": 0.046365999995032325
+      },
+      "JSON.parse": {
+        "calls": 7675,
+        "inclusiveMs": 126.38243200026773
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 3944.9249869999985
+      },
+      "storage.setItem": {
+        "calls": 3,
+        "inclusiveMs": 0.023053999997500796
+      },
+      "RaceSessionStore.publish": {
+        "calls": 2,
+        "inclusiveMs": 6716.015403000005
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 508.8891870000007
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 1776.8752459999996
+      },
+      "RaceSessionStore.apply": {
+        "calls": 1,
+        "inclusiveMs": 7986.282768000001
+      }
+    },
+    "four-two:1:official": {
+      "structuredClone": {
+        "calls": 30498,
+        "inclusiveMs": 533.8970369998424
+      },
+      "storage.getItem": {
+        "calls": 12,
+        "inclusiveMs": 0.03893599998264108
+      },
+      "JSON.parse": {
+        "calls": 6226,
+        "inclusiveMs": 159.60255200027314
+      },
+      "RaceSessionStore.decode": {
+        "calls": 3,
+        "inclusiveMs": 7208.508812000007
+      },
+      "RaceSessionStore.open": {
+        "calls": 1,
+        "inclusiveMs": 2399.9240690000006
+      },
+      "storage.setItem": {
+        "calls": 2,
+        "inclusiveMs": 0.015513000005739741
+      },
+      "RaceSessionStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 4418.387388999996
+      },
+      "RaceSessionStore.finalize": {
+        "calls": 1,
+        "inclusiveMs": 5022.583627
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 553.2434580000045
+      },
+      "CareerStore.transaction": {
+        "calls": 1,
+        "inclusiveMs": 1830.727552000004
+      }
+    },
+    "four-two:reload-0": {
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.017745999997714534
+      },
+      "JSON.parse": {
+        "calls": 609,
+        "inclusiveMs": 8.279637999999977
+      },
+      "structuredClone": {
+        "calls": 2905,
+        "inclusiveMs": 45.93312699988746
+      },
+      "CareerStore.open": {
+        "calls": 1,
+        "inclusiveMs": 575.2375179999945
+      }
+    },
+    "four-two:export-0": {
+      "JSON.parse": {
+        "calls": 1126,
+        "inclusiveMs": 13.37757000009151
+      },
+      "structuredClone": {
+        "calls": 5155,
+        "inclusiveMs": 85.04141799969511
+      },
+      "CareerStore.export": {
+        "calls": 1,
+        "inclusiveMs": 1005.9833700000017
+      }
+    },
+    "four-two:reload-1": {
+      "storage.getItem": {
+        "calls": 1,
+        "inclusiveMs": 0.01159699999698205
+      },
+      "JSON.parse": {
+        "calls": 609,
+        "inclusiveMs": 8.245286000012129
+      },
+      "structuredClone": {
+        "calls": 2905,
+        "inclusiveMs": 42.33241699990322
+      },
+      "CareerStore.open": {
+        "calls": 1,
+        "inclusiveMs": 558.7628819999954
+      }
+    },
+    "four-two:export-1": {
+      "JSON.parse": {
+        "calls": 1126,
+        "inclusiveMs": 14.780993999964267
+      },
+      "structuredClone": {
+        "calls": 5155,
+        "inclusiveMs": 84.37943300002371
+      },
+      "CareerStore.export": {
+        "calls": 1,
+        "inclusiveMs": 1008.0549019999962
+      }
+    },
+    "four-two:serialize-export": {
+      "JSON.parse": {
+        "calls": 1126,
+        "inclusiveMs": 14.277284000148939
+      },
+      "structuredClone": {
+        "calls": 5155,
+        "inclusiveMs": 90.78486199984036
+      },
+      "CareerStore.export": {
+        "calls": 1,
+        "inclusiveMs": 1071.1495480000012
+      }
+    },
+    "four-two:import-validate-0": {
+      "JSON.parse": {
+        "calls": 2704,
+        "inclusiveMs": 34.303942999918945
+      },
+      "structuredClone": {
+        "calls": 12524,
+        "inclusiveMs": 199.8911879997686
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 578.8677709999974
+      }
+    },
+    "four-two:import-validate-1": {
+      "JSON.parse": {
+        "calls": 2704,
+        "inclusiveMs": 33.140516999897955
+      },
+      "structuredClone": {
+        "calls": 12524,
+        "inclusiveMs": 192.8238920001677
+      },
+      "CareerStore.publish": {
+        "calls": 1,
+        "inclusiveMs": 543.2093899999963
+      }
+    }
+  }
+}

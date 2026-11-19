@@ -1,0 +1,51 @@
+{
+  "profile/one-new": {
+    "receipts": 8,
+    "protectedIdentities": 11,
+    "journalEntriesTotal": 1,
+    "phase": "SETTLEMENT_PENDING",
+    "recordCount": 2
+  },
+  "profile/four-two": {
+    "receipts": 11,
+    "protectedIdentities": 14,
+    "journalEntriesTotal": 2,
+    "phase": "SETTLEMENT_PENDING",
+    "recordCount": 3
+  },
+  "profile/eight-circuit": {
+    "receipts": 8,
+    "protectedIdentities": 11,
+    "journalEntriesTotal": 1,
+    "phase": "SETTLEMENT_PENDING",
+    "recordCount": 2
+  },
+  "profile/twelve-retained": {
+    "receipts": 41,
+    "protectedIdentities": 44,
+    "journalEntriesTotal": 12,
+    "phase": "SETTLEMENT_PENDING",
+    "recordCount": 13
+  },
+  "profile/eight-rally-retained": {
+    "receipts": 11,
+    "protectedIdentities": 14,
+    "journalEntriesTotal": 2,
+    "phase": "SETTLEMENT_PENDING",
+    "recordCount": 3
+  },
+  "profile-repeat/four-two": {
+    "receipts": 11,
+    "protectedIdentities": 14,
+    "journalEntriesTotal": 2,
+    "phase": "SETTLEMENT_PENDING",
+    "recordCount": 3
+  },
+  "profile-max/eight-twelve": {
+    "receipts": 41,
+    "protectedIdentities": 44,
+    "journalEntriesTotal": 12,
+    "phase": "SETTLEMENT_PENDING",
+    "recordCount": 13
+  }
+}

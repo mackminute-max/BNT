@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.goto: Navigation to "http://127.0.0.1:38645/" is interrupted by another navigation to "chrome-error://chromewebdata/"
+Call log:
+[2m  - navigating to "http://127.0.0.1:38645/", waiting until "load"[22m
+
+    at /workspace/BNT/scripts/m2-e/e4/browser-profile.mjs:6:9 {
+  log: [
+    '  - navigating to "http://127.0.0.1:38645/", waiting until "load"'
+  ],
+  name: 'Error'
+}
+
+Node.js v24.22.1

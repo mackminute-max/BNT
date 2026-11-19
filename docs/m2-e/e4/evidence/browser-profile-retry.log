@@ -1,0 +1,257 @@
+{
+  "engine": "156.0.8078.79",
+  "file": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///workspace/BNT/dist/Blood_and_Thunder.html",
+  "capacity": [
+    {
+      "id": "one-new",
+      "rows": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 437788,
+          "units": 437788,
+          "writeMs": 3.799999998882413,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 103098,
+          "units": 103098,
+          "writeMs": 0.5,
+          "stored": true
+        }
+      ],
+      "allStored": true,
+      "retainedKeys": 2,
+      "load": {
+        "operation": "CareerStore.open",
+        "mode": "automatic",
+        "startedMs": 452.2000000011176,
+        "endedMs": 958.3000000007451,
+        "elapsedMs": 506.09999999962747
+      }
+    },
+    {
+      "id": "four-two",
+      "rows": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 606875,
+          "units": 606875,
+          "writeMs": 4.099999999627471,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 372496,
+          "units": 372496,
+          "writeMs": 2.599999999627471,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.229e4f5bc0cecfb1b6883fe2d44b1143ebcb219de627f17a75ec5b4c7c0c2531",
+          "bytes": 1033089,
+          "units": 1033089,
+          "writeMs": 6.700000001117587,
+          "stored": true
+        }
+      ],
+      "allStored": true,
+      "retainedKeys": 3,
+      "load": {
+        "operation": "CareerStore.open",
+        "mode": "automatic",
+        "startedMs": 1079.300000000745,
+        "endedMs": 1690.4000000003725,
+        "elapsedMs": 611.0999999996275
+      }
+    },
+    {
+      "id": "eight-circuit",
+      "rows": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 556284,
+          "units": 556284,
+          "writeMs": 2.199999999254942,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 2593323,
+          "units": 2593323,
+          "writeMs": 13.100000001490116,
+          "stored": true
+        }
+      ],
+      "allStored": true,
+      "retainedKeys": 2,
+      "load": {
+        "operation": "CareerStore.open",
+        "mode": "automatic",
+        "startedMs": 1828.2000000011176,
+        "endedMs": 2397,
+        "elapsedMs": 568.7999999988824
+      }
+    },
+    {
+      "id": "twelve-retained",
+      "rows": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 1350330,
+          "units": 1350330,
+          "writeMs": 6,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 103098,
+          "units": 103098,
+          "writeMs": 0.5,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.229e4f5bc0cecfb1b6883fe2d44b1143ebcb219de627f17a75ec5b4c7c0c2531",
+          "bytes": 186787,
+          "units": 186787,
+          "writeMs": 0.5,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.f8325cdbbbc9280da2598969a6080d8344447fa8f87a7c81c1ae677603105e07",
+          "bytes": 184183,
+          "units": 184183,
+          "writeMs": 1.5,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.c118f013ee21f3ea5e0c2db4a49088169f5ced3b7021bde62b57bd61ccc6a61f",
+          "bytes": 114535,
+          "units": 114535,
+          "writeMs": 0.6000000014901161,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.a199efe7aece0bd503355d8aa5d46d1b0ec0345102561fc2d178aaa9123e0f72",
+          "bytes": 207563,
+          "units": 207563,
+          "writeMs": 0.6999999992549419,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.d40e5dc738b7552473aa5216fc8bc489e9c3917924350dce4122be78d4e0d46c",
+          "bytes": 190743,
+          "units": 190743,
+          "writeMs": 0.5,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.064151803b653644574d1e5df31214f996f565b0fcefc870414ebddfafccf63d",
+          "bytes": 114727,
+          "units": 114727,
+          "writeMs": 0.30000000074505806,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.f53887308fb1dab1613d2dc0b52f574c190f0d7f76d0902984464438cbfd3a7c",
+          "bytes": 211563,
+          "units": 211563,
+          "writeMs": 0.6999999992549419,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.df98a92b201d5278e38869bdf38ae24c5ccc01e07cab9ab2257845712b3f4f47",
+          "bytes": 189487,
+          "units": 189487,
+          "writeMs": 0.5,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.80641fd6ed777699508f12b3ad853a0e68b789e430e6b0e53175b88cbb324741",
+          "bytes": 115263,
+          "units": 115263,
+          "writeMs": 0.40000000037252903,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.25a6c0009aba2f896306bd0561ca067c30abc9ae9286a43d5c9789548d8bc298",
+          "bytes": 208388,
+          "units": 208388,
+          "writeMs": 0.5,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.b4a6a24b907da5027e4448f73f579ac9bde527fca29ed0f658dbf9dc158eb0c9",
+          "bytes": 188368,
+          "units": 188368,
+          "writeMs": 0.40000000037252903,
+          "stored": true
+        }
+      ],
+      "allStored": true,
+      "retainedKeys": 13,
+      "load": {
+        "operation": "CareerStore.open",
+        "mode": "automatic",
+        "startedMs": 2530.300000000745,
+        "endedMs": 5950.0999999996275,
+        "elapsedMs": 3419.7999999988824
+      }
+    },
+    {
+      "id": "eight-rally-retained",
+      "rows": [
+        {
+          "key": "bnt.career.save.v1",
+          "bytes": 695095,
+          "units": 695095,
+          "writeMs": 2.599999999627471,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.3d812d469df58047f7b05f99259ad5fb67fb4534a5c7087566276c0028290f04",
+          "bytes": 2002014,
+          "units": 2002014,
+          "writeMs": 8.800000000745058,
+          "stored": true
+        },
+        {
+          "key": "bnt.race.foundation.v1.229e4f5bc0cecfb1b6883fe2d44b1143ebcb219de627f17a75ec5b4c7c0c2531",
+          "bytes": 2052875,
+          "units": 2052875,
+          "writeMs": 9.699999999254942,
+          "stored": true
+        }
+      ],
+      "allStored": true,
+      "retainedKeys": 3,
+      "load": {
+        "operation": "CareerStore.open",
+        "mode": "automatic",
+        "startedMs": 6140.0999999996275,
+        "endedMs": 6846.0999999996275,
+        "elapsedMs": 706
+      }
+    }
+  ],
+  "longTasks": [
+    {
+      "duration": 142,
+      "start": 47.20000000111759
+    },
+    {
+      "duration": 57,
+      "start": 194.30000000074506
+    }
+  ],
+  "errors": [],
+  "quotaProbe": {
+    "asciiChunkUnits": 262144,
+    "successfulChunks": 19,
+    "error": {
+      "name": "QuotaExceededError",
+      "message": "Failed to execute 'setItem' on 'Storage': Setting the value of 'quota-19' exceeded the quota."
+    },
+    "sentinel": "last-valid"
+  }
+}
