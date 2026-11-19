@@ -36,3 +36,5 @@ The optional cache variant has an additional byte-golden/corruption/eviction pro
 BNT_EXPERIMENT_OUT=/workspace/deliverables/e4-architecture-cache node experiments/e4-architecture/cache-proof.mjs
 BNT_EXPERIMENT_CACHE=two BNT_EXPERIMENT_CASE=late-long BNT_EXPERIMENT_FORMAT=Combat BNT_EXPERIMENT_OUT=/workspace/deliverables/e4-architecture-cache-combat node experiments/e4-architecture/browser.mjs
 ```
+
+`BNT_EXPERIMENT_VALIDATION=exact` selects a private worker-only controller-validation memo experiment. Keys preserve the complete supported data graph, aliases and descriptors; every distinct state still executes the original full validator, as does every unique state on a cold worker. Cache budget is two entries / 16 MiB key-text accounting. It is not a public validator API, persisted validation certificate, protected-history bypass or production change. Unsupported key shapes fall back to the original validator. This experiment must not be generalized to arbitrary caller-owned JavaScript proxies or mutable external authority contexts.
