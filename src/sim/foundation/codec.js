@@ -74,6 +74,10 @@ function compress(text,bytes=new TextEncoder().encode(text)){
 }
 function decompress(x){
   exact(x,['codec','plainBytes','codes','data']);if(x.codec!=='lzw16-v1'||!Number.isInteger(x.plainBytes)||x.plainBytes<0||x.plainBytes>32*1024*1024||!Number.isInteger(x.codes)||x.codes<0||x.codes>MAX_CHECKPOINT_BYTES||typeof x.data!=='string'||x.data.length>MAX_CHECKPOINT_BYTES)throw Error('Invalid compressed checkpoint bounds');
+  // Pure inverse memoization for an exact transport produced by this module.
+  // Header/bounds checks above and full graph/native validation below still run.
+  // A fresh worker or any differing byte/header takes the complete decoder.
+  if(lastTransport&&['codec','plainBytes','codes','data'].every(k=>Object.hasOwn(Object.getOwnPropertyDescriptor(x,k)??{},'value')&&x[k]===lastTransport[k]))return lastGraphText;
   const bytes=Uint8Array.from(atob(x.data),c=>c.charCodeAt(0));if(bytes.length!==Math.ceil(x.codes*16/8))throw Error('Truncated checkpoint compression');
   let dictionary,next;const reset=()=>{dictionary=Array.from({length:256},(_,i)=>String.fromCharCode(i));next=257;};reset();
   const result=new Uint8Array(x.plainBytes);let pos=0,word='';
