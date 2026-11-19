@@ -124,11 +124,11 @@ export function createWorkerService(){
    if(old){if(old.request.phase!==(op==='advance'?'advance':'paused')||old.request.ticks!==(op==='advance'?message.ticks:0)||JSON.stringify(old.request.commands)!==JSON.stringify(commands))throw Error('Conflicting accepted input ID');}
    else if(op==='advance')runner.advance(message.id,message.ticks);else runner.sign(message.id,message.action,message.sign);
   }
-  else if(op==='nativePrepare'){const x=activeChampionship(career.state);if(x.phase!=='NO_STARTERS_PENDING'&&!x.raceResults.some(r=>r.raceId===x.raceId)){const session=runner.ensure();session.finalize('e2-result-'+fingerprint([x.id,x.raceId]).slice(0,40),session.inspect().revision);}}
+  else if(op==='nativePrepare'){const x=activeChampionship(career.state);if(x.phase!=='NO_STARTERS_PENDING'&&!x.raceResults.some(r=>r.raceId===x.raceId)){const session=runner.ensure();if(['Ready','Running'].includes(session.state.status))throw Error('Race is still active; clearance is not yet applicable');session.finalize('e2-result-'+fingerprint([x.id,x.raceId]).slice(0,40),session.inspect().revision);}}
   else if(op==='official'){
    const x=activeChampionship(career.state);
    if(x.phase!=='NO_STARTERS_PENDING'&&!x.raceResults.some(r=>r.raceId===x.raceId)){
-    const session=runner.session();session.open();if(session.record.authority.value.operational!=='RESULT_COMMITTED')throw Error('Durable native prepare required before official commit');
+    const session=runner.session();session.open();if(!['RESULT_COMMITTED','RACE_CLEARANCE_BLOCKED'].includes(session.record.authority.value.operational))throw Error('Durable native prepare required before official commit');
    }
    runner.publish(message.id);
   }else throw Error('Unsupported prepared operation');
