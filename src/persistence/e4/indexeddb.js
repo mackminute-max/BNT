@@ -10,6 +10,9 @@ export function checkRecords(records){
  if(!Array.isArray(records))throw Error('Invalid durable records');
  const seen=new Set();for(const row of records){if(!Array.isArray(row)||row.length!==2)throw Error('Invalid durable record');const[k,v]=row;if(typeof k!=='string'||!(k==='bnt.career.save.v1'||/^bnt\.race\.foundation\.v1\.[a-f0-9]{64}$/.test(k))||seen.has(k)||typeof v!=='string'||recordBytes(v)>8*1024*1024)throw Error('Invalid identity/duplicate/oversized logical record');seen.add(k);}
 }
+// String-pair equality is exactly the previous JSON read-set comparison for
+// validated records, without allocating two escaped copies of the entire history.
+export function sameRecords(a,b){return Array.isArray(a)&&Array.isArray(b)&&a.length===b.length&&a.every((row,i)=>Array.isArray(row)&&Array.isArray(b[i])&&row.length===2&&b[i].length===2&&row[0]===b[i][0]&&row[1]===b[i][1]);}
 const request=req=>new Promise((resolve,reject)=>{req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);req.onblocked=()=>reject(Error('Database upgrade blocked by another tab; close older writers'));});
 const finished=tx=>new Promise((resolve,reject)=>{tx.oncomplete=()=>resolve();tx.onabort=()=>reject(tx.error??Error('Durable transaction aborted'));tx.onerror=()=>{};});
 export class IndexedRecords {
@@ -26,7 +29,7 @@ export class IndexedRecords {
   checkRecords(records);checkRecords(readSet);recordsHash=recordsHash??await recordsDigest(records);if(restoredGeneration!==undefined&&(!restore||expectedGeneration!==0||!Number.isSafeInteger(restoredGeneration)||restoredGeneration<1))throw Error('Invalid restored generation');if(!Number.isSafeInteger(expectedGeneration)||expectedGeneration<0)throw Error('Invalid expected generation');
   const tx=this.db.transaction(STORE,'readwrite',{durability:'strict'}),done=finished(tx),s=tx.objectStore(STORE);
   try{const head=this.validateHead(await request(s.get(HEAD))),actual=head?.records??[];
-   if((head?.generation??0)!==expectedGeneration||JSON.stringify(actual)!==JSON.stringify(readSet))throw Error('STALE_WRITER: generation/read-set conflict');
+   if((head?.generation??0)!==expectedGeneration||!sameRecords(actual,readSet))throw Error('STALE_WRITER: generation/read-set conflict');
    if(stageDigest!==null){const stage=await request(s.get(STAGE));if(!stage||stage.state!=='PREPARED'||stage.digest!==stageDigest)throw Error('Migration stage conflict');s.put({...stage,state:'ACTIVATED'},STAGE);}
    // Previous generation is retained in the same atomic transaction. No pruning
    // of journals, receipts or logical session records occurs.
@@ -39,7 +42,7 @@ export class IndexedRecords {
  }
  async previous(){const tx=this.db.transaction(STORE,'readonly'),done=finished(tx),head=await request(tx.objectStore(STORE).get('previous'));await done;this.validateHead(head);return head??null;}
  async restoreStage(){const tx=this.db.transaction(STORE,'readonly'),done=finished(tx),stage=await request(tx.objectStore(STORE).get('restore-stage'));await done;return stage??null;}
- async stageRestore(stage,{expectedGeneration,readSet}){const tx=this.db.transaction(STORE,'readwrite',{durability:'strict'}),done=finished(tx),s=tx.objectStore(STORE);try{const head=await request(s.get(HEAD));if((head?.generation??0)!==expectedGeneration||JSON.stringify(head?.records??[])!==JSON.stringify(readSet))throw Error('STALE_WRITER: restore source changed');const old=await request(s.get('restore-stage'));if(old?.state==='PREPARED'&&old.digest!==stage.digest)throw Error('Another restore is pending');s.put(stage,'restore-stage');}catch(e){tx.abort();await done.catch(()=>{});throw e;}await done;return {staged:true,durable:true};}
+ async stageRestore(stage,{expectedGeneration,readSet}){const tx=this.db.transaction(STORE,'readwrite',{durability:'strict'}),done=finished(tx),s=tx.objectStore(STORE);try{const head=await request(s.get(HEAD));if((head?.generation??0)!==expectedGeneration||!sameRecords(head?.records??[],readSet))throw Error('STALE_WRITER: restore source changed');const old=await request(s.get('restore-stage'));if(old?.state==='PREPARED'&&old.digest!==stage.digest)throw Error('Another restore is pending');s.put(stage,'restore-stage');}catch(e){tx.abort();await done.catch(()=>{});throw e;}await done;return {staged:true,durable:true};}
  async discover(legacy){
   const snapshot=await this.snapshot();let witness=null;try{witness=legacy?.getItem(E4_DISCOVERY);}catch{}
   if(witness){let w;try{w=JSON.parse(witness);}catch{throw Error('RECOVERY_REQUIRED: corrupt discovery witness');}
@@ -67,7 +70,7 @@ export class IndexedRecords {
   const tx=this.db.transaction(STORE,'readwrite',{durability:'strict'}),done=finished(tx),store=tx.objectStore(STORE);
   try{const [head,migration,stage]=await Promise.all([request(store.get(HEAD)),request(store.get(MIGRATION)),request(store.get(STAGE))]);
    if(head||migration)throw Error('Migration authority changed');
-   if(stage&&(stage.version!==1||stage.state!=='PREPARED'||stage.digest!==digest||JSON.stringify(stage.records)!==JSON.stringify(records)))throw Error('Conflicting staged migration');
+   if(stage&&(stage.version!==1||stage.state!=='PREPARED'||stage.digest!==digest||!sameRecords(stage.records,records)))throw Error('Conflicting staged migration');
    if(!stage)store.put({version:1,state:'PREPARED',digest,records},STAGE);
   }catch(e){tx.abort();await done.catch(()=>{});throw e;}await done;await onBoundary('staged');
   // Denial here does NOT activate a new backend. The retained stage remains

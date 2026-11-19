@@ -4,7 +4,7 @@ import {RaceSessionStore} from '../race/session-store.js';
 import {checkpointRace,restoreRace} from '../../sim/foundation/checkpoint.js';
 import {createRace} from '../../sim/race.js';
 import {unsealWire} from '../../sim/foundation/codec.js';
-import {storedChampionshipAnchor} from '../../career/championships/anchor.js';
+import {financialAnchorValue} from '../../career/championships/anchor.js';
 import {ChampionshipRunner} from '../../career/championships/orchestrator.js';
 import {activeChampionship,makeControllerCommand} from '../../career/championships/controller.js';
 import {wireHash,pack,unpack} from '../../sim/foundation/codec.js';
@@ -14,16 +14,26 @@ import {fingerprint} from '../../career/cycles/contracts.js';
 import {mapCondition} from '../../career/championships/condition.js';
 import {encodeBackup,decodeBackup,digestText,mergeRestoreReceipts} from './backup.js';
 import {developmentOffer,createCatalogBoundary} from '../../career/championships/offers.js';
-import {checkRecords} from './indexeddb.js';
+import {checkRecords,sameRecords} from './indexeddb.js';
 // A private one-entry cache, bound to exact bytes AND generation. Nothing from
 // persistent storage is trusted because a sender supplies a hash or cache token.
+// CareerStore.open/publish already fully validates the exact raw envelope.
+// This private worker adapter can reuse that result only while raw bytes match.
+// Untrusted cold loads still execute CareerStore.open and every native decoder.
+function validatedAnchor(career,storage,raceId){
+ if(career.mode!=='automatic'||!career.current||storage.getItem(SAVE_KEY)!==career.raw)throw Error('RECOVERY_REQUIRED: validated career authority changed');
+ const s=career.current,x=s.championshipFoundation.instances?.[s.championshipFoundation.activeId];if(!x)throw Error('No active championship financial authority');
+ return x.raceResults.find(r=>r.raceId===raceId)?.anchor??x.raceAnchor??financialAnchorValue(s,x);
+}
+function snapshotKey(snapshot){return {meta:JSON.stringify({...snapshot,records:undefined}),records:snapshot.records.map(([k,v])=>[k,v])};}
+const sameSnapshot=(a,b)=>a?.meta===b.meta&&sameRecords(a.records,b.records);
 class CachedSession extends RaceSessionStore {
  open(){if(this.state&&this.raw!==null&&this.storage.getItem(this.key)===this.raw){this.assertAnchor(this.record.authority.value.anchor);return this.inspect();}return super.open();}
  decode(text){if(text===this.decodedText&&this.storage.getItem(this.key)===this.raw){this.assertAnchor(this.decoded.a.anchor);return this.decoded;}const d=super.decode(text);this.decodedText=text;this.decoded=d;return d;}
 }
 class DurableRunner extends ChampionshipRunner {
  session(){const identity=this.identity();if(this.cached?.identity.raceId===identity.raceId&&this.cached.mode==='automatic')return this.cached;let raw=null,anchor;
-  this.cached=new CachedSession(this.storage,{identity,interval:1,fallback:'birth',getCareerAnchor:()=>{const next=this.storage.getItem(SAVE_KEY);if(next!==raw){anchor=storedChampionshipAnchor(this.storage,identity.raceId);raw=next;}return anchor;}});return this.cached;
+  this.cached=new CachedSession(this.storage,{identity,interval:1,fallback:'birth',getCareerAnchor:()=>{const next=this.storage.getItem(SAVE_KEY);if(next!==raw){anchor=validatedAnchor(this.career,this.storage,identity.raceId);raw=next;}return anchor;}});return this.cached;
  }
 }
 function view(career,runner){const s=career.state,x=activeChampionship(s);let frame=null,reason=null,operational=null,watermark=null,sessionRevision=null,warning=null;try{if(x?.raceId&&x.phase!=='NO_STARTERS_PENDING'){const session=runner.session();session.open();const n=session.state;operational=session.record.authority.value.operational;watermark=session.record.authority.value.watermark;sessionRevision=session.record.authority.value.revision;warning=session.problem;frame={tick:n.tick,time:n.time,status:n.status,config:n.config,track:n.track,playerId:n.playerId,entrants:n.entrants.map(r=>({id:r.id,q:r.q,lane:r.lane,status:r.status,physical:r.physical,speed:r.speed,signs:r.signs,ru:r.ru}))};}}catch(e){reason=e.message;}return {state:s,frame,operational,watermark,sessionRevision,warning,reason};}
@@ -31,8 +41,8 @@ export function createWorkerService(){
  let cache=null,pending=null,serial=0;
  function load(snapshot,tolerant=false){
   checkRecords(snapshot.records);if(!Number.isSafeInteger(snapshot.generation)||snapshot.generation<0)throw Error('Invalid generation');
-  const key=JSON.stringify(snapshot);
-  if(cache?.key===key)return {hit:true,...cache};
+  const key=snapshotKey(snapshot);
+  if(cache&&sameSnapshot(cache.key,key))return {hit:true,...cache};
   const map=new Map(snapshot.records),storage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)};
   if(!map.has(SAVE_KEY))throw Error('No career authority');// CareerStore.open below performs the full untrusted envelope validation once.
   const career=new CareerStore(storage);career.open();if(career.mode!=='automatic'||!career.current)throw Error('Corrupt/untrusted career authority: '+career.problem);
@@ -47,7 +57,7 @@ export function createWorkerService(){
   for(const[k,text]of map){if(k===SAVE_KEY)continue;const r=JSON.parse(text),a=r.authority?.value;if(!a?.identity)throw Error('Missing session identity');
    const state=career.state,x=state.championshipFoundation.instances?.[a.identity.instanceId],archived=x?.raceResults.find(r=>r.raceId===a.identity.raceId);
    if(!x||a.identity.profileId!==state.profile.id||a.identity.careerId!==state.career.id||(!archived&&x.raceId!==a.identity.raceId))throw Error('Unrelated retained session authority');
-   const session=new RaceSessionStore(storage,{identity:a.identity,getCareerAnchor:()=>archived?.anchor??storedChampionshipAnchor(storage,a.identity.raceId)});if(session.key!==k)throw Error('Session key/identity mismatch');session.open();if(archived&&archived.reference.authorityHash!==wireHash(session.record.authority))throw Error('Retained official authority mismatch');
+   const session=new RaceSessionStore(storage,{identity:a.identity,getCareerAnchor:()=>archived?.anchor??validatedAnchor(career,storage,a.identity.raceId)});if(session.key!==k)throw Error('Session key/identity mismatch');const decoded=session.decode(text);if(archived&&archived.reference.authorityHash!==wireHash(decoded.r.authority))throw Error('Retained official authority mismatch');
   }
   }catch(e){if(!tolerant)throw e;problem=e.message;}
   const loaded={key,map,storage,career,runner:new DurableRunner(career,storage),problem};cache=problem?null:loaded;return {hit:false,...loaded};
@@ -83,15 +93,15 @@ export function createWorkerService(){
   const altered=message.snapshot.recordsHash&&message.snapshot.recordsHash!==await digestText(JSON.stringify(message.snapshot.records));if(altered&&!['inspect','legacyExport'].includes(message.type)&&message.operation!=='repair')throw Error('RECOVERY_REQUIRED: durable record manifest mismatch');
   let loaded;try{loaded=load(message.snapshot,['inspect','legacyExport'].includes(message.type)||message.operation==='repair');}catch(e){if(message.type==='inspect')return {version:1,state:null,frame:null,reason:e.message,durable:false};throw e;}
   const {map,storage,career}=loaded;
-  if(message.type==='backup'){if(message.previous)load(message.previous);load(message.snapshot);return {durable:false,text:await encodeBackup(message.snapshot,career.current,message.previous??null)};}
+  if(message.type==='backup'){if(message.previous)load(message.previous);const {hit,...verified}=loaded;cache=verified;return {durable:false,text:await encodeBackup(message.snapshot,career.current,message.previous??null)};}
   if(message.type==='legacyExport')return {durable:false,envelope:career.export()};
 
-  if(message.type==='inspect')return {version:1,...view(career,loaded.runner),reason:loaded.problem??(altered?'Durable record manifest mismatch; repair or matching complete backup required':view(career,loaded.runner).reason),durable:false};
+  if(message.type==='inspect'){const observed=view(career,loaded.runner);return {version:1,...observed,reason:loaded.problem??(altered?'Durable record manifest mismatch; repair or matching complete backup required':observed.reason),durable:false};}
   if(message.type==='validate')return {version:1,cacheHit:loaded.hit,durable:false,elapsedMs:performance.now()-started,revision:career.current.revision,maintenanceRevision:career.current.maintenanceRevision};
   if(message.type==='replay'){
    const checks=[];for(const[k,text]of map){if(k===SAVE_KEY)continue;const a=JSON.parse(text).authority.value;if(message.raceId&&a.identity.raceId!==message.raceId)continue;
     const x=career.state.championshipFoundation.instances[a.identity.instanceId],archived=x.raceResults.find(r=>r.raceId===a.identity.raceId);
-    const session=new RaceSessionStore(storage,{identity:a.identity,getCareerAnchor:()=>archived?.anchor??storedChampionshipAnchor(storage,a.identity.raceId)});session.open();
+    const session=new RaceSessionStore(storage,{identity:a.identity,getCareerAnchor:()=>archived?.anchor??validatedAnchor(career,storage,a.identity.raceId)});session.open();
     const record=capture(session.state),replayed=verifyReplay(record);if(replayed.checksum!==digest(session.state))throw Error('Replay mismatch');checks.push({raceId:a.identity.raceId,checksum:record.checksum});
    }return {version:1,checks,durable:false};
   }
@@ -132,7 +142,7 @@ export function createWorkerService(){
    }
    runner.publish(message.id);
   }else throw Error('Unsupported prepared operation');
-  const records=[...map];checkRecords(records);const candidateHash=await digestText(JSON.stringify(records));pending={token:'candidate-'+(++serial),validated:{key:JSON.stringify({...message.snapshot,generation:message.snapshot.generation+1,records,...(Object.hasOwn(message.snapshot,'recordsHash')?{recordsHash:candidateHash}:{}),...(message.runtime?{runtime:message.runtime}:{})}),map,storage,career,runner}};
+  const records=[...map];checkRecords(records);const candidateHash=await digestText(JSON.stringify(records));pending={token:'candidate-'+(++serial),validated:{key:snapshotKey({...message.snapshot,generation:message.snapshot.generation+1,records,...(Object.hasOwn(message.snapshot,'recordsHash')?{recordsHash:candidateHash}:{}),...(message.runtime?{runtime:message.runtime}:{})}),map,storage,career,runner}};
   return {version:1,token:pending.token,records,recordsHash:candidateHash,durable:false,elapsedMs:performance.now()-started,phase:activeChampionship(career.state)?.phase,revision:career.current.revision};
  };
 }

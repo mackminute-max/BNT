@@ -26,7 +26,7 @@ function graphPack(root){
     }
     if(Object.getOwnPropertySymbols(x).length)throw Error('Checkpoint symbols unsupported');active.delete(x);return {r:index};
   }
-  const wire={version:1,root:visit(root),nodes};if(new TextEncoder().encode(JSON.stringify(wire)).length>32*1024*1024)throw Error('Decoded checkpoint graph exceeds 32 MiB');return wire;
+  const wire={version:1,root:visit(root),nodes},text=JSON.stringify(wire),bytes=new TextEncoder().encode(text);if(bytes.length>32*1024*1024)throw Error('Decoded checkpoint graph exceeds 32 MiB');return {wire,text,bytes};
 }
 function graphUnpack(wire){
   exact(wire,['version','root','nodes'],'checkpoint codec');
@@ -46,15 +46,15 @@ function graphUnpack(wire){
     if(!n[1])Object.preventExtensions(values[i]);
   });
   const result=token(wire.root);
-  if(JSON.stringify(graphPack(result))!==JSON.stringify(wire))throw Error('Noncanonical checkpoint graph');return result;
+  if(graphPack(result).text!==JSON.stringify(wire))throw Error('Noncanonical checkpoint graph');return result;
 }
 export const sealWire=value=>({value,hash:wireHash(value)});
 export function unsealWire(s){exact(s,['value','hash']);if(typeof s.hash!=='string'||s.hash!==wireHash(s.value))throw Error('Checkpoint integrity mismatch');return s.value;}
 
 // Fixed 16-bit LZW transport. The serialized 8 MiB limit is unchanged; decoded
 // graph bytes are bounded at 32 MiB to reject decompression bombs. No dependency.
-function compress(text){
-  const bytes=new TextEncoder().encode(text);if(bytes.length>32*1024*1024)throw Error('Decoded checkpoint exceeds 32 MiB');
+function compress(text,bytes=new TextEncoder().encode(text)){
+  if(bytes.length>32*1024*1024)throw Error('Decoded checkpoint exceeds 32 MiB');
   // Prefix-code/byte pairs are exact LZW dictionary identities. Numeric keys
   // avoid allocating a new phrase string for every input byte. Code assignment,
   // reset markers and little-endian transport bytes remain lzw16-v1 unchanged.
@@ -80,5 +80,14 @@ function decompress(x){
   for(let i=0;i<x.codes;i++){const code=bytes[i*2]|(bytes[i*2+1]<<8);if(code===256){reset();word='';continue;}const entry=dictionary[code]??(code===next&&word?word+word[0]:null);if(entry===null||pos+entry.length>result.length)throw Error('Invalid compressed checkpoint code');for(let j=0;j<entry.length;j++)result[pos++]=entry.charCodeAt(j);if(word&&next<65536)dictionary[next++]=word+entry[0];word=entry;}
   if(pos!==result.length)throw Error('Truncated decoded checkpoint');return new TextDecoder('utf-8',{fatal:true}).decode(result);
 }
-export function pack(root){const wire={version:1,transport:compress(JSON.stringify(graphPack(root)))};if(new TextEncoder().encode(JSON.stringify(wire)).length>MAX_CHECKPOINT_BYTES)throw Error('Checkpoint exceeds 8 MiB');return wire;}
+// One private large-text entry, bounded by the existing 32 MiB graph limit.
+// Every call still traverses/validates the complete graph and compares exact
+// serialized bytes. No mutable object identity or caller-supplied hash is trusted.
+let lastGraphText=null,lastTransport=null;
+export function pack(root){
+ const {text,bytes}=graphPack(root);let transport;
+ if(text.length>=65536&&text===lastGraphText)transport={...lastTransport};
+ else transport=compress(text,bytes);
+ const wire={version:1,transport};if(new TextEncoder().encode(JSON.stringify(wire)).length>MAX_CHECKPOINT_BYTES)throw Error('Checkpoint exceeds 8 MiB');if(text.length>=65536&&text!==lastGraphText){lastGraphText=text;lastTransport={...transport};}return wire;
+}
 export function unpack(wire){exact(wire,['version','transport']);if(wire.version!==1)throw Error('Unsupported checkpoint codec');const text=decompress(wire.transport),graph=JSON.parse(text);return graphUnpack(graph);}
