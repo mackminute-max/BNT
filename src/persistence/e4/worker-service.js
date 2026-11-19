@@ -22,7 +22,7 @@ class CachedSession extends RaceSessionStore {
  decode(text){if(text===this.decodedText&&this.storage.getItem(this.key)===this.raw){this.assertAnchor(this.decoded.a.anchor);return this.decoded;}const d=super.decode(text);this.decodedText=text;this.decoded=d;return d;}
 }
 class DurableRunner extends ChampionshipRunner {
- session(){const identity=this.identity();if(this.cached?.identity.raceId===identity.raceId)return this.cached;let raw=null,anchor;
+ session(){const identity=this.identity();if(this.cached?.identity.raceId===identity.raceId&&this.cached.mode==='automatic')return this.cached;let raw=null,anchor;
   this.cached=new CachedSession(this.storage,{identity,interval:1,fallback:'birth',getCareerAnchor:()=>{const next=this.storage.getItem(SAVE_KEY);if(next!==raw){anchor=storedChampionshipAnchor(this.storage,identity.raceId);raw=next;}return anchor;}});return this.cached;
  }
 }
