@@ -861,6 +861,7 @@
     } }) {
       if (!confirmed || !validated) throw Error("Explicit confirmation and validated worker records required");
       checkRecords(records);
+      records = records.map(([k, v]) => [k, v]).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0);
       const old = await this.discover(legacy);
       if (old.migration) return { duplicate: true, ...old };
       if (old.generation !== 0) throw Error("Existing durable authority; migration cannot replace");

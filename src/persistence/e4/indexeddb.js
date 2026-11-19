@@ -48,6 +48,9 @@ export class IndexedRecords {
  }
  async migrate({legacy,records,confirmed=false,validated=false,onBoundary=()=>{}}){
   if(!confirmed||!validated)throw Error('Explicit confirmation and validated worker records required');checkRecords(records);
+  // Web Storage key enumeration may change when the witness key is inserted.
+  // Bind the same byte records independently of enumeration order on resume.
+  records=records.map(([k,v])=>[k,v]).sort(([a],[b])=>a<b?-1:a>b?1:0);
   const old=await this.discover(legacy);if(old.migration)return {duplicate:true,...old};if(old.generation!==0)throw Error('Existing durable authority; migration cannot replace');
   for(const[k,v]of records)if(legacy.getItem(k)!==v)throw Error('Legacy changed during migration');
   const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(records)))),b=>b.toString(16).padStart(2,'0')).join('');
