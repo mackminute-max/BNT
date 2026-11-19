@@ -1,0 +1,7 @@
+// Compare freshly regenerated references to the retained accepted references,
+// and replay the retained payroll artifacts themselves. Never rewrite goldens.
+import assert from 'node:assert/strict';import {readFile,writeFile,mkdir} from 'node:fs/promises';import {gunzipSync} from 'node:zlib';import {verifyReplay} from '../../../../src/replay/replay.js';
+const out=process.env.BNT_E4_ACCEPTANCE_OUT??'/workspace/deliverables/m2e-e4-followup';await mkdir(out,{recursive:true});const accepted=JSON.parse(await readFile('docs/m2-e/e4/stage1/evidence/historical-verification.json','utf8')),fresh=JSON.parse(await readFile(process.argv[2]??'/tmp/bnt-e4-followup-verify/docs/m2-d/evidence/implementation/verification.json','utf8'));
+assert.deepEqual(fresh.historicalReplays,accepted.historicalReplays);assert.deepEqual(fresh.payrollReplays,accepted.payrollReplays);const payroll=[];
+for(const ref of accepted.payrollReplays){const record=JSON.parse(gunzipSync(await readFile('docs/m2-e/e4/stage1/evidence/historical-payroll-'+ref.format+'.json.gz'))),actual=verifyReplay(record);assert.equal(actual.checksum,ref.checksum);payroll.push({format:ref.format,expected:ref.checksum,actual:actual.checksum,matched:true});}
+const report={pass:true,historicalReferencesCompared:accepted.historicalReplays.length,freshPayrollReferencesCompared:fresh.payrollReplays.length,retainedPayrollReplayed:payroll};await writeFile(out+'/reference-comparison.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
