@@ -29,3 +29,10 @@ The default evidence directory is `/workspace/deliverables/e4-architecture`; ove
 Refer to the proposal and evidence reports under `docs/m2-e/e4/architecture-prototypes/`. No migration or production format replacement is authorized by these experiments.
 
 `BNT_EXPERIMENT_CACHE=two` optionally builds an isolated two-entry exact-byte compression-cache fork using an esbuild plugin. Both entries share a 32 MiB decoded-text accounting budget; graph/native validation and wire bytes are unchanged. The plugin only transforms the in-memory experimental bundle, never `src/`. This variant is still not production integration. Use separate output directories and explicit Pure/Combat selectors when comparing it with the accepted one-entry worker.
+
+The optional cache variant has an additional byte-golden/corruption/eviction proof:
+
+```sh
+BNT_EXPERIMENT_OUT=/workspace/deliverables/e4-architecture-cache node experiments/e4-architecture/cache-proof.mjs
+BNT_EXPERIMENT_CACHE=two BNT_EXPERIMENT_CASE=late-long BNT_EXPERIMENT_FORMAT=Combat BNT_EXPERIMENT_OUT=/workspace/deliverables/e4-architecture-cache-combat node experiments/e4-architecture/browser.mjs
+```
