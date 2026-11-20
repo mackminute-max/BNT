@@ -1,0 +1,3849 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Blood and Thunder — P1 Playable</title><style>
+:root{color-scheme:dark;--gold:#dfb863;--ink:#09151d;--panel:#142630;--text:#f5ecdb}*{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--text);font:16px system-ui,sans-serif}header{padding:14px 24px;border-bottom:3px double var(--gold);display:flex;align-items:center;justify-content:space-between;gap:15px}h1{font-size:25px;margin:0;text-transform:uppercase;letter-spacing:3px}h2{font-size:18px;color:var(--gold);margin:5px 0 12px}small,.hint{font-size:13px;color:#c7d4d6}main{max-width:1550px;margin:auto;padding:16px}.panel{background:var(--panel);border:1px solid #6d6852;padding:14px;box-shadow:5px 5px #03090d;margin-bottom:14px}.setup,.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:end}label{display:flex;flex-direction:column;font-size:13px;gap:5px}button,input,select{font:inherit;padding:9px;background:#203944;color:var(--text);border:1px solid #9b936e;border-radius:2px}button{cursor:pointer}button:hover:not(:disabled){background:#385463}button:disabled{opacity:.45;cursor:default}input[type=number]{width:110px}.race-layout>aside{position:sticky;top:12px;align-self:start}.race-layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px}canvas{display:block;width:100%;background:#0b1a24;border:1px solid #6d6852}#race{aspect-ratio:1000/550}#map{aspect-ratio:2/1}#hud{font-variant-numeric:tabular-nums;line-height:1.6;min-height:70px}.radio{height:210px;overflow:auto;padding:8px;background:#0a1920;line-height:1.6;border-left:3px solid var(--gold)}.radio div{padding:3px 6px;border-bottom:1px solid #263c44}table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}td,th{text-align:left;padding:7px;border-bottom:1px solid #40505a}tr.player{color:#ffe3a0;background:#283c40}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}#status{padding:10px;border-left:3px solid var(--gold);min-height:45px}#error{color:#ffaca3}details summary{cursor:pointer;color:var(--gold)}#comparison{overflow:auto}.controls{margin:12px 0}.badge{color:#76eac0}a{color:var(--gold)}@media(max-width:950px){.race-layout{grid-template-columns:1fr}aside{display:grid;grid-template-columns:1fr 1fr;gap:14px}header{display:block}}@media(max-width:950px){.race-layout aside>section:first-child{position:fixed;right:8px;bottom:8px;width:200px;z-index:10;padding:6px;box-shadow:0 0 12px #000}.race-layout aside>section:first-child h2{font-size:12px;margin-bottom:3px}.race-layout aside>section:first-child p,.race-layout aside>section:first-child #progress{display:none}}@media(max-width:600px){aside{display:block}main{padding:8px}h1{font-size:20px}.panel{padding:10px}}
+</style></head><body><header><div><h1>Blood &amp; Thunder</h1><small>P1 · Deterministic playable race · Experimental development build</small></div><span class="badge">IN MEMORY · No career writes</span></header><main>
+<section class="panel"><h2>Race preparation</h2><div class="setup">
+<label>Course<select id="course"></select></label><label>Format<select id="format"><option>Pure</option><option>Combat</option></select></label><label>Weather<select id="weather"><option>Clear</option><option>Rain</option><option>Heat</option><option>Fog</option><option>Storm</option></select></label>
+<label>Seed<input id="seed" type="number" value="145" step="1"></label><label>Player base ratings<select id="value"><option value="45">45 · Developing</option><option value="55" selected>55 · Balanced</option><option value="65">65 · Skilled</option></select></label><label>Player build<select id="build"><option value="baseline">Unmodified baseline</option><option value="contact">Contact Specialist</option><option value="handling">Handling / Endurance</option></select></label><label>Entrants<select id="field"><option>1</option><option>4</option><option selected>8</option></select></label><label>Laps<input id="laps" type="number" min="1" max="5" value="2"></label><button id="prepare">Prepare / New race</button></div>
+<p class="hint">Settings apply when you prepare a race. Player is RU1. All other entrants stay fixed for controlled build comparisons. No saves or rewards: closing the page abandons this race. Keep the existing production HTML for the career and tuning workbench.</p>
+<details><summary>Optional player coaching — frozen on preparation</summary><label><span><input id="customCoach" type="checkbox"> Override experimental preset coaching</span></label><div class="setup" id="coachAxes"></div></details></section>
+<div id="error" role="alert"></div><div id="status" role="status" aria-live="polite"></div>
+<div class="race-layout"><section><div class="panel"><h2>Follow camera · top down</h2><canvas id="race" width="1000" height="550" aria-label="Native race follow camera"></canvas><div class="controls"><button id="start">Start / Resume</button><button id="pause">Pause</button><button id="step">One native tick</button><label>Playback<select id="speed"><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option></select></label><button id="restart">Restart identical setup</button></div><div id="hud"></div></div>
+<div class="panel"><h2>Strategy Signs</h2><div class="controls"><select id="sign" aria-label="Select Strategy Sign"></select><button id="queue">Queue / Replace</button><button id="cancel">Cancel queued</button><button id="lower">Lower active</button></div><div id="signState"></div><p class="hint">Accepted queuing spends one use; canceling does not refund it. Activation spends none. Signs wait for the starting signal, next start/finish crossing, or next Rally Sign Point.</p></div>
+<div class="panel"><h2>Race radio</h2><div id="radio" class="radio" role="log" aria-label="Event-driven race commentary"></div></div></section>
+<aside><section class="panel"><h2>Full-course tactical map</h2><canvas id="map" width="640" height="320" aria-label="Full course, all competitors and Rally Sign Points"></canvas><p class="hint">White / gold: RU1 · green SP lines: Sign Points · arrows: travel direction. Camera follows a racing rival if RU1 retires.</p><div id="progress"></div></section><section class="panel"><h2>Live order / official results</h2><table><thead><tr><th>Pos</th><th>RU</th><th>Progress / result</th></tr></thead><tbody id="standings"></tbody></table><div id="clearance"></div></section></aside></div>
+<section class="panel"><h2>Development comparison harness</h2><p class="hint">Experimental values, not approved permanent balance. Both builds use the current preparation settings, identical rivals, grid, seed and weather. No Strategy Signs are queued in the controlled pair. This runs the real native engine and may take time on Long Rally.</p><button id="compare">Run controlled pair A / B</button><button id="export">Download current race metrics</button><div id="comparison" aria-live="polite"></div><details><summary>Current preset changes and diagnostics</summary><pre id="diagnostics"></pre></details></section>
+</main><script>(() => {
+  // src/sim/deterministic-log.js
+  var INCIDENT_CLOCK_VERSION = "m2e-exponential-clock-v1";
+  function deterministicLog(x) {
+    if (!Number.isFinite(x) || x <= 0) throw Error("Deterministic log requires positive finite input");
+    let exponent = 0, m = x;
+    while (m < 1) {
+      m *= 2;
+      exponent--;
+    }
+    while (m >= 2) {
+      m /= 2;
+      exponent++;
+    }
+    const z = (m - 1) / (m + 1), square = z * z;
+    let term = z, sum = 0;
+    for (let n = 1; n <= 79; n += 2) {
+      sum += term / n;
+      term *= square;
+    }
+    return 2 * sum + exponent * 0.6931471805599453;
+  }
+
+  // src/core/determinism.js
+  function hash(text) {
+    let h = 2166136261;
+    for (const c of String(text)) {
+      h ^= c.charCodeAt(0);
+      h = Math.imul(h, 16777619);
+    }
+    h ^= h >>> 16;
+    h = Math.imul(h, 2146121005);
+    h ^= h >>> 15;
+    h = Math.imul(h, 2221713035);
+    return (h ^ h >>> 16) >>> 0;
+  }
+  function random(seed, ...key2) {
+    return hash(JSON.stringify([seed, ...key2])) / 4294967296;
+  }
+  var quotedStrings = /* @__PURE__ */ new Map();
+  var sortedShapes = /* @__PURE__ */ new Map();
+  function quote(text) {
+    if (text.length > 128) return JSON.stringify(text);
+    const old = quotedStrings.get(text);
+    if (old !== void 0) return old;
+    const encoded = JSON.stringify(text);
+    if (quotedStrings.size >= 2048) quotedStrings.clear();
+    quotedStrings.set(text, encoded);
+    return encoded;
+  }
+  function sortedKeys(value) {
+    const keys = Object.keys(value);
+    if (keys.length > 64 || keys.some((k) => k.length > 128)) return keys.sort();
+    const signature = JSON.stringify(keys), old = sortedShapes.get(signature);
+    if (old) return old;
+    const sorted2 = keys.sort();
+    if (sortedShapes.size >= 256) sortedShapes.clear();
+    sortedShapes.set(signature, sorted2);
+    return sorted2;
+  }
+  function canonical(value) {
+    if (Array.isArray(value)) return `[${value.map(canonical).join(",")}]`;
+    if (value && typeof value === "object")
+      return `{${sortedKeys(value).map((k) => `${quote(k)}:${canonical(value[k])}`).join(",")}}`;
+    return typeof value === "string" ? quote(value) : JSON.stringify(value);
+  }
+  function checksum(value) {
+    return hash(canonical(value)).toString(16).padStart(8, "0");
+  }
+  var byId = (a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+  var clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
+
+  // src/config/config.js
+  var VERSION = "0.6.0-tracks";
+  var rules = {
+    dt: [1e-3, 1, "s"],
+    epsilon: [1e-12, 1e-7, "s"],
+    positionEpsilon: [1e-10, 1e-5, "tile"],
+    maxSubevents: [1, 1e4, "groups/tick"],
+    laps: [1, 100, "laps"],
+    lanes: [1, 8, "lanes"],
+    straightLength: [1, 2e3, "m"],
+    innerRadius: [2, 500, "m"],
+    laneWidth: [1, 10, "m"],
+    straightTiles: [2, 200, "tiles/straight"],
+    turnTiles: [2, 200, "tiles/turn"],
+    gridGap: [1, 10, "tiles"],
+    gridOffset: [0.05, 0.95, "tile"],
+    grip: [0.1, 2, "multiplier"],
+    speedReference: [1, 100, "m/s"],
+    accelerationReference: [0.1, 30, "m/s\xB2"],
+    accelerationLimit: [0.1, 50, "m/s\xB2"],
+    brakingReference: [0.1, 50, "m/s\xB2"],
+    lateralReference: [0.1, 30, "m/s\xB2"],
+    referenceMass: [1, 5e3, "kg"],
+    referencePower: [1, 1e3, "score"],
+    driverMass: [1, 300, "kg"],
+    beastLoadMass: [0, 1e3, "kg/beast"],
+    bottleneck: [0, 1, "weight"],
+    mismatchWeight: [0, 0.5, "weight"],
+    attributeStrength: [0, 1.8, "strength"],
+    cornerRisk: [0, 10, "risk coefficient"],
+    cornerSpeedLoss: [0, 0.9, "fraction"],
+    clearSpeed: [1, 50, "m/s"],
+    exitTiles: [1, 10, "tiles after line"],
+    finishTolerance: [0, 0.1, "s"],
+    maxRaceTime: [1, 2e4, "s"],
+    stallTime: [1, 1e3, "s"]
+  };
+  var defaults = {
+    schema: 1,
+    dt: 0.05,
+    epsilon: 1e-9,
+    positionEpsilon: 1e-8,
+    maxSubevents: 1024,
+    laps: 3,
+    lanes: 4,
+    straightLength: 160,
+    innerRadius: 35,
+    laneWidth: 4,
+    straightTiles: 20,
+    turnTiles: 20,
+    gridGap: 2,
+    gridOffset: 0.5,
+    grip: 1,
+    speedReference: 18,
+    accelerationReference: 3,
+    accelerationLimit: 8,
+    brakingReference: 6,
+    lateralReference: 5,
+    referenceMass: 300,
+    referencePower: 100,
+    driverMass: 75,
+    beastLoadMass: 10,
+    bottleneck: 0.3,
+    mismatchWeight: 0.12,
+    attributeStrength: 0.8,
+    cornerRisk: 0.4,
+    cornerSpeedLoss: 0.25,
+    clearSpeed: 10,
+    exitTiles: 3,
+    finishTolerance: 1e-3,
+    maxRaceTime: 1200,
+    stallTime: 20
+  };
+  var tuningDefaults = Object.freeze({
+    crowdSensitivity: 0.2,
+    coordinationBase: 0.65,
+    coordinationDiscipline: 0.25,
+    coordinationHandling: 0.2,
+    coordinationMin: 0.5,
+    coordinationMax: 1.1,
+    impairment: 0.5,
+    handlingAgility: 0.35,
+    handlingManeuverability: 0.25,
+    handlingDriving: 0.25,
+    handlingStability: 0.15,
+    controlDiscipline: 0.3,
+    controlDriving: 0.25,
+    controlHandling: 0.25,
+    controlStability: 0.2,
+    massExponent: 0.5,
+    speedMassExponent: 0.25,
+    chariotSpeedFloor: 0.5,
+    combatSkill: 0.6,
+    combatEquipment: 0.2,
+    combatControl: 0.2,
+    paceConserve: 0.6,
+    paceMaintain: 0.85,
+    pacePush: 0.95,
+    paceSprint: 1,
+    safeCornerFraction: 0.95
+  });
+  var integers = /* @__PURE__ */ new Set([
+    "maxSubevents",
+    "laps",
+    "lanes",
+    "straightTiles",
+    "turnTiles",
+    "gridGap",
+    "exitTiles"
+  ]);
+  function config(overrides = {}) {
+    if (!overrides || typeof overrides !== "object" || Array.isArray(overrides))
+      throw new Error("Configuration must be an object");
+    for (const k of Object.keys(overrides))
+      if (!Object.hasOwn(defaults, k) && k !== "tuning")
+        throw new Error(`Unknown configuration field: ${k}`);
+    const tuning = { ...tuningDefaults, ...overrides.tuning };
+    if (overrides.tuning !== void 0 && (!overrides.tuning || typeof overrides.tuning !== "object" || Array.isArray(overrides.tuning)))
+      throw new Error("Invalid tuning object");
+    for (const [k, v] of Object.entries(tuning))
+      if (!Object.hasOwn(tuningDefaults, k) || !Number.isFinite(v) || v < 0 || v > 2)
+        throw new Error(`Invalid tuning.${k}: expected 0..2`);
+    if (tuning.crowdSensitivity > 1 || tuning.impairment > 1 || tuning.chariotSpeedFloor > 1 || tuning.coordinationMin > tuning.coordinationMax)
+      throw new Error("Invalid tuning limits");
+    for (const group of [
+      [
+        "handlingAgility",
+        "handlingManeuverability",
+        "handlingDriving",
+        "handlingStability"
+      ],
+      [
+        "controlDiscipline",
+        "controlDriving",
+        "controlHandling",
+        "controlStability"
+      ],
+      ["combatSkill", "combatEquipment", "combatControl"]
+    ])
+      if (Math.abs(group.reduce((sum, k) => sum + tuning[k], 0) - 1) > 1e-9)
+        throw new Error("Tuning weight group must sum to 1");
+    const c = { ...defaults, ...overrides, tuning: Object.freeze(tuning) };
+    if (c.schema !== 1) throw new Error("Unsupported configuration schema");
+    for (const [k, [lo, hi]] of Object.entries(rules)) {
+      if (!Number.isFinite(c[k]) || c[k] < lo || c[k] > hi || integers.has(k) && !Number.isInteger(c[k]))
+        throw new Error(
+          `Invalid ${k}: expected ${lo}..${hi}${integers.has(k) ? " integer" : ""}`
+        );
+    }
+    if (c.exitTiles >= c.straightTiles - Math.floor(c.straightTiles / 2))
+      throw new Error("Exit must fit inside first straight");
+    if (c.epsilon >= c.dt / 1e3)
+      throw new Error("Event epsilon too large for tick");
+    return Object.freeze(c);
+  }
+
+  // src/model/payroll-control.js
+  var MULTIPLIERS = Object.freeze({ Current: 1, Overdue: 1, Delinquent: 0.95, Critical: 0.9, Default: 0.85 });
+  function validatePayrollContext(context) {
+    if (context === void 0) return;
+    const fields = ["version", "rulesVersion", "careerId", "championshipId", "status", "multiplier"];
+    if (!context || typeof context !== "object" || Array.isArray(context) || Object.keys(context).length !== fields.length || fields.some((k) => !Object.hasOwn(context, k)) || context.version !== 1 || context.rulesVersion !== "payroll-control-v1" || !Object.hasOwn(MULTIPLIERS, context.status) || context.multiplier !== MULTIPLIERS[context.status] || !["careerId", "championshipId"].every((k) => typeof context[k] === "string" && /^[a-zA-Z0-9_-]{1,128}$/.test(context[k]))) throw Error("Invalid versioned payroll racing context");
+  }
+  function applyPayrollControl(derived, context) {
+    validatePayrollContext(context);
+    if (context === void 0 || context.multiplier === 1) return derived;
+    return { ...derived, control: clamp(derived.control * context.multiplier, 0, 100) };
+  }
+
+  // src/track/surfaces.js
+  var surfaceDefaults = Object.freeze({ grip: 1, roughness: 0, rollingResistance: 1, hazardModifier: 1 });
+  var surfaceRules = Object.freeze({ grip: [0.1, 2], roughness: [0, 2], rollingResistance: [0.1, 2], hazardModifier: [0, 2] });
+
+  // src/track/course.js
+  var terrainProfiles = Object.freeze({
+    dirt: { grip: 1, roughness: 0.12, rollingResistance: 1, hazardModifier: 1 },
+    stone: { grip: 1.1, roughness: 0.03, rollingResistance: 0.95, hazardModifier: 0.7 },
+    gravel: { grip: 0.8, roughness: 0.3, rollingResistance: 1.08, hazardModifier: 1.3 },
+    sand: { grip: 0.7, roughness: 0.4, rollingResistance: 1.2, hazardModifier: 0.9 },
+    mud: { grip: 0.6, roughness: 0.5, rollingResistance: 1.25, hazardModifier: 1.4 }
+  });
+  var mod = (x, n) => (x % n + n) % n;
+  var finite = (x, min, max) => Number.isFinite(x) && x >= min && x <= max;
+  var identifier = (x) => typeof x === "string" && !["__proto__", "prototype", "constructor"].includes(x) && /^[a-zA-Z0-9_-]{1,64}$/.test(x);
+  function advance(x, y, h, length, angle, fraction = 1) {
+    if (!angle) return { x: x + Math.cos(h) * length * fraction, y: y + Math.sin(h) * length * fraction, heading: h };
+    const signedRadius = length / angle, a = h + angle * fraction;
+    return { x: x + signedRadius * (Math.sin(a) - Math.sin(h)), y: y - signedRadius * (Math.cos(a) - Math.cos(h)), heading: a };
+  }
+  function normalizeCourse(input2) {
+    if (typeof input2 === "string") {
+      if (!Object.hasOwn(coursePresets, input2)) throw Error("Unknown track preset");
+      input2 = structuredClone(coursePresets[input2]);
+    }
+    if (!input2 || typeof input2 !== "object" || Array.isArray(input2) || Object.keys(input2).some((k) => !["id", "name", "kind", "closed", "lanes", "segments", "checkpoints", "generation", "signPointPolicy"].includes(k))) throw Error("Invalid course definition");
+    if (!identifier(input2.id) || typeof input2.name !== "string" || !input2.name.length || input2.name.length > 100 || !["Circuit", "Rally"].includes(input2.kind) || input2.closed !== (input2.kind === "Circuit") || input2.lanes !== 4) throw Error("Invalid course kind, topology or lanes");
+    if (!Array.isArray(input2.segments) || input2.segments.length < 2 || input2.segments.length > 128) throw Error("Invalid course segments");
+    const seen = /* @__PURE__ */ new Set();
+    const segments = input2.segments.map((s, i) => {
+      if (!s || typeof s !== "object" || Object.keys(s).some((k) => !["id", "length", "tiles", "turn", "terrain", "surface", "next"].includes(k)) || !identifier(s.id) || seen.has(s.id) || !finite(s.length, 1, 2e3) || !Number.isInteger(s.tiles) || s.tiles < 1 || s.tiles > 256 || !finite(s.turn, -180, 180)) throw Error("Invalid course segment");
+      seen.add(s.id);
+      if (s.next !== (input2.segments[i + 1]?.id ?? (input2.closed ? input2.segments[0].id : null))) throw Error("Invalid course connection");
+      if (s.terrain !== void 0 && !Object.hasOwn(terrainProfiles, s.terrain)) throw Error("Invalid terrain profile");
+      const surface = { ...surfaceDefaults, ...terrainProfiles[s.terrain] ?? {}, ...s.surface };
+      if (s.surface !== void 0 && (!s.surface || typeof s.surface !== "object" || Array.isArray(s.surface))) throw Error("Invalid course surface");
+      for (const [k, v] of Object.entries(surface)) if (!Object.hasOwn(surfaceRules, k) || !finite(v, ...surfaceRules[k])) throw Error("Invalid surface modifier");
+      return { ...s, terrain: s.terrain ?? "dirt", surface };
+    });
+    if (segments[0].turn !== 0 || segments[0].tiles < 8) throw Error("Course needs a straight starting grid");
+    if (!input2.closed && segments.at(-1).turn !== 0) throw Error("Rally needs a straight terminal exit");
+    const length = segments.reduce((n, s) => n + s.length, 0), cp = input2.checkpoints ?? [];
+    const policy = input2.signPointPolicy;
+    if (policy !== void 0 && (!policy || Object.keys(policy).sort().join(",") !== "category,version" || policy.version !== 1 || !["short", "medium", "long"].includes(policy.category) || input2.closed)) throw Error("Invalid prototype Sign Point policy");
+    const fractions = policy ? { short: [1 / 2], medium: [1 / 3, 2 / 3], long: [1 / 4, 1 / 2, 3 / 4] }[policy.category] : null;
+    if (fractions && (!Array.isArray(cp) || cp.some((p, i) => p.distance !== length * fractions[i]))) throw Error("Prototype Sign Points must match exact fractional policy");
+    if (!Array.isArray(cp) || (input2.closed ? cp.length !== 0 : cp.length !== (fractions?.length ?? 3))) throw Error("Rally requires three ordered intermediate checkpoints");
+    let previous = 0;
+    const ids = /* @__PURE__ */ new Set();
+    for (const p of cp) {
+      if (!p || Object.keys(p).some((k) => !["id", "distance"].includes(k)) || !identifier(p.id) || ids.has(p.id) || !finite(p.distance, Number.EPSILON, length - Number.EPSILON) || p.distance <= previous || p.distance >= length) throw Error("Invalid checkpoint position");
+      previous = p.distance;
+      ids.add(p.id);
+    }
+    return { id: input2.id, name: input2.name, kind: input2.kind, closed: input2.closed, lanes: 4, segments, checkpoints: structuredClone(cp), ...policy ? { signPointPolicy: structuredClone(policy) } : {}, ...input2.generation ? { generation: validateGenerationMetadata(input2.generation) } : {} };
+  }
+  function compileCourse(input2, c) {
+    const definition = normalizeCourse(input2);
+    if (c.lanes !== definition.lanes) throw Error("Course lane count must match four racing lanes");
+    let x = 0, y = 0, heading = 0, start = 0, distance = 0;
+    const segments = definition.segments.map((s) => {
+      const angle = s.turn * Math.PI / 180, radius = angle ? s.length / Math.abs(angle) : Infinity;
+      if (angle && radius <= (c.lanes - 1) * c.laneWidth + 1) throw Error("Corner radius cannot fit lane geometry");
+      const end = advance(x, y, heading, s.length, angle);
+      const result = { ...s, type: angle ? "turn" : "straight", direction: Math.sign(angle), radius: angle ? radius : null, angle, start, startDistance: distance, x, y, heading, endX: end.x, endY: end.y };
+      x = end.x;
+      y = end.y;
+      heading = end.heading;
+      start += s.tiles;
+      distance += s.length;
+      return result;
+    });
+    if (definition.closed && (Math.hypot(x, y) > 1e-6 || Math.min(mod(heading, Math.PI * 2), Math.PI * 2 - mod(heading, Math.PI * 2)) > 1e-7)) throw Error("Closed circuit geometry does not connect");
+    const checkpoints2 = definition.checkpoints.map((p) => {
+      const s = segments.find((s2) => p.distance < s2.startDistance + s2.length) ?? segments.at(-1);
+      return { ...p, q: s.start + (p.distance - s.startDistance) / s.length * s.tiles };
+    });
+    return { course: true, id: definition.id, name: definition.name, raceType: definition.kind, closed: definition.closed, segments, cells: start, lanes: c.lanes, offset: definition.closed ? Math.floor(segments[0].tiles / 2) : 0, length: distance, checkpoints: checkpoints2 };
+  }
+  function segmentAt(q, t) {
+    const position = t.closed ? mod(q + t.offset, t.cells) : q;
+    const segment2 = position < 0 ? t.segments[0] : position >= t.cells ? t.segments.at(-1) : t.segments.find((s) => position < s.start + s.tiles);
+    return { segment: segment2, position };
+  }
+  function courseLocation(q, lane, c, t) {
+    const { segment: s, position } = segmentAt(q, t);
+    const extension = !t.closed && (q < 0 || q >= t.cells);
+    const radius = s.angle ? s.radius - Math.sign(s.angle) * lane * c.laneWidth : Infinity;
+    return { tile: Math.floor(position), segment: s.id, type: extension ? "straight" : s.type, direction: extension ? 0 : s.direction, radius: extension ? Infinity : radius, length: (extension || !s.angle ? s.length : Math.abs(s.angle) * radius) / s.tiles, surface: s.surface, terrain: s.terrain };
+  }
+  function coursePoint(q, lane, c, t) {
+    const { segment: s, position } = segmentAt(q, t), fraction = (position - s.start) / s.tiles;
+    const p = advance(s.x, s.y, s.heading, s.length, s.angle, fraction), offset2 = lane * c.laneWidth;
+    return { x: p.x - Math.sin(p.heading) * offset2, y: p.y + Math.cos(p.heading) * offset2 };
+  }
+  function routePreview(q, lane, c, t) {
+    let next = null;
+    for (let i = 0; i <= 8; i++) {
+      const at = Math.floor(q) + i;
+      if (!t.closed && at >= t.cells) break;
+      const loc = courseLocation(at, lane, c, t);
+      if (loc.type === "turn") {
+        next = { ...loc, tilesAhead: i };
+        break;
+      }
+    }
+    return { current: courseLocation(q, lane, c, t), corner: next };
+  }
+  function segment(id2, length, turn = 0, terrain = "dirt") {
+    return { id: id2, length, turn, terrain, tiles: Math.max(2, Math.ceil(length / 8)), next: null };
+  }
+  function connect(segments, closed) {
+    segments.forEach((s, i) => s.next = segments[i + 1]?.id ?? (closed ? segments[0].id : null));
+    return segments;
+  }
+  function circuit(id2, name, vertices, radii) {
+    const corners = vertices.map((v, i) => {
+      const previous = vertices[(i + vertices.length - 1) % vertices.length], next = vertices[(i + 1) % vertices.length];
+      const incoming = Math.atan2(v[1] - previous[1], v[0] - previous[0]), outgoing = Math.atan2(next[1] - v[1], next[0] - v[0]);
+      const turn = mod(outgoing - incoming + Math.PI, 2 * Math.PI) - Math.PI;
+      return { v, incoming, outgoing, turn, trim: radii[i] * Math.tan(Math.abs(turn) / 2), r: radii[i] };
+    });
+    const segments = [];
+    for (let i = 0; i < corners.length; i++) {
+      const a = corners[i], b = corners[(i + 1) % corners.length], length = Math.hypot(b.v[0] - a.v[0], b.v[1] - a.v[1]) - a.trim - b.trim;
+      segments.push(segment("straight-" + i, length, 0, i % 3 === 0 ? "stone" : "dirt"));
+      segments.push(segment("corner-" + (i + 1) % corners.length, b.r * Math.abs(b.turn), b.turn * 180 / Math.PI, "dirt"));
+    }
+    return { id: id2, name, kind: "Circuit", closed: true, lanes: 4, segments: connect(segments, true), checkpoints: [] };
+  }
+  function rally(id2, name, items) {
+    const segments = connect(items.map((x, i) => segment("sector-" + i, ...x)), false), length = segments.reduce((n, s) => n + s.length, 0);
+    return { id: id2, name, kind: "Rally", closed: false, lanes: 4, segments, checkpoints: [0.25, 0.5, 0.75].map((p, i) => ({ id: "CP" + (i + 1), distance: p * length })) };
+  }
+  var coursePresets = Object.freeze({
+    "technical-circuit": circuit("technical-circuit", "Technical Circuit", [[0, 0], [240, 0], [240, 160], [160, 160], [160, 90], [80, 90], [80, 200], [0, 200]], [20, 22, 20, 18, 18, 18, 20, 22]),
+    "fast-circuit": circuit("fast-circuit", "Fast Circuit", [[0, 0], [500, 0], [500, 300], [300, 300], [300, 180], [0, 180]], [50, 70, 60, 35, 35, 45]),
+    "mixed-rally": rally("mixed-rally", "Mixed-Terrain Rally", [[120, 0, "dirt"], [55, 75, "gravel"], [140, 0, "stone"], [70, -90, "sand"], [110, 0, "sand"], [50, 90, "mud"], [80, 0, "mud"], [65, -70, "gravel"], [150, 0, "stone"]]),
+    "technical-rally": rally("technical-rally", "Technical Rally", [[80, 0, "dirt"], [32, 90, "gravel"], [36, -100, "mud"], [55, 0, "sand"], [40, 110, "gravel"], [38, -100, "mud"], [60, 0, "stone"], [38, 95, "sand"], [40, -100, "gravel"], [95, 0, "dirt"]])
+  });
+  function courseDistance(q, t) {
+    if (t.closed) throw Error("Use lap progress on a closed course");
+    const { segment: s } = segmentAt(q, t);
+    return s.startDistance + (q - s.start) / s.tiles * s.length;
+  }
+  function validateGenerationMetadata(g2) {
+    if (!g2 || typeof g2 !== "object" || g2.version !== 1 || !Number.isSafeInteger(g2.seed) || !["short", "medium", "long"].includes(g2.category) || typeof g2.fallback !== "boolean" || !Number.isInteger(g2.attempt) || g2.attempt < 0 || g2.attempt > 32 || !g2.options || typeof g2.options !== "object") throw Error("Invalid generation metadata");
+    return structuredClone(g2);
+  }
+
+  // src/track/catalog.js
+  var ovalPresets = Object.freeze({
+    "short-oval": { id: "short-oval", name: "Short Oval", overrides: { straightLength: 90, innerRadius: 24, straightTiles: 12, turnTiles: 16 } },
+    oval: { id: "oval", name: "Standard Oval", overrides: { straightLength: 160, innerRadius: 35, straightTiles: 20, turnTiles: 20 } },
+    "grand-oval": { id: "grand-oval", name: "Grand Oval", overrides: { straightLength: 280, innerRadius: 60, straightTiles: 35, turnTiles: 28 } }
+  });
+  var authored = [
+    ["C01", "Broken Crown", [[0, 0], [240, 0], [240, 160], [160, 160], [160, 90], [80, 90], [80, 200], [0, 200]], [20, 22, 20, 18, 18, 18, 20, 22], ["stone", "dirt"]],
+    ["C02", "Serpent's Coil", [[0, 0], [520, 0], [520, 300], [400, 300], [400, 120], [310, 120], [310, 340], [210, 340], [210, 140], [110, 140], [110, 300], [0, 300]], [28, 30, 28, 25, 24, 24, 28, 24, 24, 24, 28, 30], ["dirt", "gravel", "stone"]],
+    ["C03", "Ironhook", [[0, 0], [650, 0], [650, 70], [150, 70], [150, 340], [0, 340]], [30, 24, 24, 28, 40, 35], ["stone", "dirt"]],
+    ["C04", "Blackstone Run", [[0, 0], [340, 0], [340, 260], [240, 260], [240, 160], [160, 160], [160, 330], [80, 330], [80, 250], [0, 250]], [24, 28, 26, 24, 24, 24, 24, 22, 22, 26], ["stone", "gravel", "stone", "dirt"]],
+    ["C05", "Thunder's Bend", [[0, 0], [500, 0], [500, 300], [300, 300], [300, 180], [0, 180]], [50, 70, 60, 35, 35, 45], ["stone", "dirt"]],
+    ["C06", "Widowmaker", [[0, 0], [360, 0], [360, 330], [280, 330], [280, 130], [190, 130], [190, 250], [100, 250], [100, 330], [0, 330]], [24, 26, 22, 22, 24, 24, 22, 22, 22, 26], ["dirt", "gravel", "mud"]],
+    ["C07", "Ashen Ring", [[0, 0], [360, 0], [460, 130], [340, 300], [220, 250], [140, 360], [-80, 260], [-100, 100]], [30, 28, 32, 26, 24, 24, 28, 26], ["dirt", "sand", "mud", "gravel", "stone"]],
+    ["C08", "King's Gauntlet", [[0, 0], [650, 0], [650, 350], [500, 350], [500, 210], [380, 210], [380, 380], [220, 380], [220, 150], [100, 150], [100, 310], [0, 310]], [35, 48, 40, 28, 24, 28, 32, 28, 24, 24, 28, 30], ["stone", "gravel", "dirt", "stone", "sand"]],
+    ["C09", "Red Fang", [[0, 0], [420, 0], [520, 180], [320, 340], [280, 200], [180, 220], [100, 340], [-80, 250], [-80, 100]], [26, 30, 28, 24, 24, 22, 24, 24, 24], ["dirt", "stone", "gravel"]],
+    ["C10", "The Labyrinth", [[0, 0], [600, 0], [600, 420], [490, 420], [490, 140], [390, 140], [390, 340], [280, 340], [280, 180], [180, 180], [180, 460], [80, 460], [80, 300], [0, 300]], [24, 28, 26, 24, 24, 24, 26, 24, 24, 24, 24, 24, 22, 24], ["dirt", "gravel", "stone", "sand"]],
+    ["C11", "Stormbreaker", [[0, 0], [620, 0], [620, 320], [470, 320], [470, 140], [320, 140], [320, 410], [0, 410]], [45, 55, 45, 35, 30, 35, 45, 55], ["stone", "dirt", "gravel"]],
+    ["C12", "Devil's Spine", [[0, 0], [500, 0], [560, 140], [430, 280], [360, 170], [280, 210], [220, 360], [90, 340], [110, 180], [-50, 180], [-70, 80]], [24, 26, 24, 22, 20, 20, 24, 20, 20, 22, 20], ["gravel", "dirt", "sand", "stone"]]
+  ];
+  var circuitCatalog = Object.freeze(Object.fromEntries(authored.map(([id2, name, vertices, radii, terrains]) => {
+    const scale = { C02: 0.8, C08: 0.75, C10: 0.65, C11: 0.8 }[id2] ?? 1;
+    const definition = circuit(id2, name, vertices.map(([x, y]) => [x * scale, y * scale]), radii);
+    definition.segments.forEach((segment2, i) => segment2.terrain = terrains[i % terrains.length]);
+    return [id2, definition];
+  })));
+  function resolveCatalog(course) {
+    return typeof course === "string" && Object.hasOwn(circuitCatalog, course) ? structuredClone(circuitCatalog[course]) : course;
+  }
+  function trackChoices(kind) {
+    if (kind === "Oval") return Object.values(ovalPresets).map((x) => [x.id, x.name]);
+    if (kind === "Circuit") return Object.values(circuitCatalog).map((x) => [x.id, x.name]);
+    return [["generated-short", "Short Rally"], ["generated-medium", "Medium Rally"], ["generated-long", "Long Rally"]];
+  }
+
+  // src/track/oval.js
+  var mod2 = (n, d) => (n % d + d) % d;
+  function track(c, definition = null) {
+    definition = resolveCatalog(definition);
+    const ovalId = typeof definition === "string" && Object.hasOwn(ovalPresets, definition) ? definition : null;
+    if (ovalId) definition = null;
+    if (definition !== null && definition !== void 0 && definition !== "oval") return compileCourse(definition, c);
+    const segments = [
+      { id: "north", type: "straight", tiles: c.straightTiles, direction: 0 },
+      { id: "east", type: "turn", tiles: c.turnTiles, direction: 1 },
+      { id: "south", type: "straight", tiles: c.straightTiles, direction: 0 },
+      { id: "west", type: "turn", tiles: c.turnTiles, direction: 1 }
+    ];
+    let start = 0;
+    for (const s of segments) {
+      s.start = start;
+      start += s.tiles;
+      s.surface = { ...surfaceDefaults };
+    }
+    return { segments, cells: start, lanes: c.lanes, ...ovalId && ovalId !== "oval" ? { ovalId, name: ovalPresets[ovalId].name } : {} };
+  }
+  function location(q, lane, c, t) {
+    if (t.course) return courseLocation(q, lane, c, t);
+    const tile = mod2(Math.floor(q) + Math.floor(c.straightTiles / 2), t.cells);
+    const s = t.segments.find((s2) => tile >= s2.start && tile < s2.start + s2.tiles);
+    const radius = c.innerRadius + lane * c.laneWidth;
+    return {
+      tile,
+      segment: s.id,
+      type: s.type,
+      radius: s.type === "turn" ? radius : Infinity,
+      length: s.type === "turn" ? Math.PI * radius / s.tiles : c.straightLength / s.tiles,
+      surface: s.surface
+    };
+  }
+  function key(q, lane, t) {
+    return `${lane}:${t.course && !t.closed ? Math.floor(q) : mod2(Math.floor(q), t.cells)}`;
+  }
+  function nextDistance(ru, c, t) {
+    return (Math.floor(ru.q) + 1 - ru.q) * location(ru.q, ru.lane, c, t).length;
+  }
+  function point(q, lane, c, t) {
+    if (t.course) return coursePoint(q, lane, c, t);
+    const x = mod2(q + Math.floor(c.straightTiles / 2), t.cells), n = c.straightTiles, k = c.turnTiles;
+    const r = c.innerRadius + lane * c.laneWidth, l = c.straightLength;
+    if (x < n) return { x: x / n * l, y: -r };
+    if (x < n + k) {
+      const a2 = -Math.PI / 2 + (x - n) / k * Math.PI;
+      return { x: l + r * Math.cos(a2), y: r * Math.sin(a2) };
+    }
+    if (x < 2 * n + k) return { x: l * (1 - (x - n - k) / n), y: r };
+    const a = Math.PI / 2 + (x - 2 * n - k) / k * Math.PI;
+    return { x: r * Math.cos(a), y: r * Math.sin(a) };
+  }
+  function gap(from, to, t) {
+    return t.course && !t.closed ? to - from : mod2(to - from + t.cells / 2, t.cells) - t.cells / 2;
+  }
+  function forwardGap(from, to, t) {
+    return t.course && !t.closed ? to - from : mod2(to - from, t.cells);
+  }
+  function finishQ(s) {
+    return s.track.course && !s.track.closed ? s.track.cells : s.config.laps * s.track.cells;
+  }
+
+  // src/events/events.js
+  function emit(s, type, participants = [], effects = {}) {
+    const event = {
+      id: s.events.length + 1,
+      type,
+      time: s.time,
+      tick: s.tick,
+      fraction: (s.time - s.tick * s.config.dt) / s.config.dt,
+      participants: [...participants].sort(),
+      effects: structuredClone(effects)
+    };
+    s.events.push(event);
+    return event;
+  }
+
+  // src/ai/signs.js
+  var signs = [
+    "Push the Pace",
+    "Conserve Strength",
+    "Seek Open Track",
+    "Race Defensively",
+    "Engage Rivals",
+    "Hold Position"
+  ];
+  function signCommand(s, cmd) {
+    const r = s.entrants.find((r2) => r2.id === s.playerId);
+    const reject = (reason) => {
+      emit(s, "SIGN_REJECTED", [s.playerId], { reason });
+      return false;
+    };
+    if (!r || r.status !== "Racing") return reject("Player is not racing");
+    if (cmd.action === "queue") {
+      if (!signs.includes(cmd.sign) || cmd.sign === "Engage Rivals" && s.format === "Pure")
+        return reject("Sign illegal for format");
+      if (!r.signs.remaining) return reject("No sign uses remaining");
+      r.signs.remaining--;
+      r.signs.pending = cmd.sign;
+      emit(s, "SIGN_QUEUED", [r.id], {
+        sign: cmd.sign,
+        remaining: r.signs.remaining
+      });
+    } else if (cmd.action === "cancel") {
+      r.signs.pending = null;
+      emit(s, "SIGN_CANCELED", [r.id], { remaining: r.signs.remaining });
+    } else if (cmd.action === "lower") {
+      r.signs.active = null;
+      r.ai.nextDecision = s.tick;
+      emit(s, "SIGN_LOWERED", [r.id]);
+    } else return reject("Unknown sign action");
+    return true;
+  }
+  function activateSign(s, r) {
+    if (r.status !== "Racing" || !r.signs.pending) return;
+    r.signs.active = r.signs.pending;
+    r.signs.pending = null;
+    r.ai.nextDecision = s.tick;
+    emit(s, "SIGN_ACTIVATED", [r.id], { sign: r.signs.active });
+  }
+  function signPreference(sign, action, c) {
+    if (sign === "Push the Pace")
+      return ["Push", "Sprint"].includes(action) ? c.signPush : 0;
+    if (sign === "Conserve Strength")
+      return action === "Conserve" ? c.signConserve : 0;
+    if (sign === "Seek Open Track")
+      return ["inward", "outward", "overtake"].includes(action) ? c.signOpen : 0;
+    if (sign === "Race Defensively")
+      return [
+        "Conserve",
+        "avoid",
+        "yield",
+        "hold",
+        "defendCombat",
+        "disengage"
+      ].includes(action) ? c.signDefensive : 0;
+    if (sign === "Hold Position")
+      return ["hold", "defend", "Maintain"].includes(action) ? c.signHold : 0;
+    if (sign === "Engage Rivals")
+      return ["attack", "ram"].includes(action) ? c.signEngage : 0;
+    return 0;
+  }
+
+  // src/ai/telemetry.js
+  function compliance(d, tuning) {
+    if (!d.sign) return null;
+    if (!d.candidates.some((x) => signPreference(d.sign, x.action, tuning) > 0))
+      return "Inapplicable";
+    if (d.executionError || d.stressError) return "Prevented";
+    const pacePreferred = signPreference(d.sign, d.effective.pace, tuning) > 0;
+    const positionPreferred = signPreference(d.sign, d.effective.position, tuning) > 0;
+    const paceApplied = d.physicalOutcome.pace.status === "Applied" && !(d.sign === "Push the Pace" && d.physicalOutcome.movement.status === "Blocked");
+    const positionStatus = d.physicalOutcome.position.status;
+    if (["Push the Pace", "Conserve Strength"].includes(d.sign))
+      return pacePreferred ? paceApplied ? "Followed" : "Prevented" : "Overridden";
+    if (positionPreferred && positionStatus === "Pending") return null;
+    const paceFollowed = pacePreferred && paceApplied;
+    const positionFollowed = positionPreferred && positionStatus === "Succeeded";
+    if (positionFollowed) return "Followed";
+    if (paceFollowed) return "Partially Followed";
+    if (positionPreferred && positionStatus === "Prevented" || pacePreferred && !paceApplied)
+      return "Prevented";
+    return "Overridden";
+  }
+  function beginDecision(s, r, diagnostic, failed, position) {
+    const pending = !failed && (position?.lane != null || ["attack", "ram"].includes(position?.action));
+    const action = failed ? null : position?.action ?? null;
+    const paceApplied = !failed && r.control !== "Out of Control";
+    r.ai.diagnostics = {
+      ...diagnostic,
+      decisionId: s.events.length + 1,
+      sign: r.signs.active,
+      intended: { ...diagnostic.chosen, lane: position?.lane ?? null, target: position?.target ?? null },
+      effective: { pace: failed ? null : r.pace, position: action, lane: failed ? null : position?.lane ?? null, target: failed ? null : position?.target ?? null },
+      executed: { pace: paceApplied ? r.pace : null, position: pending ? null : action },
+      physicalOutcome: {
+        pace: { action: r.pace, status: paceApplied ? "Applied" : "Prevented", reason: failed ? "Driver error" : paceApplied ? null : "Out of control" },
+        position: { action, status: failed ? "Prevented" : pending ? "Pending" : "Succeeded", lane: r.lane, reason: failed ? "Driver error" : null },
+        movement: { status: r.blocked ? "Blocked" : "Not evaluated" }
+      }
+    };
+    r.ai.diagnostics.compliance = compliance(r.ai.diagnostics, s.autonomous);
+    emit(s, "AI_DECISION", [r.id], r.ai.diagnostics);
+    return r.ai.diagnostics.decisionId;
+  }
+  function resolveAction(s, r, decisionId, domain, succeeded, reason = null, details = {}) {
+    const d = r?.ai.diagnostics;
+    if (!d || decisionId == null || d.decisionId !== decisionId) return;
+    const outcome = domain === "movement" ? { status: succeeded ? "Moving" : "Blocked", reason, ...details } : { ...d.physicalOutcome[domain], status: succeeded ? domain === "pace" ? "Applied" : "Succeeded" : "Prevented", reason, ...details };
+    d.physicalOutcome[domain] = outcome;
+    if (domain === "pace") d.executed.pace = succeeded ? d.effective.pace : null;
+    if (domain === "position") d.executed.position = succeeded ? d.effective.position : null;
+    d.compliance = compliance(d, s.autonomous);
+    if (reason) d.reason = reason;
+    emit(s, "AI_EXECUTION_RESULT", [r.id], {
+      decisionId: d.decisionId,
+      sign: d.sign,
+      domain,
+      effective: d.effective,
+      executed: d.executed,
+      physicalOutcome: d.physicalOutcome,
+      compliance: d.compliance,
+      reason: d.reason
+    });
+  }
+
+  // src/sim/consequences.js
+  var consequenceDefaults = Object.freeze({
+    componentResistanceBase: 0.5,
+    damageScale: 3e-3,
+    protectionStrength: 1,
+    minimumImpact: 0.2,
+    renewedSpeed: 0.75,
+    sideSpeed: 1.5,
+    ramSpeed: 5,
+    frontGeometry: 1,
+    sideGeometry: 0.6,
+    rearGeometry: 0.7,
+    attackSpeedRetention: 1,
+    struckSpeedRetention: 0.8,
+    sideSpeedRetention: 0.9,
+    maxChainEvents: 128,
+    attackSkillMultiplier: 1.2,
+    attackRange: 1.25,
+    ramRange: 0.75,
+    attackCooldown: 1.2,
+    reactionBudget: 1,
+    contestNoise: 8,
+    reactionBonus: 10,
+    defendingBonus: 12,
+    attackDamage: 7,
+    marginDamageCap: 1,
+    defenseDriving: 0.4,
+    defenseCombat: 0.4,
+    defenseControl: 0.2,
+    unstableThreshold: 15,
+    outOfControlThreshold: 40,
+    disabledThreshold: 100,
+    damageInstability: 1,
+    energyInstability: 2e-4,
+    controlRecovery: 5,
+    cornerShock: 22,
+    disabledCondition: 5,
+    minimumTeamCondition: 10,
+    frontBeasts: 4,
+    frontDriver: 0.5,
+    frontChariot: 1,
+    sideBeasts: 1,
+    sideDriver: 2,
+    sideChariot: 4,
+    rearBeasts: 0.5,
+    rearDriver: 1,
+    rearChariot: 5,
+    attackBeasts: 1,
+    attackDriver: 3,
+    attackChariot: 1,
+    attackBase: 0.3,
+    attackAggression: 3,
+    attackOpportunity: 1.5,
+    attackCaution: 2,
+    ramBase: 0.2,
+    ramAggression: 3,
+    ramOpportunity: 1,
+    ramCaution: 2,
+    defendBase: 0.5,
+    defendCaution: 3,
+    disengageBase: 0.5,
+    disengageCaution: 2,
+    disengageFatigue: 2,
+    incidentRate: 2e-3,
+    incidentDuration: 12,
+    incidentMinimumInterval: 0.1,
+    debrisWeight: 6,
+    animalWeight: 2,
+    spectatorWeight: 1,
+    debrisMass: 20,
+    animalMass: 100,
+    spectatorMass: 70
+  });
+  function consequenceConfig(input2 = {}) {
+    if (!input2 || typeof input2 !== "object" || Array.isArray(input2))
+      throw new Error("Invalid consequence configuration");
+    const c = { ...consequenceDefaults, ...input2 };
+    for (const [key2, value] of Object.entries(c))
+      if (!Object.hasOwn(consequenceDefaults, key2) || !Number.isFinite(value) || value < 0 || value > 1e4)
+        throw new Error(`Invalid consequence.${key2}`);
+    for (const k of ["reactionBudget", "maxChainEvents"])
+      if (!Number.isInteger(c[k])) throw new Error(`Invalid integer ${k}`);
+    if (c.maxChainEvents < 1 || c.attackCooldown <= 0 || c.attackRange <= 0 || c.ramRange <= 0 || c.incidentDuration <= 0 || c.incidentMinimumInterval <= 0 || c.incidentRate > 1)
+      throw new Error("Invalid consequence time/range");
+    if (!(c.unstableThreshold < c.outOfControlThreshold && c.outOfControlThreshold < c.disabledThreshold) || c.controlRecovery <= 0)
+      throw new Error("Invalid control thresholds");
+    for (const k of ["disabledCondition", "minimumTeamCondition"])
+      if (c[k] > 100) throw new Error("Invalid condition threshold");
+    for (const k of [
+      "struckSpeedRetention",
+      "sideSpeedRetention",
+      "attackSpeedRetention"
+    ])
+      if (c[k] > 1) throw new Error("Invalid speed retention");
+    for (const direction of ["front", "side", "rear", "attack"])
+      if (c[direction + "Beasts"] + c[direction + "Driver"] + c[direction + "Chariot"] <= 0)
+        throw new Error("Empty component exposure");
+    if (c.debrisWeight + c.animalWeight + c.spectatorWeight <= 0)
+      throw new Error("Empty incident weights");
+    return Object.freeze(c);
+  }
+  function drawConsequence(s, ...keys) {
+    s.rng.draws++;
+    return random(s.seed, "consequences", ...keys);
+  }
+  function retire(s, r, reason, cause = null) {
+    if (r.physical === "Wreck" || r.physical === "Exited" || r.status === "DNS")
+      return;
+    if (r.finishTime === null) {
+      r.status = "Retired";
+      r.retirement = { time: s.time, progress: r.q, reason, cause };
+      emit(s, "RU_RETIRED", [r.id], { ...r.retirement });
+    }
+    r.physical = "Wreck";
+    r.speed = 0;
+    r.control = "Disabled";
+    r.instability = s.consequence.disabledThreshold;
+    r.blocked = true;
+    if (r.signs.pending) {
+      r.signs.pending = null;
+      emit(s, "SIGN_CANCELED", [r.id], {
+        reason: "RU retired",
+        remaining: r.signs.remaining
+      });
+    }
+    r.signs.active = null;
+    const wreck = Object.freeze({
+      id: r.id,
+      q: r.q,
+      lane: r.lane,
+      time: s.time,
+      cause
+    });
+    Object.defineProperty(s.wrecks, r.id, {
+      value: wreck,
+      enumerable: true,
+      writable: false,
+      configurable: false
+    });
+    emit(s, "CONTROL_CHANGED", [r.id], { control: "Disabled", cause });
+    emit(s, "WRECK_CREATED", [r.id], wreck);
+  }
+  function updateControl(s, r, cause = null) {
+    if (r.physical === "Wreck" || r.physical === "Exited" || r.status === "DNS")
+      return;
+    const c = s.consequence;
+    if (r.ru.driver.condition <= c.disabledCondition || r.ru.chariot.condition <= c.disabledCondition || r.ru.beasts.every((b) => b.condition <= c.minimumTeamCondition) || r.instability >= c.disabledThreshold) {
+      retire(s, r, "Disabled by damage or control loss", cause);
+      return;
+    }
+    const next = r.instability > c.outOfControlThreshold ? "Out of Control" : r.instability > c.unstableThreshold ? "Unstable" : "Normal";
+    if (next !== r.control) {
+      r.control = next;
+      if (next === "Out of Control")
+        resolveAction(s, r, r.ai.diagnostics?.decisionId, "pace", false, "Out of control requires braking");
+      emit(s, "CONTROL_CHANGED", [r.id], {
+        control: next,
+        instability: r.instability,
+        cause
+      });
+    }
+  }
+  function controlTime(s, r) {
+    if (!s.consequences || r.physical === "Wreck" || r.instability <= 0)
+      return Infinity;
+    const c = s.consequence;
+    const threshold = r.instability > c.outOfControlThreshold ? c.outOfControlThreshold : r.instability > c.unstableThreshold ? c.unstableThreshold : 0;
+    return Math.max(
+      s.config.epsilon * 2,
+      (r.instability - threshold) / c.controlRecovery
+    );
+  }
+  function recoverControl(s, r, elapsed) {
+    if (s.consequences && r.physical !== "Wreck") {
+      r.instability = Math.max(
+        0,
+        r.instability - s.consequence.controlRecovery * elapsed
+      );
+      updateControl(s, r, "Recovery");
+    }
+  }
+  function exposure(s, r, direction, id2) {
+    const c = s.consequence, d = ["front", "rear", "side", "attack"].includes(direction) ? direction : "side";
+    const candidates = [
+      {
+        name: "driver",
+        component: r.ru.driver,
+        weight: c[d + "Driver"],
+        toughness: r.ru.chariot.protection
+      },
+      {
+        name: "chariot",
+        component: r.ru.chariot,
+        weight: c[d + "Chariot"],
+        toughness: r.ru.chariot.durability
+      },
+      ...r.ru.beasts.map((b, i) => ({
+        name: `beast:${i}`,
+        component: b,
+        weight: c[d + "Beasts"] / r.ru.beasts.length,
+        toughness: b.toughness
+      }))
+    ];
+    const total = candidates.reduce((n, x) => n + x.weight, 0);
+    let pick = drawConsequence(s, "component", id2, r.id, d) * total;
+    return candidates.find((x) => {
+      pick -= x.weight;
+      return pick < 0;
+    }) ?? candidates.at(-1);
+  }
+  function queueImpact(s, a, b, cause, { speeds = null, side = false, ram = false, parentId = null } = {}) {
+    const pair = [a.id, b.id].sort().join("|"), c = s.consequence;
+    const av = speeds?.get(a.id) ?? a.speed, bv = speeds?.get(b.id) ?? b.speed;
+    const closing = side ? Math.abs(av - bv) : Math.max(0, av - bv);
+    const active = s.contacts.includes(pair), last2 = s.contactHistory[pair];
+    if (active && !s.consequences) return;
+    if (active && !ram && (!(closing > c.renewedSpeed && !side) || last2?.time === s.time))
+      return;
+    if (!active) s.contacts.push(pair);
+    const id2 = `contact:${s.nextImpact++}`;
+    s.contactHistory[pair] = { time: s.time, id: id2 };
+    emit(s, "CONTACT", [a.id, b.id], {
+      contactId: id2,
+      cause,
+      closing,
+      parentId,
+      initiator: a.id,
+      other: b.id
+    });
+    if (!s.consequences) return;
+    const lateral = ram ? c.ramSpeed : side && Math.max(av, bv) > 0 ? c.sideSpeed : 0;
+    const relative = Math.hypot(closing, lateral);
+    const effective = b.physical === "Wreck" ? a.derived.mass : a.derived.mass * b.derived.mass / (a.derived.mass + b.derived.mass);
+    const energy = 0.5 * effective * relative * relative;
+    if (relative < c.minimumImpact) return;
+    s.pendingImpacts.push({
+      id: id2,
+      a: a.id,
+      b: b.id,
+      energy,
+      side,
+      kind: ram ? "ram" : "contact",
+      parentId,
+      direction: side ? "side" : "front"
+    });
+  }
+  function queueHazardImpact(s, r, h, speed, side = false) {
+    const pair = `${r.id}|${h.id}`;
+    const last2 = s.contactHistory[pair];
+    if (last2 && (last2.time === s.time || speed <= s.consequence.renewedSpeed))
+      return;
+    const id2 = `contact:${s.nextImpact++}`;
+    s.contactHistory[pair] = { time: s.time, id: id2 };
+    const mass = s.consequence[h.type + "Mass"];
+    const effective = r.derived.mass * mass / (r.derived.mass + mass);
+    emit(s, "INCIDENT_IMPACT", [r.id], {
+      contactId: id2,
+      incidentId: h.id,
+      type: h.type
+    });
+    s.pendingImpacts.push({
+      id: id2,
+      a: r.id,
+      b: null,
+      energy: 0.5 * effective * speed * speed,
+      direction: side ? "side" : "front",
+      kind: "incident",
+      parentId: h.id
+    });
+  }
+  function flushImpacts(s, refresh) {
+    const impacts = s.pendingImpacts.splice(0);
+    if (!impacts.length) return;
+    s.impactsThisTick += impacts.length;
+    if (s.impactsThisTick > s.consequence.maxChainEvents)
+      throw new Error("Impact chain budget exceeded");
+    const before = new Map(s.entrants.map((r) => [r.id, structuredClone(r)]));
+    const effects = [];
+    for (const impact of impacts.sort((a, b) => a.id.localeCompare(b.id))) {
+      for (const [id2, direction, share] of [
+        [impact.a, impact.direction, impact.b ? 0.5 : 1],
+        ...impact.b ? [[impact.b, impact.side ? "side" : "rear", 0.5]] : []
+      ]) {
+        const r = before.get(id2), live = s.entrants.find((x) => x.id === id2), target = exposure(s, live, direction, impact.id);
+        const protection = 1 + r.ru.chariot.protection / 100 * s.consequence.protectionStrength;
+        const surface = location(r.q, r.lane, s.config, s.track).surface;
+        const resistance = Math.max(0.1, r.derived.collisionResistance) * Math.max(
+          0.1,
+          s.consequence.componentResistanceBase + target.toughness / 100
+        ) * protection * Math.max(0.1, s.environment.grip * surface.grip);
+        const geometry2 = s.consequence[direction + "Geometry"] ?? 1;
+        const amount = impact.amount === void 0 ? impact.energy * geometry2 * s.consequence.damageScale * share / resistance : impact.amount / resistance;
+        effects.push({
+          r: live,
+          target,
+          amount,
+          impact,
+          shock: amount * s.consequence.damageInstability + impact.energy * geometry2 * s.consequence.energyInstability * share
+        });
+        if (r.physical === "Wreck")
+          emit(
+            s,
+            "WRECK_IMPACT",
+            [id2, impact.a === id2 ? impact.b : impact.a].filter(Boolean),
+            { contactId: impact.id, energy: impact.energy, wreckId: r.id }
+          );
+      }
+    }
+    for (const effect of effects) {
+      const { r, target, amount, impact } = effect, old = target.component.condition;
+      target.component.condition = clamp(old - amount, 0, 100);
+      emit(s, "DAMAGE", [r.id], {
+        contactId: impact.id,
+        kind: impact.kind,
+        parentId: impact.parentId ?? impact.id,
+        component: target.name,
+        amount: old - target.component.condition,
+        before: old,
+        after: target.component.condition,
+        energy: impact.energy
+      });
+    }
+    const touched = [...new Set(effects.map((e) => e.r.id))].sort();
+    for (const id2 of touched) {
+      const r = s.entrants.find((r2) => r2.id === id2), own = effects.filter((e) => e.r.id === id2);
+      r.instability += own.reduce((n, e) => n + e.shock, 0);
+      if (r.physical !== "Wreck")
+        r.speed *= own.some(
+          (e) => !e.impact.side && e.impact.a === id2 && e.impact.kind !== "attack"
+        ) ? 0 : own.some((e) => e.impact.side) ? s.consequence.sideSpeedRetention : own.some((e) => e.impact.kind !== "attack") ? s.consequence.struckSpeedRetention : s.consequence.attackSpeedRetention;
+      refresh(r);
+      updateControl(s, r, own.map((e) => e.impact.id).join(","));
+    }
+  }
+  function eligibleCombat(s, a, b, action) {
+    if (!s.consequences || s.format !== "Combat" || !a || !b || a.id === b.id || a.status !== "Racing" || b.status !== "Racing" || a.physical !== "Live" || b.physical !== "Live" || a.control === "Out of Control")
+      return false;
+    const separation = Math.abs(gap(a.q, b.q, s.track)), lanes = Math.abs(a.lane - b.lane);
+    return action === "ram" ? lanes === 1 && separation <= s.consequence.ramRange : action === "attack" && lanes <= 1 && separation <= s.consequence.attackRange;
+  }
+  function resolveAttacks(s, intents, refresh) {
+    const ordered = [...intents].sort(
+      (a, b) => random(s.seed, "initiative", s.tick, a.id) - random(s.seed, "initiative", s.tick, b.id) || byId(a, b)
+    );
+    for (const intent of ordered) {
+      const a = s.entrants.find((r) => r.id === intent.id), b = s.entrants.find((r) => r.id === intent.target), c = s.consequence;
+      if (!eligibleCombat(s, a, b, intent.action) || s.time + s.config.epsilon < a.nextAttackTime) {
+        resolveAction(s, a, intent.decisionId, "position", false, "Combat execution invalidated");
+        emit(
+          s,
+          "ATTACK_INVALIDATED",
+          [intent.id, intent.target].filter(Boolean),
+          {
+            action: intent.action,
+            reason: s.format === "Pure" ? "Offensive action prohibited" : "Range, control, cooldown or participant state"
+          }
+        );
+        continue;
+      }
+      a.nextAttackTime = s.time + c.attackCooldown;
+      const id2 = `attack:${s.nextAttack++}`, react = b.reactionsRemaining > 0 && b.control !== "Out of Control";
+      if (react) {
+        b.reactionsRemaining--;
+        emit(s, "REACTION", [b.id, a.id], {
+          attackId: id2,
+          remaining: b.reactionsRemaining,
+          defending: b.defending
+        });
+      }
+      const attack = a.derived.combat * c.attackSkillMultiplier + (drawConsequence(s, id2, "attacker") * 2 - 1) * c.contestNoise;
+      const defense = b.ru.driver.driving * c.defenseDriving + b.derived.combat * c.defenseCombat + b.derived.control * c.defenseControl + (react ? c.reactionBonus : 0) + (react && b.defending ? c.defendingBonus : 0) + (drawConsequence(s, id2, "defender") * 2 - 1) * c.contestNoise;
+      const margin = attack - defense, success = margin > 0;
+      emit(s, "ATTACK", [a.id, b.id], {
+        attackId: id2,
+        attacker: a.id,
+        defender: b.id,
+        action: intent.action,
+        attack,
+        defense,
+        margin,
+        success,
+        reacted: react
+      });
+      resolveAction(s, a, intent.decisionId, "position", true, null, { combatResult: success ? "Hit" : "Defended", attackId: id2 });
+      if (!success) continue;
+      if (intent.action === "ram")
+        queueImpact(s, a, b, "Deliberate lateral ram", {
+          side: true,
+          ram: true,
+          parentId: id2
+        });
+      else
+        s.pendingImpacts.push({
+          id: id2,
+          a: b.id,
+          b: null,
+          energy: 0,
+          amount: c.attackDamage * (1 + Math.min(c.marginDamageCap, margin / 100)),
+          direction: "attack",
+          kind: "attack"
+        });
+      flushImpacts(s, refresh);
+    }
+  }
+
+  // src/sim/incidents.js
+  var incidentTypes = ["debris", "animal", "spectator"];
+  function validateIncidents(schedule, c, t) {
+    if (!Array.isArray(schedule)) throw new Error("Invalid incident schedule");
+    return schedule.map((x, index) => {
+      if (!x || !Number.isFinite(x.time) || x.time < 0 || !incidentTypes.includes(x.type) || !Number.isInteger(x.lane) || x.lane < 0 || x.lane >= c.lanes || !Number.isInteger(x.tile) || x.tile < 0 || x.tile >= t.cells || !Number.isFinite(x.duration) || x.duration <= 0 || x.duration > 1e3)
+        throw new Error("Invalid scheduled incident");
+      return { ...x, index };
+    }).sort((a, b) => a.time - b.time || a.index - b.index);
+  }
+  function nextRandom(s) {
+    if (!s.consequences || s.consequence.incidentRate === 0) return Infinity;
+    return s.time + Math.max(
+      s.consequence.incidentMinimumInterval,
+      -(s.championshipContext?.clockVersion === INCIDENT_CLOCK_VERSION ? deterministicLog : Math.log)(
+        Math.max(
+          1e-12,
+          1 - drawConsequence(s, "incident-clock", s.nextIncident)
+        )
+      ) / s.consequence.incidentRate
+    );
+  }
+  function initializeIncidents(s) {
+    s.nextIncident = 1;
+    s.incidentCursor = 0;
+    s.nextIncidentAt = nextRandom(s);
+  }
+  function incidentTime(s) {
+    if (!s.consequences) return Infinity;
+    return Math.max(
+      0,
+      Math.min(
+        s.nextIncidentAt,
+        s.incidentSchedule[s.incidentCursor]?.time ?? Infinity,
+        ...s.hazards.map((h) => h.expires)
+      ) - s.time
+    );
+  }
+  function updateIncidents(s) {
+    if (!s.consequences) return;
+    for (const h of s.hazards.filter(
+      (h2) => h2.expires <= s.time + s.config.epsilon
+    ))
+      emit(s, "INCIDENT_CLEARED", [], { incidentId: h.id });
+    s.hazards = s.hazards.filter((h) => h.expires > s.time + s.config.epsilon);
+    const requests = [];
+    while (s.incidentSchedule[s.incidentCursor]?.time <= s.time + s.config.epsilon)
+      requests.push(s.incidentSchedule[s.incidentCursor++]);
+    if (s.nextIncidentAt <= s.time + s.config.epsilon) {
+      const c = s.consequence, total = incidentTypes.reduce((n, k) => n + c[k + "Weight"], 0);
+      let pick = drawConsequence(s, "incident-type", s.nextIncident) * total;
+      const type = incidentTypes.find((k) => {
+        pick -= c[k + "Weight"];
+        return pick < 0;
+      }) ?? "debris";
+      requests.push({ type, duration: c.incidentDuration });
+    }
+    for (const request of requests) {
+      const id2 = `incident:${s.nextIncident++}`;
+      const occupied = new Set(
+        s.entrants.filter((r) => r.physical !== "Exited" && r.status !== "DNS").map((r) => key(r.q, r.lane, s.track))
+      );
+      for (const h of s.hazards) occupied.add(key(h.q, h.lane, s.track));
+      const eligible = [];
+      for (let lane = 0; lane < s.config.lanes; lane++)
+        for (let tile = s.config.exitTiles + 1; tile < s.track.cells; tile++)
+          if (!occupied.has(key(tile, lane, s.track))) {
+            const weight = location(tile, lane, s.config, s.track).surface.hazardModifier;
+            if (weight > 0) eligible.push({ lane, tile, weight });
+          }
+      let placement;
+      if (request.tile === void 0) {
+        let pick = drawConsequence(s, "incident-placement", id2) * eligible.reduce((sum, cell) => sum + cell.weight, 0);
+        placement = eligible.find((cell) => {
+          pick -= cell.weight;
+          return pick < 0;
+        });
+      } else {
+        placement = eligible.find((p) => p.lane === request.lane && p.tile === request.tile);
+      }
+      if (!placement) {
+        emit(s, "INCIDENT_SKIPPED", [], {
+          incidentId: id2,
+          reason: "No eligible unoccupied tile",
+          requested: request
+        });
+        continue;
+      }
+      const hazard = {
+        id: id2,
+        type: request.type,
+        lane: placement.lane,
+        q: placement.tile,
+        created: s.time,
+        expires: s.time + request.duration
+      };
+      s.hazards.push(hazard);
+      emit(s, "INCIDENT", [], hazard);
+    }
+    if (s.nextIncidentAt <= s.time + s.config.epsilon)
+      s.nextIncidentAt = nextRandom(s);
+  }
+  function hazardAt(s, q, lane) {
+    return s.hazards.find(
+      (h) => h.lane === lane && key(h.q, lane, s.track) === key(q, lane, s.track)
+    );
+  }
+  function rescheduleIncidents(s) {
+    s.nextIncidentAt = nextRandom(s);
+  }
+
+  // src/ai/weights.js
+  var utilityDefaults = Object.freeze({
+    // Provisional combat-value preferences/priors; normalized features are bounded.
+    combatDamageValue: 4,
+    combatDisruptionValue: 4,
+    combatSelfRisk: 4,
+    combatControlRisk: 8,
+    combatProgressCost: 1,
+    combatRetaliationCost: 1,
+    combatConditionCost: 3,
+    combatFutilityCost: 3,
+    combatDamageUnit: 10,
+    combatSpeedUnit: 2,
+    combatUnknownSkill: 50,
+    combatUnknownProtection: 50,
+    combatUnknownCondition: 100,
+    combatUnknownMassRatio: 1,
+    courseCornerRisk: 2,
+    courseTerrainRisk: 1,
+    courseLaneRisk: 0.4,
+    perceptionBase: 0.2,
+    perceptionSkill: 0.8,
+    dangerGap: 1.5,
+    hazardGap: 2,
+    passClearance: 2,
+    passLookahead: 5,
+    laneTrafficGap: 3,
+    overtakeGap: 4,
+    defendGap: 3,
+    stressInstability: 0.5,
+    conserveBase: 1,
+    conserveFatigueBase: 2,
+    conserveStamina: 6.666666666666667,
+    conserveCaution: 1,
+    maintainBase: 2,
+    maintainPatience: 1,
+    pushBase: 1.6,
+    pushAggression: 1.6666666666666667,
+    pushFatigue: 5,
+    sprintBase: 0.7,
+    sprintOpportunity: 2,
+    sprintAggression: 1,
+    sprintFatigue: 8,
+    holdBase: 2,
+    holdPatience: 1.25,
+    holdDanger: 5,
+    laneBase: 0.3,
+    insideBonus: 0.8,
+    laneOpportunityBase: 2,
+    laneOpportunism: 4,
+    laneTrafficPenalty: 4,
+    overtakeBase: 2,
+    overtakeOpportunity: 3.3333333333333335,
+    overtakeAggression: 1,
+    avoidBase: 4,
+    avoidCaution: 3.3333333333333335,
+    yieldBase: 3,
+    yieldCaution: 2.5,
+    defendBase: 1,
+    defendAggression: 1
+  });
+  function utilityConfig(input2 = {}) {
+    if (!input2 || typeof input2 !== "object" || Array.isArray(input2))
+      throw new Error("Invalid utility weights");
+    const result = { ...utilityDefaults, ...input2 };
+    for (const [key2, value] of Object.entries(result))
+      if (!Object.hasOwn(utilityDefaults, key2) || !Number.isFinite(value) || value < 0 || value > 100)
+        throw new Error(`Invalid utility weight ${key2}`);
+    return Object.freeze(result);
+  }
+
+  // src/sim/environment.js
+  var weatherPresets = Object.freeze({
+    Clear: {
+      grip: 1,
+      visibility: 1,
+      fatigue: 1,
+      recovery: 1,
+      rolling: 1,
+      crowdMorale: 1
+    },
+    Rain: {
+      grip: 0.8,
+      visibility: 0.8,
+      fatigue: 1.1,
+      recovery: 0.95,
+      rolling: 1.05,
+      crowdMorale: 1
+    },
+    "Heavy Rain/Mud": {
+      grip: 0.55,
+      visibility: 0.6,
+      fatigue: 1.35,
+      recovery: 0.8,
+      rolling: 1.3,
+      crowdMorale: 1
+    },
+    "Dust/Wind": {
+      grip: 0.9,
+      visibility: 0.45,
+      fatigue: 1.15,
+      recovery: 0.9,
+      rolling: 1.1,
+      crowdMorale: 1
+    },
+    "Extreme Heat": {
+      grip: 0.95,
+      visibility: 0.9,
+      fatigue: 1.7,
+      recovery: 0.55,
+      rolling: 1.05,
+      crowdMorale: 1
+    }
+  });
+  var m2Defaults = Object.freeze({
+    decisionTicks: 10,
+    perceptionTiles: 10,
+    noise: 0.3,
+    judgmentError: 0.08,
+    executionError: 0.06,
+    stressError: 0.08,
+    goalTicks: 30,
+    switchCost: 1.2,
+    signUses: 3,
+    signStrength: 5,
+    fatigueRate: 0.13,
+    recoveryRate: 0.2,
+    strainRate: 0.025,
+    wearRate: 1e-3,
+    recoveryThreshold: 0.6,
+    exertionConserve: 0.45,
+    exertionMaintain: 1,
+    exertionPush: 1.75,
+    exertionSprint: 3,
+    signPush: 1,
+    signConserve: 1,
+    signOpen: 1,
+    signDefensive: 1,
+    signEngage: 1,
+    signHold: 1
+  });
+  function m2Config(input2 = {}) {
+    if (!input2 || typeof input2 !== "object" || Array.isArray(input2))
+      throw new Error("Invalid autonomous tuning");
+    const { utility, ...scalars } = input2;
+    const v = { ...m2Defaults, ...scalars };
+    for (const [k, x] of Object.entries(v))
+      if (!Object.hasOwn(m2Defaults, k) || !Number.isFinite(x) || x < 0 || x > 100)
+        throw new Error(`Invalid autonomous tuning ${k}`);
+    for (const k of ["decisionTicks", "goalTicks", "signUses"])
+      if (!Number.isInteger(v[k]) || k !== "signUses" && v[k] < 1)
+        throw new Error(`Invalid ${k}`);
+    for (const k of [
+      "judgmentError",
+      "executionError",
+      "stressError",
+      "recoveryThreshold"
+    ])
+      if (v[k] > 1) throw new Error(`Invalid probability ${k}`);
+    return Object.freeze({ ...v, utility: utilityConfig(utility) });
+  }
+  function integrateCondition(s, r, elapsed) {
+    if (r.status !== "Racing") return;
+    const w = s.environment, c = s.autonomous;
+    const surface = location(r.q, r.lane, s.config, s.track).surface;
+    const exertion = c[`exertion${r.pace}`] ?? 0;
+    for (const b of r.ru.beasts) {
+      const load = Math.max(1, r.derived.load);
+      const generation = c.fatigueRate * exertion * load * w.fatigue * (1 + surface.roughness) * (1.5 - b.endurance / 100) * (1 + (100 - b.condition) / 100);
+      const recovery = exertion <= c.recoveryThreshold ? c.recoveryRate * w.recovery * (0.5 + b.endurance / 100) : 0;
+      b.fatigue = clamp(b.fatigue + (generation - recovery) * elapsed, 0, 100);
+    }
+    r.ru.driver.strain = clamp(
+      r.ru.driver.strain + c.strainRate * (exertion + (r.control === "Unstable" ? 1 : 0)) * elapsed,
+      0,
+      100
+    );
+    r.ru.chariot.wear = clamp(
+      r.ru.chariot.wear + c.wearRate * exertion * w.rolling * (1 + surface.roughness) * elapsed,
+      0,
+      100
+    );
+  }
+  function environmentConfig(weather, overrides = {}) {
+    if (!Object.hasOwn(weatherPresets, weather) || !overrides || typeof overrides !== "object" || Array.isArray(overrides))
+      throw new Error("Invalid environment");
+    const value = { ...weatherPresets[weather], ...overrides };
+    for (const [key2, v] of Object.entries(value))
+      if (!Object.hasOwn(weatherPresets[weather], key2) || !Number.isFinite(v) || v < 0.1 || v > 3)
+        throw new Error(`Invalid environment.${key2}: 0.1..3`);
+    return Object.freeze(value);
+  }
+
+  // src/model/ru.js
+  var beastAttributes = [
+    "speed",
+    "power",
+    "agility",
+    "endurance",
+    "discipline",
+    "toughness"
+  ];
+  var driverAttributes = [
+    "driving",
+    "beastHandling",
+    "combat",
+    "awareness",
+    "nerve"
+  ];
+  var chariotAttributes = [
+    "stability",
+    "durability",
+    "protection",
+    "rollingEfficiency",
+    "maneuverability"
+  ];
+  function component(keys, value = 50) {
+    return Object.fromEntries([
+      ...keys.map((k) => [k, value]),
+      ["condition", 100]
+    ]);
+  }
+  function defaultRU(id2, value = 50) {
+    return {
+      id: id2,
+      driver: { ...component(driverAttributes, value), strain: 0 },
+      beasts: [0, 1].map(() => ({
+        ...component(beastAttributes, value),
+        fatigue: 0
+      })),
+      chariot: {
+        ...component(chariotAttributes, value),
+        weight: 180,
+        capacity: 400,
+        wear: 0
+      },
+      equipment: { mass: 0, combat: 0 }
+    };
+  }
+  function bounded(x, path, lo = 0, hi = 100) {
+    if (!Number.isFinite(x) || x < lo || x > hi)
+      throw new Error(`Invalid ${path}: ${lo}..${hi}`);
+  }
+  function validateRU(ru) {
+    if (!ru || typeof ru.id !== "string" || ru.id === "all" || !/^[a-zA-Z0-9_-]{1,64}$/.test(ru.id))
+      throw new Error("Invalid RU id");
+    if (!Array.isArray(ru.beasts) || ru.beasts.length < 1 || ru.beasts.length > 8)
+      throw new Error(`Invalid beast team: ${ru.id}`);
+    for (const [name, obj, attrs] of [
+      ["driver", ru.driver, [...driverAttributes, "strain"]],
+      ["chariot", ru.chariot, [...chariotAttributes, "wear"]],
+      ...ru.beasts.map((b, i) => [
+        `beast${i}`,
+        b,
+        [...beastAttributes, "fatigue"]
+      ])
+    ]) {
+      if (!obj) throw new Error(`Missing ${name}`);
+      const allowed = /* @__PURE__ */ new Set([
+        ...attrs,
+        "condition",
+        ...name === "driver" ? ["personality"] : name === "chariot" ? ["weight", "capacity"] : []
+      ]);
+      if (Object.keys(obj).some((k) => !allowed.has(k)))
+        throw new Error(`Unknown ${name} attribute`);
+      for (const k of [...attrs, "condition"])
+        bounded(obj[k], `${ru.id}.${name}.${k}`);
+    }
+    if (ru.driver.personality !== void 0) {
+      const keys = [
+        "aggression",
+        "caution",
+        "patience",
+        "opportunism",
+        "staminaManagement",
+        "tacticalDiscipline"
+      ];
+      if (!ru.driver.personality || typeof ru.driver.personality !== "object" || Array.isArray(ru.driver.personality) || Object.keys(ru.driver.personality).some((k) => !keys.includes(k)))
+        throw new Error("Invalid personality fields");
+      for (const key2 of keys)
+        bounded(ru.driver.personality[key2], `personality.${key2}`);
+    }
+    bounded(ru.chariot.weight, "chariot weight", 1, 5e3);
+    bounded(ru.chariot.capacity, "capacity", 1, 1e4);
+    if (!ru.equipment || Object.keys(ru.equipment).some((k) => !["mass", "combat"].includes(k)))
+      throw new Error("Unknown equipment effect");
+    bounded(ru.equipment?.mass, "equipment mass", 0, 1e4);
+    bounded(ru.equipment?.combat, "equipment combat", 0, 100);
+  }
+  function derive(ru, c) {
+    validateRU(ru);
+    const w = c.tuning;
+    const mean = (xs) => xs.reduce((a, b) => a + b, 0) / xs.length;
+    const mult = (x) => 1 + c.attributeStrength * (x / 100 - 0.5);
+    const effective = ru.beasts.map(
+      (b) => Object.fromEntries(
+        beastAttributes.map((k) => [
+          k,
+          b[k] * (b.condition / 100) * (1 - w.impairment * b.fatigue / 100)
+        ])
+      )
+    );
+    const values = (k) => effective.map((b) => b[k]);
+    const bottleneck = (k) => (1 - c.bottleneck) * mean(values(k)) + c.bottleneck * Math.min(...values(k));
+    const mismatch = mean(
+      ["speed", "agility", "discipline"].map(
+        (k) => (Math.max(...values(k)) - Math.min(...values(k))) / 100
+      )
+    ) * c.mismatchWeight;
+    const d = ru.driver, ch = ru.chariot;
+    const coordination = clamp(
+      w.coordinationBase + w.coordinationDiscipline * mean(values("discipline")) / 100 + w.coordinationHandling * d.beastHandling / 100 - mismatch,
+      w.coordinationMin,
+      w.coordinationMax
+    );
+    const team = {
+      speed: bottleneck("speed"),
+      power: coordination * values("power").reduce((a, b) => a + b, 0),
+      agility: bottleneck("agility"),
+      endurance: mean(values("endurance")),
+      discipline: Math.min(...values("discipline")),
+      toughness: mean(values("toughness"))
+    };
+    const driverCondition = d.condition / 100 * (1 - w.impairment * d.strain / 100);
+    const chariotCondition = ch.condition / 100 * (1 - w.impairment * ch.wear / 100);
+    const mass = ch.weight + c.driverMass + ru.beasts.length * c.beastLoadMass + ru.equipment.mass;
+    const load = (c.driverMass + ru.equipment.mass) / ch.capacity;
+    const massFactor = Math.pow(c.referenceMass / mass, w.massExponent) / Math.max(1, load);
+    const handling = (team.agility * w.handlingAgility + ch.maneuverability * w.handlingManeuverability + d.driving * driverCondition * w.handlingDriving + ch.stability * w.handlingStability) * chariotCondition;
+    const morale = 1 + ((c.crowdMorale ?? 1) - 1) * (1 - d.nerve / 100) * w.crowdSensitivity;
+    const baseControl = (team.discipline * w.controlDiscipline + d.driving * driverCondition * w.controlDriving + d.beastHandling * driverCondition * w.controlHandling + ch.stability * w.controlStability) * chariotCondition;
+    const control = clamp(baseControl * morale, 0, 100);
+    const maxSpeed = c.speedReference * mult(team.speed) * mult(ch.rollingEfficiency) * Math.pow(massFactor, w.speedMassExponent) * (w.chariotSpeedFloor + (1 - w.chariotSpeedFloor) * chariotCondition);
+    const acceleration = Math.min(
+      c.accelerationLimit,
+      c.accelerationReference * team.power / c.referencePower * massFactor * c.grip * mult(handling)
+    );
+    const endurance = team.endurance / Math.max(1, load);
+    const resilience = (team.toughness + ch.protection + ch.durability) / 3 * chariotCondition;
+    const combat = (d.combat * w.combatSkill + ru.equipment.combat * w.combatEquipment + control * w.combatControl) * driverCondition;
+    const braking = c.brakingReference * mult(handling) * c.grip;
+    const lateral = c.lateralReference * mult(handling) * mult(control) * c.grip;
+    return {
+      team,
+      morale,
+      coordination,
+      mismatch,
+      mass,
+      load,
+      effective,
+      maxSpeed,
+      acceleration,
+      handling,
+      control,
+      endurance,
+      resilience,
+      combat,
+      braking,
+      lateral,
+      fatigueRate: 1 / mult(endurance),
+      recovery: mult(endurance),
+      collisionResistance: mult(resilience),
+      awareness: d.awareness * driverCondition,
+      nerve: d.nerve * driverCondition
+    };
+  }
+
+  // src/ai/combat-value.js
+  function contestChance(margin, noise) {
+    if (noise <= 0) return margin > 0 ? 1 : 0;
+    const span = 2 * noise;
+    if (margin <= -span) return 0;
+    if (margin >= span) return 1;
+    return margin < 0 ? (margin + span) ** 2 / (2 * span ** 2) : 1 - (span - margin) ** 2 / (2 * span ** 2);
+  }
+  function combatValue(action, own, target, perceived, config2, combat, utility, grip, terminalPhase = null) {
+    const w = utility, ru = own.ru, p = ru.driver.personality;
+    const skill = w.combatUnknownSkill;
+    const rivalCombat = skill * (config2.tuning.combatSkill + config2.tuning.combatControl);
+    const defense = skill * (combat.defenseDriving + combat.defenseControl) + rivalCombat * combat.defenseCombat + combat.reactionBonus;
+    const margin = own.derived.combat * combat.attackSkillMultiplier - defense;
+    const chance = contestChance(margin, combat.contestNoise);
+    const protection = w.combatUnknownProtection;
+    const condition = w.combatUnknownCondition;
+    const targetResistance = Math.max(
+      0.1,
+      (1 + config2.attributeStrength * (condition / 100 * 0.5 - 0.5)) * (combat.componentResistanceBase + skill / 100) * (1 + protection / 100 * combat.protectionStrength) * grip
+    );
+    const targetMass = Math.max(1, config2.referenceMass * w.combatUnknownMassRatio);
+    const reducedMass = own.derived.mass * targetMass / (own.derived.mass + targetMass);
+    const closing = Math.abs(own.speed - target.speed);
+    const energy = 0.5 * reducedMass * (closing ** 2 + combat.ramSpeed ** 2);
+    const sideWeights = combat.sideDriver + combat.sideChariot + combat.sideBeasts;
+    const selfResistance = (toughness) => Math.max(
+      0.1,
+      own.derived.collisionResistance * Math.max(0.1, combat.componentResistanceBase + toughness / 100) * (1 + ru.chariot.protection / 100 * combat.protectionStrength) * grip
+    );
+    const selfAbsorption = (combat.sideDriver / selfResistance(ru.chariot.protection) + combat.sideChariot / selfResistance(ru.chariot.durability) + combat.sideBeasts * ru.beasts.reduce((sum, b) => sum + 1 / selfResistance(b.toughness), 0) / ru.beasts.length) / sideWeights;
+    const ram = action === "ram";
+    const targetDamage = chance * (ram ? energy * combat.sideGeometry * combat.damageScale * 0.5 / targetResistance : combat.attackDamage * (1 + Math.min(combat.marginDamageCap, Math.max(0, margin) / 100)) / targetResistance);
+    const selfDamage = ram ? chance * energy * combat.sideGeometry * combat.damageScale * 0.5 * selfAbsorption : 0;
+    const damageUnit = Math.max(1, w.combatDamageUnit);
+    const speedUnit = Math.max(1, w.combatSpeedUnit);
+    const weakCondition = Math.min(
+      ru.driver.condition,
+      ru.chariot.condition,
+      ru.beasts.reduce((sum, b) => sum + b.condition, 0) / ru.beasts.length
+    ) / 100;
+    const estimatedSelfShock = selfDamage * combat.damageInstability + (ram ? chance * energy * combat.sideGeometry * combat.energyInstability * 0.5 : 0);
+    const consequenceRisk = clamp(
+      (selfDamage / Math.max(1, weakCondition * 100)) ** 2 + (estimatedSelfShock / Math.max(1, combat.outOfControlThreshold - own.instability)) ** 2,
+      0,
+      2
+    );
+    const danger = clamp(1 - weakCondition + own.instability / combat.outOfControlThreshold, 0, 2);
+    const clearAhead = !perceived.neighbors.some((n) => n.lane === own.lane && n.gap > 0 && n.gap < w.overtakeGap);
+    const passing = perceived.neighbors.some((n) => n.lane === own.lane && n.gap > 0 && n.gap < w.overtakeGap);
+    const leadingTarget = target.gap < 0;
+    const nearFinish = terminalPhase ?? (own.hasEnteredCourse && own.completedLaps >= config2.laps - 1);
+    const racingCost = (clearAhead ? 0.5 : 0) + (passing ? 0.5 : 0) + (leadingTarget ? 0.5 : 0) + (nearFinish ? 0.5 : 0);
+    const retaliation = contestChance(rivalCombat * combat.attackSkillMultiplier - (ru.driver.driving * combat.defenseDriving + own.derived.combat * combat.defenseCombat + own.derived.control * combat.defenseControl + combat.reactionBonus), combat.contestNoise);
+    const exposure2 = Math.min(2, perceived.neighbors.filter((n) => n.status === "Racing" && n.physical === "Live" && Math.abs(n.lane - own.lane) <= 1 && Math.abs(n.gap) <= combat.attackRange).length / 2);
+    const speedDisruption = ram ? chance * (target.speed - own.speed) * (1 - combat.sideSpeedRetention) / speedUnit : targetDamage / 100;
+    const features = {
+      expectedDamage: w.combatDamageValue * clamp(targetDamage / damageUnit, 0, 2),
+      disruption: w.combatDisruptionValue * clamp(speedDisruption, -2, 2),
+      selfRisk: -w.combatSelfRisk * clamp(selfDamage / damageUnit * (1 + danger + p.caution / 100), 0, 2),
+      racingCost: -w.combatProgressCost * clamp(racingCost * (1 + p.patience / 100) + (ram ? chance * own.speed * (1 - combat.sideSpeedRetention) / speedUnit : 0), 0, 2),
+      retaliationRisk: -w.combatRetaliationCost * clamp(retaliation * exposure2 * (1 + danger + p.caution / 100), 0, 2),
+      conditionRisk: -w.combatConditionCost * danger,
+      controlRisk: -w.combatControlRisk * consequenceRisk,
+      futileContest: -w.combatFutilityCost * (1 - chance)
+    };
+    return { features, estimate: {
+      model: "perceived-combat-value-v1",
+      chance,
+      targetDamage,
+      selfDamage,
+      estimatedTargetMass: targetMass,
+      estimatedTargetSkill: skill,
+      estimatedTargetCondition: condition,
+      estimatedTargetProtection: protection,
+      observedRelativeSpeed: target.speed - own.speed,
+      speedDisruption,
+      racingCost,
+      retaliation,
+      danger,
+      estimatedSelfShock,
+      consequenceRisk,
+      unknownOpponentProperties: true
+    } };
+  }
+
+  // src/ai/driver.js
+  var tendencies = [
+    "aggression",
+    "caution",
+    "patience",
+    "opportunism",
+    "staminaManagement",
+    "tacticalDiscipline"
+  ];
+  function personality(index = 0) {
+    return Object.fromEntries(
+      tendencies.map((k, i) => [k, 25 + (index * 23 + i * 17) % 61])
+    );
+  }
+  function perceive(s, r) {
+    const w = s.autonomous.utility;
+    const range = s.autonomous.perceptionTiles * s.environment.visibility * (w.perceptionBase + w.perceptionSkill * r.derived.awareness / 100);
+    const neighbors = s.entrants.filter(
+      (o) => o.id !== r.id && o.physical !== "Exited" && o.status !== "DNS"
+    ).map((o) => {
+      const separation = gap(r.q, o.q, s.track);
+      return {
+        id: o.id,
+        lane: o.lane,
+        gap: separation,
+        speed: o.speed,
+        physical: o.physical,
+        status: o.status
+      };
+    }).filter((o) => Math.abs(o.gap) <= range).sort(byId);
+    const hazards = (s.hazards ?? []).filter(
+      (h) => Math.abs(gap(r.q, h.q, s.track)) <= range
+    ).map((h) => ({ ...h }));
+    return {
+      ...s.track.course ? { course: routePreview(r.q, r.lane, s.config, s.track) } : {},
+      range,
+      neighbors,
+      hazards,
+      weather: s.weather,
+      visibility: s.environment.visibility
+    };
+  }
+  function draw(s, r, kind) {
+    s.rng.draws++;
+    return random(s.seed, "ai", kind, r.id, s.tick, r.ai.evaluation);
+  }
+  function decide(s, r) {
+    const perceived = perceive(s, r), p = r.ru.driver.personality, c = s.autonomous, w = c.utility;
+    r.ai.perceived = perceived;
+    const ahead = perceived.neighbors.filter((o) => o.lane === r.lane && o.gap > 0).sort((a, b) => a.gap - b.gap)[0];
+    const danger = ahead && ahead.gap < w.dangerGap || perceived.hazards.some(
+      (h) => h.lane === r.lane && forwardGap(r.q, h.q, s.track) >= 0 && forwardGap(r.q, h.q, s.track) < w.hazardGap
+    );
+    if (s.tick < r.ai.nextDecision && !danger) return null;
+    r.ai.evaluation = (r.ai.evaluation ?? 0) + 1;
+    r.ai.nextDecision = s.tick + c.decisionTicks;
+    const fatigue = r.ru.beasts.reduce((n, b) => n + b.fatigue, 0) / r.ru.beasts.length / 100;
+    const judgment = draw(s, r, "judgment") < c.judgmentError * (1 - r.derived.awareness / 100);
+    const stress = (r.ru.driver.strain / 100 + (r.control === "Unstable" ? w.stressInstability : 0)) * (1 - r.derived.nerve / 100);
+    const stressFailure = draw(s, r, "stress") < c.stressError * stress;
+    const noise = (action) => {
+      s.rng.draws++;
+      return (random(s.seed, "ai", "utility", r.id, s.tick, r.ai.evaluation, action) - 0.5) * c.noise;
+    };
+    const available = (lane) => r.control !== "Out of Control" && s.tick >= (r.ai.laneCooldown ?? 0) && !perceived.neighbors.some(
+      (o) => o.id === r.ai.passTarget && o.lane === lane && o.gap > -w.passClearance && o.gap < w.passLookahead
+    ) && lane >= 0 && lane < s.config.lanes && !perceived.neighbors.some(
+      (o) => o.lane === lane && Math.floor(r.q + o.gap) === Math.floor(r.q)
+    ) && !perceived.hazards.some(
+      (h) => h.lane === lane && key(h.q, lane, s.track) === key(r.q, lane, s.track)
+    );
+    const sign = r.signs.active, responsiveness = p.tacticalDiscipline / 100;
+    const candidates = [];
+    function add(action, base, features = {}, legal = true, lane = null, target = null, assessment = null) {
+      if (!legal) return;
+      const influence = c.signStrength * responsiveness * signPreference(sign, action, c);
+      const persistence = r.ai.goal === action && s.tick < r.ai.goalUntil ? c.switchCost : 0;
+      const terms = {
+        base,
+        ...features,
+        ...r.coachingContext ? { coaching: coachingUtility(r.coachingContext, action, sign) } : {},
+        sign: influence,
+        persistence,
+        noise: noise(action)
+      };
+      candidates.push({
+        action,
+        lane,
+        target,
+        ...assessment ? { assessment } : {},
+        terms,
+        score: Object.values(terms).reduce((a, b) => a + b, 0)
+      });
+    }
+    const threat = judgment ? 0 : danger ? 1 : 0;
+    add("Conserve", w.conserveBase, {
+      fatigue: fatigue * (w.conserveFatigueBase + p.staminaManagement / 100 * w.conserveStamina),
+      caution: p.caution / 100 * w.conserveCaution
+    });
+    add("Maintain", w.maintainBase, {
+      patience: p.patience / 100 * w.maintainPatience
+    });
+    add("Push", w.pushBase, {
+      aggression: p.aggression / 100 * w.pushAggression,
+      fatigue: -fatigue * w.pushFatigue
+    });
+    add("Sprint", w.sprintBase, {
+      opportunity: p.opportunism / 100 * w.sprintOpportunity,
+      aggression: p.aggression / 100 * w.sprintAggression,
+      fatigue: -fatigue * w.sprintFatigue
+    });
+    const route = perceived.course;
+    const cornerRisk = route?.corner ? Math.max(0, r.derived.maxSpeed / Math.sqrt(r.derived.lateral * route.corner.radius) - 1) : 0;
+    if (route) for (const candidate of candidates) {
+      const effort = { Conserve: 0, Maintain: 0, Push: 0.5, Sprint: 1 }[candidate.action];
+      candidate.terms.courseCorner = -c.utility.courseCornerRisk * Math.min(2, cornerRisk) * effort * (1 + p.caution / 100);
+      candidate.terms.courseTerrain = -c.utility.courseTerrainRisk * effort * Math.max(route.current.surface.roughness, 1 - route.current.surface.grip) * (p.staminaManagement / 100);
+      candidate.score = Object.values(candidate.terms).reduce((a, b) => a + b, 0);
+    }
+    const laneScores = [];
+    add("hold", w.holdBase, {
+      patience: p.patience / 100 * w.holdPatience,
+      danger: -threat * w.holdDanger
+    });
+    for (const [action, lane] of [
+      ["inward", r.lane - 1],
+      ["outward", r.lane + 1]
+    ]) {
+      const blocked = perceived.neighbors.some(
+        (o) => o.lane === lane && o.gap > 0 && o.gap < w.laneTrafficGap
+      );
+      const before = candidates.length;
+      add(
+        action,
+        w.laneBase,
+        {
+          distance: route ? route.corner && (action === "outward" ? 1 : -1) === route.corner.direction ? w.insideBonus : 0 : action === "inward" ? w.insideBonus : 0,
+          ...route?.corner ? { courseLaneRisk: -w.courseLaneRisk * Math.min(
+            2,
+            Math.max(0, r.derived.maxSpeed / Math.sqrt(r.derived.lateral * (s.track.segments.find((x) => x.id === route.corner.segment).radius - route.corner.direction * lane * s.config.laneWidth)) - 1)
+          ) } : {},
+          opportunity: threat * (w.laneOpportunityBase + p.opportunism / 100 * w.laneOpportunism),
+          traffic: blocked ? -w.laneTrafficPenalty : 0
+        },
+        available(lane),
+        lane
+      );
+      if (candidates.length > before) laneScores.push(candidates.at(-1));
+    }
+    add(
+      "overtake",
+      w.overtakeBase,
+      {
+        opportunity: p.opportunism / 100 * w.overtakeOpportunity,
+        aggression: p.aggression / 100 * w.overtakeAggression
+      },
+      !!ahead && ahead.gap < w.overtakeGap && laneScores.length > 0,
+      laneScores[0]?.lane
+    );
+    add(
+      "avoid",
+      threat ? w.avoidBase : 0,
+      { caution: p.caution / 100 * w.avoidCaution },
+      !!threat && laneScores.length > 0,
+      laneScores.sort((a, b) => b.score - a.score)[0]?.lane
+    );
+    add(
+      "yield",
+      threat ? w.yieldBase : 0,
+      { caution: p.caution / 100 * w.yieldCaution },
+      !!threat
+    );
+    add(
+      "defend",
+      w.defendBase,
+      { aggression: p.aggression / 100 * w.defendAggression },
+      perceived.neighbors.some((o) => o.gap < 0 && o.gap > -w.defendGap)
+    );
+    if (s.consequences && s.format === "Combat") {
+      const combat = s.consequence;
+      const rivals = perceived.neighbors.filter(
+        (o) => o.status === "Racing" && o.physical === "Live" && Math.abs(o.lane - r.lane) <= 1 && Math.abs(o.gap) <= combat.attackRange
+      );
+      const grip = Math.max(0.1, s.environment.grip * location(r.q, r.lane, s.config, s.track).surface.grip);
+      const canAct = s.time + s.config.epsilon >= r.nextAttackTime && r.control !== "Out of Control";
+      const evaluated = (action) => rivals.filter((o) => action !== "ram" || Math.abs(o.lane - r.lane) === 1 && Math.abs(o.gap) <= combat.ramRange).map((o) => ({ target: o, value: combatValue(action, r, o, perceived, s.config, combat, w, grip, s.track.course && !s.track.closed ? r.q >= s.track.checkpoints.at(-1).q : null) })).sort((a, b) => Object.values(b.value.features).reduce((x, y) => x + y, 0) - Object.values(a.value.features).reduce((x, y) => x + y, 0) || byId(a.target, b.target))[0];
+      const target = rivals[0];
+      for (const action of ["attack", "ram"]) {
+        const best = canAct ? evaluated(action) : null;
+        add(action, combat[action + "Base"], {
+          aggression: p.aggression / 100 * combat[action + "Aggression"],
+          opportunity: p.opportunism / 100 * combat[action + "Opportunity"],
+          caution: -p.caution / 100 * combat[action + "Caution"],
+          ...best?.value.features ?? {}
+        }, !!best, null, best?.target.id, best?.value.estimate);
+      }
+      add(
+        "defendCombat",
+        combat.defendBase,
+        { caution: p.caution / 100 * combat.defendCaution },
+        !!target
+      );
+      add(
+        "disengage",
+        combat.disengageBase,
+        {
+          caution: p.caution / 100 * combat.disengageCaution,
+          fatigue: fatigue * combat.disengageFatigue
+        },
+        !!target,
+        laneScores[0]?.lane ?? null
+      );
+    }
+    const pace = candidates.filter(
+      (x) => ["Conserve", "Maintain", "Push", "Sprint"].includes(x.action)
+    ).sort((a, b) => b.score - a.score || a.action.localeCompare(b.action))[0];
+    const position = candidates.filter(
+      (x) => !["Conserve", "Maintain", "Push", "Sprint"].includes(x.action)
+    ).sort((a, b) => b.score - a.score || a.action.localeCompare(b.action))[0];
+    const executionFailure = draw(s, r, "execution") < c.executionError * (1 - r.ru.driver.driving / 100);
+    const failed = executionFailure || stressFailure;
+    const commands = [];
+    if (!failed) {
+      r.pace = ["yield", "disengage"].includes(position?.action) ? "Conserve" : pace.action;
+      r.defending = position?.action === "defendCombat";
+      if (["attack", "ram"].includes(position?.action))
+        commands.push({
+          type: "attack",
+          id: r.id,
+          target: position.target,
+          action: position.action
+        });
+      if (position?.lane !== null && position?.lane !== void 0)
+        commands.push({ type: "lane", id: r.id, lane: position.lane });
+    }
+    if (position) {
+      r.ai.goal = position.action;
+      r.ai.goalUntil = s.tick + c.goalTicks;
+    }
+    const preferred = candidates.some((x) => signPreference(sign, x.action, c) > 0);
+    const decisionId = beginDecision(s, r, {
+      tick: s.tick,
+      perceived,
+      candidates,
+      chosen: { pace: pace.action, position: position?.action },
+      judgmentError: judgment,
+      executionError: executionFailure,
+      stressError: stressFailure,
+      reason: failed ? "Driver error" : !preferred && sign ? "No applicable legal action" : r.pace !== pace.action ? `${position?.action} requires ${r.pace}; selected pace ${pace.action} was overridden` : null
+    }, failed, position);
+    return commands.map((command) => ({ ...command, decisionId }));
+  }
+
+  // src/dev/overrides.js
+  var structural = /* @__PURE__ */ new Set([
+    "schema",
+    "dt",
+    "epsilon",
+    "positionEpsilon",
+    "maxSubevents",
+    "laps",
+    "lanes",
+    "straightLength",
+    "innerRadius",
+    "laneWidth",
+    "straightTiles",
+    "turnTiles",
+    "gridGap",
+    "gridOffset",
+    "exitTiles"
+  ]);
+  function setNumeric(object, path, value) {
+    if (!Number.isFinite(value)) throw new Error("Value must be finite");
+    const keys = path.split(".");
+    if (keys.some(
+      (k) => !k || ["__proto__", "prototype", "constructor"].includes(k)
+    ))
+      throw new Error("Invalid parameter path");
+    let node = object;
+    for (const key3 of keys.slice(0, -1)) {
+      if (!node || !Object.hasOwn(node, key3))
+        throw new Error(`Unknown path ${path}`);
+      node = node[key3];
+    }
+    const key2 = keys.at(-1);
+    if (!node || !Object.hasOwn(node, key2) || typeof node[key2] !== "number")
+      throw new Error(`Not a numeric parameter: ${path}`);
+    const old = node[key2];
+    node[key2] = value;
+    return old;
+  }
+  function componentPaths(ru, path) {
+    if (!path.includes("*")) return [path];
+    if (!path.startsWith("beasts.*.") || path.slice(9).includes("."))
+      throw new Error("Only beasts.*.<attribute> wildcard is supported");
+    return ru.beasts.map((_, i) => path.replace("*", i));
+  }
+  function supportsPath(ru, path) {
+    try {
+      return componentPaths(ru, path).every((p) => {
+        let node = ru;
+        for (const k of p.split(".")) {
+          if (!node || !Object.hasOwn(node, k)) return false;
+          node = node[k];
+        }
+        return typeof node === "number";
+      });
+    } catch {
+      return false;
+    }
+  }
+  function editRU(ru, path, value) {
+    const next = structuredClone(ru), changes = [];
+    for (const p of componentPaths(next, path))
+      changes.push({ path: p, old: setNumeric(next, p, value), value });
+    validateRU(next);
+    for (const k of tendencies)
+      if (!Number.isFinite(next.driver.personality?.[k]) || next.driver.personality[k] < 0 || next.driver.personality[k] > 100)
+        throw new Error(`Invalid personality ${k}`);
+    return { ru: next, changes };
+  }
+  function prepareOverride(s, edit) {
+    if (!edit || !["config", "autonomous", "consequence", "ru", "environment"].includes(
+      edit.target
+    ) || typeof edit.path !== "string" || !Number.isFinite(edit.value))
+      throw new Error("Invalid override");
+    if (edit.target === "ru") {
+      const targets = s.entrants.filter(
+        (r) => (edit.id === "all" || r.id === edit.id) && (edit.id !== "all" || supportsPath(r.ru, edit.path))
+      );
+      if (!targets.length) throw new Error("No eligible RUs");
+      return {
+        target: "ru",
+        updates: targets.map((r) => ({
+          id: r.id,
+          ...editRU(r.ru, edit.path, edit.value)
+        }))
+      };
+    }
+    if (edit.target === "config" && structural.has(edit.path.split(".")[0]))
+      throw new Error("Structural edit requires a new race");
+    if (edit.target === "autonomous" && edit.path === "signUses")
+      throw new Error("Sign allowance requires a new race");
+    const field = edit.target === "config" ? "config" : edit.target;
+    const next = structuredClone(s[field]), old = setNumeric(next, edit.path, edit.value);
+    const validated = edit.target === "config" ? config(next) : edit.target === "autonomous" ? m2Config(next) : edit.target === "environment" ? environmentConfig(s.weather, next) : consequenceConfig(next);
+    return { target: field, value: validated, old };
+  }
+  function applyOverride(s, edit) {
+    const prepared = prepareOverride(s, edit);
+    s.configRevision++;
+    if (prepared.target === "ru")
+      for (const u of prepared.updates) {
+        const r = s.entrants.find((r2) => r2.id === u.id);
+        r.ru = u.ru;
+        emit(s, "OVERRIDE_APPLIED", [r.id], {
+          target: "ru",
+          changes: u.changes,
+          configRevision: s.configRevision,
+          version: s.version,
+          order: s.commands.length - 1
+        });
+      }
+    else {
+      s[prepared.target] = prepared.value;
+      emit(s, "OVERRIDE_APPLIED", [], {
+        target: edit.target,
+        path: edit.path,
+        old: prepared.old,
+        value: edit.value,
+        configRevision: s.configRevision,
+        version: s.version,
+        order: s.commands.length - 1
+      });
+    }
+    if (edit.target === "consequence" && edit.path === "incidentRate")
+      rescheduleIncidents(s);
+    if (edit.target === "consequence" && edit.path === "reactionBudget")
+      for (const r of s.entrants)
+        r.reactionsRemaining = s.consequence.reactionBudget;
+    for (const r of s.entrants) {
+      const surface = location(r.q, r.lane, s.config, s.track).surface;
+      r.derived = applyPayrollControl(derive(r.ru, {
+        ...s.config,
+        crowdMorale: s.environment.crowdMorale,
+        grip: s.config.grip * s.environment.grip * surface.grip,
+        speedReference: s.config.speedReference / (s.environment.rolling * surface.rollingResistance)
+      }), r.payrollContext);
+      r.ai.nextDecision = s.tick;
+    }
+  }
+
+  // src/career/legacy-state.js
+  function exact(value, fields, label = "object") {
+    if (!value || typeof value !== "object" || Array.isArray(value) || ![Object.prototype, null].includes(Object.getPrototypeOf(value)) || Object.keys(value).length !== fields.length || fields.some((k) => !Object.hasOwn(value, k))) throw Error("Invalid " + label + " fields");
+  }
+
+  // src/ai/coaching.js
+  var coachingAxes = Object.freeze(["aggression", "conservation", "positioning", "riskTolerance"]);
+  var coachingDefaults = Object.freeze({ aggression: 0.5, conservation: 0.5, positioning: 0.5, riskTolerance: 0.5 });
+  function validateCoaching(c) {
+    if (c === void 0 || c === null) return;
+    exact(c, ["version", "axes", "weights"]);
+    if (c.version !== 1) throw Error("Unsupported coaching version");
+    exact(c.axes, coachingAxes);
+    exact(c.weights, coachingAxes);
+    for (const k of coachingAxes) if (!Number.isFinite(c.axes[k]) || c.axes[k] < -1 || c.axes[k] > 1 || !Number.isFinite(c.weights[k]) || c.weights[k] < 0 || c.weights[k] > 2) throw Error("Coaching values outside bounded contract");
+  }
+  function coachingProfile(axes = {}) {
+    const c = { version: 1, axes: Object.fromEntries(coachingAxes.map((k) => [k, axes[k] ?? 0])), weights: { ...coachingDefaults } };
+    validateCoaching(c);
+    return c;
+  }
+  var preference = {
+    aggression: { attack: 1, ram: 1, defendCombat: -1, disengage: -1 },
+    conservation: { Conserve: 1, Push: -1, Sprint: -1 },
+    positioning: { inward: 1, outward: 1, overtake: 1, hold: -1, defend: -1 },
+    riskTolerance: { Sprint: 1, Push: 1, ram: 1, inward: 1, outward: 1, Conserve: -1, avoid: -1, yield: -1, defendCombat: -1 }
+  };
+  var conflicts = {
+    "Push the Pace": { conservation: 1, riskTolerance: -1 },
+    "Conserve Strength": { conservation: -1, riskTolerance: 1 },
+    "Seek Open Track": { positioning: -1 },
+    "Race Defensively": { aggression: 1, conservation: -1, riskTolerance: 1 },
+    "Engage Rivals": { aggression: -1, riskTolerance: -1 },
+    "Hold Position": { positioning: 1, riskTolerance: 1 }
+  };
+  function coachingUtility(c, action, sign) {
+    validateCoaching(c);
+    if (!c) return 0;
+    let sum = 0;
+    for (const k of coachingAxes) {
+      const axis = c.axes[k];
+      if (conflicts[sign]?.[k] === Math.sign(axis)) continue;
+      sum += axis * c.weights[k] * (preference[k][action] ?? 0);
+    }
+    return sum;
+  }
+
+  // src/sim/kinematics.js
+  function travel(v, a, dt) {
+    return v * dt + 0.5 * a * dt * dt;
+  }
+  function arrival(v, a, distance) {
+    if (distance <= 0) return 0;
+    if (Math.abs(a) < 1e-12) return v > 0 ? distance / v : Infinity;
+    const disc = v * v + 2 * a * distance;
+    if (disc < 0) return Infinity;
+    const denom = v + Math.sqrt(disc);
+    return denom > 0 ? 2 * distance / denom : Infinity;
+  }
+
+  // src/sim/race.js
+  var sorted = (s) => [...s.entrants].sort(byId);
+  var physical = (r) => r.physical !== "Exited" && r.status !== "DNS";
+  function createRace({
+    seed = 145,
+    overrides = {},
+    entrants,
+    format = "Pure",
+    driverMode = "autonomous",
+    weather = "Clear",
+    autonomous = {},
+    playerId = null,
+    surfaces = {},
+    consequences = true,
+    consequence = {},
+    scheduledIncidents = [],
+    checkpointInterval = 100,
+    environmentOverrides = {},
+    course = null,
+    championshipContext
+  } = {}) {
+    if (!Object.hasOwn(weatherPresets, weather))
+      throw new Error("Invalid weather");
+    if (!["reference", "autonomous"].includes(driverMode))
+      throw new Error("Invalid driver mode");
+    if (typeof consequences !== "boolean")
+      throw new Error("Invalid consequences flag");
+    if (!Number.isInteger(checkpointInterval) || checkpointInterval < 1 || checkpointInterval > 1e4)
+      throw new Error("Invalid checkpoint interval");
+    const consequenceTuning = consequenceConfig(consequence);
+    const tuning = m2Config(autonomous);
+    const environment = environmentConfig(weather, environmentOverrides);
+    course = resolveCatalog(course);
+    const oval = typeof course === "string" && Object.hasOwn(ovalPresets, course) ? ovalPresets[course] : null;
+    const c = config({ ...oval?.overrides, ...overrides }), t = track(c, course);
+    if (!Number.isSafeInteger(seed))
+      throw new Error("Seed must be a safe integer");
+    if (!["Pure", "Combat"].includes(format))
+      throw new Error("Invalid race format");
+    const input2 = entrants ?? Array.from({ length: 8 }, (_, i) => ({
+      ru: defaultRU(`RU${i + 1}`, 46 + i * 2),
+      lane: i % c.lanes,
+      q: -c.gridOffset - Math.floor(i / c.lanes) * c.gridGap
+    }));
+    if (!input2.length || input2.length > 64)
+      throw new Error("Expected 1..64 entrants");
+    for (const [id2, patch] of Object.entries(surfaces)) {
+      const segment2 = t.segments.find((x) => x.id === id2);
+      if (!segment2 || !patch || typeof patch !== "object")
+        throw new Error("Invalid surface");
+      for (const [k, v] of Object.entries(patch))
+        if (!Object.hasOwn(surfaceDefaults, k) || !Number.isFinite(v) || v < surfaceRules[k][0] || v > surfaceRules[k][1])
+          throw new Error("Invalid surface modifier");
+      Object.assign(segment2.surface, patch);
+    }
+    if (championshipContext !== void 0 && (!championshipContext || championshipContext.version !== 1 || (!["instanceId,raceId,version", "clockVersion,instanceId,raceId,version"].includes(Object.keys(championshipContext).sort().join(",")) || championshipContext.clockVersion !== void 0 && championshipContext.clockVersion !== INCIDENT_CLOCK_VERSION) || !["instanceId", "raceId"].every((k) => typeof championshipContext[k] === "string" && /^[a-zA-Z0-9_-]{1,128}$/.test(championshipContext[k])))) throw Error("Invalid championship race context");
+    if (championshipContext) championshipContext = { ...championshipContext, clockVersion: INCIDENT_CLOCK_VERSION };
+    const seen = /* @__PURE__ */ new Set();
+    const units = input2.map((e, i) => {
+      var _a;
+      const ru = structuredClone(e.ru);
+      (_a = ru.driver).personality ?? (_a.personality = personality(
+        Number(ru.id.replace(/\D/g, "")) || 0
+      ));
+      for (const k of tendencies)
+        if (!Number.isFinite(ru.driver.personality[k]) || ru.driver.personality[k] < 0 || ru.driver.personality[k] > 100)
+          throw new Error(`Invalid personality ${k}`);
+      validateCoaching(e.coachingContext);
+      if (e.coachingContext && ru.id !== (playerId ?? input2[0].ru.id)) throw Error("Coaching is player-only");
+      validatePayrollContext(e.payrollContext);
+      const derived = applyPayrollControl(derive(ru, {
+        ...c,
+        crowdMorale: environment.crowdMorale,
+        grip: c.grip * environment.grip,
+        speedReference: c.speedReference / environment.rolling
+      }), e.payrollContext);
+      if (seen.has(ru.id)) throw new Error(`Duplicate ID ${ru.id}`);
+      seen.add(ru.id);
+      const lane = e.lane ?? i % c.lanes, q = e.q ?? -c.gridOffset - Math.floor(i / c.lanes) * c.gridGap, speed = e.speed ?? 0;
+      if (!Number.isInteger(lane) || lane < 0 || lane >= c.lanes || !Number.isFinite(q) || q >= 0 || q < -t.cells + 1 || !Number.isFinite(speed) || speed < 0 || speed > 200)
+        throw new Error(
+          `Invalid initial position/speed ${ru.id}; grid must be behind common line`
+        );
+      if (location(q, lane, c, t).type !== "straight")
+        throw new Error("Starting grid must fit on approach straight");
+      return {
+        id: ru.id,
+        ru,
+        derived,
+        ...e.coachingContext ? { coachingContext: freezeCoaching(e.coachingContext) } : {},
+        ...championshipContext ? { progressEvidence: { version: 1, progress: q, firstTime: 0, firstTick: 0 } } : {},
+        ...e.payrollContext === void 0 ? {} : { payrollContext: structuredClone(e.payrollContext) },
+        lane,
+        q,
+        speed,
+        status: "Racing",
+        physical: "Live",
+        control: "Normal",
+        hasEnteredCourse: false,
+        completedLaps: 0,
+        lastCrossingTime: null,
+        lastCrossingQ: null,
+        ...t.course && !t.closed ? { checkpointCursor: 0 } : {},
+        finishTime: null,
+        finishSnapshot: null,
+        retirement: null,
+        pace: "Maintain",
+        cornerVisits: 0,
+        blocked: false,
+        instability: 0,
+        nextAttackTime: 0,
+        reactionsRemaining: consequenceTuning.reactionBudget,
+        defending: false,
+        signs: { remaining: tuning.signUses, pending: null, active: null },
+        ai: {
+          nextDecision: 0,
+          goal: "hold",
+          goalUntil: 0,
+          perceived: null,
+          diagnostics: null
+        }
+      };
+    });
+    const s = {
+      version: VERSION,
+      ...championshipContext ? { championshipContext: structuredClone(championshipContext) } : {},
+      seed,
+      rng: { algorithm: "keyed-fnv-avalanche-v1", draws: 0 },
+      config: c,
+      track: t,
+      format,
+      consequences,
+      consequence: consequenceTuning,
+      driverMode,
+      weather,
+      environment,
+      autonomous: tuning,
+      playerId: playerId ?? units[0].id,
+      hazards: [],
+      wrecks: {},
+      contactHistory: {},
+      pendingImpacts: [],
+      impactsThisTick: 0,
+      nextImpact: 1,
+      nextAttack: 1,
+      incidentSchedule: validateIncidents(scheduledIncidents, c, t),
+      status: "Ready",
+      tick: 0,
+      time: 0,
+      entrants: units,
+      events: [],
+      commands: [],
+      contacts: [],
+      lastProgressTime: 0,
+      diagnostics: { subevents: 0, maxGroups: 0 },
+      setup: null,
+      configRevision: 0,
+      pendingOverrides: [],
+      resolving: false,
+      checkpointInterval,
+      checkpoints: [],
+      previousProgress: Object.fromEntries(
+        units.map((r) => [r.id, { q: r.q, status: r.status }])
+      ),
+      leader: null
+    };
+    if (!units.some((r) => r.id === s.playerId))
+      throw new Error("Invalid player RU");
+    s.setup = {
+      ...t.course ? { course: normalizeCourse(course) } : t.ovalId ? { course: t.ovalId } : {},
+      seed,
+      overrides: { ...c },
+      entrants: units.map((r) => ({
+        ru: structuredClone(r.ru),
+        ...r.coachingContext ? { coachingContext: freezeCoaching(r.coachingContext) } : {},
+        ...r.payrollContext === void 0 ? {} : { payrollContext: structuredClone(r.payrollContext) },
+        lane: r.lane,
+        q: r.q,
+        speed: r.speed
+      })),
+      format,
+      driverMode,
+      weather,
+      autonomous: tuning,
+      playerId: s.playerId,
+      surfaces: structuredClone(surfaces),
+      consequences,
+      consequence: consequenceTuning,
+      scheduledIncidents: structuredClone(scheduledIncidents),
+      checkpointInterval,
+      ...championshipContext ? { championshipContext: structuredClone(championshipContext) } : {},
+      environmentOverrides: structuredClone(environmentOverrides)
+    };
+    if (driverMode === "autonomous")
+      for (const r of units) r.derived = deriveAt(s, r);
+    initializeIncidents(s);
+    s.initialRng = structuredClone(s.rng);
+    assertState(s);
+    s.checkpoints.push({ tick: 0, checksum: digest(s) });
+    return s;
+  }
+  function assertState(s) {
+    const occupied = /* @__PURE__ */ new Set();
+    for (const r of sorted(s)) {
+      if (![r.q, r.speed, s.time].every(Number.isFinite) || r.speed < -s.config.epsilon || !Number.isInteger(r.lane) || r.lane < 0 || r.lane >= s.config.lanes)
+        throw new Error(`Invalid numeric state ${r.id}`);
+      if (physical(r)) {
+        const k = key(r.q, r.lane, s.track);
+        if (occupied.has(k)) throw new Error(`Overlapping occupancy at ${k}`);
+        occupied.add(k);
+      }
+      if (Object.hasOwn(s.wrecks, r.id) && (r.physical !== "Wreck" || r.q !== s.wrecks[r.id].q || r.lane !== s.wrecks[r.id].lane))
+        throw new Error(`Wreck moved or removed ${r.id}`);
+      if (s.consequences && (!Number.isFinite(r.instability) || r.ru.beasts.some(
+        (b) => !Number.isFinite(b.condition) || b.condition < 0 || b.condition > 100
+      )))
+        throw new Error(`Invalid damage state ${r.id}`);
+      if (s.consequences && r.physical === "Wreck" && !Object.hasOwn(s.wrecks, r.id))
+        throw new Error(`Unregistered wreck ${r.id}`);
+      if (r.physical === "Wreck" && r.speed !== 0)
+        throw new Error(`Moving wreck ${r.id}`);
+    }
+  }
+  function snapshot(s) {
+    return {
+      version: s.version,
+      seed: s.seed,
+      config: s.config,
+      configRevision: s.configRevision,
+      pendingOverrides: s.pendingOverrides,
+      checkpointInterval: s.checkpointInterval,
+      previousProgress: s.previousProgress,
+      leader: s.leader,
+      format: s.format,
+      driverMode: s.driverMode,
+      weather: s.weather,
+      environment: s.environment,
+      autonomous: s.autonomous,
+      playerId: s.playerId,
+      hazards: s.hazards,
+      consequences: s.consequences,
+      consequence: s.consequence,
+      wrecks: s.wrecks,
+      contactHistory: s.contactHistory,
+      pendingImpacts: s.pendingImpacts,
+      impactsThisTick: s.impactsThisTick,
+      nextImpact: s.nextImpact,
+      nextAttack: s.nextAttack,
+      incidentSchedule: s.incidentSchedule,
+      incidentCursor: s.incidentCursor,
+      nextIncidentAt: s.nextIncidentAt,
+      nextIncident: s.nextIncident,
+      track: s.track,
+      contacts: [...s.contacts].sort(),
+      lastProgressTime: s.lastProgressTime,
+      diagnostics: s.diagnostics,
+      time: s.time,
+      tick: s.tick,
+      status: s.status,
+      rng: s.rng,
+      entrants: sorted(s),
+      commands: s.commands,
+      events: s.events
+    };
+  }
+  function digest(s) {
+    return checksum(snapshot(s));
+  }
+  function classification(s) {
+    const finished = sorted(s).filter((r) => r.finishTime !== null).sort((a, b) => a.finishTime - b.finishTime || byId(a, b));
+    let groupTime = -Infinity, place = 0;
+    const rows = finished.map((r, i) => {
+      if (r.finishTime - groupTime > s.config.finishTolerance) {
+        place = i + 1;
+        groupTime = r.finishTime;
+      }
+      return {
+        id: r.id,
+        place,
+        status: "Finished",
+        time: r.finishTime,
+        completedLaps: r.completedLaps,
+        progress: r.retirement?.progress ?? finishQ(s)
+      };
+    });
+    const rest = sorted(s).filter((r) => r.finishTime === null).sort(
+      (a, b) => (a.status === "DNS") - (b.status === "DNS") || (b.retirement?.progress ?? b.q) - (a.retirement?.progress ?? a.q) || byId(a, b)
+    );
+    return [
+      ...rows,
+      ...rest.map((r) => ({
+        id: r.id,
+        place: null,
+        status: r.status,
+        time: r.retirement?.time ?? null,
+        completedLaps: r.completedLaps,
+        progress: r.retirement?.progress ?? r.q,
+        reason: r.retirement?.reason ?? null
+      }))
+    ];
+  }
+  function deriveAt(s, r) {
+    const surface = location(r.q, r.lane, s.config, s.track).surface;
+    return applyPayrollControl(derive(r.ru, {
+      ...s.config,
+      crowdMorale: s.environment.crowdMorale,
+      grip: s.config.grip * s.environment.grip * surface.grip,
+      speedReference: s.config.speedReference / (s.environment.rolling * surface.rollingResistance)
+    }), r.payrollContext);
+  }
+  function randomDraw(s, ...keys) {
+    s.rng.draws++;
+    return random(s.seed, ...keys);
+  }
+  function contact(s, ids, cause, options2 = {}) {
+    const [a, b] = ids.map((id2) => s.entrants.find((r) => r.id === id2));
+    queueImpact(s, a, b, cause, options2);
+  }
+  function flush(s) {
+    flushImpacts(s, (r) => {
+      r.derived = deriveAt(s, r);
+    });
+  }
+  function attacks(s, intents) {
+    resolveAttacks(
+      s,
+      intents.filter((c) => c.type === "attack"),
+      (r) => {
+        r.derived = deriveAt(s, r);
+      }
+    );
+  }
+  function checkpoints(s, r) {
+    if (!s.track.course || s.track.closed || r.status !== "Racing") return;
+    while (s.track.checkpoints[r.checkpointCursor]?.q <= r.q) {
+      const cp = s.track.checkpoints[r.checkpointCursor++];
+      emit(s, "CHECKPOINT_CROSSED", [r.id], { checkpoint: cp.id, distance: cp.distance, q: cp.q });
+      activateSign(s, r);
+    }
+  }
+  function lockFinish(s, r) {
+    r.finishTime = s.time;
+    const finishSnapshot = Object.freeze({
+      time: s.time,
+      beasts: Object.freeze(r.ru.beasts.map((b, index) => Object.freeze({ index, fatigue: b.fatigue })))
+    });
+    Object.defineProperty(r, "finishSnapshot", { value: finishSnapshot, enumerable: true, writable: false, configurable: false });
+    r.status = "Finished";
+    r.physical = "Clearing";
+    emit(s, "RU_FINISHED", [r.id], { time: r.finishTime, finishSnapshot: r.finishSnapshot });
+  }
+  function crossing(s, r) {
+    if (s.track.course && !s.track.closed) {
+      if (r.status !== "Racing") return;
+      if (r.q === 0 && !r.hasEnteredCourse) {
+        r.hasEnteredCourse = true;
+        r.lastCrossingQ = 0;
+        r.lastCrossingTime = s.time;
+        emit(s, "COURSE_ENTERED", [r.id], { track: s.track.name });
+      }
+      checkpoints(s, r);
+      if (r.q === s.track.cells && r.hasEnteredCourse) lockFinish(s, r);
+      return;
+    }
+    if (r.status !== "Racing" || r.q % s.track.cells !== 0 || r.lastCrossingQ === r.q)
+      return;
+    activateSign(s, r);
+    r.lastCrossingQ = r.q;
+    r.lastCrossingTime = s.time;
+    if (!r.hasEnteredCourse) {
+      r.hasEnteredCourse = true;
+      emit(s, "LAP_ENTERED", [r.id], { completedLaps: 0 });
+      if (s.config.laps === 1) emit(s, "FINAL_LAP", [r.id], { targetLaps: 1 });
+    } else {
+      r.completedLaps++;
+      emit(s, "LAP_COMPLETED", [r.id], { completedLaps: r.completedLaps });
+      if (r.completedLaps === s.config.laps - 1)
+        emit(s, "FINAL_LAP", [r.id], { targetLaps: s.config.laps });
+      if (r.completedLaps === s.config.laps) {
+        lockFinish(s, r);
+      }
+    }
+  }
+  function corner(s, r) {
+    if (r.status !== "Racing") return;
+    const loc = location(r.q, r.lane, s.config, s.track);
+    if (loc.type !== "turn") return;
+    const safe2 = Math.sqrt(r.derived.lateral * loc.radius), excess = Math.max(0, r.speed / safe2 - 1);
+    const probability = Math.min(1, s.config.cornerRisk * excess * excess);
+    const roll = randomDraw(s, "corner", r.id, r.cornerVisits++);
+    emit(s, "CORNER_EVALUATED", [r.id], {
+      safe: safe2,
+      speed: r.speed,
+      probability,
+      roll
+    });
+    if (roll < probability) {
+      if (s.consequences) {
+        r.instability += s.consequence.cornerShock * excess;
+        updateControl(s, r, "Corner overspeed");
+      } else r.control = "Unstable";
+      r.speed *= 1 - s.config.cornerSpeedLoss;
+      emit(s, "CONTROL_CHANGED", [r.id], {
+        control: r.control,
+        speed: r.speed,
+        cause: "corner overspeed"
+      });
+    } else if (!s.consequences) r.control = "Normal";
+  }
+  function laneChanges(s, commands) {
+    const intents = [];
+    const speeds = new Map(sorted(s).map((r) => [r.id, r.speed]));
+    for (const cmd of commands) {
+      const r = s.entrants.find((r2) => r2.id === cmd.id);
+      if (!r || r.status !== "Racing" || r.control === "Out of Control" || !Number.isInteger(cmd.lane) || Math.abs(cmd.lane - r.lane) !== 1 || cmd.lane < 0 || cmd.lane >= s.config.lanes) {
+        resolveAction(s, r, cmd.decisionId, "position", false, "Illegal adjacent lane change");
+        emit(s, "COMMAND_REJECTED", cmd.id ? [cmd.id] : [], {
+          reason: "Illegal adjacent lane change"
+        });
+        continue;
+      }
+      intents.push({
+        r,
+        decisionId: cmd.decisionId,
+        lane: cmd.lane,
+        target: key(r.q, cmd.lane, s.track),
+        rank: randomDraw(s, "lateral", s.tick, r.id),
+        hazard: s.consequences && hazardAt(s, r.q, cmd.lane)
+      });
+      emit(s, "LANE_CHANGE_REQUESTED", [r.id], { lane: cmd.lane });
+    }
+    const occupied = new Map(
+      sorted(s).filter(physical).map((r) => [key(r.q, r.lane, s.track), r])
+    );
+    const accepted = /* @__PURE__ */ new Set(), reserved = /* @__PURE__ */ new Set();
+    for (const intent of [...intents].sort(
+      (a, b) => a.rank - b.rank || byId(a.r, b.r)
+    )) {
+      if (!intent.hazard && !occupied.has(intent.target) && !reserved.has(intent.target)) {
+        accepted.add(intent.r.id);
+        reserved.add(intent.target);
+      }
+    }
+    const won = /* @__PURE__ */ new Set();
+    for (const intent of intents.sort(
+      (a, b) => a.rank - b.rank || byId(a.r, b.r)
+    )) {
+      const blocker = occupied.get(intent.target);
+      if (intent.hazard || blocker || won.has(intent.target)) {
+        if (intent.hazard)
+          queueHazardImpact(s, intent.r, intent.hazard, speeds.get(intent.r.id), true);
+        if (blocker && accepted.has(blocker.id))
+          emit(s, "MOVEMENT_CONFLICT", [intent.r.id, blocker.id], {
+            cause: "Conservative lateral reservation; blocker vacating"
+          });
+        if (blocker && !accepted.has(blocker.id))
+          contact(s, [intent.r.id, blocker.id], "lateral sweep blocked", {
+            side: true,
+            speeds
+          });
+        emit(s, "LANE_CHANGE_REJECTED", [intent.r.id], {
+          lane: intent.lane,
+          reason: intent.hazard ? "Swept tile contains an incident" : "Swept tile occupied or contested"
+        });
+        resolveAction(s, intent.r, intent.decisionId, "position", false, "Physical execution blocked", { lane: intent.r.lane });
+      } else {
+        won.add(intent.target);
+        const old = intent.r.lane;
+        if (s.driverMode === "autonomous") {
+          intent.r.ai.laneCooldown = s.tick + s.autonomous.goalTicks;
+          const target = intent.r.ai.perceived?.neighbors.filter((o) => o.lane === old && o.gap > 0 && o.gap < 4).sort((a, b) => a.gap - b.gap)[0];
+          if (target) intent.r.ai.passTarget = target.id;
+        }
+        intent.r.lane = intent.lane;
+        emit(s, "LANE_CHANGE_COMPLETED", [intent.r.id], {
+          from: old,
+          to: intent.lane
+        });
+        corner(s, intent.r);
+        resolveAction(s, intent.r, intent.decisionId, "position", true, null, { lane: intent.r.lane });
+      }
+    }
+    flush(s);
+  }
+  function applyCommands(s, commands) {
+    const ids = /* @__PURE__ */ new Set();
+    for (const command of commands) {
+      if (!command || !["lane", "pace", "sign", "attack", "override"].includes(command.type) || !["sign", "override"].includes(command.type) && ids.has(`${command.type}:${command.id}`))
+        throw new Error("Invalid/duplicate boundary command");
+      ids.add(`${command.type}:${command.id}`);
+      const fields = command.type === "override" ? ["type", "id", "target", "path", "value"] : command.type === "attack" ? ["type", "id", "target", "action"] : command.type === "sign" ? ["type", "id", "action", "sign"] : command.type === "lane" ? ["type", "id", "lane"] : ["type", "id", "pace"];
+      if (typeof command.id !== "string" || Object.keys(command).some((k) => !fields.includes(k)))
+        throw new Error("Invalid command fields");
+      if (command.type === "attack" && (typeof command.target !== "string" || !["attack", "ram"].includes(command.action)))
+        throw new Error("Invalid combat intent");
+      if (command.type === "pace" && !["Conserve", "Maintain", "Push", "Sprint", "Brake"].includes(
+        command.pace
+      ))
+        throw new Error("Invalid pace");
+    }
+    const ordered = [
+      ...commands.filter((c) => c.type === "sign"),
+      ...commands.filter((c) => c.type === "override"),
+      ...commands.filter((c) => !["sign", "override"].includes(c.type)).sort((a, b) => byId(a, b) || a.type.localeCompare(b.type))
+    ].map((c) => ({ ...c }));
+    for (const cmd of ordered) {
+      s.commands.push({ tick: s.tick, order: s.commands.length, ...cmd });
+      if (cmd.type === "override") {
+        try {
+          applyOverride(s, cmd);
+        } catch (error) {
+          emit(s, "OVERRIDE_REJECTED", [cmd.id], { message: error.message });
+        }
+      }
+      if (cmd.type === "sign") {
+        if (cmd.id !== s.playerId)
+          emit(s, "SIGN_REJECTED", [cmd.id], {
+            reason: "Only player RU may receive signs"
+          });
+        else signCommand(s, cmd);
+      }
+      if (cmd.type === "pace") {
+        const r = s.entrants.find(
+          (r2) => r2.id === cmd.id && r2.status === "Racing"
+        );
+        if (r) {
+          r.pace = cmd.pace;
+          emit(s, "PACE_CHANGED", [r.id], { pace: r.pace });
+        } else emit(s, "COMMAND_REJECTED", [cmd.id], { reason: "Not racing" });
+      }
+    }
+    attacks(s, ordered);
+    laneChanges(
+      s,
+      ordered.filter((c) => c.type === "lane")
+    );
+  }
+  function motion(s, r) {
+    if (r.blocked || r.physical === "Wreck" || !physical(r))
+      return {
+        a: 0,
+        limitTime: Infinity,
+        boundaryTime: Infinity,
+        envelopeTime: Infinity
+      };
+    const c = s.config, w = c.tuning, loc = location(r.q, r.lane, c, s.track), d = r.derived;
+    let target = r.physical === "Clearing" ? c.clearSpeed : d.maxSpeed * {
+      Conserve: w.paceConserve,
+      Maintain: w.paceMaintain,
+      Push: w.pacePush,
+      Sprint: w.paceSprint,
+      Brake: 0
+    }[r.pace];
+    const constraints = [];
+    if (r.status === "Racing" && r.pace !== "Sprint") {
+      const next = location(Math.floor(r.q) + 1, r.lane, c, s.track);
+      if (loc.type === "turn")
+        target = Math.min(
+          target,
+          Math.sqrt(d.lateral * loc.radius) * w.safeCornerFraction
+        );
+      else if (next.type === "turn")
+        constraints.push({
+          speed: Math.sqrt(d.lateral * next.radius) * w.safeCornerFraction,
+          distance: nextDistance(r, c, s.track)
+        });
+    }
+    if (s.consequences && r.control === "Out of Control") target = 0;
+    if (r.physical === "Clearing") {
+      for (const other of sorted(s).filter(
+        (o) => o.id !== r.id && physical(o) && o.lane === r.lane
+      )) {
+        const gap2 = forwardGap(r.q, Math.floor(other.q), s.track);
+        if (gap2 < 0) continue;
+        if (gap2 <= s.config.exitTiles + 1) {
+          let position = r.q, distance = 0, remaining = gap2;
+          while (remaining > s.config.positionEpsilon) {
+            const portion = Math.min(
+              remaining,
+              Math.floor(position) + 1 - position
+            );
+            distance += portion * location(position, r.lane, c, s.track).length;
+            position += portion;
+            remaining -= portion;
+            if (portion === 0) break;
+          }
+          constraints.push({ speed: 0, distance });
+        }
+      }
+    }
+    for (const constraint of constraints) {
+      const envelope = Math.sqrt(
+        constraint.speed ** 2 + 2 * d.braking * constraint.distance
+      );
+      if (r.speed >= envelope - c.epsilon || constraint.distance <= c.positionEpsilon * loc.length * 2)
+        target = Math.min(target, constraint.speed);
+    }
+    const delta = target - r.speed;
+    const a = Math.abs(delta) < c.epsilon ? 0 : delta > 0 ? d.acceleration : -d.braking;
+    let envelopeTime = Infinity;
+    if (a + d.braking > c.epsilon)
+      for (const constraint of constraints) {
+        const distance = (constraint.speed ** 2 + 2 * d.braking * constraint.distance - r.speed ** 2) / (2 * (a + d.braking));
+        if (distance > 0 && r.speed < Math.sqrt(
+          constraint.speed ** 2 + 2 * d.braking * constraint.distance
+        ) - c.epsilon)
+          envelopeTime = Math.min(envelopeTime, arrival(r.speed, a, distance));
+      }
+    return {
+      a,
+      target,
+      envelopeTime,
+      limitTime: a ? delta / a : Infinity,
+      boundaryTime: arrival(r.speed, a, nextDistance(r, c, s.track))
+    };
+  }
+  function resolveForward(s, movers) {
+    const speeds = new Map(sorted(s).map((r) => [r.id, r.speed]));
+    const occupied = new Map(
+      sorted(s).filter(physical).map((r) => [key(r.q, r.lane, s.track), r])
+    );
+    const intents = new Map(
+      movers.map((r) => [r.id, { r, next: Math.floor(r.q) + 1 }])
+    );
+    const decisions = /* @__PURE__ */ new Map(), visiting = /* @__PURE__ */ new Set();
+    function allowed(id2) {
+      if (decisions.has(id2)) return decisions.get(id2);
+      if (visiting.has(id2)) return false;
+      visiting.add(id2);
+      const { r, next } = intents.get(id2), blocker = occupied.get(key(next, r.lane, s.track));
+      const hazard = s.consequences && hazardAt(s, next, r.lane);
+      const ok = !hazard && (!blocker || blocker.id !== id2 && intents.has(blocker.id) && allowed(blocker.id));
+      visiting.delete(id2);
+      decisions.set(id2, ok);
+      return ok;
+    }
+    for (const r of movers) allowed(r.id);
+    for (const r of movers) {
+      const { next } = intents.get(r.id);
+      if (decisions.get(r.id)) {
+        const previousLocation = s.track.course ? location(r.q, r.lane, s.config, s.track) : null;
+        r.q = next;
+        observeProgress(s, r);
+        if (s.track.course && r.status === "Racing") {
+          const loc = location(r.q, r.lane, s.config, s.track);
+          if (previousLocation.segment !== loc.segment) emit(s, "SEGMENT_ENTERED", [r.id], {
+            segment: loc.segment,
+            terrain: loc.terrain,
+            type: loc.type,
+            direction: loc.direction,
+            radius: Number.isFinite(loc.radius) ? loc.radius : null
+          });
+        }
+        s.lastProgressTime = s.time;
+        if (s.driverMode === "autonomous") r.derived = deriveAt(s, r);
+        crossing(s, r);
+        if (r.physical === "Clearing" && r.q >= finishQ(s) + s.config.exitTiles) {
+          r.physical = "Exited";
+          r.speed = 0;
+          emit(s, "RU_EXITED", [r.id]);
+        } else corner(s, r);
+      } else {
+        const blocker = occupied.get(key(next, r.lane, s.track));
+        if (blocker)
+          contact(s, [r.id, blocker.id], "forward occupancy", { speeds });
+        const hazard = s.consequences && hazardAt(s, next, r.lane);
+        if (hazard) queueHazardImpact(s, r, hazard, speeds.get(r.id));
+        r.q = next - s.config.positionEpsilon;
+        observeProgress(s, r);
+        r.speed = 0;
+        r.blocked = true;
+        resolveAction(s, r, r.ai.diagnostics?.decisionId, "movement", false, "Forward path blocked");
+        emit(s, "MOVEMENT_BLOCKED", [r.id], { tile: key(next, r.lane, s.track) });
+      }
+    }
+    flush(s);
+  }
+  function endIfDone(s) {
+    if (s.entrants.every((r) => r.status !== "Racing") && s.entrants.every((r) => r.physical !== "Clearing")) {
+      s.status = "Ended";
+      emit(s, "RACE_ENDED", [], { classification: classification(s) });
+    } else if (s.time >= s.config.maxRaceTime || s.time - s.lastProgressTime > s.config.stallTime) {
+      if (s.consequences) {
+        for (const r of sorted(s))
+          if (r.status === "Racing")
+            retire(s, r, "Race safeguard: stalled or time limit");
+      }
+      s.status = "Stalled";
+      emit(s, "RACE_STALLED", [], {
+        reason: s.time >= s.config.maxRaceTime ? "Time limit" : "No tile progress",
+        classification: classification(s)
+      });
+    }
+  }
+  function step(s, commands = []) {
+    if (["Ended", "Stalled", "Error"].includes(s.status)) return s;
+    try {
+      s.resolving = true;
+      assertState(s);
+      for (const command of commands.filter((c) => c?.phase === "paused")) {
+        if (command.type !== "sign" || command.id !== s.playerId || Object.keys(command).some((k) => !["type", "id", "action", "sign", "phase"].includes(k)))
+          throw new Error("Invalid paused sign command");
+        issueSign(s, command.action, command.sign);
+      }
+      commands = commands.filter((c) => c?.phase !== "paused");
+      s.impactsThisTick = 0;
+      for (const r of sorted(s)) {
+        r.reactionsRemaining = s.consequence.reactionBudget;
+        r.defending = r.ai.goal === "defendCombat";
+      }
+      if (s.consequences)
+        for (const r of sorted(s)) updateControl(s, r, "Boundary condition");
+      applyCommands(s, [...s.pendingOverrides.splice(0), ...commands]);
+      if (s.status === "Ready") {
+        s.status = "Running";
+        emit(s, "RACE_STARTED", [], {
+          referenceDrivers: s.driverMode === "reference",
+          ...s.championshipContext ? { starters: sorted(s).filter((r) => r.status === "Racing").map((r) => r.id) } : {}
+        });
+        for (const r of sorted(s)) activateSign(s, r);
+      }
+      if (s.consequences) {
+        for (const r of sorted(s)) updateControl(s, r, "Initial condition");
+        updateIncidents(s);
+      }
+      for (const r of sorted(s)) r.blocked = false;
+      if (s.driverMode === "autonomous") {
+        const intents = [];
+        for (const r of sorted(s))
+          if (r.status === "Racing") {
+            r.derived = deriveAt(s, r);
+            const result = decide(s, r);
+            if (result) intents.push(...result);
+          }
+        attacks(s, intents);
+        laneChanges(
+          s,
+          intents.filter((c) => c.type === "lane")
+        );
+      }
+      const end = (s.tick + 1) * s.config.dt;
+      let groups = 0;
+      while (s.time < end - s.config.epsilon) {
+        if (++groups > s.config.maxSubevents)
+          throw new Error("Subevent budget exceeded");
+        const units = sorted(s).filter(physical), motions = new Map(
+          units.map((r) => [
+            r.id,
+            {
+              ...motion(s, r),
+              controlTime: controlTime(s, r),
+              nextQ: Math.floor(r.q) + 1
+            }
+          ])
+        );
+        if (s.track.course && !s.track.closed) for (const r of units) {
+          const m = motions.get(r.id), cp = s.track.checkpoints[r.checkpointCursor];
+          m.markerQ = r.status === "Racing" && cp && cp.q > r.q && cp.q <= m.nextQ ? cp.q : null;
+          m.markerTime = m.markerQ !== null ? arrival(
+            r.speed,
+            m.a,
+            (m.markerQ - r.q) * location(r.q, r.lane, s.config, s.track).length
+          ) : Infinity;
+        }
+        const elapsed = Math.min(
+          end - s.time,
+          incidentTime(s),
+          ...[...motions.values()].flatMap((m) => [
+            m.limitTime,
+            m.boundaryTime,
+            m.controlTime,
+            m.envelopeTime,
+            m.markerTime ?? Infinity
+          ])
+        );
+        if (!Number.isFinite(elapsed) || elapsed < 0)
+          throw new Error("Invalid elapsed time");
+        for (const r of units) {
+          const m = motions.get(r.id);
+          if (s.driverMode === "autonomous") integrateCondition(s, r, elapsed);
+          const distance = travel(r.speed, m.a, elapsed);
+          r.q += distance / location(r.q, r.lane, s.config, s.track).length;
+          if (m.boundaryTime <= elapsed + s.config.epsilon)
+            r.q = m.nextQ - s.config.positionEpsilon;
+          r.speed = Math.max(0, r.speed + m.a * elapsed);
+          if (Math.abs(m.limitTime - elapsed) <= s.config.epsilon)
+            r.speed = m.target;
+        }
+        s.time += elapsed;
+        for (const r of units) observeProgress(s, r);
+        if (s.consequences) {
+          for (const r of units) recoverControl(s, r, elapsed);
+          updateIncidents(s);
+        }
+        const movers = units.filter(
+          (r) => motions.get(r.id).boundaryTime <= elapsed + s.config.epsilon
+        );
+        const markers = units.filter((r) => (motions.get(r.id).markerTime ?? Infinity) <= elapsed + s.config.epsilon);
+        if (movers.length || markers.length) {
+          const eventStart = s.events.length;
+          if (movers.length) resolveForward(s, movers);
+          for (const r of markers) {
+            const m = motions.get(r.id);
+            if (!movers.includes(r)) {
+              r.q = m.markerQ;
+              observeProgress(s, r);
+            }
+            checkpoints(s, r);
+          }
+          if (s.driverMode === "autonomous") {
+            const affected = new Set(
+              s.events.slice(eventStart).filter(
+                (e) => [
+                  "MOVEMENT_BLOCKED",
+                  "CONTROL_CHANGED",
+                  "SIGN_ACTIVATED",
+                  "DAMAGE"
+                ].includes(e.type)
+              ).flatMap((e) => e.participants)
+            );
+            const reactions = [];
+            for (const r of sorted(s))
+              if (affected.has(r.id) && r.status === "Racing") {
+                r.ai.nextDecision = s.tick;
+                const intents = decide(s, r);
+                if (intents) reactions.push(...intents);
+              }
+            const lanes = new Map(
+              reactions.filter((c) => c.type === "lane").map((c) => [c.id, s.entrants.find((r) => r.id === c.id).lane])
+            );
+            attacks(s, reactions);
+            laneChanges(
+              s,
+              reactions.filter((c) => c.type === "lane")
+            );
+            for (const intent of reactions.filter((c) => c.type === "lane")) {
+              const r = s.entrants.find((r2) => r2.id === intent.id);
+              if (r.lane !== lanes.get(r.id)) {
+                r.blocked = false;
+                resolveAction(s, r, intent.decisionId, "movement", true);
+              }
+            }
+          }
+        }
+        assertState(s);
+        if (elapsed === 0 && !movers.length && incidentTime(s) === 0)
+          throw new Error("Zero-time event without progress");
+      }
+      s.time = end;
+      s.tick++;
+      s.diagnostics.subevents += groups;
+      s.diagnostics.maxGroups = Math.max(groups, s.diagnostics.maxGroups);
+      s.contacts = s.contacts.filter((pair) => {
+        const [a, b] = pair.split("|").map((id2) => s.entrants.find((r) => r.id === id2));
+        return physical(a) && physical(b) && Math.abs(a.lane - b.lane) <= 1 && Math.abs(gap(a.q, b.q, s.track)) < 1.01;
+      });
+      logRacecraft(s);
+      endIfDone(s);
+      assertState(s);
+      if (s.tick % s.checkpointInterval === 0 || ["Ended", "Stalled"].includes(s.status))
+        s.checkpoints.push({ tick: s.tick, checksum: digest(s) });
+    } catch (error) {
+      s.status = "Error";
+      emit(s, "INTEGRITY_ERROR", [], {
+        message: error.message,
+        context: sorted(s).map(({ id: id2, q, lane, speed }) => ({
+          id: id2,
+          q,
+          lane,
+          speed
+        }))
+      });
+    } finally {
+      s.resolving = false;
+    }
+    return s;
+  }
+  function issueSign(s, action, sign) {
+    if (!["Ready", "Running"].includes(s.status)) return false;
+    const command = {
+      type: "sign",
+      id: s.playerId,
+      action,
+      ...sign === void 0 ? {} : { sign }
+    };
+    s.commands.push({ tick: s.tick, order: s.commands.length, phase: "paused", ...command });
+    return signCommand(s, command);
+  }
+  function logRacecraft(s) {
+    const racers = sorted(s).filter((r) => r.status === "Racing");
+    for (let i = 0; i < racers.length; i++)
+      for (let j = i + 1; j < racers.length; j++) {
+        const a = racers[i], b = racers[j], pa = s.previousProgress[a.id], pb = s.previousProgress[b.id];
+        if (pa?.status === "Racing" && pb?.status === "Racing" && (pa.q - pb.q) * (a.q - b.q) < 0 && Math.abs(a.q - b.q) > s.config.positionEpsilon) {
+          const passer = a.q > b.q ? a : b, passed = passer === a ? b : a;
+          emit(s, "OVERTAKE", [passer.id, passed.id], {
+            passer: passer.id,
+            passed: passed.id,
+            observedAtTickBoundary: true
+          });
+        }
+      }
+    if (!s.entrants.some((r) => r.finishTime !== null)) {
+      const order = [...racers].sort((a, b) => b.q - a.q || byId(a, b));
+      const leader = order[0] && (!order[1] || order[0].q - order[1].q > s.config.positionEpsilon) ? order[0].id : null;
+      if (leader && leader !== s.leader) {
+        s.leader = leader;
+        emit(s, "LEAD_CHANGED", [leader], { leader });
+      }
+    }
+    s.previousProgress = Object.fromEntries(
+      sorted(s).map((r) => [r.id, { q: r.q, status: r.status }])
+    );
+  }
+  function freezeCoaching(c) {
+    const n = structuredClone(c);
+    Object.freeze(n.axes);
+    Object.freeze(n.weights);
+    return Object.freeze(n);
+  }
+  function observeProgress(s, r) {
+    if (s.championshipContext && r.status === "Racing" && r.progressEvidence.progress !== r.q) r.progressEvidence = { version: 1, progress: r.q, firstTime: s.time, firstTick: s.tick };
+  }
+
+  // src/career/economy/fingerprint.js
+  var K = [1116352408, 1899447441, 3049323471, 3921009573, 961987163, 1508970993, 2453635748, 2870763221, 3624381080, 310598401, 607225278, 1426881987, 1925078388, 2162078206, 2614888103, 3248222580, 3835390401, 4022224774, 264347078, 604807628, 770255983, 1249150122, 1555081692, 1996064986, 2554220882, 2821834349, 2952996808, 3210313671, 3336571891, 3584528711, 113926993, 338241895, 666307205, 773529912, 1294757372, 1396182291, 1695183700, 1986661051, 2177026350, 2456956037, 2730485921, 2820302411, 3259730800, 3345764771, 3516065817, 3600352804, 4094571909, 275423344, 430227734, 506948616, 659060556, 883997877, 958139571, 1322822218, 1537002063, 1747873779, 1955562222, 2024104815, 2227730452, 2361852424, 2428436474, 2756734187, 3204031479, 3329325298];
+  var rotate = (x, n) => x >>> n | x << 32 - n;
+  function sha256(text) {
+    const bytes = new TextEncoder().encode(text), length = Math.ceil((bytes.length + 9) / 64) * 64;
+    const data = new Uint8Array(length);
+    data.set(bytes);
+    data[bytes.length] = 128;
+    const view = new DataView(data.buffer);
+    view.setUint32(length - 8, Math.floor(bytes.length / 536870912));
+    view.setUint32(length - 4, bytes.length * 8 >>> 0);
+    const h = [1779033703, 3144134277, 1013904242, 2773480762, 1359893119, 2600822924, 528734635, 1541459225], w = new Uint32Array(64);
+    for (let offset2 = 0; offset2 < length; offset2 += 64) {
+      for (let i = 0; i < 16; i++) w[i] = view.getUint32(offset2 + i * 4);
+      for (let i = 16; i < 64; i++) {
+        const a2 = w[i - 15], b2 = w[i - 2];
+        w[i] = w[i - 16] + (rotate(a2, 7) ^ rotate(a2, 18) ^ a2 >>> 3) + w[i - 7] + (rotate(b2, 17) ^ rotate(b2, 19) ^ b2 >>> 10) >>> 0;
+      }
+      let a = h[0], b = h[1], c = h[2], d = h[3], e = h[4], f = h[5], g2 = h[6], j = h[7];
+      for (let i = 0; i < 64; i++) {
+        const t1 = j + (rotate(e, 6) ^ rotate(e, 11) ^ rotate(e, 25)) + (e & f ^ ~e & g2) + K[i] + w[i] >>> 0, t2 = (rotate(a, 2) ^ rotate(a, 13) ^ rotate(a, 22)) + (a & b ^ a & c ^ b & c) >>> 0;
+        j = g2;
+        g2 = f;
+        f = e;
+        e = d + t1 >>> 0;
+        d = c;
+        c = b;
+        b = a;
+        a = t1 + t2 >>> 0;
+      }
+      h[0] = h[0] + a >>> 0;
+      h[1] = h[1] + b >>> 0;
+      h[2] = h[2] + c >>> 0;
+      h[3] = h[3] + d >>> 0;
+      h[4] = h[4] + e >>> 0;
+      h[5] = h[5] + f >>> 0;
+      h[6] = h[6] + g2 >>> 0;
+      h[7] = h[7] + j >>> 0;
+    }
+    return h.map((n) => n.toString(16).padStart(8, "0")).join("");
+  }
+
+  // src/sim/foundation/codec.js
+  var MAX_CHECKPOINT_BYTES = 8 * 1024 * 1024;
+  var wireHash = (x) => sha256(canonical(x));
+  function graphPack(root) {
+    const nodes = [], seen = /* @__PURE__ */ new Map(), active = /* @__PURE__ */ new Set();
+    function visit(x, depth = 0) {
+      if (depth > 128) throw Error("Checkpoint nesting limit");
+      if (x === void 0) return { s: "undefined" };
+      if (typeof x === "number") {
+        if (Number.isNaN(x)) throw Error("NaN cannot be checkpointed");
+        if (!Number.isFinite(x)) return { s: x === Infinity ? "Infinity" : "-Infinity" };
+        if (Object.is(x, -0)) return { s: "-0" };
+      }
+      if (x === null || ["string", "boolean", "number"].includes(typeof x)) return x;
+      if (typeof x !== "object" || ![Object.prototype, null, Array.prototype].includes(Object.getPrototypeOf(x))) throw Error("Unsupported checkpoint object");
+      if (active.has(x)) throw Error("Cyclic checkpoint");
+      if (seen.has(x)) return { r: seen.get(x) };
+      const index = nodes.length;
+      if (index >= 2e5) throw Error("Checkpoint node limit");
+      seen.set(x, index);
+      active.add(x);
+      const n = [Array.isArray(x) ? 1 : 0, Object.isExtensible(x) ? 1 : 0, []];
+      nodes.push(n);
+      for (const k of Object.getOwnPropertyNames(x)) {
+        if (["__proto__", "constructor", "prototype"].includes(k)) throw Error("Unsafe checkpoint key");
+        const d = Object.getOwnPropertyDescriptor(x, k);
+        if (!Object.hasOwn(d, "value")) throw Error("Checkpoint accessors unsupported");
+        const flags = (d.writable ? 4 : 0) | (d.enumerable ? 2 : 0) | (d.configurable ? 1 : 0), row = [k, visit(d.value, depth + 1)];
+        if (flags !== 7) row.push(flags);
+        n[2].push(row);
+      }
+      if (Object.getOwnPropertySymbols(x).length) throw Error("Checkpoint symbols unsupported");
+      active.delete(x);
+      return { r: index };
+    }
+    const wire = { version: 1, root: visit(root), nodes }, text = JSON.stringify(wire), bytes = new TextEncoder().encode(text);
+    if (bytes.length > 32 * 1024 * 1024) throw Error("Decoded checkpoint graph exceeds 32 MiB");
+    return { wire, text, bytes };
+  }
+  function compress(text, bytes = new TextEncoder().encode(text)) {
+    if (bytes.length > 32 * 1024 * 1024) throw Error("Decoded checkpoint exceeds 32 MiB");
+    const dictionary = /* @__PURE__ */ new Map(), codes = [];
+    let next = 257, word = bytes.length ? bytes[0] : -1;
+    for (let i = 1; i < bytes.length; i++) {
+      const c = bytes[i], key2 = word * 256 + c, found = dictionary.get(key2);
+      if (found !== void 0) {
+        word = found;
+        continue;
+      }
+      codes.push(word);
+      if (next < 65536) dictionary.set(key2, next++);
+      else {
+        codes.push(256);
+        dictionary.clear();
+        next = 257;
+      }
+      word = c;
+    }
+    if (word !== -1) codes.push(word);
+    const packed = new Uint8Array(codes.length * 2);
+    for (let i = 0; i < codes.length; i++) {
+      packed[i * 2] = codes[i] & 255;
+      packed[i * 2 + 1] = codes[i] >>> 8;
+    }
+    let binary = "";
+    for (let i = 0; i < packed.length; i += 8192) binary += String.fromCharCode(...packed.subarray(i, i + 8192));
+    return { codec: "lzw16-v1", plainBytes: bytes.length, codes: codes.length, data: btoa(binary) };
+  }
+  var lastGraphText = null;
+  var lastTransport = null;
+  function pack(root) {
+    const { text, bytes } = graphPack(root);
+    let transport;
+    if (text.length >= 65536 && text === lastGraphText) transport = { ...lastTransport };
+    else transport = compress(text, bytes);
+    const wire = { version: 1, transport };
+    if (new TextEncoder().encode(JSON.stringify(wire)).length > MAX_CHECKPOINT_BYTES) throw Error("Checkpoint exceeds 8 MiB");
+    if (text.length >= 65536 && text !== lastGraphText) {
+      lastGraphText = text;
+      lastTransport = { ...transport };
+    }
+    return wire;
+  }
+
+  // src/sim/foundation/checkpoint.js
+  function validateRaceBoundary(s) {
+    if (!s || s.version !== VERSION || s.resolving !== false || !["Ready", "Running", "Ended", "Stalled"].includes(s.status) || !Number.isSafeInteger(s.tick) || s.tick < 0 || s.tick > 1e6 || !Number.isFinite(s.time) || s.time < 0) throw Error("Invalid/incompatible resolved race boundary");
+    const initial = createRace(s.setup);
+    exact(s, Object.keys(initial), "full race state");
+    if (s.seed !== initial.seed || s.rng.algorithm !== initial.rng.algorithm || !Number.isSafeInteger(s.rng.draws) || s.rng.draws < 0 || wireHash(pack(s.initialRng)) !== wireHash(pack(initial.initialRng))) throw Error("Invalid RNG identity/state");
+    config(s.config);
+    if (s.entrants.length !== initial.entrants.length || new Set(s.entrants.map((r) => r.id)).size !== s.entrants.length || s.entrants.some((r) => !initial.entrants.some((e) => e.id === r.id) || r.id !== r.ru.id)) throw Error("Invalid checkpoint entrant identity");
+    if (!Array.isArray(s.events) || !Array.isArray(s.commands) || !Array.isArray(s.pendingImpacts) || !Array.isArray(s.pendingOverrides) || !Array.isArray(s.checkpoints)) throw Error("Invalid race arrays");
+    if (!(s.nextIncidentAt === Infinity || Number.isFinite(s.nextIncidentAt))) throw Error("Invalid incident sentinel");
+    if (canonical(s.championshipContext ?? null) !== canonical(initial.championshipContext ?? null)) throw Error("Championship context changed after start");
+    for (const r of s.entrants) {
+      validateCoaching(r.coachingContext);
+      const original = initial.entrants.find((e) => e.id === r.id);
+      if (canonical(r.coachingContext ?? null) !== canonical(original.coachingContext ?? null)) throw Error("Frozen coaching context changed");
+      if (s.championshipContext) {
+        const p = r.progressEvidence;
+        exact(p, ["version", "progress", "firstTime", "firstTick"]);
+        if (p.version !== 1 || !Number.isFinite(p.progress) || !Number.isFinite(p.firstTime) || p.firstTime < 0 || p.firstTime > s.time + s.config.epsilon || !Number.isInteger(p.firstTick) || p.firstTick < 0 || p.firstTick > s.tick || r.status === "Racing" && p.progress !== r.q || r.status === "Retired" && p.progress !== r.retirement?.progress) throw Error("Invalid authoritative first-progress evidence");
+      }
+      derive(r.ru, s.config);
+      if (!["Racing", "Finished", "Retired", "DNS"].includes(r.status) || !["Live", "Clearing", "Exited", "Wreck"].includes(r.physical) || !r.ai || !Number.isFinite(r.ai.nextDecision) || !Number.isInteger(r.signs.remaining) || r.signs.remaining < 0) throw Error("Invalid entrant checkpoint state");
+      if (r.finishSnapshot && (!Object.isFrozen(r.finishSnapshot) || Object.getOwnPropertyDescriptor(r, "finishSnapshot").writable !== false)) throw Error("Lost historical finish immutability");
+    }
+    for (const k of Object.keys(s.wrecks)) if (!Object.isFrozen(s.wrecks[k]) || Object.getOwnPropertyDescriptor(s.wrecks, k).writable !== false) throw Error("Lost wreck immutability");
+    assertState(s);
+    return s;
+  }
+  function clearedNativeResult(s) {
+    validateRaceBoundary(s);
+    if (s.status !== "Ended" || s.pendingImpacts.length || s.pendingOverrides.length || s.entrants.some((r) => r.status === "Racing" || r.physical === "Clearing") || !s.events.some((e) => e.type === "RACE_ENDED")) throw Error("RACE_CLEARANCE_BLOCKED: unresolved authoritative processing");
+    const official = classification(s);
+    if (official.length !== s.entrants.length || new Set(official.map((x) => x.id)).size !== s.entrants.length) throw Error("RACE_CLEARANCE_BLOCKED: classification identity");
+    return { ...s.championshipContext ? { championshipEvidence: { version: 1, context: structuredClone(s.championshipContext), starters: structuredClone(s.events.find((e) => e.type === "RACE_STARTED")?.effects.starters ?? []), progress: s.entrants.map((r) => ({ id: r.id, ...r.progressEvidence })) } } : {}, classification: official, conditions: s.entrants.map((r) => ({ entrantId: r.id, native: structuredClone(r.ru) })) };
+  }
+
+  // src/track/validation.js
+  function validateFootprint(t, c, { spacing = 4, clearance = c.lanes * c.laneWidth + 4 } = {}) {
+    if (!Number.isFinite(spacing) || spacing <= 0 || !Number.isFinite(clearance) || clearance <= 0) throw Error("Invalid geometry validation parameters");
+    const samples = [];
+    let distance = 0, previous = null;
+    for (let q = 0; q <= t.cells; q += 0.25) {
+      const p = point(q, (c.lanes - 1) / 2, c, t);
+      if (previous) distance += Math.hypot(p.x - previous.x, p.y - previous.y);
+      if (!samples.length || distance - samples.at(-1).distance >= spacing || q === t.cells) samples.push({ ...p, distance });
+      previous = p;
+    }
+    const closed = !t.course || t.closed, total = distance;
+    let minimum = Infinity;
+    for (let i = 0; i < samples.length; i++) for (let j = i + 1; j < samples.length; j++) {
+      let apart = samples[j].distance - samples[i].distance;
+      if (closed) apart = Math.min(apart, total - apart);
+      if (apart <= clearance * 1.7) continue;
+      const separation = Math.hypot(samples[i].x - samples[j].x, samples[i].y - samples[j].y);
+      minimum = Math.min(minimum, separation);
+      if (separation < clearance) return { valid: false, message: `Road overlaps or approaches ambiguously near samples ${i}/${j} (${separation.toFixed(2)} < ${clearance} m)`, samples: samples.length };
+    }
+    return { valid: true, message: "Connected geometry and road corridor validated", samples: samples.length, minimumSeparation: Number.isFinite(minimum) ? minimum : null };
+  }
+
+  // src/track/rally-generator.js
+  var line = (length) => ({ length, turn: 0 });
+  var arc = (turn, radius) => ({ length: Math.abs(turn) * Math.PI / 180 * radius, turn });
+  var offset = (turn, radius, straight = 20) => [arc(turn, radius), line(straight), arc(-turn, radius)];
+  var rallyChunks = Object.freeze({
+    "short-straight": [line(55)],
+    "medium-straight": [line(90)],
+    "long-straight": [line(145)],
+    "gentle-left": offset(-35, 55, 25),
+    "gentle-right": offset(35, 55, 25),
+    "sharp-left": offset(-65, 36, 25),
+    "sharp-right": offset(65, 36, 25),
+    "hairpin-left": offset(-150, 38, 40),
+    "hairpin-right": offset(150, 38, 40),
+    "s-left-right": [arc(-45, 38), arc(90, 38), arc(-45, 38)],
+    "s-right-left": [arc(45, 38), arc(-90, 38), arc(45, 38)],
+    "narrow-passage": [line(30), arc(-55, 28), arc(55, 28), line(20)],
+    "wide-passing": [line(180)],
+    "rough-section": [line(70)],
+    "terrain-transition": [line(45), line(55)],
+    "technical-combination": [arc(-60, 30), arc(90, 30), arc(-30, 30), line(25)],
+    "fast-open": [line(160), arc(20, 70), arc(-20, 70)]
+  });
+  var rallyCategories = Object.freeze({ short: { chunks: 6 }, medium: { chunks: 12 }, long: { chunks: 22 } });
+  var rallyTerrainProfiles = Object.freeze({
+    balanced: { dirt: 4, stone: 3, gravel: 2, sand: 1, mud: 1 },
+    road: { dirt: 2, stone: 7, gravel: 1, sand: 0, mud: 0 },
+    rugged: { dirt: 2, stone: 1, gravel: 4, sand: 2, mud: 2 }
+  });
+  function generationOptions(input2 = {}) {
+    if (!input2 || typeof input2 !== "object" || Array.isArray(input2) || Object.keys(input2).some((k) => !["seed", "category", "terrainProfile", "terrainWeights", "turnFrequency", "turnSeverity", "chunks", "maxAttempts", "chunkLibrary", "laneWidth"].includes(k))) throw Error("Invalid rally generator options");
+    const seed = input2.seed ?? 1, category = input2.category ?? "medium", terrainProfile = input2.terrainProfile ?? "balanced";
+    if (!Number.isSafeInteger(seed) || !Object.hasOwn(rallyCategories, category) || !Object.hasOwn(rallyTerrainProfiles, terrainProfile)) throw Error("Invalid rally seed, category or terrain profile");
+    const o = { seed, category, terrainProfile, terrainWeights: { ...input2.terrainWeights ?? rallyTerrainProfiles[terrainProfile] }, turnFrequency: input2.turnFrequency ?? 0.55, turnSeverity: input2.turnSeverity ?? 0.5, chunks: input2.chunks ?? rallyCategories[category].chunks, maxAttempts: input2.maxAttempts ?? 12, laneWidth: input2.laneWidth ?? 4 };
+    for (const k of ["turnFrequency", "turnSeverity"]) if (!Number.isFinite(o[k]) || o[k] < 0 || o[k] > 1) throw Error("Invalid " + k + " (0..1)");
+    if (!Number.isInteger(o.chunks) || o.chunks < 4 || o.chunks > 24 || !Number.isInteger(o.maxAttempts) || o.maxAttempts < 1 || o.maxAttempts > 32 || !Number.isFinite(o.laneWidth) || o.laneWidth < 1 || o.laneWidth > 4) throw Error("Invalid generation bounds or width");
+    if (Object.keys(o.terrainWeights).some((k) => !Object.hasOwn(rallyTerrainProfiles.balanced, k)) || Object.values(o.terrainWeights).some((v) => !Number.isFinite(v) || v < 0 || v > 100) || !Object.values(o.terrainWeights).some((v) => v > 0)) throw Error("Invalid terrain distribution");
+    const library = input2.chunkLibrary ?? rallyChunks;
+    if (!library || typeof library !== "object" || Array.isArray(library) || !Object.keys(library).length || Object.keys(library).length > 64) throw Error("Invalid chunk library");
+    for (const [id2, items] of Object.entries(library)) if (!/^[a-z0-9-]{1,40}$/.test(id2) || !Array.isArray(items) || !items.length || items.length > 5 || items.some((s) => !s || Object.keys(s).some((k) => !["length", "turn"].includes(k)) || !Number.isFinite(s.length) || s.length < 1 || s.length > 200 || !Number.isFinite(s.turn) || Math.abs(s.turn) > 170)) throw Error("Invalid chunk " + id2);
+    return { ...o, chunkLibrary: structuredClone(library) };
+  }
+  function pickTerrain(o, draw2, key2) {
+    const items = Object.entries(o.terrainWeights).filter(([, w]) => w > 0);
+    let n = draw2("terrain", key2) * items.reduce((a, [, w]) => a + w, 0);
+    return items.find(([, w]) => (n -= w) < 0)?.[0] ?? items.at(-1)[0];
+  }
+  function generateRally(input2 = {}) {
+    const o = generationOptions(input2), c = config({ laneWidth: o.laneWidth });
+    const build = (attempt, fallback2 = false) => {
+      const draw2 = (...key2) => random(o.seed, "rally-generator-v1", attempt, ...key2), parts = [], used = [];
+      for (let i = 0; i < o.chunks; i++) {
+        const turning = !fallback2 && draw2("turn", i) < o.turnFrequency;
+        let choices = Object.entries(o.chunkLibrary).filter(([id3, items2]) => {
+          const hasTurn = items2.some((s) => s.turn !== 0), severe = items2.some((s) => Math.abs(s.turn) > 90);
+          const peak = Math.max(...items2.map((s) => Math.abs(s.turn)));
+          return hasTurn === turning && peak <= 45 + 125 * o.turnSeverity && (!severe || draw2("severity", i) < o.turnSeverity);
+        });
+        const fresh = choices.filter(([id3]) => !used.slice(-2).includes(id3));
+        if (fresh.length) choices = fresh;
+        let id2, items;
+        if (!choices.length) {
+          id2 = fallback2 ? "fallback-straight" : "safe-straight";
+          items = [line(85)];
+        } else [id2, items] = choices[Math.floor(draw2("chunk", i) * choices.length)];
+        if (fallback2) {
+          id2 = "fallback-straight";
+          items = [line(85)];
+        }
+        used.push(id2);
+        const terrain = pickTerrain(o, draw2, i);
+        for (let j = 0; j < items.length; j++) parts.push([items[j].length, items[j].turn, id2 === "terrain-transition" ? pickTerrain(o, draw2, i + "-" + j) : terrain]);
+      }
+      const course = rally("rally-" + o.category + "-" + String(o.seed).replace("-", "n"), "Generated " + o.category + " Rally \xB7 " + o.seed, [[80, 0, "dirt"], ...parts, [80, 0, "dirt"]]);
+      course.segments[0].terrain = pickTerrain(o, draw2, "start");
+      course.segments.at(-1).terrain = pickTerrain(o, draw2, "finish");
+      course.generation = { version: 1, seed: o.seed, category: o.category, terrainProfile: o.terrainProfile, attempt, fallback: fallback2, chunks: used, options: structuredClone(o) };
+      const t = compileCourse(course, c), validation = validateFootprint(t, c);
+      if (!validation.valid) throw Error(validation.message);
+      return course;
+    };
+    const failures = [];
+    for (let attempt = 0; attempt < o.maxAttempts; attempt++) try {
+      return build(attempt);
+    } catch (e) {
+      failures.push(e.message);
+    }
+    const fallback = build(o.maxAttempts, true);
+    fallback.generation.failures = failures;
+    return fallback;
+  }
+
+  // src/career/assets.js
+  var BASIC_CAPACITY = Object.freeze({ drivers: 2, specialists: 0, beasts: 4, chariots: 1 });
+  var INJURIES = Object.freeze(["Healthy", "Minor", "Moderate", "Severe", "Dead"]);
+  function freeze(value) {
+    if (value && typeof value === "object") {
+      Object.values(value).forEach(freeze);
+      Object.freeze(value);
+    }
+    return value;
+  }
+
+  // src/prototype/builds.js
+  var builds = freeze({
+    baseline: { name: "Unmodified baseline", deltas: { driver: {}, beasts: {}, chariot: {} }, coaching: null },
+    contact: { name: "Contact Specialist \xB7 experimental", deltas: { driver: { combat: 12 }, beasts: { endurance: -4 }, chariot: { protection: 10, stability: 8, weight: 20, rollingEfficiency: -5 } }, coaching: { aggression: 0.8, conservation: -0.3, positioning: 0.4, riskTolerance: 0.5 } },
+    handling: { name: "Handling / Endurance \xB7 experimental", deltas: { driver: { combat: -6 }, beasts: { agility: 10, endurance: 12, power: -4 }, chariot: { maneuverability: 10, protection: -6 } }, coaching: { aggression: -0.5, conservation: 0.8, positioning: 0.8, riskTolerance: -0.5 } }
+  });
+  function compileBuild(base, id2 = "baseline") {
+    validateRU(base);
+    const definition = builds[id2];
+    if (!definition) throw Error("Unknown experimental build");
+    const ru = structuredClone(base), changes = [];
+    const apply = (obj, delta, path) => {
+      for (const [key2, change] of Object.entries(delta)) {
+        const before = obj[key2];
+        const lo = key2 === "weight" ? 1 : 0, hi = key2 === "weight" ? 5e3 : 100;
+        obj[key2] = Math.min(hi, Math.max(lo, before + change));
+        changes.push({ path: path + "." + key2, before, delta: change, after: obj[key2] });
+      }
+    };
+    apply(ru.driver, definition.deltas.driver, "driver");
+    ru.beasts.forEach((b, i) => apply(b, definition.deltas.beasts, "beasts." + i));
+    apply(ru.chariot, definition.deltas.chariot, "chariot");
+    validateRU(ru);
+    return { ru, coachingContext: definition.coaching ? coachingProfile(definition.coaching) : null, changes };
+  }
+
+  // src/prototype/session.js
+  var PROTOTYPE_VERSION = "p1-playable-v1";
+  function prototypeRally(category, seed) {
+    const course = generateRally({ seed, category }), fractions = { short: [1 / 2], medium: [1 / 3, 2 / 3], long: [1 / 4, 1 / 2, 3 / 4] }[category];
+    const length = course.segments.reduce((n, s) => n + s.length, 0);
+    course.signPointPolicy = { version: 1, category };
+    course.checkpoints = fractions.map((f, i) => ({ id: "SP" + (i + 1), distance: length * f }));
+    return normalizeCourse(course);
+  }
+  function raceSetup({ course = "short-oval", seed = 145, format = "Pure", weather = "Clear", build = "baseline", value = 55, coaching = null, fieldSize = 8, laps = 2 } = {}) {
+    if (!Number.isInteger(fieldSize) || fieldSize < 1 || fieldSize > 8) throw Error("Field must contain 1..8 entrants");
+    if (!Number.isFinite(value) || value < 0 || value > 100) throw Error("Base attributes must be 0..100");
+    const definition = course.startsWith("rally-") ? prototypeRally(course.slice(6), seed) : course;
+    const initial = createRace({ seed, course: definition, format, weather, overrides: { laps } });
+    const entrants = structuredClone(initial.setup.entrants.slice(0, fieldSize)), player = entrants[0];
+    for (const part of [player.ru.driver, ...player.ru.beasts, player.ru.chariot]) for (const key2 of Object.keys(part)) if (!["condition", "strain", "fatigue", "wear", "weight", "capacity", "personality"].includes(key2)) part[key2] = value;
+    const compiled = compileBuild(player.ru, build);
+    player.ru = compiled.ru;
+    if (coaching ?? compiled.coachingContext) player.coachingContext = coaching ?? compiled.coachingContext;
+    return { setup: { seed, course: definition, format, weather, overrides: { laps }, entrants, playerId: player.ru.id }, changes: compiled.changes };
+  }
+  var PlayableSession = class {
+    constructor(options2 = {}) {
+      const { setup, changes } = raceSetup(options2);
+      this.options = structuredClone(options2);
+      this.setup = structuredClone(setup);
+      this.changes = changes;
+      this.state = createRace(setup);
+      this.inputs = [];
+      this.timings = [];
+      this.maxTickMs = 0;
+      this.totalTickMs = 0;
+    }
+    tick() {
+      if (["Ended", "Stalled", "Error"].includes(this.state.status)) return false;
+      const t = performance.now();
+      step(this.state);
+      const ms = performance.now() - t;
+      this.maxTickMs = Math.max(ms, this.maxTickMs);
+      this.totalTickMs += ms;
+      this.timings.push(ms);
+      if (this.timings.length > 2e3) this.timings.shift();
+      return true;
+    }
+    sign(action, sign) {
+      const tick = this.state.tick, order = this.inputs.length;
+      const accepted = issueSign(this.state, action, sign);
+      this.inputs.push({ tick, order, action, sign, accepted });
+      return accepted;
+    }
+    official() {
+      try {
+        return { cleared: true, ...clearedNativeResult(this.state) };
+      } catch (error) {
+        return { cleared: false, reason: error.message };
+      }
+    }
+    metrics() {
+      const s = this.state, p = s.entrants.find((r) => r.id === s.playerId), events = s.events.filter((e) => e.participants.includes(p.id)), actions = {};
+      for (const e of events) if (e.type === "AI_DECISION") {
+        for (const a of Object.values(e.effects.executed ?? e.effects.chosen ?? {})) if (typeof a === "string") actions[a] = (actions[a] ?? 0) + 1;
+      }
+      return { version: PROTOTYPE_VERSION, seed: s.seed, format: s.format, build: this.options.build ?? "baseline", tick: s.tick, status: s.status, clearance: this.official(), checksum: digest(s), official: classification(s), player: { id: p.id, actions, finishTime: p.finishTime, status: p.status, driver: p.ru.driver.condition, chariot: p.ru.chariot.condition, beastFatigue: p.ru.beasts.map((b) => b.fatigue), wear: p.ru.chariot.wear, contacts: events.filter((e) => e.type === "CONTACT").length, attacks: events.filter((e) => e.type === "ATTACK").length, overtakes: events.filter((e) => e.type === "OVERTAKE" && e.effects.passer === p.id).length, signs: events.filter((e) => e.type === "SIGN_ACTIVATED").length }, maxTickMs: this.maxTickMs, totalTickMs: this.totalTickMs, events: s.events.length, inputs: structuredClone(this.inputs) };
+    }
+  };
+  function playback(session2, accumulator, elapsed, speed, { budgetMs = 8, maxTicks = 40 } = {}) {
+    if (![accumulator, elapsed, speed].every(Number.isFinite) || accumulator < 0 || elapsed < 0 || speed <= 0) throw Error("Invalid prototype playback clock");
+    accumulator += elapsed * speed;
+    const t = performance.now();
+    let count = 0;
+    while (accumulator + session2.state.config.dt * 1e-9 >= session2.state.config.dt && count < maxTicks) {
+      if (!session2.tick()) break;
+      accumulator = Math.max(0, accumulator - session2.state.config.dt);
+      count++;
+      if (performance.now() - t >= budgetMs) break;
+    }
+    return { accumulator, count };
+  }
+
+  // src/prototype/view.js
+  var teamColor = (id2) => `hsl(${hash(id2) % 360} 75% 68%)`;
+  function geometry(s) {
+    const { track: t, config: c } = s, open = t.course && !t.closed, min = open ? -6 : 0, max = t.cells + (open ? c.exitTiles + 2 : 0), samples = [];
+    const sample = (lane) => {
+      const ps = [];
+      for (let q = min; q < max; q += 0.35) ps.push(point(q, lane, c, t));
+      ps.push(point(max, lane, c, t));
+      return ps;
+    };
+    const path = (ps) => {
+      const p = new Path2D();
+      ps.forEach((v, i) => i ? p.lineTo(v.x, v.y) : p.moveTo(v.x, v.y));
+      return p;
+    };
+    const edges = [sample(-0.5), sample(c.lanes - 0.5)];
+    samples.push(...edges.flat());
+    const road = path(edges[0]);
+    for (const p of [...edges[1]].reverse()) road.lineTo(p.x, p.y);
+    road.closePath();
+    const lanes = Array.from({ length: c.lanes - 1 }, (_, i) => path(sample(i + 0.5)));
+    const xs = samples.map((p) => p.x), ys = samples.map((p) => p.y);
+    return { road, lanes, edges: edges.map(path), bounds: { minX: Math.min(...xs), maxX: Math.max(...xs), minY: Math.min(...ys), maxY: Math.max(...ys) }, samples: samples.length };
+  }
+  function fit(bounds, width, height, pad = 24) {
+    const scale = Math.min((width - pad * 2) / Math.max(1, bounds.maxX - bounds.minX), (height - pad * 2) / Math.max(1, bounds.maxY - bounds.minY));
+    return { x: (bounds.minX + bounds.maxX) / 2, y: (bounds.minY + bounds.maxY) / 2, scale };
+  }
+  function cameraTarget(s) {
+    return s.entrants.find((r) => r.id === s.playerId && r.status === "Racing") ?? s.entrants.filter((r) => r.status === "Racing").sort((a, b) => b.q - a.q || a.id.localeCompare(b.id))[0] ?? s.entrants.find((r) => r.id === s.playerId) ?? s.entrants[0];
+  }
+  function line2(ctx, q, s, color, label, scale, labelSize = 12) {
+    const a = point(q, -0.5, s.config, s.track), b = point(q, s.config.lanes - 0.5, s.config, s.track);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2 / scale;
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.lineTo(b.x, b.y);
+    ctx.stroke();
+    if (label) {
+      ctx.save();
+      ctx.translate(b.x, b.y);
+      ctx.scale(1 / scale, 1 / scale);
+      ctx.fillStyle = color;
+      ctx.font = `bold ${labelSize}px sans-serif`;
+      ctx.fillText(label, 5, -4);
+      ctx.restore();
+    }
+  }
+  function drawCourse(canvas, s, g2, { map = false, camera: camera2 = null } = {}) {
+    const ctx = canvas.getContext("2d"), w = canvas.width, h = canvas.height;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.fillStyle = map ? "#09171d" : "#101f29";
+    ctx.fillRect(0, 0, w, h);
+    const v = map ? fit(g2.bounds, w, h) : camera2 ?? { ...point(cameraTarget(s).q, cameraTarget(s).lane, s.config, s.track), scale: 3 };
+    ctx.translate(w / 2, h / 2);
+    ctx.scale(v.scale, v.scale);
+    ctx.translate(-v.x, -v.y);
+    ctx.fillStyle = "#3c3e42";
+    ctx.fill(g2.road);
+    ctx.strokeStyle = "#e1b964";
+    ctx.lineWidth = (map ? 1 : 2) / v.scale;
+    g2.edges.forEach((p) => ctx.stroke(p));
+    ctx.strokeStyle = "#7a7971";
+    ctx.lineWidth = 1 / v.scale;
+    ctx.setLineDash([4, 5]);
+    g2.lanes.forEach((p) => ctx.stroke(p));
+    ctx.setLineDash([]);
+    line2(ctx, 0, s, "#fff", "START", v.scale, map ? 22 : 12);
+    if (s.track.course && !s.track.closed) {
+      line2(ctx, s.track.cells, s, "#ffb591", "FINISH", v.scale, map ? 22 : 12);
+      for (const cp of s.track.checkpoints) line2(ctx, cp.q, s, "#6df9cb", cp.id, v.scale, map ? 22 : 12);
+    }
+    for (const hazard of s.hazards) {
+      if (hazard.hidden) continue;
+      const p = point(hazard.q, hazard.lane, s.config, s.track);
+      ctx.fillStyle = "#ffb643";
+      ctx.fillRect(p.x - 1.5, p.y - 1.5, 3, 3);
+    }
+    for (const r of s.entrants) {
+      const p = point(r.q, r.lane, s.config, s.track), rsize = (map ? 7 : 8) / v.scale;
+      ctx.fillStyle = r.id === s.playerId ? "#fff" : teamColor(r.id);
+      ctx.strokeStyle = r.id === s.playerId ? "#f4bd49" : "#07131a";
+      ctx.lineWidth = 2 / v.scale;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, rsize, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      if (!map) {
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.scale(1 / v.scale, 1 / v.scale);
+        ctx.font = "bold 12px sans-serif";
+        ctx.fillStyle = teamColor(r.id);
+        ctx.fillText(r.id, 11, -8);
+        if (r.physical === "Wreck") {
+          ctx.fillStyle = "#fd766a";
+          ctx.fillText("WRECK", 11, 7);
+        }
+        ctx.restore();
+      }
+    }
+    for (let q = 1; q < s.track.cells; q += Math.max(8, s.track.cells / 10)) {
+      const a = point(q, 1.5, s.config, s.track), b = point(q + 0.2, 1.5, s.config, s.track), angle = Math.atan2(b.y - a.y, b.x - a.x);
+      ctx.save();
+      ctx.translate(a.x, a.y);
+      ctx.rotate(angle);
+      ctx.fillStyle = "#c5c39a";
+      ctx.beginPath();
+      ctx.moveTo(3, 0);
+      ctx.lineTo(-2, -1.4);
+      ctx.lineTo(-2, 1.4);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    return v;
+  }
+
+  // src/reporting/commentary.js
+  var templates = {
+    RACE_STARTED: () => [
+      "And they\u2019re away! The field launches from the standing grid.",
+      "The signal is given\u2014Blood and Thunder is under way!"
+    ],
+    OVERTAKE: (e) => [
+      `${e.effects.passer} gets ahead of ${e.effects.passed}!`,
+      `${e.effects.passer} moves past ${e.effects.passed} in the order.`
+    ],
+    LEAD_CHANGED: (e) => [`${e.effects.leader} takes the lead!`],
+    CONTACT: (e) => [`Contact between ${e.participants.join(" and ")}!`],
+    ATTACK: (e) => [
+      `${e.effects.attacker} against ${e.effects.defender}: ${e.effects.action} ${e.effects.success ? "connects" : "is resisted"}.`
+    ],
+    DAMAGE: (e) => [
+      `${e.participants[0]} takes ${e.effects.amount.toFixed(1)} damage to ${e.effects.component}.`
+    ],
+    CONTROL_CHANGED: (e) => [
+      `${e.participants[0]} is ${e.effects.control.toLowerCase()}.`
+    ],
+    RU_RETIRED: (e) => [`${e.participants[0]} is out: ${e.effects.reason}.`],
+    WRECK_CREATED: (e) => [
+      `${e.participants[0]} remains on the track as a stationary wreck.`
+    ],
+    WRECK_IMPACT: (e) => [`Another impact at the wreck of ${e.effects.wreckId}.`],
+    INCIDENT: (e) => [
+      `A ${e.effects.type} intrusion obstructs lane ${e.effects.lane + 1}!`
+    ],
+    INCIDENT_CLEARED: () => ["The temporary track obstruction has cleared."],
+    SIGN_ACTIVATED: (e) => [
+      `${e.participants[0]} receives the sign: ${e.effects.sign}.`
+    ],
+    COURSE_ENTERED: (e) => [`${e.participants[0]} is away on ${e.effects.track}.`],
+    SEGMENT_ENTERED: (e) => [`${e.participants[0]} reaches ${e.effects.terrain}${e.effects.type === "turn" ? ", turning " + (e.effects.direction > 0 ? "right" : "left") : " straightaway"}.`],
+    CHECKPOINT_CROSSED: (e) => [`${e.participants[0]} sweeps through checkpoint ${e.effects.checkpoint}.`],
+    FINAL_LAP: (e) => [`${e.participants[0]} begins the final lap!`],
+    RU_FINISHED: (e) => [
+      `${e.participants[0]} crosses the finish in ${e.effects.time.toFixed(4)} seconds!`
+    ],
+    RU_EXITED: (e) => [`${e.participants[0]} has safely cleared the track exit.`],
+    RACE_STALLED: () => [
+      "Race control ends the stalled race. Unfinished entries receive no finish time."
+    ],
+    RACE_ENDED: () => ["The race is over. The official classification is ready."],
+    INTEGRITY_ERROR: () => [
+      "Race stopped: an integrity diagnostic requires attention."
+    ]
+  };
+  var priority = /* @__PURE__ */ new Set([
+    "RU_FINISHED",
+    "RU_RETIRED",
+    "WRECK_CREATED",
+    "FINAL_LAP",
+    "LEAD_CHANGED",
+    "RACE_ENDED",
+    "RACE_STALLED",
+    "SIGN_ACTIVATED",
+    "CHECKPOINT_CROSSED",
+    "INTEGRITY_ERROR"
+  ]);
+  var Commentary = class {
+    constructor() {
+      this.cursor = 0;
+      this.lines = [];
+      this.last = /* @__PURE__ */ new Map();
+    }
+    consume(events, { enabled = true } = {}) {
+      for (const e of events.slice(this.cursor)) {
+        if (!enabled || !templates[e.type]) continue;
+        const key2 = e.type === "SEGMENT_ENTERED" ? e.type : `${e.type}:${e.participants.join(",")}`;
+        if (!priority.has(e.type) && e.time - (this.last.get(key2) ?? -Infinity) < (e.type === "SEGMENT_ENTERED" ? 3 : 1))
+          continue;
+        const options2 = templates[e.type](e);
+        this.lines.push({
+          eventId: e.id,
+          time: e.time,
+          type: e.type,
+          text: options2[hash(`${e.id}:${e.type}`) % options2.length]
+        });
+        this.last.set(key2, e.time);
+      }
+      this.cursor = events.length;
+      return this.lines;
+    }
+  };
+
+  // src/prototype/app.js
+  var $ = (id2) => document.getElementById(id2);
+  var options = [];
+  for (const kind of ["Oval", "Circuit", "Rally"]) {
+    const group = document.createElement("optgroup");
+    group.label = kind;
+    for (const [id2, name] of trackChoices(kind)) {
+      const option = document.createElement("option");
+      option.value = id2.startsWith("generated-") ? id2.replace("generated-", "rally-") : id2;
+      option.textContent = name;
+      group.append(option);
+    }
+    options.push(group);
+  }
+  $("course").replaceChildren(...options);
+  $("weather").replaceChildren(...Object.keys(weatherPresets).map((name) => new Option(name, name)));
+  $("sign").replaceChildren(...signs.map((name) => new Option(name, name)));
+  for (const axis of coachingAxes) {
+    const label = document.createElement("label");
+    label.textContent = axis;
+    const select = document.createElement("select");
+    select.id = "coach-" + axis;
+    for (const value of [-1, -0.5, 0, 0.5, 1]) select.append(new Option(String(value), String(value)));
+    select.value = "0";
+    label.append(select);
+    $("coachAxes").append(label);
+  }
+  var session;
+  var g;
+  var radio;
+  var playing = false;
+  var debt = 0;
+  var last = null;
+  var lastRender = 0;
+  var terminal = null;
+  var camera = null;
+  var comparisonBusy = false;
+  var lastDomKey = null;
+  var measurements = { frames: 0, mainDrawMs: [], mapDrawMs: [], domMs: [], longTasks: [], inputMs: [], fullRaceWallMs: null };
+  var startedAt = null;
+  try {
+    new PerformanceObserver((list) => {
+      for (const e of list.getEntries()) {
+        measurements.longTasks.push({ start: e.startTime, ms: e.duration });
+        if (measurements.longTasks.length > 1e3) measurements.longTasks.shift();
+      }
+    }).observe({ type: "longtask", buffered: true });
+  } catch {
+  }
+  function record(key2, value) {
+    measurements[key2].push(value);
+    if (measurements[key2].length > 2e3) measurements[key2].shift();
+  }
+  function settings() {
+    return { course: $("course").value, seed: Number($("seed").value), format: $("format").value, weather: $("weather").value, build: $("build").value, value: Number($("value").value), fieldSize: Number($("field").value), laps: Number($("laps").value), ...$("customCoach").checked ? { coaching: coachingProfile(Object.fromEntries(coachingAxes.map((k) => [k, Number($("coach-" + k).value)]))) } : {} };
+  }
+  function prepare(config2 = settings()) {
+    const next = new PlayableSession(config2), nextGeometry = geometry(next.state);
+    playing = false;
+    session = next;
+    g = nextGeometry;
+    radio = new Commentary();
+    debt = 0;
+    last = null;
+    terminal = null;
+    camera = null;
+    startedAt = null;
+    lastDomKey = null;
+    $("radio").replaceChildren();
+    $("error").textContent = "";
+    $("comparison").textContent = "";
+    for (const key2 of ["mainDrawMs", "mapDrawMs", "domMs", "longTasks", "inputMs"]) measurements[key2] = [];
+    measurements.fullRaceWallMs = null;
+    render();
+  }
+  function safe(fn) {
+    return () => {
+      if (comparisonBusy) return;
+      try {
+        fn();
+      } catch (e) {
+        playing = false;
+        $("error").textContent = e.message;
+      }
+      render();
+    };
+  }
+  function input(action) {
+    const t = performance.now();
+    if (!session.sign(action, action === "queue" ? $("sign").value : void 0)) $("error").textContent = "Sign rejected by native rules: check format, phase, player condition and remaining opportunities.";
+    else $("error").textContent = "";
+    record("inputMs", performance.now() - t);
+  }
+  function finish() {
+    if (!terminal && ["Ended", "Stalled", "Error"].includes(session.state.status)) {
+      playing = false;
+      terminal = session.official();
+      measurements.fullRaceWallMs = startedAt === null ? null : performance.now() - startedAt;
+    }
+  }
+  function render() {
+    if (!session) return;
+    finish();
+    const s = session.state, p = s.entrants.find((r) => r.id === s.playerId), now = performance.now();
+    const actor = cameraTarget(s), target = point(actor.q, actor.lane, s.config, s.track);
+    if (!camera) camera = { ...target, scale: 3 };
+    else {
+      camera.x += (target.x - camera.x) * 0.35;
+      camera.y += (target.y - camera.y) * 0.35;
+    }
+    drawCourse($("race"), s, g, { camera });
+    record("mainDrawMs", performance.now() - now);
+    const mapAt = performance.now();
+    drawCourse($("map"), s, g, { map: true });
+    record("mapDrawMs", performance.now() - mapAt);
+    const domAt = performance.now(), domKey = [s.tick, playing, p.signs.remaining, p.signs.active, p.signs.pending, comparisonBusy].join("|");
+    if (lastDomKey === domKey) return;
+    lastDomKey = domKey;
+    const open = s.track.course && !s.track.closed, progress = (r) => open ? Math.max(0, Math.min(100, courseDistance(r.q, s.track) / s.track.length * 100)).toFixed(1) + "%" : `lap ${Math.min(s.config.laps, r.completedLaps + 1)}/${s.config.laps}`;
+    $("status").textContent = terminal ? terminal.cleared ? "Official native clearance established. No rewards or career changes." : "Blocked native result: " + terminal.reason : `${playing ? "Racing" : "Paused / Ready"} \xB7 ${s.status} \xB7 tick ${s.tick} \xB7 ${s.time.toFixed(2)}s \xB7 ${session.options.course}`;
+    $("hud").textContent = `RU1: ${p.status} \xB7 ${progress(p)} \xB7 ${p.speed.toFixed(1)} native speed \xB7 Driver ${p.ru.driver.condition.toFixed(1)} / strain ${p.ru.driver.strain.toFixed(1)} \xB7 Chariot ${p.ru.chariot.condition.toFixed(1)} / wear ${p.ru.chariot.wear.toFixed(1)} \xB7 Beasts fatigue ${p.ru.beasts.map((b) => b.fatigue.toFixed(1)).join(" / ")}`;
+    $("signState").textContent = `Active: ${p.signs.active ?? "none"} \xB7 Queued: ${p.signs.pending ?? "none"} \xB7 Uses remaining: ${p.signs.remaining}`;
+    $("progress").textContent = open ? `Sign Points crossed: ${p.checkpointCursor}/${s.track.checkpoints.length} \xB7 Next: ${s.track.checkpoints[p.checkpointCursor]?.id ?? "finish"}` : `${s.format} \xB7 ${s.config.laps} laps \xB7 Player ${progress(p)}`;
+    const official = terminal?.cleared ? terminal.classification : null, rows = official ?? [...s.entrants].sort((a, b) => (a.finishTime === null) - (b.finishTime === null) || (a.finishTime ?? 0) - (b.finishTime ?? 0) || b.q - a.q || a.id.localeCompare(b.id)).map((r, i) => ({ id: r.id, place: i + 1, status: r.status, time: r.finishTime }));
+    $("standings").replaceChildren(...rows.map((row) => {
+      const tr = document.createElement("tr");
+      if (row.id === s.playerId) tr.className = "player";
+      const r = s.entrants.find((r2) => r2.id === row.id);
+      for (const text of [row.place ?? "\u2014", row.id, row.status === "Finished" ? `${row.time.toFixed(3)}s` : row.status === "Racing" ? progress(r) : row.status]) {
+        const td = document.createElement("td");
+        td.textContent = text;
+        tr.append(td);
+      }
+      return tr;
+    }));
+    $("clearance").textContent = terminal ? terminal.cleared ? "Official placement uses native full precision and tie tolerance." : "Uncleared: no official result. Restart or inspect diagnostics." : "Live order is provisional.";
+    const n = radio.lines.length;
+    radio.consume(s.events);
+    const added = radio.lines.slice(n);
+    for (const line3 of added) {
+      const div = document.createElement("div");
+      div.textContent = `${line3.time.toFixed(2)} \xB7 ${line3.text}`;
+      $("radio").append(div);
+    }
+    while ($("radio").children.length > 160) $("radio").firstChild.remove();
+    radio.lines = radio.lines.slice(-200);
+    if (added.length) $("radio").scrollTop = $("radio").scrollHeight;
+    for (const option of $("sign").options) option.disabled = option.value === "Engage Rivals" && s.format === "Pure";
+    if ($("sign").selectedOptions[0]?.disabled) $("sign").value = signs[0];
+    const stopped = ["Ended", "Stalled", "Error"].includes(s.status);
+    $("queue").disabled = comparisonBusy || stopped || p.signs.remaining === 0 || p.status !== "Racing";
+    $("cancel").disabled = comparisonBusy || stopped || !p.signs.pending;
+    $("lower").disabled = comparisonBusy || stopped || !p.signs.active;
+    for (const id2 of ["start", "step"]) $(id2).disabled = comparisonBusy || stopped;
+    $("pause").disabled = comparisonBusy || !playing;
+    $("diagnostics").textContent = JSON.stringify({ prototype: "p1-playable-v1", presetChanges: session.changes, coaching: session.state.entrants[0].coachingContext ?? null, simulationVersion: s.version, seed: s.seed, tick: s.tick, events: s.events.length, maxTickMs: session.maxTickMs, rollingTickSamples: session.timings.length, geometrySamples: g.samples, clearance: terminal?.cleared ?? false }, null, 2);
+    record("domMs", performance.now() - domAt);
+    measurements.frames++;
+  }
+  $("prepare").onclick = safe(() => prepare());
+  $("restart").onclick = safe(() => prepare(session.options));
+  $("start").onclick = safe(() => {
+    playing = true;
+    last = null;
+    startedAt ?? (startedAt = performance.now());
+  });
+  $("pause").onclick = safe(() => {
+    playing = false;
+    last = null;
+  });
+  $("step").onclick = safe(() => {
+    playing = false;
+    startedAt ?? (startedAt = performance.now());
+    session.tick();
+  });
+  for (const [id2, action] of [["queue", "queue"], ["cancel", "cancel"], ["lower", "lower"]]) $(id2).onclick = safe(() => input(action));
+  function download(data, name) {
+    const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }));
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = name;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1e3);
+  }
+  $("export").onclick = safe(() => download({ ...session.metrics(), setup: session.setup, changes: session.changes, performance: measurements }, "BNT-P1-race-metrics.json"));
+  async function compare() {
+    if (comparisonBusy) return;
+    playing = false;
+    comparisonBusy = true;
+    for (const b of document.querySelectorAll("button,input,select")) b.disabled = true;
+    const output = [];
+    try {
+      const config2 = settings();
+      delete config2.coaching;
+      const rivals = [];
+      for (const build of ["contact", "handling"]) {
+        const test = new PlayableSession({ ...config2, build });
+        rivals.push(JSON.stringify(test.setup.entrants.slice(1)));
+        while (!["Ended", "Stalled", "Error"].includes(test.state.status) && test.state.tick < 2e4) {
+          const start = performance.now();
+          do {
+            test.tick();
+          } while (!["Ended", "Stalled", "Error"].includes(test.state.status) && test.state.tick < 2e4 && performance.now() - start < 8);
+          $("comparison").textContent = `Running ${build} \xB7 tick ${test.state.tick}. No Strategy Sign inputs; controls locked during comparison.`;
+          await new Promise((r) => setTimeout(r, 0));
+        }
+        output.push(test.metrics());
+      }
+      if (rivals[0] !== rivals[1]) throw Error("Comparison rival configuration mismatch");
+      window.P1.lastComparison = output;
+      $("comparison").replaceChildren();
+      for (const m of output) {
+        const pre = document.createElement("pre");
+        pre.textContent = JSON.stringify({ build: m.build, status: m.status, cleared: m.clearance.cleared, checksum: m.checksum, player: m.player }, null, 2);
+        $("comparison").append(pre);
+      }
+    } catch (e) {
+      $("error").textContent = e.message;
+    } finally {
+      comparisonBusy = false;
+      for (const b of document.querySelectorAll("button,input,select")) b.disabled = false;
+      lastDomKey = null;
+      render();
+    }
+  }
+  $("compare").onclick = compare;
+  function frame(now) {
+    try {
+      if (playing && !comparisonBusy) {
+        if (last !== null) {
+          const r = playback(session, debt, (now - last) / 1e3, Number($("speed").value));
+          debt = r.accumulator;
+        }
+        last = now;
+        finish();
+      }
+      if ((playing || now - lastRender > 200) && !comparisonBusy) {
+        render();
+        lastRender = now;
+      }
+    } catch (e) {
+      playing = false;
+      $("error").textContent = e.message;
+    }
+    requestAnimationFrame(frame);
+  }
+  window.P1 = { version: "p1-playable-v1", get session() {
+    return session;
+  }, get measurements() {
+    return measurements;
+  }, prepare, compare, classification, draw: render, lastComparison: null };
+  prepare();
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

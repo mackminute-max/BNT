@@ -20,7 +20,7 @@ export function normalizeCourse(input){
     if(!Object.hasOwn(coursePresets,input))throw Error('Unknown track preset');
     input = structuredClone(coursePresets[input]);
   }
-  if(!input||typeof input!=='object'||Array.isArray(input)||Object.keys(input).some(k=>!['id','name','kind','closed','lanes','segments','checkpoints','generation'].includes(k)))throw Error('Invalid course definition');
+  if(!input||typeof input!=='object'||Array.isArray(input)||Object.keys(input).some(k=>!['id','name','kind','closed','lanes','segments','checkpoints','generation','signPointPolicy'].includes(k)))throw Error('Invalid course definition');
   if(!identifier(input.id)||typeof input.name!=='string'||!input.name.length||input.name.length>100||!['Circuit','Rally'].includes(input.kind)||input.closed!==(input.kind==='Circuit')||input.lanes!==4)throw Error('Invalid course kind, topology or lanes');
   if(!Array.isArray(input.segments)||input.segments.length<2||input.segments.length>128)throw Error('Invalid course segments');
   const seen=new Set();
@@ -37,10 +37,14 @@ export function normalizeCourse(input){
   if(segments[0].turn!==0||segments[0].tiles<8)throw Error('Course needs a straight starting grid');
   if(!input.closed&&segments.at(-1).turn!==0)throw Error('Rally needs a straight terminal exit');
   const length=segments.reduce((n,s)=>n+s.length,0),cp=input.checkpoints??[];
-  if(!Array.isArray(cp)||(input.closed?cp.length!==0:cp.length!==3))throw Error('Rally requires three ordered intermediate checkpoints');
+  const policy=input.signPointPolicy;
+  if(policy!==undefined&&(!policy||Object.keys(policy).sort().join(',')!=='category,version'||policy.version!==1||!['short','medium','long'].includes(policy.category)||input.closed))throw Error('Invalid prototype Sign Point policy');
+  const fractions=policy?({short:[1/2],medium:[1/3,2/3],long:[1/4,1/2,3/4]})[policy.category]:null;
+  if(fractions&&(!Array.isArray(cp)||cp.some((p,i)=>p.distance!==length*fractions[i])))throw Error('Prototype Sign Points must match exact fractional policy');
+  if(!Array.isArray(cp)||(input.closed?cp.length!==0:cp.length!==(fractions?.length??3)))throw Error('Rally requires three ordered intermediate checkpoints');
   let previous=0;const ids=new Set();
   for(const p of cp){if(!p||Object.keys(p).some(k=>!['id','distance'].includes(k))||!identifier(p.id)||ids.has(p.id)||!finite(p.distance,Number.EPSILON,length-Number.EPSILON)||p.distance<=previous||p.distance>=length)throw Error('Invalid checkpoint position');previous=p.distance;ids.add(p.id);}
-  return {id:input.id,name:input.name,kind:input.kind,closed:input.closed,lanes:4,segments,checkpoints:structuredClone(cp),...(input.generation ? {generation:validateGenerationMetadata(input.generation)} : {})};
+  return {id:input.id,name:input.name,kind:input.kind,closed:input.closed,lanes:4,segments,checkpoints:structuredClone(cp),...(policy?{signPointPolicy:structuredClone(policy)}:{}),...(input.generation ? {generation:validateGenerationMetadata(input.generation)} : {})};
 }
 export function compileCourse(input,c){
   const definition=normalizeCourse(input);
