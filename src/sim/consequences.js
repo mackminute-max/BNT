@@ -1,3 +1,4 @@
+import {chargeAction} from './action-costs.js';
 import { resolveAction } from "../ai/telemetry.js";
 import { byId, clamp, random } from "../core/determinism.js";
 import { location, gap } from "../track/oval.js";
@@ -289,6 +290,7 @@ export function queueImpact(
     initiator: a.id,
     other: b.id,
   });
+  if(ram&&s.autonomous.ramFatigueCost)chargeAction(s,a,'ram-contact',{fatigue:s.autonomous.ramFatigueCost,sourceId:id});
   if (!s.consequences) return;
   const lateral = ram
     ? c.ramSpeed
@@ -507,6 +509,7 @@ export function resolveAttacks(s, intents, refresh) {
       success,
       reacted: react,
     });
+    const strainCost=intent.action==='ram'?s.autonomous.ramStrainCost:s.autonomous.weaponStrainCost;if(strainCost)chargeAction(s,a,intent.action==='ram'?'ram-steering':'weapon-attack',{strain:strainCost,sourceId:id});
     resolveAction(s, a, intent.decisionId, "position", true, null, { combatResult: success ? "Hit" : "Defended", attackId: id });
     if (!success) continue;
     if (intent.action === "ram")

@@ -67,6 +67,7 @@ export class Commentary {
   }
   consume(events, { enabled = true } = {}) {
     for (const e of events.slice(this.cursor)) {
+      const directive=e.type==='AI_DECISION'?e.effects.directive:null;if(enabled&&directive?.decision==='Resisting'&&!e.effects.executionError&&!e.effects.stressError){const key='directive-refusal:'+e.participants[0];if(e.time-(this.last.get(key)??-Infinity)>=8){this.lines.push({eventId:e.id,time:e.time,type:'DIRECTIVE_RESISTANCE',text:`${e.participants[0]} resists ${directive.sign}, choosing ${directive.selected}: ${directive.reason}.`});this.last.set(key,e.time);}continue;}
       if (!enabled || !templates[e.type]) continue;
       const key = e.type === "SEGMENT_ENTERED" ? e.type : `${e.type}:${e.participants.join(",")}`;
       if (

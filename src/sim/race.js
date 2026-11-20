@@ -1,3 +1,4 @@
+import {beginActionCosts,chargeAction,flushActionCosts,endActionCosts} from './action-costs.js';
 import {INCIDENT_CLOCK_VERSION} from './deterministic-log.js';
 import {validateCoaching} from '../ai/coaching.js';
 import {applyPayrollControl,validatePayrollContext} from '../model/payroll-control.js';
@@ -894,6 +895,7 @@ export function step(s, commands = []) {
   try {
     s.resolving = true;
     assertState(s);
+    beginActionCosts(s);
     // Paused UI signs were already applied before this boundary in the original
     // run. Replay them before condition/retirement effects, preserving event order.
     for (const command of commands.filter(c => c?.phase === "paused")) {
@@ -981,9 +983,11 @@ export function step(s, commands = []) {
         // Keep ownership of source tile until the entire simultaneous group resolves.
         if (m.boundaryTime <= elapsed + s.config.epsilon)
           r.q = m.nextQ - s.config.positionEpsilon;
+        const speedBefore=r.speed;
         r.speed = Math.max(0, r.speed + m.a * elapsed);
         if (Math.abs(m.limitTime - elapsed) <= s.config.epsilon)
           r.speed = m.target;
+        if(s.autonomous.accelerationFatiguePerSpeed&&r.status==='Racing'&&r.speed>speedBefore+s.config.epsilon)chargeAction(s,r,'acceleration',{fatigue:s.autonomous.accelerationFatiguePerSpeed*(r.speed-speedBefore),magnitude:r.speed-speedBefore});
       }
       s.time += elapsed;
       for(const r of units)observeProgress(s,r);
@@ -1064,6 +1068,7 @@ export function step(s, commands = []) {
       );
     });
     logRacecraft(s);
+    flushActionCosts(s);
     endIfDone(s);
     assertState(s);
     if (
@@ -1072,6 +1077,7 @@ export function step(s, commands = []) {
     )
       s.checkpoints.push({ tick: s.tick, checksum: digest(s) });
   } catch (error) {
+    flushActionCosts(s);
     s.status = "Error";
     emit(s, "INTEGRITY_ERROR", [], {
       message: error.message,
@@ -1083,6 +1089,7 @@ export function step(s, commands = []) {
       })),
     });
   } finally {
+    endActionCosts(s);
     s.resolving = false;
   }
   return s;

@@ -1,14 +1,14 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Blood and Thunder — P1.2 Playable</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Blood and Thunder — P1.3 Playable</title><style>
 :root{color-scheme:dark;--gold:#dfb863;--ink:#09151d;--panel:#142630;--text:#f5ecdb}*{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--text);font:16px system-ui,sans-serif}header{padding:14px 24px;border-bottom:3px double var(--gold);display:flex;align-items:center;justify-content:space-between;gap:15px}h1{font-size:25px;margin:0;text-transform:uppercase;letter-spacing:3px}h2{font-size:18px;color:var(--gold);margin:5px 0 12px}small,.hint{font-size:13px;color:#c7d4d6}main{max-width:1550px;margin:auto;padding:16px}.panel{background:var(--panel);border:1px solid #6d6852;padding:14px;box-shadow:5px 5px #03090d;margin-bottom:14px}.setup,.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:end}label{display:flex;flex-direction:column;font-size:13px;gap:5px}button,input,select{font:inherit;padding:9px;background:#203944;color:var(--text);border:1px solid #9b936e;border-radius:2px}button{cursor:pointer}button:hover:not(:disabled){background:#385463}button:disabled{opacity:.45;cursor:default}input[type=number]{width:110px}.race-layout>aside{position:sticky;top:12px;align-self:start}.race-layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px}canvas{display:block;width:100%;background:#0b1a24;border:1px solid #6d6852}#race{aspect-ratio:1000/550}#map{aspect-ratio:2/1}#hud{font-variant-numeric:tabular-nums;line-height:1.6;min-height:70px}.radio{height:210px;overflow:auto;padding:8px;background:#0a1920;line-height:1.6;border-left:3px solid var(--gold)}.radio div{padding:3px 6px;border-bottom:1px solid #263c44}table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}td,th{text-align:left;padding:7px;border-bottom:1px solid #40505a}tr.player{color:#ffe3a0;background:#283c40}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}#status{padding:10px;border-left:3px solid var(--gold);min-height:45px}#error{color:#ffaca3}details summary{cursor:pointer;color:var(--gold)}#comparison{overflow:auto}.controls{margin:12px 0}.badge{color:#76eac0}a{color:var(--gold)}@media(max-width:950px){.race-layout{grid-template-columns:1fr}aside{display:grid;grid-template-columns:1fr 1fr;gap:14px}header{display:block}}@media(max-width:950px){.race-layout aside>section:first-child{position:fixed;right:8px;bottom:8px;width:200px;z-index:10;padding:6px;box-shadow:0 0 12px #000}.race-layout aside>section:first-child h2{font-size:12px;margin-bottom:3px}.race-layout aside>section:first-child p,.race-layout aside>section:first-child #progress{display:none}}@media(max-width:600px){aside{display:block}main{padding:8px}h1{font-size:20px}.panel{padding:10px}}
-.endurance-panel{padding:12px 0;display:grid;gap:7px}.endurance-panel progress{width:100%;height:24px;accent-color:#70d9ae}.endurance-panel progress[data-state=working]{accent-color:#d8ce6c}.endurance-panel progress[data-state=fatigued]{accent-color:#edaa5b}.endurance-panel progress[data-state=exhausted]{accent-color:#ee8177}.terrain-legend{font-size:13px;display:flex;flex-wrap:wrap;gap:12px}.terrain-legend span{border-left:12px solid var(--surface);padding-left:5px}</style></head><body><header><div><h1>Blood &amp; Thunder</h1><small>P1.2 · Competitive racing &amp; interaction feedback · Deterministic playable race · Experimental development build</small></div><span class="badge">IN MEMORY · No career writes</span></header><main>
+.endurance-panel{padding:12px 0;display:grid;gap:7px}.endurance-panel progress{width:100%;height:24px;accent-color:#70d9ae}.endurance-panel progress[data-state=working]{accent-color:#d8ce6c}.endurance-panel progress[data-state=fatigued]{accent-color:#edaa5b}.endurance-panel progress[data-state=exhausted]{accent-color:#ee8177}.terrain-legend{font-size:13px;display:flex;flex-wrap:wrap;gap:12px}.terrain-legend span{border-left:12px solid var(--surface);padding-left:5px}</style></head><body><header><div><h1>Blood &amp; Thunder</h1><small>P1.3 · Endurance, tactical pacing &amp; obedience · Deterministic playable race · Experimental development build</small></div><span class="badge">IN MEMORY · No career writes</span></header><main>
 <section class="panel"><h2>Race preparation</h2><div class="setup">
 <label>Course<select id="course"></select></label><label>Format<select id="format"><option>Pure</option><option>Combat</option></select></label><label>Weather<select id="weather"><option>Clear</option><option>Rain</option><option>Heat</option><option>Fog</option><option>Storm</option></select></label>
-<label>Seed<input id="seed" type="number" value="145" step="1"></label><label>Player base ratings<select id="value"><option value="45">45 · Developing</option><option value="55" selected>55 · Balanced</option><option value="65">65 · Skilled</option></select></label><label>Player build<select id="build"><option value="baseline">Unmodified baseline</option><option value="contact">Contact Specialist</option><option value="handling">Handling / Endurance</option></select></label><label>Entrants<select id="field"><option>1</option><option>4</option><option selected>8</option></select></label><label>Laps<input id="laps" type="number" min="1" max="5" value="2"></label><button id="prepare">Prepare / New race</button></div>
+<label>Seed<input id="seed" type="number" value="145" step="1"></label><label>Player base ratings<select id="value"><option value="45">45 · Developing</option><option value="55" selected>55 · Balanced</option><option value="65">65 · Skilled</option></select></label><label>Player build<select id="build"><option value="baseline">Unmodified baseline</option><option value="contact">Contact Specialist</option><option value="handling">Handling / Endurance</option></select></label><label>Driver personality<select id="personality"><option value="native">Native driver traits</option><option>balanced</option><option>disciplined</option><option>aggressive</option><option>cautious</option><option>headstrong</option></select></label><label>Pacing policy<select id="pacingPolicy"><option value="tactical">P1.3 · high-authority orders</option><option value="competitive">P1.2 · competitive</option><option value="endurance">P1.1 · endurance</option><option value="legacy">Native legacy defaults</option></select></label><label>Entrants<select id="field"><option>1</option><option>4</option><option selected>8</option></select></label><label>Laps<input id="laps" type="number" min="1" max="5" value="2"></label><button id="prepare">Prepare / New race</button></div>
 <p class="hint">Settings apply when you prepare a race. Player is RU1. All other entrants stay fixed for controlled build comparisons. No saves or rewards: closing the page abandons this race. Keep the existing production HTML for the career and tuning workbench.</p>
 <details><summary>Optional player coaching — frozen on preparation</summary><label><span><input id="customCoach" type="checkbox"> Override experimental preset coaching</span></label><div class="setup" id="coachAxes"></div></details></section>
 <div id="error" role="alert"></div><div id="status" role="status" aria-live="polite"></div>
 <div class="race-layout"><section><div class="panel"><h2>Follow camera · top down</h2><p class="terrain-legend"><span style="--surface:#70533c">Dirt</span><span style="--surface:#69635d">Gravel</span><span style="--surface:#9b8150">Sand</span><span style="--surface:#445c48">Mud</span><span style="--surface:#52616d">Stone</span></p><canvas id="race" width="1000" height="550" aria-label="Native race follow camera"></canvas><div class="controls"><button id="start">Start / Resume</button><button id="pause">Pause</button><button id="step">One native tick</button><label>Playback<select id="speed"><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option></select></label><label>Follow zoom<input id="zoom" type="range" min="4" max="10" step="0.5" value="6"></label><button id="restart">Restart identical setup</button></div><section class="endurance-panel"><strong id="enduranceLabel">TEAM ENDURANCE 100%</strong><progress id="endurance" aria-label="Team endurance remaining: 100 minus average native beast fatigue" max="100" value="100"></progress><span id="enduranceTrend">→ Fatigue stable</span></section><div id="hud"></div></div>
-<div class="panel"><h2>Strategy Signs</h2><div class="controls"><select id="sign" aria-label="Select Strategy Sign"></select><button id="queue">Queue / Replace</button><button id="cancel">Cancel queued</button><button id="lower">Lower active</button></div><div id="signState"></div><p id="signResponse" role="status"></p><p id="interactionStatus" class="hint"></p><p class="hint">Accepted queuing spends one use; canceling does not refund it. Activation spends none. Signs wait for the starting signal, next start/finish crossing, or next Rally Sign Point.</p></div>
+<div class="panel"><h2>Strategy Signs</h2><div class="controls"><select id="sign" aria-label="Select Strategy Sign"></select><button id="queue">Queue / Replace</button><button id="cancel">Cancel queued</button><button id="lower">Lower active</button></div><div id="signState"></div><p id="exertionState"></p><p id="signResponse" role="status"></p><p id="interactionStatus" class="hint"></p><p class="hint">Accepted queuing spends one use; canceling does not refund it. Activation spends none. Signs wait for the starting signal, next start/finish crossing, or next Rally Sign Point. P1.3 Push orders maximum-effort Sprint; Conserve orders Conserve. Native constraints take priority; exceptional headstrong drivers can resist.</p></div>
 <div class="panel"><h2>Race radio</h2><div id="radio" class="radio" role="log" aria-label="Event-driven race commentary"></div></div></section>
 <aside><section class="panel"><h2>Full-course tactical map</h2><canvas id="map" width="640" height="320" aria-label="Full course, all competitors and Rally Sign Points"></canvas><p class="hint">White / gold: RU1 · green SP lines: Sign Points · arrows: travel direction. Camera follows a racing rival if RU1 retires.</p><div id="progress"></div></section><section class="panel"><h2>Live order / official results</h2><table><thead><tr><th>Pos</th><th>RU</th><th>Progress / result</th></tr></thead><tbody id="standings"></tbody></table><div id="clearance"></div></section></aside></div>
 <section class="panel"><h2>Development comparison harness</h2><p class="hint">Experimental values, not approved permanent balance. Both builds use the current preparation settings, identical rivals, grid, seed and weather. No Strategy Signs are queued in the controlled pair. This runs the real native engine and may take time on Long Rally.</p><button id="compare">Run controlled pair A / B</button><button id="export">Download current race metrics</button><div id="comparison" aria-live="polite"></div><details><summary>Current preset changes and diagnostics</summary><pre id="diagnostics"></pre></details></section>
@@ -40,6 +40,7 @@
       this.lastByActor = /* @__PURE__ */ new Map();
       this.lastOffenseByActor = /* @__PURE__ */ new Map();
       this.lastActivationByActor = /* @__PURE__ */ new Map();
+      this.lastExertionByActor = /* @__PURE__ */ new Map();
     }
     consume(state, { stepped = false } = {}) {
       if (this.cursor > state.events.length) throw Error("Interaction event stream replaced without reset");
@@ -51,6 +52,7 @@
       let added = 0;
       for (let i = this.cursor; i < state.events.length; i++) {
         const event = state.events[i];
+        if (event.type === "ACTION_EXERTION") this.lastExertionByActor.set(event.participants[0], event);
         if (event.type === "SIGN_ACTIVATED") this.lastActivationByActor.set(event.participants[0], { id: event.id, time: event.time });
         const effect = interaction(event);
         if (!effect) continue;
@@ -86,6 +88,11 @@
     if (r.status !== "Racing") return queued + `RU ${r.status} \u2014 no further tactical actions${sign ? ` \xB7 Last active Sign: ${sign}` : ""}`;
     if (!sign) return queued + `No active Sign \xB7 Current autonomous pace: ${r.pace}`;
     const recent = feed?.lastByActor.get(r.id), fresh = recent && state.time >= recent.time && state.time - recent.time <= 2;
+    const directive = r.ai?.diagnostics?.directive;
+    if (directive && r.ai.diagnostics.sign === sign) {
+      const d2 = r.ai.diagnostics, status = r.control === "Out of Control" || r.blocked ? "Constrained" : d2.compliance, label = { Obeying: "Following Orders", Constrained: "Physically Constrained", Resisting: "Resisting Orders", Inapplicable: "Unable to Act" }[status] ?? "Awaiting execution";
+      return queued + `${sign} \u2014 ${label} \xB7 Requested ${directive.requested} \xB7 Actual pace ${r.pace} \xB7 ${r.control === "Out of Control" ? "Native loss of control requires braking" : r.blocked ? "Forward path blocked" : d2.reason ?? directive.reason}`;
+    }
     if (sign === "Engage Rivals") {
       const offense = feed?.lastOffenseByActor.get(r.id), activation = feed?.lastActivationByActor.get(r.id), isRecent = offense && (!activation || offense.id >= activation.id) && state.time >= offense.time && state.time - offense.time <= 2;
       const action = isRecent ? `Native attack outcome: ${offense.label}` : "Seeking Opportunity";
@@ -93,28 +100,6 @@
     }
     const d = r.ai?.diagnostics, position = d?.executed?.position;
     return queued + `${sign} \u2014 active instruction \xB7 Current autonomous pace: ${r.pace}${position ? ` \xB7 Recorded decision (tick ${d.tick}): ${position}` : ""}${fresh ? ` \xB7 ${recent.label}` : ""}`;
-  }
-
-  // src/sim/deterministic-log.js
-  var INCIDENT_CLOCK_VERSION = "m2e-exponential-clock-v1";
-  function deterministicLog(x) {
-    if (!Number.isFinite(x) || x <= 0) throw Error("Deterministic log requires positive finite input");
-    let exponent = 0, m = x;
-    while (m < 1) {
-      m *= 2;
-      exponent--;
-    }
-    while (m >= 2) {
-      m /= 2;
-      exponent++;
-    }
-    const z = (m - 1) / (m + 1), square = z * z;
-    let term = z, sum = 0;
-    for (let n = 1; n <= 79; n += 2) {
-      sum += term / n;
-      term *= square;
-    }
-    return 2 * sum + exponent * 0.6931471805599453;
   }
 
   // src/core/determinism.js
@@ -166,160 +151,120 @@
   var byId = (a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
   var clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
 
-  // src/config/config.js
-  var VERSION = "0.6.0-tracks";
-  var rules = {
-    dt: [1e-3, 1, "s"],
-    epsilon: [1e-12, 1e-7, "s"],
-    positionEpsilon: [1e-10, 1e-5, "tile"],
-    maxSubevents: [1, 1e4, "groups/tick"],
-    laps: [1, 100, "laps"],
-    lanes: [1, 8, "lanes"],
-    straightLength: [1, 2e3, "m"],
-    innerRadius: [2, 500, "m"],
-    laneWidth: [1, 10, "m"],
-    straightTiles: [2, 200, "tiles/straight"],
-    turnTiles: [2, 200, "tiles/turn"],
-    gridGap: [1, 10, "tiles"],
-    gridOffset: [0.05, 0.95, "tile"],
-    grip: [0.1, 2, "multiplier"],
-    speedReference: [1, 100, "m/s"],
-    accelerationReference: [0.1, 30, "m/s\xB2"],
-    accelerationLimit: [0.1, 50, "m/s\xB2"],
-    brakingReference: [0.1, 50, "m/s\xB2"],
-    lateralReference: [0.1, 30, "m/s\xB2"],
-    referenceMass: [1, 5e3, "kg"],
-    referencePower: [1, 1e3, "score"],
-    driverMass: [1, 300, "kg"],
-    beastLoadMass: [0, 1e3, "kg/beast"],
-    bottleneck: [0, 1, "weight"],
-    mismatchWeight: [0, 0.5, "weight"],
-    attributeStrength: [0, 1.8, "strength"],
-    cornerRisk: [0, 10, "risk coefficient"],
-    cornerSpeedLoss: [0, 0.9, "fraction"],
-    clearSpeed: [1, 50, "m/s"],
-    exitTiles: [1, 10, "tiles after line"],
-    finishTolerance: [0, 0.1, "s"],
-    maxRaceTime: [1, 2e4, "s"],
-    stallTime: [1, 1e3, "s"]
-  };
-  var defaults = {
-    schema: 1,
-    dt: 0.05,
-    epsilon: 1e-9,
-    positionEpsilon: 1e-8,
-    maxSubevents: 1024,
-    laps: 3,
-    lanes: 4,
-    straightLength: 160,
-    innerRadius: 35,
-    laneWidth: 4,
-    straightTiles: 20,
-    turnTiles: 20,
-    gridGap: 2,
-    gridOffset: 0.5,
-    grip: 1,
-    speedReference: 18,
-    accelerationReference: 3,
-    accelerationLimit: 8,
-    brakingReference: 6,
-    lateralReference: 5,
-    referenceMass: 300,
-    referencePower: 100,
-    driverMass: 75,
-    beastLoadMass: 10,
-    bottleneck: 0.3,
-    mismatchWeight: 0.12,
-    attributeStrength: 0.8,
-    cornerRisk: 0.4,
-    cornerSpeedLoss: 0.25,
-    clearSpeed: 10,
-    exitTiles: 3,
-    finishTolerance: 1e-3,
-    maxRaceTime: 1200,
-    stallTime: 20
-  };
-  var tuningDefaults = Object.freeze({
-    crowdSensitivity: 0.2,
-    coordinationBase: 0.65,
-    coordinationDiscipline: 0.25,
-    coordinationHandling: 0.2,
-    coordinationMin: 0.5,
-    coordinationMax: 1.1,
-    impairment: 0.5,
-    handlingAgility: 0.35,
-    handlingManeuverability: 0.25,
-    handlingDriving: 0.25,
-    handlingStability: 0.15,
-    controlDiscipline: 0.3,
-    controlDriving: 0.25,
-    controlHandling: 0.25,
-    controlStability: 0.2,
-    massExponent: 0.5,
-    speedMassExponent: 0.25,
-    chariotSpeedFloor: 0.5,
-    combatSkill: 0.6,
-    combatEquipment: 0.2,
-    combatControl: 0.2,
-    paceConserve: 0.6,
-    paceMaintain: 0.85,
-    pacePush: 0.95,
-    paceSprint: 1,
-    safeCornerFraction: 0.95
-  });
-  var integers = /* @__PURE__ */ new Set([
-    "maxSubevents",
-    "laps",
-    "lanes",
-    "straightTiles",
-    "turnTiles",
-    "gridGap",
-    "exitTiles"
-  ]);
-  function config(overrides = {}) {
-    if (!overrides || typeof overrides !== "object" || Array.isArray(overrides))
-      throw new Error("Configuration must be an object");
-    for (const k of Object.keys(overrides))
-      if (!Object.hasOwn(defaults, k) && k !== "tuning")
-        throw new Error(`Unknown configuration field: ${k}`);
-    const tuning = { ...tuningDefaults, ...overrides.tuning };
-    if (overrides.tuning !== void 0 && (!overrides.tuning || typeof overrides.tuning !== "object" || Array.isArray(overrides.tuning)))
-      throw new Error("Invalid tuning object");
-    for (const [k, v] of Object.entries(tuning))
-      if (!Object.hasOwn(tuningDefaults, k) && !["beastExhaustionStart", "beastExhaustionStrength"].includes(k) || !Number.isFinite(v) || v < 0 || v > 2)
-        throw new Error(`Invalid tuning.${k}: expected 0..2`);
-    if (tuning.beastExhaustionStart !== void 0 && tuning.beastExhaustionStart >= 1 || tuning.beastExhaustionStrength !== void 0 && tuning.beastExhaustionStrength > 1 || tuning.crowdSensitivity > 1 || tuning.impairment > 1 || tuning.chariotSpeedFloor > 1 || tuning.coordinationMin > tuning.coordinationMax)
-      throw new Error("Invalid tuning limits");
-    for (const group of [
-      [
-        "handlingAgility",
-        "handlingManeuverability",
-        "handlingDriving",
-        "handlingStability"
-      ],
-      [
-        "controlDiscipline",
-        "controlDriving",
-        "controlHandling",
-        "controlStability"
-      ],
-      ["combatSkill", "combatEquipment", "combatControl"]
-    ])
-      if (Math.abs(group.reduce((sum, k) => sum + tuning[k], 0) - 1) > 1e-9)
-        throw new Error("Tuning weight group must sum to 1");
-    const c = { ...defaults, ...overrides, tuning: Object.freeze(tuning) };
-    if (c.schema !== 1) throw new Error("Unsupported configuration schema");
-    for (const [k, [lo, hi]] of Object.entries(rules)) {
-      if (!Number.isFinite(c[k]) || c[k] < lo || c[k] > hi || integers.has(k) && !Number.isInteger(c[k]))
-        throw new Error(
-          `Invalid ${k}: expected ${lo}..${hi}${integers.has(k) ? " integer" : ""}`
-        );
+  // src/events/events.js
+  function emit(s, type, participants = [], effects2 = {}) {
+    const event = {
+      id: s.events.length + 1,
+      type,
+      time: s.time,
+      tick: s.tick,
+      fraction: (s.time - s.tick * s.config.dt) / s.config.dt,
+      participants: [...participants].sort(),
+      effects: structuredClone(effects2)
+    };
+    s.events.push(event);
+    return event;
+  }
+
+  // src/sim/action-costs.js
+  var collectors = /* @__PURE__ */ new WeakMap();
+  function beginActionCosts(s) {
+    if (s.autonomous.accelerationFatiguePerSpeed || s.autonomous.weaponStrainCost || s.autonomous.ramStrainCost || s.autonomous.ramFatigueCost) collectors.set(s, { from: s.time, actors: /* @__PURE__ */ new Map() });
+  }
+  function chargeAction(s, r, kind, { fatigue = 0, strain = 0, magnitude = 1, sourceId = null } = {}) {
+    if (![fatigue, strain, magnitude].every((n) => Number.isFinite(n) && n >= 0)) throw Error("Invalid action resource cost");
+    if (r.status !== "Racing" || !fatigue && !strain) return;
+    const actualFatigue = r.ru.beasts.map((b) => {
+      const old = b.fatigue;
+      b.fatigue = Math.min(100, Math.max(0, old + fatigue * (1.5 - b.endurance / 100)));
+      return b.fatigue - old;
+    });
+    const before = r.ru.driver.strain;
+    r.ru.driver.strain = Math.min(100, Math.max(0, before + strain));
+    const actualStrain = r.ru.driver.strain - before;
+    const collector = collectors.get(s), record2 = collector?.actors.get(r.id) ?? { beastFatigue: r.ru.beasts.map(() => 0), driverStrain: 0, sources: {} };
+    actualFatigue.forEach((n, i) => record2.beastFatigue[i] += n);
+    record2.driverStrain += actualStrain;
+    const source = record2.sources[kind] ?? { count: 0, magnitude: 0, sourceIds: [] };
+    source.count++;
+    source.magnitude += magnitude;
+    if (sourceId) source.sourceIds.push(sourceId);
+    record2.sources[kind] = source;
+    if (collector) collector.actors.set(r.id, record2);
+    else emit(s, "ACTION_EXERTION", [r.id], { version: 1, from: s.time, through: s.time, ...record2 });
+  }
+  function flushActionCosts(s) {
+    const c = collectors.get(s);
+    if (!c) return;
+    for (const [id2, record2] of [...c.actors].sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0)) emit(s, "ACTION_EXERTION", [id2], { version: 1, from: c.from, through: s.time, ...record2 });
+    collectors.delete(s);
+  }
+  function endActionCosts(s) {
+    collectors.delete(s);
+  }
+
+  // src/sim/deterministic-log.js
+  var INCIDENT_CLOCK_VERSION = "m2e-exponential-clock-v1";
+  function deterministicLog(x) {
+    if (!Number.isFinite(x) || x <= 0) throw Error("Deterministic log requires positive finite input");
+    let exponent = 0, m = x;
+    while (m < 1) {
+      m *= 2;
+      exponent--;
     }
-    if (c.exitTiles >= c.straightTiles - Math.floor(c.straightTiles / 2))
-      throw new Error("Exit must fit inside first straight");
-    if (c.epsilon >= c.dt / 1e3)
-      throw new Error("Event epsilon too large for tick");
-    return Object.freeze(c);
+    while (m >= 2) {
+      m /= 2;
+      exponent++;
+    }
+    const z = (m - 1) / (m + 1), square = z * z;
+    let term = z, sum = 0;
+    for (let n = 1; n <= 79; n += 2) {
+      sum += term / n;
+      term *= square;
+    }
+    return 2 * sum + exponent * 0.6931471805599453;
+  }
+
+  // src/ai/coaching.js
+  var coachingAxes = Object.freeze(["aggression", "conservation", "positioning", "riskTolerance"]);
+  var coachingDefaults = Object.freeze({ aggression: 0.5, conservation: 0.5, positioning: 0.5, riskTolerance: 0.5 });
+  function validateCoaching(c) {
+    if (c === void 0 || c === null) return;
+    exact(c, ["version", "axes", "weights"]);
+    if (c.version !== 1) throw Error("Unsupported coaching version");
+    exact(c.axes, coachingAxes);
+    exact(c.weights, coachingAxes);
+    for (const k of coachingAxes) if (!Number.isFinite(c.axes[k]) || c.axes[k] < -1 || c.axes[k] > 1 || !Number.isFinite(c.weights[k]) || c.weights[k] < 0 || c.weights[k] > 2) throw Error("Coaching values outside bounded contract");
+  }
+  function coachingProfile(axes = {}) {
+    const c = { version: 1, axes: Object.fromEntries(coachingAxes.map((k) => [k, axes[k] ?? 0])), weights: { ...coachingDefaults } };
+    validateCoaching(c);
+    return c;
+  }
+  var preference = {
+    aggression: { attack: 1, ram: 1, defendCombat: -1, disengage: -1 },
+    conservation: { Conserve: 1, Push: -1, Sprint: -1 },
+    positioning: { inward: 1, outward: 1, overtake: 1, hold: -1, defend: -1 },
+    riskTolerance: { Sprint: 1, Push: 1, ram: 1, inward: 1, outward: 1, Conserve: -1, avoid: -1, yield: -1, defendCombat: -1 }
+  };
+  var conflicts = {
+    "Push the Pace": { conservation: 1, riskTolerance: -1 },
+    "Conserve Strength": { conservation: -1, riskTolerance: 1 },
+    "Seek Open Track": { positioning: -1 },
+    "Race Defensively": { aggression: 1, conservation: -1, riskTolerance: 1 },
+    "Engage Rivals": { aggression: -1, riskTolerance: -1 },
+    "Hold Position": { positioning: 1, riskTolerance: 1 }
+  };
+  function coachingUtility(c, action, sign) {
+    validateCoaching(c);
+    if (!c) return 0;
+    let sum = 0;
+    for (const k of coachingAxes) {
+      const axis = c.axes[k];
+      if (conflicts[sign]?.[k] === Math.sign(axis)) continue;
+      sum += axis * c.weights[k] * (preference[k][action] ?? 0);
+    }
+    return sum;
   }
 
   // src/model/payroll-control.js
@@ -333,6 +278,164 @@
     validatePayrollContext(context);
     if (context === void 0 || context.multiplier === 1) return derived;
     return { ...derived, control: clamp(derived.control * context.multiplier, 0, 100) };
+  }
+
+  // src/ai/directives.js
+  var obedienceRules = Object.freeze({ version: "p1.3-directives-v1", weights: Object.freeze({ independence: 0.45, aggression: 0.25, incaution: 0.15, impatience: 0.15 }) });
+  function independence(personality2) {
+    const w = obedienceRules.weights;
+    return w.independence * (100 - personality2.tacticalDiscipline) + w.aggression * personality2.aggression + w.incaution * (100 - personality2.caution) + w.impatience * (100 - personality2.patience);
+  }
+  function paceDirective(s, r, candidates) {
+    if (!s.autonomous.directiveAuthority) return null;
+    const requested = { "Push the Pace": "Sprint", "Conserve Strength": "Conserve" }[r.signs.active];
+    if (!requested) return null;
+    const base = { version: obedienceRules.version, sign: r.signs.active, requested, score: independence(r.ru.driver.personality), selected: requested, decision: "Obeying", reason: "Active pace directive takes priority over ordinary utility" };
+    if (r.status !== "Racing" || r.physical !== "Live") return { ...base, decision: "Inapplicable", reason: "RU is not an active racer" };
+    if (r.control === "Out of Control") return { ...base, selected: "Conserve", decision: "Constrained", reason: "Native loss of control requires braking" };
+    if (!(r.derived.acceleration > 0) || !(r.derived.maxSpeed > 0)) return { ...base, decision: "Constrained", reason: "Native derived capability cannot accelerate" };
+    const p = r.ru.driver.personality, eligible = p.tacticalDiscipline <= (s.autonomous.obedienceDisciplineCeiling ?? 30) && base.score >= (s.autonomous.obedienceResistanceThreshold ?? 80);
+    if (eligible) {
+      const own = candidates.filter((x) => ["Conserve", "Maintain", "Push", "Sprint"].includes(x.action)).map((x) => ({ action: x.action, score: x.score - (x.terms.sign ?? 0) - (x.terms.noise ?? 0) })).sort((a, b) => b.score - a.score || a.action.localeCompare(b.action))[0];
+      if (own && own.action !== requested) return { ...base, selected: own.action, decision: "Resisting", reason: `Headstrong independence ${base.score.toFixed(1)}; tactical discipline ${p.tacticalDiscipline}; deterministic own utility selects ${own.action}` };
+    }
+    return base;
+  }
+  function directiveCompliance(d) {
+    if (!d.directive) return null;
+    if (d.directive.decision === "Inapplicable") return "Inapplicable";
+    if (d.directive.decision === "Constrained" || d.executionError || d.stressError || d.physicalOutcome?.pace.status === "Prevented" || d.physicalOutcome?.movement.status === "Blocked") return "Constrained";
+    return d.directive.decision === "Resisting" ? "Resisting" : d.effective?.pace === d.directive.requested ? "Obeying" : "Constrained";
+  }
+
+  // src/ai/signs.js
+  var signs = [
+    "Push the Pace",
+    "Conserve Strength",
+    "Seek Open Track",
+    "Race Defensively",
+    "Engage Rivals",
+    "Hold Position"
+  ];
+  function signCommand(s, cmd) {
+    const r = s.entrants.find((r2) => r2.id === s.playerId);
+    const reject = (reason) => {
+      emit(s, "SIGN_REJECTED", [s.playerId], { reason });
+      return false;
+    };
+    if (!r || r.status !== "Racing") return reject("Player is not racing");
+    if (cmd.action === "queue") {
+      if (!signs.includes(cmd.sign) || cmd.sign === "Engage Rivals" && s.format === "Pure")
+        return reject("Sign illegal for format");
+      if (!r.signs.remaining) return reject("No sign uses remaining");
+      r.signs.remaining--;
+      r.signs.pending = cmd.sign;
+      emit(s, "SIGN_QUEUED", [r.id], {
+        sign: cmd.sign,
+        remaining: r.signs.remaining
+      });
+    } else if (cmd.action === "cancel") {
+      r.signs.pending = null;
+      emit(s, "SIGN_CANCELED", [r.id], { remaining: r.signs.remaining });
+    } else if (cmd.action === "lower") {
+      r.signs.active = null;
+      r.ai.nextDecision = s.tick;
+      emit(s, "SIGN_LOWERED", [r.id]);
+    } else return reject("Unknown sign action");
+    return true;
+  }
+  function activateSign(s, r) {
+    if (r.status !== "Racing" || !r.signs.pending) return;
+    r.signs.active = r.signs.pending;
+    r.signs.pending = null;
+    r.ai.nextDecision = s.tick;
+    emit(s, "SIGN_ACTIVATED", [r.id], { sign: r.signs.active });
+  }
+  function signPreference(sign, action, c) {
+    if (sign === "Push the Pace")
+      return ["Push", "Sprint"].includes(action) ? c.signPush : 0;
+    if (sign === "Conserve Strength")
+      return action === "Conserve" ? c.signConserve : 0;
+    if (sign === "Seek Open Track")
+      return ["inward", "outward", "overtake"].includes(action) ? c.signOpen : 0;
+    if (sign === "Race Defensively")
+      return [
+        "Conserve",
+        "avoid",
+        "yield",
+        "hold",
+        "defendCombat",
+        "disengage"
+      ].includes(action) ? c.signDefensive : 0;
+    if (sign === "Hold Position")
+      return ["hold", "defend", "Maintain"].includes(action) ? c.signHold : 0;
+    if (sign === "Engage Rivals")
+      return ["attack", "ram"].includes(action) ? c.signEngage : 0;
+    return 0;
+  }
+
+  // src/ai/telemetry.js
+  function compliance(d, tuning) {
+    if (d.directive) return directiveCompliance(d);
+    if (!d.sign) return null;
+    if (!d.candidates.some((x) => signPreference(d.sign, x.action, tuning) > 0))
+      return "Inapplicable";
+    if (d.executionError || d.stressError) return "Prevented";
+    const pacePreferred = signPreference(d.sign, d.effective.pace, tuning) > 0;
+    const positionPreferred = signPreference(d.sign, d.effective.position, tuning) > 0;
+    const paceApplied = d.physicalOutcome.pace.status === "Applied" && !(d.sign === "Push the Pace" && d.physicalOutcome.movement.status === "Blocked");
+    const positionStatus = d.physicalOutcome.position.status;
+    if (["Push the Pace", "Conserve Strength"].includes(d.sign))
+      return pacePreferred ? paceApplied ? "Followed" : "Prevented" : "Overridden";
+    if (positionPreferred && positionStatus === "Pending") return null;
+    const paceFollowed = pacePreferred && paceApplied;
+    const positionFollowed = positionPreferred && positionStatus === "Succeeded";
+    if (positionFollowed) return "Followed";
+    if (paceFollowed) return "Partially Followed";
+    if (positionPreferred && positionStatus === "Prevented" || pacePreferred && !paceApplied)
+      return "Prevented";
+    return "Overridden";
+  }
+  function beginDecision(s, r, diagnostic, failed, position) {
+    const pending = !failed && (position?.lane != null || ["attack", "ram"].includes(position?.action));
+    const action = failed ? null : position?.action ?? null;
+    const paceApplied = !failed && r.control !== "Out of Control";
+    r.ai.diagnostics = {
+      ...diagnostic,
+      decisionId: s.events.length + 1,
+      sign: r.signs.active,
+      intended: { ...diagnostic.chosen, lane: position?.lane ?? null, target: position?.target ?? null },
+      effective: { pace: failed ? null : r.pace, position: action, lane: failed ? null : position?.lane ?? null, target: failed ? null : position?.target ?? null },
+      executed: { pace: paceApplied ? r.pace : null, position: pending ? null : action },
+      physicalOutcome: {
+        pace: { action: r.pace, status: paceApplied ? "Applied" : "Prevented", reason: failed ? "Driver error" : paceApplied ? null : "Out of control" },
+        position: { action, status: failed ? "Prevented" : pending ? "Pending" : "Succeeded", lane: r.lane, reason: failed ? "Driver error" : null },
+        movement: { status: r.blocked ? "Blocked" : "Not evaluated" }
+      }
+    };
+    r.ai.diagnostics.compliance = compliance(r.ai.diagnostics, s.autonomous);
+    emit(s, "AI_DECISION", [r.id], r.ai.diagnostics);
+    return r.ai.diagnostics.decisionId;
+  }
+  function resolveAction(s, r, decisionId, domain, succeeded, reason = null, details = {}) {
+    const d = r?.ai.diagnostics;
+    if (!d || decisionId == null || d.decisionId !== decisionId) return;
+    const outcome = domain === "movement" ? { status: succeeded ? "Moving" : "Blocked", reason, ...details } : { ...d.physicalOutcome[domain], status: succeeded ? domain === "pace" ? "Applied" : "Succeeded" : "Prevented", reason, ...details };
+    d.physicalOutcome[domain] = outcome;
+    if (domain === "pace") d.executed.pace = succeeded ? d.effective.pace : null;
+    if (domain === "position") d.executed.position = succeeded ? d.effective.position : null;
+    d.compliance = compliance(d, s.autonomous);
+    if (reason) d.reason = reason;
+    emit(s, "AI_EXECUTION_RESULT", [r.id], {
+      decisionId: d.decisionId,
+      sign: d.sign,
+      domain,
+      effective: d.effective,
+      executed: d.executed,
+      physicalOutcome: d.physicalOutcome,
+      compliance: d.compliance,
+      reason: d.reason
+    });
   }
 
   // src/track/surfaces.js
@@ -584,150 +687,6 @@
     return s.track.course && !s.track.closed ? s.track.cells : s.config.laps * s.track.cells;
   }
 
-  // src/events/events.js
-  function emit(s, type, participants = [], effects2 = {}) {
-    const event = {
-      id: s.events.length + 1,
-      type,
-      time: s.time,
-      tick: s.tick,
-      fraction: (s.time - s.tick * s.config.dt) / s.config.dt,
-      participants: [...participants].sort(),
-      effects: structuredClone(effects2)
-    };
-    s.events.push(event);
-    return event;
-  }
-
-  // src/ai/signs.js
-  var signs = [
-    "Push the Pace",
-    "Conserve Strength",
-    "Seek Open Track",
-    "Race Defensively",
-    "Engage Rivals",
-    "Hold Position"
-  ];
-  function signCommand(s, cmd) {
-    const r = s.entrants.find((r2) => r2.id === s.playerId);
-    const reject = (reason) => {
-      emit(s, "SIGN_REJECTED", [s.playerId], { reason });
-      return false;
-    };
-    if (!r || r.status !== "Racing") return reject("Player is not racing");
-    if (cmd.action === "queue") {
-      if (!signs.includes(cmd.sign) || cmd.sign === "Engage Rivals" && s.format === "Pure")
-        return reject("Sign illegal for format");
-      if (!r.signs.remaining) return reject("No sign uses remaining");
-      r.signs.remaining--;
-      r.signs.pending = cmd.sign;
-      emit(s, "SIGN_QUEUED", [r.id], {
-        sign: cmd.sign,
-        remaining: r.signs.remaining
-      });
-    } else if (cmd.action === "cancel") {
-      r.signs.pending = null;
-      emit(s, "SIGN_CANCELED", [r.id], { remaining: r.signs.remaining });
-    } else if (cmd.action === "lower") {
-      r.signs.active = null;
-      r.ai.nextDecision = s.tick;
-      emit(s, "SIGN_LOWERED", [r.id]);
-    } else return reject("Unknown sign action");
-    return true;
-  }
-  function activateSign(s, r) {
-    if (r.status !== "Racing" || !r.signs.pending) return;
-    r.signs.active = r.signs.pending;
-    r.signs.pending = null;
-    r.ai.nextDecision = s.tick;
-    emit(s, "SIGN_ACTIVATED", [r.id], { sign: r.signs.active });
-  }
-  function signPreference(sign, action, c) {
-    if (sign === "Push the Pace")
-      return ["Push", "Sprint"].includes(action) ? c.signPush : 0;
-    if (sign === "Conserve Strength")
-      return action === "Conserve" ? c.signConserve : 0;
-    if (sign === "Seek Open Track")
-      return ["inward", "outward", "overtake"].includes(action) ? c.signOpen : 0;
-    if (sign === "Race Defensively")
-      return [
-        "Conserve",
-        "avoid",
-        "yield",
-        "hold",
-        "defendCombat",
-        "disengage"
-      ].includes(action) ? c.signDefensive : 0;
-    if (sign === "Hold Position")
-      return ["hold", "defend", "Maintain"].includes(action) ? c.signHold : 0;
-    if (sign === "Engage Rivals")
-      return ["attack", "ram"].includes(action) ? c.signEngage : 0;
-    return 0;
-  }
-
-  // src/ai/telemetry.js
-  function compliance(d, tuning) {
-    if (!d.sign) return null;
-    if (!d.candidates.some((x) => signPreference(d.sign, x.action, tuning) > 0))
-      return "Inapplicable";
-    if (d.executionError || d.stressError) return "Prevented";
-    const pacePreferred = signPreference(d.sign, d.effective.pace, tuning) > 0;
-    const positionPreferred = signPreference(d.sign, d.effective.position, tuning) > 0;
-    const paceApplied = d.physicalOutcome.pace.status === "Applied" && !(d.sign === "Push the Pace" && d.physicalOutcome.movement.status === "Blocked");
-    const positionStatus = d.physicalOutcome.position.status;
-    if (["Push the Pace", "Conserve Strength"].includes(d.sign))
-      return pacePreferred ? paceApplied ? "Followed" : "Prevented" : "Overridden";
-    if (positionPreferred && positionStatus === "Pending") return null;
-    const paceFollowed = pacePreferred && paceApplied;
-    const positionFollowed = positionPreferred && positionStatus === "Succeeded";
-    if (positionFollowed) return "Followed";
-    if (paceFollowed) return "Partially Followed";
-    if (positionPreferred && positionStatus === "Prevented" || pacePreferred && !paceApplied)
-      return "Prevented";
-    return "Overridden";
-  }
-  function beginDecision(s, r, diagnostic, failed, position) {
-    const pending = !failed && (position?.lane != null || ["attack", "ram"].includes(position?.action));
-    const action = failed ? null : position?.action ?? null;
-    const paceApplied = !failed && r.control !== "Out of Control";
-    r.ai.diagnostics = {
-      ...diagnostic,
-      decisionId: s.events.length + 1,
-      sign: r.signs.active,
-      intended: { ...diagnostic.chosen, lane: position?.lane ?? null, target: position?.target ?? null },
-      effective: { pace: failed ? null : r.pace, position: action, lane: failed ? null : position?.lane ?? null, target: failed ? null : position?.target ?? null },
-      executed: { pace: paceApplied ? r.pace : null, position: pending ? null : action },
-      physicalOutcome: {
-        pace: { action: r.pace, status: paceApplied ? "Applied" : "Prevented", reason: failed ? "Driver error" : paceApplied ? null : "Out of control" },
-        position: { action, status: failed ? "Prevented" : pending ? "Pending" : "Succeeded", lane: r.lane, reason: failed ? "Driver error" : null },
-        movement: { status: r.blocked ? "Blocked" : "Not evaluated" }
-      }
-    };
-    r.ai.diagnostics.compliance = compliance(r.ai.diagnostics, s.autonomous);
-    emit(s, "AI_DECISION", [r.id], r.ai.diagnostics);
-    return r.ai.diagnostics.decisionId;
-  }
-  function resolveAction(s, r, decisionId, domain, succeeded, reason = null, details = {}) {
-    const d = r?.ai.diagnostics;
-    if (!d || decisionId == null || d.decisionId !== decisionId) return;
-    const outcome = domain === "movement" ? { status: succeeded ? "Moving" : "Blocked", reason, ...details } : { ...d.physicalOutcome[domain], status: succeeded ? domain === "pace" ? "Applied" : "Succeeded" : "Prevented", reason, ...details };
-    d.physicalOutcome[domain] = outcome;
-    if (domain === "pace") d.executed.pace = succeeded ? d.effective.pace : null;
-    if (domain === "position") d.executed.position = succeeded ? d.effective.position : null;
-    d.compliance = compliance(d, s.autonomous);
-    if (reason) d.reason = reason;
-    emit(s, "AI_EXECUTION_RESULT", [r.id], {
-      decisionId: d.decisionId,
-      sign: d.sign,
-      domain,
-      effective: d.effective,
-      executed: d.executed,
-      physicalOutcome: d.physicalOutcome,
-      compliance: d.compliance,
-      reason: d.reason
-    });
-  }
-
   // src/sim/consequences.js
   var consequenceDefaults = Object.freeze({
     componentResistanceBase: 0.5,
@@ -957,6 +916,7 @@
       initiator: a.id,
       other: b.id
     });
+    if (ram && s.autonomous.ramFatigueCost) chargeAction(s, a, "ram-contact", { fatigue: s.autonomous.ramFatigueCost, sourceId: id2 });
     if (!s.consequences) return;
     const lateral = ram ? c.ramSpeed : side && Math.max(av, bv) > 0 ? c.sideSpeed : 0;
     const relative = Math.hypot(closing, lateral);
@@ -1111,6 +1071,8 @@
         success,
         reacted: react
       });
+      const strainCost = intent.action === "ram" ? s.autonomous.ramStrainCost : s.autonomous.weaponStrainCost;
+      if (strainCost) chargeAction(s, a, intent.action === "ram" ? "ram-steering" : "weapon-attack", { strain: strainCost, sourceId: id2 });
       resolveAction(s, a, intent.decisionId, "position", true, null, { combatResult: success ? "Hit" : "Defended", attackId: id2 });
       if (!success) continue;
       if (intent.action === "ram")
@@ -1242,6 +1204,162 @@
   }
   function rescheduleIncidents(s) {
     s.nextIncidentAt = nextRandom(s);
+  }
+
+  // src/config/config.js
+  var VERSION = "0.6.0-tracks";
+  var rules = {
+    dt: [1e-3, 1, "s"],
+    epsilon: [1e-12, 1e-7, "s"],
+    positionEpsilon: [1e-10, 1e-5, "tile"],
+    maxSubevents: [1, 1e4, "groups/tick"],
+    laps: [1, 100, "laps"],
+    lanes: [1, 8, "lanes"],
+    straightLength: [1, 2e3, "m"],
+    innerRadius: [2, 500, "m"],
+    laneWidth: [1, 10, "m"],
+    straightTiles: [2, 200, "tiles/straight"],
+    turnTiles: [2, 200, "tiles/turn"],
+    gridGap: [1, 10, "tiles"],
+    gridOffset: [0.05, 0.95, "tile"],
+    grip: [0.1, 2, "multiplier"],
+    speedReference: [1, 100, "m/s"],
+    accelerationReference: [0.1, 30, "m/s\xB2"],
+    accelerationLimit: [0.1, 50, "m/s\xB2"],
+    brakingReference: [0.1, 50, "m/s\xB2"],
+    lateralReference: [0.1, 30, "m/s\xB2"],
+    referenceMass: [1, 5e3, "kg"],
+    referencePower: [1, 1e3, "score"],
+    driverMass: [1, 300, "kg"],
+    beastLoadMass: [0, 1e3, "kg/beast"],
+    bottleneck: [0, 1, "weight"],
+    mismatchWeight: [0, 0.5, "weight"],
+    attributeStrength: [0, 1.8, "strength"],
+    cornerRisk: [0, 10, "risk coefficient"],
+    cornerSpeedLoss: [0, 0.9, "fraction"],
+    clearSpeed: [1, 50, "m/s"],
+    exitTiles: [1, 10, "tiles after line"],
+    finishTolerance: [0, 0.1, "s"],
+    maxRaceTime: [1, 2e4, "s"],
+    stallTime: [1, 1e3, "s"]
+  };
+  var defaults = {
+    schema: 1,
+    dt: 0.05,
+    epsilon: 1e-9,
+    positionEpsilon: 1e-8,
+    maxSubevents: 1024,
+    laps: 3,
+    lanes: 4,
+    straightLength: 160,
+    innerRadius: 35,
+    laneWidth: 4,
+    straightTiles: 20,
+    turnTiles: 20,
+    gridGap: 2,
+    gridOffset: 0.5,
+    grip: 1,
+    speedReference: 18,
+    accelerationReference: 3,
+    accelerationLimit: 8,
+    brakingReference: 6,
+    lateralReference: 5,
+    referenceMass: 300,
+    referencePower: 100,
+    driverMass: 75,
+    beastLoadMass: 10,
+    bottleneck: 0.3,
+    mismatchWeight: 0.12,
+    attributeStrength: 0.8,
+    cornerRisk: 0.4,
+    cornerSpeedLoss: 0.25,
+    clearSpeed: 10,
+    exitTiles: 3,
+    finishTolerance: 1e-3,
+    maxRaceTime: 1200,
+    stallTime: 20
+  };
+  var tuningDefaults = Object.freeze({
+    crowdSensitivity: 0.2,
+    coordinationBase: 0.65,
+    coordinationDiscipline: 0.25,
+    coordinationHandling: 0.2,
+    coordinationMin: 0.5,
+    coordinationMax: 1.1,
+    impairment: 0.5,
+    handlingAgility: 0.35,
+    handlingManeuverability: 0.25,
+    handlingDriving: 0.25,
+    handlingStability: 0.15,
+    controlDiscipline: 0.3,
+    controlDriving: 0.25,
+    controlHandling: 0.25,
+    controlStability: 0.2,
+    massExponent: 0.5,
+    speedMassExponent: 0.25,
+    chariotSpeedFloor: 0.5,
+    combatSkill: 0.6,
+    combatEquipment: 0.2,
+    combatControl: 0.2,
+    paceConserve: 0.6,
+    paceMaintain: 0.85,
+    pacePush: 0.95,
+    paceSprint: 1,
+    safeCornerFraction: 0.95
+  });
+  var integers = /* @__PURE__ */ new Set([
+    "maxSubevents",
+    "laps",
+    "lanes",
+    "straightTiles",
+    "turnTiles",
+    "gridGap",
+    "exitTiles"
+  ]);
+  function config(overrides = {}) {
+    if (!overrides || typeof overrides !== "object" || Array.isArray(overrides))
+      throw new Error("Configuration must be an object");
+    for (const k of Object.keys(overrides))
+      if (!Object.hasOwn(defaults, k) && k !== "tuning")
+        throw new Error(`Unknown configuration field: ${k}`);
+    const tuning = { ...tuningDefaults, ...overrides.tuning };
+    if (overrides.tuning !== void 0 && (!overrides.tuning || typeof overrides.tuning !== "object" || Array.isArray(overrides.tuning)))
+      throw new Error("Invalid tuning object");
+    for (const [k, v] of Object.entries(tuning))
+      if (!Object.hasOwn(tuningDefaults, k) && !["beastExhaustionStart", "beastExhaustionStrength"].includes(k) || !Number.isFinite(v) || v < 0 || v > 2)
+        throw new Error(`Invalid tuning.${k}: expected 0..2`);
+    if (tuning.beastExhaustionStart !== void 0 && tuning.beastExhaustionStart >= 1 || tuning.beastExhaustionStrength !== void 0 && tuning.beastExhaustionStrength > 1 || tuning.crowdSensitivity > 1 || tuning.impairment > 1 || tuning.chariotSpeedFloor > 1 || tuning.coordinationMin > tuning.coordinationMax)
+      throw new Error("Invalid tuning limits");
+    for (const group of [
+      [
+        "handlingAgility",
+        "handlingManeuverability",
+        "handlingDriving",
+        "handlingStability"
+      ],
+      [
+        "controlDiscipline",
+        "controlDriving",
+        "controlHandling",
+        "controlStability"
+      ],
+      ["combatSkill", "combatEquipment", "combatControl"]
+    ])
+      if (Math.abs(group.reduce((sum, k) => sum + tuning[k], 0) - 1) > 1e-9)
+        throw new Error("Tuning weight group must sum to 1");
+    const c = { ...defaults, ...overrides, tuning: Object.freeze(tuning) };
+    if (c.schema !== 1) throw new Error("Unsupported configuration schema");
+    for (const [k, [lo, hi]] of Object.entries(rules)) {
+      if (!Number.isFinite(c[k]) || c[k] < lo || c[k] > hi || integers.has(k) && !Number.isInteger(c[k]))
+        throw new Error(
+          `Invalid ${k}: expected ${lo}..${hi}${integers.has(k) ? " integer" : ""}`
+        );
+    }
+    if (c.exitTiles >= c.straightTiles - Math.floor(c.straightTiles / 2))
+      throw new Error("Exit must fit inside first straight");
+    if (c.epsilon >= c.dt / 1e3)
+      throw new Error("Event epsilon too large for tick");
+    return Object.freeze(c);
   }
 
   // src/ai/weights.js
@@ -1391,8 +1509,9 @@
     const { utility, ...scalars } = input2;
     const v = { ...m2Defaults, ...scalars };
     for (const [k, x] of Object.entries(v))
-      if (!Object.hasOwn(m2Defaults, k) || !Number.isFinite(x) || x < 0 || x > 100)
+      if (!Object.hasOwn(m2Defaults, k) && !["directiveAuthority", "obedienceDisciplineCeiling", "obedienceResistanceThreshold", "accelerationFatiguePerSpeed", "weaponStrainCost", "ramStrainCost", "ramFatigueCost"].includes(k) || !Number.isFinite(x) || x < 0 || x > 100)
         throw new Error(`Invalid autonomous tuning ${k}`);
+    if (v.directiveAuthority !== void 0 && ![0, 1].includes(v.directiveAuthority)) throw Error("Invalid directive authority");
     for (const k of ["decisionTicks", "goalTicks", "signUses"])
       if (!Number.isInteger(v[k]) || k !== "signUses" && v[k] < 1)
         throw new Error(`Invalid ${k}`);
@@ -1929,12 +2048,17 @@
         laneScores[0]?.lane ?? null
       );
     }
-    const pace = candidates.filter(
+    let pace = candidates.filter(
       (x) => ["Conserve", "Maintain", "Push", "Sprint"].includes(x.action)
     ).sort((a, b) => b.score - a.score || a.action.localeCompare(b.action))[0];
-    const position = candidates.filter(
+    let position = candidates.filter(
       (x) => !["Conserve", "Maintain", "Push", "Sprint"].includes(x.action)
     ).sort((a, b) => b.score - a.score || a.action.localeCompare(b.action))[0];
+    const directive = paceDirective(s, r, candidates);
+    if (directive) {
+      pace = candidates.find((x) => x.action === directive.selected) ?? pace;
+      if (directive.decision === "Obeying" && directive.requested === "Sprint" && ["yield", "disengage"].includes(position?.action)) position = candidates.filter((x) => !["Conserve", "Maintain", "Push", "Sprint", "yield", "disengage"].includes(x.action)).sort((a, b) => b.score - a.score || a.action.localeCompare(b.action))[0];
+    }
     const executionFailure = draw(s, r, "execution") < c.executionError * (1 - r.ru.driver.driving / 100);
     const failed = executionFailure || stressFailure;
     const commands = [];
@@ -1958,6 +2082,7 @@
     const preferred = candidates.some((x) => signPreference(sign, x.action, c) > 0);
     const decisionId = beginDecision(s, r, {
       tick: s.tick,
+      ...directive ? { directive } : {},
       perceived,
       candidates,
       chosen: { pace: pace.action, position: position?.action },
@@ -2106,53 +2231,6 @@
       }), r.payrollContext);
       r.ai.nextDecision = s.tick;
     }
-  }
-
-  // src/career/legacy-state.js
-  function exact(value, fields, label = "object") {
-    if (!value || typeof value !== "object" || Array.isArray(value) || ![Object.prototype, null].includes(Object.getPrototypeOf(value)) || Object.keys(value).length !== fields.length || fields.some((k) => !Object.hasOwn(value, k))) throw Error("Invalid " + label + " fields");
-  }
-
-  // src/ai/coaching.js
-  var coachingAxes = Object.freeze(["aggression", "conservation", "positioning", "riskTolerance"]);
-  var coachingDefaults = Object.freeze({ aggression: 0.5, conservation: 0.5, positioning: 0.5, riskTolerance: 0.5 });
-  function validateCoaching(c) {
-    if (c === void 0 || c === null) return;
-    exact(c, ["version", "axes", "weights"]);
-    if (c.version !== 1) throw Error("Unsupported coaching version");
-    exact(c.axes, coachingAxes);
-    exact(c.weights, coachingAxes);
-    for (const k of coachingAxes) if (!Number.isFinite(c.axes[k]) || c.axes[k] < -1 || c.axes[k] > 1 || !Number.isFinite(c.weights[k]) || c.weights[k] < 0 || c.weights[k] > 2) throw Error("Coaching values outside bounded contract");
-  }
-  function coachingProfile(axes = {}) {
-    const c = { version: 1, axes: Object.fromEntries(coachingAxes.map((k) => [k, axes[k] ?? 0])), weights: { ...coachingDefaults } };
-    validateCoaching(c);
-    return c;
-  }
-  var preference = {
-    aggression: { attack: 1, ram: 1, defendCombat: -1, disengage: -1 },
-    conservation: { Conserve: 1, Push: -1, Sprint: -1 },
-    positioning: { inward: 1, outward: 1, overtake: 1, hold: -1, defend: -1 },
-    riskTolerance: { Sprint: 1, Push: 1, ram: 1, inward: 1, outward: 1, Conserve: -1, avoid: -1, yield: -1, defendCombat: -1 }
-  };
-  var conflicts = {
-    "Push the Pace": { conservation: 1, riskTolerance: -1 },
-    "Conserve Strength": { conservation: -1, riskTolerance: 1 },
-    "Seek Open Track": { positioning: -1 },
-    "Race Defensively": { aggression: 1, conservation: -1, riskTolerance: 1 },
-    "Engage Rivals": { aggression: -1, riskTolerance: -1 },
-    "Hold Position": { positioning: 1, riskTolerance: 1 }
-  };
-  function coachingUtility(c, action, sign) {
-    validateCoaching(c);
-    if (!c) return 0;
-    let sum = 0;
-    for (const k of coachingAxes) {
-      const axis = c.axes[k];
-      if (conflicts[sign]?.[k] === Math.sign(axis)) continue;
-      sum += axis * c.weights[k] * (preference[k][action] ?? 0);
-    }
-    return sum;
   }
 
   // src/sim/kinematics.js
@@ -2867,6 +2945,7 @@
     try {
       s.resolving = true;
       assertState(s);
+      beginActionCosts(s);
       for (const command of commands.filter((c) => c?.phase === "paused")) {
         if (command.type !== "sign" || command.id !== s.playerId || Object.keys(command).some((k) => !["type", "id", "action", "sign", "phase"].includes(k)))
           throw new Error("Invalid paused sign command");
@@ -2952,9 +3031,11 @@
           r.q += distance / location(r.q, r.lane, s.config, s.track).length;
           if (m.boundaryTime <= elapsed + s.config.epsilon)
             r.q = m.nextQ - s.config.positionEpsilon;
+          const speedBefore = r.speed;
           r.speed = Math.max(0, r.speed + m.a * elapsed);
           if (Math.abs(m.limitTime - elapsed) <= s.config.epsilon)
             r.speed = m.target;
+          if (s.autonomous.accelerationFatiguePerSpeed && r.status === "Racing" && r.speed > speedBefore + s.config.epsilon) chargeAction(s, r, "acceleration", { fatigue: s.autonomous.accelerationFatiguePerSpeed * (r.speed - speedBefore), magnitude: r.speed - speedBefore });
         }
         s.time += elapsed;
         for (const r of units) observeProgress(s, r);
@@ -3025,11 +3106,13 @@
         return physical(a) && physical(b) && Math.abs(a.lane - b.lane) <= 1 && Math.abs(gap(a.q, b.q, s.track)) < 1.01;
       });
       logRacecraft(s);
+      flushActionCosts(s);
       endIfDone(s);
       assertState(s);
       if (s.tick % s.checkpointInterval === 0 || ["Ended", "Stalled"].includes(s.status))
         s.checkpoints.push({ tick: s.tick, checksum: digest(s) });
     } catch (error) {
+      flushActionCosts(s);
       s.status = "Error";
       emit(s, "INTEGRITY_ERROR", [], {
         message: error.message,
@@ -3041,6 +3124,7 @@
         }))
       });
     } finally {
+      endActionCosts(s);
       s.resolving = false;
     }
     return s;
@@ -3091,6 +3175,31 @@
   function observeProgress(s, r) {
     if (s.championshipContext && r.status === "Racing" && r.progressEvidence.progress !== r.q) r.progressEvidence = { version: 1, progress: r.q, firstTime: s.time, firstTick: s.tick };
   }
+
+  // src/career/legacy-state.js
+  function exact(value, fields, label = "object") {
+    if (!value || typeof value !== "object" || Array.isArray(value) || ![Object.prototype, null].includes(Object.getPrototypeOf(value)) || Object.keys(value).length !== fields.length || fields.some((k) => !Object.hasOwn(value, k))) throw Error("Invalid " + label + " fields");
+  }
+
+  // src/career/assets.js
+  var BASIC_CAPACITY = Object.freeze({ drivers: 2, specialists: 0, beasts: 4, chariots: 1 });
+  var INJURIES = Object.freeze(["Healthy", "Minor", "Moderate", "Severe", "Dead"]);
+  function freeze(value) {
+    if (value && typeof value === "object") {
+      Object.values(value).forEach(freeze);
+      Object.freeze(value);
+    }
+    return value;
+  }
+
+  // src/prototype/personalities.js
+  var driverPersonalities = freeze({
+    balanced: { aggression: 50, caution: 50, patience: 50, opportunism: 50, staminaManagement: 50, tacticalDiscipline: 50 },
+    disciplined: { aggression: 35, caution: 65, patience: 75, opportunism: 55, staminaManagement: 85, tacticalDiscipline: 95 },
+    aggressive: { aggression: 90, caution: 20, patience: 30, opportunism: 85, staminaManagement: 30, tacticalDiscipline: 60 },
+    cautious: { aggression: 20, caution: 90, patience: 80, opportunism: 35, staminaManagement: 85, tacticalDiscipline: 70 },
+    headstrong: { aggression: 95, caution: 10, patience: 10, opportunism: 90, staminaManagement: 20, tacticalDiscipline: 10 }
+  });
 
   // src/career/economy/fingerprint.js
   var K = [1116352408, 1899447441, 3049323471, 3921009573, 961987163, 1508970993, 2453635748, 2870763221, 3624381080, 310598401, 607225278, 1426881987, 1925078388, 2162078206, 2614888103, 3248222580, 3835390401, 4022224774, 264347078, 604807628, 770255983, 1249150122, 1555081692, 1996064986, 2554220882, 2821834349, 2952996808, 3210313671, 3336571891, 3584528711, 113926993, 338241895, 666307205, 773529912, 1294757372, 1396182291, 1695183700, 1986661051, 2177026350, 2456956037, 2730485921, 2820302411, 3259730800, 3345764771, 3516065817, 3600352804, 4094571909, 275423344, 430227734, 506948616, 659060556, 883997877, 958139571, 1322822218, 1537002063, 1747873779, 1955562222, 2024104815, 2227730452, 2361852424, 2428436474, 2756734187, 3204031479, 3329325298];
@@ -3370,25 +3479,15 @@
     return fallback;
   }
 
-  // src/career/assets.js
-  var BASIC_CAPACITY = Object.freeze({ drivers: 2, specialists: 0, beasts: 4, chariots: 1 });
-  var INJURIES = Object.freeze(["Healthy", "Minor", "Moderate", "Severe", "Dead"]);
-  function freeze(value) {
-    if (value && typeof value === "object") {
-      Object.values(value).forEach(freeze);
-      Object.freeze(value);
-    }
-    return value;
-  }
-
   // src/prototype/pacing.js
-  var PACING_VERSION = "p1.2-competitive-v1";
+  var PACING_VERSION = "p1.3-tactical-v1";
   var priorProfiles = freeze({
     legacy: { autonomous: {}, tuning: {} },
     endurance: { autonomous: { fatigueRate: 0.32, recoveryRate: 0.7, exertionConserve: 0.15, exertionMaintain: 0.4, exertionPush: 2.5, exertionSprint: 4.5, recoveryThreshold: 0.25, utility: { pushFatigue: 8, sprintFatigue: 14, conserveFatigueBase: 3, conserveStamina: 8 } }, tuning: { impairment: 0.85, paceConserve: 0.75, pacePush: 0.98 } }
   });
   var competitiveProfile = freeze({ autonomous: { ...priorProfiles.endurance.autonomous, utility: { ...priorProfiles.endurance.autonomous.utility, finishUrgency: 1.5 } }, tuning: { ...priorProfiles.endurance.tuning, beastExhaustionStart: 0.65, beastExhaustionStrength: 0.5 } });
-  var pacingProfiles = freeze({ ...priorProfiles, competitive: competitiveProfile });
+  var tacticalProfile = freeze({ autonomous: { ...competitiveProfile.autonomous, exertionMaintain: 0.6, exertionPush: 2.8, exertionSprint: 5, directiveAuthority: 1, obedienceDisciplineCeiling: 30, obedienceResistanceThreshold: 80, accelerationFatiguePerSpeed: 0.08, weaponStrainCost: 0.3, ramStrainCost: 0.15, ramFatigueCost: 0.35 }, tuning: { ...competitiveProfile.tuning, beastExhaustionStrength: 0.65 } });
+  var pacingProfiles = freeze({ ...priorProfiles, competitive: competitiveProfile, tactical: tacticalProfile });
   var fatigueDisplayRules = Object.freeze({ working: 20, fatigued: 50, exhausted: 80, trendEpsilon: 1e-6 });
   var meanFatigue = (ru) => ru.beasts.reduce((sum, b) => sum + b.fatigue, 0) / ru.beasts.length;
   function fatigueDisplay(ru, previous = null) {
@@ -3424,7 +3523,7 @@
   }
 
   // src/prototype/session.js
-  var PROTOTYPE_VERSION = "p1.2-playable-v1";
+  var PROTOTYPE_VERSION = "p1.3-playable-v1";
   function prototypeRally(category, seed) {
     const course = generateRally({ seed, category }), fractions = { short: [1 / 2], medium: [1 / 3, 2 / 3], long: [1 / 4, 1 / 2, 3 / 4] }[category];
     const length = course.segments.reduce((n, s) => n + s.length, 0);
@@ -3432,7 +3531,7 @@
     course.checkpoints = fractions.map((f, i) => ({ id: "SP" + (i + 1), distance: length * f }));
     return normalizeCourse(course);
   }
-  function raceSetup({ course = "short-oval", seed = 145, format = "Pure", weather = "Clear", build = "baseline", value = 55, coaching = null, fieldSize = 8, laps = 2, pacing = "competitive" } = {}) {
+  function raceSetup({ course = "short-oval", seed = 145, format = "Pure", weather = "Clear", build = "baseline", value = 55, coaching = null, fieldSize = 8, laps = 2, pacing = "competitive", personality: personality2 = "native" } = {}) {
     if (!Number.isInteger(fieldSize) || fieldSize < 1 || fieldSize > 8) throw Error("Field must contain 1..8 entrants");
     if (!Number.isFinite(value) || value < 0 || value > 100) throw Error("Base attributes must be 0..100");
     const profile = pacingProfiles[pacing];
@@ -3443,6 +3542,10 @@
     for (const part of [player.ru.driver, ...player.ru.beasts, player.ru.chariot]) for (const key2 of Object.keys(part)) if (!["condition", "strain", "fatigue", "wear", "weight", "capacity", "personality"].includes(key2)) part[key2] = value;
     const compiled = compileBuild(player.ru, build);
     player.ru = compiled.ru;
+    if (personality2 !== "native") {
+      if (!driverPersonalities[personality2]) throw Error("Unknown driver personality");
+      player.ru.driver.personality = structuredClone(driverPersonalities[personality2]);
+    }
     if (coaching ?? compiled.coachingContext) player.coachingContext = coaching ?? compiled.coachingContext;
     return { setup: { seed, course: definition, format, weather, autonomous: profile.autonomous, overrides: { laps, tuning: profile.tuning }, entrants, playerId: player.ru.id }, changes: compiled.changes };
   }
@@ -3489,7 +3592,7 @@
       for (const e of events) if (e.type === "AI_DECISION") {
         for (const a of Object.values(e.effects.executed ?? e.effects.chosen ?? {})) if (typeof a === "string") actions[a] = (actions[a] ?? 0) + 1;
       }
-      return { version: PROTOTYPE_VERSION, pacingVersion: this.options.pacing === "legacy" ? "legacy" : this.options.pacing === "endurance" ? "p1.1-endurance-v1" : PACING_VERSION, seed: s.seed, format: s.format, build: this.options.build ?? "baseline", tick: s.tick, status: s.status, clearance: this.official(), checksum: digest(s), official: classification(s), player: { id: p.id, actions, finishTime: p.finishTime, status: p.status, driver: p.ru.driver.condition, chariot: p.ru.chariot.condition, beastFatigue: p.ru.beasts.map((b) => b.fatigue), wear: p.ru.chariot.wear, contacts: events.filter((e) => e.type === "CONTACT").length, attacks: events.filter((e) => e.type === "ATTACK").length, overtakes: events.filter((e) => e.type === "OVERTAKE" && e.effects.passer === p.id).length, signs: events.filter((e) => e.type === "SIGN_ACTIVATED").length }, maxTickMs: this.maxTickMs, totalTickMs: this.totalTickMs, events: s.events.length, inputs: structuredClone(this.inputs) };
+      return { version: PROTOTYPE_VERSION, pacingVersion: this.options.pacing === "legacy" ? "legacy" : this.options.pacing === "endurance" ? "p1.1-endurance-v1" : (this.options.pacing ?? "competitive") === "competitive" ? "p1.2-competitive-v1" : PACING_VERSION, seed: s.seed, format: s.format, build: this.options.build ?? "baseline", tick: s.tick, status: s.status, clearance: this.official(), checksum: digest(s), official: classification(s), player: { id: p.id, actions, finishTime: p.finishTime, status: p.status, driver: p.ru.driver.condition, chariot: p.ru.chariot.condition, beastFatigue: p.ru.beasts.map((b) => b.fatigue), wear: p.ru.chariot.wear, contacts: events.filter((e) => e.type === "CONTACT").length, attacks: events.filter((e) => e.type === "ATTACK").length, overtakes: events.filter((e) => e.type === "OVERTAKE" && e.effects.passer === p.id).length, signs: events.filter((e) => e.type === "SIGN_ACTIVATED").length }, maxTickMs: this.maxTickMs, totalTickMs: this.totalTickMs, events: s.events.length, inputs: structuredClone(this.inputs) };
     }
   };
   function playback(session2, accumulator, elapsed, speed, { budgetMs = 8, maxTicks = 40 } = {}) {
@@ -3794,6 +3897,15 @@
     }
     consume(events, { enabled = true } = {}) {
       for (const e of events.slice(this.cursor)) {
+        const directive = e.type === "AI_DECISION" ? e.effects.directive : null;
+        if (enabled && directive?.decision === "Resisting" && !e.effects.executionError && !e.effects.stressError) {
+          const key3 = "directive-refusal:" + e.participants[0];
+          if (e.time - (this.last.get(key3) ?? -Infinity) >= 8) {
+            this.lines.push({ eventId: e.id, time: e.time, type: "DIRECTIVE_RESISTANCE", text: `${e.participants[0]} resists ${directive.sign}, choosing ${directive.selected}: ${directive.reason}.` });
+            this.last.set(key3, e.time);
+          }
+          continue;
+        }
         if (!enabled || !templates[e.type]) continue;
         const key2 = e.type === "SEGMENT_ENTERED" ? e.type : `${e.type}:${e.participants.join(",")}`;
         if (!priority.has(e.type) && e.time - (this.last.get(key2) ?? -Infinity) < (e.type === "SEGMENT_ENTERED" ? 3 : 1))
@@ -3876,7 +3988,7 @@
     if (measurements[key2].length > 2e3) measurements[key2].shift();
   }
   function settings() {
-    return { course: $("course").value, seed: Number($("seed").value), format: $("format").value, weather: $("weather").value, build: $("build").value, value: Number($("value").value), fieldSize: Number($("field").value), laps: Number($("laps").value), ...$("customCoach").checked ? { coaching: coachingProfile(Object.fromEntries(coachingAxes.map((k) => [k, Number($("coach-" + k).value)]))) } : {} };
+    return { course: $("course").value, seed: Number($("seed").value), format: $("format").value, weather: $("weather").value, build: $("build").value, value: Number($("value").value), fieldSize: Number($("field").value), laps: Number($("laps").value), pacing: $("pacingPolicy").value, personality: $("personality").value, ...$("customCoach").checked ? { coaching: coachingProfile(Object.fromEntries(coachingAxes.map((k) => [k, Number($("coach-" + k).value)]))) } : {} };
   }
   function prepare(config2 = settings()) {
     const next = new PlayableSession(config2), nextGeometry = geometry(next.state);
@@ -3967,6 +4079,9 @@
     $("endurance").dataset.state = endurance.status.toLowerCase();
     $("enduranceLabel").textContent = `TEAM ENDURANCE ${endurance.remaining.toFixed(1)}% \xB7 ${endurance.status}`;
     $("enduranceTrend").textContent = `${endurance.trend === "increasing" ? "\u2191" : endurance.trend === "decreasing" ? "\u2193" : "\u2192"} Fatigue ${endurance.trend}${playing ? "" : " \xB7 paused / last native tick"}`;
+    const exertion = s.autonomous["exertion" + p.pace] ?? 0, receipt = effects.lastExertionByActor.get(p.id), recent = receipt && s.time - receipt.time <= 2;
+    const cost = recent ? ` \xB7 Recent additional cost: beasts +${receipt.effects.beastFatigue.map((x) => x.toFixed(2)).join("/")} fatigue, driver +${receipt.effects.driverStrain.toFixed(2)} strain` : "";
+    text("exertionState", `Current exertion ${exertion.toFixed(2)} \xB7 ${endurance.trend === "decreasing" ? "Recovering" : endurance.trend === "increasing" ? "Expending endurance" : "Stable"}${cost}`);
     $("signState").textContent = `Active: ${p.signs.active ?? "none"} \xB7 Queued: ${p.signs.pending ?? "none"} \xB7 Uses remaining: ${p.signs.remaining}`;
     $("progress").textContent = open ? `Sign Points crossed: ${p.checkpointCursor}/${s.track.checkpoints.length} \xB7 Next: ${s.track.checkpoints[p.checkpointCursor]?.id ?? "finish"}` : `${s.format} \xB7 ${s.config.laps} laps \xB7 Player ${progress(p)}`;
     const official = terminal?.cleared ? terminal.classification : null, rows = official ?? [...s.entrants].sort((a, b) => (a.finishTime === null) - (b.finishTime === null) || (a.finishTime ?? 0) - (b.finishTime ?? 0) || b.q - a.q || a.id.localeCompare(b.id)).map((r, i) => ({ id: r.id, place: i + 1, status: r.status, time: r.finishTime }));
@@ -4008,7 +4123,7 @@
     $("lower").disabled = comparisonBusy || stopped || !p.signs.active;
     for (const id2 of ["start", "step"]) $(id2).disabled = comparisonBusy || stopped;
     $("pause").disabled = comparisonBusy || !playing;
-    if ($("diagnostics").parentElement.open) $("diagnostics").textContent = JSON.stringify({ prototype: "p1.2-playable-v1", individualBeastFatigue: endurance.individual, meanFatigue: endurance.fatigue, presetChanges: session.changes, coaching: session.state.entrants[0].coachingContext ?? null, simulationVersion: s.version, seed: s.seed, tick: s.tick, events: s.events.length, maxTickMs: session.maxTickMs, rollingTickSamples: session.timings.length, geometrySamples: g.samples, clearance: terminal?.cleared ?? false }, null, 2);
+    if ($("diagnostics").parentElement.open) $("diagnostics").textContent = JSON.stringify({ prototype: "p1.3-playable-v1", individualBeastFatigue: endurance.individual, meanFatigue: endurance.fatigue, presetChanges: session.changes, coaching: session.state.entrants[0].coachingContext ?? null, simulationVersion: s.version, seed: s.seed, tick: s.tick, events: s.events.length, maxTickMs: session.maxTickMs, rollingTickSamples: session.timings.length, geometrySamples: g.samples, clearance: terminal?.cleared ?? false }, null, 2);
     record("domMs", performance.now() - domAt);
     measurements.frames++;
   }
@@ -4107,7 +4222,7 @@
     }
     requestAnimationFrame(frame);
   }
-  window.P1 = { version: "p1.2-playable-v1", get session() {
+  window.P1 = { version: "p1.3-playable-v1", get session() {
     return session;
   }, get measurements() {
     return measurements;

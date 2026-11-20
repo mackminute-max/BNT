@@ -1,3 +1,4 @@
+import {paceDirective} from './directives.js';
 import {finishUtility} from './finish-utility.js';
 import {coachingUtility} from './coaching.js';
 import { combatValue } from "./combat-value.js";
@@ -284,16 +285,18 @@ export function decide(s, r) {
       laneScores[0]?.lane ?? null,
     );
   }
-  const pace = candidates
+  let pace = candidates
     .filter((x) =>
       ["Conserve", "Maintain", "Push", "Sprint"].includes(x.action),
     )
     .sort((a, b) => b.score - a.score || a.action.localeCompare(b.action))[0];
-  const position = candidates
+  let position = candidates
     .filter(
       (x) => !["Conserve", "Maintain", "Push", "Sprint"].includes(x.action),
     )
     .sort((a, b) => b.score - a.score || a.action.localeCompare(b.action))[0];
+  const directive=paceDirective(s,r,candidates);
+  if(directive){pace=candidates.find(x=>x.action===directive.selected)??pace;if(directive.decision==='Obeying'&&directive.requested==='Sprint'&&['yield','disengage'].includes(position?.action))position=candidates.filter(x=>!['Conserve','Maintain','Push','Sprint','yield','disengage'].includes(x.action)).sort((a,b)=>b.score-a.score||a.action.localeCompare(b.action))[0];}
   const executionFailure =
     draw(s, r, "execution") <
     c.executionError * (1 - r.ru.driver.driving / 100);
@@ -321,6 +324,7 @@ export function decide(s, r) {
   const preferred = candidates.some(x => signPreference(sign, x.action, c) > 0);
   const decisionId = beginDecision(s, r, {
     tick: s.tick,
+    ...(directive?{directive}:{}),
     perceived,
     candidates,
     chosen: { pace: pace.action, position: position?.action },

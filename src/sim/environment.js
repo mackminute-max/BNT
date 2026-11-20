@@ -77,12 +77,13 @@ export function m2Config(input = {}) {
   const v = { ...m2Defaults, ...scalars };
   for (const [k, x] of Object.entries(v))
     if (
-      !Object.hasOwn(m2Defaults, k) ||
+      (!Object.hasOwn(m2Defaults, k) && !['directiveAuthority','obedienceDisciplineCeiling','obedienceResistanceThreshold','accelerationFatiguePerSpeed','weaponStrainCost','ramStrainCost','ramFatigueCost'].includes(k)) ||
       !Number.isFinite(x) ||
       x < 0 ||
       x > 100
     )
       throw new Error(`Invalid autonomous tuning ${k}`);
+  if(v.directiveAuthority!==undefined&&![0,1].includes(v.directiveAuthority))throw Error('Invalid directive authority');
   for (const k of ["decisionTicks", "goalTicks", "signUses"])
     if (!Number.isInteger(v[k]) || (k !== "signUses" && v[k] < 1))
       throw new Error(`Invalid ${k}`);

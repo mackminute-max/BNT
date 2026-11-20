@@ -1,9 +1,11 @@
+import {directiveCompliance} from './directives.js';
 import { signPreference } from "./signs.js";
 import { emit } from "../events/events.js";
 
 // This module observes issued actions and resolved physics; it never chooses AI
 // actions or changes movement, damage, pace, or sign influence.
 export function compliance(d, tuning) {
+  if(d.directive)return directiveCompliance(d);
   if (!d.sign) return null;
   if (!d.candidates.some(x => signPreference(d.sign, x.action, tuning) > 0))
     return "Inapplicable";
