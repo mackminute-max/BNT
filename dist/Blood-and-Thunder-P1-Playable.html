@@ -1,6 +1,6 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Blood and Thunder — P1.1 Playable</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Blood and Thunder — P1.2 Playable</title><style>
 :root{color-scheme:dark;--gold:#dfb863;--ink:#09151d;--panel:#142630;--text:#f5ecdb}*{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--text);font:16px system-ui,sans-serif}header{padding:14px 24px;border-bottom:3px double var(--gold);display:flex;align-items:center;justify-content:space-between;gap:15px}h1{font-size:25px;margin:0;text-transform:uppercase;letter-spacing:3px}h2{font-size:18px;color:var(--gold);margin:5px 0 12px}small,.hint{font-size:13px;color:#c7d4d6}main{max-width:1550px;margin:auto;padding:16px}.panel{background:var(--panel);border:1px solid #6d6852;padding:14px;box-shadow:5px 5px #03090d;margin-bottom:14px}.setup,.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:end}label{display:flex;flex-direction:column;font-size:13px;gap:5px}button,input,select{font:inherit;padding:9px;background:#203944;color:var(--text);border:1px solid #9b936e;border-radius:2px}button{cursor:pointer}button:hover:not(:disabled){background:#385463}button:disabled{opacity:.45;cursor:default}input[type=number]{width:110px}.race-layout>aside{position:sticky;top:12px;align-self:start}.race-layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px}canvas{display:block;width:100%;background:#0b1a24;border:1px solid #6d6852}#race{aspect-ratio:1000/550}#map{aspect-ratio:2/1}#hud{font-variant-numeric:tabular-nums;line-height:1.6;min-height:70px}.radio{height:210px;overflow:auto;padding:8px;background:#0a1920;line-height:1.6;border-left:3px solid var(--gold)}.radio div{padding:3px 6px;border-bottom:1px solid #263c44}table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}td,th{text-align:left;padding:7px;border-bottom:1px solid #40505a}tr.player{color:#ffe3a0;background:#283c40}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}#status{padding:10px;border-left:3px solid var(--gold);min-height:45px}#error{color:#ffaca3}details summary{cursor:pointer;color:var(--gold)}#comparison{overflow:auto}.controls{margin:12px 0}.badge{color:#76eac0}a{color:var(--gold)}@media(max-width:950px){.race-layout{grid-template-columns:1fr}aside{display:grid;grid-template-columns:1fr 1fr;gap:14px}header{display:block}}@media(max-width:950px){.race-layout aside>section:first-child{position:fixed;right:8px;bottom:8px;width:200px;z-index:10;padding:6px;box-shadow:0 0 12px #000}.race-layout aside>section:first-child h2{font-size:12px;margin-bottom:3px}.race-layout aside>section:first-child p,.race-layout aside>section:first-child #progress{display:none}}@media(max-width:600px){aside{display:block}main{padding:8px}h1{font-size:20px}.panel{padding:10px}}
-.endurance-panel{padding:12px 0;display:grid;gap:7px}.endurance-panel progress{width:100%;height:24px;accent-color:#70d9ae}.endurance-panel progress[data-state=working]{accent-color:#d8ce6c}.endurance-panel progress[data-state=fatigued]{accent-color:#edaa5b}.endurance-panel progress[data-state=exhausted]{accent-color:#ee8177}.terrain-legend{font-size:13px;display:flex;flex-wrap:wrap;gap:12px}.terrain-legend span{border-left:12px solid var(--surface);padding-left:5px}</style></head><body><header><div><h1>Blood &amp; Thunder</h1><small>P1.1 · Pacing refinement · Deterministic playable race · Experimental development build</small></div><span class="badge">IN MEMORY · No career writes</span></header><main>
+.endurance-panel{padding:12px 0;display:grid;gap:7px}.endurance-panel progress{width:100%;height:24px;accent-color:#70d9ae}.endurance-panel progress[data-state=working]{accent-color:#d8ce6c}.endurance-panel progress[data-state=fatigued]{accent-color:#edaa5b}.endurance-panel progress[data-state=exhausted]{accent-color:#ee8177}.terrain-legend{font-size:13px;display:flex;flex-wrap:wrap;gap:12px}.terrain-legend span{border-left:12px solid var(--surface);padding-left:5px}</style></head><body><header><div><h1>Blood &amp; Thunder</h1><small>P1.2 · Competitive racing &amp; interaction feedback · Deterministic playable race · Experimental development build</small></div><span class="badge">IN MEMORY · No career writes</span></header><main>
 <section class="panel"><h2>Race preparation</h2><div class="setup">
 <label>Course<select id="course"></select></label><label>Format<select id="format"><option>Pure</option><option>Combat</option></select></label><label>Weather<select id="weather"><option>Clear</option><option>Rain</option><option>Heat</option><option>Fog</option><option>Storm</option></select></label>
 <label>Seed<input id="seed" type="number" value="145" step="1"></label><label>Player base ratings<select id="value"><option value="45">45 · Developing</option><option value="55" selected>55 · Balanced</option><option value="65">65 · Skilled</option></select></label><label>Player build<select id="build"><option value="baseline">Unmodified baseline</option><option value="contact">Contact Specialist</option><option value="handling">Handling / Endurance</option></select></label><label>Entrants<select id="field"><option>1</option><option>4</option><option selected>8</option></select></label><label>Laps<input id="laps" type="number" min="1" max="5" value="2"></label><button id="prepare">Prepare / New race</button></div>
@@ -8,11 +8,93 @@
 <details><summary>Optional player coaching — frozen on preparation</summary><label><span><input id="customCoach" type="checkbox"> Override experimental preset coaching</span></label><div class="setup" id="coachAxes"></div></details></section>
 <div id="error" role="alert"></div><div id="status" role="status" aria-live="polite"></div>
 <div class="race-layout"><section><div class="panel"><h2>Follow camera · top down</h2><p class="terrain-legend"><span style="--surface:#70533c">Dirt</span><span style="--surface:#69635d">Gravel</span><span style="--surface:#9b8150">Sand</span><span style="--surface:#445c48">Mud</span><span style="--surface:#52616d">Stone</span></p><canvas id="race" width="1000" height="550" aria-label="Native race follow camera"></canvas><div class="controls"><button id="start">Start / Resume</button><button id="pause">Pause</button><button id="step">One native tick</button><label>Playback<select id="speed"><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option></select></label><label>Follow zoom<input id="zoom" type="range" min="4" max="10" step="0.5" value="6"></label><button id="restart">Restart identical setup</button></div><section class="endurance-panel"><strong id="enduranceLabel">TEAM ENDURANCE 100%</strong><progress id="endurance" aria-label="Team endurance remaining: 100 minus average native beast fatigue" max="100" value="100"></progress><span id="enduranceTrend">→ Fatigue stable</span></section><div id="hud"></div></div>
-<div class="panel"><h2>Strategy Signs</h2><div class="controls"><select id="sign" aria-label="Select Strategy Sign"></select><button id="queue">Queue / Replace</button><button id="cancel">Cancel queued</button><button id="lower">Lower active</button></div><div id="signState"></div><p class="hint">Accepted queuing spends one use; canceling does not refund it. Activation spends none. Signs wait for the starting signal, next start/finish crossing, or next Rally Sign Point.</p></div>
+<div class="panel"><h2>Strategy Signs</h2><div class="controls"><select id="sign" aria-label="Select Strategy Sign"></select><button id="queue">Queue / Replace</button><button id="cancel">Cancel queued</button><button id="lower">Lower active</button></div><div id="signState"></div><p id="signResponse" role="status"></p><p id="interactionStatus" class="hint"></p><p class="hint">Accepted queuing spends one use; canceling does not refund it. Activation spends none. Signs wait for the starting signal, next start/finish crossing, or next Rally Sign Point.</p></div>
 <div class="panel"><h2>Race radio</h2><div id="radio" class="radio" role="log" aria-label="Event-driven race commentary"></div></div></section>
 <aside><section class="panel"><h2>Full-course tactical map</h2><canvas id="map" width="640" height="320" aria-label="Full course, all competitors and Rally Sign Points"></canvas><p class="hint">White / gold: RU1 · green SP lines: Sign Points · arrows: travel direction. Camera follows a racing rival if RU1 retires.</p><div id="progress"></div></section><section class="panel"><h2>Live order / official results</h2><table><thead><tr><th>Pos</th><th>RU</th><th>Progress / result</th></tr></thead><tbody id="standings"></tbody></table><div id="clearance"></div></section></aside></div>
 <section class="panel"><h2>Development comparison harness</h2><p class="hint">Experimental values, not approved permanent balance. Both builds use the current preparation settings, identical rivals, grid, seed and weather. No Strategy Signs are queued in the controlled pair. This runs the real native engine and may take time on Long Rally.</p><button id="compare">Run controlled pair A / B</button><button id="export">Download current race metrics</button><div id="comparison" aria-live="polite"></div><details><summary>Current preset changes and diagnostics</summary><pre id="diagnostics"></pre></details></section>
 </main><script>(() => {
+  // src/prototype/interactions.js
+  function interaction(event) {
+    const e = event.effects ?? {}, ids = event.participants ?? [];
+    const base = { id: event.id, tick: event.tick, time: event.time, participants: [...ids], entityId: ids[0], source: event.type };
+    if (event.type === "CONTACT") return { ...base, kind: "contact", contactId: e.contactId, label: "CONTACT", color: "#ffd369" };
+    if (event.type === "DAMAGE" && Number.isFinite(e.amount) && e.amount > 0) return { ...base, kind: "damage", label: `\u2212${e.amount < 0.1 ? e.amount.toPrecision(2) : e.amount.toFixed(1)} ${e.component}`, amount: e.amount, contactId: e.contactId, color: "#ff8a79" };
+    if (event.type === "ATTACK" && typeof e.success === "boolean") return { ...base, kind: e.success ? "hit" : "defense", entityId: e.defender ?? ids[1], label: e.success ? "HIT" : e.reacted ? "DEFENDED" : "ATTACK RESISTED", color: e.success ? "#ffbb80" : "#8bd8ff", attacker: e.attacker, defender: e.defender };
+    if (event.type === "ATTACK_INVALIDATED") return { ...base, kind: "invalid", label: "ATTACK NOT EXECUTED", reason: e.reason, color: "#b3bfcb" };
+    if (event.type === "WRECK_IMPACT") return { ...base, kind: "impact", label: "WRECK IMPACT", color: "#ffb587" };
+    if (event.type === "CONTROL_CHANGED" && e.control) return { ...base, kind: "control", label: e.control === "Normal" ? "CONTROL RESTORED" : `CONTROL: ${e.control}`, color: e.control === "Normal" ? "#86e0bd" : "#f5a9f4" };
+    return null;
+  }
+  var InteractionFeed = class {
+    constructor({ limit = 128, visible = 12, lifetime = 900 } = {}) {
+      if (!Number.isInteger(limit) || limit < 1 || !Number.isInteger(visible) || visible < 1 || visible > limit || !Number.isFinite(lifetime) || lifetime <= 0) throw Error("Invalid interaction queue bounds");
+      this.limit = limit;
+      this.visible = visible;
+      this.lifetime = lifetime;
+      this.cursor = 0;
+      this.pending = [];
+      this.active = [];
+      this.total = 0;
+      this.overflow = 0;
+      this.counts = {};
+      this.lastByActor = /* @__PURE__ */ new Map();
+      this.lastOffenseByActor = /* @__PURE__ */ new Map();
+      this.lastActivationByActor = /* @__PURE__ */ new Map();
+    }
+    consume(state, { stepped = false } = {}) {
+      if (this.cursor > state.events.length) throw Error("Interaction event stream replaced without reset");
+      if (stepped && state.events.slice(this.cursor).some((e) => interaction(e))) {
+        this.overflow += this.pending.length;
+        this.pending = [];
+        this.active = [];
+      }
+      let added = 0;
+      for (let i = this.cursor; i < state.events.length; i++) {
+        const event = state.events[i];
+        if (event.type === "SIGN_ACTIVATED") this.lastActivationByActor.set(event.participants[0], { id: event.id, time: event.time });
+        const effect = interaction(event);
+        if (!effect) continue;
+        this.total++;
+        added++;
+        if (["ATTACK", "ATTACK_INVALIDATED"].includes(effect.source)) this.lastOffenseByActor.set(effect.attacker ?? effect.participants[0], effect);
+        this.counts[effect.kind] = (this.counts[effect.kind] ?? 0) + 1;
+        for (const id2 of effect.participants) this.lastByActor.set(id2, effect);
+        if (this.pending.length === this.limit) {
+          this.pending.shift();
+          this.overflow++;
+        }
+        this.pending.push(effect);
+      }
+      this.cursor = state.events.length;
+      if (stepped && added) this.active = [];
+      return added;
+    }
+    advance(ms, { paused = false } = {}) {
+      if (!Number.isFinite(ms) || ms < 0) throw Error("Invalid presentation elapsed time");
+      if (!paused) this.active = this.active.map((x) => ({ ...x, age: x.age + ms })).filter((x) => x.age < this.lifetime);
+      while (this.active.length < this.visible && this.pending.length) this.active.push({ ...this.pending.shift(), age: 0 });
+      return this.active;
+    }
+    status() {
+      return { observed: this.total, visible: this.active.length, queued: this.pending.length, summarized: this.overflow, counts: { ...this.counts } };
+    }
+  };
+  function signFeedback(state, feed) {
+    const r = state.entrants.find((r2) => r2.id === state.playerId), sign = r?.signs.active;
+    if (!r) return "Player RU unavailable";
+    const queued = r.signs.pending ? `Queued: ${r.signs.pending} \u2014 awaiting native activation. ` : "";
+    if (r.status !== "Racing") return queued + `RU ${r.status} \u2014 no further tactical actions${sign ? ` \xB7 Last active Sign: ${sign}` : ""}`;
+    if (!sign) return queued + `No active Sign \xB7 Current autonomous pace: ${r.pace}`;
+    const recent = feed?.lastByActor.get(r.id), fresh = recent && state.time >= recent.time && state.time - recent.time <= 2;
+    if (sign === "Engage Rivals") {
+      const offense = feed?.lastOffenseByActor.get(r.id), activation = feed?.lastActivationByActor.get(r.id), isRecent = offense && (!activation || offense.id >= activation.id) && state.time >= offense.time && state.time - offense.time <= 2;
+      const action = isRecent ? `Native attack outcome: ${offense.label}` : "Seeking Opportunity";
+      return queued + `Engage Rivals \u2014 ${action} \xB7 Current autonomous pace: ${r.pace}`;
+    }
+    const d = r.ai?.diagnostics, position = d?.executed?.position;
+    return queued + `${sign} \u2014 active instruction \xB7 Current autonomous pace: ${r.pace}${position ? ` \xB7 Recorded decision (tick ${d.tick}): ${position}` : ""}${fresh ? ` \xB7 ${recent.label}` : ""}`;
+  }
+
   // src/sim/deterministic-log.js
   var INCIDENT_CLOCK_VERSION = "m2e-exponential-clock-v1";
   function deterministicLog(x) {
@@ -36,9 +118,9 @@
   }
 
   // src/core/determinism.js
-  function hash(text) {
+  function hash(text2) {
     let h = 2166136261;
-    for (const c of String(text)) {
+    for (const c of String(text2)) {
       h ^= c.charCodeAt(0);
       h = Math.imul(h, 16777619);
     }
@@ -53,13 +135,13 @@
   }
   var quotedStrings = /* @__PURE__ */ new Map();
   var sortedShapes = /* @__PURE__ */ new Map();
-  function quote(text) {
-    if (text.length > 128) return JSON.stringify(text);
-    const old = quotedStrings.get(text);
+  function quote(text2) {
+    if (text2.length > 128) return JSON.stringify(text2);
+    const old = quotedStrings.get(text2);
     if (old !== void 0) return old;
-    const encoded = JSON.stringify(text);
+    const encoded = JSON.stringify(text2);
     if (quotedStrings.size >= 2048) quotedStrings.clear();
-    quotedStrings.set(text, encoded);
+    quotedStrings.set(text2, encoded);
     return encoded;
   }
   function sortedKeys(value) {
@@ -204,9 +286,9 @@
     if (overrides.tuning !== void 0 && (!overrides.tuning || typeof overrides.tuning !== "object" || Array.isArray(overrides.tuning)))
       throw new Error("Invalid tuning object");
     for (const [k, v] of Object.entries(tuning))
-      if (!Object.hasOwn(tuningDefaults, k) || !Number.isFinite(v) || v < 0 || v > 2)
+      if (!Object.hasOwn(tuningDefaults, k) && !["beastExhaustionStart", "beastExhaustionStrength"].includes(k) || !Number.isFinite(v) || v < 0 || v > 2)
         throw new Error(`Invalid tuning.${k}: expected 0..2`);
-    if (tuning.crowdSensitivity > 1 || tuning.impairment > 1 || tuning.chariotSpeedFloor > 1 || tuning.coordinationMin > tuning.coordinationMax)
+    if (tuning.beastExhaustionStart !== void 0 && tuning.beastExhaustionStart >= 1 || tuning.beastExhaustionStrength !== void 0 && tuning.beastExhaustionStrength > 1 || tuning.crowdSensitivity > 1 || tuning.impairment > 1 || tuning.chariotSpeedFloor > 1 || tuning.coordinationMin > tuning.coordinationMax)
       throw new Error("Invalid tuning limits");
     for (const group of [
       [
@@ -503,7 +585,7 @@
   }
 
   // src/events/events.js
-  function emit(s, type, participants = [], effects = {}) {
+  function emit(s, type, participants = [], effects2 = {}) {
     const event = {
       id: s.events.length + 1,
       type,
@@ -511,7 +593,7 @@
       tick: s.tick,
       fraction: (s.time - s.tick * s.config.dt) / s.config.dt,
       participants: [...participants].sort(),
-      effects: structuredClone(effects)
+      effects: structuredClone(effects2)
     };
     s.events.push(event);
     return event;
@@ -923,7 +1005,7 @@
     if (s.impactsThisTick > s.consequence.maxChainEvents)
       throw new Error("Impact chain budget exceeded");
     const before = new Map(s.entrants.map((r) => [r.id, structuredClone(r)]));
-    const effects = [];
+    const effects2 = [];
     for (const impact of impacts.sort((a, b) => a.id.localeCompare(b.id))) {
       for (const [id2, direction, share] of [
         [impact.a, impact.direction, impact.b ? 0.5 : 1],
@@ -938,7 +1020,7 @@
         ) * protection * Math.max(0.1, s.environment.grip * surface.grip);
         const geometry2 = s.consequence[direction + "Geometry"] ?? 1;
         const amount = impact.amount === void 0 ? impact.energy * geometry2 * s.consequence.damageScale * share / resistance : impact.amount / resistance;
-        effects.push({
+        effects2.push({
           r: live,
           target,
           amount,
@@ -954,7 +1036,7 @@
           );
       }
     }
-    for (const effect of effects) {
+    for (const effect of effects2) {
       const { r, target, amount, impact } = effect, old = target.component.condition;
       target.component.condition = clamp(old - amount, 0, 100);
       emit(s, "DAMAGE", [r.id], {
@@ -968,9 +1050,9 @@
         energy: impact.energy
       });
     }
-    const touched = [...new Set(effects.map((e) => e.r.id))].sort();
+    const touched = [...new Set(effects2.map((e) => e.r.id))].sort();
     for (const id2 of touched) {
-      const r = s.entrants.find((r2) => r2.id === id2), own = effects.filter((e) => e.r.id === id2);
+      const r = s.entrants.find((r2) => r2.id === id2), own = effects2.filter((e) => e.r.id === id2);
       r.instability += own.reduce((n, e) => n + e.shock, 0);
       if (r.physical !== "Wreck")
         r.speed *= own.some(
@@ -1228,7 +1310,7 @@
       throw new Error("Invalid utility weights");
     const result = { ...utilityDefaults, ...input2 };
     for (const [key2, value] of Object.entries(result))
-      if (!Object.hasOwn(utilityDefaults, key2) || !Number.isFinite(value) || value < 0 || value > 100)
+      if (!Object.hasOwn(utilityDefaults, key2) && key2 !== "finishUrgency" || !Number.isFinite(value) || value < 0 || value > 100)
         throw new Error(`Invalid utility weight ${key2}`);
     return Object.freeze(result);
   }
@@ -1451,6 +1533,12 @@
     bounded(ru.equipment?.mass, "equipment mass", 0, 1e4);
     bounded(ru.equipment?.combat, "equipment combat", 0, 100);
   }
+  function beastExhaustionFactor(fatigue, tuning) {
+    if (!tuning.beastExhaustionStrength) return 1;
+    const start = tuning.beastExhaustionStart ?? 0.65;
+    const x = clamp((fatigue / 100 - start) / (1 - start), 0, 1);
+    return 1 - tuning.beastExhaustionStrength * x * x * (3 - 2 * x);
+  }
   function derive(ru, c) {
     validateRU(ru);
     const w = c.tuning;
@@ -1460,7 +1548,7 @@
       (b) => Object.fromEntries(
         beastAttributes.map((k) => [
           k,
-          b[k] * (b.condition / 100) * (1 - w.impairment * b.fatigue / 100)
+          w.beastExhaustionStrength ? b[k] * (b.condition / 100) * (1 - w.impairment * b.fatigue / 100) * beastExhaustionFactor(b.fatigue, w) : b[k] * (b.condition / 100) * (1 - w.impairment * b.fatigue / 100)
         ])
       )
     );
@@ -1527,6 +1615,18 @@
       awareness: d.awareness * driverCondition,
       nerve: d.nerve * driverCondition
     };
+  }
+
+  // src/ai/finish-utility.js
+  function finishUtility(s, r, action, personality2) {
+    const weight = s.autonomous.utility.finishUrgency ?? 0;
+    if (!weight) return 0;
+    if (["Conserve Strength", "Race Defensively", "Hold Position"].includes(r.signs.active)) return 0;
+    const total = s.track.cells * (s.track.course && !s.track.closed ? 1 : s.config.laps);
+    const progress = Math.max(0, Math.min(1, r.q / total));
+    const fatigue = r.ru.beasts.reduce((sum, b) => sum + b.fatigue, 0) / r.ru.beasts.length / 100;
+    const intent = { Push: 1, Sprint: 0.8, Conserve: -0.5 }[action] ?? 0;
+    return weight * progress ** 4 * (1 - fatigue) * (0.5 + personality2.opportunism / 200) * intent;
   }
 
   // src/ai/combat-value.js
@@ -1695,6 +1795,7 @@
       const terms = {
         base,
         ...features,
+        ...w.finishUrgency ? { finishEffort: finishUtility(s, r, action, p) } : {},
         ...r.coachingContext ? { coaching: coachingUtility(r.coachingContext, action, sign) } : {},
         sign: influence,
         persistence,
@@ -2994,8 +3095,8 @@
   // src/career/economy/fingerprint.js
   var K = [1116352408, 1899447441, 3049323471, 3921009573, 961987163, 1508970993, 2453635748, 2870763221, 3624381080, 310598401, 607225278, 1426881987, 1925078388, 2162078206, 2614888103, 3248222580, 3835390401, 4022224774, 264347078, 604807628, 770255983, 1249150122, 1555081692, 1996064986, 2554220882, 2821834349, 2952996808, 3210313671, 3336571891, 3584528711, 113926993, 338241895, 666307205, 773529912, 1294757372, 1396182291, 1695183700, 1986661051, 2177026350, 2456956037, 2730485921, 2820302411, 3259730800, 3345764771, 3516065817, 3600352804, 4094571909, 275423344, 430227734, 506948616, 659060556, 883997877, 958139571, 1322822218, 1537002063, 1747873779, 1955562222, 2024104815, 2227730452, 2361852424, 2428436474, 2756734187, 3204031479, 3329325298];
   var rotate = (x, n) => x >>> n | x << 32 - n;
-  function sha256(text) {
-    const bytes = new TextEncoder().encode(text), length = Math.ceil((bytes.length + 9) / 64) * 64;
+  function sha256(text2) {
+    const bytes = new TextEncoder().encode(text2), length = Math.ceil((bytes.length + 9) / 64) * 64;
     const data = new Uint8Array(length);
     data.set(bytes);
     data[bytes.length] = 128;
@@ -3068,11 +3169,11 @@
       active.delete(x);
       return { r: index };
     }
-    const wire = { version: 1, root: visit(root), nodes }, text = JSON.stringify(wire), bytes = new TextEncoder().encode(text);
+    const wire = { version: 1, root: visit(root), nodes }, text2 = JSON.stringify(wire), bytes = new TextEncoder().encode(text2);
     if (bytes.length > 32 * 1024 * 1024) throw Error("Decoded checkpoint graph exceeds 32 MiB");
-    return { wire, text, bytes };
+    return { wire, text: text2, bytes };
   }
-  function compress(text, bytes = new TextEncoder().encode(text)) {
+  function compress(text2, bytes = new TextEncoder().encode(text2)) {
     if (bytes.length > 32 * 1024 * 1024) throw Error("Decoded checkpoint exceeds 32 MiB");
     const dictionary = /* @__PURE__ */ new Map(), codes = [];
     let next = 257, word = bytes.length ? bytes[0] : -1;
@@ -3104,14 +3205,14 @@
   var lastGraphText = null;
   var lastTransport = null;
   function pack(root) {
-    const { text, bytes } = graphPack(root);
+    const { text: text2, bytes } = graphPack(root);
     let transport;
-    if (text.length >= 65536 && text === lastGraphText) transport = { ...lastTransport };
-    else transport = compress(text, bytes);
+    if (text2.length >= 65536 && text2 === lastGraphText) transport = { ...lastTransport };
+    else transport = compress(text2, bytes);
     const wire = { version: 1, transport };
     if (new TextEncoder().encode(JSON.stringify(wire)).length > MAX_CHECKPOINT_BYTES) throw Error("Checkpoint exceeds 8 MiB");
-    if (text.length >= 65536 && text !== lastGraphText) {
-      lastGraphText = text;
+    if (text2.length >= 65536 && text2 !== lastGraphText) {
+      lastGraphText = text2;
       lastTransport = { ...transport };
     }
     return wire;
@@ -3281,11 +3382,13 @@
   }
 
   // src/prototype/pacing.js
-  var PACING_VERSION = "p1.1-endurance-v1";
-  var pacingProfiles = freeze({
+  var PACING_VERSION = "p1.2-competitive-v1";
+  var priorProfiles = freeze({
     legacy: { autonomous: {}, tuning: {} },
     endurance: { autonomous: { fatigueRate: 0.32, recoveryRate: 0.7, exertionConserve: 0.15, exertionMaintain: 0.4, exertionPush: 2.5, exertionSprint: 4.5, recoveryThreshold: 0.25, utility: { pushFatigue: 8, sprintFatigue: 14, conserveFatigueBase: 3, conserveStamina: 8 } }, tuning: { impairment: 0.85, paceConserve: 0.75, pacePush: 0.98 } }
   });
+  var competitiveProfile = freeze({ autonomous: { ...priorProfiles.endurance.autonomous, utility: { ...priorProfiles.endurance.autonomous.utility, finishUrgency: 1.5 } }, tuning: { ...priorProfiles.endurance.tuning, beastExhaustionStart: 0.65, beastExhaustionStrength: 0.5 } });
+  var pacingProfiles = freeze({ ...priorProfiles, competitive: competitiveProfile });
   var fatigueDisplayRules = Object.freeze({ working: 20, fatigued: 50, exhausted: 80, trendEpsilon: 1e-6 });
   var meanFatigue = (ru) => ru.beasts.reduce((sum, b) => sum + b.fatigue, 0) / ru.beasts.length;
   function fatigueDisplay(ru, previous = null) {
@@ -3321,7 +3424,7 @@
   }
 
   // src/prototype/session.js
-  var PROTOTYPE_VERSION = "p1.1-playable-v1";
+  var PROTOTYPE_VERSION = "p1.2-playable-v1";
   function prototypeRally(category, seed) {
     const course = generateRally({ seed, category }), fractions = { short: [1 / 2], medium: [1 / 3, 2 / 3], long: [1 / 4, 1 / 2, 3 / 4] }[category];
     const length = course.segments.reduce((n, s) => n + s.length, 0);
@@ -3329,7 +3432,7 @@
     course.checkpoints = fractions.map((f, i) => ({ id: "SP" + (i + 1), distance: length * f }));
     return normalizeCourse(course);
   }
-  function raceSetup({ course = "short-oval", seed = 145, format = "Pure", weather = "Clear", build = "baseline", value = 55, coaching = null, fieldSize = 8, laps = 2, pacing = "endurance" } = {}) {
+  function raceSetup({ course = "short-oval", seed = 145, format = "Pure", weather = "Clear", build = "baseline", value = 55, coaching = null, fieldSize = 8, laps = 2, pacing = "competitive" } = {}) {
     if (!Number.isInteger(fieldSize) || fieldSize < 1 || fieldSize > 8) throw Error("Field must contain 1..8 entrants");
     if (!Number.isFinite(value) || value < 0 || value > 100) throw Error("Base attributes must be 0..100");
     const profile = pacingProfiles[pacing];
@@ -3386,7 +3489,7 @@
       for (const e of events) if (e.type === "AI_DECISION") {
         for (const a of Object.values(e.effects.executed ?? e.effects.chosen ?? {})) if (typeof a === "string") actions[a] = (actions[a] ?? 0) + 1;
       }
-      return { version: PROTOTYPE_VERSION, pacingVersion: this.options.pacing === "legacy" ? "legacy" : PACING_VERSION, seed: s.seed, format: s.format, build: this.options.build ?? "baseline", tick: s.tick, status: s.status, clearance: this.official(), checksum: digest(s), official: classification(s), player: { id: p.id, actions, finishTime: p.finishTime, status: p.status, driver: p.ru.driver.condition, chariot: p.ru.chariot.condition, beastFatigue: p.ru.beasts.map((b) => b.fatigue), wear: p.ru.chariot.wear, contacts: events.filter((e) => e.type === "CONTACT").length, attacks: events.filter((e) => e.type === "ATTACK").length, overtakes: events.filter((e) => e.type === "OVERTAKE" && e.effects.passer === p.id).length, signs: events.filter((e) => e.type === "SIGN_ACTIVATED").length }, maxTickMs: this.maxTickMs, totalTickMs: this.totalTickMs, events: s.events.length, inputs: structuredClone(this.inputs) };
+      return { version: PROTOTYPE_VERSION, pacingVersion: this.options.pacing === "legacy" ? "legacy" : this.options.pacing === "endurance" ? "p1.1-endurance-v1" : PACING_VERSION, seed: s.seed, format: s.format, build: this.options.build ?? "baseline", tick: s.tick, status: s.status, clearance: this.official(), checksum: digest(s), official: classification(s), player: { id: p.id, actions, finishTime: p.finishTime, status: p.status, driver: p.ru.driver.condition, chariot: p.ru.chariot.condition, beastFatigue: p.ru.beasts.map((b) => b.fatigue), wear: p.ru.chariot.wear, contacts: events.filter((e) => e.type === "CONTACT").length, attacks: events.filter((e) => e.type === "ATTACK").length, overtakes: events.filter((e) => e.type === "OVERTAKE" && e.effects.passer === p.id).length, signs: events.filter((e) => e.type === "SIGN_ACTIVATED").length }, maxTickMs: this.maxTickMs, totalTickMs: this.totalTickMs, events: s.events.length, inputs: structuredClone(this.inputs) };
     }
   };
   function playback(session2, accumulator, elapsed, speed, { budgetMs = 8, maxTicks = 40 } = {}) {
@@ -3453,7 +3556,15 @@
     }
     const lanes = Array.from({ length: c.lanes - 1 }, (_, i) => path(sample(i + 0.5)));
     const xs = samples.map((p) => p.x), ys = samples.map((p) => p.y);
-    return { road, surfaces, lanes, edges: edges.map(path), bounds: { minX: Math.min(...xs), maxX: Math.max(...xs), minY: Math.min(...ys), maxY: Math.max(...ys) }, samples: samples.length };
+    const arrows = new Path2D();
+    for (let q = 1; q < t.cells; q += Math.max(8, t.cells / 10)) {
+      const a = point(q, 1.5, c, t), b = point(q + 0.3, 1.5, c, t), h = Math.atan2(b.y - a.y, b.x - a.x), cs = Math.cos(h), sn = Math.sin(h);
+      arrows.moveTo(a.x + 3 * cs, a.y + 3 * sn);
+      arrows.lineTo(a.x - 2 * cs + 1.4 * sn, a.y - 2 * sn - 1.4 * cs);
+      arrows.lineTo(a.x - 2 * cs - 1.4 * sn, a.y - 2 * sn + 1.4 * cs);
+      arrows.closePath();
+    }
+    return { road, arrows, surfaces, lanes, edges: edges.map(path), bounds: { minX: Math.min(...xs), maxX: Math.max(...xs), minY: Math.min(...ys), maxY: Math.max(...ys) }, samples: samples.length };
   }
   function fit(bounds, width, height, pad = 24) {
     const scale = Math.min((width - pad * 2) / Math.max(1, bounds.maxX - bounds.minX), (height - pad * 2) / Math.max(1, bounds.maxY - bounds.minY));
@@ -3572,22 +3683,46 @@
       }
       ctx.restore();
     }
-    for (let q = 1; q < s.track.cells; q += Math.max(8, s.track.cells / 10)) {
-      const a = point(q, 1.5, s.config, s.track), b = point(q + 0.2, 1.5, s.config, s.track), angle = Math.atan2(b.y - a.y, b.x - a.x);
-      ctx.save();
-      ctx.translate(a.x, a.y);
-      ctx.rotate(angle);
-      ctx.fillStyle = "#c5c39a";
-      ctx.beginPath();
-      ctx.moveTo(3, 0);
-      ctx.lineTo(-2, -1.4);
-      ctx.lineTo(-2, 1.4);
-      ctx.closePath();
-      ctx.fill();
-      ctx.restore();
-    }
+    ctx.fillStyle = "#c5c39a";
+    ctx.fill(g2.arrows);
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     return v;
+  }
+  function drawInteractions(canvas, state, effects2, camera2) {
+    const ctx = canvas.getContext("2d");
+    ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    effects2.forEach((effect, index) => {
+      const r = state.entrants.find((r2) => r2.id === effect.entityId);
+      if (!r) return;
+      const p = point(r.q, r.lane, state.config, state.track), x = canvas.width / 2 + (p.x - camera2.x) * camera2.scale, y = canvas.height / 2 + (p.y - camera2.y) * camera2.scale;
+      if (x < -60 || y < -60 || x > canvas.width + 60 || y > canvas.height + 60) return;
+      ctx.globalAlpha = Math.max(0.35, 1 - effect.age / 1200);
+      ctx.strokeStyle = effect.color;
+      ctx.fillStyle = effect.color;
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.arc(x, y, 16 + effect.age / 35, 0, Math.PI * 2);
+      ctx.stroke();
+      if (effect.attacker && effect.defender) {
+        const attacker = state.entrants.find((r2) => r2.id === effect.attacker);
+        if (attacker) {
+          const a = point(attacker.q, attacker.lane, state.config, state.track);
+          ctx.beginPath();
+          ctx.moveTo(canvas.width / 2 + (a.x - camera2.x) * camera2.scale, canvas.height / 2 + (a.y - camera2.y) * camera2.scale);
+          ctx.lineTo(x, y);
+          ctx.stroke();
+        }
+      }
+      const label = effect.label, yy = y - 28 - index % 3 * 17;
+      ctx.font = "bold 13px sans-serif";
+      const width = ctx.measureText(label).width;
+      ctx.fillStyle = "#07131de6";
+      ctx.fillRect(x - width / 2 - 4, yy - 13, width + 8, 18);
+      ctx.fillStyle = effect.color;
+      ctx.fillText(label, x - width / 2, yy);
+    });
+    ctx.restore();
   }
 
   // src/reporting/commentary.js
@@ -3704,6 +3839,15 @@
     label.append(select);
     $("coachAxes").append(label);
   }
+  var effects = new InteractionFeed();
+  var effectFrame = null;
+  var lastEffectTick = -1;
+  var lastEffectPlaying = false;
+  var tableRows = /* @__PURE__ */ new Map();
+  function text(id2, value) {
+    const el = $(id2);
+    if (el.textContent !== value) el.textContent = value;
+  }
   var session;
   var g;
   var radio;
@@ -3715,8 +3859,9 @@
   var camera = null;
   var comparisonBusy = false;
   var lastDomKey = null;
-  var measurements = { frames: 0, mainDrawMs: [], mapDrawMs: [], domMs: [], longTasks: [], inputMs: [], fullRaceWallMs: null };
+  var measurements = { frames: 0, frameIntervals: [], advanceMs: [], cameraMs: [], effectMs: [], mainDrawMs: [], mapDrawMs: [], domMs: [], longTasks: [], inputMs: [], fullRaceWallMs: null };
   var startedAt = null;
+  var frameAt = null;
   try {
     new PerformanceObserver((list) => {
       for (const e of list.getEntries()) {
@@ -3739,6 +3884,12 @@
     session = next;
     g = nextGeometry;
     radio = new Commentary();
+    effects = new InteractionFeed();
+    effectFrame = null;
+    lastEffectTick = -1;
+    lastEffectPlaying = false;
+    tableRows.clear();
+    $("standings").replaceChildren();
     debt = 0;
     last = null;
     terminal = null;
@@ -3748,7 +3899,7 @@
     $("radio").replaceChildren();
     $("error").textContent = "";
     $("comparison").textContent = "";
-    for (const key2 of ["mainDrawMs", "mapDrawMs", "domMs", "longTasks", "inputMs"]) measurements[key2] = [];
+    for (const key2 of ["frameIntervals", "advanceMs", "cameraMs", "effectMs", "mainDrawMs", "mapDrawMs", "domMs", "longTasks", "inputMs"]) measurements[key2] = [];
     measurements.fullRaceWallMs = null;
     render();
   }
@@ -3781,6 +3932,7 @@
     if (!session) return;
     finish();
     const s = session.state, p = s.entrants.find((r) => r.id === s.playerId), now = performance.now();
+    const cameraAt = performance.now();
     const actor = cameraTarget(s), target = point(actor.q, actor.lane, s.config, s.track);
     if (!camera) camera = { ...target, scale: Number($("zoom").value) };
     else {
@@ -3788,11 +3940,22 @@
       camera.y += (target.y - camera.y) * 0.35;
       camera.scale = Number($("zoom").value);
     }
-    drawCourse($("race"), s, g, { camera });
+    record("cameraMs", performance.now() - cameraAt);
+    const mainCamera = drawCourse($("race"), s, g, { camera });
     record("mainDrawMs", performance.now() - now);
     const mapAt = performance.now();
     drawCourse($("map"), s, g, { map: true });
     record("mapDrawMs", performance.now() - mapAt);
+    const effectAt = performance.now(), effectNow = performance.now();
+    effects.consume(s, { stepped: !playing && s.tick !== lastEffectTick });
+    const activeEffects = effects.advance(effectFrame === null || !lastEffectPlaying ? 0 : Math.max(0, effectNow - effectFrame), { paused: !playing });
+    effectFrame = effectNow;
+    lastEffectPlaying = playing;
+    lastEffectTick = s.tick;
+    drawInteractions($("race"), s, activeEffects, mainCamera);
+    text("signResponse", signFeedback(s, effects));
+    text("interactionStatus", `${effects.total} native interactions \xB7 ${effects.pending.length} queued \xB7 ${effects.overflow} additional events summarized`);
+    record("effectMs", performance.now() - effectAt);
     const domAt = performance.now(), domKey = [s.tick, playing, p.signs.remaining, p.signs.active, p.signs.pending, comparisonBusy].join("|");
     if (lastDomKey === domKey) return;
     lastDomKey = domKey;
@@ -3807,17 +3970,24 @@
     $("signState").textContent = `Active: ${p.signs.active ?? "none"} \xB7 Queued: ${p.signs.pending ?? "none"} \xB7 Uses remaining: ${p.signs.remaining}`;
     $("progress").textContent = open ? `Sign Points crossed: ${p.checkpointCursor}/${s.track.checkpoints.length} \xB7 Next: ${s.track.checkpoints[p.checkpointCursor]?.id ?? "finish"}` : `${s.format} \xB7 ${s.config.laps} laps \xB7 Player ${progress(p)}`;
     const official = terminal?.cleared ? terminal.classification : null, rows = official ?? [...s.entrants].sort((a, b) => (a.finishTime === null) - (b.finishTime === null) || (a.finishTime ?? 0) - (b.finishTime ?? 0) || b.q - a.q || a.id.localeCompare(b.id)).map((r, i) => ({ id: r.id, place: i + 1, status: r.status, time: r.finishTime }));
-    $("standings").replaceChildren(...rows.map((row) => {
-      const tr = document.createElement("tr");
-      if (row.id === s.playerId) tr.className = "player";
-      const r = s.entrants.find((r2) => r2.id === row.id);
-      for (const text of [row.place ?? "\u2014", row.id, row.status === "Finished" ? `${row.time.toFixed(3)}s` : row.status === "Racing" ? progress(r) : row.status]) {
-        const td = document.createElement("td");
-        td.textContent = text;
-        tr.append(td);
+    const desired = [];
+    for (const row of rows) {
+      let tr = tableRows.get(row.id);
+      if (!tr) {
+        tr = document.createElement("tr");
+        for (let i = 0; i < 3; i++) tr.append(document.createElement("td"));
+        tableRows.set(row.id, tr);
       }
-      return tr;
-    }));
+      tr.className = row.id === s.playerId ? "player" : "";
+      const r = s.entrants.find((r2) => r2.id === row.id), values = [String(row.place ?? "\u2014"), row.id, row.status === "Finished" ? `${row.time.toFixed(3)}s` : row.status === "Racing" ? progress(r) : row.status];
+      values.forEach((value, i) => {
+        if (tr.children[i].textContent !== value) tr.children[i].textContent = value;
+      });
+      desired.push(tr);
+    }
+    desired.forEach((tr, i) => {
+      if ($("standings").children[i] !== tr) $("standings").insertBefore(tr, $("standings").children[i] ?? null);
+    });
     $("clearance").textContent = terminal ? terminal.cleared ? "Official placement uses native full precision and tie tolerance." : "Uncleared: no official result. Restart or inspect diagnostics." : "Live order is provisional.";
     const n = radio.lines.length;
     radio.consume(s.events);
@@ -3838,7 +4008,7 @@
     $("lower").disabled = comparisonBusy || stopped || !p.signs.active;
     for (const id2 of ["start", "step"]) $(id2).disabled = comparisonBusy || stopped;
     $("pause").disabled = comparisonBusy || !playing;
-    $("diagnostics").textContent = JSON.stringify({ prototype: "p1.1-playable-v1", individualBeastFatigue: endurance.individual, meanFatigue: endurance.fatigue, presetChanges: session.changes, coaching: session.state.entrants[0].coachingContext ?? null, simulationVersion: s.version, seed: s.seed, tick: s.tick, events: s.events.length, maxTickMs: session.maxTickMs, rollingTickSamples: session.timings.length, geometrySamples: g.samples, clearance: terminal?.cleared ?? false }, null, 2);
+    if ($("diagnostics").parentElement.open) $("diagnostics").textContent = JSON.stringify({ prototype: "p1.2-playable-v1", individualBeastFatigue: endurance.individual, meanFatigue: endurance.fatigue, presetChanges: session.changes, coaching: session.state.entrants[0].coachingContext ?? null, simulationVersion: s.version, seed: s.seed, tick: s.tick, events: s.events.length, maxTickMs: session.maxTickMs, rollingTickSamples: session.timings.length, geometrySamples: g.samples, clearance: terminal?.cleared ?? false }, null, 2);
     record("domMs", performance.now() - domAt);
     measurements.frames++;
   }
@@ -3909,12 +4079,20 @@
     }
   }
   $("compare").onclick = compare;
+  $("diagnostics").parentElement.ontoggle = () => {
+    lastDomKey = null;
+    render();
+  };
   function frame(now) {
+    if (frameAt !== null) record("frameIntervals", now - frameAt);
+    frameAt = now;
     try {
       if (playing && !comparisonBusy) {
         if (last !== null) {
+          const advanceAt = performance.now();
           const r = playback(session, debt, (now - last) / 1e3, Number($("speed").value));
           debt = r.accumulator;
+          record("advanceMs", performance.now() - advanceAt);
         }
         last = now;
         finish();
@@ -3929,10 +4107,14 @@
     }
     requestAnimationFrame(frame);
   }
-  window.P1 = { version: "p1.1-playable-v1", get session() {
+  window.P1 = { version: "p1.2-playable-v1", get session() {
     return session;
   }, get measurements() {
     return measurements;
+  }, get playbackDebt() {
+    return debt;
+  }, get interactions() {
+    return effects;
   }, prepare, compare, classification, draw: render, lastComparison: null };
   prepare();
   requestAnimationFrame(frame);
