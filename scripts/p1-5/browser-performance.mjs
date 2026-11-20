@@ -11,7 +11,7 @@ const browser = await chromium.launch({ executablePath: "/usr/bin/chromium", hea
 const result = { browser: browser.version(), windowMs: 1600, repeats: 1, notes: "Sequential single-observation windows. Same ordinary native checkpoint per phase. Restore and worker initial fill excluded; latency recorded separately. No concurrent verification jobs.", rows: [], errors: [] };
 try {
   const fixtures = JSON.parse(await readFile(out + "/fixtures/index.json"));
-  for (const mode of ["reference", "worker", "sync"]) {
+  for (const mode of (process.env.BNT_P15_MODES ?? "reference,worker,sync").split(",")) {
     const page = await browser.newPage({ viewport: { width: 1440, height: 1e3 } });
     page.on("pageerror", (e) => result.errors.push({ mode, message: e.message }));
     await page.goto("http://127.0.0.1:" + server.address().port + (mode === "reference" ? "/reference" : "/candidate"));
@@ -62,7 +62,7 @@ try {
       });
       result.rows.push({ mode, course: f.options.course, format: f.options.format, fieldSize: f.options.fieldSize, phase: f.phase, speed, setupMs, ...sample });
       console.log(mode, f.file, speed, sample.frames.p99, sample.error);
-      await writeFile(out + "/performance-windows.json", JSON.stringify(result, null, 2));
+      await writeFile(out + "/" + (process.env.BNT_P15_REPORT ?? "performance-windows.json"), JSON.stringify(result, null, 2));
     }
     await page.close();
   }

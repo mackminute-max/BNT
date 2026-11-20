@@ -134,7 +134,7 @@ class BufferedSession {
       this.latestTick = Math.max(this.latestTick ?? 0, f.tick);
       this.telemetry.receivedFrames++;
       this.telemetry.maxFrames = Math.max(this.telemetry.maxFrames, this.frames.size);
-      this.telemetry.maxLead = Math.max(this.telemetry.maxLead, f.time - this.clock);
+      this.telemetry.maxLead = Math.max(this.telemetry.maxLead, f.time - (this.phase === "preparing" ? f.time : this.clock));
       if (this.phase === "preparing") {
         this.clock = f.time;
         this.state = { ...this.base, ...f, events: [] };
@@ -304,6 +304,7 @@ class BufferedSession {
       }
     }
     for (const key of this.frames.keys()) if (key < tick) this.frames.delete(key);
+    if (this.completion && this.state.tick >= this.completion.tick && ["Ended", "Stalled", "Error"].includes(this.state.status)) this.phase = "finished";
   }
   renderState() {
     const s = this.state, n = this.frames.get(s.tick + 1);

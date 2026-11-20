@@ -8,7 +8,7 @@ await new Promise((r) => server.listen(0, "127.0.0.1", r));
 const browser = await chromium.launch({ executablePath: "/usr/bin/chromium", headless: true, args: ["--no-sandbox"] });
 const report = { browser: browser.version(), rows: [], errors: [], notes: "Full uninterrupted ordinary viewer races, 4x speed; one sample each; countdown included in wall time. Sequential, no concurrent verification load." };
 try {
-  for (const course of ["C01", "rally-long"]) for (const mode of ["reference", "worker", "sync"]) {
+  for (const course of ["C01", "rally-long"]) for (const mode of (process.env.BNT_P15_MODES ?? "reference,worker,sync").split(",")) {
     const page = await browser.newPage({ viewport: { width: 1440, height: 1e3 } });
     page.on("pageerror", (e) => report.errors.push(e.message));
     await page.goto("http://127.0.0.1:" + server.address().port + (mode === "reference" ? "/reference" : "/candidate"));
@@ -40,7 +40,7 @@ try {
     });
     report.rows.push({ mode, options, ...row });
     console.log(mode, course, row.status, row.ticks, row.checksum, row.frames);
-    await writeFile(out + "/sustained.json", JSON.stringify(report, null, 2));
+    await writeFile(out + "/" + (process.env.BNT_P15_REPORT ?? "sustained.json"), JSON.stringify(report, null, 2));
     await page.close();
   }
   for (const course of ["C01", "rally-long"]) {
