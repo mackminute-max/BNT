@@ -1,0 +1,20 @@
+{
+  "cases": [
+    "treasury",
+    "receipt",
+    "ownership",
+    "unknown-undefined",
+    "NaN",
+    "revision"
+  ],
+  "exactStateHit": true,
+  "stats": {
+    "calls": 8,
+    "hits": 1,
+    "full": 7,
+    "fallbacks": 1,
+    "evictions": 0,
+    "bytes": 242059
+  },
+  "scope": "Private worker JSON/structuredClone state boundary only; not arbitrary user-supplied JS proxies."
+}

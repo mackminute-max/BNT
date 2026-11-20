@@ -1,0 +1,259 @@
+{
+  "runtime": "b8c090057052ac03bbed73d9487093da61381451",
+  "browser": "156.0.8078.79",
+  "controlled": true,
+  "productionChanged": false,
+  "cacheMode": "two",
+  "cases": [
+    {
+      "codecStats": {
+        "stats": {
+          "calls": 250,
+          "hits": 0,
+          "misses": 250,
+          "inverseHits": 0,
+          "evictions": 23,
+          "cachedBytes": 14782248
+        },
+        "durable": false
+      },
+      "id": "retained",
+      "metrics": [
+        {
+          "side": "baseline",
+          "operation": "coldSeed",
+          "ms": 20577.899999999907
+        },
+        {
+          "side": "reference",
+          "operation": "coldSeed",
+          "ms": 19985.30000000028
+        },
+        {
+          "side": "baseline",
+          "operation": "nativePrepare",
+          "begin": 41925.90000000037,
+          "end": 64735.30000000028,
+          "ms": 22809.399999999907,
+          "preparationMs": 21724.599999999627,
+          "commitMs": 840,
+          "maxObservedMainTask": 400
+        },
+        {
+          "side": "reference",
+          "operation": "nativePrepare",
+          "begin": 64735.30000000028,
+          "end": 89174.80000000028,
+          "ms": 24439.5,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 2,
+          "readMs": 307,
+          "preparationMs": 23515.799999999814,
+          "commitMs": 608.6000000000931,
+          "totalMs": 24438.5,
+          "maxObservedMainTask": 67
+        },
+        {
+          "side": "baseline",
+          "operation": "official",
+          "begin": 89174.80000000028,
+          "end": 103791.40000000037,
+          "ms": 14616.600000000093,
+          "preparationMs": 13579.100000000093,
+          "commitMs": 519.7000000001863,
+          "maxObservedMainTask": 219
+        },
+        {
+          "side": "reference",
+          "operation": "official",
+          "begin": 103791.5,
+          "end": 118299.40000000037,
+          "ms": 14507.900000000373,
+          "requestBytes": 95,
+          "durable": true,
+          "generation": 3,
+          "readMs": 209.70000000018626,
+          "preparationMs": 13793.600000000093,
+          "commitMs": 496.39999999990687,
+          "totalMs": 14506.5,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "warmInspect",
+          "ms": 498.60000000009313
+        },
+        {
+          "side": "baseline",
+          "operation": "warmInspect",
+          "ms": 637.1000000000931
+        },
+        {
+          "side": "baseline",
+          "operation": "coldReconstruction",
+          "ms": 22768
+        },
+        {
+          "side": "reference",
+          "operation": "coldReconstruction",
+          "ms": 22781.80000000028
+        },
+        {
+          "side": "baseline",
+          "operation": "backup",
+          "ms": 21790.899999999907,
+          "bytes": 60528132
+        },
+        {
+          "side": "reference",
+          "operation": "backup",
+          "ms": 21363.399999999907,
+          "bytes": 60528132
+        }
+      ],
+      "compare": {
+        "exactRecordBytes": true,
+        "recordCount": 13,
+        "totalRecordBytes": 29962797,
+        "fullSnapshotRequestBytes": 30303995
+      },
+      "rawArchive": {
+        "exact": true,
+        "heads": 2,
+        "legacyBytes": 60527476,
+        "factoredBytes": 32810633,
+        "uniqueRecords": 14,
+        "elapsedMs": 1418.3999999999069,
+        "storageEstimate": {
+          "quota": 10917322752,
+          "usage": 179904512,
+          "usageDetails": {
+            "indexedDB": 179904512
+          }
+        },
+        "durable": false
+      },
+      "longTasks": [
+        {
+          "start": 20514.80000000028,
+          "duration": 64
+        },
+        {
+          "start": 20580.400000000373,
+          "duration": 414
+        },
+        {
+          "start": 21261.30000000028,
+          "duration": 363
+        },
+        {
+          "start": 21649.700000000186,
+          "duration": 97
+        },
+        {
+          "start": 42030.40000000037,
+          "duration": 82
+        },
+        {
+          "start": 63894.90000000037,
+          "duration": 178
+        },
+        {
+          "start": 64137.700000000186,
+          "duration": 400
+        },
+        {
+          "start": 85655.1000000001,
+          "duration": 67
+        },
+        {
+          "start": 89204.20000000019,
+          "duration": 85
+        },
+        {
+          "start": 89289.90000000037,
+          "duration": 103
+        },
+        {
+          "start": 89394.1000000001,
+          "duration": 219
+        },
+        {
+          "start": 103271.5,
+          "duration": 191
+        },
+        {
+          "start": 103489.6000000001,
+          "duration": 185
+        },
+        {
+          "start": 118420.80000000028,
+          "duration": 84
+        },
+        {
+          "start": 118711.80000000028,
+          "duration": 76
+        },
+        {
+          "start": 119410.40000000037,
+          "duration": 103
+        },
+        {
+          "start": 119970.5,
+          "duration": 77
+        },
+        {
+          "start": 120048.80000000028,
+          "duration": 64
+        },
+        {
+          "start": 120114.30000000028,
+          "duration": 229
+        },
+        {
+          "start": 127765.30000000028,
+          "duration": 140
+        },
+        {
+          "start": 127905.30000000028,
+          "duration": 64
+        },
+        {
+          "start": 165511,
+          "duration": 753
+        },
+        {
+          "start": 166418.90000000037,
+          "duration": 50
+        },
+        {
+          "start": 166518.2000000002,
+          "duration": 71
+        },
+        {
+          "start": 166652.40000000037,
+          "duration": 115
+        },
+        {
+          "start": 187832.1000000001,
+          "duration": 55
+        },
+        {
+          "start": 187897.90000000037,
+          "duration": 72
+        },
+        {
+          "start": 187977.80000000028,
+          "duration": 836
+        },
+        {
+          "start": 204688,
+          "duration": 73
+        }
+      ],
+      "maxObservedMainTask": 836
+    }
+  ],
+  "formatOverride": null
+}

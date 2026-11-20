@@ -1,0 +1,14 @@
+✔ GraphPages preserves exact aliases/descriptors, mutation and cold corruption rejection (11.393703ms)
+✔ TemplateGraphs preserves exact aliases/descriptors, mutation and cold corruption rejection (3.626004ms)
+✔ Raw record archive rejects missing/modified authority without overwriting source (1.429427ms)
+✔ Template cache eviction and verified reconstruction preserve original bytes (1.752352ms)
+✔ History index cold validates and rejects corrupt financial records; reset does not trust prior generation (2971.416804ms)
+✔ Production career importer rejects experiment manifests without replacing career (2667.705668ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5796.404125

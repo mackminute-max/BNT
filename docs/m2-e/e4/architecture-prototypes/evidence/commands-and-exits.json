@@ -1,0 +1,135 @@
+{
+  "completed": [
+    {
+      "command": "node experiments/e4-architecture/representation.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-representation.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_OUT=<templates> node experiments/e4-architecture/template-comparison.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-templates.exit"
+    },
+    {
+      "command": "node experiments/e4-architecture/history-comparison.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-history.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_OUT=<final> node experiments/e4-architecture/browser.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-final/browser.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_OUT=<final> node experiments/e4-architecture/memory.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-final/memory.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_OUT=<final> node experiments/e4-architecture/history-publication.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-final/history-publication.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_OUT=<final> node --expose-gc experiments/e4-architecture/cache-memory.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-final/cache-memory.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_OUT=<final> node experiments/e4-architecture/replay-proof.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-final/replay-proof.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_OUT=<final> node experiments/e4-architecture/faults.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-final/faults-current.exit"
+    },
+    {
+      "command": "node --test experiments/e4-architecture/prototype.test.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-final/unit-current.exit"
+    },
+    {
+      "command": "node --test tests/m2-e-performance.test.js tests/m2-e-e4-worker.test.js tests/m2-e-foundation.test.js tests/m2-e-e4-stage2.test.js",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-final/regression.exit"
+    },
+    {
+      "command": "node experiments/e4-architecture/cache-proof.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-cache-proof.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_CASE=late-long BNT_EXPERIMENT_FORMAT=Combat BNT_EXPERIMENT_OUT=<combat> node experiments/e4-architecture/browser.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-combat.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_CACHE=two BNT_EXPERIMENT_CASE=late-long BNT_EXPERIMENT_FORMAT=Combat BNT_EXPERIMENT_OUT=<two-combat> node experiments/e4-architecture/browser.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-cache-combat.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_CACHE=two BNT_EXPERIMENT_CASE=retained BNT_EXPERIMENT_OUT=<two-retained> node experiments/e4-architecture/browser.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-cache-retained.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_CACHE=two BNT_EXPERIMENT_CASE=late-long BNT_EXPERIMENT_FORMAT=Combat BNT_EXPERIMENT_OUT=<two-memory> node experiments/e4-architecture/memory.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-cache-memory.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_CACHE=two BNT_EXPERIMENT_OUT=<two-combat> node experiments/e4-architecture/faults.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-cache-faults.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_OUT=<validation-final> node experiments/e4-architecture/validation-proof.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-validation-proof-final.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_VALIDATION=exact BNT_EXPERIMENT_CASE=retained BNT_EXPERIMENT_OUT=<validation-retained> node experiments/e4-architecture/browser.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-validation-retained.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_VALIDATION=exact BNT_EXPERIMENT_FORMAT=Combat BNT_EXPERIMENT_CASE=late-long BNT_EXPERIMENT_OUT=<validation-late> node experiments/e4-architecture/browser.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-validation-late.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_VALIDATION=exact BNT_EXPERIMENT_CASE=retained BNT_EXPERIMENT_OUT=<validation-memory> node experiments/e4-architecture/memory.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-validation-memory.exit"
+    },
+    {
+      "command": "BNT_EXPERIMENT_VALIDATION=exact BNT_EXPERIMENT_OUT=<validation-retained> node experiments/e4-architecture/faults.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-validation-faults.exit"
+    },
+    {
+      "command": "node experiments/e4-architecture/transport.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-transport.exit"
+    },
+    {
+      "command": "node <evidence>/reference-check.mjs",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-final/references.exit"
+    },
+    {
+      "command": "npm run build",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-final/build.exit"
+    },
+    {
+      "command": "git diff --exit-code b8c0900 -- src tests dist package.json package-lock.json",
+      "exit": 0,
+      "originalExitFile": "/workspace/deliverables/e4-architecture-final/production-diff.exit"
+    }
+  ],
+  "note": "<...> are the distinct original output directories retained by run label. Preliminary failures are separately retained and explained, not counted as successful runs. Memory times are not latency benchmarks."
+}

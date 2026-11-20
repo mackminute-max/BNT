@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "All four frozen codec byte goldens, sentinels, resets and Unicode match",
+    "Alternating content hit; aliases/descriptors preserved; mutated output/headers reject",
+    "Eviction/budget and cyclic-input validation retained"
+  ],
+  "stats": {
+    "calls": 16,
+    "hits": 4,
+    "misses": 12,
+    "inverseHits": 3,
+    "evictions": 8,
+    "cachedBytes": 200130
+  }
+}

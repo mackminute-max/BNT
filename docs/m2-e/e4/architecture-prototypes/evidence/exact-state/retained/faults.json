@@ -1,0 +1,30 @@
+{
+  "checks": [
+    "Production database names rejected",
+    "Transaction abort has no durable effect",
+    "Empty-message quota denial rejects without false acknowledgment",
+    "Stale generation rejected",
+    "Lost acknowledgment reloads committed tick",
+    "Repeated input has unchanged logical authority",
+    "Conflicting input identity rejects",
+    "Concurrent same-generation submissions serialize and conflict",
+    "Interrupted staged restore retains prior head and safely retries once",
+    "Cold corruption blocks inspection"
+  ],
+  "directFile": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///workspace/deliverables/e4-architecture-validation-retained/BNT-E4-Isolated-Experiment.html\nCall log:\n\u001b[2m  - navigating to \"file:///workspace/deliverables/e4-architecture-validation-retained/BNT-E4-Isolated-Experiment.html\", waiting until \"load\"\u001b[22m\n",
+  "result": {
+    "checks": [
+      "Production database names rejected",
+      "Transaction abort has no durable effect",
+      "Empty-message quota denial rejects without false acknowledgment",
+      "Stale generation rejected",
+      "Lost acknowledgment reloads committed tick",
+      "Repeated input has unchanged logical authority",
+      "Conflicting input identity rejects",
+      "Concurrent same-generation submissions serialize and conflict",
+      "Interrupted staged restore retains prior head and safely retries once",
+      "Cold corruption blocks inspection"
+    ],
+    "durableAckOnlyAfterTransaction": true
+  }
+}

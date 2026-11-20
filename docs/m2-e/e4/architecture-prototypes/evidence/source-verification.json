@@ -1,0 +1,82 @@
+{
+  "repository": "https://github.com/mackminute-max/BNT.git",
+  "branch": "feat/m2-e-e4-persistence-recovery",
+  "productionRuntime": "b8c090057052ac03bbed73d9487093da61381451",
+  "startingHead": "faf1cf5c93eab6dab01445157ef59133241b8c0b",
+  "prototypeHead": "e10e9a662e4d7f25a9f6c8a9aa63e92cc35ba193",
+  "commits": [
+    "e10e9a662e4d7f25a9f6c8a9aa63e92cc35ba193 experiment: isolate message-copy costs from simulation and durable commits",
+    "9dc19c99a049ac9514cb06b472b13a18a44d1b16 test: match the validator proof to the private worker state boundary",
+    "19cf64a343a7c3cfa077f7a85e15d4d36c6b1264 test: prove exact-state validation reuse and malformed-state rejection",
+    "5add217e1d7c3f187eb226b5492d6d2ece839a2d experiment: measure exact-state reuse around unchanged full controller validation",
+    "1be2fd4d1199169e4c46812851cbe0909ee316ee test: reject empty-message quota failures in the isolated actor protocol",
+    "e68c3dc1400ea5e1ff2413989ad26bb3e335ed1d experiment: support isolated memory stress variants without changing defaults",
+    "ddd8bb92543fdd21c962ab6713736ce14ae8e980 test: cover Pure and Combat native replay through both representation prototypes",
+    "3004cfbf47c181afce5eb23b3328b3ba721b0e95 test: add isolated codec-cache parity, corruption and eviction proof",
+    "e85c46752ca60b3c3db3d6f57dacde160b3e1fb9 experiment: measure bounded two-entry exact codec reuse without editing production",
+    "da245aac8d91a13ccdca846649686458d5ec77c3 experiment: expose explicit Pure and Combat comparison variants",
+    "92b2d60c49f44267fd118ee9c93f5fe8bab42d3e experiment: isolate E4 graph factoring, worker ownership and history index prototypes"
+  ],
+  "productionDiff": "",
+  "srcTreeBaseline": "96f19e897e19f701a4a2c2c65b5c2b38841a9a97",
+  "srcTreeCurrent": "96f19e897e19f701a4a2c2c65b5c2b38841a9a97",
+  "testsTreeBaseline": "99959d6a17275d338d3b073e0f30b146c231108c",
+  "testsTreeCurrent": "99959d6a17275d338d3b073e0f30b146c231108c",
+  "environment": {
+    "node": "v24.22.1",
+    "npm": "11.9.0",
+    "chromium": "Chromium 156.0.8078.79 built on Debian GNU/Linux 13 (trixie)",
+    "cpuQuota": "400000/100000 = 4 CPUs",
+    "memoryBytes": 35743748096
+  },
+  "productionArtifacts": [
+    {
+      "file": "dist/Blood-and-Thunder-Track-Test.html",
+      "bytes": 1047085,
+      "sha256": "8a9b73409a84517f2b0c72c265499434afcf14d94037a645bec553a6b1cba9a3"
+    },
+    {
+      "file": "dist/Blood_and_Thunder.html",
+      "bytes": 1047085,
+      "sha256": "8a9b73409a84517f2b0c72c265499434afcf14d94037a645bec553a6b1cba9a3"
+    }
+  ],
+  "experimentalArtifacts": [
+    {
+      "file": "/workspace/deliverables/e4-architecture-final/BNT-E4-Isolated-Experiment.html",
+      "bytes": 1513844,
+      "sha256": "cdfc3b1b01ea873048795aba7d83322b734651420fc61f2aaa5ab039634e9b2b",
+      "note": "Disposable-profile diagnostic only; not production release."
+    },
+    {
+      "file": "/workspace/deliverables/e4-architecture-combat/BNT-E4-Isolated-Experiment.html",
+      "bytes": 1514128,
+      "sha256": "dc1989e0bb14345e4a91333ddf88344ca3b7515515489258542a76fac2306a73",
+      "note": "Disposable-profile diagnostic only; not production release."
+    },
+    {
+      "file": "/workspace/deliverables/e4-architecture-cache-combat/BNT-E4-Isolated-Experiment.html",
+      "bytes": 1514816,
+      "sha256": "6e96a5ab94cd8fb3a30373ba3a8705c33b766641fd66f8f2adec86df28773e11",
+      "note": "Disposable-profile diagnostic only; not production release."
+    },
+    {
+      "file": "/workspace/deliverables/e4-architecture-cache-retained/BNT-E4-Isolated-Experiment.html",
+      "bytes": 1514816,
+      "sha256": "6e96a5ab94cd8fb3a30373ba3a8705c33b766641fd66f8f2adec86df28773e11",
+      "note": "Disposable-profile diagnostic only; not production release."
+    },
+    {
+      "file": "/workspace/deliverables/e4-architecture-validation-retained/BNT-E4-Isolated-Experiment.html",
+      "bytes": 1518251,
+      "sha256": "19c2df2d94ca766f5500df25c39bef36e9f6d2bad86d726649afb5731942b0b7",
+      "note": "Disposable-profile diagnostic only; not production release."
+    },
+    {
+      "file": "/workspace/deliverables/e4-architecture-validation-late/BNT-E4-Isolated-Experiment.html",
+      "bytes": 1518251,
+      "sha256": "19c2df2d94ca766f5500df25c39bef36e9f6d2bad86d726649afb5731942b0b7",
+      "note": "Disposable-profile diagnostic only; not production release."
+    }
+  ]
+}

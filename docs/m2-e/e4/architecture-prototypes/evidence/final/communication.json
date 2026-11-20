@@ -1,0 +1,1423 @@
+{
+  "runtime": "b8c090057052ac03bbed73d9487093da61381451",
+  "browser": "156.0.8078.79",
+  "controlled": true,
+  "productionChanged": false,
+  "cases": [
+    {
+      "id": "one-short",
+      "metrics": [
+        {
+          "side": "baseline",
+          "operation": "coldSeed",
+          "ms": 360.09999999962747
+        },
+        {
+          "side": "reference",
+          "operation": "coldSeed",
+          "ms": 378.89999999990687
+        },
+        {
+          "side": "baseline",
+          "operation": "start",
+          "begin": 1138,
+          "end": 2336.5,
+          "ms": 1198.5,
+          "preparationMs": 1167.0999999996275,
+          "commitMs": 21,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "start",
+          "begin": 2336.5,
+          "end": 3529.899999999907,
+          "ms": 1193.3999999999069,
+          "requestBytes": 89,
+          "durable": true,
+          "generation": 2,
+          "readMs": 4.600000000093132,
+          "preparationMs": 1169,
+          "commitMs": 17.700000000186265,
+          "totalMs": 1192.7000000001863,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "birth",
+          "begin": 3529.899999999907,
+          "end": 4730.399999999907,
+          "ms": 1200.5,
+          "preparationMs": 1178.2000000001863,
+          "commitMs": 9.5,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "birth",
+          "begin": 4730.399999999907,
+          "end": 5703.799999999814,
+          "ms": 973.5,
+          "requestBytes": 71,
+          "durable": true,
+          "generation": 3,
+          "readMs": 2.5,
+          "preparationMs": 955.3999999999069,
+          "commitMs": 13.399999999906868,
+          "totalMs": 972.8000000002794,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 5703.899999999907,
+          "end": 5782.399999999907,
+          "ms": 78.5,
+          "preparationMs": 56.700000000186265,
+          "commitMs": 12.899999999906868,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 5782.399999999907,
+          "end": 5849.100000000093,
+          "ms": 66.70000000018626,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 4,
+          "readMs": 2.6000000000931323,
+          "preparationMs": 55.700000000186265,
+          "commitMs": 5.899999999906868,
+          "totalMs": 66,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 5849.100000000093,
+          "end": 5925.299999999814,
+          "ms": 76.1999999997206,
+          "preparationMs": 60.799999999813735,
+          "commitMs": 8.100000000093132,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 5925.299999999814,
+          "end": 6007.399999999907,
+          "ms": 82.10000000009313,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 5,
+          "readMs": 2.7000000001862645,
+          "preparationMs": 67.29999999981374,
+          "commitMs": 9.700000000186265,
+          "totalMs": 81.40000000037253,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "warmInspect",
+          "ms": 15.399999999906868
+        },
+        {
+          "side": "baseline",
+          "operation": "warmInspect",
+          "ms": 18.5
+        },
+        {
+          "side": "baseline",
+          "operation": "coldReconstruction",
+          "ms": 368.5
+        },
+        {
+          "side": "reference",
+          "operation": "coldReconstruction",
+          "ms": 370.10000000009313
+        }
+      ],
+      "compare": {
+        "exactRecordBytes": true,
+        "recordCount": 2,
+        "totalRecordBytes": 468679,
+        "fullSnapshotRequestBytes": 523818
+      },
+      "rawArchive": {
+        "exact": true,
+        "heads": 2,
+        "legacyBytes": 1035998,
+        "factoredBytes": 562874,
+        "uniqueRecords": 3,
+        "elapsedMs": 37.6999999997206,
+        "durable": false
+      },
+      "longTasks": [],
+      "maxObservedMainTask": 0
+    },
+    {
+      "id": "four-circuit",
+      "metrics": [
+        {
+          "side": "baseline",
+          "operation": "coldSeed",
+          "ms": 309.1999999997206
+        },
+        {
+          "side": "reference",
+          "operation": "coldSeed",
+          "ms": 308.70000000018626
+        },
+        {
+          "side": "baseline",
+          "operation": "start",
+          "begin": 856.5,
+          "end": 1958.2000000001863,
+          "ms": 1101.7000000001863,
+          "preparationMs": 1077.6000000000931,
+          "commitMs": 15.200000000186265,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "start",
+          "begin": 1958.2000000001863,
+          "end": 3108.8000000002794,
+          "ms": 1150.6000000000931,
+          "requestBytes": 89,
+          "durable": true,
+          "generation": 2,
+          "readMs": 8.199999999720603,
+          "preparationMs": 1129.5,
+          "commitMs": 10.299999999813735,
+          "totalMs": 1149.7999999998137,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "birth",
+          "begin": 3108.8000000002794,
+          "end": 4165.600000000093,
+          "ms": 1056.7999999998137,
+          "preparationMs": 1043.6999999997206,
+          "commitMs": 6.399999999906868,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "birth",
+          "begin": 4165.600000000093,
+          "end": 5267,
+          "ms": 1101.3999999999069,
+          "requestBytes": 71,
+          "durable": true,
+          "generation": 3,
+          "readMs": 2.8000000002793968,
+          "preparationMs": 1085.6999999997206,
+          "commitMs": 10.600000000093132,
+          "totalMs": 1100.9000000003725,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 5267,
+          "end": 5409.4000000003725,
+          "ms": 142.40000000037253,
+          "preparationMs": 121,
+          "commitMs": 10,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 5409.4000000003725,
+          "end": 5530.100000000093,
+          "ms": 120.6999999997206,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 4,
+          "readMs": 3.5,
+          "preparationMs": 108.70000000018626,
+          "commitMs": 6.100000000093132,
+          "totalMs": 120.29999999981374,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 5530.200000000186,
+          "end": 5707.4000000003725,
+          "ms": 177.20000000018626,
+          "preparationMs": 159.70000000018626,
+          "commitMs": 8.800000000279397,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 5707.4000000003725,
+          "end": 5907.800000000279,
+          "ms": 200.39999999990687,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 5,
+          "readMs": 2.7000000001862645,
+          "preparationMs": 176.5,
+          "commitMs": 18.59999999962747,
+          "totalMs": 199.89999999990687,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "warmInspect",
+          "ms": 15.400000000372529
+        },
+        {
+          "side": "baseline",
+          "operation": "warmInspect",
+          "ms": 27.199999999720603
+        },
+        {
+          "side": "baseline",
+          "operation": "coldReconstruction",
+          "ms": 519.7999999998137
+        },
+        {
+          "side": "reference",
+          "operation": "coldReconstruction",
+          "ms": 493.40000000037253
+        }
+      ],
+      "compare": {
+        "exactRecordBytes": true,
+        "recordCount": 2,
+        "totalRecordBytes": 627970,
+        "fullSnapshotRequestBytes": 694945
+      },
+      "rawArchive": {
+        "exact": true,
+        "heads": 2,
+        "legacyBytes": 1342125,
+        "factoredBytes": 796587,
+        "uniqueRecords": 3,
+        "elapsedMs": 29.600000000093132,
+        "durable": false
+      },
+      "longTasks": [],
+      "maxObservedMainTask": 0
+    },
+    {
+      "id": "eight-oval",
+      "metrics": [
+        {
+          "side": "baseline",
+          "operation": "coldSeed",
+          "ms": 303
+        },
+        {
+          "side": "reference",
+          "operation": "coldSeed",
+          "ms": 310.10000000009313
+        },
+        {
+          "side": "baseline",
+          "operation": "start",
+          "begin": 899.5999999996275,
+          "end": 1909,
+          "ms": 1009.4000000003725,
+          "preparationMs": 989.3999999999069,
+          "commitMs": 12.200000000186265,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "start",
+          "begin": 1909.0999999996275,
+          "end": 2922.399999999907,
+          "ms": 1013.3000000002794,
+          "requestBytes": 89,
+          "durable": true,
+          "generation": 2,
+          "readMs": 3.6000000000931323,
+          "preparationMs": 996.2999999998137,
+          "commitMs": 10.199999999720603,
+          "totalMs": 1012.7999999998137,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "birth",
+          "begin": 2922.399999999907,
+          "end": 3882.5999999996275,
+          "ms": 960.1999999997206,
+          "preparationMs": 946.3999999999069,
+          "commitMs": 7.5,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "birth",
+          "begin": 3882.6999999997206,
+          "end": 4889.299999999814,
+          "ms": 1006.6000000000931,
+          "requestBytes": 71,
+          "durable": true,
+          "generation": 3,
+          "readMs": 4.2999999998137355,
+          "preparationMs": 991.6000000000931,
+          "commitMs": 7,
+          "totalMs": 1004.6999999997206,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 4889.299999999814,
+          "end": 5086.899999999907,
+          "ms": 197.60000000009313,
+          "preparationMs": 178.60000000009313,
+          "commitMs": 9.5,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 5086.899999999907,
+          "end": 5350.399999999907,
+          "ms": 263.5,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 4,
+          "readMs": 2.7000000001862645,
+          "preparationMs": 236.39999999990687,
+          "commitMs": 21,
+          "totalMs": 262.79999999981374,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 5350.399999999907,
+          "end": 5796.799999999814,
+          "ms": 446.39999999990687,
+          "preparationMs": 418.8000000002794,
+          "commitMs": 14.299999999813735,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 5796.899999999907,
+          "end": 6258.699999999721,
+          "ms": 461.79999999981374,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 5,
+          "readMs": 3.1000000000931323,
+          "preparationMs": 441.39999999990687,
+          "commitMs": 15.100000000093132,
+          "totalMs": 461.3000000002794,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "warmInspect",
+          "ms": 18.800000000279397
+        },
+        {
+          "side": "baseline",
+          "operation": "warmInspect",
+          "ms": 32.799999999813735
+        },
+        {
+          "side": "baseline",
+          "operation": "coldReconstruction",
+          "ms": 717.6000000000931
+        },
+        {
+          "side": "reference",
+          "operation": "coldReconstruction",
+          "ms": 763.3999999999069
+        }
+      ],
+      "compare": {
+        "exactRecordBytes": true,
+        "recordCount": 2,
+        "totalRecordBytes": 768399,
+        "fullSnapshotRequestBytes": 827122
+      },
+      "rawArchive": {
+        "exact": true,
+        "heads": 2,
+        "legacyBytes": 1502462,
+        "factoredBytes": 1000944,
+        "uniqueRecords": 3,
+        "elapsedMs": 22.699999999720603,
+        "durable": false
+      },
+      "longTasks": [],
+      "maxObservedMainTask": 0
+    },
+    {
+      "id": "eight-long",
+      "metrics": [
+        {
+          "side": "baseline",
+          "operation": "coldSeed",
+          "ms": 453.60000000009313
+        },
+        {
+          "side": "reference",
+          "operation": "coldSeed",
+          "ms": 395
+        },
+        {
+          "side": "baseline",
+          "operation": "start",
+          "begin": 1124.8999999999069,
+          "end": 2511.899999999907,
+          "ms": 1387,
+          "preparationMs": 1364.3999999999069,
+          "commitMs": 14.200000000186265,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "start",
+          "begin": 2512,
+          "end": 3954.2000000001863,
+          "ms": 1442.2000000001863,
+          "requestBytes": 89,
+          "durable": true,
+          "generation": 2,
+          "readMs": 7.600000000093132,
+          "preparationMs": 1417.2000000001863,
+          "commitMs": 14.5,
+          "totalMs": 1441.3999999999069,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "birth",
+          "begin": 3954.2000000001863,
+          "end": 5311.800000000279,
+          "ms": 1357.6000000000931,
+          "preparationMs": 1328.3999999999069,
+          "commitMs": 20.700000000186265,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "birth",
+          "begin": 5311.899999999907,
+          "end": 6596.600000000093,
+          "ms": 1284.7000000001863,
+          "requestBytes": 71,
+          "durable": true,
+          "generation": 3,
+          "readMs": 3.6000000000931323,
+          "preparationMs": 1265.1000000000931,
+          "commitMs": 12.5,
+          "totalMs": 1283.7000000001863,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 6596.600000000093,
+          "end": 6903.800000000279,
+          "ms": 307.20000000018626,
+          "preparationMs": 272.39999999990687,
+          "commitMs": 22.300000000279397,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 6903.899999999907,
+          "end": 7193.800000000279,
+          "ms": 289.90000000037253,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 4,
+          "readMs": 3.6000000000931323,
+          "preparationMs": 265.39999999990687,
+          "commitMs": 15.799999999813735,
+          "totalMs": 287.60000000009313,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 7193.800000000279,
+          "end": 7732,
+          "ms": 538.1999999997206,
+          "preparationMs": 490.5,
+          "commitMs": 35.10000000009313,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 7732,
+          "end": 8243,
+          "ms": 511,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 5,
+          "readMs": 3.3999999999068677,
+          "preparationMs": 483.10000000009313,
+          "commitMs": 21.100000000093132,
+          "totalMs": 510.3000000002794,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "warmInspect",
+          "ms": 27.799999999813735
+        },
+        {
+          "side": "baseline",
+          "operation": "warmInspect",
+          "ms": 30.799999999813735
+        },
+        {
+          "side": "baseline",
+          "operation": "coldReconstruction",
+          "ms": 861
+        },
+        {
+          "side": "reference",
+          "operation": "coldReconstruction",
+          "ms": 793.7999999998137
+        }
+      ],
+      "compare": {
+        "exactRecordBytes": true,
+        "recordCount": 2,
+        "totalRecordBytes": 1073505,
+        "fullSnapshotRequestBytes": 1171084
+      },
+      "rawArchive": {
+        "exact": true,
+        "heads": 2,
+        "legacyBytes": 2190625,
+        "factoredBytes": 1450827,
+        "uniqueRecords": 3,
+        "elapsedMs": 32.8000000002794,
+        "durable": false
+      },
+      "longTasks": [],
+      "maxObservedMainTask": 0
+    },
+    {
+      "id": "late-long",
+      "metrics": [
+        {
+          "side": "baseline",
+          "operation": "coldSeed",
+          "ms": 380.29999999981374
+        },
+        {
+          "side": "reference",
+          "operation": "coldSeed",
+          "ms": 405.1999999997206
+        },
+        {
+          "side": "baseline",
+          "operation": "start",
+          "begin": 1035.6999999997206,
+          "end": 2545.600000000093,
+          "ms": 1509.9000000003725,
+          "preparationMs": 1481.8999999999069,
+          "commitMs": 19.700000000186265,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "start",
+          "begin": 2545.6999999997206,
+          "end": 3953.1999999997206,
+          "ms": 1407.5,
+          "requestBytes": 89,
+          "durable": true,
+          "generation": 2,
+          "readMs": 2.6000000000931323,
+          "preparationMs": 1387.8999999999069,
+          "commitMs": 14.100000000093132,
+          "totalMs": 1406.8000000002794,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "birth",
+          "begin": 3953.1999999997206,
+          "end": 5243,
+          "ms": 1289.8000000002794,
+          "preparationMs": 1272,
+          "commitMs": 9.600000000093132,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "birth",
+          "begin": 5243,
+          "end": 6589.100000000093,
+          "ms": 1346.1000000000931,
+          "requestBytes": 71,
+          "durable": true,
+          "generation": 3,
+          "readMs": 3.1000000000931323,
+          "preparationMs": 1330.3999999999069,
+          "commitMs": 9.799999999813735,
+          "totalMs": 1345.6000000000931,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 6589.100000000093,
+          "end": 10662.399999999907,
+          "ms": 4073.2999999998137,
+          "preparationMs": 4011.2000000001863,
+          "commitMs": 49.200000000186265,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 10662.399999999907,
+          "end": 14513.69999999972,
+          "ms": 3851.2999999998137,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 4,
+          "readMs": 3,
+          "preparationMs": 3808.8000000002794,
+          "commitMs": 36.10000000009313,
+          "totalMs": 3850.7000000001863,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 14513.69999999972,
+          "end": 19070.299999999814,
+          "ms": 4556.600000000093,
+          "preparationMs": 4461,
+          "commitMs": 44.1999999997206,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 19070.299999999814,
+          "end": 23300.899999999907,
+          "ms": 4230.600000000093,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 5,
+          "readMs": 13.700000000186265,
+          "preparationMs": 4172.899999999907,
+          "commitMs": 40.299999999813735,
+          "totalMs": 4229.700000000186,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 23300.899999999907,
+          "end": 27611.5,
+          "ms": 4310.600000000093,
+          "preparationMs": 4235.100000000093,
+          "commitMs": 46.10000000009313,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 27611.5,
+          "end": 32293.799999999814,
+          "ms": 4682.299999999814,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 6,
+          "readMs": 15.800000000279397,
+          "preparationMs": 4595.299999999814,
+          "commitMs": 64.79999999981374,
+          "totalMs": 4680.899999999907,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "warmInspect",
+          "ms": 137.10000000009313
+        },
+        {
+          "side": "baseline",
+          "operation": "warmInspect",
+          "ms": 153.79999999981374
+        },
+        {
+          "side": "baseline",
+          "operation": "coldReconstruction",
+          "ms": 3242.899999999907
+        },
+        {
+          "side": "reference",
+          "operation": "coldReconstruction",
+          "ms": 3301.899999999907
+        }
+      ],
+      "compare": {
+        "exactRecordBytes": true,
+        "recordCount": 2,
+        "totalRecordBytes": 3350174,
+        "fullSnapshotRequestBytes": 3447785
+      },
+      "rawArchive": {
+        "exact": true,
+        "heads": 2,
+        "legacyBytes": 6788592,
+        "factoredBytes": 6048794,
+        "uniqueRecords": 3,
+        "elapsedMs": 112.70000000018626,
+        "durable": false
+      },
+      "longTasks": [],
+      "maxObservedMainTask": 0
+    },
+    {
+      "id": "dense",
+      "metrics": [
+        {
+          "side": "baseline",
+          "operation": "coldSeed",
+          "ms": 531.3999999999069
+        },
+        {
+          "side": "reference",
+          "operation": "coldSeed",
+          "ms": 321.20000000018626
+        },
+        {
+          "side": "baseline",
+          "operation": "start",
+          "begin": 1108.3000000002794,
+          "end": 2220.7000000001863,
+          "ms": 1112.3999999999069,
+          "preparationMs": 1093,
+          "commitMs": 10.399999999906868,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "start",
+          "begin": 2221.100000000093,
+          "end": 3388.600000000093,
+          "ms": 1167.5,
+          "requestBytes": 89,
+          "durable": true,
+          "generation": 2,
+          "readMs": 2.7999999998137355,
+          "preparationMs": 1149.6000000000931,
+          "commitMs": 11.5,
+          "totalMs": 1165.7000000001863,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "birth",
+          "begin": 3388.600000000093,
+          "end": 4458.9000000003725,
+          "ms": 1070.3000000002794,
+          "preparationMs": 1052.5,
+          "commitMs": 11,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "birth",
+          "begin": 4459,
+          "end": 5675.100000000093,
+          "ms": 1216.1000000000931,
+          "requestBytes": 71,
+          "durable": true,
+          "generation": 3,
+          "readMs": 3,
+          "preparationMs": 1201.1000000000931,
+          "commitMs": 9.200000000186265,
+          "totalMs": 1215.1000000000931,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 5675.100000000093,
+          "end": 5768.800000000279,
+          "ms": 93.70000000018626,
+          "preparationMs": 79.10000000009313,
+          "commitMs": 6.5,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 5769,
+          "end": 5849.600000000093,
+          "ms": 80.60000000009313,
+          "requestBytes": 98,
+          "durable": true,
+          "generation": 4,
+          "readMs": 2.1999999997206032,
+          "preparationMs": 69.89999999990687,
+          "commitMs": 5.899999999906868,
+          "totalMs": 80.09999999962747,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 5849.700000000186,
+          "end": 5938.600000000093,
+          "ms": 88.89999999990687,
+          "preparationMs": 72.70000000018626,
+          "commitMs": 8.399999999906868,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 5938.600000000093,
+          "end": 6043.300000000279,
+          "ms": 104.70000000018626,
+          "requestBytes": 98,
+          "durable": true,
+          "generation": 5,
+          "readMs": 3.1000000000931323,
+          "preparationMs": 87.20000000018626,
+          "commitMs": 11.5,
+          "totalMs": 104,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 6043.4000000003725,
+          "end": 6159.700000000186,
+          "ms": 116.29999999981374,
+          "preparationMs": 102.60000000009313,
+          "commitMs": 6.2999999998137355,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 6159.800000000279,
+          "end": 6274.9000000003725,
+          "ms": 115.10000000009313,
+          "requestBytes": 98,
+          "durable": true,
+          "generation": 6,
+          "readMs": 2.6000000000931323,
+          "preparationMs": 99.09999999962747,
+          "commitMs": 10.299999999813735,
+          "totalMs": 114.1999999997206,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 6274.9000000003725,
+          "end": 6395.800000000279,
+          "ms": 120.89999999990687,
+          "preparationMs": 104.09999999962747,
+          "commitMs": 8.100000000093132,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 6395.800000000279,
+          "end": 6534,
+          "ms": 138.1999999997206,
+          "requestBytes": 98,
+          "durable": true,
+          "generation": 7,
+          "readMs": 3.1000000000931323,
+          "preparationMs": 119.10000000009313,
+          "commitMs": 13.299999999813735,
+          "totalMs": 137.79999999981374,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "sign",
+          "begin": 6534.100000000093,
+          "end": 6675.4000000003725,
+          "ms": 141.3000000002794,
+          "preparationMs": 115.5,
+          "commitMs": 17,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "sign",
+          "begin": 6675.5,
+          "end": 6812.600000000093,
+          "ms": 137.10000000009313,
+          "requestBytes": 132,
+          "durable": true,
+          "generation": 8,
+          "readMs": 3.3999999999068677,
+          "preparationMs": 120.70000000018626,
+          "commitMs": 10.5,
+          "totalMs": 136.39999999990687,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 6812.600000000093,
+          "end": 7098.9000000003725,
+          "ms": 286.3000000002794,
+          "preparationMs": 236.10000000009313,
+          "commitMs": 10.100000000093132,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 7099,
+          "end": 7248.100000000093,
+          "ms": 149.10000000009313,
+          "requestBytes": 98,
+          "durable": true,
+          "generation": 9,
+          "readMs": 2.7999999998137355,
+          "preparationMs": 133,
+          "commitMs": 10.800000000279397,
+          "totalMs": 148.5,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 7248.100000000093,
+          "end": 7406.5,
+          "ms": 158.39999999990687,
+          "preparationMs": 144.3000000002794,
+          "commitMs": 7,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 7406.600000000093,
+          "end": 7560.5,
+          "ms": 153.89999999990687,
+          "requestBytes": 98,
+          "durable": true,
+          "generation": 10,
+          "readMs": 3,
+          "preparationMs": 137,
+          "commitMs": 10.700000000186265,
+          "totalMs": 153.10000000009313,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 7560.5,
+          "end": 7724.700000000186,
+          "ms": 164.20000000018626,
+          "preparationMs": 146.40000000037253,
+          "commitMs": 8.5,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 7724.700000000186,
+          "end": 7900.100000000093,
+          "ms": 175.39999999990687,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 11,
+          "readMs": 3.2000000001862645,
+          "preparationMs": 157.1999999997206,
+          "commitMs": 12,
+          "totalMs": 174.60000000009313,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 7900.100000000093,
+          "end": 8105.600000000093,
+          "ms": 205.5,
+          "preparationMs": 184.79999999981374,
+          "commitMs": 12.600000000093132,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 8105.600000000093,
+          "end": 8340.700000000186,
+          "ms": 235.10000000009313,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 12,
+          "readMs": 2.7000000001862645,
+          "preparationMs": 219.89999999990687,
+          "commitMs": 10,
+          "totalMs": 234.39999999990687,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 8340.700000000186,
+          "end": 8537.80000000028,
+          "ms": 197.10000000009313,
+          "preparationMs": 174.60000000009313,
+          "commitMs": 11.5,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 8537.80000000028,
+          "end": 8755.100000000093,
+          "ms": 217.29999999981374,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 13,
+          "readMs": 3.3000000002793968,
+          "preparationMs": 197.1999999997206,
+          "commitMs": 13.5,
+          "totalMs": 216.20000000018626,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 8755.100000000093,
+          "end": 9075,
+          "ms": 319.89999999990687,
+          "preparationMs": 293.5,
+          "commitMs": 9.699999999720603,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 9075,
+          "end": 9305,
+          "ms": 230,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 14,
+          "readMs": 5.800000000279397,
+          "preparationMs": 211.29999999981374,
+          "commitMs": 10.100000000093132,
+          "totalMs": 229.10000000009313,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 9305,
+          "end": 9536.80000000028,
+          "ms": 231.8000000002794,
+          "preparationMs": 214.10000000009313,
+          "commitMs": 9.100000000093132,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 9536.80000000028,
+          "end": 9769,
+          "ms": 232.1999999997206,
+          "requestBytes": 100,
+          "durable": true,
+          "generation": 15,
+          "readMs": 3,
+          "preparationMs": 215.79999999981374,
+          "commitMs": 10.700000000186265,
+          "totalMs": 231.5,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "advance",
+          "begin": 9769.100000000093,
+          "end": 10038.100000000093,
+          "ms": 269,
+          "preparationMs": 252.89999999990687,
+          "commitMs": 8.600000000093132,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "advance",
+          "begin": 10038.200000000186,
+          "end": 10294.80000000028,
+          "ms": 256.60000000009313,
+          "requestBytes": 100,
+          "durable": true,
+          "generation": 16,
+          "readMs": 3.3999999999068677,
+          "preparationMs": 237.5,
+          "commitMs": 12.899999999906868,
+          "totalMs": 255.89999999990687,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "warmInspect",
+          "ms": 18.100000000093132
+        },
+        {
+          "side": "baseline",
+          "operation": "warmInspect",
+          "ms": 20.899999999906868
+        },
+        {
+          "side": "baseline",
+          "operation": "coldReconstruction",
+          "ms": 538.8000000002794
+        },
+        {
+          "side": "reference",
+          "operation": "coldReconstruction",
+          "ms": 554.8000000002794
+        }
+      ],
+      "compare": {
+        "exactRecordBytes": true,
+        "recordCount": 2,
+        "totalRecordBytes": 670319,
+        "fullSnapshotRequestBytes": 737655
+      },
+      "rawArchive": {
+        "exact": true,
+        "heads": 2,
+        "legacyBytes": 1466265,
+        "factoredBytes": 920727,
+        "uniqueRecords": 3,
+        "elapsedMs": 25.100000000093132,
+        "durable": false
+      },
+      "longTasks": [],
+      "maxObservedMainTask": 0
+    },
+    {
+      "id": "retained",
+      "metrics": [
+        {
+          "side": "baseline",
+          "operation": "coldSeed",
+          "ms": 21369.19999999972
+        },
+        {
+          "side": "reference",
+          "operation": "coldSeed",
+          "ms": 20589.899999999907
+        },
+        {
+          "side": "baseline",
+          "operation": "nativePrepare",
+          "begin": 44154.30000000028,
+          "end": 67772.80000000028,
+          "ms": 23618.5,
+          "preparationMs": 22569.5,
+          "commitMs": 763.2000000001863,
+          "maxObservedMainTask": 276
+        },
+        {
+          "side": "reference",
+          "operation": "nativePrepare",
+          "begin": 67772.90000000037,
+          "end": 91809,
+          "ms": 24036.099999999627,
+          "requestBytes": 99,
+          "durable": true,
+          "generation": 2,
+          "readMs": 179.20000000018626,
+          "preparationMs": 23304,
+          "commitMs": 546,
+          "totalMs": 24035.399999999907,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "baseline",
+          "operation": "official",
+          "begin": 91809.1000000001,
+          "end": 106994.90000000037,
+          "ms": 15185.80000000028,
+          "preparationMs": 14030.19999999972,
+          "commitMs": 682.6000000000931,
+          "maxObservedMainTask": 195
+        },
+        {
+          "side": "reference",
+          "operation": "official",
+          "begin": 106994.90000000037,
+          "end": 121298.70000000019,
+          "ms": 14303.799999999814,
+          "requestBytes": 95,
+          "durable": true,
+          "generation": 3,
+          "readMs": 185,
+          "preparationMs": 13610,
+          "commitMs": 501.70000000018626,
+          "totalMs": 14302.899999999907,
+          "maxObservedMainTask": 0
+        },
+        {
+          "side": "reference",
+          "operation": "warmInspect",
+          "ms": 451.89999999990687
+        },
+        {
+          "side": "baseline",
+          "operation": "warmInspect",
+          "ms": 762.1000000000931
+        },
+        {
+          "side": "baseline",
+          "operation": "coldReconstruction",
+          "ms": 22026.69999999972
+        },
+        {
+          "side": "reference",
+          "operation": "coldReconstruction",
+          "ms": 22580.899999999907
+        },
+        {
+          "side": "baseline",
+          "operation": "backup",
+          "ms": 21700.600000000093,
+          "bytes": 60528132
+        },
+        {
+          "side": "reference",
+          "operation": "backup",
+          "ms": 21916.80000000028,
+          "bytes": 60528132
+        }
+      ],
+      "compare": {
+        "exactRecordBytes": true,
+        "recordCount": 13,
+        "totalRecordBytes": 29962797,
+        "fullSnapshotRequestBytes": 30303995
+      },
+      "rawArchive": {
+        "exact": true,
+        "heads": 2,
+        "legacyBytes": 60527476,
+        "factoredBytes": 32810633,
+        "uniqueRecords": 14,
+        "elapsedMs": 1230.6999999997206,
+        "durable": false
+      },
+      "longTasks": [
+        {
+          "start": 22405.5,
+          "duration": 97
+        },
+        {
+          "start": 22504.700000000186,
+          "duration": 263
+        },
+        {
+          "start": 22898.30000000028,
+          "duration": 407
+        },
+        {
+          "start": 23334.100000000093,
+          "duration": 117
+        },
+        {
+          "start": 44288.30000000028,
+          "duration": 73
+        },
+        {
+          "start": 67009.40000000037,
+          "duration": 276
+        },
+        {
+          "start": 67434,
+          "duration": 233
+        },
+        {
+          "start": 91836.1000000001,
+          "duration": 118
+        },
+        {
+          "start": 91955.20000000019,
+          "duration": 165
+        },
+        {
+          "start": 92121.90000000037,
+          "duration": 83
+        },
+        {
+          "start": 106312,
+          "duration": 169
+        },
+        {
+          "start": 106652.6000000001,
+          "duration": 195
+        },
+        {
+          "start": 121425.70000000019,
+          "duration": 186
+        },
+        {
+          "start": 121807.5,
+          "duration": 68
+        },
+        {
+          "start": 122399.5,
+          "duration": 51
+        },
+        {
+          "start": 122451.20000000019,
+          "duration": 156
+        },
+        {
+          "start": 123200.20000000019,
+          "duration": 82
+        },
+        {
+          "start": 167724.90000000037,
+          "duration": 508
+        },
+        {
+          "start": 168335.5,
+          "duration": 62
+        },
+        {
+          "start": 168463.40000000037,
+          "duration": 198
+        },
+        {
+          "start": 189485.5,
+          "duration": 74
+        },
+        {
+          "start": 189864,
+          "duration": 232
+        }
+      ],
+      "maxObservedMainTask": 508
+    }
+  ]
+}

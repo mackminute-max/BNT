@@ -1,0 +1,18 @@
+[feat/m2-e-e4-persistence-recovery 92b2d60] experiment: isolate E4 graph factoring, worker ownership and history index prototypes
+ 16 files changed, 262 insertions(+)
+ create mode 100644 experiments/e4-architecture/README.md
+ create mode 100644 experiments/e4-architecture/browser.mjs
+ create mode 100644 experiments/e4-architecture/cache-memory.mjs
+ create mode 100644 experiments/e4-architecture/faults.mjs
+ create mode 100644 experiments/e4-architecture/graph-primitives.js
+ create mode 100644 experiments/e4-architecture/history-comparison.mjs
+ create mode 100644 experiments/e4-architecture/history-publication.mjs
+ create mode 100644 experiments/e4-architecture/history.js
+ create mode 100644 experiments/e4-architecture/memory.mjs
+ create mode 100644 experiments/e4-architecture/pages.js
+ create mode 100644 experiments/e4-architecture/prototype.test.mjs
+ create mode 100644 experiments/e4-architecture/replay-proof.mjs
+ create mode 100644 experiments/e4-architecture/representation.mjs
+ create mode 100644 experiments/e4-architecture/template-comparison.mjs
+ create mode 100644 experiments/e4-architecture/templates.js
+ create mode 100644 experiments/e4-architecture/worker.js

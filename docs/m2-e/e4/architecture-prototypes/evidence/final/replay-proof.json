@@ -1,0 +1,109 @@
+{
+  "results": [
+    {
+      "id": "one",
+      "format": "Pure",
+      "prototype": "GraphPages",
+      "checksum": "606b450a",
+      "replay": "606b450a",
+      "status": "Ended",
+      "signs": {
+        "remaining": 2,
+        "pending": null,
+        "active": "Conserve Strength"
+      }
+    },
+    {
+      "id": "one",
+      "format": "Pure",
+      "prototype": "TemplateGraphs",
+      "checksum": "606b450a",
+      "replay": "606b450a",
+      "status": "Ended",
+      "signs": {
+        "remaining": 2,
+        "pending": null,
+        "active": "Conserve Strength"
+      }
+    },
+    {
+      "id": "circuit",
+      "format": "Combat",
+      "prototype": "GraphPages",
+      "checksum": "ff6d52c8",
+      "replay": "ff6d52c8",
+      "status": "Ended",
+      "signs": {
+        "remaining": 2,
+        "pending": null,
+        "active": "Conserve Strength"
+      }
+    },
+    {
+      "id": "circuit",
+      "format": "Combat",
+      "prototype": "TemplateGraphs",
+      "checksum": "ff6d52c8",
+      "replay": "ff6d52c8",
+      "status": "Ended",
+      "signs": {
+        "remaining": 2,
+        "pending": null,
+        "active": "Conserve Strength"
+      }
+    },
+    {
+      "id": "oval",
+      "format": "Combat",
+      "prototype": "GraphPages",
+      "checksum": "b25f9cf5",
+      "replay": "b25f9cf5",
+      "status": "Ended",
+      "signs": {
+        "remaining": 2,
+        "pending": null,
+        "active": "Conserve Strength"
+      }
+    },
+    {
+      "id": "oval",
+      "format": "Combat",
+      "prototype": "TemplateGraphs",
+      "checksum": "b25f9cf5",
+      "replay": "b25f9cf5",
+      "status": "Ended",
+      "signs": {
+        "remaining": 2,
+        "pending": null,
+        "active": "Conserve Strength"
+      }
+    },
+    {
+      "id": "rally",
+      "format": "Combat",
+      "prototype": "GraphPages",
+      "checksum": "7871fc16",
+      "replay": "7871fc16",
+      "status": "Ended",
+      "signs": {
+        "remaining": 2,
+        "pending": null,
+        "active": "Conserve Strength"
+      }
+    },
+    {
+      "id": "rally",
+      "format": "Combat",
+      "prototype": "TemplateGraphs",
+      "checksum": "7871fc16",
+      "replay": "7871fc16",
+      "status": "Ended",
+      "signs": {
+        "remaining": 2,
+        "pending": null,
+        "active": "Conserve Strength"
+      }
+    }
+  ],
+  "allExact": true
+}

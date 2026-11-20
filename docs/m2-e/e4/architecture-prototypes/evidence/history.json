@@ -1,0 +1,41 @@
+{
+  "scope": "Metadata generation change with identical exact logical bytes; conservative retained-history revalidation fixture. Not a production transaction.",
+  "rows": [
+    {
+      "generation": 1,
+      "baselineMs": 20593.567862,
+      "indexMs": 20519.911524,
+      "decoded": 12,
+      "reused": 0,
+      "retainedEntries": 12,
+      "retainedNativeGraphs": 0
+    },
+    {
+      "generation": 2,
+      "baselineMs": 20425.736193999997,
+      "indexMs": 32.23520199999621,
+      "decoded": 0,
+      "reused": 12,
+      "retainedEntries": 12,
+      "retainedNativeGraphs": 0
+    },
+    {
+      "generation": 3,
+      "baselineMs": 20124.27045399999,
+      "indexMs": 26.458001999999397,
+      "decoded": 0,
+      "reused": 12,
+      "retainedEntries": 12,
+      "retainedNativeGraphs": 0
+    }
+  ],
+  "corruptionRejected": true,
+  "afterEviction": {
+    "decoded": 12,
+    "reused": 0,
+    "retainedEntries": 12,
+    "retainedNativeGraphs": 0,
+    "generation": 5
+  },
+  "afterEvictionMs": 19965.098006999993
+}

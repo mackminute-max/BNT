@@ -1,0 +1,67 @@
+✔ E4 periodic native checkpoints retain birth recovery and complete acknowledged journal (1248.765029ms)
+✔ E4 complete backup integrity, bound/version and previous generation validation (2720.969413ms)
+✔ E4 worker inspection and exactly-once input retries preserve original journal order (4953.917199ms)
+✔ E4 complete restoration rejects unrelated ownership and missing acknowledged session records (7004.795524ms)
+✔ E4 operational recovery distinguishes prepared, blocked, no-starter and settlement boundaries (2.385305ms)
+✔ E4 premature clearance cannot consume or block an active native session (4800.84513ms)
+✔ E4 worker cold validation, exact-byte cache, revision invalidation and corruption rejection (3674.461007ms)
+✔ E4 worker D2 typed-wire parity preserves continuous values and never changes source (2632.380102ms)
+✔ E4 worker candidate has no durable ack, pending work rejects and reset discards candidate (3652.902216ms)
+✔ E4 record bounds and duplicate identities reject before writes (38.943952ms)
+✔ E4 validated candidate cache promotes only after matching ack and never crosses a generation (3796.747146ms)
+✔ E1 explicit lossless schema4→5 traditional (1461.757645ms)
+✔ E1 explicit lossless schema4→5 beastmaster (1237.339891ms)
+✔ E1 explicit lossless schema4→5 mechanist (1391.990362ms)
+✔ E1 explicit lossless schema4→5 veteran (1195.94002ms)
+✔ E1 explicit lossless schema4→5 scrappy (1271.820315ms)
+✔ E1 rejects ownership, stale, unconfirmed, unsupported, failed publication and downgrade (1240.730893ms)
+✔ E1 frozen identity validators reject duplicate/unknown references (0.534258ms)
+✔ E4 codec preserves Infinity, undefined, shared identity and property locks; rejects cycles/versions (1.632005ms)
+✔ E4 complete real Pure Oval checkpoint/resume exact parity (2499.686716ms)
+ℹ {"format":"Pure","course":"Oval","checksum":"43edd74b","tick":1156,"checkpointBytes":67460,"remaining":1}
+✔ E4 complete real Combat Oval checkpoint/resume exact parity (3349.743323ms)
+ℹ {"format":"Combat","course":"Oval","checksum":"03844c08","tick":1156,"checkpointBytes":97000,"remaining":1}
+✔ E4 complete real Pure C01 checkpoint/resume exact parity (5365.135923ms)
+ℹ {"format":"Pure","course":"C01","checksum":"801994b2","tick":1966,"checkpointBytes":77480,"remaining":1}
+✔ E4 complete real Combat C01 checkpoint/resume exact parity (6509.29035ms)
+ℹ {"format":"Combat","course":"C01","checksum":"e4479cb8","tick":1966,"checkpointBytes":107056,"remaining":1}
+✔ E4 complete real Pure mixed-rally checkpoint/resume exact parity (5819.803882ms)
+ℹ {"format":"Pure","course":"mixed-rally","checksum":"91a581b8","tick":1761,"checkpointBytes":76040,"remaining":1}
+✔ E4 complete real Combat mixed-rally checkpoint/resume exact parity (7656.783768ms)
+ℹ {"format":"Combat","course":"mixed-rally","checksum":"25aec856","tick":1761,"checkpointBytes":105676,"remaining":1}
+✔ E4 checkpoint validation rejects incompatible metadata, identity, state and unresolved boundaries (16.406649ms)
+✔ E4 durable ordered paused inputs and duplicate retry consume signs once (161.334216ms)
+✔ E4 corrupted newest generation replays complete tail; missing/reordered journal fails closed (375.470286ms)
+✔ E4 denied/torn storage write acknowledges no input and rolls back memory; manual mode is explicit (89.348425ms)
+✔ E4 stale writers and changed financial authority cannot overwrite or resume (76.215101ms)
+✔ D5 real cleared result atomically publishes native condition/classification/proof effects once (3064.7384ms)
+✔ D5 uncleared/stalled proof is recoverably blocked with no permanent effects (52.43984ms)
+✔ D5 result storage failure publishes no partial conditions, standings or entitlements (2583.389035ms)
+✔ D5 separate no-starter proof requires complete ineligibility evidence and fabricates no DNS (0.649417ms)
+✔ E4 nonzero incident scheduler and queued collision/override state restore without RNG drift (247.09924ms)
+✔ E4 compression corruption/truncation/oversize and descriptor forgery reject (2.150269ms)
+✔ E4 manual import is confirmed, atomic and cannot rewind a known committed result (2363.971568ms)
+✔ E1 foundation migration shares protected capacity and rejects conflicting request IDs (520.084972ms)
+✔ D5 real disabled permanent wreck survives checkpoint and legitimate clearance (145.337062ms)
+✔ E4 durable career anchor detects a committed financial change without ever writing Gold (752.035065ms)
+✔ D5 acknowledgement lost after atomic write reopens the committed result exactly once (409.11042ms)
+✔ E4 recovery fails explicitly when both generations are corrupt or setup identity changes (101.919838ms)
+✔ E4 bounded codec covers high-entropy Unicode and repeated dictionary resets (188.423754ms)
+✔ E4 default eight-entrant Combat Rally durably fits the unchanged envelope bound (9669.85374ms)
+ℹ {"defaultCombatRallySessionBytes":4094851,"tick":1485}
+✔ E4 exclusive browser-writer seam serializes open+write and rejects stale competing input (96.216032ms)
+✔ Performance codec preserves exact frozen-baseline bytes including dictionary resets and Unicode (104.664029ms)
+✔ Performance codec still detects mutation, descriptors, aliasing and cold corruption (10.795449ms)
+✔ Canonical output and SHA-256 preserve UTF-8, undefined and mutation semantics (5.954625ms)
+✔ Read-set comparison retains exact string and order semantics without serialization (1.774024ms)
+✔ Worker cache keys cannot be changed by mutating a previously returned candidate array (3867.17095ms)
+✔ Canonical caching preserves legacy bytes for sparse arrays, Unicode keys, getters and changing shapes (4.570315ms)
+✔ Exact inverse cache does not accept altered transport headers or extra fields (5.719229ms)
+ℹ tests 52
+ℹ suites 0
+ℹ pass 52
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 60110.049086
