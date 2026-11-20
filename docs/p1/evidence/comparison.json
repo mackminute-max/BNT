@@ -1,0 +1,473 @@
+{
+  "inputPolicy": "No Strategy Sign commands; same frozen rivals/grid/weather and seed for both builds.",
+  "rows": [
+    {
+      "course": "short-oval",
+      "seed": 17,
+      "build": "contact",
+      "repeat": 0,
+      "checksum": "44d92ffd",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 46,
+          "hold": 56,
+          "Push": 10
+        },
+        "finishTime": 28.506806428508288,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          4.1514509873490155,
+          4.1514509873490155
+        ],
+        "wear": 0.03225680642850834,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 0,
+        "signs": 0
+      },
+      "status": "Ended"
+    },
+    {
+      "course": "short-oval",
+      "seed": 17,
+      "build": "contact",
+      "repeat": 1,
+      "checksum": "44d92ffd",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 46,
+          "hold": 56,
+          "Push": 10
+        },
+        "finishTime": 28.506806428508288,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          4.1514509873490155,
+          4.1514509873490155
+        ],
+        "wear": 0.03225680642850834,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 0,
+        "signs": 0
+      },
+      "status": "Ended"
+    },
+    {
+      "course": "short-oval",
+      "seed": 17,
+      "build": "handling",
+      "repeat": 0,
+      "checksum": "81915e77",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 55,
+          "defendCombat": 13,
+          "hold": 42
+        },
+        "finishTime": 28.023452608925822,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          3.023730536503103,
+          3.023730536503103
+        ],
+        "wear": 0.02802345260892591,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 0,
+        "signs": 0
+      },
+      "status": "Ended"
+    },
+    {
+      "course": "short-oval",
+      "seed": 17,
+      "build": "handling",
+      "repeat": 1,
+      "checksum": "81915e77",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 55,
+          "defendCombat": 13,
+          "hold": 42
+        },
+        "finishTime": 28.023452608925822,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          3.023730536503103,
+          3.023730536503103
+        ],
+        "wear": 0.02802345260892591,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 0,
+        "signs": 0
+      },
+      "status": "Ended"
+    },
+    {
+      "course": "short-oval",
+      "seed": 145,
+      "build": "contact",
+      "repeat": 0,
+      "checksum": "425fb8c7",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 46,
+          "hold": 56,
+          "Push": 10
+        },
+        "finishTime": 28.48927593573088,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          4.149194812928562,
+          4.149194812928562
+        ],
+        "wear": 0.032239275935730824,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 0,
+        "signs": 0
+      },
+      "status": "Ended"
+    },
+    {
+      "course": "short-oval",
+      "seed": 145,
+      "build": "contact",
+      "repeat": 1,
+      "checksum": "425fb8c7",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 46,
+          "hold": 56,
+          "Push": 10
+        },
+        "finishTime": 28.48927593573088,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          4.149194812928562,
+          4.149194812928562
+        ],
+        "wear": 0.032239275935730824,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 0,
+        "signs": 0
+      },
+      "status": "Ended"
+    },
+    {
+      "course": "short-oval",
+      "seed": 145,
+      "build": "handling",
+      "repeat": 0,
+      "checksum": "c98e5797",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 56,
+          "defendCombat": 13,
+          "hold": 43
+        },
+        "finishTime": 28.023452608925947,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          3.0237305365031113,
+          3.0237305365031113
+        ],
+        "wear": 0.02802345260892598,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 0,
+        "signs": 0
+      },
+      "status": "Ended"
+    },
+    {
+      "course": "short-oval",
+      "seed": 145,
+      "build": "handling",
+      "repeat": 1,
+      "checksum": "c98e5797",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 56,
+          "defendCombat": 13,
+          "hold": 43
+        },
+        "finishTime": 28.023452608925947,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          3.0237305365031113,
+          3.0237305365031113
+        ],
+        "wear": 0.02802345260892598,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 0,
+        "signs": 0
+      },
+      "status": "Ended"
+    },
+    {
+      "course": "C01",
+      "seed": 17,
+      "build": "contact",
+      "repeat": 0,
+      "checksum": "e279eace",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 138,
+          "hold": 143,
+          "Push": 5
+        },
+        "finishTime": 73.24005199811195,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          10.240062542639036,
+          10.240062542639036
+        ],
+        "wear": 0.0795653655216711,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 3,
+        "signs": 0
+      },
+      "status": "Ended"
+    },
+    {
+      "course": "C01",
+      "seed": 17,
+      "build": "contact",
+      "repeat": 1,
+      "checksum": "e279eace",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 138,
+          "hold": 143,
+          "Push": 5
+        },
+        "finishTime": 73.24005199811195,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          10.240062542639036,
+          10.240062542639036
+        ],
+        "wear": 0.0795653655216711,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 3,
+        "signs": 0
+      },
+      "status": "Ended"
+    },
+    {
+      "course": "C01",
+      "seed": 17,
+      "build": "handling",
+      "repeat": 0,
+      "checksum": "9de6383e",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 135,
+          "defendCombat": 13,
+          "hold": 128,
+          "Conserve": 6
+        },
+        "finishTime": 72.15131082401774,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          7.364830335850338,
+          7.364830335850338
+        ],
+        "wear": 0.07476209764458101,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 4,
+        "signs": 0
+      },
+      "status": "Ended"
+    },
+    {
+      "course": "C01",
+      "seed": 17,
+      "build": "handling",
+      "repeat": 1,
+      "checksum": "9de6383e",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 135,
+          "defendCombat": 13,
+          "hold": 128,
+          "Conserve": 6
+        },
+        "finishTime": 72.15131082401774,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          7.364830335850338,
+          7.364830335850338
+        ],
+        "wear": 0.07476209764458101,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 4,
+        "signs": 0
+      },
+      "status": "Ended"
+    },
+    {
+      "course": "C01",
+      "seed": 145,
+      "build": "contact",
+      "repeat": 0,
+      "checksum": "359d9bca",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 138,
+          "hold": 143,
+          "Push": 5
+        },
+        "finishTime": 73.20029813720954,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          10.234788703020694,
+          10.234788703020694
+        ],
+        "wear": 0.07952438774685801,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 5,
+        "signs": 0
+      },
+      "status": "Ended"
+    },
+    {
+      "course": "C01",
+      "seed": 145,
+      "build": "contact",
+      "repeat": 1,
+      "checksum": "359d9bca",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 138,
+          "hold": 143,
+          "Push": 5
+        },
+        "finishTime": 73.20029813720954,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          10.234788703020694,
+          10.234788703020694
+        ],
+        "wear": 0.07952438774685801,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 5,
+        "signs": 0
+      },
+      "status": "Ended"
+    },
+    {
+      "course": "C01",
+      "seed": 145,
+      "build": "handling",
+      "repeat": 0,
+      "checksum": "e7855921",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 134,
+          "defendCombat": 13,
+          "hold": 129,
+          "Conserve": 8
+        },
+        "finishTime": 72.69852232020669,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          7.127763624950706,
+          7.127763624950706
+        ],
+        "wear": 0.07473367585681816,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 4,
+        "signs": 0
+      },
+      "status": "Ended"
+    },
+    {
+      "course": "C01",
+      "seed": 145,
+      "build": "handling",
+      "repeat": 1,
+      "checksum": "e7855921",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 134,
+          "defendCombat": 13,
+          "hold": 129,
+          "Conserve": 8
+        },
+        "finishTime": 72.69852232020669,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          7.127763624950706,
+          7.127763624950706
+        ],
+        "wear": 0.07473367585681816,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 4,
+        "signs": 0
+      },
+      "status": "Ended"
+    }
+  ]
+}
