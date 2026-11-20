@@ -165,15 +165,18 @@ class BufferedSession {
       }
     } else if (m.type === "paused") {
       this.workerPaused = true;
-      if (this.phase !== "error") this.phase = this.started ? "paused" : "countdown-paused";
+      if (!["error", "finished"].includes(this.phase)) this.phase = this.started ? "paused" : "countdown-paused";
       this.pauseResolve?.();
       this.pauseResolve = null;
+      this.pausePromise = null;
+      this.pauseReject = null;
     } else if (m.type === "stepped") {
       this.clock = m.tick * this.dt;
       this.present();
-      this.phase = "paused";
+      if (this.phase !== "finished") this.phase = "paused";
       this.stepResolve?.();
       this.stepResolve = null;
+      this.stepReject = null;
     } else if (m.type === "complete") {
       this.completion = m;
       this.present();
@@ -201,6 +204,7 @@ class BufferedSession {
   }
   start() {
     if (this.phase === "error") return;
+    if (this.pausePromise || this.stepResolve) throw Error("Wait for native pause/step acknowledgment");
     if (!this.started) {
       this.phase = "countdown";
     } else {
@@ -212,20 +216,23 @@ class BufferedSession {
     this.send("run");
   }
   pause() {
+    if (this.pausePromise) return this.pausePromise;
     this.phase = this.started ? "paused" : "countdown-paused";
     this.workerPaused = false;
-    this.send("pause");
-    return new Promise((r, j) => {
+    this.pausePromise = new Promise((r, j) => {
       this.pauseResolve = r;
       this.pauseReject = j;
     });
+    this.send("pause");
+    return this.pausePromise;
   }
   tail() {
-    if (!this.workerPaused || !this.started) throw Error("Confirm worker pause first");
+    if (!this.workerPaused || !this.started || this.phase !== "paused" || this.pausePromise || this.stepResolve) throw Error("Confirm worker pause first");
     this.phase = "tail";
   }
   step() {
     if (!this.steppingReady) throw Error("Pause and present buffered tail before native step");
+    this.phase = "stepping";
     this.send("step", { view: this.view() });
     return new Promise((r, j) => {
       this.stepResolve = r;

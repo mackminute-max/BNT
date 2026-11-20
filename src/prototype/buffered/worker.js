@@ -1,7 +1,7 @@
 import { raceSetup } from "../session.js";
 import { createRace, step, issueSign, capture, digest, classification } from "../../sim/race.js";
 import { clearedNativeResult, checkpointRace, restoreRace } from "../../sim/foundation/checkpoint.js";
-import { boundaryEvents, BUFFERED_SIGN_ACTION } from "../../ai/buffered-signs.js";
+import { eligibleBoundary, BUFFERED_SIGN_ACTION } from "../../ai/buffered-signs.js";
 import { canonical } from "../../core/determinism.js";
 import { staticView, frameView, eventView } from "./projection.js";
 const protocolVersion = 1;
@@ -12,7 +12,7 @@ class NativeWorkerHost {
     this.generation = null;
     this.output = 0;
     this.lastInput = 0;
-    this.inputPackets = new Map();
+    this.inputPackets = /* @__PURE__ */ new Map();
     this.commands = /* @__PURE__ */ new Map();
     this.refs = /* @__PURE__ */ new Map();
     this.running = false;
@@ -71,8 +71,8 @@ class NativeWorkerHost {
       if (m.generation !== this.generation) return;
       if (m.seq <= this.lastInput) {
         const cached = this.inputPackets.get(m.seq);
-        if (cached !== undefined && cached !== JSON.stringify(m)) throw Error("Conflicting duplicate worker input sequence");
-        if (cached !== undefined && m.type === "command" && this.commands.has(m.commandId)) this.command(m);
+        if (cached !== void 0 && cached !== JSON.stringify(m)) throw Error("Conflicting duplicate worker input sequence");
+        if (cached !== void 0 && m.type === "command" && this.commands.has(m.commandId)) this.command(m);
         return;
       }
       if (m.seq !== this.lastInput + 1) throw Error("Gap in worker input messages");
@@ -116,7 +116,7 @@ class NativeWorkerHost {
   }
   checkView(v) {
     const ref = this.refs.get(v?.tick);
-    if (!ref || !Number.isFinite(v.time) || v.time < ref.time - 1e-9 || v.time > ref.time + this.state.config.dt + 1e-9 || v.time > this.state.time + 1e-9 || this.state.time - v.time > 2 + this.state.config.dt) throw Error("Stale or invalid presented reference");
+    if (!ref || !Number.isFinite(v.time) || v.time < this.viewTime - 1e-9 || v.time < ref.time - 1e-9 || v.time > ref.time + this.state.config.dt + 1e-9 || v.time > this.state.time + 1e-9 || this.state.time - v.time > 2 + this.state.config.dt) throw Error("Stale or invalid presented reference");
     return ref;
   }
   command(m) {
@@ -148,7 +148,7 @@ class NativeWorkerHost {
             value.ack = { ...value.ack, status: "superseded" };
             this.send("command-status", value.ack);
           }
-          const first = boundaryEvents(s).find((e) => e.type === "RACE_STARTED" ? this.beforeSignal && m.view.tick === 0 && m.view.time === 0 : e.time > m.view.time + s.config.epsilon);
+          const first = eligibleBoundary(s, { viewTick: m.view.tick, viewTime: m.view.time, preStart: this.beforeSignal });
           if (first) {
             const p = { version: 1, sign: m.sign, queueOrder: order, viewTick: m.view.tick, viewTime: m.view.time, boundaryEventId: first.id, preStart: this.beforeSignal };
             if (!issueSign(s, BUFFERED_SIGN_ACTION, p)) throw Error("Validated delay request rejected");

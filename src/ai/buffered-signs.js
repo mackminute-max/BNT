@@ -2,13 +2,16 @@ const BUFFERED_SIGN_ACTION = "buffer-delay-v1";
 function boundaryEvents(s) {
   return s.events.filter((e) => e.type === "RACE_STARTED" || e.participants.includes(s.playerId) && ["LAP_ENTERED", "LAP_COMPLETED", "CHECKPOINT_CROSSED"].includes(e.type));
 }
+function eligibleBoundary(s, view) {
+  return boundaryEvents(s).find((e) => e.type === "RACE_STARTED" ? view.preStart && view.viewTick === 0 && view.viewTime === 0 : e.time > view.viewTime + s.config.epsilon || e.tick === view.viewTick && e.time >= view.viewTime - s.config.epsilon);
+}
 function requestDelay(s, r, p) {
   const fields = ["version", "sign", "queueOrder", "viewTick", "viewTime", "boundaryEventId", "preStart"];
-  if (!p || typeof p !== "object" || Object.keys(p).length !== fields.length || Object.keys(p).some((k) => !fields.includes(k)) || p.version !== 1 || typeof p.sign !== "string" || typeof p.preStart !== "boolean" || ![p.queueOrder, p.viewTick, p.boundaryEventId].every(Number.isSafeInteger) || p.queueOrder < 0 || p.viewTick < 0 || p.viewTick > s.tick || !Number.isFinite(p.viewTime) || p.viewTime < 0 || p.viewTime > s.time || s.time - p.viewTime > 2 + s.config.dt + s.config.epsilon) throw Error("Invalid buffered Sign window");
+  if (!p || typeof p !== "object" || Object.keys(p).length !== fields.length || Object.keys(p).some((k) => !fields.includes(k)) || p.version !== 1 || typeof p.sign !== "string" || typeof p.preStart !== "boolean" || ![p.queueOrder, p.viewTick, p.boundaryEventId].every(Number.isSafeInteger) || p.queueOrder < 0 || p.viewTick < 0 || p.viewTick > s.tick || !Number.isFinite(p.viewTime) || p.viewTime < 0 || p.viewTime > s.time || p.viewTime < p.viewTick * s.config.dt - s.config.epsilon || p.viewTime > (p.viewTick + 1) * s.config.dt + s.config.epsilon || s.time - p.viewTime > 2 + s.config.dt + s.config.epsilon) throw Error("Invalid buffered Sign window");
   const queue = s.commands[p.queueOrder];
   if (!queue || queue.type !== "sign" || queue.action !== "queue" || queue.sign !== p.sign || queue.tick !== s.tick || r.signs.pending !== p.sign) throw Error("Buffered Sign must follow its accepted queue");
   if (s.commands.slice(p.queueOrder + 1, -1).some((c) => c.type === "sign")) throw Error("Buffered Sign was superseded or already marked");
-  const e = boundaryEvents(s).find((e2) => e2.type === "RACE_STARTED" ? p.preStart && p.viewTick === 0 && p.viewTime === 0 : e2.time > p.viewTime + s.config.epsilon);
+  const e = eligibleBoundary(s, p);
   if (!e || e.id !== p.boundaryEventId || e.time > s.time + s.config.epsilon) throw Error("Boundary is not the next eligible presented crossing");
   return { requestOrder: s.commands.length - 1, sign: p.sign, queueOrder: p.queueOrder, boundaryEventId: e.id, boundaryTick: e.tick, acceptedTick: s.tick };
 }
@@ -30,6 +33,7 @@ function pendingDelay(s, r) {
 export {
   BUFFERED_SIGN_ACTION,
   boundaryEvents,
+  eligibleBoundary,
   pendingDelay,
   requestDelay
 };

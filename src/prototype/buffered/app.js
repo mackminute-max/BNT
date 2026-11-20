@@ -229,7 +229,7 @@ function render() {
   for (const option of $("sign").options) option.disabled = option.value === "Engage Rivals" && s.format === "Pure";
   if ($("sign").selectedOptions[0]?.disabled) $("sign").value = signs[0];
   const stopped = session.phase === "error" || ["Ended", "Stalled", "Error"].includes(s.status);
-  $("drain").disabled = session.mode !== "worker" || !session.workerPaused || session.lead < 1e-7 || !session.started;
+  $("drain").disabled = session.mode !== "worker" || session.phase !== "paused" || !session.workerPaused || session.lead < 1e-7 || !session.started;
   $("queue").disabled = comparisonBusy || stopped || p.signs.remaining === 0 || p.status !== "Racing";
   $("cancel").disabled = comparisonBusy || stopped || !p.signs.pending;
   $("lower").disabled = comparisonBusy || stopped || !p.signs.active;
@@ -238,6 +238,7 @@ function render() {
   $("compare").disabled = comparisonBusy || session.mode === "worker";
   if (session.mode === "worker") {
     $("step").disabled = !session.steppingReady;
+    $("start").disabled = stopped || Boolean(session.pausePromise || session.stepResolve);
     $("compare").disabled = true;
   }
   if ($("diagnostics").parentElement.open) $("diagnostics").textContent = JSON.stringify({ prototype: "p1.5-playable-v1", individualBeastFatigue: endurance.individual, meanFatigue: endurance.fatigue, presetChanges: session.changes, coaching: session.setup.entrants[0].coachingContext ?? null, simulationVersion: s.version, seed: s.seed, tick: s.tick, events: s.eventCount ?? s.events.length, maxTickMs: session.maxTickMs, rollingTickSamples: session.timings.length, geometrySamples: g.samples, clearance: terminal?.cleared ?? false }, null, 2);

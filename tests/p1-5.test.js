@@ -120,6 +120,8 @@ test("P1.5 no future event or frame is presented, countdown is wall time and rep
   assert.equal(c.state.tick, 2);
   assert.ok(c.drainEvents().every((e) => e.time <= c.state.time + 1e-9));
   const pause = c.pause();
+  assert.equal(c.pause(), pause);
+  assert.throws(() => c.start(), /acknowledgment/);
   await pause;
   assert.ok(c.workerPaused);
   assert.equal(c.steppingReady, false);
@@ -129,7 +131,9 @@ test("P1.5 no future event or frame is presented, countdown is wall time and rep
   c.advancePresentation(2, 1);
   assert.equal(h.state.tick, tick);
   assert.ok(c.steppingReady);
-  await c.step();
+  const stepping = c.step();
+  assert.throws(() => c.step(), /buffered tail/);
+  await stepping;
   assert.equal(h.state.tick, tick + 1);
   assert.equal(c.state.tick, tick + 1);
   c.shutdown();
@@ -270,5 +274,61 @@ test("P1.5 delayed instruction cannot override native physical inability", async
   assert.equal(paceDirective(s, r, []).selected, "Conserve");
   assert.equal(r.signs.remaining, 2);
 });
-test('P1.5 completion arriving after a held terminal frame exposes checksum only at presented finish',()=>{const c=new BufferedSession({}, {source:null});c.ready.catch(()=>{});c.generation='finish';c.outputSeq=0;c.dt=.05;c.clock=.05;c.phase='playing';c.started=true;c.base={playerId:'p'};c.state={tick:0,time:0,entrants:[],status:'Running'};c.frames.set(0,{tick:0,time:0,entrants:[],status:'Running'});c.frames.set(1,{tick:1,time:.05,entrants:[],status:'Ended'});c.latestTick=1;c.present();assert.equal(c.state.tick,0);assert.equal(c.metrics().checksum,null);c.receive({version:1,generation:'finish',seq:1,type:'complete',tick:1,checksum:'native-checksum',clearance:{cleared:true}});assert.equal(c.state.tick,1);assert.equal(c.phase,'finished');assert.equal(c.metrics().checksum,'native-checksum');});
-test('P1.5 reuse of a transport sequence cannot insert a new command out of order',()=>{const x=host(),view={tick:0,time:0};const m={version:1,generation:'test',seq:2,type:'command',commandId:1,action:'queue',sign:'Conserve Strength',view};x.h.receive(m);const n=x.h.state.commands.length;x.h.receive(m);assert.equal(x.h.state.commands.length,n);x.h.receive({...m,commandId:2});assert.equal(x.h.state.commands.length,n);assert.equal(x.h.state.entrants[0].signs.remaining,2);assert.match(x.messages.at(-1).message,/Conflicting duplicate/);});
+test("P1.5 completion arriving after a held terminal frame exposes checksum only at presented finish", () => {
+  const c = new BufferedSession({}, { source: null });
+  c.ready.catch(() => {
+  });
+  c.generation = "finish";
+  c.outputSeq = 0;
+  c.dt = 0.05;
+  c.clock = 0.05;
+  c.phase = "playing";
+  c.started = true;
+  c.base = { playerId: "p" };
+  c.state = { tick: 0, time: 0, entrants: [], status: "Running" };
+  c.frames.set(0, { tick: 0, time: 0, entrants: [], status: "Running" });
+  c.frames.set(1, { tick: 1, time: 0.05, entrants: [], status: "Ended" });
+  c.latestTick = 1;
+  c.present();
+  assert.equal(c.state.tick, 0);
+  assert.equal(c.metrics().checksum, null);
+  c.receive({ version: 1, generation: "finish", seq: 1, type: "complete", tick: 1, checksum: "native-checksum", clearance: { cleared: true } });
+  assert.equal(c.state.tick, 1);
+  assert.equal(c.phase, "finished");
+  assert.equal(c.metrics().checksum, "native-checksum");
+  c.receive({ version: 1, generation: "finish", seq: 2, type: "stepped", tick: 1 });
+  assert.equal(c.phase, "finished");
+  c.receive({ version: 1, generation: "finish", seq: 3, type: "paused", tick: 1 });
+  assert.equal(c.phase, "finished");
+});
+test("P1.5 reuse of a transport sequence cannot insert a new command out of order", () => {
+  const x = host(), view = { tick: 0, time: 0 };
+  const m = { version: 1, generation: "test", seq: 2, type: "command", commandId: 1, action: "queue", sign: "Conserve Strength", view };
+  x.h.receive(m);
+  const n = x.h.state.commands.length;
+  x.h.receive(m);
+  assert.equal(x.h.state.commands.length, n);
+  x.h.receive({ ...m, commandId: 2 });
+  assert.equal(x.h.state.commands.length, n);
+  assert.equal(x.h.state.entrants[0].signs.remaining, 2);
+  assert.match(x.messages.at(-1).message, /Conflicting duplicate/);
+});
+test("P1.5 exact-time crossing is eligible until its resolved sample is presented", async () => {
+  const { eligibleBoundary } = await import("../src/ai/buffered-signs.js");
+  const e = { id: 1, type: "CHECKPOINT_CROSSED", tick: 20, time: 1, participants: ["p"] }, s = { playerId: "p", config: { epsilon: 1e-7 }, events: [e] };
+  assert.equal(eligibleBoundary(s, { viewTick: 20, viewTime: 1, preStart: false }), e);
+  assert.equal(eligibleBoundary(s, { viewTick: 21, viewTime: 1.05, preStart: false }), void 0);
+  e.tick = 19;
+  assert.equal(eligibleBoundary(s, { viewTick: 20, viewTime: 1, preStart: false }), void 0);
+});
+test("P1.5 an older issued reference cannot reopen a boundary after later presentation credit", () => {
+  const x = host();
+  x.send("run");
+  x.flush();
+  x.send("credit", { view: { tick: 10, time: 0.5 } });
+  x.flush();
+  x.send("command", { commandId: 1, action: "queue", sign: "Conserve Strength", view: { tick: 0, time: 0 } });
+  assert.equal(x.h.commands.get(1).ack.status, "rejected");
+  assert.equal(x.h.state.commands.length, 0);
+  assert.equal(x.h.state.entrants[0].signs.remaining, 3);
+});
