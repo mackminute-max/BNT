@@ -1,13 +1,13 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Blood and Thunder — P1 Playable</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Blood and Thunder — P1.1 Playable</title><style>
 :root{color-scheme:dark;--gold:#dfb863;--ink:#09151d;--panel:#142630;--text:#f5ecdb}*{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--text);font:16px system-ui,sans-serif}header{padding:14px 24px;border-bottom:3px double var(--gold);display:flex;align-items:center;justify-content:space-between;gap:15px}h1{font-size:25px;margin:0;text-transform:uppercase;letter-spacing:3px}h2{font-size:18px;color:var(--gold);margin:5px 0 12px}small,.hint{font-size:13px;color:#c7d4d6}main{max-width:1550px;margin:auto;padding:16px}.panel{background:var(--panel);border:1px solid #6d6852;padding:14px;box-shadow:5px 5px #03090d;margin-bottom:14px}.setup,.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:end}label{display:flex;flex-direction:column;font-size:13px;gap:5px}button,input,select{font:inherit;padding:9px;background:#203944;color:var(--text);border:1px solid #9b936e;border-radius:2px}button{cursor:pointer}button:hover:not(:disabled){background:#385463}button:disabled{opacity:.45;cursor:default}input[type=number]{width:110px}.race-layout>aside{position:sticky;top:12px;align-self:start}.race-layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px}canvas{display:block;width:100%;background:#0b1a24;border:1px solid #6d6852}#race{aspect-ratio:1000/550}#map{aspect-ratio:2/1}#hud{font-variant-numeric:tabular-nums;line-height:1.6;min-height:70px}.radio{height:210px;overflow:auto;padding:8px;background:#0a1920;line-height:1.6;border-left:3px solid var(--gold)}.radio div{padding:3px 6px;border-bottom:1px solid #263c44}table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}td,th{text-align:left;padding:7px;border-bottom:1px solid #40505a}tr.player{color:#ffe3a0;background:#283c40}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}#status{padding:10px;border-left:3px solid var(--gold);min-height:45px}#error{color:#ffaca3}details summary{cursor:pointer;color:var(--gold)}#comparison{overflow:auto}.controls{margin:12px 0}.badge{color:#76eac0}a{color:var(--gold)}@media(max-width:950px){.race-layout{grid-template-columns:1fr}aside{display:grid;grid-template-columns:1fr 1fr;gap:14px}header{display:block}}@media(max-width:950px){.race-layout aside>section:first-child{position:fixed;right:8px;bottom:8px;width:200px;z-index:10;padding:6px;box-shadow:0 0 12px #000}.race-layout aside>section:first-child h2{font-size:12px;margin-bottom:3px}.race-layout aside>section:first-child p,.race-layout aside>section:first-child #progress{display:none}}@media(max-width:600px){aside{display:block}main{padding:8px}h1{font-size:20px}.panel{padding:10px}}
-</style></head><body><header><div><h1>Blood &amp; Thunder</h1><small>P1 · Deterministic playable race · Experimental development build</small></div><span class="badge">IN MEMORY · No career writes</span></header><main>
+.endurance-panel{padding:12px 0;display:grid;gap:7px}.endurance-panel progress{width:100%;height:24px;accent-color:#70d9ae}.endurance-panel progress[data-state=working]{accent-color:#d8ce6c}.endurance-panel progress[data-state=fatigued]{accent-color:#edaa5b}.endurance-panel progress[data-state=exhausted]{accent-color:#ee8177}.terrain-legend{font-size:13px;display:flex;flex-wrap:wrap;gap:12px}.terrain-legend span{border-left:12px solid var(--surface);padding-left:5px}</style></head><body><header><div><h1>Blood &amp; Thunder</h1><small>P1.1 · Pacing refinement · Deterministic playable race · Experimental development build</small></div><span class="badge">IN MEMORY · No career writes</span></header><main>
 <section class="panel"><h2>Race preparation</h2><div class="setup">
 <label>Course<select id="course"></select></label><label>Format<select id="format"><option>Pure</option><option>Combat</option></select></label><label>Weather<select id="weather"><option>Clear</option><option>Rain</option><option>Heat</option><option>Fog</option><option>Storm</option></select></label>
 <label>Seed<input id="seed" type="number" value="145" step="1"></label><label>Player base ratings<select id="value"><option value="45">45 · Developing</option><option value="55" selected>55 · Balanced</option><option value="65">65 · Skilled</option></select></label><label>Player build<select id="build"><option value="baseline">Unmodified baseline</option><option value="contact">Contact Specialist</option><option value="handling">Handling / Endurance</option></select></label><label>Entrants<select id="field"><option>1</option><option>4</option><option selected>8</option></select></label><label>Laps<input id="laps" type="number" min="1" max="5" value="2"></label><button id="prepare">Prepare / New race</button></div>
 <p class="hint">Settings apply when you prepare a race. Player is RU1. All other entrants stay fixed for controlled build comparisons. No saves or rewards: closing the page abandons this race. Keep the existing production HTML for the career and tuning workbench.</p>
 <details><summary>Optional player coaching — frozen on preparation</summary><label><span><input id="customCoach" type="checkbox"> Override experimental preset coaching</span></label><div class="setup" id="coachAxes"></div></details></section>
 <div id="error" role="alert"></div><div id="status" role="status" aria-live="polite"></div>
-<div class="race-layout"><section><div class="panel"><h2>Follow camera · top down</h2><canvas id="race" width="1000" height="550" aria-label="Native race follow camera"></canvas><div class="controls"><button id="start">Start / Resume</button><button id="pause">Pause</button><button id="step">One native tick</button><label>Playback<select id="speed"><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option></select></label><button id="restart">Restart identical setup</button></div><div id="hud"></div></div>
+<div class="race-layout"><section><div class="panel"><h2>Follow camera · top down</h2><p class="terrain-legend"><span style="--surface:#70533c">Dirt</span><span style="--surface:#69635d">Gravel</span><span style="--surface:#9b8150">Sand</span><span style="--surface:#445c48">Mud</span><span style="--surface:#52616d">Stone</span></p><canvas id="race" width="1000" height="550" aria-label="Native race follow camera"></canvas><div class="controls"><button id="start">Start / Resume</button><button id="pause">Pause</button><button id="step">One native tick</button><label>Playback<select id="speed"><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option></select></label><label>Follow zoom<input id="zoom" type="range" min="4" max="10" step="0.5" value="6"></label><button id="restart">Restart identical setup</button></div><section class="endurance-panel"><strong id="enduranceLabel">TEAM ENDURANCE 100%</strong><progress id="endurance" aria-label="Team endurance remaining: 100 minus average native beast fatigue" max="100" value="100"></progress><span id="enduranceTrend">→ Fatigue stable</span></section><div id="hud"></div></div>
 <div class="panel"><h2>Strategy Signs</h2><div class="controls"><select id="sign" aria-label="Select Strategy Sign"></select><button id="queue">Queue / Replace</button><button id="cancel">Cancel queued</button><button id="lower">Lower active</button></div><div id="signState"></div><p class="hint">Accepted queuing spends one use; canceling does not refund it. Activation spends none. Signs wait for the starting signal, next start/finish crossing, or next Rally Sign Point.</p></div>
 <div class="panel"><h2>Race radio</h2><div id="radio" class="radio" role="log" aria-label="Event-driven race commentary"></div></div></section>
 <aside><section class="panel"><h2>Full-course tactical map</h2><canvas id="map" width="640" height="320" aria-label="Full course, all competitors and Rally Sign Points"></canvas><p class="hint">White / gold: RU1 · green SP lines: Sign Points · arrows: travel direction. Camera follows a racing rival if RU1 retires.</p><div id="progress"></div></section><section class="panel"><h2>Live order / official results</h2><table><thead><tr><th>Pos</th><th>RU</th><th>Progress / result</th></tr></thead><tbody id="standings"></tbody></table><div id="clearance"></div></section></aside></div>
@@ -312,20 +312,20 @@
   function compileCourse(input2, c) {
     const definition = normalizeCourse(input2);
     if (c.lanes !== definition.lanes) throw Error("Course lane count must match four racing lanes");
-    let x = 0, y = 0, heading = 0, start = 0, distance = 0;
+    let x = 0, y = 0, heading2 = 0, start = 0, distance = 0;
     const segments = definition.segments.map((s) => {
       const angle = s.turn * Math.PI / 180, radius = angle ? s.length / Math.abs(angle) : Infinity;
       if (angle && radius <= (c.lanes - 1) * c.laneWidth + 1) throw Error("Corner radius cannot fit lane geometry");
-      const end = advance(x, y, heading, s.length, angle);
-      const result = { ...s, type: angle ? "turn" : "straight", direction: Math.sign(angle), radius: angle ? radius : null, angle, start, startDistance: distance, x, y, heading, endX: end.x, endY: end.y };
+      const end = advance(x, y, heading2, s.length, angle);
+      const result = { ...s, type: angle ? "turn" : "straight", direction: Math.sign(angle), radius: angle ? radius : null, angle, start, startDistance: distance, x, y, heading: heading2, endX: end.x, endY: end.y };
       x = end.x;
       y = end.y;
-      heading = end.heading;
+      heading2 = end.heading;
       start += s.tiles;
       distance += s.length;
       return result;
     });
-    if (definition.closed && (Math.hypot(x, y) > 1e-6 || Math.min(mod(heading, Math.PI * 2), Math.PI * 2 - mod(heading, Math.PI * 2)) > 1e-7)) throw Error("Closed circuit geometry does not connect");
+    if (definition.closed && (Math.hypot(x, y) > 1e-6 || Math.min(mod(heading2, Math.PI * 2), Math.PI * 2 - mod(heading2, Math.PI * 2)) > 1e-7)) throw Error("Closed circuit geometry does not connect");
     const checkpoints2 = definition.checkpoints.map((p) => {
       const s = segments.find((s2) => p.distance < s2.startDistance + s2.length) ?? segments.at(-1);
       return { ...p, q: s.start + (p.distance - s.startDistance) / s.length * s.tiles };
@@ -3280,6 +3280,20 @@
     return value;
   }
 
+  // src/prototype/pacing.js
+  var PACING_VERSION = "p1.1-endurance-v1";
+  var pacingProfiles = freeze({
+    legacy: { autonomous: {}, tuning: {} },
+    endurance: { autonomous: { fatigueRate: 0.32, recoveryRate: 0.7, exertionConserve: 0.15, exertionMaintain: 0.4, exertionPush: 2.5, exertionSprint: 4.5, recoveryThreshold: 0.25, utility: { pushFatigue: 8, sprintFatigue: 14, conserveFatigueBase: 3, conserveStamina: 8 } }, tuning: { impairment: 0.85, paceConserve: 0.75, pacePush: 0.98 } }
+  });
+  var fatigueDisplayRules = Object.freeze({ working: 20, fatigued: 50, exhausted: 80, trendEpsilon: 1e-6 });
+  var meanFatigue = (ru) => ru.beasts.reduce((sum, b) => sum + b.fatigue, 0) / ru.beasts.length;
+  function fatigueDisplay(ru, previous = null) {
+    const fatigue = meanFatigue(ru), remaining = 100 - fatigue, delta = previous === null ? 0 : fatigue - previous;
+    const status = fatigue >= fatigueDisplayRules.exhausted ? "Exhausted" : fatigue >= fatigueDisplayRules.fatigued ? "Fatigued" : fatigue >= fatigueDisplayRules.working ? "Working" : "Fresh";
+    return { fatigue, remaining, status, trend: Math.abs(delta) <= fatigueDisplayRules.trendEpsilon ? "stable" : delta > 0 ? "increasing" : "decreasing", individual: ru.beasts.map((b) => b.fatigue) };
+  }
+
   // src/prototype/builds.js
   var builds = freeze({
     baseline: { name: "Unmodified baseline", deltas: { driver: {}, beasts: {}, chariot: {} }, coaching: null },
@@ -3307,7 +3321,7 @@
   }
 
   // src/prototype/session.js
-  var PROTOTYPE_VERSION = "p1-playable-v1";
+  var PROTOTYPE_VERSION = "p1.1-playable-v1";
   function prototypeRally(category, seed) {
     const course = generateRally({ seed, category }), fractions = { short: [1 / 2], medium: [1 / 3, 2 / 3], long: [1 / 4, 1 / 2, 3 / 4] }[category];
     const length = course.segments.reduce((n, s) => n + s.length, 0);
@@ -3315,9 +3329,11 @@
     course.checkpoints = fractions.map((f, i) => ({ id: "SP" + (i + 1), distance: length * f }));
     return normalizeCourse(course);
   }
-  function raceSetup({ course = "short-oval", seed = 145, format = "Pure", weather = "Clear", build = "baseline", value = 55, coaching = null, fieldSize = 8, laps = 2 } = {}) {
+  function raceSetup({ course = "short-oval", seed = 145, format = "Pure", weather = "Clear", build = "baseline", value = 55, coaching = null, fieldSize = 8, laps = 2, pacing = "endurance" } = {}) {
     if (!Number.isInteger(fieldSize) || fieldSize < 1 || fieldSize > 8) throw Error("Field must contain 1..8 entrants");
     if (!Number.isFinite(value) || value < 0 || value > 100) throw Error("Base attributes must be 0..100");
+    const profile = pacingProfiles[pacing];
+    if (!profile) throw Error("Unknown prototype pacing profile");
     const definition = course.startsWith("rally-") ? prototypeRally(course.slice(6), seed) : course;
     const initial = createRace({ seed, course: definition, format, weather, overrides: { laps } });
     const entrants = structuredClone(initial.setup.entrants.slice(0, fieldSize)), player = entrants[0];
@@ -3325,7 +3341,7 @@
     const compiled = compileBuild(player.ru, build);
     player.ru = compiled.ru;
     if (coaching ?? compiled.coachingContext) player.coachingContext = coaching ?? compiled.coachingContext;
-    return { setup: { seed, course: definition, format, weather, overrides: { laps }, entrants, playerId: player.ru.id }, changes: compiled.changes };
+    return { setup: { seed, course: definition, format, weather, autonomous: profile.autonomous, overrides: { laps, tuning: profile.tuning }, entrants, playerId: player.ru.id }, changes: compiled.changes };
   }
   var PlayableSession = class {
     constructor(options2 = {}) {
@@ -3334,6 +3350,7 @@
       this.setup = structuredClone(setup);
       this.changes = changes;
       this.state = createRace(setup);
+      this.previousFatigue = null;
       this.inputs = [];
       this.timings = [];
       this.maxTickMs = 0;
@@ -3341,6 +3358,7 @@
     }
     tick() {
       if (["Ended", "Stalled", "Error"].includes(this.state.status)) return false;
+      this.previousFatigue = meanFatigue(this.state.entrants.find((r) => r.id === this.state.playerId).ru);
       const t = performance.now();
       step(this.state);
       const ms = performance.now() - t;
@@ -3368,7 +3386,7 @@
       for (const e of events) if (e.type === "AI_DECISION") {
         for (const a of Object.values(e.effects.executed ?? e.effects.chosen ?? {})) if (typeof a === "string") actions[a] = (actions[a] ?? 0) + 1;
       }
-      return { version: PROTOTYPE_VERSION, seed: s.seed, format: s.format, build: this.options.build ?? "baseline", tick: s.tick, status: s.status, clearance: this.official(), checksum: digest(s), official: classification(s), player: { id: p.id, actions, finishTime: p.finishTime, status: p.status, driver: p.ru.driver.condition, chariot: p.ru.chariot.condition, beastFatigue: p.ru.beasts.map((b) => b.fatigue), wear: p.ru.chariot.wear, contacts: events.filter((e) => e.type === "CONTACT").length, attacks: events.filter((e) => e.type === "ATTACK").length, overtakes: events.filter((e) => e.type === "OVERTAKE" && e.effects.passer === p.id).length, signs: events.filter((e) => e.type === "SIGN_ACTIVATED").length }, maxTickMs: this.maxTickMs, totalTickMs: this.totalTickMs, events: s.events.length, inputs: structuredClone(this.inputs) };
+      return { version: PROTOTYPE_VERSION, pacingVersion: this.options.pacing === "legacy" ? "legacy" : PACING_VERSION, seed: s.seed, format: s.format, build: this.options.build ?? "baseline", tick: s.tick, status: s.status, clearance: this.official(), checksum: digest(s), official: classification(s), player: { id: p.id, actions, finishTime: p.finishTime, status: p.status, driver: p.ru.driver.condition, chariot: p.ru.chariot.condition, beastFatigue: p.ru.beasts.map((b) => b.fatigue), wear: p.ru.chariot.wear, contacts: events.filter((e) => e.type === "CONTACT").length, attacks: events.filter((e) => e.type === "ATTACK").length, overtakes: events.filter((e) => e.type === "OVERTAKE" && e.effects.passer === p.id).length, signs: events.filter((e) => e.type === "SIGN_ACTIVATED").length }, maxTickMs: this.maxTickMs, totalTickMs: this.totalTickMs, events: s.events.length, inputs: structuredClone(this.inputs) };
     }
   };
   function playback(session2, accumulator, elapsed, speed, { budgetMs = 8, maxTicks = 40 } = {}) {
@@ -3386,6 +3404,11 @@
   }
 
   // src/prototype/view.js
+  var terrainPalette = Object.freeze({ dirt: "#70533c", gravel: "#69635d", sand: "#9b8150", mud: "#445c48", stone: "#52616d" });
+  function heading(s, r) {
+    const a = point(r.q, r.lane, s.config, s.track), b = point(r.q + 1e-3, r.lane, s.config, s.track);
+    return Math.atan2(b.y - a.y, b.x - a.x);
+  }
   var teamColor = (id2) => `hsl(${hash(id2) % 360} 75% 68%)`;
   function geometry(s) {
     const { track: t, config: c } = s, open = t.course && !t.closed, min = open ? -6 : 0, max = t.cells + (open ? c.exitTiles + 2 : 0), samples = [];
@@ -3405,9 +3428,32 @@
     const road = path(edges[0]);
     for (const p of [...edges[1]].reverse()) road.lineTo(p.x, p.y);
     road.closePath();
+    const cuts = [min, max];
+    if (t.course) for (const segment2 of t.segments) {
+      let q = segment2.start - (t.offset ?? 0);
+      if (t.closed) q = (q % t.cells + t.cells) % t.cells;
+      if (q > min && q < max) cuts.push(q);
+    }
+    cuts.sort((a, b) => a - b);
+    const surfaces = [];
+    for (let i = 0; i < cuts.length - 1; i++) {
+      const a = cuts[i], b = cuts[i + 1];
+      if (b <= a) continue;
+      const loc = location((a + b) / 2, 0, c, t), terrain = t.segments.find((x) => x.id === loc.segment)?.terrain ?? "dirt", left = [], right = [];
+      for (let q = a; q < b; q += 0.35) {
+        left.push(point(q, -0.5, c, t));
+        right.push(point(q, c.lanes - 0.5, c, t));
+      }
+      left.push(point(b, -0.5, c, t));
+      right.push(point(b, c.lanes - 0.5, c, t));
+      const ribbon = path(left);
+      for (const v of right.reverse()) ribbon.lineTo(v.x, v.y);
+      ribbon.closePath();
+      surfaces.push({ terrain, path: ribbon });
+    }
     const lanes = Array.from({ length: c.lanes - 1 }, (_, i) => path(sample(i + 0.5)));
     const xs = samples.map((p) => p.x), ys = samples.map((p) => p.y);
-    return { road, lanes, edges: edges.map(path), bounds: { minX: Math.min(...xs), maxX: Math.max(...xs), minY: Math.min(...ys), maxY: Math.max(...ys) }, samples: samples.length };
+    return { road, surfaces, lanes, edges: edges.map(path), bounds: { minX: Math.min(...xs), maxX: Math.max(...xs), minY: Math.min(...ys), maxY: Math.max(...ys) }, samples: samples.length };
   }
   function fit(bounds, width, height, pad = 24) {
     const scale = Math.min((width - pad * 2) / Math.max(1, bounds.maxX - bounds.minX), (height - pad * 2) / Math.max(1, bounds.maxY - bounds.minY));
@@ -3439,12 +3485,16 @@
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.fillStyle = map ? "#09171d" : "#101f29";
     ctx.fillRect(0, 0, w, h);
-    const v = map ? fit(g2.bounds, w, h) : camera2 ?? { ...point(cameraTarget(s).q, cameraTarget(s).lane, s.config, s.track), scale: 3 };
+    const v = map ? fit(g2.bounds, w, h) : camera2 ?? { ...point(cameraTarget(s).q, cameraTarget(s).lane, s.config, s.track), scale: 6 };
     ctx.translate(w / 2, h / 2);
     ctx.scale(v.scale, v.scale);
     ctx.translate(-v.x, -v.y);
     ctx.fillStyle = "#3c3e42";
     ctx.fill(g2.road);
+    for (const surface of g2.surfaces) {
+      ctx.fillStyle = terrainPalette[surface.terrain] ?? terrainPalette.dirt;
+      ctx.fill(surface.path);
+    }
     ctx.strokeStyle = "#e1b964";
     ctx.lineWidth = (map ? 1 : 2) / v.scale;
     g2.edges.forEach((p) => ctx.stroke(p));
@@ -3465,27 +3515,62 @@
       ctx.fillRect(p.x - 1.5, p.y - 1.5, 3, 3);
     }
     for (const r of s.entrants) {
-      const p = point(r.q, r.lane, s.config, s.track), rsize = (map ? 7 : 8) / v.scale;
-      ctx.fillStyle = r.id === s.playerId ? "#fff" : teamColor(r.id);
+      const p = point(r.q, r.lane, s.config, s.track), color = r.id === s.playerId ? "#fff" : teamColor(r.id);
+      ctx.fillStyle = color;
       ctx.strokeStyle = r.id === s.playerId ? "#f4bd49" : "#07131a";
       ctx.lineWidth = 2 / v.scale;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, rsize, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-      if (!map) {
-        ctx.save();
-        ctx.translate(p.x, p.y);
-        ctx.scale(1 / v.scale, 1 / v.scale);
-        ctx.font = "bold 12px sans-serif";
-        ctx.fillStyle = teamColor(r.id);
-        ctx.fillText(r.id, 11, -8);
-        if (r.physical === "Wreck") {
-          ctx.fillStyle = "#fd766a";
-          ctx.fillText("WRECK", 11, 7);
-        }
-        ctx.restore();
+      if (map) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 7 / v.scale, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        continue;
       }
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(heading(s, r));
+      ctx.fillStyle = "#09121b";
+      ctx.fillRect(-2, -1.65, 1.9, 0.5);
+      ctx.fillRect(-2, 1.15, 1.9, 0.5);
+      ctx.fillStyle = color;
+      ctx.fillRect(-2.4, -1.05, 2.6, 2.1);
+      ctx.strokeRect(-2.4, -1.05, 2.6, 2.1);
+      ctx.strokeStyle = "#d5c697";
+      ctx.lineWidth = 0.18;
+      ctx.beginPath();
+      ctx.moveTo(0, -0.7);
+      ctx.lineTo(3.4, -0.7);
+      ctx.moveTo(0, 0.7);
+      ctx.lineTo(3.4, 0.7);
+      ctx.stroke();
+      const team = r.ru.beasts.length;
+      for (let i = 0; i < team; i++) {
+        const row = Math.floor(i / 2), side = team === 1 ? 0 : (i % 2 ? 1 : -1) * 0.65;
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.ellipse(2.8 + row * 2.2, side, 0.9, 0.42, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "#e9d8ab";
+        ctx.beginPath();
+        ctx.arc(3.7 + row * 2.2, side, 0.28, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.fillStyle = "#18232b";
+      ctx.beginPath();
+      ctx.arc(-1.2, 0, 0.42, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.scale(1 / v.scale, 1 / v.scale);
+      ctx.font = "bold 12px sans-serif";
+      ctx.fillStyle = color;
+      ctx.fillText(r.id, 12, -15);
+      if (r.physical === "Wreck") {
+        ctx.fillStyle = "#fd766a";
+        ctx.fillText("WRECK", 12, 5);
+      }
+      ctx.restore();
     }
     for (let q = 1; q < s.track.cells; q += Math.max(8, s.track.cells / 10)) {
       const a = point(q, 1.5, s.config, s.track), b = point(q + 0.2, 1.5, s.config, s.track), angle = Math.atan2(b.y - a.y, b.x - a.x);
@@ -3697,10 +3782,11 @@
     finish();
     const s = session.state, p = s.entrants.find((r) => r.id === s.playerId), now = performance.now();
     const actor = cameraTarget(s), target = point(actor.q, actor.lane, s.config, s.track);
-    if (!camera) camera = { ...target, scale: 3 };
+    if (!camera) camera = { ...target, scale: Number($("zoom").value) };
     else {
       camera.x += (target.x - camera.x) * 0.35;
       camera.y += (target.y - camera.y) * 0.35;
+      camera.scale = Number($("zoom").value);
     }
     drawCourse($("race"), s, g, { camera });
     record("mainDrawMs", performance.now() - now);
@@ -3713,6 +3799,11 @@
     const open = s.track.course && !s.track.closed, progress = (r) => open ? Math.max(0, Math.min(100, courseDistance(r.q, s.track) / s.track.length * 100)).toFixed(1) + "%" : `lap ${Math.min(s.config.laps, r.completedLaps + 1)}/${s.config.laps}`;
     $("status").textContent = terminal ? terminal.cleared ? "Official native clearance established. No rewards or career changes." : "Blocked native result: " + terminal.reason : `${playing ? "Racing" : "Paused / Ready"} \xB7 ${s.status} \xB7 tick ${s.tick} \xB7 ${s.time.toFixed(2)}s \xB7 ${session.options.course}`;
     $("hud").textContent = `RU1: ${p.status} \xB7 ${progress(p)} \xB7 ${p.speed.toFixed(1)} native speed \xB7 Driver ${p.ru.driver.condition.toFixed(1)} / strain ${p.ru.driver.strain.toFixed(1)} \xB7 Chariot ${p.ru.chariot.condition.toFixed(1)} / wear ${p.ru.chariot.wear.toFixed(1)} \xB7 Beasts fatigue ${p.ru.beasts.map((b) => b.fatigue.toFixed(1)).join(" / ")}`;
+    const endurance = fatigueDisplay(p.ru, session.previousFatigue);
+    $("endurance").value = endurance.remaining;
+    $("endurance").dataset.state = endurance.status.toLowerCase();
+    $("enduranceLabel").textContent = `TEAM ENDURANCE ${endurance.remaining.toFixed(1)}% \xB7 ${endurance.status}`;
+    $("enduranceTrend").textContent = `${endurance.trend === "increasing" ? "\u2191" : endurance.trend === "decreasing" ? "\u2193" : "\u2192"} Fatigue ${endurance.trend}${playing ? "" : " \xB7 paused / last native tick"}`;
     $("signState").textContent = `Active: ${p.signs.active ?? "none"} \xB7 Queued: ${p.signs.pending ?? "none"} \xB7 Uses remaining: ${p.signs.remaining}`;
     $("progress").textContent = open ? `Sign Points crossed: ${p.checkpointCursor}/${s.track.checkpoints.length} \xB7 Next: ${s.track.checkpoints[p.checkpointCursor]?.id ?? "finish"}` : `${s.format} \xB7 ${s.config.laps} laps \xB7 Player ${progress(p)}`;
     const official = terminal?.cleared ? terminal.classification : null, rows = official ?? [...s.entrants].sort((a, b) => (a.finishTime === null) - (b.finishTime === null) || (a.finishTime ?? 0) - (b.finishTime ?? 0) || b.q - a.q || a.id.localeCompare(b.id)).map((r, i) => ({ id: r.id, place: i + 1, status: r.status, time: r.finishTime }));
@@ -3747,7 +3838,7 @@
     $("lower").disabled = comparisonBusy || stopped || !p.signs.active;
     for (const id2 of ["start", "step"]) $(id2).disabled = comparisonBusy || stopped;
     $("pause").disabled = comparisonBusy || !playing;
-    $("diagnostics").textContent = JSON.stringify({ prototype: "p1-playable-v1", presetChanges: session.changes, coaching: session.state.entrants[0].coachingContext ?? null, simulationVersion: s.version, seed: s.seed, tick: s.tick, events: s.events.length, maxTickMs: session.maxTickMs, rollingTickSamples: session.timings.length, geometrySamples: g.samples, clearance: terminal?.cleared ?? false }, null, 2);
+    $("diagnostics").textContent = JSON.stringify({ prototype: "p1.1-playable-v1", individualBeastFatigue: endurance.individual, meanFatigue: endurance.fatigue, presetChanges: session.changes, coaching: session.state.entrants[0].coachingContext ?? null, simulationVersion: s.version, seed: s.seed, tick: s.tick, events: s.events.length, maxTickMs: session.maxTickMs, rollingTickSamples: session.timings.length, geometrySamples: g.samples, clearance: terminal?.cleared ?? false }, null, 2);
     record("domMs", performance.now() - domAt);
     measurements.frames++;
   }
@@ -3838,7 +3929,7 @@
     }
     requestAnimationFrame(frame);
   }
-  window.P1 = { version: "p1-playable-v1", get session() {
+  window.P1 = { version: "p1.1-playable-v1", get session() {
     return session;
   }, get measurements() {
     return measurements;
