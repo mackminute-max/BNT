@@ -5,7 +5,7 @@ import {generateRally} from '../track/rally-generator.js';
 import {normalizeCourse} from '../track/course.js';
 import {meanFatigue,pacingProfiles,PACING_VERSION} from './pacing.js';
 import {compileBuild} from './builds.js';
-export const PROTOTYPE_VERSION='p1.3-playable-v1';
+export const PROTOTYPE_VERSION='p1.4-playable-v1';
 export function prototypeRally(category,seed){
  const course=generateRally({seed,category}),fractions=({short:[1/2],medium:[1/3,2/3],long:[1/4,1/2,3/4]})[category];
  const length=course.segments.reduce((n,s)=>n+s.length,0);course.signPointPolicy={version:1,category};course.checkpoints=fractions.map((f,i)=>({id:'SP'+(i+1),distance:length*f}));return normalizeCourse(course);

@@ -32,7 +32,7 @@ import { personality, tendencies, decide } from "../ai/driver.js";
 import { signCommand, activateSign } from "../ai/signs.js";
 import { config, VERSION } from "../config/config.js";
 import { defaultRU, derive } from "../model/ru.js";
-import { byId, random, checksum } from "../core/determinism.js";
+import { byId, random, streamingChecksum } from "../core/determinism.js";
 import { ovalPresets, resolveCatalog } from "../track/catalog.js";
 import { normalizeCourse } from "../track/course.js";
 import { surfaceDefaults, surfaceRules, track, location, key, nextDistance, gap, forwardGap, finishQ } from "../track/oval.js";
@@ -353,7 +353,7 @@ export function snapshot(s) {
   };
 }
 export function digest(s) {
-  return checksum(snapshot(s));
+  return streamingChecksum(snapshot(s));
 }
 export function capture(s) {
   return structuredClone({
