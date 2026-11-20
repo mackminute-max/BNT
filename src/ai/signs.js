@@ -1,3 +1,4 @@
+import {BUFFERED_SIGN_ACTION,requestDelay} from './buffered-signs.js';
 import { emit } from "../events/events.js";
 export const signs = [
   "Push the Pace",
@@ -14,6 +15,7 @@ export function signCommand(s, cmd) {
     return false;
   };
   if (!r || r.status !== "Racing") return reject("Player is not racing");
+  if(cmd.action===BUFFERED_SIGN_ACTION){try{const proof=requestDelay(s,r,cmd.sign);emit(s,"SIGN_DELAY_REQUESTED",[r.id],proof);return true;}catch(error){return reject(error.message);}}
   if (cmd.action === "queue") {
     if (
       !signs.includes(cmd.sign) ||
@@ -37,12 +39,12 @@ export function signCommand(s, cmd) {
   } else return reject("Unknown sign action");
   return true;
 }
-export function activateSign(s, r) {
+export function activateSign(s, r, metadata = null) {
   if (r.status !== "Racing" || !r.signs.pending) return;
   r.signs.active = r.signs.pending;
   r.signs.pending = null;
   r.ai.nextDecision = s.tick;
-  emit(s, "SIGN_ACTIVATED", [r.id], { sign: r.signs.active });
+  emit(s, "SIGN_ACTIVATED", [r.id], { sign: r.signs.active, ...(metadata??{}) });
 }
 export function signPreference(sign, action, c) {
   if (sign === "Push the Pace")

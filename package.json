@@ -8,7 +8,8 @@
     "build": "node scripts/build.mjs",
     "test:browser": "node scripts/browser-test.mjs",
     "check": "npm test && npm run build && npm run test:browser",
-    "reference": "node scripts/reference.mjs"
+    "reference": "node scripts/reference.mjs",
+    "build:p1-5": "node scripts/p1-5/build.mjs"
   },
   "devDependencies": {
     "esbuild": "0.28.2",

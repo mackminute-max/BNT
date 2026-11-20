@@ -1,0 +1,12 @@
+import { build } from "esbuild";
+import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { createHash } from "node:crypto";
+const options = { bundle: true, format: "iife", platform: "browser", target: "es2020", write: false, legalComments: "none" }, worker = await build({ ...options, entryPoints: ["src/prototype/buffered/worker.js"] }), main = await build({ ...options, entryPoints: ["src/prototype/buffered/app.js"] });
+const js = ("globalThis.__BNT_WORKER_SOURCE__=" + JSON.stringify(worker.outputFiles[0].text) + ";\n" + main.outputFiles[0].text).replaceAll("<\/script", "<\\/script");
+let html = await readFile("src/prototype/index.html", "utf8");
+html = html.replace("P1.3 Playable", "P1.5 Playable").replace("P1.4 \xB7 Simulation performance &amp; frame pacing", "P1.5 \xB7 Buffered Worker playback").replace("<label>Course<select", '<label>Execution<select id="engine"><option value="worker">Buffered Worker</option><option value="sync">P1.4 synchronous</option></select></label><label>Course<select').replace('<div id="error"', '<p id="bufferStatus" role="status"></p><p id="commandStatus" role="status"></p><div id="error"').replace('<button id="restart">', '<button id="drain">Present buffered tail</button><button id="restart">').replace("Signs wait for the starting signal, next start/finish crossing, or next Rally Sign Point.", "Signs normally wait for the starting signal, next start/finish crossing, or Rally Sign Point. If the Worker has just passed the still-visible boundary, an accepted delay-window request takes effect at its next natural AI decision; no rewind or extra use.").replace("Experimental values, not approved permanent balance.", "Controlled A/B is available by selecting P1.4 synchronous execution and preparing a race. Experimental values, not approved permanent balance.").replace("<!-- BUNDLE -->", "<script>" + js + "<\/script>");
+if (/<(?:script|link|img|iframe)\b[^>]*(?:src|href)\s*=\s*["'](?!data:|#)/i.test(html) || /\b(?:import\s*\(|fetch\s*\(|new\s+WebSocket\s*\()/m.test(js)) throw Error("External runtime dependency");
+await mkdir("dist", { recursive: true });
+const path = "dist/Blood-and-Thunder-P1.5-Playable.html";
+await writeFile(path, html);
+console.log(JSON.stringify({ path, bytes: Buffer.byteLength(html), sha256: createHash("sha256").update(html).digest("hex") }));

@@ -1118,7 +1118,7 @@ export function issueSign(s, action, sign) {
     type: "sign",
     id: s.playerId,
     action,
-    ...(sign === undefined ? {} : { sign }),
+    ...(sign === undefined ? {} : { sign: action==='buffer-delay-v1'?structuredClone(sign):sign }),
   };
   s.commands.push({ tick: s.tick, order: s.commands.length, phase: "paused", ...command });
   return signCommand(s, command);

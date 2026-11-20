@@ -1,0 +1,42 @@
+import { chromium } from "playwright-core";
+import { createServer } from "node:http";
+import { readFile, writeFile } from "node:fs/promises";
+import assert from "node:assert/strict";
+const html = await readFile("dist/Blood-and-Thunder-P1.5-Playable.html"), server = createServer((req, res) => res.end(html));
+await new Promise((r) => server.listen(0, "127.0.0.1", r));
+const browser = await chromium.launch({ executablePath: "/usr/bin/chromium", headless: true, args: ["--no-sandbox"] });
+const report = { errors: [], groups: [], browser: browser.version() };
+try {
+  const page = await browser.newPage();
+  page.on("pageerror", (e) => report.errors.push(e.message));
+  await page.goto("http://127.0.0.1:" + server.address().port);
+  await page.waitForFunction(() => window.P1?.session?.state);
+  assert.equal(await page.evaluate(() => P1.session.mode), "worker");
+  await page.click("#queue");
+  await page.waitForFunction(() => P1.session.commands.get(1)?.status === "accepted-queued");
+  await page.click("#start");
+  await page.waitForTimeout(1200);
+  assert.equal(await page.evaluate(() => P1.session.state.tick), 0);
+  assert.equal(await page.evaluate(() => P1.session.phase), "countdown");
+  await page.waitForFunction(() => P1.session.state.tick > 5);
+  report.groups.push("embedded Worker, native pre-roll and three-second presentation countdown");
+  await page.click("#pause");
+  await page.waitForFunction(() => P1.session.workerPaused);
+  const tick = await page.evaluate(() => P1.session.state.tick);
+  await page.waitForTimeout(250);
+  assert.equal(await page.evaluate(() => P1.session.state.tick), tick);
+  await page.click("#drain");
+  await page.waitForFunction(() => P1.session.steppingReady);
+  const before = await page.evaluate(() => P1.session.state.tick);
+  await page.click("#step");
+  await page.waitForFunction((t) => P1.session.state.tick === t + 1, before);
+  report.groups.push("pause confirmation, chronological buffer drain and exactly one native step");
+  await page.screenshot({ path: "/workspace/deliverables/bnt-p1-5/evidence/worker-ui.png", fullPage: true });
+  assert.deepEqual(report.errors, []);
+  report.metrics = await page.evaluate(() => P1.session.metrics());
+} finally {
+  await browser.close();
+  server.close();
+  await writeFile("/workspace/deliverables/bnt-p1-5/evidence/browser-smoke.json", JSON.stringify(report, null, 2));
+  console.log(JSON.stringify(report));
+}

@@ -1,3 +1,4 @@
+import {pendingDelay} from './buffered-signs.js';
 import {paceDirective} from './directives.js';
 import {finishUtility} from './finish-utility.js';
 import {coachingUtility} from './coaching.js';
@@ -7,7 +8,7 @@ import { beginDecision } from "./telemetry.js";
 import { random, byId } from "../core/determinism.js";
 import { routePreview } from "../track/course.js";
 import { mod, gap, forwardGap, key } from "../track/oval.js";
-import { signPreference } from "./signs.js";
+import { activateSign, signPreference } from "./signs.js";
 export const tendencies = [
   "aggression",
   "caution",
@@ -79,6 +80,7 @@ export function decide(s, r) {
     );
   // Tactical danger is reconsidered every tick; strategy is periodic and goals persist.
   if (s.tick < r.ai.nextDecision && !danger) return null;
+  const delayed=pendingDelay(s,r);if(delayed)activateSign(s,r,delayed);
   r.ai.evaluation = (r.ai.evaluation ?? 0) + 1;
   r.ai.nextDecision = s.tick + c.decisionTicks;
   const fatigue =
