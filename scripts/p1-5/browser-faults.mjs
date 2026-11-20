@@ -18,6 +18,7 @@ try {
   await page.goto("http://127.0.0.1:" + server.address().port);
   await page.waitForFunction(() => P1.session?.state);
   assert.equal(await page.evaluate(() => P1.session.mode), "sync-fallback");
+  assert.equal(await page.locator("#compare").isEnabled(), true);
   assert.match(await page.locator("#bufferStatus").textContent(), /Injected Worker denial/);
   await page.click("#step");
   assert.equal(await page.evaluate(() => P1.session.state.tick), 1);

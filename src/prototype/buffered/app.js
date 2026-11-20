@@ -235,11 +235,12 @@ function render() {
   $("lower").disabled = comparisonBusy || stopped || !p.signs.active;
   for (const id of ["start", "step"]) $(id).disabled = comparisonBusy || stopped;
   $("pause").disabled = comparisonBusy || !playing;
+  $("compare").disabled = comparisonBusy || session.mode === "worker";
   if (session.mode === "worker") {
     $("step").disabled = !session.steppingReady;
     $("compare").disabled = true;
   }
-  if ($("diagnostics").parentElement.open) $("diagnostics").textContent = JSON.stringify({ prototype: "p1.5-playable-v1", individualBeastFatigue: endurance.individual, meanFatigue: endurance.fatigue, presetChanges: session.changes, coaching: session.state.entrants[0].coachingContext ?? null, simulationVersion: s.version, seed: s.seed, tick: s.tick, events: s.eventCount ?? s.events.length, maxTickMs: session.maxTickMs, rollingTickSamples: session.timings.length, geometrySamples: g.samples, clearance: terminal?.cleared ?? false }, null, 2);
+  if ($("diagnostics").parentElement.open) $("diagnostics").textContent = JSON.stringify({ prototype: "p1.5-playable-v1", individualBeastFatigue: endurance.individual, meanFatigue: endurance.fatigue, presetChanges: session.changes, coaching: session.setup.entrants[0].coachingContext ?? null, simulationVersion: s.version, seed: s.seed, tick: s.tick, events: s.eventCount ?? s.events.length, maxTickMs: session.maxTickMs, rollingTickSamples: session.timings.length, geometrySamples: g.samples, clearance: terminal?.cleared ?? false }, null, 2);
   record("domMs", performance.now() - domAt);
   measurements.frames++;
 }

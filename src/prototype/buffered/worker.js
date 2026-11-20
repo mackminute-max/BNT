@@ -12,6 +12,7 @@ class NativeWorkerHost {
     this.generation = null;
     this.output = 0;
     this.lastInput = 0;
+    this.inputPackets = new Map();
     this.commands = /* @__PURE__ */ new Map();
     this.refs = /* @__PURE__ */ new Map();
     this.running = false;
@@ -45,6 +46,7 @@ class NativeWorkerHost {
         this.generation = m.generation;
         this.output = 0;
         this.lastInput = m.seq;
+        this.inputPackets.set(m.seq, JSON.stringify(m));
         this.running = false;
         this.completed = false;
         this.commands.clear();
@@ -68,11 +70,15 @@ class NativeWorkerHost {
       }
       if (m.generation !== this.generation) return;
       if (m.seq <= this.lastInput) {
-        if (m.type === "command") this.command(m);
+        const cached = this.inputPackets.get(m.seq);
+        if (cached !== undefined && cached !== JSON.stringify(m)) throw Error("Conflicting duplicate worker input sequence");
+        if (cached !== undefined && m.type === "command" && this.commands.has(m.commandId)) this.command(m);
         return;
       }
       if (m.seq !== this.lastInput + 1) throw Error("Gap in worker input messages");
       this.lastInput = m.seq;
+      this.inputPackets.set(m.seq, JSON.stringify(m));
+      if (this.inputPackets.size > 32) this.inputPackets.delete(this.inputPackets.keys().next().value);
       if (m.type === "command") this.command(m);
       else if (m.type === "run") {
         this.running = true;
