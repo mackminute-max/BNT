@@ -1,0 +1,87 @@
+{
+  "rows": [
+    {
+      "course": "oval",
+      "format": "Pure",
+      "status": "Ended",
+      "tick": 992,
+      "checksum": "0844747c",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 77,
+          "hold": 77
+        },
+        "finishTime": 39.37708231332715,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          4.788253209300559,
+          4.788253209300559
+        ],
+        "wear": 0.01575083292533086,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 0,
+        "signs": 0
+      }
+    },
+    {
+      "course": "C01",
+      "format": "Combat",
+      "status": "Ended",
+      "tick": 1624,
+      "checksum": "32f2d8c6",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 140,
+          "hold": 140
+        },
+        "finishTime": 71.98452277515895,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          9.28122787208839,
+          9.28122787208839
+        ],
+        "wear": 0.03053035484239595,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 6,
+        "signs": 0
+      }
+    },
+    {
+      "course": "rally-long",
+      "format": "Combat",
+      "status": "Ended",
+      "tick": 4096,
+      "checksum": "eac460e4",
+      "player": {
+        "id": "RU1",
+        "actions": {
+          "Maintain": 329,
+          "hold": 358,
+          "Conserve": 29
+        },
+        "finishTime": 183.6109081258831,
+        "status": "Finished",
+        "driver": 100,
+        "chariot": 100,
+        "beastFatigue": [
+          14.468450379993723,
+          14.468450379993723
+        ],
+        "wear": 0.08506891572366332,
+        "contacts": 0,
+        "attacks": 0,
+        "overtakes": 1,
+        "signs": 0
+      }
+    }
+  ],
+  "scope": "Native full eight-entrant functional clearance, not a controlled performance benchmark."
+}

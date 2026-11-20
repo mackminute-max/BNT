@@ -1,0 +1,15 @@
+{
+  "groups": [
+    "fresh gauge and closer default zoom",
+    "native mean, increase indicator, paused stability and single step",
+    "4x live gauge follows native state",
+    "zoom and silhouette rendering do not mutate simulation",
+    "circuit/rally terrain silhouette views and tactical markers"
+  ],
+  "errors": [],
+  "browser": "156.0.8078.79",
+  "file": {
+    "pass": false,
+    "reason": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///workspace/BNT/dist/Blood-and-Thunder-P1-Playable.html\nCall log:\n\u001b[2m  - navigating to \"file:///workspace/BNT/dist/Blood-and-Thunder-P1-Playable.html\", waiting until \"load\"\u001b[22m\n"
+  }
+}

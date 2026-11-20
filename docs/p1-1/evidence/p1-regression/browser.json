@@ -1,0 +1,41 @@
+{
+  "browser": "156.0.8078.79",
+  "groups": [
+    "boot/selectors",
+    "native input/start/pause/step",
+    "all-format cameras/maps/Sign Points",
+    "retired camera fallback (synthetic presentation boundary)",
+    "controlled complete build pair",
+    "no Web Storage writes / IndexedDB opens",
+    "narrow viewport",
+    "offline interaction / no runtime requests"
+  ],
+  "file": {
+    "passed": false,
+    "limitation": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///workspace/BNT/dist/Blood-and-Thunder-P1-Playable.html\nCall log:\n\u001b[2m  - navigating to \"file:///workspace/BNT/dist/Blood-and-Thunder-P1-Playable.html\", waiting until \"load\"\u001b[22m\n"
+  },
+  "errors": [],
+  "runtimeRequests": [],
+  "comparison": [
+    {
+      "build": "contact",
+      "checksum": "9c64e7dc",
+      "actions": {
+        "Maintain": 103,
+        "hold": 107,
+        "Push": 4
+      },
+      "status": "Ended"
+    },
+    {
+      "build": "handling",
+      "checksum": "e92b9332",
+      "actions": {
+        "Maintain": 102,
+        "hold": 104,
+        "Conserve": 2
+      },
+      "status": "Ended"
+    }
+  ]
+}

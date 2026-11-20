@@ -1,0 +1,21 @@
+{
+  "repeated": [
+    {
+      "course": "short-oval",
+      "checksum": "3a96cebf",
+      "matched": true
+    },
+    {
+      "course": "C01",
+      "checksum": "b42d485a",
+      "matched": true
+    },
+    {
+      "course": "rally-long",
+      "checksum": "a8aecd4c",
+      "matched": true
+    }
+  ],
+  "signBudgetChecks": 30,
+  "alwaysPushNotUniversal": true
+}
