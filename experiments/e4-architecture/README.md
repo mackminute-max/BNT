@@ -38,3 +38,5 @@ BNT_EXPERIMENT_CACHE=two BNT_EXPERIMENT_CASE=late-long BNT_EXPERIMENT_FORMAT=Com
 ```
 
 `BNT_EXPERIMENT_VALIDATION=exact` selects a private worker-only controller-validation memo experiment. Keys preserve the complete supported data graph, aliases and descriptors; every distinct state still executes the original full validator, as does every unique state on a cold worker. Cache budget is two entries / 16 MiB key-text accounting. It is not a public validator API, persisted validation certificate, protected-history bypass or production change. Unsupported key shapes fall back to the original validator. This experiment must not be generalized to arbitrary caller-owned JavaScript proxies or mutable external authority contexts.
+
+`transport.mjs` separately measures five pairs of full-snapshot versus small-reference structured-clone echo messages, including synchronous outbound copy, worker response copy and round-trip scheduling. It generates real logical-record payloads but deliberately performs no authoritative validation/write and never acknowledges durability; those times must not be substituted for complete operations.
