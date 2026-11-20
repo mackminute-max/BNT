@@ -91,22 +91,47 @@ export function writeCanonical(value, write, arraySlot = false) {
     else if (!arraySlot) write('undefined');
   }
 }
-export function streamingChecksum(value) {
-  let h = 2166136261;
-  writeCanonical(value, text => {
-    for (let i = 0; i < text.length; i++) {
-      const code = text.charCodeAt(i);
-      h ^= code;
-      h = Math.imul(h, 16777619);
-      // Historical hash uses for...of + charCodeAt(0): one high surrogate for
-      // each valid pair, not both UTF-16 code units. Quoted scalar/key chunks
-      // never split a pair. Preserve that behavior, including emoji in events.
-      if (code >= 0xd800 && code <= 0xdbff && i + 1 < text.length) {
-        const next = text.charCodeAt(i + 1);
-        if (next >= 0xdc00 && next <= 0xdfff) i++;
-      }
+// Fold with a local integer accumulator. A captured writer accumulator makes
+// Chromium's hot character loop significantly slower; no callback per token.
+function foldText(h, text) {
+  for (let i = 0; i < text.length; i++) {
+    const code = text.charCodeAt(i);
+    h = Math.imul(h ^ code, 16777619);
+    // Match for...of + charCodeAt(0), including valid surrogate pairs.
+    if (code >= 0xd800 && code <= 0xdbff && i + 1 < text.length) {
+      const next = text.charCodeAt(i + 1);
+      if (next >= 0xdc00 && next <= 0xdfff) i++;
     }
-  });
+  }
+  return h;
+}
+function foldCanonical(value, h, arraySlot = false) {
+  if (Array.isArray(value)) {
+    h = Math.imul(h ^ 91, 16777619);
+    const length = value.length;
+    for (let i = 0; i < length; i++) {
+      if (i) h = Math.imul(h ^ 44, 16777619);
+      if (i in value) h = foldCanonical(value[i], h, true);
+    }
+    return Math.imul(h ^ 93, 16777619);
+  }
+  if (value && typeof value === 'object') {
+    h = Math.imul(h ^ 123, 16777619);
+    const keys = streamingKeys(value);
+    for (let i = 0; i < keys.length; i++) {
+      if (i) h = Math.imul(h ^ 44, 16777619);
+      const key = keys[i];
+      h = foldText(h, quote(key));
+      h = Math.imul(h ^ 58, 16777619);
+      h = foldCanonical(value[key], h);
+    }
+    return Math.imul(h ^ 125, 16777619);
+  }
+  const encoded = typeof value === 'string' ? quote(value) : JSON.stringify(value);
+  return encoded !== undefined ? foldText(h, encoded) : arraySlot ? h : foldText(h, 'undefined');
+}
+export function streamingChecksum(value) {
+  let h = foldCanonical(value, 2166136261);
   h ^= h >>> 16;
   h = Math.imul(h, 0x7feb352d);
   h ^= h >>> 15;

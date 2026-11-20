@@ -168,45 +168,44 @@
     streamShapes.set(signature, { ordered: keys, sorted: sorted2 });
     return sorted2;
   }
-  function writeCanonical(value, write, arraySlot = false) {
+  function foldText(h, text2) {
+    for (let i = 0; i < text2.length; i++) {
+      const code = text2.charCodeAt(i);
+      h = Math.imul(h ^ code, 16777619);
+      if (code >= 55296 && code <= 56319 && i + 1 < text2.length) {
+        const next = text2.charCodeAt(i + 1);
+        if (next >= 56320 && next <= 57343) i++;
+      }
+    }
+    return h;
+  }
+  function foldCanonical(value, h, arraySlot = false) {
     if (Array.isArray(value)) {
-      write("[");
+      h = Math.imul(h ^ 91, 16777619);
       const length = value.length;
       for (let i = 0; i < length; i++) {
-        if (i) write(",");
-        if (i in value) writeCanonical(value[i], write, true);
+        if (i) h = Math.imul(h ^ 44, 16777619);
+        if (i in value) h = foldCanonical(value[i], h, true);
       }
-      write("]");
-    } else if (value && typeof value === "object") {
-      write("{");
+      return Math.imul(h ^ 93, 16777619);
+    }
+    if (value && typeof value === "object") {
+      h = Math.imul(h ^ 123, 16777619);
       const keys = streamingKeys(value);
       for (let i = 0; i < keys.length; i++) {
-        if (i) write(",");
+        if (i) h = Math.imul(h ^ 44, 16777619);
         const key2 = keys[i];
-        write(quote(key2));
-        write(":");
-        writeCanonical(value[key2], write);
+        h = foldText(h, quote(key2));
+        h = Math.imul(h ^ 58, 16777619);
+        h = foldCanonical(value[key2], h);
       }
-      write("}");
-    } else {
-      const encoded = typeof value === "string" ? quote(value) : JSON.stringify(value);
-      if (encoded !== void 0) write(encoded);
-      else if (!arraySlot) write("undefined");
+      return Math.imul(h ^ 125, 16777619);
     }
+    const encoded = typeof value === "string" ? quote(value) : JSON.stringify(value);
+    return encoded !== void 0 ? foldText(h, encoded) : arraySlot ? h : foldText(h, "undefined");
   }
   function streamingChecksum(value) {
-    let h = 2166136261;
-    writeCanonical(value, (text2) => {
-      for (let i = 0; i < text2.length; i++) {
-        const code = text2.charCodeAt(i);
-        h ^= code;
-        h = Math.imul(h, 16777619);
-        if (code >= 55296 && code <= 56319 && i + 1 < text2.length) {
-          const next = text2.charCodeAt(i + 1);
-          if (next >= 56320 && next <= 57343) i++;
-        }
-      }
-    });
+    let h = foldCanonical(value, 2166136261);
     h ^= h >>> 16;
     h = Math.imul(h, 2146121005);
     h ^= h >>> 15;
