@@ -111,6 +111,13 @@ export function validateRU(ru) {
   bounded(ru.equipment?.mass, "equipment mass", 0, 10000);
   bounded(ru.equipment?.combat, "equipment combat", 0, 100);
 }
+// Optional prototype exhaustion curve. No extra arithmetic on legacy paths.
+export function beastExhaustionFactor(fatigue, tuning) {
+  if (!tuning.beastExhaustionStrength) return 1;
+  const start = tuning.beastExhaustionStart ?? .65;
+  const x = clamp((fatigue / 100 - start) / (1 - start), 0, 1);
+  return 1 - tuning.beastExhaustionStrength * x * x * (3 - 2 * x);
+}
 export function derive(ru, c) {
   validateRU(ru);
   const w = c.tuning;
@@ -121,7 +128,9 @@ export function derive(ru, c) {
     Object.fromEntries(
       beastAttributes.map((k) => [
         k,
-        b[k] * (b.condition / 100) * (1 - (w.impairment * b.fatigue) / 100),
+        w.beastExhaustionStrength
+          ? b[k] * (b.condition / 100) * (1 - (w.impairment * b.fatigue) / 100) * beastExhaustionFactor(b.fatigue, w)
+          : b[k] * (b.condition / 100) * (1 - (w.impairment * b.fatigue) / 100),
       ]),
     ),
   );

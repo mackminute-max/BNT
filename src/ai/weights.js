@@ -65,7 +65,7 @@ export function utilityConfig(input = {}) {
   const result = { ...utilityDefaults, ...input };
   for (const [key, value] of Object.entries(result))
     if (
-      !Object.hasOwn(utilityDefaults, key) ||
+      (!Object.hasOwn(utilityDefaults, key) && key !== 'finishUrgency') ||
       !Number.isFinite(value) ||
       value < 0 ||
       value > 100

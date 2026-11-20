@@ -1,3 +1,4 @@
+import {finishUtility} from './finish-utility.js';
 import {coachingUtility} from './coaching.js';
 import { combatValue } from "./combat-value.js";
 import { location } from "../track/oval.js";
@@ -136,6 +137,7 @@ export function decide(s, r) {
     const terms = {
       base,
       ...features,
+      ...(w.finishUrgency ? {finishEffort:finishUtility(s,r,action,p)} : {}),
       ...(r.coachingContext ? {coaching:coachingUtility(r.coachingContext,action,sign)} : {}),
       sign: influence,
       persistence,

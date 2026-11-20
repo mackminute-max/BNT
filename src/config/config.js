@@ -125,13 +125,15 @@ export function config(overrides = {}) {
     throw new Error("Invalid tuning object");
   for (const [k, v] of Object.entries(tuning))
     if (
-      !Object.hasOwn(tuningDefaults, k) ||
+      (!Object.hasOwn(tuningDefaults, k) && !['beastExhaustionStart','beastExhaustionStrength'].includes(k)) ||
       !Number.isFinite(v) ||
       v < 0 ||
       v > 2
     )
       throw new Error(`Invalid tuning.${k}: expected 0..2`);
   if (
+    (tuning.beastExhaustionStart !== undefined && tuning.beastExhaustionStart >= 1) ||
+    (tuning.beastExhaustionStrength !== undefined && tuning.beastExhaustionStrength > 1) ||
     tuning.crowdSensitivity > 1 ||
     tuning.impairment > 1 ||
     tuning.chariotSpeedFloor > 1 ||
