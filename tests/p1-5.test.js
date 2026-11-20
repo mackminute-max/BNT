@@ -332,3 +332,21 @@ test("P1.5 an older issued reference cannot reopen a boundary after later presen
   assert.equal(x.h.state.commands.length, 0);
   assert.equal(x.h.state.entrants[0].signs.remaining, 3);
 });
+test("P1.5 exhausted or illegal replacement cannot cancel a valid delayed queue", () => {
+  const x = host();
+  x.send("run");
+  x.flush();
+  const view = { tick: 0, time: 0 };
+  for (const [i, sign] of ["Conserve Strength", "Push the Pace", "Conserve Strength"].entries()) x.send("command", { commandId: i + 1, action: "queue", sign, view });
+  x.send("command", { commandId: 4, action: "queue", sign: "Push the Pace", view });
+  x.send("command", { commandId: 5, action: "queue", sign: "Engage Rivals", view });
+  assert.equal(x.h.commands.get(4).ack.status, "rejected");
+  assert.equal(x.h.commands.get(5).ack.status, "rejected");
+  x.send("credit", { view: { tick: 2, time: 0.1 } });
+  x.flush();
+  assert.equal(x.h.commands.get(3).ack.status, "activated-delayed");
+  assert.equal(x.h.state.entrants[0].signs.active, "Conserve Strength");
+  assert.equal(x.h.state.entrants[0].signs.remaining, 0);
+  assert.equal(x.h.state.events.filter((e) => e.type === "SIGN_ACTIVATED" && e.effects.mode === BUFFERED_SIGN_ACTION).length, 1);
+  assert.equal(verifyReplay(capture(x.h.state)).checksum, digest(x.h.state));
+});

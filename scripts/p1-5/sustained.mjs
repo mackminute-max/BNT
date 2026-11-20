@@ -18,6 +18,20 @@ try {
       await P1.prepare({ ...options2, mode: mode2 === "reference" ? void 0 : mode2 });
       P1.session.sign("queue", "Push the Pace");
       window.__frames = [];
+      window.__underrunTrace = [];
+      if (P1.session.mode === "worker") {
+        const session = P1.session, originalAdvance = session.advancePresentation.bind(session), originalReceive = session.receive.bind(session);
+        session.advancePresentation = (elapsed, speed) => {
+          const count = session.telemetry.underruns;
+          originalAdvance(elapsed, speed);
+          if (session.telemetry.underruns > count) __underrunTrace.push({ type: "hold", at: performance.now(), viewTick: session.state.tick, headTick: session.latestTick, headStatus: session.frames.get(session.latestTick)?.status, completionKnown: Boolean(session.completion), lead: session.lead });
+        };
+        session.receive = (message) => {
+          const phase = session.phase;
+          originalReceive(message);
+          if (message.type === "complete") __underrunTrace.push({ type: "completion", at: performance.now(), before: phase, after: session.phase, viewTick: session.state.tick, headTick: session.latestTick });
+        };
+      }
       window.__peak = 0;
       let last;
       function frame(now2) {
@@ -36,7 +50,7 @@ try {
     const row = await page.evaluate(() => {
       cancelAnimationFrame(__raf);
       const a = [...__frames].sort((x, y) => x - y), q = (p) => a[Math.min(a.length - 1, Math.floor(a.length * p))], metrics = P1.session.metrics();
-      return { wallMs: performance.now() - __start, status: P1.session.state.status, ticks: P1.session.state.tick, checksum: metrics.checksum, classification: P1.session.official().classification, frames: { n: a.length, median: q(0.5), p95: q(0.95), p99: q(0.99), max: a.at(-1), over50: a.filter((x) => x > 50).length, over100: a.filter((x) => x > 100).length, over200: a.filter((x) => x > 200).length }, frameSamples: __frames, maxHeap: __peak, metrics, error: P1.session.error ?? null };
+      return { wallMs: performance.now() - __start, status: P1.session.state.status, ticks: P1.session.state.tick, checksum: metrics.checksum, classification: P1.session.official().classification, frames: { n: a.length, median: q(0.5), p95: q(0.95), p99: q(0.99), max: a.at(-1), over50: a.filter((x) => x > 50).length, over100: a.filter((x) => x > 100).length, over200: a.filter((x) => x > 200).length }, frameSamples: __frames, underrunTrace: __underrunTrace, maxHeap: __peak, metrics, error: P1.session.error ?? null };
     });
     report.rows.push({ mode, options, ...row });
     console.log(mode, course, row.status, row.ticks, row.checksum, row.frames);

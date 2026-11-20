@@ -4,7 +4,7 @@ import { createServer } from "node:http";
 import { writeFile } from "node:fs/promises";
 import assert from "node:assert/strict";
 import { createRace, digest, run, capture } from "../../src/sim/race.js";
-const bundle = await build({ stdin: { contents: `import * as race from './src/sim/race.js';import * as cp from './src/sim/foundation/checkpoint.js';import {verifyReplay} from './src/replay/replay.js';import {raceSetup} from './src/prototype/session.js';window.native={...race,...cp,verifyReplay,raceSetup};`, resolveDir: process.cwd() }, bundle: true, format: "iife", platform: "browser", write: false }), html = "<script>" + bundle.outputFiles[0].text.replaceAll("<\/script", "<\\/script") + "<\/script>", server = createServer((q, r) => res.end(html));
+const bundle = await build({ stdin: { contents: `import * as race from './src/sim/race.js';import * as cp from './src/sim/foundation/checkpoint.js';import {verifyReplay} from './src/replay/replay.js';import {raceSetup} from './src/prototype/session.js';window.native={...race,...cp,verifyReplay,raceSetup};`, resolveDir: process.cwd() }, bundle: true, format: "iife", platform: "browser", write: false }), html = "<script>" + bundle.outputFiles[0].text.replaceAll("<\/script", "<\\/script") + "<\/script>", server = createServer((q, r) => r.end(html));
 await new Promise((r) => server.listen(0, "127.0.0.1", r));
 const browser = await chromium.launch({ executablePath: "/usr/bin/chromium", headless: true, args: ["--no-sandbox"] });
 const report = { browser: browser.version(), clock: [], races: [], delayed: null };

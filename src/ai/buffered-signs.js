@@ -20,11 +20,13 @@ function pendingDelay(s, r) {
   for (let i = s.commands.length - 1; i >= 0; i--) {
     const c = s.commands[i];
     if (c.type !== "sign") continue;
-    if (c.action === "cancel" || c.action === "queue") return null;
     if (c.action === BUFFERED_SIGN_ACTION) {
-      if (!s.events.some((e) => e.type === "SIGN_DELAY_REQUESTED" && e.effects.requestOrder === i)) continue;
+      const proofIndex = s.events.findIndex((e) => e.type === "SIGN_DELAY_REQUESTED" && e.effects.requestOrder === i);
+      if (proofIndex < 0) continue;
+      for (let j = proofIndex + 1; j < s.events.length; j++)
+        if (["SIGN_QUEUED", "SIGN_CANCELED"].includes(s.events[j].type)) return null;
       const p = c.sign, q = s.commands[p?.queueOrder];
-      if (q?.action !== "queue" || q.sign !== r.signs.pending || p.sign !== r.signs.pending) return null;
+      if (p?.version !== 1 || q?.action !== "queue" || q.sign !== r.signs.pending || p.sign !== r.signs.pending) return null;
       return { mode: BUFFERED_SIGN_ACTION, boundaryEventId: p.boundaryEventId, queueOrder: p.queueOrder, acceptedTick: c.tick };
     }
   }
