@@ -1,0 +1,17 @@
+import {RacePresenter,geometry} from './renderer.js';
+import {AssetLibrary} from './assets.js';
+import {teamIdentity} from './identity.js';
+const instances=new WeakMap();
+globalThis.P2DurablePresentation={inspect:canvas=>instances.get(canvas)?.inspect(),pointer:(canvas,x,y)=>instances.get(canvas)?.pointer(canvas,x,y),setArt:(canvas,value)=>instances.get(canvas)?.setArt(value)};
+let sharedAssets=null;
+function library(){if(!sharedAssets)sharedAssets=new AssetLibrary(globalThis.__BNT_P2_ASSETS__,{delayMs:globalThis.__BNT_P2_OPTIONS__?.assetDelayMs,fail:globalThis.__BNT_P2_OPTIONS__?.failAssets??[]});return sharedAssets;}
+export function mountDurablePresentation(canvas,panel){
+ const layout=document.createElement('div');layout.className='p2-durable-layout';const main=document.createElement('section'),side=document.createElement('section'),label=document.createElement('p'),map=document.createElement('canvas'),hint=document.createElement('p');map.id='e4TacticalMap';map.className='p2-durable-map';map.setAttribute('aria-label','Full-course tactical map of last committed durable frame');map.tabIndex=0;label.className='p2-durable-label';label.setAttribute('role','status');hint.textContent='P2 temporary artwork • committed frame only • diamond/outline identifies player • no inferred combat events.';hint.className='hint';canvas.replaceWith(layout);main.append(canvas,label);side.append(map,hint);layout.append(main,side);canvas.style.aspectRatio='760 / 320';map.style.aspectRatio='640 / 400';
+ let last=null,presenter=null,lastTime=null,scene=null,palette=null,active=false;
+ const api={setArt(value){if(presenter)presenter.art=!!value;paint();},draw(s,meta={}){last={s,meta};paint();},inspect:()=>({active,lastTick:last?.s?.tick??null,pending:last?.meta.pending??false,...(presenter?.inspect()??{})}),pointer:(...args)=>presenter?.pointer(...args)??null};
+ instances.set(canvas,api);
+ function paint(){if(!last?.s){label.textContent='No committed race frame. Existing career and migration controls are unchanged.';canvas.dataset.presentedTick='';map.dataset.presentedTick='';return;}const {s,meta}=last;label.textContent='Committed tick '+s.tick+' · generation '+(meta.generation??'—')+(meta.pending?' · operation pending; holding durable frame':'')+' · temporary visual proof';if(canvas.getBoundingClientRect().width<1)return;
+ if(!presenter){const assets=library();presenter=new RacePresenter({assets,kind:'durable'});assets.ready.then(()=>{palette=null;paint();});}active=true;const g=geometry(s),key=g.key+'|'+s.playerId;if(scene!==key||lastTime!==null&&s.time<lastTime){presenter.reset();scene=key;}lastTime=s.time;const colors=s.entrants.map(r=>teamIdentity(r.id,s.playerId).color),pk=colors.join('|')+'|'+presenter.assets.epoch;if(pk!==palette){palette=pk;presenter.assets.preparePalettes(colors);}presenter.draw(canvas,s,g,{clock:s.time,scale:8,reducedMotion:matchMedia('(prefers-reduced-motion: reduce)').matches});presenter.draw(map,s,g,{map:true,clock:s.time});canvas.dataset.authority='committed';map.dataset.authority='committed';}
+ for(const c of [canvas,map])c.addEventListener('pointermove',e=>{const p=presenter?.pointer(c,e.clientX,e.clientY);if(p)c.dataset.pointer=JSON.stringify(p);});panel.addEventListener('toggle',paint);if(typeof ResizeObserver!=='undefined')new ResizeObserver(paint).observe(layout);return api;
+}
+globalThis.__BNT_P2_DURABLE_RENDERER__={mount:mountDurablePresentation};

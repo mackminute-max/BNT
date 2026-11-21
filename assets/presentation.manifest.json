@@ -1,0 +1,455 @@
+{
+  "kind": "BNT-presentation-assets",
+  "version": 1,
+  "styleVersion": "dark-deco-temporary-proof-v1",
+  "licenseFile": "art-source/licenses/temporary-proof.md",
+  "assets": [
+    {
+      "id": "ru.generic.marker.v1",
+      "version": 1,
+      "format": "builtin",
+      "status": "temporary-proof",
+      "license": {
+        "author": "BNT technical proof",
+        "source": "project:art-source/svg/proof",
+        "licenseId": "LicenseRef-BNT-Proof-Internal",
+        "notice": "Original temporary geometric proof, local review embedding permitted; final artwork and release licensing remain owner decisions."
+      }
+    },
+    {
+      "id": "portrait.generic.marker.v1",
+      "version": 1,
+      "format": "builtin",
+      "status": "temporary-proof",
+      "license": {
+        "author": "BNT technical proof",
+        "source": "project:art-source/svg/proof",
+        "licenseId": "LicenseRef-BNT-Proof-Internal",
+        "notice": "Original temporary geometric proof, local review embedding permitted; final artwork and release licensing remain owner decisions."
+      }
+    },
+    {
+      "id": "emblem.generic.marker.v1",
+      "version": 1,
+      "format": "builtin",
+      "status": "temporary-proof",
+      "license": {
+        "author": "BNT technical proof",
+        "source": "project:art-source/svg/proof",
+        "licenseId": "LicenseRef-BNT-Proof-Internal",
+        "notice": "Original temporary geometric proof, local review embedding permitted; final artwork and release licensing remain owner decisions."
+      }
+    },
+    {
+      "id": "ru.proof.static.v1",
+      "version": 1,
+      "format": "png",
+      "path": "assets/runtime/proof/ru.png",
+      "status": "temporary-proof",
+      "sourceSize": [
+        512,
+        256
+      ],
+      "runtimeSize": [
+        128,
+        64
+      ],
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            128,
+            64
+          ],
+          "durationMs": 0
+        }
+      ],
+      "anchor": [
+        40,
+        32
+      ],
+      "paletteRoles": [
+        "ink",
+        "paper",
+        "shadow"
+      ],
+      "fallback": "ru.generic.marker.v1",
+      "license": {
+        "author": "BNT technical proof",
+        "source": "project:art-source/svg/proof",
+        "licenseId": "LicenseRef-BNT-Proof-Internal",
+        "notice": "Original temporary geometric proof, local review embedding permitted; final artwork and release licensing remain owner decisions."
+      },
+      "sha256": "545760d8f6bc4158704345490cfa4ea21fecf805149c1b58ce92056b46aa2748",
+      "sourcePath": "art-source/svg/proof/ru-master.svg",
+      "sourceSHA256": "296904fab177de36a88873df6c238d92d5ed4f5367176f6dd0536f78cc7b8425",
+      "facing": "+x",
+      "visualBounds": [
+        16,
+        8,
+        96,
+        48
+      ],
+      "anchors": {
+        "axle": [
+          40,
+          32
+        ],
+        "wheelFar": [
+          32,
+          16
+        ],
+        "wheelNear": [
+          32,
+          48
+        ],
+        "driver": [
+          32,
+          32
+        ],
+        "beastFar": [
+          76,
+          18
+        ],
+        "beastNear": [
+          76,
+          46
+        ]
+      }
+    },
+    {
+      "id": "ru.proof.livery.v1",
+      "version": 1,
+      "format": "png",
+      "path": "assets/runtime/proof/ru-livery.png",
+      "status": "temporary-proof",
+      "sourceSize": [
+        512,
+        256
+      ],
+      "runtimeSize": [
+        128,
+        64
+      ],
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            128,
+            64
+          ],
+          "durationMs": 0
+        }
+      ],
+      "anchor": [
+        40,
+        32
+      ],
+      "paletteRoles": [
+        "primary"
+      ],
+      "fallback": "ru.generic.marker.v1",
+      "license": {
+        "author": "BNT technical proof",
+        "source": "project:art-source/svg/proof",
+        "licenseId": "LicenseRef-BNT-Proof-Internal",
+        "notice": "Original temporary geometric proof, local review embedding permitted; final artwork and release licensing remain owner decisions."
+      },
+      "sha256": "7ef113692371ae25ddfaa149383805735499c5beaa9ff6242f234bd7a7af298f",
+      "sourcePath": "art-source/svg/proof/ru-livery-master.svg",
+      "sourceSHA256": "0daa98ee9f58e1072256906ea060c9e65ec1960ec8e30d3754234a34e84518dd"
+    },
+    {
+      "id": "portrait.driver.proof.v1",
+      "version": 1,
+      "format": "png",
+      "path": "assets/runtime/proof/portrait.png",
+      "status": "temporary-proof",
+      "sourceSize": [
+        512,
+        512
+      ],
+      "runtimeSize": [
+        256,
+        256
+      ],
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            256,
+            256
+          ],
+          "durationMs": 0
+        }
+      ],
+      "anchor": [
+        128,
+        128
+      ],
+      "paletteRoles": [
+        "ink",
+        "paper",
+        "shadow"
+      ],
+      "fallback": "portrait.generic.marker.v1",
+      "license": {
+        "author": "BNT technical proof",
+        "source": "project:art-source/svg/proof",
+        "licenseId": "LicenseRef-BNT-Proof-Internal",
+        "notice": "Original temporary geometric proof, local review embedding permitted; final artwork and release licensing remain owner decisions."
+      },
+      "sha256": "7400d8ac55729843084523caf626bee72701f12056dcc58aade593740c79336f",
+      "sourcePath": "art-source/svg/proof/portrait-master.svg",
+      "sourceSHA256": "d4cf299a09ae8d6af4a36af202c8ebf6b94664c66f0b6549153b8b1e582aba96"
+    },
+    {
+      "id": "team.proof.emblem.v1",
+      "version": 1,
+      "format": "svg",
+      "path": "assets/runtime/proof/emblem.svg",
+      "status": "temporary-proof",
+      "sourceSize": [
+        256,
+        256
+      ],
+      "runtimeSize": [
+        256,
+        256
+      ],
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            256,
+            256
+          ],
+          "durationMs": 0
+        }
+      ],
+      "anchor": [
+        128,
+        128
+      ],
+      "paletteRoles": [
+        "ink",
+        "paper",
+        "shadow"
+      ],
+      "fallback": "emblem.generic.marker.v1",
+      "license": {
+        "author": "BNT technical proof",
+        "source": "project:art-source/svg/proof",
+        "licenseId": "LicenseRef-BNT-Proof-Internal",
+        "notice": "Original temporary geometric proof, local review embedding permitted; final artwork and release licensing remain owner decisions."
+      },
+      "sha256": "d728c560a8e317f65abe08d8ade04578ca5b2127659640dfb1ad99b7801c5534",
+      "viewBox": [
+        0,
+        0,
+        256,
+        256
+      ]
+    },
+    {
+      "id": "team.proof.mark.v1",
+      "version": 1,
+      "format": "svg",
+      "path": "assets/runtime/proof/mark.svg",
+      "status": "temporary-proof",
+      "sourceSize": [
+        24,
+        24
+      ],
+      "runtimeSize": [
+        24,
+        24
+      ],
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            24,
+            24
+          ],
+          "durationMs": 0
+        }
+      ],
+      "anchor": [
+        12,
+        12
+      ],
+      "paletteRoles": [
+        "ink",
+        "paper",
+        "shadow"
+      ],
+      "fallback": "emblem.generic.marker.v1",
+      "license": {
+        "author": "BNT technical proof",
+        "source": "project:art-source/svg/proof",
+        "licenseId": "LicenseRef-BNT-Proof-Internal",
+        "notice": "Original temporary geometric proof, local review embedding permitted; final artwork and release licensing remain owner decisions."
+      },
+      "sha256": "90cd59d90ae72c43eb84462f26cd87d30008196c7b5e31775596bd0ba3082895",
+      "viewBox": [
+        0,
+        0,
+        24,
+        24
+      ]
+    },
+    {
+      "id": "ui.proof.corner.v1",
+      "version": 1,
+      "format": "svg",
+      "path": "assets/runtime/proof/corner.svg",
+      "status": "temporary-proof",
+      "sourceSize": [
+        48,
+        48
+      ],
+      "runtimeSize": [
+        48,
+        48
+      ],
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 0
+        }
+      ],
+      "anchor": [
+        24,
+        24
+      ],
+      "paletteRoles": [
+        "ink",
+        "paper",
+        "shadow"
+      ],
+      "fallback": "emblem.generic.marker.v1",
+      "license": {
+        "author": "BNT technical proof",
+        "source": "project:art-source/svg/proof",
+        "licenseId": "LicenseRef-BNT-Proof-Internal",
+        "notice": "Original temporary geometric proof, local review embedding permitted; final artwork and release licensing remain owner decisions."
+      },
+      "sha256": "3d7018f76c8b1c2106bbea898d4559dcb9c937604a60b296b79b743f8566a1c5",
+      "viewBox": [
+        0,
+        0,
+        48,
+        48
+      ]
+    },
+    {
+      "id": "architecture.tower.proof.v1",
+      "version": 1,
+      "format": "svg",
+      "path": "assets/runtime/proof/tower.svg",
+      "status": "temporary-proof",
+      "sourceSize": [
+        512,
+        256
+      ],
+      "runtimeSize": [
+        512,
+        256
+      ],
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            512,
+            256
+          ],
+          "durationMs": 0
+        }
+      ],
+      "anchor": [
+        256,
+        128
+      ],
+      "paletteRoles": [
+        "ink",
+        "paper",
+        "shadow"
+      ],
+      "fallback": "emblem.generic.marker.v1",
+      "license": {
+        "author": "BNT technical proof",
+        "source": "project:art-source/svg/proof",
+        "licenseId": "LicenseRef-BNT-Proof-Internal",
+        "notice": "Original temporary geometric proof, local review embedding permitted; final artwork and release licensing remain owner decisions."
+      },
+      "sha256": "42c40a4ff6db6f1d32b1829e35ba149b37069411bffb5a4547350be7dd21ac75",
+      "viewBox": [
+        0,
+        0,
+        512,
+        256
+      ]
+    },
+    {
+      "id": "architecture.arch.proof.v1",
+      "version": 1,
+      "format": "svg",
+      "path": "assets/runtime/proof/arch.svg",
+      "status": "temporary-proof",
+      "sourceSize": [
+        512,
+        256
+      ],
+      "runtimeSize": [
+        512,
+        256
+      ],
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            512,
+            256
+          ],
+          "durationMs": 0
+        }
+      ],
+      "anchor": [
+        256,
+        128
+      ],
+      "paletteRoles": [
+        "ink",
+        "paper",
+        "shadow"
+      ],
+      "fallback": "emblem.generic.marker.v1",
+      "license": {
+        "author": "BNT technical proof",
+        "source": "project:art-source/svg/proof",
+        "licenseId": "LicenseRef-BNT-Proof-Internal",
+        "notice": "Original temporary geometric proof, local review embedding permitted; final artwork and release licensing remain owner decisions."
+      },
+      "sha256": "2a0a8a7d7fca5b0f8abb9f7e0e64e159fde85f0f4feadbc8a50e504ca6d16cc1",
+      "viewBox": [
+        0,
+        0,
+        512,
+        256
+      ]
+    }
+  ]
+}
