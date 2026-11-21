@@ -1,0 +1,12 @@
+reference C01-Combat-0.json 4 16.799999999999955 null
+reference C01-Combat-1.json 4 33.399999999999636 null
+reference C01-Combat-2.json 4 16.80000000000109 null
+reference rally-long-Combat-0.json 4 33.29999999999927 null
+reference rally-long-Combat-1.json 4 16.80000000000109 null
+reference rally-long-Combat-2.json 4 16.799999999999272 null
+candidate C01-Combat-0.json 4 49.90000000000009 null
+candidate C01-Combat-1.json 4 16.800000000000182 null
+candidate C01-Combat-2.json 4 16.800000000000182 null
+candidate rally-long-Combat-0.json 4 66.59999999999854 null
+candidate rally-long-Combat-1.json 4 16.799999999999272 null
+candidate rally-long-Combat-2.json 4 16.799999999999272 null

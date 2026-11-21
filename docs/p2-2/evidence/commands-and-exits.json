@@ -1,0 +1,143 @@
+{
+  "runtime": "c235bf3ce0caed44a472cb0abd92104112f39586",
+  "runs": [
+    {
+      "command": "npm test",
+      "log": "baseline-node.log",
+      "exit": 0,
+      "result": "P2.1 base694/694;335299.985749ms"
+    },
+    {
+      "command": "node --test tests/p2-2.test.js",
+      "log": "models-node.log",
+      "exit": 0,
+      "result": "23/23"
+    },
+    {
+      "command": "npm test",
+      "log": "final-node.log",
+      "exit": 0,
+      "result": "Frozen c235bf3:717/717;348357.782676ms"
+    },
+    {
+      "command": "node scripts/p2-2/layout-browser.mjs",
+      "log": "layout-browser-final.log",
+      "exit": 0,
+      "result": "5 target viewports;1080p fit;hierarchy and control scope"
+    },
+    {
+      "command": "node scripts/p2-2/standings-browser.mjs",
+      "log": "standings-browser.log",
+      "exit": 0,
+      "result": "Synthetic identity/long-name/status/tie projection +real Worker-head-ahead proof"
+    },
+    {
+      "command": "node scripts/p2-2/interface-browser.mjs",
+      "log": "interface-browser-frozen.log",
+      "exit": 0,
+      "result": "9 actual UI/native functional groups"
+    },
+    {
+      "command": "node scripts/p2-2/resize-browser.mjs",
+      "log": "resize-browser-final.log",
+      "exit": 0,
+      "result": "5 resize states,exact paused camera/session preservation,keyboard zoom,actual fullscreen enter/exit"
+    },
+    {
+      "command": "node scripts/p2-2/keyboard.mjs",
+      "log": "keyboard.log",
+      "exit": 0,
+      "result": "2 keyboard/focus/Queue groups"
+    },
+    {
+      "command": "node scripts/p2-2/references.mjs",
+      "log": "references.log",
+      "exit": 0,
+      "result": "12 historical +2 payroll references"
+    },
+    {
+      "command": "node scripts/p2-2/native-equivalence.mjs",
+      "log": "native-equivalence.log",
+      "exit": 0,
+      "result": "6 full Native Worker/reference captures"
+    },
+    {
+      "command": "node scripts/p2-2/checkpoint-compat.mjs",
+      "log": "checkpoint-compat.log",
+      "exit": 0,
+      "result": "18 exact checkpoint wires and continuations"
+    },
+    {
+      "command": "node scripts/p2-2/browser-native.mjs",
+      "log": "browser-native.log",
+      "exit": 0,
+      "result": "100 clocks,3 full captures,delayed Sign replay/restore"
+    },
+    {
+      "command": "node scripts/p2-2/art-parity-fast.mjs",
+      "log": "art-parity-fast.log",
+      "exit": 0,
+      "result": "12 full Worker races,replay/classification parity,compact order agrees with full original table"
+    },
+    {
+      "command": "node scripts/p2-2/assets-browser.mjs",
+      "log": "assets-browser.log",
+      "exit": 0,
+      "result": "15 DPR/CSS-zoom cases +4 asset/cache groups"
+    },
+    {
+      "command": "node scripts/p2-2/geometry-browser.mjs",
+      "log": "geometry-browser.log",
+      "exit": 0,
+      "result": "20 geometry/DPR cases"
+    },
+    {
+      "command": "node scripts/p2-2/durable-browser.mjs",
+      "log": "durable-browser.log",
+      "exit": 0,
+      "result": "5 DPR contexts +4 unchanged durable-companion authority groups"
+    },
+    {
+      "command": "node scripts/p2-2/browser-faults.mjs",
+      "log": "browser-faults.log",
+      "exit": 0,
+      "result": "6 protocol/fallback/delayed-input/offline groups;file URL blocked separately"
+    },
+    {
+      "command": "node scripts/p2-2/legacy-browser-compat.mjs",
+      "log": "legacy-browser-compat.log",
+      "exit": 1,
+      "result": "Child exits P1=0,P1.1=1,P1.2=0,P1.3=0;old zoom6 default"
+    },
+    {
+      "command": "node scripts/p2-2/performance.mjs",
+      "log": "performance-windows.log",
+      "exit": 0,
+      "result": "12 sequential4x windows;one candidate75ms task;zero underruns"
+    },
+    {
+      "command": "node scripts/p2-2/performance-repeat.mjs",
+      "log": "performance-hitch-repeat.log",
+      "exit": 0,
+      "result": "2 targeted repeat windows;no long tasks/underruns in either"
+    },
+    {
+      "command": "node scripts/p2-2/summarize-performance.mjs",
+      "log": "performance-summary.log",
+      "exit": 0,
+      "result": "Row counts and checkpoint start identities verified"
+    },
+    {
+      "command": "node scripts/p2-2/build-verify.mjs",
+      "log": "build-verification.log",
+      "exit": 0,
+      "result": "Repeatable HTML,Worker parity,protected source and accepted outputs unchanged"
+    }
+  ],
+  "limits": [
+    "Managed file:// blocked;Windows owner acceptance pending.",
+    "Legacy aggregate remains exit1;no entirely green browser-suite claim.",
+    "Synthetic long names/statuses are UI fixtures,not authored game content.",
+    "One75ms task was observed;repeat did not reproduce it;cause not established."
+  ]
+}

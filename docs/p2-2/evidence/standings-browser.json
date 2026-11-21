@@ -1,0 +1,119 @@
+{
+  "groups": [
+    "Synthetic UI-only organization/long-name/finish/tie/elimination rows retain source order, two columns, full accessible name and stable identity on reorder",
+    "Actual Worker head is ahead while countdown paused: compact positions/tick match only presented original standings"
+  ],
+  "synthetic": {
+    "order": [
+      [
+        "R2",
+        "1"
+      ],
+      [
+        "R1",
+        "2"
+      ],
+      [
+        "R3",
+        "2"
+      ],
+      [
+        "R4",
+        "4"
+      ],
+      [
+        "R5",
+        "—"
+      ]
+    ],
+    "columns": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "fullTitle": "The legitimately named very long stable organization — 王冠 The legitimately named very long stable organization — 王冠 The legitimately named very long stable organization — 王冠 The legitimately named very long stable organization — 王冠 The legitimately named very long stable organization — 王冠 The legitimately named very long stable organization — 王冠",
+    "accessible": "The legitimately named very long stable organization — 王冠 The legitimately named very long stable organization — 王冠 The legitimately named very long stable organization — 王冠 The legitimately named very long stable organization — 王冠 The legitimately named very long stable organization — 王冠 The legitimately named very long stable organization — 王冠; racing unit R2",
+    "ellipsis": "ellipsis",
+    "missing": "Stable name unavailable",
+    "player": "true",
+    "tick": "42",
+    "reused": true,
+    "renamedIdentity": "The legitimately named very long stable organization — 王冠 The legitimately named very long stable organization — 王冠 The legitimately named very long stable organization — 王冠 The legitimately named very long stable organization — 王冠 The legitimately named very long stable organization — 王冠 The legitimately named very long stable organization — 王冠"
+  },
+  "authority": {
+    "head": 20,
+    "presented": 0,
+    "compact": 0,
+    "rows": [
+      [
+        "RU1",
+        "1"
+      ],
+      [
+        "RU2",
+        "2"
+      ],
+      [
+        "RU3",
+        "3"
+      ],
+      [
+        "RU4",
+        "4"
+      ],
+      [
+        "RU5",
+        "5"
+      ],
+      [
+        "RU6",
+        "6"
+      ],
+      [
+        "RU7",
+        "7"
+      ],
+      [
+        "RU8",
+        "8"
+      ]
+    ],
+    "source": [
+      [
+        "RU1",
+        "1"
+      ],
+      [
+        "RU2",
+        "2"
+      ],
+      [
+        "RU3",
+        "3"
+      ],
+      [
+        "RU4",
+        "4"
+      ],
+      [
+        "RU5",
+        "5"
+      ],
+      [
+        "RU6",
+        "6"
+      ],
+      [
+        "RU7",
+        "7"
+      ],
+      [
+        "RU8",
+        "8"
+      ]
+    ]
+  },
+  "errors": []
+}

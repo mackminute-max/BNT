@@ -1,0 +1,1014 @@
+{
+  "rows": [
+    {
+      "mode": "reference",
+      "course": "oval",
+      "tick": 1841,
+      "checksum": "7b871ef5",
+      "classification": [
+        {
+          "id": "RU1",
+          "place": 1,
+          "status": "Finished",
+          "time": 75.12915997525997,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU8",
+          "place": 2,
+          "status": "Finished",
+          "time": 76.41863283138383,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU6",
+          "place": 3,
+          "status": "Finished",
+          "time": 82.52721461386818,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU5",
+          "place": 4,
+          "status": "Finished",
+          "time": 83.10916934073721,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU7",
+          "place": 5,
+          "status": "Finished",
+          "time": 84.79767886016744,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU3",
+          "place": 6,
+          "status": "Finished",
+          "time": 85.56063578900837,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU4",
+          "place": 7,
+          "status": "Finished",
+          "time": 86.46537386398798,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU2",
+          "place": 8,
+          "status": "Finished",
+          "time": 89.78847630240824,
+          "completedLaps": 2,
+          "progress": 160
+        }
+      ],
+      "exportSHA256": "aef89ec1ccc2ae3c1f7b4128e17d841b6fdf7a24341b35272928cb10b4bd4764",
+      "exportKeys": [
+        "version",
+        "generation",
+        "seq",
+        "type",
+        "sentEpoch",
+        "requestId",
+        "replay",
+        "metrics",
+        "classification"
+      ]
+    },
+    {
+      "mode": "art-on",
+      "course": "oval",
+      "tick": 1841,
+      "checksum": "7b871ef5",
+      "classification": [
+        {
+          "id": "RU1",
+          "place": 1,
+          "status": "Finished",
+          "time": 75.12915997525997,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU8",
+          "place": 2,
+          "status": "Finished",
+          "time": 76.41863283138383,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU6",
+          "place": 3,
+          "status": "Finished",
+          "time": 82.52721461386818,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU5",
+          "place": 4,
+          "status": "Finished",
+          "time": 83.10916934073721,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU7",
+          "place": 5,
+          "status": "Finished",
+          "time": 84.79767886016744,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU3",
+          "place": 6,
+          "status": "Finished",
+          "time": 85.56063578900837,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU4",
+          "place": 7,
+          "status": "Finished",
+          "time": 86.46537386398798,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU2",
+          "place": 8,
+          "status": "Finished",
+          "time": 89.78847630240824,
+          "completedLaps": 2,
+          "progress": 160
+        }
+      ],
+      "exportSHA256": "aef89ec1ccc2ae3c1f7b4128e17d841b6fdf7a24341b35272928cb10b4bd4764",
+      "exportKeys": [
+        "version",
+        "generation",
+        "seq",
+        "type",
+        "sentEpoch",
+        "requestId",
+        "replay",
+        "metrics",
+        "classification"
+      ]
+    },
+    {
+      "mode": "art-off",
+      "course": "oval",
+      "tick": 1841,
+      "checksum": "7b871ef5",
+      "classification": [
+        {
+          "id": "RU1",
+          "place": 1,
+          "status": "Finished",
+          "time": 75.12915997525997,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU8",
+          "place": 2,
+          "status": "Finished",
+          "time": 76.41863283138383,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU6",
+          "place": 3,
+          "status": "Finished",
+          "time": 82.52721461386818,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU5",
+          "place": 4,
+          "status": "Finished",
+          "time": 83.10916934073721,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU7",
+          "place": 5,
+          "status": "Finished",
+          "time": 84.79767886016744,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU3",
+          "place": 6,
+          "status": "Finished",
+          "time": 85.56063578900837,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU4",
+          "place": 7,
+          "status": "Finished",
+          "time": 86.46537386398798,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU2",
+          "place": 8,
+          "status": "Finished",
+          "time": 89.78847630240824,
+          "completedLaps": 2,
+          "progress": 160
+        }
+      ],
+      "exportSHA256": "aef89ec1ccc2ae3c1f7b4128e17d841b6fdf7a24341b35272928cb10b4bd4764",
+      "exportKeys": [
+        "version",
+        "generation",
+        "seq",
+        "type",
+        "sentEpoch",
+        "requestId",
+        "replay",
+        "metrics",
+        "classification"
+      ]
+    },
+    {
+      "mode": "failed-assets",
+      "course": "oval",
+      "tick": 1841,
+      "checksum": "7b871ef5",
+      "classification": [
+        {
+          "id": "RU1",
+          "place": 1,
+          "status": "Finished",
+          "time": 75.12915997525997,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU8",
+          "place": 2,
+          "status": "Finished",
+          "time": 76.41863283138383,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU6",
+          "place": 3,
+          "status": "Finished",
+          "time": 82.52721461386818,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU5",
+          "place": 4,
+          "status": "Finished",
+          "time": 83.10916934073721,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU7",
+          "place": 5,
+          "status": "Finished",
+          "time": 84.79767886016744,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU3",
+          "place": 6,
+          "status": "Finished",
+          "time": 85.56063578900837,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU4",
+          "place": 7,
+          "status": "Finished",
+          "time": 86.46537386398798,
+          "completedLaps": 2,
+          "progress": 160
+        },
+        {
+          "id": "RU2",
+          "place": 8,
+          "status": "Finished",
+          "time": 89.78847630240824,
+          "completedLaps": 2,
+          "progress": 160
+        }
+      ],
+      "exportSHA256": "aef89ec1ccc2ae3c1f7b4128e17d841b6fdf7a24341b35272928cb10b4bd4764",
+      "exportKeys": [
+        "version",
+        "generation",
+        "seq",
+        "type",
+        "sentEpoch",
+        "requestId",
+        "replay",
+        "metrics",
+        "classification"
+      ]
+    },
+    {
+      "mode": "reference",
+      "course": "C01",
+      "tick": 3260,
+      "checksum": "51624d65",
+      "classification": [
+        {
+          "id": "RU8",
+          "place": 1,
+          "status": "Finished",
+          "time": 139.77045965670246,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU7",
+          "place": 2,
+          "status": "Finished",
+          "time": 140.81967836475076,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU4",
+          "place": 3,
+          "status": "Finished",
+          "time": 144.12100481041767,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU6",
+          "place": 4,
+          "status": "Finished",
+          "time": 144.895844610971,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU1",
+          "place": 5,
+          "status": "Finished",
+          "time": 147.40051437086885,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU5",
+          "place": 6,
+          "status": "Finished",
+          "time": 149.3435802381255,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU3",
+          "place": 7,
+          "status": "Finished",
+          "time": 156.00293648785538,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU2",
+          "place": 8,
+          "status": "Finished",
+          "time": 160.80370492115685,
+          "completedLaps": 2,
+          "progress": 250
+        }
+      ],
+      "exportSHA256": "da98d75fa7adc0769a908224d9f36b2a842b47c602e18b232676e119265409f3",
+      "exportKeys": [
+        "version",
+        "generation",
+        "seq",
+        "type",
+        "sentEpoch",
+        "requestId",
+        "replay",
+        "metrics",
+        "classification"
+      ]
+    },
+    {
+      "mode": "art-on",
+      "course": "C01",
+      "tick": 3260,
+      "checksum": "51624d65",
+      "classification": [
+        {
+          "id": "RU8",
+          "place": 1,
+          "status": "Finished",
+          "time": 139.77045965670246,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU7",
+          "place": 2,
+          "status": "Finished",
+          "time": 140.81967836475076,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU4",
+          "place": 3,
+          "status": "Finished",
+          "time": 144.12100481041767,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU6",
+          "place": 4,
+          "status": "Finished",
+          "time": 144.895844610971,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU1",
+          "place": 5,
+          "status": "Finished",
+          "time": 147.40051437086885,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU5",
+          "place": 6,
+          "status": "Finished",
+          "time": 149.3435802381255,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU3",
+          "place": 7,
+          "status": "Finished",
+          "time": 156.00293648785538,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU2",
+          "place": 8,
+          "status": "Finished",
+          "time": 160.80370492115685,
+          "completedLaps": 2,
+          "progress": 250
+        }
+      ],
+      "exportSHA256": "da98d75fa7adc0769a908224d9f36b2a842b47c602e18b232676e119265409f3",
+      "exportKeys": [
+        "version",
+        "generation",
+        "seq",
+        "type",
+        "sentEpoch",
+        "requestId",
+        "replay",
+        "metrics",
+        "classification"
+      ]
+    },
+    {
+      "mode": "art-off",
+      "course": "C01",
+      "tick": 3260,
+      "checksum": "51624d65",
+      "classification": [
+        {
+          "id": "RU8",
+          "place": 1,
+          "status": "Finished",
+          "time": 139.77045965670246,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU7",
+          "place": 2,
+          "status": "Finished",
+          "time": 140.81967836475076,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU4",
+          "place": 3,
+          "status": "Finished",
+          "time": 144.12100481041767,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU6",
+          "place": 4,
+          "status": "Finished",
+          "time": 144.895844610971,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU1",
+          "place": 5,
+          "status": "Finished",
+          "time": 147.40051437086885,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU5",
+          "place": 6,
+          "status": "Finished",
+          "time": 149.3435802381255,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU3",
+          "place": 7,
+          "status": "Finished",
+          "time": 156.00293648785538,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU2",
+          "place": 8,
+          "status": "Finished",
+          "time": 160.80370492115685,
+          "completedLaps": 2,
+          "progress": 250
+        }
+      ],
+      "exportSHA256": "da98d75fa7adc0769a908224d9f36b2a842b47c602e18b232676e119265409f3",
+      "exportKeys": [
+        "version",
+        "generation",
+        "seq",
+        "type",
+        "sentEpoch",
+        "requestId",
+        "replay",
+        "metrics",
+        "classification"
+      ]
+    },
+    {
+      "mode": "failed-assets",
+      "course": "C01",
+      "tick": 3260,
+      "checksum": "51624d65",
+      "classification": [
+        {
+          "id": "RU8",
+          "place": 1,
+          "status": "Finished",
+          "time": 139.77045965670246,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU7",
+          "place": 2,
+          "status": "Finished",
+          "time": 140.81967836475076,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU4",
+          "place": 3,
+          "status": "Finished",
+          "time": 144.12100481041767,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU6",
+          "place": 4,
+          "status": "Finished",
+          "time": 144.895844610971,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU1",
+          "place": 5,
+          "status": "Finished",
+          "time": 147.40051437086885,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU5",
+          "place": 6,
+          "status": "Finished",
+          "time": 149.3435802381255,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU3",
+          "place": 7,
+          "status": "Finished",
+          "time": 156.00293648785538,
+          "completedLaps": 2,
+          "progress": 250
+        },
+        {
+          "id": "RU2",
+          "place": 8,
+          "status": "Finished",
+          "time": 160.80370492115685,
+          "completedLaps": 2,
+          "progress": 250
+        }
+      ],
+      "exportSHA256": "da98d75fa7adc0769a908224d9f36b2a842b47c602e18b232676e119265409f3",
+      "exportKeys": [
+        "version",
+        "generation",
+        "seq",
+        "type",
+        "sentEpoch",
+        "requestId",
+        "replay",
+        "metrics",
+        "classification"
+      ]
+    },
+    {
+      "mode": "reference",
+      "course": "rally-long",
+      "tick": 4544,
+      "checksum": "c5095aaa",
+      "classification": [
+        {
+          "id": "RU7",
+          "place": 1,
+          "status": "Finished",
+          "time": 179.49142142111378,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU8",
+          "place": 2,
+          "status": "Finished",
+          "time": 185.15569895820263,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU6",
+          "place": 3,
+          "status": "Finished",
+          "time": 191.22513044963196,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU4",
+          "place": 4,
+          "status": "Finished",
+          "time": 193.86786870118286,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU3",
+          "place": 5,
+          "status": "Finished",
+          "time": 203.18257281359274,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU5",
+          "place": 6,
+          "status": "Finished",
+          "time": 204.88782458916793,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU2",
+          "place": 7,
+          "status": "Finished",
+          "time": 205.86340612985717,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU1",
+          "place": 8,
+          "status": "Finished",
+          "time": 224.78581182998775,
+          "completedLaps": 0,
+          "progress": 339
+        }
+      ],
+      "exportSHA256": "583350666e278fa62d2f28e85cb7641a6d761ad38336d40968a794f065fae304",
+      "exportKeys": [
+        "version",
+        "generation",
+        "seq",
+        "type",
+        "sentEpoch",
+        "requestId",
+        "replay",
+        "metrics",
+        "classification"
+      ]
+    },
+    {
+      "mode": "art-on",
+      "course": "rally-long",
+      "tick": 4544,
+      "checksum": "c5095aaa",
+      "classification": [
+        {
+          "id": "RU7",
+          "place": 1,
+          "status": "Finished",
+          "time": 179.49142142111378,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU8",
+          "place": 2,
+          "status": "Finished",
+          "time": 185.15569895820263,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU6",
+          "place": 3,
+          "status": "Finished",
+          "time": 191.22513044963196,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU4",
+          "place": 4,
+          "status": "Finished",
+          "time": 193.86786870118286,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU3",
+          "place": 5,
+          "status": "Finished",
+          "time": 203.18257281359274,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU5",
+          "place": 6,
+          "status": "Finished",
+          "time": 204.88782458916793,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU2",
+          "place": 7,
+          "status": "Finished",
+          "time": 205.86340612985717,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU1",
+          "place": 8,
+          "status": "Finished",
+          "time": 224.78581182998775,
+          "completedLaps": 0,
+          "progress": 339
+        }
+      ],
+      "exportSHA256": "583350666e278fa62d2f28e85cb7641a6d761ad38336d40968a794f065fae304",
+      "exportKeys": [
+        "version",
+        "generation",
+        "seq",
+        "type",
+        "sentEpoch",
+        "requestId",
+        "replay",
+        "metrics",
+        "classification"
+      ]
+    },
+    {
+      "mode": "art-off",
+      "course": "rally-long",
+      "tick": 4544,
+      "checksum": "c5095aaa",
+      "classification": [
+        {
+          "id": "RU7",
+          "place": 1,
+          "status": "Finished",
+          "time": 179.49142142111378,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU8",
+          "place": 2,
+          "status": "Finished",
+          "time": 185.15569895820263,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU6",
+          "place": 3,
+          "status": "Finished",
+          "time": 191.22513044963196,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU4",
+          "place": 4,
+          "status": "Finished",
+          "time": 193.86786870118286,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU3",
+          "place": 5,
+          "status": "Finished",
+          "time": 203.18257281359274,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU5",
+          "place": 6,
+          "status": "Finished",
+          "time": 204.88782458916793,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU2",
+          "place": 7,
+          "status": "Finished",
+          "time": 205.86340612985717,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU1",
+          "place": 8,
+          "status": "Finished",
+          "time": 224.78581182998775,
+          "completedLaps": 0,
+          "progress": 339
+        }
+      ],
+      "exportSHA256": "583350666e278fa62d2f28e85cb7641a6d761ad38336d40968a794f065fae304",
+      "exportKeys": [
+        "version",
+        "generation",
+        "seq",
+        "type",
+        "sentEpoch",
+        "requestId",
+        "replay",
+        "metrics",
+        "classification"
+      ]
+    },
+    {
+      "mode": "failed-assets",
+      "course": "rally-long",
+      "tick": 4544,
+      "checksum": "c5095aaa",
+      "classification": [
+        {
+          "id": "RU7",
+          "place": 1,
+          "status": "Finished",
+          "time": 179.49142142111378,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU8",
+          "place": 2,
+          "status": "Finished",
+          "time": 185.15569895820263,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU6",
+          "place": 3,
+          "status": "Finished",
+          "time": 191.22513044963196,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU4",
+          "place": 4,
+          "status": "Finished",
+          "time": 193.86786870118286,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU3",
+          "place": 5,
+          "status": "Finished",
+          "time": 203.18257281359274,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU5",
+          "place": 6,
+          "status": "Finished",
+          "time": 204.88782458916793,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU2",
+          "place": 7,
+          "status": "Finished",
+          "time": 205.86340612985717,
+          "completedLaps": 0,
+          "progress": 339
+        },
+        {
+          "id": "RU1",
+          "place": 8,
+          "status": "Finished",
+          "time": 224.78581182998775,
+          "completedLaps": 0,
+          "progress": 339
+        }
+      ],
+      "exportSHA256": "583350666e278fa62d2f28e85cb7641a6d761ad38336d40968a794f065fae304",
+      "exportKeys": [
+        "version",
+        "generation",
+        "seq",
+        "type",
+        "sentEpoch",
+        "requestId",
+        "replay",
+        "metrics",
+        "classification"
+      ]
+    }
+  ],
+  "errors": [],
+  "method": "Real embedded Worker and native protocol; accelerated test-driven presentation/credit, not a timing benchmark."
+}

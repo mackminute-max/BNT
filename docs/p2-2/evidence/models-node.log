@@ -1,0 +1,31 @@
+✔ P2.2 explicit organization field stableName (1.417589ms)
+✔ P2.2 explicit organization field teamName (0.185473ms)
+✔ P2.2 explicit nested organization stable (0.182729ms)
+✔ P2.2 explicit nested organization team (0.139285ms)
+✔ P2.2 existing RU organization metadata is read-only and identity-bound (0.252382ms)
+✔ P2.2 driver/beast/generic entrant names never substitute for stable identity (0.393159ms)
+✔ P2.2 missing, whitespace, wrong-owner and conflicting names stay explicitly unavailable (0.274615ms)
+✔ P2.2 long Unicode organization identity is preserved intact for accessible title/label (0.181858ms)
+✔ P2.2 compact rows preserve source order and competition ties without ranking (1.109294ms)
+✔ P2.2 names remain attached to stable IDs after position changes, never array index (0.326071ms)
+✔ P2.2 all eight entrants remain represented with only position/name projection (0.406419ms)
+✔ P2.2 initial primary button reuses ready-state Start Race (0.226003ms)
+✔ P2.2 acknowledged pause exposes Resume without new start authority (0.130382ms)
+✔ P2.2 running state does not expose a redundant enabled start (0.220415ms)
+✔ P2.2 countdown accurately labels preparation (0.242187ms)
+✔ P2.2 initial-buffering accurately labels preparation (0.107328ms)
+✔ P2.2 actual buffer hold displays Waiting (0.124484ms)
+✔ P2.2 pending pause cannot expose Resume before acknowledgment (0.287815ms)
+✔ P2.2 native terminal Ended does not allow another start (0.188648ms)
+✔ P2.2 native terminal Stalled does not allow another start (0.041561ms)
+✔ P2.2 native terminal Error does not allow another start (0.067509ms)
+✔ P2.2 worker failure stops start without inventing a race finish (0.068921ms)
+✔ P2.2 sync fallback retains immediate Start/Resume semantics (0.089181ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 104.673422

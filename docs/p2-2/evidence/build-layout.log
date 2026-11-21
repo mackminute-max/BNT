@@ -1,0 +1,10 @@
+
+> blood-and-thunder@0.6.0 build:p2-2
+> node scripts/p2-2/build.mjs
+
+{"assets":{"rawBytes":28640,"encodedBytes":38396,"decodedBytes":1649920,"duplicates":0,"assets":[{"id":"ru.proof.static.v1","bytes":4237,"width":128,"height":64,"decodedBytes":32768},{"id":"ru.proof.livery.v1","bytes":560,"width":128,"height":64,"decodedBytes":32768},{"id":"portrait.driver.proof.v1","bytes":21732,"width":256,"height":256,"decodedBytes":262144},{"id":"team.proof.emblem.v1","bytes":397,"decodedBytes":262144,"viewBox":[0,0,256,256],"width":256,"height":256,"nodes":4,"commands":21},{"id":"team.proof.mark.v1","bytes":251,"decodedBytes":2304,"viewBox":[0,0,24,24],"width":24,"height":24,"nodes":3,"commands":14},{"id":"ui.proof.corner.v1","bytes":204,"decodedBytes":9216,"viewBox":[0,0,48,48],"width":48,"height":48,"nodes":3,"commands":16},{"id":"architecture.tower.proof.v1","bytes":721,"decodedBytes":524288,"viewBox":[0,0,512,256],"width":512,"height":256,"nodes":7,"commands":72},{"id":"architecture.arch.proof.v1","bytes":538,"decodedBytes":524288,"viewBox":[0,0,512,256],"width":512,"height":256,"nodes":6,"commands":53}],"licenseSHA256":"014d23097223b40d2c5e28e57fbe18090e399a098f677b53e9ef4111b1fcfcb6"},"file":"dist/Blood-and-Thunder-P2.2-Playable.html","bytes":569287,"sha256":"d15f40d1bd66f102bb2ee4ed093564916fafd81a5146853691d4f515cbfc0b1e"}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.3
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.3
+npm notice To update run: npm install -g npm@12.2.3
+npm notice
