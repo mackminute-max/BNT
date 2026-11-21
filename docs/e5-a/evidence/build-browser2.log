@@ -1,0 +1,10 @@
+
+> blood-and-thunder@0.6.0 build:e5-a
+> node scripts/e5-a/build.mjs
+
+{"file":"dist/Blood-and-Thunder-E5-A-Stable.html","bytes":1704596,"sha256":"d40e31489cc16cef411777e42c9cbba6273a48d842c75070197834e319981a53","acceptedP22SHA256":"24c393c19f7d8aa6f4e2bf6794d2e573d11be74508940e97b78a6330b6a203be","embeddedWorker":true}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.3
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.3
+npm notice To update run: npm install -g npm@12.2.3
+npm notice

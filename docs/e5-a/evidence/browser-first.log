@@ -1,0 +1,17 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Error: strict mode violation: locator('#hs-quote') resolved to 2 elements:
+    1) <button id="hs-quote">Review authoritative quote</button> aka getByRole('button', { name: 'Review authoritative quote' })
+    2) <div id="hs-quote" class="hs-quote">Select an operation and review its quote. No chan…</div> aka getByText('Select an operation and')
+
+Call log:
+[2m  - waiting for locator('#hs-quote')[22m
+
+    at click (/workspace/BNT/scripts/e5-a/browser.mjs:10:55)
+    at /workspace/BNT/scripts/e5-a/browser.mjs:17:160 {
+  log: [ "  - waiting for locator('#hs-quote')" ]
+}
+
+Node.js v24.22.1

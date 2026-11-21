@@ -1,0 +1,70 @@
+{
+  "baseline": {
+    "command": "npm test",
+    "exit": 0,
+    "tests": 717,
+    "pass": 717,
+    "fail": 0
+  },
+  "focused": {
+    "command": "node --test tests/e5-a.test.js",
+    "exit": 0,
+    "tests": 8,
+    "pass": 8,
+    "fail": 0
+  },
+  "final": {
+    "command": "npm test",
+    "exit": 0,
+    "tests": 725,
+    "pass": 725,
+    "fail": 0
+  },
+  "browser": {
+    "command": "node scripts/e5-a/browser.mjs",
+    "exit": 0,
+    "groups": 12,
+    "file": "ERR_BLOCKED_BY_ADMINISTRATOR, not passed"
+  },
+  "e4": {
+    "command": "node scripts/e5-a/e4-regression.mjs",
+    "exit": 0,
+    "groups": 9
+  },
+  "existing": [
+    {
+      "name": "references",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "layout-browser",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "interface-browser",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "browser-native",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "checkpoint-compat",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    }
+  ],
+  "normalBuildExit": 0,
+  "reproBuildExit": 0,
+  "reproHashCompareExit": 0,
+  "implementationCommit": "4dad533211a88e0a1c36965ccf70d0d7459cb5c3"
+}
