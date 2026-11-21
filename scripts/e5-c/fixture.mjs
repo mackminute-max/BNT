@@ -4,3 +4,6 @@ export function registeredFixture(){const f=careerFixture(),s=f.store.state,a=Ob
 export function birthFixture(){const f=registeredFixture();f.start();return f;}
 export function activeFixture(){const f=birthFixture();f.runner.ensure();return f;}
 export function eliminatedFixture(all=false){const f=activeFixture(),session=f.runner.ensure();session.apply({id:'legitimate-start',expectedRevision:session.inspect().revision,tick:0,phase:'advance',ticks:1,commands:[]});session.apply({id:'synthetic-test-damage',expectedRevision:session.inspect().revision,tick:session.state.tick,phase:'advance',ticks:10000,commands:session.state.entrants.filter(e=>all||e.id===f.x.playerId).map(e=>({type:'override',target:'ru',id:e.id,path:'driver.condition',value:59.5}))});f.runner.publish('eliminated-official');return f;}
+// Existing supported one-entrant championship, legally withdrawn before start.
+// This isolates the zero-starter UI path without assuming a wreck must clear.
+export function noStarterFixture(){const f=fixtureE3({fieldSize:1,courses:[null]});f.store.transaction(makeE5Command(f.store.state,'e5.enable',{confirmed:true},'e5c-zero-enable'));f.tx('championship.withdraw',{instanceId:f.instanceId,confirmed:true});return f;}
