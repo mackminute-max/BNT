@@ -1,3 +1,4 @@
+import {ChampionshipViewer} from '../../career/championships/viewer.js';
 import {makeE5Command} from '../../career/championships/e5/contracts.js';
 import {createSettlementCapability} from '../../career/championships/e5/capabilities.js';
 import {CareerStore} from '../career-store.js';
@@ -95,6 +96,8 @@ export function createWorkerService(){
   const altered=message.snapshot.recordsHash&&message.snapshot.recordsHash!==await digestText(JSON.stringify(message.snapshot.records));if(altered&&!['inspect','legacyExport'].includes(message.type)&&message.operation!=='repair')throw Error('RECOVERY_REQUIRED: durable record manifest mismatch');
   let loaded;try{loaded=load(message.snapshot,['inspect','legacyExport'].includes(message.type)||message.operation==='repair');}catch(e){if(message.type==='inspect')return {version:1,state:null,frame:null,reason:e.message,durable:false};throw e;}
   const {map,storage,career}=loaded;
+  loaded.runner.viewer??=new ChampionshipViewer(loaded.runner,career);
+  if(message.type==='viewerRead')return {version:1,durable:false,packet:loaded.runner.viewer.init(message.channel)};
   if(message.type==='backup'){if(message.previous)load(message.previous);const {hit,...verified}=loaded;cache=verified;return {durable:false,text:await encodeBackup(message.snapshot,career.current,message.previous??null)};}
   if(message.type==='legacyExport')return {durable:false,envelope:career.export()};
 
@@ -110,8 +113,9 @@ export function createWorkerService(){
   if(message.type!=='prepare')throw Error('Unknown worker operation');
   // Candidate mutations never survive failed storage publication. The source
   // cache is invalidated before the first mutation, even if domain validation fails.
-  cache=null;const runner=loaded.runner,op=message.operation;if(message.expectedRaceId!==undefined&&activeChampionship(career.state)?.raceId!==message.expectedRaceId)throw Error('STALE_WRITER: frozen race identity changed');
-  if(op==='repair'){
+  cache=null;const runner=loaded.runner,op=message.operation;let viewerPacket=null;if(message.expectedRaceId!==undefined&&activeChampionship(career.state)?.raceId!==message.expectedRaceId)throw Error('STALE_WRITER: frozen race identity changed');
+  if(op==='viewer'){viewerPacket=runner.viewer.execute(message);}
+  else if(op==='repair'){
    const expected=message.snapshot.recordsHash,prior=message.previous;
    if(prior&&expected&&await digestText(JSON.stringify(prior.records))===expected){map.clear();for(const row of prior.records)map.set(...row);}
    else for(const[k,text]of map){if(k===SAVE_KEY)continue;const r=JSON.parse(text),a=unsealWire(r.authority),oldText=prior?.records.find(([key])=>key===k)?.[1],old=oldText?JSON.parse(oldText):null;const x=career.current.championshipFoundation.instances[a.identity.instanceId];
@@ -146,6 +150,6 @@ export function createWorkerService(){
    runner.publish(message.id);
   }else throw Error('Unsupported prepared operation');
   const records=[...map];checkRecords(records);const candidateHash=await digestText(JSON.stringify(records));pending={token:'candidate-'+(++serial),validated:{key:snapshotKey({...message.snapshot,generation:message.snapshot.generation+1,records,...(Object.hasOwn(message.snapshot,'recordsHash')?{recordsHash:candidateHash}:{}),...(message.runtime?{runtime:message.runtime}:{})}),map,storage,career,runner}};
-  return {version:1,token:pending.token,records,recordsHash:candidateHash,durable:false,elapsedMs:performance.now()-started,phase:activeChampionship(career.state)?.phase,revision:career.current.revision};
+  return {version:1,token:pending.token,records,recordsHash:candidateHash,...(viewerPacket?{viewer:viewerPacket}:{}),durable:false,elapsedMs:performance.now()-started,phase:activeChampionship(career.state)?.phase,revision:career.current.revision};
  };
 }

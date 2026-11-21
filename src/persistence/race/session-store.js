@@ -1,3 +1,4 @@
+import {BUFFERED_SIGN_ACTION} from '../../ai/buffered-signs.js';
 import {parseEnvelope,SAVE_KEY} from '../envelope.js';
 import {createRace,step,issueSign} from '../../sim/race.js';
 import {checkpointRace,restoreRace,validateIdentity,setupFingerprint,clearedNativeResult} from '../../sim/foundation/checkpoint.js';
@@ -11,15 +12,15 @@ export function storedCareerAnchor(storage){const raw=storage.getItem(SAVE_KEY);
 const clone=x=>structuredClone(x);
 const cloneState=s=>unpack(pack(s));
 const stateHash=s=>wireHash(pack(s));
-function execute(s,r){
+function execute(s,r,onStep=null){
   if(r.tick!==s.tick||!['Ready','Running'].includes(s.status))throw Error('RECOVERY_REQUIRED: input boundary mismatch');
   if(r.phase==='paused'){
     if(r.ticks!==0||r.commands.length!==1)throw Error('Invalid paused input');const c=r.commands[0];
     exact(c,['action',...(Object.hasOwn(c,'sign')?['sign']:[])]);
-    if(!['queue','cancel','lower'].includes(c.action))throw Error('Invalid paused sign');issueSign(s,c.action,c.sign);
+    if(!['queue','cancel','lower',BUFFERED_SIGN_ACTION].includes(c.action))throw Error('Invalid paused sign');issueSign(s,c.action,c.sign);
   }else{
     if(r.phase!=='advance'||!Number.isInteger(r.ticks)||r.ticks<1||r.ticks>10000)throw Error('Invalid advance request');
-    for(let i=0;i<r.ticks&&['Ready','Running'].includes(s.status);i++)step(s,i===0?r.commands:[]);
+    for(let i=0;i<r.ticks&&['Ready','Running'].includes(s.status);i++){step(s,i===0?r.commands:[]);onStep?.(s);}
   }
   if(s.status==='Error')throw Error('RECOVERY_REQUIRED: simulator rejected input');return s;
 }
@@ -100,14 +101,14 @@ export class RaceSessionStore {
     }
     this.record=r;this.state=s;this.requiresCheckpoint=this.mode==='manual';this.exportToken=null;
   }
-  apply(input){
+  apply(input,{onStep=null}={}){
     request(input);if(!this.record||this.mode==='recovery-required')throw Error('RECOVERY_REQUIRED: load a valid race');
     const a=unsealWire(this.record.authority);this.assertAnchor(a.anchor);const journal=unsealWire(this.record.journal),old=journal.find(j=>j.request.id===input.id);
     if(old){if(old.requestHash!==wireHash(input))throw Error('Conflicting input identity');return {duplicate:true,durable:this.mode==='automatic',revision:a.revision};}
     if(a.operational!=='ACTIVE'||input.expectedRevision!==a.revision||input.tick!==this.state.tick)throw Error('Race is blocked/committed or revision is stale');
     if(this.mode==='manual'&&this.requiresCheckpoint)throw Error('Export and confirm the current manual checkpoint before changing state');
     if(journal.length>=1000)throw Error('Journal limit reached; no inputs discarded');
-    const s=cloneState(this.state),before=stateHash(s);execute(s,input);const next=[...journal,{sequence:journal.length+1,request:clone(input),requestHash:wireHash(input),before,after:stateHash(s)}],r=clone(this.record);
+    const s=cloneState(this.state),before=stateHash(s);execute(s,input,onStep);const next=[...journal,{sequence:journal.length+1,request:clone(input),requestHash:wireHash(input),before,after:stateHash(s)}],r=clone(this.record);
     r.journal=sealWire(next);
     if(this.fallback==='birth'||s.tick-this.record.checkpoint.value.tick>=this.interval||!['Ready','Running'].includes(s.status)){
       try{restoreRace(r.checkpoint);}catch{r.checkpoint=r.previous;}

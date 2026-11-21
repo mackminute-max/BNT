@@ -14,6 +14,21 @@ export function mountDurableChampionships({legacyStorage,getLegacyState,act,rend
  $('e4Repair').onclick=action(async()=>{ui.playing=false;await ui.coordinator.repair();ui.notice='Original record manifest reconstructed and committed without replaying effects.';});
  $('e4Reload').onclick=action(async()=>{ui.playing=false;await attach();ui.notice='Durable authority revalidated. Playback requires explicit resume.';});$('e4Restart').onclick=action(async()=>{ui.playing=false;ui.coordinator.worker.restart();await ui.refresh();ui.notice='Worker restarted; only durable authority was restored.';});
  ui.e5=async(command,payload)=>{ui.playing=false;return op('e5',{command,payload});};
+ ui.game=async(operation,args={})=>{
+  ui.playing=false;clearTimeout(timer);if(!ui.coordinator||!ui.durable)throw Error('Enable durable saves first');
+  let result;if(operation==='read')return ui.coordinator.viewerRead(args.channel);
+  if(operation==='viewer'){result=await ui.coordinator.operate('viewer',{...args,expectedGeneration:ui.view.generation});ui.view.generation=result.generation;if(result.viewer?.frames.length)ui.view.frame={...ui.view.frame,...result.viewer.frames.at(-1)};return result;}
+  if(operation==='metadata'){result=await ui.coordinator.metadata(args);ui.view.generation=result.generation;ui.view.runtime={...ui.view.runtime,...args};return result;}
+  if(operation==='publish')result=await ui.coordinator.publish(newId('career-official'),{expectedGeneration:ui.view.generation});
+  else if(operation==='restart'){ui.coordinator.worker.restart();}
+  else if(operation==='resumeRestore')result=await ui.coordinator.resumeRestore({confirmed:true,legacy:legacyStorage});
+  else if(operation==='repair')result=await ui.coordinator.repair();
+  else if(['start','birth','retry'].includes(operation))result=await ui.coordinator.operate(operation,{id:newId('career-'+operation),expectedGeneration:ui.view.generation});
+  else if(operation==='withdraw')result=await ui.coordinator.operate('controller',{id:newId('career-withdraw'),expectedGeneration:ui.view.generation,command:'championship.withdraw',payload:{instanceId:activeChampionship(ui.view.state).id,confirmed:true}});
+  else if(operation==='coach')result=await ui.coordinator.operate('controller',{id:newId('career-coach'),expectedGeneration:ui.view.generation,command:'championship.coach',payload:args});
+  else if(operation==='headless'){if(!activeChampionship(ui.view.state)?.withdrawal)throw Error('Headless continuation is only available after player withdrawal');result=await ui.coordinator.operate('advance',{id:newId('career-ai'),expectedGeneration:ui.view.generation,ticks:args.ticks??100});}
+  else throw Error('Unsupported player championship action');await ui.refresh();return result;
+ };
  const op=async(operation,args={})=>{const result=await ui.coordinator.operate(operation,{id:newId('e4'),expectedGeneration:ui.view?.generation,...args});await ui.refresh();return result;};
  $('e4Enable').onclick=action(async()=>{let s=ui.view.state;if(s.schema===4){await ui.coordinator.career('migrateFoundation',[{id:newId('foundation'),profileId:s.profile.id,careerId:s.career.id,type:'career.foundation.migrate',version:1,sourceSchema:4,targetSchema:5,expectedRevision:s.revision,expectedMaintenanceRevision:s.maintenanceRevision,sourceFingerprint:fingerprint(s),effectId:foundationEffect(s.career.id),confirmed:true}]);await ui.refresh();s=ui.view.state;}if(s.championshipFoundation.version===1){await op('controller',{command:'controller.enable',payload:{}});await ui.refresh();}if(ui.view.state.championshipFoundation.version===2)await op('controller',{command:'controller.enableE3',payload:{}});});
  $('e4Offers').onclick=action(()=>op('refreshOffers'));

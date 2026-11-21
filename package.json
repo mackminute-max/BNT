@@ -15,7 +15,8 @@
     "build:p2-2": "node scripts/p2-2/build.mjs",
     "build:e5-a": "node scripts/e5-a/build.mjs",
     "build:e5-a1": "node scripts/e5-a1/build.mjs",
-    "build:e5-b": "node scripts/e5-b/build.mjs"
+    "build:e5-b": "node scripts/e5-b/build.mjs",
+    "build:e5-c": "node scripts/e5-c/build.mjs"
   },
   "devDependencies": {
     "esbuild": "0.28.2",

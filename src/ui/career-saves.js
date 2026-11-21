@@ -164,6 +164,7 @@ export function mountCareerSaves({ download }) {
     get durable() { return Boolean(durableUI?.durable); },
     get durableView() { return durableUI?.view ?? null; },
     newId,
+    game(operation,args={}) {let result;const fn=async()=>{if(!durableUI?.durable)throw Error('Enable durable saves first');result=await durableUI.game(operation,args);};fn.e4Operation=true;const done=act(fn)();return done.then(()=>{const error=actionResults.get(done)?.error;if(error)throw error;return result;});},
     e5(command,payload) {
       let result;const operation=async()=>{if(!durableUI?.durable)throw Error('Enable durable saves before championship operations');result=await durableUI.e5(command,payload);};operation.e4Operation=true;
       const done=act(operation)();return done.then(()=>{const error=actionResults.get(done)?.error;if(error)throw error;return result;});
