@@ -26,9 +26,11 @@ export function mountCareerSaves({ download }) {
   const mutations=new Set(['transaction','migrateFoundation','migrateCycles','migrateEconomy','migrateSchema','create','importSave','recover']);
   const store=new Proxy(legacyStore,{get(target,key){if((durableUI?.coordinator&&durableUI.durable)){if(key==='state')return durableUI.view?.state??null;if(key==='mode')return durableUI.view?.reason?'blocked':'automatic';if(key==='problem')return durableUI.view?.reason??'';if(['requiresCheckpoint','recoveryPending'].includes(key))return false;if(key==='schema2Session')return (durableUI.view?.state?.schema??0)>=2;if(key==='exportToken')return null;if(key==='export')return ()=>durableUI.coordinator.legacyExport();if(mutations.has(key))return (...args)=>durableUI.career(key,args);}const v=target[key];return typeof v==='function'?v.bind(target):v;}});
   let staged = null, lastToken = null, notice = '', queue = Promise.resolve();
+  let managementRefresh = () => {};
   let renderStable = () => {}, renderEconomy = () => {}, renderCycles = () => {}, renderChampionships = () => {};
   function render() {
     const state = store.state;
+    managementRefresh();
     if((durableUI?.coordinator&&durableUI.durable)&&controllerActive(state)){for(const e of document.querySelectorAll('#careerSaves button,#careerSaves input,#careerSaves select'))if(!e.closest('#durableChampionships'))e.disabled=true;$('careerSaveStatus').textContent='IndexedDB authoritative career · Home Stable is read-only while active or unsettled';$('careerSaveInspect').textContent='Use the durable championship status and Home Stable inspector below.';durableUI.render();return;}
     $('careerSaveStatus').textContent = `${store.mode.toUpperCase()} · ${state ? `Schema ${state.schema} · Revision ${state.revision} · Maintenance ${state.maintenanceRevision ?? 0} · Treasury ${state.career.treasury} Gold · ${(state.profile.developerEdited || state.career.developerEdited) ? 'DEVELOPER-EDITED (persistent)' : 'Unedited foundation'}` : 'No career loaded'}${store.requiresCheckpoint ? ' · CHECKPOINT REQUIRED: export, save the file and confirm before another change.' : ''}`;
     $('careerSaveNotice').textContent = [store.problem, notice].filter(Boolean).join(' ');
@@ -82,8 +84,11 @@ export function mountCareerSaves({ download }) {
     return checked();
   }
   legacyAuthorityGate().catch(e => { notice = 'Persistence authority check: ' + e.message; render(); });
+  const actionResults = new WeakMap();
   const act = fn => () => {
-    queue = queue.catch(() => {}).then(() => exclusive(fn)).catch(e => { notice = e.message; }).finally(render);
+    const outcome = {};
+    queue = queue.catch(() => {}).then(() => exclusive(fn)).catch(e => { outcome.error = e; notice = e.message; }).finally(render);
+    actionResults.set(queue, outcome);
     return queue;
   };
   $('careerCreate').onclick = act(async () => {
@@ -153,4 +158,25 @@ export function mountCareerSaves({ download }) {
   renderChampionships=mountChampionships({store,act,newId,setNotice:message=>{notice=message;lastToken=null;}});
   durableUI=mountDurableChampionships({legacyStorage:storage,getLegacyState:()=>legacyStore.state,act,renderParent:render,newId});
   render();
+  // Optional presentation port: existing queue, discovery gate and persistence.
+  const playerPort = {
+    get store() { return store; },
+    get durable() { return Boolean(durableUI?.durable); },
+    get durableView() { return durableUI?.view ?? null; },
+    newId,
+    subscribe(refresh) { managementRefresh = refresh; refresh(); },
+    perform(operation) {
+      let result;
+      const done = act(async () => { result = await operation(store); })();
+      return done.then(() => { const error = actionResults.get(done)?.error; if (error) throw error; return result; });
+    },
+    async invoke(id) {
+      if (id.startsWith('e4')) durableUI?.render();
+      const control = $(id);
+      if (!control || control.disabled) throw Error('This existing workflow is unavailable');
+      const done = control.onclick?.(); await done;
+      const error = actionResults.get(done)?.error; if (error) throw error;
+    },
+  };
+  globalThis.__BNT_HOME_STABLE_MOUNT__?.(playerPort);
 }
