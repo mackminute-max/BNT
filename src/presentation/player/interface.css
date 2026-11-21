@@ -1,0 +1,110 @@
+/* P2.1 composition only. Shared P2 drawing, assets and the E4 companion are unchanged. */
+.p21 [hidden]{display:none!important}
+.p21 header{padding:8px 16px;gap:12px;min-height:64px}
+.p21 header h1{font-size:26px;line-height:1.15}
+.p21 header small{font-size:12px}
+.p21 main{max-width:1760px;padding:10px 14px}
+.p21 .p21-race-info{margin:0 0 8px;font-size:14px;font-variant-numeric:tabular-nums}
+.p21 .race-layout{grid-template-columns:minmax(0,1fr) 220px 280px;gap:12px;align-items:start}
+.p21 .p2-primary{gap:10px}
+.p21 .p2-primary>.panel{flex:0 0 auto;margin:0}
+.p21 .panel{padding:10px 12px;margin-bottom:10px;min-width:0}
+.p21 h2{font-size:16px;margin:2px 0 7px}
+.p21 #race{height:clamp(300px,40vh,480px);width:100%;aspect-ratio:auto}
+.p21 .p21-race-stage{position:relative}
+.p21 .terrain-legend{margin:5px 0 7px;gap:8px;font-size:12px}
+.p21 .p21-countdown{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;pointer-events:none;background:#08151b90;text-align:center;padding:16px}
+.p21 .p21-countdown strong{font-size:clamp(36px,6vw,78px);letter-spacing:.12em;color:#ffe2a2;text-shadow:3px 3px #07131b}
+.p21 .p21-countdown span{font-size:15px;background:#0b1924;padding:6px 12px;max-width:95%}
+.p21 .p21-countdown[data-stage=go]{background:transparent}
+.p21 .p21-countdown[data-stage=waiting]{justify-content:end;background:transparent}
+.p21 .p21-countdown[data-stage=waiting] strong{display:none}
+.p21 .p21-sign-bar h2{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;letter-spacing:.06em}
+.p21 .p21-opportunities{font-size:12px;letter-spacing:0;font-weight:400;color:var(--text)}
+.p21 #p2SignChoices{grid-template-columns:repeat(6,minmax(0,1fr));gap:5px}
+.p21 .p2-sign-card{min-height:48px;height:48px;padding:4px 6px;font-size:12px;line-height:1.15;clip-path:none;border-radius:0}
+.p21 .p2-sign-card>span{font-weight:600}
+.p21 .p2-sign-card small{font-size:10px;line-height:1.25}
+.p21 .p2-sign-card[data-selected=true]{box-shadow:inset 0 -3px #fff1ce}
+.p21 .p21-sign-bar .controls{margin:7px 0 4px;gap:6px;align-items:center}
+.p21 .p21-sign-bar button,.p21 .p21-sign-bar select{font-size:13px;min-height:40px;padding:6px 8px}
+.p21 .p21-sign-bar .p2-sign-card{min-height:48px}
+.p21 #sign{max-width:170px;width:170px}
+.p21 .p21-sign-state{font-size:12px;line-height:1.5}
+.p21 .p21-race-controls{grid-column:auto}
+.p21 .p21-race-controls>.controls{display:flex;flex-wrap:wrap;gap:6px;margin:0;align-items:end}
+.p21 .p21-race-controls button,.p21 .p21-race-controls input,.p21 .p21-race-controls select{font-size:13px;min-height:40px;padding:6px 8px}
+.p21 .p21-race-controls label{font-size:12px}
+.p21 .p21-race-controls #zoom{width:105px;max-width:100%;padding:0}
+.p21 .p21-race-controls #restart,.p21 .p21-race-controls #drain{grid-column:auto}
+.p21 .p21-race-controls .hint{margin:5px 0;font-size:12px}
+.p21 .p21-race-controls>label{display:inline-flex;flex-direction:row;align-items:center;gap:6px;font-size:12px;margin:0 10px 0 0}
+.p21 .p21-race-controls input[type=checkbox]{min-height:20px}
+.p21 .p21-response{font-size:12px;margin-top:5px}
+.p21 .p21-response p{font-size:12px;margin:6px 0;line-height:1.4}
+.p21 .p2-tactical,.p21 .p2-radio-column{gap:0}
+.p21 .p2-tactical #map{aspect-ratio:640/400!important}
+.p21 .p2-tactical td,.p21 .p2-tactical th{font-size:13px;padding:5px 3px}
+.p21 #clearance,.p21 #progress{font-size:12px;line-height:1.4}
+.p21 .p2-radio-column>.panel{flex:0 0 auto}
+.p21 .p2-radio-column .radio{height:270px;min-height:0;max-height:270px;flex:none;overflow:auto;overflow-anchor:none;font-size:14px;line-height:1.45;padding:5px}
+.p21 .radio>div{padding:5px 4px}
+.p21 .p21-latest{min-height:34px;padding:4px 8px;font-size:12px;margin:7px 0 3px}
+.p21 #radioUnread{display:block;font-size:12px}
+.p21 .p21-profile{display:grid;gap:6px}
+.p21 .p21-profile .p2-identity{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.p21 .p21-profile .p2-identity strong{font-size:13px;flex:1 1 100px}
+.p21 .p21-profile .p2-portrait,.p21 .p21-profile .p2-portrait-placeholder{width:56px;height:56px}
+.p21 #p21DriverName{font-size:14px}
+.p21 .p21-profile>label{display:grid;grid-template-columns:1fr auto;gap:2px 8px;font-size:12px}
+.p21 .p21-profile progress{width:100%;height:12px;accent-color:#9ae1bb;grid-row:2;grid-column:1/-1}
+.p21 #p21DriverStrain{accent-color:#e9ae73}
+.p21 .p21-profile>label span{grid-row:1;grid-column:2;white-space:nowrap}
+.p21 .p21-profile .hint,.p21-profile-status{font-size:12px;line-height:1.4;margin:0}
+.p21 .p21-profile .endurance-panel{display:grid;gap:4px;padding:5px 0;font-size:12px}
+.p21 .p21-profile .endurance-panel strong{font-size:12px}
+.p21 .p21-buffs{display:flex;align-items:center;flex-wrap:wrap;gap:5px;border-top:1px solid #57666a;padding-top:6px}
+.p21 .p21-buffs>.hint{flex:1 1 100%}
+.p21 .p21-empty-slot{display:grid;place-items:center;border:1px dashed #a59a7b;width:24px;height:24px;color:#c7d4d6}
+.p21 .p21-navigation{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid #857a62;padding:10px 0;margin-top:6px}
+.p21 .p21-navigation button{font-size:14px;min-height:40px}
+.p21 .p21-developer-view{max-width:1350px;margin:auto}
+.p21 .p21-developer-view>.p2-setup,.p21 .p21-developer-view>.p2-comparison{margin:12px 0}
+.p21 .p21-developer-view pre{overflow-wrap:anywhere}
+.p21 .p21-developer-view .setup{gap:10px}
+.p21 .p21-developer-view .setup>*{max-width:100%;min-width:0}
+.p21 .p21-developer-view .panel{margin-top:12px}
+.p21 button:focus-visible,.p21 summary:focus-visible{outline:3px solid #ffe6a7;outline-offset:3px}
+@media(max-width:1199px){
+ .p21 .race-layout{grid-template-columns:minmax(0,1fr) 250px}
+ .p21 #p2SignChoices{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .p21 .p2-radio-column{grid-column:1/-1;display:grid;grid-template-columns:250px minmax(0,1fr);gap:12px}
+ .p21 #race{height:350px}
+}
+@media(max-width:849px){
+ .p21 .race-layout{grid-template-columns:1fr}
+ .p21 .p2-tactical{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+ .p21 .p2-radio-column{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .p21 #race{height:360px}
+}
+@media(max-width:549px){
+ .p21 header{display:block;padding:8px 12px}
+ .p21 header h1{font-size:22px}
+ .p21 header .badge{font-size:12px}
+ .p21 main{padding:8px}
+ .p21 #p2SignChoices{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .p21 .p2-sign-card{font-size:13px;height:48px}
+ .p21 .p2-sign-card small{font-size:11px}
+ .p21 .p2-tactical,.p21 .p2-radio-column{display:flex;flex-direction:column}
+ .p21 #race{height:300px}
+ .p21 .p21-sign-bar h2{display:block}
+ .p21 .p21-opportunities{display:block;margin-top:4px}
+ .p21 .p21-navigation{align-items:start;flex-direction:column}
+ .p21 #sign{width:100%;max-width:100%}
+ .p21 .p21-race-controls button{flex:1 1 120px}
+}
+@media(prefers-reduced-motion:reduce){.p21 *{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+/* Keep compact labels readable; exceptional combined states may grow vertically. */
+.p21 .p2-sign-card{font-size:13px;height:auto}
+.p21 .p2-sign-card small{font-size:11px}
+.p21 .p21-profile>label{font-size:13px}
