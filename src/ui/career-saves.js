@@ -164,6 +164,10 @@ export function mountCareerSaves({ download }) {
     get durable() { return Boolean(durableUI?.durable); },
     get durableView() { return durableUI?.view ?? null; },
     newId,
+    e5(command,payload) {
+      let result;const operation=async()=>{if(!durableUI?.durable)throw Error('Enable durable saves before championship operations');result=await durableUI.e5(command,payload);};operation.e4Operation=true;
+      const done=act(operation)();return done.then(()=>{const error=actionResults.get(done)?.error;if(error)throw error;return result;});
+    },
     subscribe(refresh) { managementRefresh = refresh; refresh(); },
     perform(operation) {
       let result;

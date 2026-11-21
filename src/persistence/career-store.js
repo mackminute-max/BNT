@@ -119,7 +119,13 @@ export class CareerStore {
     if (this.current.schema >= 2) {
       const prior = lookupCommitted(this.protectedHistory, tx, this.current.transactions);
       if (prior) return { ...prior, state: this.state };
-      if (this.protectedHistory.some(e => e.careerId === tx.careerId && e.effectId === tx.effectId)) throw Error('Effect identity already committed on a retained timeline');
+      if (this.protectedHistory.some(e => e.careerId === tx.careerId && e.effectId === tx.effectId)) {
+        // E5 selection/settlement retries may carry a new request ID after lost
+        // acknowledgment. Full reconstructed current authority must prove the
+        // same business operation; an older retained timeline is never enough.
+        if(this.current.schema===6&&tx.commandVersion===5&&['e5.selectRun','e5.selectLegacy','e5.settle'].includes(tx.type)){const repeated=transact(this.current,tx,options);if(repeated.duplicate)return {...repeated,state:this.state};}
+        throw Error('Effect identity already committed on a retained timeline');
+      }
     }
     const result = transact(this.current, tx, options);
     if (result.duplicate) return result;

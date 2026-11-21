@@ -1,3 +1,5 @@
+import {makeE5Command} from '../../career/championships/e5/contracts.js';
+import {createSettlementCapability} from '../../career/championships/e5/capabilities.js';
 import {CareerStore} from '../career-store.js';
 import {SAVE_KEY} from '../envelope.js';
 import {RaceSessionStore} from '../race/session-store.js';
@@ -122,7 +124,8 @@ export function createWorkerService(){
    if(expected&&await digestText(JSON.stringify([...map]))!==expected)throw Error('Repair cannot prove the original durable record manifest');
    load({...message.snapshot,records:[...map]});cache=null;
   }
-  else if(op==='career'){if(!['transaction','migrateFoundation','migrateCycles','migrateEconomy','migrateSchema','create','importSave','recover'].includes(message.method))throw Error('Unsupported career method');if(message.method==='transaction'&&message.args[0]?.type==='cycle.settle')throw Error('E5 completion authority is unavailable');if(['create','importSave','recover'].includes(message.method)&&[...map.keys()].some(k=>k!==SAVE_KEY))throw Error('Use complete backup restoration; career-only replacement cannot discard session authority');career[message.method](...message.args);}
+  else if(op==='career'){if(!['transaction','migrateFoundation','migrateCycles','migrateEconomy','migrateSchema','create','importSave','recover'].includes(message.method))throw Error('Unsupported career method');if(message.method==='transaction'&&['cycle.settle','e5.settle'].includes(message.args[0]?.type))throw Error('E5 completion authority is unavailable');if(['create','importSave','recover'].includes(message.method)&&[...map.keys()].some(k=>k!==SAVE_KEY))throw Error('Use complete backup restoration; career-only replacement cannot discard session authority');career[message.method](...message.args);}
+  else if(op==='e5'){if(!['e5.enable','e5.refresh','e5.register','e5.selectRun','e5.settle','e5.selectLegacy'].includes(message.command))throw Error('Unsupported E5 operation');const command=makeE5Command(career.state,message.command,message.payload,message.id);career.transaction(command,message.command==='e5.settle'&&!career.current.transactions.some(r=>r.transaction.type==='e5.settle'&&r.transaction.payload.instanceId===message.payload.instanceId)?{settlement:createSettlementCapability(career,storage)}:{});}
   else if(op==='controller'){const type=message.command;if(!['controller.enable','controller.enableE3','championship.register','championship.coach','championship.withdraw'].includes(type))throw Error('Unsupported controller command');career.transaction(makeControllerCommand(career.state,type,message.payload,message.id));}
   else if(op==='refreshOffers'){const offers=[developmentOffer()];career.transaction(makeControllerCommand(career.state,'championship.refreshOffers',{offers},message.id),{catalog:createCatalogBoundary(v=>fingerprint(v)===fingerprint(offers)).accept(offers)});}
   else if(op==='metadata'){}

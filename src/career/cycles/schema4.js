@@ -91,3 +91,5 @@ export function transactV4(s,tx,options={}){
 
 // Additive integration seam; old schema-4 execution and recovery semantics are unchanged.
 export function executeCareerCandidateV4(state,command,options={}){return execute4(state,command,options);}
+
+export function validateCareerGraphV4(state){return validateGraph4(state);}
