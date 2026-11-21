@@ -1,0 +1,17 @@
+✔ E5-B independent reward definitions are versioned placeholders without mechanical effects (1.080051ms)
+✔ E5-B pure Run and Legacy offer generation is deterministic, distinct and does not consume global randomness (7.434855ms)
+✔ E5-B altered, duplicate-choice and unsupported reward offers reject (1.256441ms)
+✔ Expanded Stables charges existing400 Gold and immediately increases capacity4→6, displays it and survives reload (691.312252ms)
+✔ approved Run eligibility excludes DQ/DNS/withdrawal/elimination/final; continuing DNF qualifies (0.904523ms)
+✔ approved Legacy eligibility survives forced elimination and DQ but excludes voluntary/no-start/incomplete (0.234045ms)
+✔ schema-6 enable is explicit, lossless, reloadable and rejects unbacked reward ownership (8350.500501ms)
+✔ schema-6 failed write rolls back, stale/unsupported commands reject, old saves remain protected (5961.980484ms)
+✔ schema-6 full export/import preserves all fields and accepts subsequent versioned operations (8712.63808ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 23291.795462
