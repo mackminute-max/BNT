@@ -1,0 +1,22 @@
+{
+  "runtime": "4a9e100d5ca068c99465860b94e8667c655443b7",
+  "branch": "feat/p2-1-player-race-interface",
+  "node": "v24.22.1",
+  "platform": "linux",
+  "arch": "x64",
+  "cpu": "AMD EPYC 9V74 80-Core Processor",
+  "logicalCPUs": 5,
+  "chromium": "Chromium 156.0.8078.79 built on Debian GNU/Linux 13 (trixie)",
+  "dependencies": {
+    "esbuild": {
+      "version": "0.28.2",
+      "resolved": "https://registry.npmjs.org/esbuild/-/esbuild-0.28.2.tgz",
+      "overridden": false
+    },
+    "playwright-core": {
+      "version": "1.65.1",
+      "resolved": "https://registry.npmjs.org/playwright-core/-/playwright-core-1.65.1.tgz",
+      "overridden": false
+    }
+  }
+}

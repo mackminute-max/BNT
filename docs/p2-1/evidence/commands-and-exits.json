@@ -1,0 +1,187 @@
+{
+  "runtime": "4a9e100d5ca068c99465860b94e8667c655443b7",
+  "runs": [
+    {
+      "command": "npm test",
+      "log": "baseline-node.log",
+      "exit": 0,
+      "result": "674/674;325082.734472ms",
+      "phase": "verified P2 baseline"
+    },
+    {
+      "command": "node --test tests/p2-1.test.js",
+      "log": "ui-model-node.log",
+      "exit": 0,
+      "result": "20/20 UI projection/start-sequence tests"
+    },
+    {
+      "command": "npm test",
+      "log": "final-node.log",
+      "exit": 0,
+      "result": "694/694;369443.579834ms",
+      "phase": "frozen53bdbc1"
+    },
+    {
+      "command": "node scripts/p2-1/references.mjs",
+      "log": "references.log",
+      "exit": 0,
+      "result": "12 historical +2 payroll checksums"
+    },
+    {
+      "command": "node scripts/p2-1/native-equivalence.mjs",
+      "log": "native-equivalence.log",
+      "exit": 0,
+      "result": "6 complete native Worker/reference races"
+    },
+    {
+      "command": "node scripts/p2-1/checkpoint-compat.mjs",
+      "log": "checkpoint-compat.log",
+      "exit": 0,
+      "result": "18 byte-identical checkpoint wires and restored continuations"
+    },
+    {
+      "command": "node scripts/p2-1/browser-native.mjs",
+      "log": "browser-native.log",
+      "exit": 0,
+      "result": "100 clock states,3 complete captures,delayed Sign replay/checkpoint"
+    },
+    {
+      "command": "node scripts/p2-1/smoke.mjs",
+      "log": "smoke-final-fonts.log",
+      "exit": 0,
+      "result": "4 widths;6-card desktop row;no horizontal overflow"
+    },
+    {
+      "command": "node scripts/p2-1/interface-browser.mjs",
+      "log": "interface-browser-frozen.log",
+      "exit": 0,
+      "result": "8 functional groups with real Worker/native commentary"
+    },
+    {
+      "command": "node scripts/p2-1/keyboard.mjs",
+      "log": "keyboard.log",
+      "exit": 0,
+      "result": "2 keyboard/focus/native Queue groups"
+    },
+    {
+      "command": "node scripts/p2-1/browser-faults.mjs",
+      "log": "browser-faults.log",
+      "exit": 0,
+      "result": "6 fault/offline/restart/delayed-Sign groups;file navigation blocked separately"
+    },
+    {
+      "command": "node scripts/p2-1/assets-browser.mjs",
+      "log": "assets-browser.log",
+      "exit": 0,
+      "result": "15 DPR/CSS zoom cases +mask/fallback/cache groups"
+    },
+    {
+      "command": "node scripts/p2-1/geometry-browser.mjs",
+      "log": "geometry-browser.log",
+      "exit": 0,
+      "result": "20 shared geometry/DPR cases"
+    },
+    {
+      "command": "node scripts/p2-1/durable-browser.mjs",
+      "log": "durable-browser.log",
+      "exit": 0,
+      "result": "5 DPR cases;4 real durable-authority groups on unchanged accepted companion"
+    },
+    {
+      "command": "node scripts/p2-1/art-parity-fast.mjs",
+      "log": "art-parity-fast.log",
+      "exit": 0,
+      "result": "12 full Worker races;classifications and complete replay-export hashes match"
+    },
+    {
+      "command": "node scripts/p2-1/legacy-browser-compat.mjs",
+      "log": "legacy-browser-compat.log",
+      "exit": 1,
+      "result": "P1,P1.2,P1.3 child exits0;P1.1 exit1 at old zoom6 assertion"
+    },
+    {
+      "command": "node scripts/p2-1/build-verify.mjs",
+      "log": "build-verification.log",
+      "exit": 0,
+      "result": "reproducible build,identical Worker,protected source/artifacts unchanged"
+    },
+    {
+      "command": "node scripts/p2-1/performance.mjs",
+      "log": "performance-windows.log",
+      "exit": 0,
+      "result": "12 bounded sequential4x windows;no page/session errors"
+    },
+    {
+      "command": "npm test",
+      "log": "final-corrective-node.log",
+      "exit": 0,
+      "result": "694/694;394738.5636ms",
+      "phase": "final4a9e100"
+    },
+    {
+      "command": "node scripts/p2-1/interface-browser.mjs",
+      "log": "interface-browser-corrective.log",
+      "exit": 0,
+      "result": "9 actual UI groups, including Pure card after comparison",
+      "phase": "corrective"
+    },
+    {
+      "command": "node scripts/p2-1/art-parity-fast.mjs",
+      "log": "art-parity-fast-corrective.log",
+      "exit": 0,
+      "result": "12 complete replay/classification matches",
+      "phase": "corrective"
+    },
+    {
+      "command": "node scripts/p2-1/smoke.mjs",
+      "log": "smoke-final-mobile.log",
+      "exit": 0,
+      "result": "4 responsive widths, desktop row, desktop/mobile screenshots",
+      "phase": "corrective"
+    },
+    {
+      "command": "node scripts/p2-1/keyboard.mjs",
+      "log": "keyboard-corrective.log",
+      "exit": 0,
+      "result": "2 keyboard/focus/Queue groups",
+      "phase": "corrective"
+    },
+    {
+      "command": "node scripts/p2-1/browser-faults.mjs",
+      "log": "browser-faults-corrective.log",
+      "exit": 0,
+      "result": "6 Native protocol/offline/failure groups;file blocked",
+      "phase": "corrective"
+    },
+    {
+      "command": "node scripts/p2-1/build-verify.mjs",
+      "log": "build-verification-corrective.log",
+      "exit": 0,
+      "result": "reproducible final file;identical Worker;protected source/artifacts",
+      "phase": "corrective"
+    },
+    {
+      "command": "node scripts/p2-1/performance.mjs",
+      "log": "performance-windows-corrective.log",
+      "exit": 0,
+      "result": "12 sequential4x windows;no page/session errors",
+      "phase": "corrective"
+    },
+    {
+      "command": "node scripts/p2-1/summarize-performance.mjs",
+      "log": "performance-summary-corrective.log",
+      "exit": 0,
+      "result": "12 windows validated, matching fixture start ticks"
+    }
+  ],
+  "initialFailure": {
+    "log": "smoke.log",
+    "result": "Initial boot timeout from a detached-DOM lookup;fixed before frozen runtime. Not a passing invocation."
+  },
+  "limits": [
+    "Managed file navigation blocked;Windows owner acceptance pending.",
+    "Legacy browser aggregate exits1;do not claim entirely passing browser suite.",
+    "Pure fallback has no invented timed countdown;native immediate stepping preserved."
+  ],
+  "initialRuntime": "53bdbc10e19d21bfd9ce618e7b4d6d4b7b23b97e"
+}

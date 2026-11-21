@@ -1,0 +1,39 @@
+{
+  "rows": [
+    {
+      "mode": "reference",
+      "windows": 6,
+      "drawP95Median": 2.100000001490116,
+      "drawP95Worst": 2.899999998509884,
+      "drawWorst": 17.700000002980232,
+      "domP95Worst": 1.2000000029802322,
+      "frameP95": 16.799999999999272,
+      "frameP99": 16.80000000000109,
+      "frameMax": 50,
+      "framesOver50": 0,
+      "framesOver100": 0,
+      "longTasks": 1,
+      "maxLongTaskMs": 56,
+      "underruns": 0,
+      "maxPageHeap": 81294467
+    },
+    {
+      "mode": "candidate",
+      "windows": 6,
+      "drawP95Median": 1.8999999985098839,
+      "drawP95Worst": 3.100000001490116,
+      "drawWorst": 5.199999999254942,
+      "domP95Worst": 1.800000000745058,
+      "frameP95": 16.700000000000728,
+      "frameP99": 16.80000000000109,
+      "frameMax": 16.80000000000109,
+      "framesOver50": 0,
+      "framesOver100": 0,
+      "longTasks": 0,
+      "maxLongTaskMs": 0,
+      "underruns": 0,
+      "maxPageHeap": 75223363
+    }
+  ],
+  "notes": "Bounded4x UI regression only, six phases each, single observations, same checkpoints; not an optimization or a zero-hitch guarantee."
+}
