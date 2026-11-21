@@ -1,0 +1,10 @@
+{
+  "command": [
+    "node",
+    "scripts/p1-5/legacy-browser-compat.mjs"
+  ],
+  "exit": 0,
+  "seconds": 12.22916103300031,
+  "source": "f36edc6d937baa71dc4ff4eeb406c17a18458aea",
+  "env": {}
+}

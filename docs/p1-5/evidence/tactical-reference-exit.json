@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "scripts/p1-4/tactical-references.mjs"
+  ],
+  "exit": 0,
+  "seconds": 11.16043013700073,
+  "source": "f36edc6d937baa71dc4ff4eeb406c17a18458aea",
+  "env": {
+    "BNT_P14_OUT": "/workspace/deliverables/bnt-p1-5/evidence"
+  }
+}

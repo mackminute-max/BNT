@@ -1,0 +1,10 @@
+{
+  "command": [
+    "node",
+    "scripts/p1-5/references.mjs"
+  ],
+  "exit": 0,
+  "seconds": 11.870663914000033,
+  "source": "f36edc6d937baa71dc4ff4eeb406c17a18458aea",
+  "env": {}
+}

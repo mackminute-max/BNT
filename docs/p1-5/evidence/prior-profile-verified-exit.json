@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "scripts/p1-2/verify.mjs"
+  ],
+  "exit": 0,
+  "seconds": 5.9454129369996735,
+  "source": "5d556f3adca146a6c17996234e34dcf4e98899db",
+  "env": {
+    "BNT_P12_OUT": "/workspace/deliverables/bnt-p1-5/evidence/prior-profile-parity"
+  }
+}

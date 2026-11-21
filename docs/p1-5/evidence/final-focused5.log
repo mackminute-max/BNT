@@ -1,0 +1,33 @@
+✔ P1.5 delayed request activates only at natural decision and schema1 replay/old checkpoint container restore exactly (82.635612ms)
+✔ P1.5 invalid/expired delay proofs cannot activate; cancellation/supersession preserves opportunity rules (20.383445ms)
+✔ P1.5 replacing delayed queue never activates the superseded order or spends activation uses (13.610966ms)
+✔ P1.5 worker pre-roll is bounded and ordinary inputs exactly match native execution (10.108855ms)
+✔ P1.5 duplicate/conflicting commands, gaps, stale generations and full budget are explicit (2.264046ms)
+✔ P1.5 no future event or frame is presented, countdown is wall time and replaying a tail is not native step (16.044532ms)
+✔ P1.5 worker delayed/normal acknowledgments are native results, not retroactive frame edits (14.568256ms)
+✔ P1.5 a presented boundary already consumed cannot use the delay exception (3.73274ms)
+✔ P1.5 stale prepare and old-generation pending messages cannot reset another race (2.502948ms)
+✔ P1.5 bounded capacity and protocol gap failures stop explicitly without fictional progression (4.116746ms)
+✔ P1.5 rally-short delayed Sign Points use native identity and replay (178.451696ms)
+✔ P1.5 rally-medium delayed Sign Points use native identity and replay (102.045993ms)
+✔ P1.5 rally-long delayed Sign Points use native identity and replay (202.527101ms)
+✔ P1.5 invalid presentation configuration rejects and client packet conflicts are explicit (0.43463ms)
+✔ P1.5 worker forbids native step while future presentation tail remains (3.023846ms)
+✔ P1.5 cancellation and invalid Pure attack have native dispositions without refunds (1.47276ms)
+✔ P1.5 native checkpoint preparation skips already historical presentation events and preserves next native step (31.988836ms)
+✔ P1.5 delayed Conserve preserves balanced native obedience at natural cadence (9.674094ms)
+✔ P1.5 delayed Conserve preserves headstrong native obedience at natural cadence (8.734871ms)
+✔ P1.5 delayed instruction cannot override native physical inability (2.155265ms)
+✔ P1.5 completion arriving after a held terminal frame exposes checksum only at presented finish (0.363966ms)
+✔ P1.5 reuse of a transport sequence cannot insert a new command out of order (1.24903ms)
+✔ P1.5 exact-time crossing is eligible until its resolved sample is presented (0.173345ms)
+✔ P1.5 an older issued reference cannot reopen a boundary after later presentation credit (4.592428ms)
+✔ P1.5 exhausted or illegal replacement cannot cancel a valid delayed queue (6.986715ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 850.633479

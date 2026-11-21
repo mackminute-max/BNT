@@ -1,0 +1,10 @@
+{
+  "command": [
+    "node",
+    "scripts/p1-5/browser-native.mjs"
+  ],
+  "exit": 0,
+  "seconds": 19.643244343999868,
+  "source": "f36edc6d937baa71dc4ff4eeb406c17a18458aea",
+  "env": {}
+}

@@ -54,6 +54,21 @@ try {
   assert.equal(await normal.evaluate(() => P1.session.mode), "worker");
   report.groups.push("Prepared standalone Worker continues offline without runtime network requests");
   await normal.close();
+  const reset = await browser.newPage();
+  await reset.goto("http://127.0.0.1:"+server.address().port);
+  await reset.waitForFunction(()=>P1.session?.state);
+  await reset.evaluate(()=>P1.prepare({fieldSize:1,pacing:"tactical",mode:"worker"}));
+  await reset.click("#start");
+  await reset.waitForFunction(()=>P1.session.lead>=.75);
+  await reset.evaluate(()=>P1.session.sign("queue","Conserve Strength"));
+  await reset.waitForFunction(()=>P1.session.commands.get(1)?.status==="accepted-queued");
+  const restarted=await reset.evaluate(async()=>{const old=P1.session;await P1.prepare({fieldSize:1,pacing:"tactical",mode:"worker"});return {different:old.generation!==P1.session.generation,status:old.commands.get(1).status};});
+  assert.equal(restarted.different,true);
+  assert.equal(restarted.status,"abandoned-with-race");
+  await reset.waitForTimeout(100);
+  assert.deepEqual(await reset.evaluate(()=>{const r=P1.session.state.entrants[0];return {tick:P1.session.state.tick,pending:r.signs.pending,active:r.signs.active,remaining:r.signs.remaining};}),{tick:0,pending:null,active:null,remaining:3});
+  report.groups.push("Restart with an accepted pending command abandons the old generation without resending or spending in the new race");
+  await reset.close();
   const local = await browser.newPage();
   try {
     await local.goto("file://" + process.cwd() + "/dist/Blood-and-Thunder-P1.5-Playable.html");

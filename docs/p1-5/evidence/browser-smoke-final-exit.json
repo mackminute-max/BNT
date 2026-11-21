@@ -1,0 +1,10 @@
+{
+  "command": [
+    "node",
+    "scripts/p1-5/browser-smoke.mjs"
+  ],
+  "exit": 0,
+  "seconds": 6.2085834959998465,
+  "source": "5d556f3adca146a6c17996234e34dcf4e98899db",
+  "env": {}
+}

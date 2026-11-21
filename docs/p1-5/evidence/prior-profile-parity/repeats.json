@@ -1,0 +1,47 @@
+{
+  "checks": [
+    {
+      "stage": "baseline",
+      "course": "oval",
+      "expected": "0f553f9a",
+      "actual": "0f553f9a",
+      "matched": true
+    },
+    {
+      "stage": "baseline",
+      "course": "C01",
+      "expected": "f943fdf3",
+      "actual": "f943fdf3",
+      "matched": true
+    },
+    {
+      "stage": "baseline",
+      "course": "rally-long",
+      "expected": "aa6f3a3f",
+      "actual": "aa6f3a3f",
+      "matched": true
+    },
+    {
+      "stage": "candidate",
+      "course": "oval",
+      "expected": "bedabe3d",
+      "actual": "bedabe3d",
+      "matched": true
+    },
+    {
+      "stage": "candidate",
+      "course": "C01",
+      "expected": "8eb5150f",
+      "actual": "8eb5150f",
+      "matched": true
+    },
+    {
+      "stage": "candidate",
+      "course": "rally-long",
+      "expected": "620a1529",
+      "actual": "620a1529",
+      "matched": true
+    }
+  ],
+  "p11BaselineUnchanged": true
+}
