@@ -1,0 +1,16 @@
+✔ A1 exact fixed market coverage, unique provisional identities and honest adjusted counts (2.944629ms)
+✔ A1 every profile targets a real acquirable template; no attribute, price or schema mutation (2.993971ms)
+✔ A1 actual market acquisition survives export/reload and enters a legal owned Racing Unit (410.449757ms)
+✔ A1 preserves approved package and pure inspection: traditional (138.271832ms)
+✔ A1 preserves approved package and pure inspection: beastmaster (143.419858ms)
+✔ A1 preserves approved package and pure inspection: mechanist (122.561497ms)
+✔ A1 preserves approved package and pure inspection: veteran (107.543882ms)
+✔ A1 preserves approved package and pure inspection: scrappy (117.728841ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1191.215202
