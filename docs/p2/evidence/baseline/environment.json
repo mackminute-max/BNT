@@ -1,0 +1,8 @@
+{
+  "source": "04df5efba874b5889bb1c8e8e6920918c8df00e1",
+  "runtime": "5d556f3adca146a6c17996234e34dcf4e98899db",
+  "node": "v24.22.1",
+  "buildExit": 0,
+  "artifactSHA256": "f0380795cd81cd041b5138e6274c82149ffaf3396d60a9600b15bdb0c6dc287e",
+  "untrackedPreserved": "docs/m2-e/BNT_M2_E_PRE_IMPLEMENTATION_TECHNICAL_READINESS_AUDIT.md"
+}

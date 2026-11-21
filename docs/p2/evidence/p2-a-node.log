@@ -1,0 +1,159 @@
+✖ P2-A native geometry, map bounds and transforms oval (21.870035ms)
+✖ P2-A native geometry, map bounds and transforms C01 (7.462737ms)
+✖ P2-A native geometry, map bounds and transforms rally-short (9.238528ms)
+✖ P2-A native geometry, map bounds and transforms rally-long (29.457656ms)
+✔ P2-A CSS/DPR backing 1 (0.539565ms)
+✔ P2-A CSS/DPR backing 1.25 (0.163151ms)
+✔ P2-A CSS/DPR backing 1.5 (0.119015ms)
+✔ P2-A CSS/DPR backing 2 (0.113918ms)
+✔ P2-A CSS/DPR backing 3 (0.16905ms)
+✔ P2-A open rally end does not wrap and identity does not depend on iteration order (9.077316ms)
+✔ P2-A bounded LRU releases evictions and rejects oversized cache entries (0.466557ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 7
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 217.48218
+
+✖ failing tests:
+
+test at tests/p2.test.js:2:63
+✖ P2-A native geometry, map bounds and transforms oval (21.870035ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      beasts: [
+        {
+          agility: 55,
+          condition: 100,
+  ...
+      },
+  -   equipment: {
+  -     combat: 0,
+  -     mass: 0
+  -   },
+  -   id: 'RU1'
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/p2.test.js:2:797)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { driver: { driving: 55, beastHandling: 55, combat: 55, awareness: 55, nerve: 55, condition: 100, strain: 0, personality: [Object] }, beasts: [ [Object], [Object] ], chariot: { stability: 55, durability: 55, protection: 55, rollingEfficiency: 55, maneuverability: 55, condition: 100, weight: 180, capacity: 400, wear: 0 } },
+    expected: { id: 'RU1', driver: { driving: 55, beastHandling: 55, combat: 55, awareness: 55, nerve: 55, condition: 100, strain: 0, personality: [Object] }, beasts: [ [Object], [Object] ], chariot: { stability: 55, durability: 55, protection: 55, rollingEfficiency: 55, maneuverability: 55, condition: 100, weight: 180, capacity: 400, wear: 0 }, equipment: { mass: 0, combat: 0 } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/p2.test.js:2:63
+✖ P2-A native geometry, map bounds and transforms C01 (7.462737ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      beasts: [
+        {
+          agility: 55,
+          condition: 100,
+  ...
+      },
+  -   equipment: {
+  -     combat: 0,
+  -     mass: 0
+  -   },
+  -   id: 'RU1'
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/p2.test.js:2:797)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { driver: { driving: 55, beastHandling: 55, combat: 55, awareness: 55, nerve: 55, condition: 100, strain: 0, personality: [Object] }, beasts: [ [Object], [Object] ], chariot: { stability: 55, durability: 55, protection: 55, rollingEfficiency: 55, maneuverability: 55, condition: 100, weight: 180, capacity: 400, wear: 0 } },
+    expected: { id: 'RU1', driver: { driving: 55, beastHandling: 55, combat: 55, awareness: 55, nerve: 55, condition: 100, strain: 0, personality: [Object] }, beasts: [ [Object], [Object] ], chariot: { stability: 55, durability: 55, protection: 55, rollingEfficiency: 55, maneuverability: 55, condition: 100, weight: 180, capacity: 400, wear: 0 }, equipment: { mass: 0, combat: 0 } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/p2.test.js:2:63
+✖ P2-A native geometry, map bounds and transforms rally-short (9.238528ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      beasts: [
+        {
+          agility: 55,
+          condition: 100,
+  ...
+      },
+  -   equipment: {
+  -     combat: 0,
+  -     mass: 0
+  -   },
+  -   id: 'RU1'
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/p2.test.js:2:797)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { driver: { driving: 55, beastHandling: 55, combat: 55, awareness: 55, nerve: 55, condition: 100, strain: 0, personality: [Object] }, beasts: [ [Object], [Object] ], chariot: { stability: 55, durability: 55, protection: 55, rollingEfficiency: 55, maneuverability: 55, condition: 100, weight: 180, capacity: 400, wear: 0 } },
+    expected: { id: 'RU1', driver: { driving: 55, beastHandling: 55, combat: 55, awareness: 55, nerve: 55, condition: 100, strain: 0, personality: [Object] }, beasts: [ [Object], [Object] ], chariot: { stability: 55, durability: 55, protection: 55, rollingEfficiency: 55, maneuverability: 55, condition: 100, weight: 180, capacity: 400, wear: 0 }, equipment: { mass: 0, combat: 0 } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/p2.test.js:2:63
+✖ P2-A native geometry, map bounds and transforms rally-long (29.457656ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      beasts: [
+        {
+          agility: 55,
+          condition: 100,
+  ...
+      },
+  -   equipment: {
+  -     combat: 0,
+  -     mass: 0
+  -   },
+  -   id: 'RU1'
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/BNT/tests/p2.test.js:2:797)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { driver: { driving: 55, beastHandling: 55, combat: 55, awareness: 55, nerve: 55, condition: 100, strain: 0, personality: [Object] }, beasts: [ [Object], [Object] ], chariot: { stability: 55, durability: 55, protection: 55, rollingEfficiency: 55, maneuverability: 55, condition: 100, weight: 180, capacity: 400, wear: 0 } },
+    expected: { id: 'RU1', driver: { driving: 55, beastHandling: 55, combat: 55, awareness: 55, nerve: 55, condition: 100, strain: 0, personality: [Object] }, beasts: [ [Object], [Object] ], chariot: { stability: 55, durability: 55, protection: 55, rollingEfficiency: 55, maneuverability: 55, condition: 100, weight: 180, capacity: 400, wear: 0 }, equipment: { mass: 0, combat: 0 } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

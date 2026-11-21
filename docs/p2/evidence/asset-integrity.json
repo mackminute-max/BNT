@@ -1,0 +1,24 @@
+{
+  "rows": [
+    {
+      "kind": "missing",
+      "rejected": true
+    },
+    {
+      "kind": "hash",
+      "rejected": true
+    },
+    {
+      "kind": "dimensions",
+      "rejected": true
+    },
+    {
+      "kind": "source-hash",
+      "rejected": true
+    },
+    {
+      "kind": "duplicate-payload",
+      "deduplicated": true
+    }
+  ]
+}

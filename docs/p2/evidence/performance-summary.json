@@ -1,0 +1,179 @@
+{
+  "rows": [
+    {
+      "mode": "reference",
+      "speed": 1,
+      "windows": 18,
+      "drawWindowP95Median": 0.30000000074505806,
+      "drawWindowP95Worst": 0.7999999970197678,
+      "drawWorst": 6.300000000745058,
+      "mapWindowP95Worst": 0.20000000298023224,
+      "domWindowP95Worst": 2.5,
+      "frameP95": 16.79999999998836,
+      "frameP99": 16.80000000000291,
+      "frameMax": 50,
+      "framesOver33": 8,
+      "framesOver50": 0,
+      "framesOver100": 0,
+      "framesOver200": 0,
+      "longTasks": 2,
+      "maxLongTaskMs": 50,
+      "underruns": 0,
+      "setupMedian": 693,
+      "setupMax": 2136.5,
+      "pageHeapMax": 89980819
+    },
+    {
+      "mode": "reference",
+      "speed": 2,
+      "windows": 18,
+      "drawWindowP95Median": 0.4000000022351742,
+      "drawWindowP95Worst": 0.6000000014901161,
+      "drawWorst": 7.699999999254942,
+      "mapWindowP95Worst": 0.20000000298023224,
+      "domWindowP95Worst": 1,
+      "frameP95": 16.799999999995634,
+      "frameP99": 16.80000000000291,
+      "frameMax": 33.40000000000873,
+      "framesOver33": 5,
+      "framesOver50": 0,
+      "framesOver100": 0,
+      "framesOver200": 0,
+      "longTasks": 0,
+      "maxLongTaskMs": 0,
+      "underruns": 0,
+      "setupMedian": 650.3000000007451,
+      "setupMax": 2207.699999999255,
+      "pageHeapMax": 91758827
+    },
+    {
+      "mode": "reference",
+      "speed": 4,
+      "windows": 18,
+      "drawWindowP95Median": 0.4000000022351742,
+      "drawWindowP95Worst": 0.7000000029802322,
+      "drawWorst": 6.5,
+      "mapWindowP95Worst": 0.29999999701976776,
+      "domWindowP95Worst": 1.800000000745058,
+      "frameP95": 16.79999999998836,
+      "frameP99": 16.80000000000291,
+      "frameMax": 100,
+      "framesOver33": 12,
+      "framesOver50": 4,
+      "framesOver100": 0,
+      "framesOver200": 0,
+      "longTasks": 4,
+      "maxLongTaskMs": 98,
+      "underruns": 0,
+      "setupMedian": 721.3000000007451,
+      "setupMax": 2046,
+      "pageHeapMax": 111856796
+    },
+    {
+      "mode": "candidate",
+      "speed": 1,
+      "windows": 18,
+      "drawWindowP95Median": 1.4000000022351742,
+      "drawWindowP95Worst": 3.600000001490116,
+      "drawWorst": 31.199999999254942,
+      "mapWindowP95Worst": 0.3999999985098839,
+      "domWindowP95Worst": 1,
+      "frameP95": 16.79999999998836,
+      "frameP99": 16.80000000000291,
+      "frameMax": 83.39999999999964,
+      "framesOver33": 8,
+      "framesOver50": 2,
+      "framesOver100": 0,
+      "framesOver200": 0,
+      "longTasks": 2,
+      "maxLongTaskMs": 69,
+      "underruns": 0,
+      "setupMedian": 732.8999999985099,
+      "setupMax": 2204.39999999851,
+      "pageHeapMax": 118718646
+    },
+    {
+      "mode": "candidate",
+      "speed": 2,
+      "windows": 18,
+      "drawWindowP95Median": 1.5,
+      "drawWindowP95Worst": 2.599999997764826,
+      "drawWorst": 16.899999998509884,
+      "mapWindowP95Worst": 0.30000000074505806,
+      "domWindowP95Worst": 0.9000000022351742,
+      "frameP95": 16.799999999995634,
+      "frameP99": 16.80000000000291,
+      "frameMax": 83.29999999999927,
+      "framesOver33": 8,
+      "framesOver50": 2,
+      "framesOver100": 0,
+      "framesOver200": 0,
+      "longTasks": 2,
+      "maxLongTaskMs": 71,
+      "underruns": 0,
+      "setupMedian": 653.1999999992549,
+      "setupMax": 2040.300000000745,
+      "pageHeapMax": 127165900
+    },
+    {
+      "mode": "candidate",
+      "speed": 4,
+      "windows": 18,
+      "drawWindowP95Median": 2,
+      "drawWindowP95Worst": 3.5,
+      "drawWorst": 9.100000001490116,
+      "mapWindowP95Worst": 0.4000000022351742,
+      "domWindowP95Worst": 1.1000000014901161,
+      "frameP95": 16.799999999995634,
+      "frameP99": 16.80000000000291,
+      "frameMax": 50.100000000000364,
+      "framesOver33": 8,
+      "framesOver50": 1,
+      "framesOver100": 0,
+      "framesOver200": 0,
+      "longTasks": 0,
+      "maxLongTaskMs": 0,
+      "underruns": 0,
+      "setupMedian": 710.6999999992549,
+      "setupMax": 1810.2999999970198,
+      "pageHeapMax": 126472218
+    }
+  ],
+  "cacheLimitsHeld": true,
+  "maxCandidateCacheBytes": 13634250,
+  "decode": [
+    {
+      "id": "team.proof.emblem.v1",
+      "ms": 14
+    },
+    {
+      "id": "team.proof.mark.v1",
+      "ms": 14.100000001490116
+    },
+    {
+      "id": "ui.proof.corner.v1",
+      "ms": 14.100000001490116
+    },
+    {
+      "id": "architecture.tower.proof.v1",
+      "ms": 14.100000001490116
+    },
+    {
+      "id": "architecture.arch.proof.v1",
+      "ms": 14.100000001490116
+    },
+    {
+      "id": "ru.proof.static.v1",
+      "ms": 42.30000000074506
+    },
+    {
+      "id": "ru.proof.livery.v1",
+      "ms": 42.20000000298023
+    },
+    {
+      "id": "portrait.driver.proof.v1",
+      "ms": 42.20000000298023
+    }
+  ],
+  "notes": "Pooled frame intervals; draw p95 is median/worst of per-window p95, not falsely pooled draw quantile. Page heap is approximate, not private Worker/GPU memory."
+}

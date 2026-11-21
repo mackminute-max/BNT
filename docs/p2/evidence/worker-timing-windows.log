@@ -1,0 +1,12 @@
+reference oval-Pure-2.json 4 16.799999999999955 null
+reference oval-Combat-2.json 4 16.800000000000182 null
+reference C01-Pure-2.json 4 16.80000000000109 null
+reference C01-Combat-2.json 4 16.799999999999272 null
+reference rally-short-Combat-2.json 4 16.80000000000109 null
+reference rally-long-Combat-2.json 4 16.80000000000291 null
+candidate oval-Pure-2.json 4 33.40000000000009 null
+candidate oval-Combat-2.json 4 16.800000000000182 null
+candidate C01-Pure-2.json 4 16.800000000000182 null
+candidate C01-Combat-2.json 4 50 null
+candidate rally-short-Combat-2.json 4 16.80000000000109 null
+candidate rally-long-Combat-2.json 4 33.29999999999927 null

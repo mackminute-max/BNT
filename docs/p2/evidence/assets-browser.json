@@ -1,0 +1,416 @@
+{
+  "groups": [
+    "Livery recolors designated alpha mask only; anatomy/ink outside mask remain byte-identical",
+    "Missing embedded bytes fail visibly, settle loading and do not advance simulation or spend a Sign",
+    "Repeated course changes, eviction and explicit rewarm remain within bounded caches",
+    "Corrupt/delayed PNG and SVG decode use readable fallbacks without blocking Worker inputs"
+  ],
+  "dpr": [
+    {
+      "dpr": 1,
+      "cssZoom": 1,
+      "canvases": [
+        {
+          "id": "race",
+          "tick": "0",
+          "dpr": 1,
+          "backing": [
+            810,
+            438
+          ],
+          "pointerError": 2.842170943040401e-14
+        },
+        {
+          "id": "map",
+          "tick": "0",
+          "dpr": 1,
+          "backing": [
+            194,
+            121
+          ],
+          "pointerError": 1.4492285099529412e-13
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "dpr": 1,
+      "cssZoom": 1.25,
+      "canvases": [
+        {
+          "id": "race",
+          "tick": "0",
+          "dpr": 1,
+          "backing": [
+            654,
+            548
+          ],
+          "pointerError": 5.684341886080802e-14
+        },
+        {
+          "id": "map",
+          "tick": "0",
+          "dpr": 1,
+          "backing": [
+            244,
+            151
+          ],
+          "pointerError": 1.2710574864626038e-13
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "dpr": 1,
+      "cssZoom": 2,
+      "canvases": [
+        {
+          "id": "race",
+          "tick": "0",
+          "dpr": 1,
+          "backing": [
+            180,
+            876
+          ],
+          "pointerError": 2.2737367544323206e-13
+        },
+        {
+          "id": "map",
+          "tick": "0",
+          "dpr": 1,
+          "backing": [
+            388,
+            241
+          ],
+          "pointerError": 6.355287432313019e-14
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "dpr": 1.25,
+      "cssZoom": 1,
+      "canvases": [
+        {
+          "id": "race",
+          "tick": "0",
+          "dpr": 1.25,
+          "backing": [
+            1013,
+            548
+          ],
+          "pointerError": 2.842170943040401e-14
+        },
+        {
+          "id": "map",
+          "tick": "0",
+          "dpr": 1.25,
+          "backing": [
+            243,
+            151
+          ],
+          "pointerError": 1.4492285099529412e-13
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "dpr": 1.25,
+      "cssZoom": 1.25,
+      "canvases": [
+        {
+          "id": "race",
+          "tick": "0",
+          "dpr": 1.25,
+          "backing": [
+            817,
+            685
+          ],
+          "pointerError": 5.684341886080802e-14
+        },
+        {
+          "id": "map",
+          "tick": "0",
+          "dpr": 1.25,
+          "backing": [
+            304,
+            189
+          ],
+          "pointerError": 1.2710574864626038e-13
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "dpr": 1.25,
+      "cssZoom": 2,
+      "canvases": [
+        {
+          "id": "race",
+          "tick": "0",
+          "dpr": 1.25,
+          "backing": [
+            225,
+            1095
+          ],
+          "pointerError": 2.2737367544323206e-13
+        },
+        {
+          "id": "map",
+          "tick": "0",
+          "dpr": 1.25,
+          "backing": [
+            485,
+            301
+          ],
+          "pointerError": 6.355287432313019e-14
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "dpr": 1.5,
+      "cssZoom": 1,
+      "canvases": [
+        {
+          "id": "race",
+          "tick": "0",
+          "dpr": 1.5,
+          "backing": [
+            1215,
+            657
+          ],
+          "pointerError": 2.842170943040401e-14
+        },
+        {
+          "id": "map",
+          "tick": "0",
+          "dpr": 1.5,
+          "backing": [
+            291,
+            181
+          ],
+          "pointerError": 1.4492285099529412e-13
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "dpr": 1.5,
+      "cssZoom": 1.25,
+      "canvases": [
+        {
+          "id": "race",
+          "tick": "0",
+          "dpr": 1.5,
+          "backing": [
+            980,
+            822
+          ],
+          "pointerError": 5.684341886080802e-14
+        },
+        {
+          "id": "map",
+          "tick": "0",
+          "dpr": 1.5,
+          "backing": [
+            365,
+            227
+          ],
+          "pointerError": 1.2710574864626038e-13
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "dpr": 1.5,
+      "cssZoom": 2,
+      "canvases": [
+        {
+          "id": "race",
+          "tick": "0",
+          "dpr": 1.5,
+          "backing": [
+            270,
+            1314
+          ],
+          "pointerError": 2.2737367544323206e-13
+        },
+        {
+          "id": "map",
+          "tick": "0",
+          "dpr": 1.5,
+          "backing": [
+            582,
+            362
+          ],
+          "pointerError": 6.355287432313019e-14
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "dpr": 2,
+      "cssZoom": 1,
+      "canvases": [
+        {
+          "id": "race",
+          "tick": "0",
+          "dpr": 2,
+          "backing": [
+            1620,
+            876
+          ],
+          "pointerError": 2.842170943040401e-14
+        },
+        {
+          "id": "map",
+          "tick": "0",
+          "dpr": 2,
+          "backing": [
+            388,
+            241
+          ],
+          "pointerError": 1.4492285099529412e-13
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "dpr": 2,
+      "cssZoom": 1.25,
+      "canvases": [
+        {
+          "id": "race",
+          "tick": "0",
+          "dpr": 2,
+          "backing": [
+            1307,
+            1096
+          ],
+          "pointerError": 5.684341886080802e-14
+        },
+        {
+          "id": "map",
+          "tick": "0",
+          "dpr": 2,
+          "backing": [
+            487,
+            303
+          ],
+          "pointerError": 1.2710574864626038e-13
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "dpr": 2,
+      "cssZoom": 2,
+      "canvases": [
+        {
+          "id": "race",
+          "tick": "0",
+          "dpr": 2,
+          "backing": [
+            360,
+            1752
+          ],
+          "pointerError": 2.2737367544323206e-13
+        },
+        {
+          "id": "map",
+          "tick": "0",
+          "dpr": 2,
+          "backing": [
+            776,
+            482
+          ],
+          "pointerError": 6.355287432313019e-14
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "dpr": 3,
+      "cssZoom": 1,
+      "canvases": [
+        {
+          "id": "race",
+          "tick": "0",
+          "dpr": 2,
+          "backing": [
+            1620,
+            876
+          ],
+          "pointerError": 2.842170943040401e-14
+        },
+        {
+          "id": "map",
+          "tick": "0",
+          "dpr": 2,
+          "backing": [
+            388,
+            241
+          ],
+          "pointerError": 1.4492285099529412e-13
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "dpr": 3,
+      "cssZoom": 1.25,
+      "canvases": [
+        {
+          "id": "race",
+          "tick": "0",
+          "dpr": 2,
+          "backing": [
+            1307,
+            1096
+          ],
+          "pointerError": 5.684341886080802e-14
+        },
+        {
+          "id": "map",
+          "tick": "0",
+          "dpr": 2,
+          "backing": [
+            487,
+            303
+          ],
+          "pointerError": 1.2710574864626038e-13
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "dpr": 3,
+      "cssZoom": 2,
+      "canvases": [
+        {
+          "id": "race",
+          "tick": "0",
+          "dpr": 2,
+          "backing": [
+            360,
+            1752
+          ],
+          "pointerError": 2.2737367544323206e-13
+        },
+        {
+          "id": "map",
+          "tick": "0",
+          "dpr": 2,
+          "backing": [
+            776,
+            482
+          ],
+          "pointerError": 6.355287432313019e-14
+        }
+      ],
+      "overflow": false
+    }
+  ],
+  "errors": []
+}
