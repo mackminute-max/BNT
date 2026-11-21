@@ -1,0 +1,15 @@
+import {build} from 'esbuild';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+const opts={bundle:true,format:'iife',platform:'browser',target:'es2020',write:false,legalComments:'none'};
+const worker=await build({...opts,entryPoints:['src/persistence/e4/worker-entry.js']});
+const app=await build({...opts,stdin:{contents:"import './src/management/bootstrap-a1.js';import './src/ui/app.js';",resolveDir:process.cwd()},define:{BNT_E4_WORKER_SOURCE:JSON.stringify(worker.outputFiles[0].text)}});
+const practice=await readFile('dist/Blood-and-Thunder-P2.2-Playable.html','utf8');
+const actualExpected='24c393c19f7d8aa6f4e2bf6794d2e573d11be74508940e97b78a6330b6a203be';
+if(createHash('sha256').update(practice).digest('hex')!==actualExpected)throw Error('Accepted P2.2 artifact changed; review instead of silently embedding another build');
+const js=('globalThis.__BNT_ACCEPTED_P22_HTML__='+JSON.stringify(practice)+';\n'+app.outputFiles[0].text).replaceAll('</script','<\\/script');
+const css=await readFile('src/management/home.css','utf8')+'\n'+await readFile('src/management/a1.css','utf8');
+const html=(await readFile('src/ui/index.html','utf8')).replace('<title>','<title>Home Stable — ').replace('</head>',`<style>${css}</style></head>`).replace('<!-- BUNDLE -->',`<script>${js}</script>`);
+if(/<(?:script|link|img|iframe)\b[^>]*(?:src|href)\s*=\s*["'](?!data:|#)/i.test(html)||/\b(?:import\s*\(|fetch\s*\(|new\s+WebSocket\s*\()/m.test(app.outputFiles[0].text))throw Error('External runtime dependency');
+await mkdir('dist',{recursive:true});await writeFile('dist/Blood-and-Thunder-E5-A1-Playable-Stable.html',html);
+console.log(JSON.stringify({file:'dist/Blood-and-Thunder-E5-A1-Playable-Stable.html',bytes:Buffer.byteLength(html),sha256:createHash('sha256').update(html).digest('hex'),acceptedP22SHA256:actualExpected,embeddedWorker:true}));
