@@ -136,7 +136,11 @@ app.renderMetadata = (state = globalThis.P2.currentSnapshot?.state) => {
     if (actual?.signs.active === sign) labels.push('Active');
     if (actual?.signs.pending === sign) labels.push('Queued');
     if ($('sign').value === sign) labels.push('Selected');
-    if (card.disabled) labels.push('Unavailable');
+    // The legacy comparison harness re-enables every button when it finishes.
+    // Re-project availability from the same native facts as Queue, not stale DOM.
+    const unavailable = !actual || (state.format === 'Pure' && sign === 'Engage Rivals') || actual.status !== 'Racing' || actual.signs.remaining === 0 || session.phase === 'error' || ['Ended', 'Stalled', 'Error'].includes(state.status);
+    card.disabled = unavailable;
+    if (unavailable) labels.push('Unavailable');
     if (!labels.length) labels.push('Available');
     text(card.lastElementChild, labels.join(' · ')); card.setAttribute('aria-label', sign + ' — ' + labels.join(', '));
   }

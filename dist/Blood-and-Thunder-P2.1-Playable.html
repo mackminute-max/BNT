@@ -1718,7 +1718,9 @@ globalThis.__BNT_WORKER_SOURCE__="(() => {\n  // src/core/determinism.js\n  func
       if (actual?.signs.active === sign) labels.push("Active");
       if (actual?.signs.pending === sign) labels.push("Queued");
       if ($2("sign").value === sign) labels.push("Selected");
-      if (card.disabled) labels.push("Unavailable");
+      const unavailable = !actual || state.format === "Pure" && sign === "Engage Rivals" || actual.status !== "Racing" || actual.signs.remaining === 0 || session2.phase === "error" || ["Ended", "Stalled", "Error"].includes(state.status);
+      card.disabled = unavailable;
+      if (unavailable) labels.push("Unavailable");
       if (!labels.length) labels.push("Available");
       text(card.lastElementChild, labels.join(" \xB7 "));
       card.setAttribute("aria-label", sign + " \u2014 " + labels.join(", "));
