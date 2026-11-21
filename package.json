@@ -11,7 +11,8 @@
     "reference": "node scripts/reference.mjs",
     "build:p1-5": "node scripts/p1-5/build.mjs",
     "build:p2": "node scripts/p2/build.mjs",
-    "build:p2-1": "node scripts/p2-1/build.mjs"
+    "build:p2-1": "node scripts/p2-1/build.mjs",
+    "build:p2-2": "node scripts/p2-2/build.mjs"
   },
   "devDependencies": {
     "esbuild": "0.28.2",
