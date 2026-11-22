@@ -20,6 +20,10 @@ const panel=(title,body)=>`<section class="hs-panel"><h2>${escape(title)}</h2>${
 const table=(headers,rows)=>rows.length?`<div class="hs-table"><table><thead><tr>${headers.map(h=>`<th>${escape(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(c=>`<td>${escape(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:'<p>No records yet.</p>';
 const button=(id,text,disabled=false)=>`<button id="hs-${id}" ${disabled?'disabled':''}>${escape(text)}</button>`;
 const tabs={overview:'Home Stable',roster:'Roster & Racing Unit',facilities:'Staff',finances:'Workshop & Finances',championships:'Championships',records:'Career Records',saves:'Save & Recovery'};
+export function continuationNavigation(v,busy=false,durableView=null){
+ const recovery=!v.active&&!!durableView?.hasAuthority&&!!durableView?.reason,visible=!!v.active||recovery;
+ return {visible,disabled:busy||!visible,page:recovery?'saves':'championships',label:recovery?'Review saved-career recovery':visible?championshipStep(v.state,durableView).label:'No championship to continue'};
+}
 export function mountPlayableStable(port){
  const root=document.createElement('section');root.id='homeStable';document.body.prepend(root);
  let workspace;let page='overview',busy=false,notice='',error=false,selection=null,selectionCareer=null,quote=null,form={type:'facility.purchase',service:'driver-recovery',amount:10,points:1,term:'standard',resolve:false};
@@ -28,7 +32,7 @@ export function mountPlayableStable(port){
  const navigate=key=>{page=key;show();};
  const careerFlow=globalThis.__BNT_E5_C__?createCareerFlow(port,{run,render,navigate}):null;
  $('nav').innerHTML=Object.entries(tabs).map(([key,name])=>`<button data-page="${key}">${escape(name)}</button>`).join('')+`<button id="hs-practice-button">Practice Race</button>`;
- if(careerFlow){const b=document.createElement('button');b.id='hs-continue-championship';b.textContent='Continue Championship';b.onclick=()=>navigate('championships');$('nav').append(b);}
+ if(careerFlow){const b=document.createElement('button');b.id='hs-continue-championship';b.textContent='Continue Championship';b.hidden=true;b.disabled=true;b.setAttribute('aria-hidden','true');b.setAttribute('aria-disabled','true');b.onclick=()=>{const next=continuationNavigation(view(),busy,port.durableView);if(next.visible&&!next.disabled)navigate(next.page);};$('nav').append(b);}
  for(const b of $('nav').querySelectorAll('[data-page]'))b.onclick=()=>{page=b.dataset.page;show();};
  function show(){document.getElementById('legacyWorkbench').style.display='none';$('content').hidden=false;$('practice').hidden=true;$('practice-frame').replaceChildren();render();}
  $('practice-button').onclick=()=>{if(busy)return;document.getElementById('legacyWorkbench').style.display='none';$('content').hidden=true;$('practice').hidden=false;const iframe=document.createElement('iframe');iframe.title='Accepted P2.2 independent practice race';iframe.srcdoc=globalThis.__BNT_ACCEPTED_P22_HTML__;iframe.setAttribute('sandbox','allow-scripts allow-same-origin allow-downloads');$('practice-frame').replaceChildren(iframe);};
@@ -53,8 +57,8 @@ export function mountPlayableStable(port){
   $('resources').textContent=s?`${s.career.name} · ${s.career.treasury} Gold · ${s.career.status}${s.career.developerEdited?' · Developer-edited':''}`:'Create or load a career';
   $('feedback').textContent=notice;$('feedback').dataset.error=error;
   $('restriction').textContent=v.restriction|| (busy?'Operation pending. Changes are not acknowledged yet.':'');
-  if(careerFlow){const b=document.createElement('button');b.id='hs-continue-championship';b.textContent='Continue Championship';b.onclick=()=>navigate('championships');$('nav').append(b);}
  for(const b of $('nav').querySelectorAll('button')){b.disabled=busy;b.setAttribute('aria-current',String(b.dataset.page===page));}
+  if(careerFlow){const b=$('continue-championship'),next=continuationNavigation(v,busy,port.durableView);b.hidden=!next.visible;b.disabled=next.disabled;b.title=next.label;b.setAttribute('aria-label','Continue Championship: '+next.label);b.setAttribute('aria-hidden',String(!next.visible));b.setAttribute('aria-disabled',String(next.disabled));b.setAttribute('aria-current',String(next.visible&&page===next.page));}
   if(page==='developer')return;
   let body='';
   if(page==='overview')body=statusCards(v)+dashboard(v);
@@ -76,7 +80,7 @@ export function mountPlayableStable(port){
   if(page==='saves')body=saveBody(v);
   $('content').innerHTML=body;
   bindE5({s,port,bind,run});
-  if(careerFlow){careerFlow.bind({v,bind});const b=$('continue-championship');if(b){b.hidden=!v.active;b.title=v.active?championshipStep(s,port.durableView).label:'';}}
+  if(careerFlow)careerFlow.bind({v,bind});
 
   for(const key of ['roster','saves','championships','finances'])bind('to-'+key,()=>{page=key;show();});
   bind('new',()=>{const owner=$('owner').value,name=$('name').value;perform(async store=>{if(store.state)throw Error('A career is already loaded. Use explicit replacement/import tools.');if(!confirm('Create an empty career with zero Gold and no assets?'))return false;await store.create(createUninitializedCareer({profileId:port.newId('profile'),careerId:port.newId('career'),ownerName:owner,careerName:name}));},'Empty career committed. Review an approved starting package next.');});
