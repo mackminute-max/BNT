@@ -1,0 +1,223 @@
+{
+  "artifactSHA256": "8b31d3ef8ae6c902184beb7c134fad7e25290515250318211dbcd863eff71c2c",
+  "groups": [
+    "Existing accepted stable explicitly moved to durable authority; subsequent play offline",
+    "Run 1: explicit assignment and exactly-once entry fee",
+    "Reload with accepted Sign resumes latest saved native head paused, without consuming another opportunity",
+    "Pending Run choice survives reload without reroll",
+    "Pending permanent Legacy selection survives reload",
+    "Run 1: both native events, official results, Run selection, final settlement, permanent Legacy selection and unlocked stable",
+    "Run 2: explicit assignment and exactly-once entry fee",
+    "Run 2: both native events, official results, Run selection, final settlement, permanent Legacy selection and unlocked stable"
+  ],
+  "errors": [],
+  "events": [
+    {
+      "run": 0,
+      "event": 0,
+      "result": "e2-result-ef08cf994d666ee9fb0e1aa2cf679d69676f4eb0",
+      "rows": [
+        {
+          "id": "e2-91f60279",
+          "place": 1,
+          "status": "Finished",
+          "time": 30.977462230067136,
+          "completedLaps": 1,
+          "progress": 56,
+          "nativeStatus": "Finished",
+          "started": true
+        },
+        {
+          "id": "e2-7930b902",
+          "place": 2,
+          "status": "Finished",
+          "time": 31.080899515576444,
+          "completedLaps": 1,
+          "progress": 56,
+          "nativeStatus": "Finished",
+          "started": true
+        },
+        {
+          "id": "e2-21ae41f9",
+          "place": 3,
+          "status": "Finished",
+          "time": 33.32678960653121,
+          "completedLaps": 1,
+          "progress": 56,
+          "nativeStatus": "Finished",
+          "started": true
+        },
+        {
+          "id": "e2-b94fd028",
+          "place": 4,
+          "status": "Finished",
+          "time": 33.54248944492282,
+          "completedLaps": 1,
+          "progress": 56,
+          "nativeStatus": "Finished",
+          "started": true
+        }
+      ]
+    },
+    {
+      "run": 0,
+      "event": 1,
+      "result": "e2-result-aed45554bb543b54e5606b361a234d798e3c26d7",
+      "rows": [
+        {
+          "id": "e2-91f60279",
+          "place": 1,
+          "status": "Finished",
+          "time": 41.989456317320766,
+          "completedLaps": 1,
+          "progress": 80,
+          "nativeStatus": "Finished",
+          "started": true
+        },
+        {
+          "id": "e2-b94fd028",
+          "place": 2,
+          "status": "Finished",
+          "time": 45.700829757684346,
+          "completedLaps": 1,
+          "progress": 80,
+          "nativeStatus": "Finished",
+          "started": true
+        },
+        {
+          "id": "e2-7930b902",
+          "place": 3,
+          "status": "Finished",
+          "time": 46.657581923847374,
+          "completedLaps": 1,
+          "progress": 80,
+          "nativeStatus": "Finished",
+          "started": true
+        },
+        {
+          "id": "e2-21ae41f9",
+          "place": 4,
+          "status": "Finished",
+          "time": 56.41654576293293,
+          "completedLaps": 1,
+          "progress": 80,
+          "nativeStatus": "Finished",
+          "started": true
+        }
+      ]
+    },
+    {
+      "run": 1,
+      "event": 0,
+      "result": "e2-result-f02a368fe358efa0d5170b6d5a389c6c366f6896",
+      "rows": [
+        {
+          "id": "e2-29c33756",
+          "place": 1,
+          "status": "Finished",
+          "time": 28.78934020458144,
+          "completedLaps": 1,
+          "progress": 56,
+          "nativeStatus": "Finished",
+          "started": true
+        },
+        {
+          "id": "e2-73dd08d7",
+          "place": 2,
+          "status": "Finished",
+          "time": 30.705605747082714,
+          "completedLaps": 1,
+          "progress": 56,
+          "nativeStatus": "Finished",
+          "started": true
+        },
+        {
+          "id": "e2-e7437967",
+          "place": 3,
+          "status": "Finished",
+          "time": 32.029177991737555,
+          "completedLaps": 1,
+          "progress": 56,
+          "nativeStatus": "Finished",
+          "started": true
+        },
+        {
+          "id": "e2-9e6f0c4e",
+          "place": 4,
+          "status": "Finished",
+          "time": 37.24171367131443,
+          "completedLaps": 1,
+          "progress": 56,
+          "nativeStatus": "Finished",
+          "started": true
+        }
+      ]
+    },
+    {
+      "run": 1,
+      "event": 1,
+      "result": "e2-result-2da1a2d273328bc3a6e7d91234486da24e2ee2c4",
+      "rows": [
+        {
+          "id": "e2-29c33756",
+          "place": 1,
+          "status": "Finished",
+          "time": 41.056113676082035,
+          "completedLaps": 1,
+          "progress": 80,
+          "nativeStatus": "Finished",
+          "started": true
+        },
+        {
+          "id": "e2-e7437967",
+          "place": 2,
+          "status": "Finished",
+          "time": 43.77975235340483,
+          "completedLaps": 1,
+          "progress": 80,
+          "nativeStatus": "Finished",
+          "started": true
+        },
+        {
+          "id": "e2-73dd08d7",
+          "place": 3,
+          "status": "Finished",
+          "time": 43.92472295911295,
+          "completedLaps": 1,
+          "progress": 80,
+          "nativeStatus": "Finished",
+          "started": true
+        },
+        {
+          "id": "e2-9e6f0c4e",
+          "place": 4,
+          "status": "Finished",
+          "time": 58.72569945081452,
+          "completedLaps": 1,
+          "progress": 80,
+          "nativeStatus": "Finished",
+          "started": true
+        }
+      ]
+    }
+  ],
+  "developerClicks": 0,
+  "nativeReplays": [
+    {
+      "raceId": "e2-race-cf4853ba63de5260d71cec8e627ed44fec8ed5e1",
+      "checksum": "b7767aaa"
+    },
+    {
+      "raceId": "e2-race-bec5f79f3a90624aa05c800272daece6ad0c9bc8",
+      "checksum": "1a6a6525"
+    },
+    {
+      "raceId": "e2-race-cf54d42876f24303bcd37361763eca58736603a9",
+      "checksum": "afb571a7"
+    },
+    {
+      "raceId": "e2-race-328f1b11a854253eb2a7bc80283121ec81f55905",
+      "checksum": "3abde1ef"
+    }
+  ]
+}

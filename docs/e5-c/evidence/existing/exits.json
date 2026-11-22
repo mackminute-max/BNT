@@ -1,0 +1,32 @@
+[
+  {
+    "name": "references",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "layout-browser",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "interface-browser",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-native",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "checkpoint-compat",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  }
+]

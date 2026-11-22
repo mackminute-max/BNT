@@ -1,0 +1,97 @@
+{
+  "checks": [
+    {
+      "name": "ordinary UI explicitly migrates and manually starts a frozen race",
+      "pass": true,
+      "result": 0
+    },
+    {
+      "name": "paused Sign, automatic full checkpoint and reload preserve accepted order",
+      "pass": true,
+      "result": {
+        "tick": 25,
+        "watermark": 2,
+        "base": 0,
+        "current": 25
+      }
+    },
+    {
+      "name": "complete backup roundtrip, consumed restore identity and interrupted restore",
+      "pass": true,
+      "result": {
+        "bytes": 1155199,
+        "first": {
+          "durable": true,
+          "generation": 6
+        },
+        "second": {
+          "duplicate": true,
+          "durable": true,
+          "generation": 6
+        },
+        "resumed": {
+          "durable": true,
+          "generation": 7
+        },
+        "tick": 25
+      }
+    },
+    {
+      "name": "quota failure during restore activation leaves no mixed authority and resumes safely",
+      "pass": true,
+      "result": {
+        "quotaRejected": true,
+        "blocked": true,
+        "lostAckRecovered": true
+      }
+    },
+    {
+      "name": "corrupt and incomplete complete backups reject without replacing authority",
+      "pass": true,
+      "result": {
+        "rejected": 3,
+        "generation": 9
+      }
+    },
+    {
+      "name": "checkpoint corruption is repaired only by exact committed journal evidence",
+      "pass": true,
+      "result": {
+        "reason": "Durable record manifest mismatch; repair or matching complete backup required",
+        "recoveredTick": 25
+      }
+    },
+    {
+      "name": "empty-destination restore atomically retains current and previous generation",
+      "pass": true,
+      "result": {
+        "sourceGeneration": 10,
+        "generation": 11,
+        "previous": 9,
+        "backupBytes": 1162841
+      }
+    },
+    {
+      "name": "lost durable acknowledgement reloads committed input without consuming it twice",
+      "pass": true,
+      "result": {
+        "tick": 50,
+        "generation": 12
+      }
+    },
+    {
+      "name": "worker restart and full race publication remain deterministic and exactly once",
+      "pass": true,
+      "result": {
+        "replays": [
+          {
+            "raceId": "e2-race-f7f8aa23127bf82b8c54214dc45ad0f450a28ffa",
+            "checksum": "606b450a"
+          }
+        ],
+        "phase": "INTERMISSION_READY"
+      }
+    }
+  ],
+  "errors": []
+}
