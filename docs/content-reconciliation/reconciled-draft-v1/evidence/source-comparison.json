@@ -1,0 +1,116 @@
+[
+  {
+    "path": "src/career/packages.js",
+    "inventorySHA256": "28921bc0ec5c6a5a2b8fa0cf506259aa381db3e1e90dcd0b794d96907fa23b22",
+    "currentSHA256": "28921bc0ec5c6a5a2b8fa0cf506259aa381db3e1e90dcd0b794d96907fa23b22",
+    "unchanged": true
+  },
+  {
+    "path": "src/career/economy/catalog.js",
+    "inventorySHA256": "acdfc58c1e5da5ba95c270ec8a9a2f1f118e262bfaa9bf5e34aa5b58df80e228",
+    "currentSHA256": "acdfc58c1e5da5ba95c270ec8a9a2f1f118e262bfaa9bf5e34aa5b58df80e228",
+    "unchanged": true
+  },
+  {
+    "path": "src/career/economy/market.js",
+    "inventorySHA256": "b28de938967228f86039b04f56a60ce8635c1fde48c88c63600c894c6fd961ab",
+    "currentSHA256": "b28de938967228f86039b04f56a60ce8635c1fde48c88c63600c894c6fd961ab",
+    "unchanged": true
+  },
+  {
+    "path": "src/management/content.js",
+    "inventorySHA256": "7811e91b1762aa3cafe107016ebda00a751da7eaa0a96e11ac4c476a5545bf3d",
+    "currentSHA256": "7811e91b1762aa3cafe107016ebda00a751da7eaa0a96e11ac4c476a5545bf3d",
+    "unchanged": true
+  },
+  {
+    "path": "src/career/championships/e5/catalog.js",
+    "inventorySHA256": "e801fb15f8981d3f9c823a757fef8f03afbec5724d6701ebfe7fc397a56536e2",
+    "currentSHA256": "e801fb15f8981d3f9c823a757fef8f03afbec5724d6701ebfe7fc397a56536e2",
+    "unchanged": true
+  },
+  {
+    "path": "src/career/championships/reward-offers.js",
+    "inventorySHA256": "b4c098c99c6381aa49ffda65e6a13dedd952e6a1ca71255108aa85cc3c577ec6",
+    "currentSHA256": "b4c098c99c6381aa49ffda65e6a13dedd952e6a1ca71255108aa85cc3c577ec6",
+    "unchanged": true
+  },
+  {
+    "path": "src/track/catalog.js",
+    "inventorySHA256": "832b50884752db089162e0f1cb5709c4b5ed860f2f9476595707d6c8d2e38211",
+    "currentSHA256": "832b50884752db089162e0f1cb5709c4b5ed860f2f9476595707d6c8d2e38211",
+    "unchanged": true
+  },
+  {
+    "path": "src/track/course.js",
+    "inventorySHA256": "06de6833b1af7a078b109bc77a8f07cf844fbe88099b65490a7b6934dd00b0cf",
+    "currentSHA256": "06de6833b1af7a078b109bc77a8f07cf844fbe88099b65490a7b6934dd00b0cf",
+    "unchanged": true
+  },
+  {
+    "path": "src/ai/signs.js",
+    "inventorySHA256": "62f5633a7372d6ec02883a863a0d65b2f292bd7a5cf938b19804f12f0fab8fd7",
+    "currentSHA256": "62f5633a7372d6ec02883a863a0d65b2f292bd7a5cf938b19804f12f0fab8fd7",
+    "unchanged": true
+  },
+  {
+    "path": "src/sim/environment.js",
+    "inventorySHA256": "1f36b68b682093ac9b16f73e4482c427a86ecc0041b3df30fe40a10ed5a16342",
+    "currentSHA256": "1f36b68b682093ac9b16f73e4482c427a86ecc0041b3df30fe40a10ed5a16342",
+    "unchanged": true
+  },
+  {
+    "path": "src/sim/incidents.js",
+    "inventorySHA256": "b21e68725e79830ee7bc2695e8fcd83cbb2cda27743550d701b0d75992ad2e9e",
+    "currentSHA256": "b21e68725e79830ee7bc2695e8fcd83cbb2cda27743550d701b0d75992ad2e9e",
+    "unchanged": true
+  },
+  {
+    "path": "src/sim/consequences.js",
+    "inventorySHA256": "1f970eecd43e7b839bef7ff23ece8105163c31a90bea817778dad04e70f30998",
+    "currentSHA256": "1f970eecd43e7b839bef7ff23ece8105163c31a90bea817778dad04e70f30998",
+    "unchanged": true
+  },
+  {
+    "path": "src/reporting/commentary.js",
+    "inventorySHA256": "722e856f222869f2a6c5035a1b2f0c76afdb415e867324f982320143cca3ffa3",
+    "currentSHA256": "722e856f222869f2a6c5035a1b2f0c76afdb415e867324f982320143cca3ffa3",
+    "unchanged": true
+  },
+  {
+    "path": "src/management/playable.js",
+    "inventorySHA256": "dbe4e38e10c4e43718c3af0f0a88ca5e96ad8193999b35c16511740320e87284",
+    "currentSHA256": "a086ede570feab0ac57fb421e09c4dbd85cbcfd63d8aef8d06fac865bc16e857",
+    "unchanged": false
+  },
+  {
+    "path": "src/career/championships/e5/rewards.js",
+    "inventorySHA256": "ad045a3056c9a67a0b6c3d5058d6dd17075d7d88f66b26b6ab5d86527954cab6",
+    "currentSHA256": "ad045a3056c9a67a0b6c3d5058d6dd17075d7d88f66b26b6ab5d86527954cab6",
+    "unchanged": true
+  },
+  {
+    "path": "src/career/championships/e5/schema6.js",
+    "inventorySHA256": "433d553fc7b717284f8a79f0d38bca455f6c68172e92817c1a5a53af8bfa875e",
+    "currentSHA256": "433d553fc7b717284f8a79f0d38bca455f6c68172e92817c1a5a53af8bfa875e",
+    "unchanged": true
+  },
+  {
+    "path": "src/presentation/contracts.js",
+    "inventorySHA256": "7dff91401b6c5f091ca2b15e1825993efa2436a1a64fa2d7d2dbbb91b04270c8",
+    "currentSHA256": "7dff91401b6c5f091ca2b15e1825993efa2436a1a64fa2d7d2dbbb91b04270c8",
+    "unchanged": true
+  },
+  {
+    "path": "src/persistence/e4/worker-service.js",
+    "inventorySHA256": "a16477f67c2bb82011d43fa9f3c07bc50e7563cccbc28905b300c4d0b8879b2f",
+    "currentSHA256": "c242987389117927840b6e5ebd54875de9efc0c698b5ffcad074d12661ed079c",
+    "unchanged": false
+  },
+  {
+    "path": "src/ui/durable-championships.js",
+    "inventorySHA256": "10b3b2ec746b404a4fea3d5a1f516a0a912711f651887a9554251facca601dc5",
+    "currentSHA256": "9ea2d20bbe766d3bd1b80df66ca0a81fba27732fa3743a12f6d15b7054a60c3d",
+    "unchanged": false
+  }
+]

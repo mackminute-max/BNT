@@ -16,12 +16,12 @@ export function sameRecords(a,b){return Array.isArray(a)&&Array.isArray(b)&&a.le
 const request=req=>new Promise((resolve,reject)=>{req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);req.onblocked=()=>reject(Error('Database upgrade blocked by another tab; close older writers'));});
 const finished=tx=>new Promise((resolve,reject)=>{tx.oncomplete=()=>resolve();tx.onabort=()=>reject(tx.error??Error('Durable transaction aborted'));tx.onerror=()=>{};});
 export class IndexedRecords {
- static async open({indexedDB=globalThis.indexedDB,name='BNT-E4-v1'}={}){
+ static async open({indexedDB=globalThis.indexedDB,name='BNT-E4-v1',navigation=false}={}){
   if(!indexedDB)throw Error('IndexedDB unavailable; no automatic fallback');const r=indexedDB.open(name,E4_DB_VERSION);
   r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains(STORE))r.result.createObjectStore(STORE);};
-  const db=await request(r);db.onversionchange=()=>db.close();return new IndexedRecords(db);
+  const db=await request(r);db.onversionchange=()=>db.close();return new IndexedRecords(db,{navigation});
  }
- constructor(db){this.db=db;}
+ constructor(db,{navigation=false}={}){this.db=db;this.navigation=navigation;}
  validateHead(head){if(head&&(head.version!==1||!Number.isSafeInteger(head.generation)||head.generation<1))throw Error('Unsupported/corrupt durable head');if(head)checkRecords(head.records);return head;}
  close(){this.db.close();}
  async snapshot(){const tx=this.db.transaction(STORE,'readonly'),done=finished(tx),s=tx.objectStore(STORE);const [head,migration,stage,restoreStage,restoreReceipts]=await Promise.all([request(s.get(HEAD)),request(s.get(MIGRATION)),request(s.get(STAGE)),request(s.get('restore-stage')),request(s.get('restore-receipts'))]);await done;this.validateHead(head);if(migration&&(!((migration.version===1&&migration.source==='web-storage')||(migration.version===2&&migration.source==='complete-restore'))||!Array.isArray(migration.recordKeys)))throw Error('Unsupported migration witness');return {recordsHash:head?.recordsHash??null,runtime:validateRuntime(head?.runtime??defaultRuntime()),restoreStage:restoreStage?{version:restoreStage.version,state:restoreStage.state,digest:restoreStage.digest,baseGeneration:restoreStage.baseGeneration}:null,restoreReceipts:restoreReceipts??[],generation:head?.generation??0,records:head?.records??[],migration:migration??null,migrationStage:stage?{version:stage.version,digest:stage.digest,state:stage.state}:null};}
@@ -36,10 +36,14 @@ export class IndexedRecords {
    if(previousOverride!==undefined){if(previousOverride!==null)s.put(previousOverride,'previous');}else if(head)s.put(head,'previous');s.put({version:1,generation:restoredGeneration??expectedGeneration+1,records,recordsHash,runtime:validateRuntime(runtime??head?.runtime??defaultRuntime())},HEAD);
    if(restore){const stage=await request(s.get('restore-stage'));if(!stage||stage.state!=='PREPARED'||stage.digest!==restore.digest||stage.baseGeneration!==expectedGeneration)throw Error('Restore stage conflict');s.put({...stage,state:'ACTIVATED'},'restore-stage');s.put(restore.receipts,'restore-receipts');}
    if(migration!==null)s.put(migration,MIGRATION);
+   // M1 navigator metadata shares the authoritative commit. It never replaces
+   // the domain record, witness, generation or read-set validation.
+   const priorNavigation=await request(s.get('save-navigation'));if(this.navigation||priorNavigation){const prior=priorNavigation;s.put({version:1,generation:restoredGeneration??expectedGeneration+1,savedAt:Math.max(Date.now(),(Number.isSafeInteger(prior?.savedAt)?prior.savedAt:0)+1)},'save-navigation');}
    if(abortBeforeComplete)throw Error('Injected pre-completion interruption');
   }catch(e){tx.abort();await done.catch(()=>{});throw e;}
   await done;return {durable:true,generation:restoredGeneration??expectedGeneration+1};
  }
+ async navigationStatus(){const tx=this.db.transaction(STORE,'readonly'),done=finished(tx),s=tx.objectStore(STORE),[head,navigation]=await Promise.all([request(s.get(HEAD)),request(s.get('save-navigation'))]);await done;this.validateHead(head);const valid=navigation?.version===1&&Number.isSafeInteger(navigation.savedAt)&&navigation.savedAt>=0&&Number.isSafeInteger(navigation.generation)&&navigation.generation===head?.generation;return {generation:head?.generation??0,savedAt:valid?navigation.savedAt:null};}
  async previous(){const tx=this.db.transaction(STORE,'readonly'),done=finished(tx),head=await request(tx.objectStore(STORE).get('previous'));await done;this.validateHead(head);return head??null;}
  async restoreStage(){const tx=this.db.transaction(STORE,'readonly'),done=finished(tx),stage=await request(tx.objectStore(STORE).get('restore-stage'));await done;return stage??null;}
  async stageRestore(stage,{expectedGeneration,readSet}){const tx=this.db.transaction(STORE,'readwrite',{durability:'strict'}),done=finished(tx),s=tx.objectStore(STORE);try{const head=await request(s.get(HEAD));if((head?.generation??0)!==expectedGeneration||!sameRecords(head?.records??[],readSet))throw Error('STALE_WRITER: restore source changed');const old=await request(s.get('restore-stage'));if(old?.state==='PREPARED'&&old.digest!==stage.digest)throw Error('Another restore is pending');s.put(stage,'restore-stage');}catch(e){tx.abort();await done.catch(()=>{});throw e;}await done;return {staged:true,durable:true};}

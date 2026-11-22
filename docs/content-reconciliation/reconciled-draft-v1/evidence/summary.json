@@ -1,0 +1,25 @@
+{
+  "scope": "Read-only review; repository and inputs preserved",
+  "repositoryFilesUnchanged": 2611,
+  "records": 135,
+  "acceptDraft": 120,
+  "revise": 15,
+  "ordinaryCommentaryVariants": 66,
+  "fixedResistanceVariants": 1,
+  "artBriefs": 37,
+  "canonMappedRecords": 17,
+  "canonReferencesVerified": 25,
+  "nodeTests": {
+    "passed": 117,
+    "failed": 0,
+    "skipped": 0
+  },
+  "replayReferencesMatched": 14,
+  "fullSuiteRun": false,
+  "browserRun": false,
+  "buildRun": false,
+  "reports": [
+    "BNT_Reconciled_Draft_v1_Review.md",
+    "BNT_Reconciled_Draft_Presentation_Integration_Proposal.md"
+  ]
+}

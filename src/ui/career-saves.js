@@ -1,3 +1,4 @@
+import {confirmAction} from '../management/startup/dialogs.js';
 import {mountDurableChampionships} from './durable-championships.js';
 import {IndexedRecords,E4_DISCOVERY} from '../persistence/e4/indexeddb.js';
 import {mountChampionships} from './championships.js';
@@ -20,12 +21,13 @@ function newId(prefix) {
   return prefix + '-' + suffix;
 }
 export function mountCareerSaves({ download }) {
-  let storage;
-  try { storage = window.localStorage; } catch {}
+  const context=globalThis.__BNT_M1_CONTEXT__;
+  let storage=context?.storage;
+  if(!context)try { storage = window.localStorage; } catch {}
   const legacyStore = new CareerStore(storage);legacyStore.open();let durableUI=null;
   const mutations=new Set(['transaction','migrateFoundation','migrateCycles','migrateEconomy','migrateSchema','create','importSave','recover']);
-  const store=new Proxy(legacyStore,{get(target,key){if((durableUI?.coordinator&&durableUI.durable)){if(key==='state')return durableUI.view?.state??null;if(key==='mode')return durableUI.view?.reason?'blocked':'automatic';if(key==='problem')return durableUI.view?.reason??'';if(['requiresCheckpoint','recoveryPending'].includes(key))return false;if(key==='schema2Session')return (durableUI.view?.state?.schema??0)>=2;if(key==='exportToken')return null;if(key==='export')return ()=>durableUI.coordinator.legacyExport();if(mutations.has(key))return (...args)=>durableUI.career(key,args);}const v=target[key];return typeof v==='function'?v.bind(target):v;}});
-  let staged = null, lastToken = null, notice = '', queue = Promise.resolve();
+  const store=new Proxy(legacyStore,{get(target,key){if((durableUI?.coordinator&&durableUI.durable)){if(key==='state')return durableUI.view?.state??null;if(key==='mode')return durableUI.view?.reason?'blocked':'automatic';if(key==='problem')return durableUI.view?.reason??'';if(['requiresCheckpoint','recoveryPending'].includes(key))return false;if(key==='schema2Session')return (durableUI.view?.state?.schema??0)>=2;if(key==='exportToken')return null;if(['previewEconomy','previewCycles'].includes(key))return ()=>durableUI.coordinator.previewCareer(key);if(key==='export')return ()=>durableUI.coordinator.legacyExport();if(mutations.has(key))return (...args)=>durableUI.career(key,args);}const v=target[key];return typeof v==='function'?v.bind(target):v;}});
+  let staged = null, lastToken = null, notice = '', queue = Promise.resolve(), pendingCount=0;
   let managementRefresh = () => {};
   let renderStable = () => {}, renderEconomy = () => {}, renderCycles = () => {}, renderChampionships = () => {};
   function render() {
@@ -65,7 +67,7 @@ export function mountCareerSaves({ download }) {
     // is denied. Without a witness, legacy/manual saves remain supported.
     if (witness) block();
     try {
-      try { db = await IndexedRecords.open(); }
+      try { db = await IndexedRecords.open(context?.databaseOptions); }
       catch (error) {
         if (store.mode === 'manual' || error.name === 'SecurityError' || error.name === 'InvalidStateError' || typeof globalThis.indexedDB === 'undefined') return;
         throw error;
@@ -86,14 +88,14 @@ export function mountCareerSaves({ download }) {
   legacyAuthorityGate().catch(e => { notice = 'Persistence authority check: ' + e.message; render(); });
   const actionResults = new WeakMap();
   const act = fn => () => {
-    const outcome = {};
-    queue = queue.catch(() => {}).then(() => exclusive(fn)).catch(e => { outcome.error = e; notice = e.message; }).finally(render);
+    const outcome = {};pendingCount++;
+    queue = queue.catch(() => {}).then(() => exclusive(fn)).catch(e => { outcome.error = e; notice = e.message; }).finally(()=>{pendingCount--;render();});
     actionResults.set(queue, outcome);
     return queue;
   };
   $('careerCreate').onclick = act(async () => {
     const existing = store.state || store.raw !== null || store.quarantine;
-    if (existing && !window.confirm('Replace the current Owner Profile and Career State with an empty foundation? Export a backup first. Owner Legacy will not be merged.')) return;
+    if (existing && !await confirmAction('Replace the current Owner Profile and Career State with an empty foundation? Export a backup first. Owner Legacy will not be merged.')) return;
     const create = store.schema2Session ? createUninitializedCareer : createCareer;
     await store.create(create({ profileId: newId('profile'), careerId: newId('career'), ownerName: $('careerOwnerName').value, careerName: $('careerName').value }), { confirmed: Boolean(existing) });
     notice = 'Empty uninitialized foundation created: 0 Gold, no roster, championships or Legacy progression. Starting packages and explicit initialization require M2-B.'; lastToken = null;
@@ -101,7 +103,7 @@ export function mountCareerSaves({ download }) {
   $('careerMigrate').onclick = act(async () => {
     const state = store.state;
     if (!state) throw Error('No career loaded');
-    if (!window.confirm('Upgrade this M1 career to schema 2? IDs, Gold, gameplay revision, receipts and provenance are preserved. No assets or progress are granted. The previous valid checkpoint is retained. Initialization requires M2-B.')) return;
+    if (!await confirmAction('Upgrade this M1 career to schema 2? IDs, Gold, gameplay revision, receipts and provenance are preserved. No assets or progress are granted. The previous valid checkpoint is retained. Initialization requires M2-B.')) return;
     await store.migrateSchema({ confirmed: true, profileId: state.profile.id, careerId: state.career.id, expectedRevision: state.revision, expectedMaintenanceRevision: state.maintenanceRevision ?? 0 });
     notice = 'Schema 2 migration committed: management remains uninitialized, registries empty. No Gold, assets, achievements or gameplay revision awarded.'; lastToken = null;
   });
@@ -111,7 +113,7 @@ export function mountCareerSaves({ download }) {
     const rawDelta = $('careerTreasuryDelta').value;
     if (!rawDelta.trim() || !Number.isSafeInteger(Number(rawDelta))) throw Error('Enter a whole-number treasury change');
     const delta = Number(rawDelta), reason = $('careerEditReason').value;
-    if (!window.confirm('Apply this developer treasury transaction? It permanently marks this profile and career developer-edited.')) return;
+    if (!await confirmAction('Apply this developer treasury transaction? It permanently marks this profile and career developer-edited.')) return;
     await store.transaction({ id: newId('tx'), profileId: state.profile.id, careerId: state.career.id, expectedRevision: state.revision, type: 'developer.treasury.adjust', delta, reason, ...(state.schema >= 2 ? { commandVersion: 1, expectedMaintenanceRevision: state.maintenanceRevision, effectId: newId('effect') } : {}) });
     notice = 'Developer transaction committed. This provenance cannot be cleared by ordinary actions.'; lastToken = null;
   });
@@ -121,7 +123,7 @@ export function mountCareerSaves({ download }) {
     notice = 'Download requested. This exports the complete persistent state, not the running race. The browser cannot verify that you saved it durably. In manual mode, save the file before confirming the checkpoint.';
   });
   $('careerAcknowledge').onclick = act(async () => {
-    if (!window.confirm('Have you saved this exact exported checkpoint? This records your confirmation only; the game cannot verify disk durability.')) return;
+    if (!await confirmAction('Have you saved this exact exported checkpoint? This records your confirmation only; the game cannot verify disk durability.')) return;
     store.acknowledgeExport(lastToken); notice = 'Checkpoint confirmed by you for this session; disk durability was not independently verified.';
   });
   $('careerImportFile').onchange = act(async () => {
@@ -137,12 +139,12 @@ export function mountCareerSaves({ download }) {
   });
   $('careerImportApply').onclick = act(async () => {
     if (!staged) throw Error('Select and validate an import first');
-    if (!window.confirm('Replace the entire loaded Owner Profile, Career State and pending checkpoint with this file? Export your current state first. Owner Legacy is replaced, never merged; known matching developer provenance is retained. If the schema-1 upgrade checkbox is selected, the file is upgraded without grants.')) return;
+    if (!await confirmAction('Replace the entire loaded Owner Profile, Career State and pending checkpoint with this file? Export your current state first. Owner Legacy is replaced, never merged; known matching developer provenance is retained. If the schema-1 upgrade checkbox is selected, the file is upgraded without grants.')) return;
     await store.importSave(staged, { confirmed: true, migrateLegacy: $('careerImportMigrate').checked }); staged = null; lastToken = null;
     notice = 'Complete persistent state imported. Owner Legacy was not merged. Retained developer provenance may keep an older imported checkpoint marked edited.';
   });
   $('careerRecover').onclick = act(async () => {
-    if (!window.confirm('Recover the previous valid checkpoint? The current corrupt bytes remain available for diagnostic export. No financial recovery transaction or reward will be created.')) return;
+    if (!await confirmAction('Recover the previous valid checkpoint? The current corrupt bytes remain available for diagnostic export. No financial recovery transaction or reward will be created.')) return;
     await store.recover({ confirmed: true }); lastToken = null; notice = 'Previous checkpoint selected explicitly. Known developer provenance retained; no transaction, reward or revision was invented.';
   });
   $('careerRawExport').onclick = act(async () => {
@@ -156,11 +158,12 @@ export function mountCareerSaves({ download }) {
   renderEconomy = mountStableEconomy({store,act,newId,setNotice:message=>{notice=message;lastToken=null;},download});
   renderCycles = mountStableCycles({store,act,newId,setNotice:message=>{notice=message;lastToken=null;}});
   renderChampionships=mountChampionships({store,act,newId,setNotice:message=>{notice=message;lastToken=null;}});
-  durableUI=mountDurableChampionships({legacyStorage:storage,getLegacyState:()=>legacyStore.state,act,renderParent:render,newId});
+  durableUI=mountDurableChampionships({databaseOptions:context?.databaseOptions,legacyStorage:storage,getLegacyState:()=>legacyStore.state,act,renderParent:render,newId});
   render();
   // Optional presentation port: existing queue, discovery gate and persistence.
   const playerPort = {
     get store() { return store; },
+    get pending(){return pendingCount>0||!!durableUI?.pending||!!durableUI?.coordinator?.busy;},
     get durable() { return Boolean(durableUI?.durable); },
     get durableView() { return durableUI?.view ?? null; },
     newId,
@@ -184,4 +187,5 @@ export function mountCareerSaves({ download }) {
     },
   };
   globalThis.__BNT_HOME_STABLE_MOUNT__?.(playerPort);
+  context?.onPort?.(playerPort);
 }

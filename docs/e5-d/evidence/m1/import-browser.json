@@ -1,0 +1,10 @@
+{
+  "groups": [
+    "title imports complete pre-M1 active race into empty isolated destination with original Owner/career IDs, complete history and byte-exact session journals",
+    "duplicate imported ownership is rejected before allocating another slot; original authority unchanged",
+    "corrupt active checkpoint displays retained recovery action; global Options remains available without hiding recovery or inventing a result"
+  ],
+  "errors": [],
+  "dialogs": [],
+  "result": "PASS"
+}

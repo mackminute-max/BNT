@@ -1,0 +1,51 @@
+{
+  "checks": [
+    {
+      "name": "STARTING_PACKAGE_COPY",
+      "count": 5,
+      "keyParity": true
+    },
+    {
+      "name": "FACILITY_COPY",
+      "count": 7,
+      "keyParity": true
+    },
+    {
+      "name": "SERVICE_COPY",
+      "count": 6,
+      "keyParity": true
+    },
+    {
+      "name": "CONTRACT_TERM_COPY",
+      "count": 3,
+      "keyParity": true
+    },
+    {
+      "name": "REWARD_COPY",
+      "count": 14,
+      "keyParity": true
+    },
+    {
+      "name": "CHAMPIONSHIP_COPY",
+      "count": 6,
+      "keyParity": true
+    },
+    {
+      "name": "TRACK_COPY",
+      "count": 19,
+      "keyParity": true
+    },
+    {
+      "name": "INCIDENT_COPY",
+      "count": 3,
+      "keyParity": true
+    },
+    {
+      "name": "FOUNDATION_UI_COPY_REVISED",
+      "count": 12,
+      "keyParity": true
+    }
+  ],
+  "identities": 23,
+  "source": "Live exports from current working tree; no catalog loader or formatter implemented"
+}

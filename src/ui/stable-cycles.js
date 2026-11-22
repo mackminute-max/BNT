@@ -29,7 +29,7 @@ export function mountStableCycles({store,act,newId,setNotice,getCompletion=()=>n
   $('cycleSettlementPreview').textContent=settlement?JSON.stringify(settlement.quote,null,2):'No pending settlement preview.';
   $('cycleInspect').textContent=JSON.stringify({arrears:s.cycles.obligations,creditors:s.cycles.creditors,statements:s.cycles.statements,contractArchive:s.cycles.contractArchive},null,2);
  }
- $('cyclePreviewMigration').onclick=act(async()=>{migration=store.previewCycles();setNotice('Read-only M2-D migration preview prepared. Nothing changed.');});
+ $('cyclePreviewMigration').onclick=act(async()=>{migration=await store.previewCycles();setNotice('Read-only M2-D migration preview prepared. Nothing changed.');});
  $('cycleConfirmMigration').onclick=act(async()=>{if(!migration)throw Error('Preview migration first');if(!window.confirm('Enable M2-D payroll and lifecycle for this career? No championship or income is created. Export a backup first.'))return;const s=store.state;await store.migrateCycles({id:newId('cycle-migration'),profileId:s.profile.id,careerId:s.career.id,type:'career.cycles.migrate',maintenanceVersion:1,expectedRevision:migration.expectedRevision,expectedMaintenanceRevision:migration.expectedMaintenanceRevision,sourceSchema:3,targetSchema:4,sourceFingerprint:migration.sourceFingerprint,rulesVersion:RULES,effectId:cycleMigrationEffect(s.career.id),confirmed:true});migration=null;setNotice('M2-D migration committed atomically. No cycle or wage assessed.');});
  $('cyclePay').onclick=act(()=>commit('payroll.pay',{amount:Number($('cyclePayment').value)},'Pay oldest wage claims'));
  $('cycleRenew').onclick=act(()=>commit('contract.renew',selection(),'Renew selected expired ordinary contract'));

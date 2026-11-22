@@ -99,6 +99,7 @@ export function createWorkerService(){
   loaded.runner.viewer??=new ChampionshipViewer(loaded.runner,career);
   if(message.type==='viewerRead')return {version:1,durable:false,packet:loaded.runner.viewer.init(message.channel)};
   if(message.type==='backup'){if(message.previous)load(message.previous);const {hit,...verified}=loaded;cache=verified;return {durable:false,text:await encodeBackup(message.snapshot,career.current,message.previous??null)};}
+  if(message.type==='careerPreview'){if(!['previewEconomy','previewCycles'].includes(message.method))throw Error('Unsupported career preview');return career[message.method]();}
   if(message.type==='legacyExport')return {durable:false,envelope:career.export()};
 
   if(message.type==='inspect'){const observed=view(career,loaded.runner);return {version:1,...observed,reason:loaded.problem??(altered?'Durable record manifest mismatch; repair or matching complete backup required':observed.reason),durable:false};}

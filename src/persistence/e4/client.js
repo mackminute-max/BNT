@@ -39,6 +39,7 @@ export class E4Coordinator {
  }));}
  async repair(){const previous=await this.backend.previous();return this.operate('repair',{previous});}
  async inspect(){return this.exclusive(async()=>{this.progress('Validating durable career and sessions');const snapshot=await this.backend.snapshot(),view=await this.worker.call({type:'inspect',snapshot});return {...view,hasAuthority:!!(snapshot.generation||snapshot.migration||snapshot.migrationStage||snapshot.restoreStage),runtime:snapshot.runtime,generation:snapshot.generation,restoreStage:snapshot.restoreStage,migrationStage:snapshot.migrationStage,migration:snapshot.migration};});}
+ async previewCareer(method){if(!['previewEconomy','previewCycles'].includes(method))throw Error('Unsupported career preview');return this.exclusive(async()=>this.worker.call({type:'careerPreview',snapshot:await this.backend.snapshot(),method}));}
  async viewerRead(channel){return this.exclusive(async()=>{const snapshot=await this.backend.snapshot();const result=await this.worker.call({type:'viewerRead',snapshot,channel});return {durable:true,generation:snapshot.generation,...result.packet};});}
  async metadata(patch){const snapshot=await this.backend.snapshot(),runtime=validateRuntime({...snapshot.runtime,...patch});return this.operate('metadata',{runtime,expectedGeneration:snapshot.generation});}
  async career(method,args){return this.operate('career',{method,args});}

@@ -57,7 +57,7 @@ export function mountStableEconomy({store,act,newId,setNotice,download}){
   }else $('economyCapacity').textContent='No economy roster loaded';
   renderAction();
  }
- $('economyPreviewMigration').onclick=act(async()=>{plan=store.previewEconomy();setNotice('Read-only economy migration preview prepared. Nothing saved or granted.');});
+ $('economyPreviewMigration').onclick=act(async()=>{plan=await store.previewEconomy();setNotice('Read-only economy migration preview prepared. Nothing saved or granted.');});
  $('economyConfirmMigration').onclick=act(async()=>{
   if(!plan)throw Error('Preview migration first');const s=store.state;
   if(!window.confirm('Migrate this stable to M2-C? Preserve Gold and owned assets; add grandfathered contracts, valuation metadata and the initial 23-offer market. Export a backup first.'))return;
