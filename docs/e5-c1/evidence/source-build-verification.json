@@ -1,0 +1,26 @@
+{
+  "acceptedRuntime": "646fad6b7a6dff3b10d9718286840cc7b3c3bc97",
+  "acceptedDelivery": "feff8287e6e9b69582861e3262b80e2cf73432cc",
+  "implementation": "fd9cd96e3c8b13ac4ba391c7cf2f9651d923d10d",
+  "branch": "feat/m2-e5-c1-navigation-correction",
+  "originalCreationSites": [
+    31,
+    56
+  ],
+  "correctedCreationSites": [
+    35
+  ],
+  "applicationSourceChanges": [
+    "src/management/playable.js"
+  ],
+  "artifacts": {
+    "Blood-and-Thunder-E5-C-Playable.html": {
+      "bytes": 2242856,
+      "sha256": "8b31d3ef8ae6c902184beb7c134fad7e25290515250318211dbcd863eff71c2c"
+    },
+    "Blood-and-Thunder-E5-C1-Playable.html": {
+      "bytes": 2243624,
+      "sha256": "c508aea1093cbfd6758592866ce36a501d3034ef27c02f9ffab3bb6dc1558f3d"
+    }
+  }
+}

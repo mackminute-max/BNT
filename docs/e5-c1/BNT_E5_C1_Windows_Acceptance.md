@@ -1,0 +1,13 @@
+# Blood and Thunder — E5-C.1 Windows Direct-File Checklist
+
+1. Keep the original E5-C HTML and a complete backup. Use a disposable/test career or a separate browser profile; do not risk the only owner save. Download `Blood-and-Thunder-E5-C1-Playable.html` as an individual file.
+2. In PowerShell run `Get-FileHash .\Blood-and-Thunder-E5-C1-Playable.html -Algorithm SHA256`. Expected: `c508aea1093cbfd6758592866ce36a501d3034ef27c02f9ffab3bb6dc1558f3d` (2,243,624 bytes).
+3. Open directly from Explorer in Chrome and then Edge, using `file:///...`, with networking disabled. No server or adjacent files should be required. Record Windows/browser versions and preserve the same path/profile for reload tests.
+4. Fresh career: Continue Championship should be hidden. Register an explicitly selected legal Racing Unit using ordinary controls. Continue should appear once and navigate to the current championship.
+5. Complete an actual native race, return and publish its official result. Navigate Home Stable → Staff → Workshop & Finances → Championships → Career Records → Save & Recovery. Repeat this whole cycle at least20 times. There must remain exactly one Continue control; clicking it must navigate once to the correct championship action.
+6. Repeat after closing/reopening. Repeat the navigation test while a Run choice is pending, while final settlement is pending, and after settlement while Legacy selection is pending. The control must remain available; it must not bypass required choices or duplicate any financial/race effect.
+7. While an actual saved race needs recovery, Continue must reach recovery instructions rather than disappear or start a replacement race. Do not deliberately corrupt the only save. Report the exact diagnostic if safe continuation is blocked.
+8. Complete Legacy selection and archive. Continue should disappear, leaving one set of normal navigation controls. Begin another championship to confirm it reappears once. Ordinary pending operations should disable navigation until acknowledged.
+9. Optional DOM count without changing state: `document.querySelectorAll('#hs-continue-championship').length` should always be1, even when hidden. Keyboard focus should skip it when hidden/disabled. Check for extra navigation buttons or multiple page refreshes from a single click.
+
+Report any duplicates, inaccessible controls or unexpected destination with screenshot, career phase, browser/version and artifact hash. Existing persistence buffering is not fixed by C.1. Managed Linux HTTP tests do not establish Windows direct-file acceptance; no owner acceptance is claimed.
