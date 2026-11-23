@@ -1,0 +1,167 @@
+{
+  "schema": "bnt-content-sidecar-draft-v1",
+  "sourceRevision": "a70ec6e836b765488dbe793606e8c103b8dad3da",
+  "status": "DRAFT_REVIEW_REQUIRED",
+  "importable": false,
+  "content_kind": "tracks",
+  "integration": "presentation_only; no existing generic loader or binding",
+  "records": [
+    {
+      "key": "short-oval",
+      "family": "tracks_primary",
+      "existing_label": "Short Oval",
+      "description": "A short oval course with frequent returns to the turns.",
+      "source": "src/track/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "oval",
+      "family": "tracks_primary",
+      "existing_label": "Standard Oval",
+      "description": "A standard oval configuration for conventional lap racing.",
+      "source": "src/track/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "grand-oval",
+      "family": "tracks_primary",
+      "existing_label": "Grand Oval",
+      "description": "An extended oval with longer stretches between corners.",
+      "source": "src/track/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "C01",
+      "family": "tracks_primary",
+      "existing_label": "Broken Crown",
+      "description": "A fixed irregular circuit preset. Its turn sequence, surfaces and geometry are defined by the existing course catalog.",
+      "source": "src/track/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "C02",
+      "family": "tracks_primary",
+      "existing_label": "Serpent's Coil",
+      "description": "A fixed irregular circuit preset. Its turn sequence, surfaces and geometry are defined by the existing course catalog.",
+      "source": "src/track/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "C03",
+      "family": "tracks_primary",
+      "existing_label": "Ironhook",
+      "description": "A fixed irregular circuit preset. Its turn sequence, surfaces and geometry are defined by the existing course catalog.",
+      "source": "src/track/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "C04",
+      "family": "tracks_primary",
+      "existing_label": "Blackstone Run",
+      "description": "A fixed irregular circuit preset. Its turn sequence, surfaces and geometry are defined by the existing course catalog.",
+      "source": "src/track/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "C05",
+      "family": "tracks_primary",
+      "existing_label": "Thunder's Bend",
+      "description": "A fixed irregular circuit preset. Its turn sequence, surfaces and geometry are defined by the existing course catalog.",
+      "source": "src/track/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "C06",
+      "family": "tracks_primary",
+      "existing_label": "Widowmaker",
+      "description": "A fixed irregular circuit preset. Its turn sequence, surfaces and geometry are defined by the existing course catalog.",
+      "source": "src/track/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "C07",
+      "family": "tracks_primary",
+      "existing_label": "Ashen Ring",
+      "description": "A fixed irregular circuit preset. Its turn sequence, surfaces and geometry are defined by the existing course catalog.",
+      "source": "src/track/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "C08",
+      "family": "tracks_primary",
+      "existing_label": "King's Gauntlet",
+      "description": "A fixed irregular circuit preset. Its turn sequence, surfaces and geometry are defined by the existing course catalog.",
+      "source": "src/track/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "C09",
+      "family": "tracks_primary",
+      "existing_label": "Red Fang",
+      "description": "A fixed irregular circuit preset. Its turn sequence, surfaces and geometry are defined by the existing course catalog.",
+      "source": "src/track/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "C10",
+      "family": "tracks_primary",
+      "existing_label": "The Labyrinth",
+      "description": "A fixed irregular circuit preset. Its turn sequence, surfaces and geometry are defined by the existing course catalog.",
+      "source": "src/track/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "C11",
+      "family": "tracks_primary",
+      "existing_label": "Stormbreaker",
+      "description": "A fixed irregular circuit preset. Its turn sequence, surfaces and geometry are defined by the existing course catalog.",
+      "source": "src/track/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "C12",
+      "family": "tracks_primary",
+      "existing_label": "Devil's Spine",
+      "description": "A fixed irregular circuit preset. Its turn sequence, surfaces and geometry are defined by the existing course catalog.",
+      "source": "src/track/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "technical-circuit",
+      "family": "track_legacy_presets",
+      "existing_label": "Technical Circuit",
+      "description": "A separately defined legacy course preset. Its native geometry and terrain remain authoritative.",
+      "source": "src/track/course.js",
+      "status": "PROPOSED_PRESENTATION",
+      "not_an_alias": true
+    },
+    {
+      "key": "fast-circuit",
+      "family": "track_legacy_presets",
+      "existing_label": "Fast Circuit",
+      "description": "A separately defined legacy course preset. Its native geometry and terrain remain authoritative.",
+      "source": "src/track/course.js",
+      "status": "PROPOSED_PRESENTATION",
+      "not_an_alias": true
+    },
+    {
+      "key": "mixed-rally",
+      "family": "track_legacy_presets",
+      "existing_label": "Mixed-Terrain Rally",
+      "description": "A separately defined legacy course preset. Its native geometry and terrain remain authoritative.",
+      "source": "src/track/course.js",
+      "status": "PROPOSED_PRESENTATION",
+      "not_an_alias": true
+    },
+    {
+      "key": "technical-rally",
+      "family": "track_legacy_presets",
+      "existing_label": "Technical Rally",
+      "description": "A separately defined legacy course preset. Its native geometry and terrain remain authoritative.",
+      "source": "src/track/course.js",
+      "status": "PROPOSED_PRESENTATION",
+      "not_an_alias": true
+    }
+  ],
+  "reconciliation": "CONTENT_DRAFT_REVISED; NO_RUNTIME_IMPORT_OR_IMPLEMENTATION_AUTHORIZATION"
+}

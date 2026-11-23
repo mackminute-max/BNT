@@ -1,3 +1,4 @@
+import {componentReasons} from './component-eligibility.js';
 import { consequenceDefaults } from '../sim/consequences.js';
 import { defaultRU, validateRU, derive } from '../model/ru.js';
 import { config } from '../config/config.js';
@@ -12,11 +13,7 @@ export function previewRU(state, selection, { assignmentId = null } = {}) {
   if (!Array.isArray(beastIds) || beastIds.length !== 2 || new Set(beastIds).size !== 2) reasons.push('Select two distinct beasts');
   const specs = [['personnel',driverId],...(Array.isArray(beastIds)?beastIds:[]).map(id=>['beasts',id]),['chariots',chariotId]];
   for (const [kind, key] of specs) {
-    const a = Object.hasOwn(r[kind], key) ? r[kind][key] : null;
-    if (!a || a.ownerCareerId !== state.career.id) { reasons.push('Missing or foreign owned '+kind+': '+String(key)); continue; }
-    if ((a.references.assignment ?? []).some(key=>key !== assignmentId)) reasons.push('Asset already exclusively assigned: '+a.name);
-    if (!a.available) reasons.push('Asset unavailable: '+a.name);
-    if (['Severe','Dead'].includes(a.injury) || ['Critical','Destroyed'].includes(a.status)) reasons.push('Ineligible condition: '+a.name);
+    reasons.push(...componentReasons(state,kind,key,assignmentId));
   }
   if (reasons.length) return freeze({assembled,eligible:false,reasons,native:null,derived:null});
   const driver = r.personnel[driverId], beasts = beastIds.map(id=>r.beasts[id]), chariot = r.chariots[chariotId];

@@ -1,0 +1,30 @@
+{
+  "schema": "bnt-race-presentation-draft-v1",
+  "sourceRevision": "a70ec6e836b765488dbe793606e8c103b8dad3da",
+  "kind": "commentary_special_paths",
+  "status": "DRAFT_FOR_CODEX_REVIEW",
+  "importable": false,
+  "runtimeChangesAuthorized": false,
+  "records": [
+    {
+      "key": "DIRECTIVE_RESISTANCE",
+      "native_event_type": "AI_DECISION",
+      "not_native_template_key": true,
+      "variants": [
+        "{subject} resists {sign}, choosing {selected}: {reason}."
+      ],
+      "allowed_tokens": [
+        "subject",
+        "sign",
+        "selected",
+        "reason"
+      ],
+      "conditions": "AI_DECISION only, enabled, directive.decision===Resisting, no executionError or stressError, native 8-time-unit per-participant throttle.",
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "implementationSource": "      const directive=e.type==='AI_DECISION'?e.effects.directive:null;if(enabled&&directive?.decision==='Resisting'&&!e.effects.executionError&&!e.effects.stressError){const key='directive-refusal:'+e.participants[0];if(e.time-(this.last.get(key)??-Infinity)>=8){this.lines.push({eventId:e.id,time:e.time,type:'DIRECTIVE_RESISTANCE',text:`${e.participants[0]} resists ${directive.sign}, choosing ${directive.selected}: ${directive.reason}.`});this.last.set(key,e.time);}continue;}",
+      "status": "DRAFT_STRING_ONLY",
+      "inactive_alternates_policy": "Two additional draft variants removed from selectable set; no selector exists in native special path."
+    }
+  ],
+  "reconciliation": "CONTENT_DRAFT_REVISED; NO_RUNTIME_IMPORT_OR_IMPLEMENTATION_AUTHORIZATION"
+}

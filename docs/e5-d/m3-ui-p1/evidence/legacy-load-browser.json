@@ -1,0 +1,16 @@
+{
+  "sha256": "77e96a6c3db3c3c5409f14d50f1f9dc6bd8fa69aa14524b9a8e3c47dab30adf4",
+  "groups": [
+    "empty-schema2 loads and browses Home/Barn/Championships/SaveLoad without automatic migration or state mutation",
+    "schema1 loads and browses Home/Barn/Championships/SaveLoad without automatic migration or state mutation",
+    "schema2 loads and browses Home/Barn/Championships/SaveLoad without automatic migration or state mutation",
+    "schema3 loads and browses Home/Barn/Championships/SaveLoad without automatic migration or state mutation",
+    "schema4 loads and browses Home/Barn/Championships/SaveLoad without automatic migration or state mutation",
+    "schema5-foundation-only loads and browses Home/Barn/Championships/SaveLoad without automatic migration or state mutation",
+    "schema5-controller loads and browses Home/Barn/Championships/SaveLoad without automatic migration or state mutation",
+    "schema6 loads and browses Home/Barn/Championships/SaveLoad without automatic migration or state mutation"
+  ],
+  "errors": [],
+  "dialogs": [],
+  "result": "PASS"
+}

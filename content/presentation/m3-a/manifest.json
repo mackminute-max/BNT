@@ -1,0 +1,19 @@
+{
+  "kind": "BNT-m3-a-authoring-inputs",
+  "version": 1,
+  "sourceRevision": "a70ec6e836b765488dbe793606e8c103b8dad3da",
+  "files": {
+    "batch02/CHAMPIONSHIP_COPY.json": "dfe4683e61cddeb5a4f193fcc003df6dfc90872ba0235f1ff802637a071e8d6a",
+    "batch02/CONTRACT_TERM_COPY.json": "636e6777a424c95c0a4ab600da2b0ee2e0bd4dcfde07a0e2d3832add9bdbd6fb",
+    "batch02/FACILITY_COPY.json": "77056fa8fb58255c8f12ae264c1f38520cce39f8b414a029aac0715e7707e322",
+    "batch02/FOUNDATION_UI_COPY_REVISED.json": "c98f4199031c95d89ba45ceb2c4a78c6c74af3b681156f17085e8f657c636bf8",
+    "batch02/INCIDENT_COPY.json": "8c07a990e30bd767a4c755024f3503f8b440bbb69e576018b00acea294dc69b9",
+    "batch02/REWARD_COPY.json": "aa16627d8b0ede3efe0ab6c3a2ddc44f6dd64392a8daba06cbe686879ff536d2",
+    "batch02/SERVICE_COPY.json": "a43c8a445d9916b87f13a5d8d5fcfefa50308db03b1234a332972ed2c2c6a8b5",
+    "batch02/STARTING_PACKAGE_COPY.json": "e75fb7ad896ab09a700f34211731ec7808cf9437335fc77793026b6249127919",
+    "batch02/TRACK_COPY.json": "c47def74f0347a9ccfba06a9c45cc95487b48d42d2ca626b5b5ccae71be94e3f",
+    "batch04/RACING_INCIDENTS.json": "f665f48df9839496aef779ef7df9a2adeadadcbcde8b49c650afd4a55f230f54",
+    "batch04/STRATEGY_SIGNS.json": "e68b04145f70ec74b5aedf64170f5b47a915950f8ea6276a54cf2e02bb35a865",
+    "batch04/WEATHER.json": "c800c9d4e5d21ed39b2827d554d04524b4dd03f35060f0a64884e443c10f0b19"
+  }
+}

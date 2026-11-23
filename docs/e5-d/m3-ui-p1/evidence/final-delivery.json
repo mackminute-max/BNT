@@ -1,0 +1,11 @@
+{
+  "artifact": {
+    "file": "Blood-and-Thunder-E5-D-M3-UI-P1-Playable.html",
+    "bytes": 3152213,
+    "sha256": "77e96a6c3db3c3c5409f14d50f1f9dc6bd8fa69aa14524b9a8e3c47dab30adf4"
+  },
+  "sourceFiles": 589,
+  "manifestSHA256": "c2e474e2ebd8d605536cbaa34c97fc36f16871e3ec910de44ab991bea244fb16",
+  "protectedSourceFiles": 77,
+  "priorArtifacts": 25
+}

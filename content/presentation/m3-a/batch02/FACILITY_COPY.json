@@ -1,0 +1,86 @@
+{
+  "schema": "bnt-content-sidecar-draft-v1",
+  "sourceRevision": "a70ec6e836b765488dbe793606e8c103b8dad3da",
+  "status": "DRAFT_REVIEW_REQUIRED",
+  "importable": false,
+  "content_kind": "facility_upgrades",
+  "integration": "presentation_only; no existing generic loader or binding",
+  "records": [
+    {
+      "key": "staff-quarters",
+      "existing_label": "Staff Quarters",
+      "description": "Dedicated accommodation for specialist staff. The existing facility rule determines the added staffing capacity.",
+      "native_cost": 300,
+      "native_effect_reference": {
+        "capacity": "specialists",
+        "amount": 2
+      },
+      "source": "src/career/economy/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "expanded-stables",
+      "existing_label": "Expanded Stables",
+      "description": "Additional space for keeping and managing draft beasts. Capacity changes follow the native upgrade definition.",
+      "native_cost": 400,
+      "native_effect_reference": {
+        "capacity": "beasts",
+        "amount": 2
+      },
+      "source": "src/career/economy/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "driver-quarters",
+      "existing_label": "Driver Quarters",
+      "description": "Accommodation and facilities for a larger driver roster. Capacity is governed by the native upgrade.",
+      "native_cost": 350,
+      "native_effect_reference": {
+        "capacity": "drivers",
+        "amount": 1
+      },
+      "source": "src/career/economy/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "chariot-bay",
+      "existing_label": "Additional Chariot Bay",
+      "description": "Expanded shelter and storage for the stable's chariots. The native upgrade controls available capacity.",
+      "native_cost": 450,
+      "native_effect_reference": {
+        "capacity": "chariots",
+        "amount": 1
+      },
+      "source": "src/career/economy/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "workshop",
+      "existing_label": "Workshop",
+      "description": "A working shop for the stable. Its existing upgrade provides a 10% discount on eligible mechanical services; it does not unlock new repair actions.",
+      "native_cost": 500,
+      "native_effect_reference": {},
+      "source": "src/career/economy/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "treatment-ward",
+      "existing_label": "Treatment Ward",
+      "description": "A dedicated treatment space. Its existing upgrade provides a 10% discount on eligible treatment services; treatment is available without this upgrade when other native conditions permit.",
+      "native_cost": 450,
+      "native_effect_reference": {},
+      "source": "src/career/economy/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "training-grounds",
+      "existing_label": "Training Grounds",
+      "description": "A practice ground for the stable. Its existing upgrade provides a 10% discount on eligible XP training, subject to the current training ceiling; it grants no automatic experience or attributes.",
+      "native_cost": 600,
+      "native_effect_reference": {},
+      "source": "src/career/economy/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    }
+  ],
+  "reconciliation": "CONTENT_DRAFT_REVISED; NO_RUNTIME_IMPORT_OR_IMPLEMENTATION_AUTHORIZATION"
+}

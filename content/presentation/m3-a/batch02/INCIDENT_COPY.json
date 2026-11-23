@@ -1,0 +1,27 @@
+{
+  "schema": "bnt-content-sidecar-draft-v1",
+  "status": "DRAFT_REVIEW_REQUIRED",
+  "content_kind": "incidents",
+  "integration": "presentation_only; keys must be mapped to existing code by Codex",
+  "records": [
+    {
+      "key": "debris",
+      "title": "Track Debris",
+      "description": "Loose material has entered the racing surface. Watch for its effect on traffic and racing lines; the simulation determines the actual outcome."
+    },
+    {
+      "key": "animal",
+      "title": "Loose Animal",
+      "description": "An animal has strayed onto the course. Racers must contend with an unexpected obstruction; the simulation determines the actual outcome."
+    },
+    {
+      "key": "spectator",
+      "title": "Spectator Intrusion",
+      "description": "A spectator has crossed into the racing area. The resulting disruption is governed by the race simulation, not by this description."
+    }
+  ],
+  "sourceRevision": "a70ec6e836b765488dbe793606e8c103b8dad3da",
+  "importable": false,
+  "review_notes": "Semantically compatible candidate copy; no native field additions or changes.",
+  "reconciliation": "CONTENT_DRAFT_REVISED; NO_RUNTIME_IMPORT_OR_IMPLEMENTATION_AUTHORIZATION"
+}

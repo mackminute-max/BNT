@@ -1,0 +1,59 @@
+{
+  "schema": "bnt-content-sidecar-draft-v1",
+  "sourceRevision": "a70ec6e836b765488dbe793606e8c103b8dad3da",
+  "status": "DRAFT_REVIEW_REQUIRED",
+  "importable": false,
+  "content_kind": "championships",
+  "integration": "presentation_only; no existing generic loader or binding",
+  "records": [
+    {
+      "key": "dustroad",
+      "existing_label": "Dustroad Cup",
+      "description": "A compact opening cup on oval courses, where a small field leaves little room to disappear into the pack.",
+      "trophy_id": "trophy-dustroad",
+      "source": "src/career/championships/e5/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "ironwheel",
+      "existing_label": "Ironwheel Circuit",
+      "description": "A step up in field size and oval variety, with the longer Grand Oval joining the schedule.",
+      "trophy_id": "trophy-ironwheel",
+      "source": "src/career/championships/e5/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "bannerfall",
+      "existing_label": "Bannerfall Series",
+      "description": "A circuit series that introduces a succession of irregular courses and a larger competitive field.",
+      "trophy_id": "trophy-bannerfall",
+      "source": "src/career/championships/e5/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "crownfire",
+      "existing_label": "Crownfire Grand Prix",
+      "description": "A rally-focused Grand Prix contested across repeated point-to-point course selections.",
+      "trophy_id": "trophy-crownfire",
+      "source": "src/career/championships/e5/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "thunder-crown",
+      "existing_label": "Thunder Crown",
+      "description": "A mixed-format championship spanning ovals, circuits and rally stages.",
+      "trophy_id": "trophy-thunder-crown",
+      "source": "src/career/championships/e5/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "iron-gauntlet",
+      "existing_label": "Iron Gauntlet",
+      "description": "A demanding mixed-course championship with an eight-unit field and a schedule drawn from grand oval, circuit and rally courses.",
+      "trophy_id": "trophy-iron-gauntlet",
+      "source": "src/career/championships/e5/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    }
+  ],
+  "reconciliation": "CONTENT_DRAFT_REVISED; NO_RUNTIME_IMPORT_OR_IMPLEMENTATION_AUTHORIZATION"
+}

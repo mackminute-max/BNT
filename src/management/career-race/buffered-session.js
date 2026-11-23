@@ -7,13 +7,14 @@ class CareerRPC {
 }
 
 // Same P1.5/P2.2 output protocol and BufferedSession chronology. This transport
-// contains no simulation. Only durably acknowledged E4 projections are emitted.
+// contains no simulation. Legacy projections are durable; P1 projections carry
+// explicit matching in-memory attempt identity and never claim to be saved.
 export class DurableViewerTransport {
  constructor({rpc=new CareerRPC(),schedule=fn=>setTimeout(fn,0)}={}){this.rpc=rpc;this.schedule=schedule;this.output=0;this.input=0;this.commandSeq=0;this.generation=null;this.chain=Promise.resolve();this.running=false;this.closed=false;this.commands=new Map();this.packetCache=new Map();this.beforeSignal=true;this.counter=0;this.view={tick:0,time:0};}
  emit(type,payload={}){if(this.closed)return;this.onmessage?.({data:{version:1,generation:this.generation,seq:++this.output,type,...payload}});}
  postMessage(m){if(this.closed)return;this.chain=this.chain.then(()=>this.handle(m)).catch(e=>{this.running=false;this.emit('error',{message:e.message});});}
  async handle(m){if(m.version!==1||!Number.isSafeInteger(m.seq)||m.seq<1)throw Error('Invalid viewer input sequence');if(m.seq<=this.input){if(this.packetCache.get(m.seq)!==JSON.stringify(m))throw Error('Conflicting duplicate viewer input');if(m.type==='command'&&this.commands.has(m.commandId))await this.command(m);return;}if(m.seq!==this.input+1)throw Error('Missing viewer input');this.input=m.seq;this.packetCache.set(m.seq,JSON.stringify(m));if(this.packetCache.size>32)this.packetCache.delete(this.packetCache.keys().next().value);
-  if(m.type==='prepare'){if(this.generation!==null)throw Error('Career race already connected');this.generation=m.generation;const p=await this.rpc.call('read');this.binding=p.binding;this.display=p.display;this.head=p.frames.at(-1);this.view={tick:this.head.tick,time:this.head.time};this.beforeSignal=this.head.tick===0;this.cursor=p.eventCursor;this.dt=p.dt;this.emit('ready',{base:p.base,setup:p.setup,eventCursor:p.eventCursor,dt:p.dt,changes:[]});this.deliver(p);return;}
+  if(m.type==='prepare'){if(this.generation!==null)throw Error('Career race already connected');this.generation=m.generation;const p=await this.rpc.call('read');this.persistence=p.persistence;this.attemptId=p.attemptId;this.binding=p.binding;this.display=p.display;this.head=p.frames.at(-1);this.view={tick:this.head.tick,time:this.head.time};this.beforeSignal=this.head.tick===0;this.cursor=p.eventCursor;this.dt=p.dt;this.emit('ready',{base:p.base,setup:p.setup,eventCursor:p.eventCursor,dt:p.dt,changes:[]});this.deliver(p);return;}
   if(m.generation!==this.generation)throw Error('Stale viewer generation');
   if(m.type==='credit'){this.view=m.view;this.pumpSoon();}
   else if(m.type==='present-start')this.beforeSignal=false;
@@ -30,7 +31,7 @@ export class DurableViewerTransport {
   if(c.accepted&&['queue','cancel'].includes(m.action))for(const previous of this.commands.values())if(previous.ack.status==='accepted-queued'){previous.ack={...previous.ack,status:m.action==='queue'?'superseded':'canceled'};this.emit('command-status',previous.ack);}
   const ack={commandId:m.commandId,status:c.accepted?(m.action==='queue'?'accepted-queued':'accepted'):'rejected',acceptanceTick:c.acceptanceTick,acceptanceTime:c.acceptanceTime,viewTick:m.view.tick,queueOrder:c.queueOrder,remaining:c.remaining,reason:c.reason};this.commands.set(m.commandId,{encoded,ack});this.deliver(p);this.emit('command-status',ack);
  }
- deliver(p){if(p.durable!==true)throw Error('Race data has no durable acknowledgment');if(JSON.stringify(p.binding)!==JSON.stringify(this.binding))throw Error('Career race binding changed');
+ deliver(p){if(p.durable!==true&&!(this.persistence==='between-races-v1'&&p.persistence===this.persistence&&p.attemptId===this.attemptId))throw Error('Race data has neither durable nor matching in-memory authority');if(JSON.stringify(p.binding)!==JSON.stringify(this.binding))throw Error('Career race binding changed');
   for(const event of p.events){if(event.type==='SIGN_ACTIVATED')for(const c of this.commands.values())if(c.ack.status==='accepted-queued'&&c.ack.queueOrder!==undefined){c.ack={...c.ack,status:event.effects.mode==='buffer-delay-v1'?'activated-delayed':'activated-normal',activationTick:event.tick,activationTime:event.time,visibleFromTick:event.presentationTick};this.emit('command-status',c.ack);break;}}
   for(let i=0;i<p.events.length;i+=64)this.emit('events',{events:p.events.slice(i,i+64)});this.cursor+=p.events.length;
   for(const frame of p.frames){this.head=frame;this.emit('frame',{frame,eventWatermark:this.cursor});}

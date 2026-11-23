@@ -1,0 +1,456 @@
+{
+  "schema": "bnt-race-presentation-draft-v1",
+  "sourceRevision": "a70ec6e836b765488dbe793606e8c103b8dad3da",
+  "kind": "commentary_templates",
+  "status": "DRAFT_FOR_CODEX_REVIEW",
+  "importable": false,
+  "runtimeChangesAuthorized": false,
+  "records": [
+    {
+      "key": "RACE_STARTED",
+      "native_event_type": "RACE_STARTED",
+      "variant_count": 3,
+      "variants": [
+        "And the field is away! The standing start is behind us.",
+        "The signal is given, and the wheels begin to thunder.",
+        "No more waiting—the race is underway!"
+      ],
+      "allowed_tokens": [],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "RACE_STARTED: () => [\n    \"And they’re away! The field launches from the standing grid.\",\n    \"The signal is given—Blood and Thunder is under way!\",\n  ],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "OVERTAKE",
+      "native_event_type": "OVERTAKE",
+      "variant_count": 3,
+      "variants": [
+        "{passer} edges ahead of {passed}!",
+        "{passer} moves past {passed} in the running order.",
+        "A change of places: {passer} has overtaken {passed}."
+      ],
+      "allowed_tokens": [
+        "passer",
+        "passed"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "OVERTAKE: (e) => [\n    `${e.effects.passer} gets ahead of ${e.effects.passed}!`,\n    `${e.effects.passer} moves past ${e.effects.passed} in the order.`,\n  ],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "LEAD_CHANGED",
+      "native_event_type": "LEAD_CHANGED",
+      "variant_count": 3,
+      "variants": [
+        "{leader} has taken the lead!",
+        "A new leader: {leader} moves to the front.",
+        "{leader} is now the one to catch!"
+      ],
+      "allowed_tokens": [
+        "leader"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "LEAD_CHANGED: (e) => [`${e.effects.leader} takes the lead!`],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "CONTACT",
+      "native_event_type": "CONTACT",
+      "variant_count": 3,
+      "variants": [
+        "Contact between {participants}!",
+        "The rigs come together—{participants}!",
+        "That was close quarters for {participants}!"
+      ],
+      "allowed_tokens": [
+        "participants"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "CONTACT: (e) => [`Contact between ${e.participants.join(\" and \")}!`],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "ATTACK",
+      "native_event_type": "ATTACK",
+      "variant_count": 3,
+      "variants": [
+        "{attacker} goes after {defender}: {action} {attack_outcome}.",
+        "An aggressive move from {attacker} against {defender}—{action} {attack_outcome}.",
+        "{attacker} challenges {defender}; {action} {attack_outcome}."
+      ],
+      "allowed_tokens": [
+        "attacker",
+        "defender",
+        "action",
+        "attack_outcome"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "ATTACK: (e) => [\n    `${e.effects.attacker} against ${e.effects.defender}: ${e.effects.action} ${e.effects.success ? \"connects\" : \"is resisted\"}.`,\n  ],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "DAMAGE",
+      "native_event_type": "DAMAGE",
+      "variant_count": 3,
+      "variants": [
+        "{subject} takes {amount_1dp} damage to {component}.",
+        "Damage confirmed for {subject}: {component}, {amount_1dp}.",
+        "{subject} has suffered {amount_1dp} damage to {component}."
+      ],
+      "allowed_tokens": [
+        "subject",
+        "amount_1dp",
+        "component"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "DAMAGE: (e) => [\n    `${e.participants[0]} takes ${e.effects.amount.toFixed(1)} damage to ${e.effects.component}.`,\n  ],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "CONTROL_CHANGED",
+      "native_event_type": "CONTROL_CHANGED",
+      "variant_count": 3,
+      "variants": [
+        "{subject} is now {control_lower}.",
+        "A change in control for {subject}: {control_lower}.",
+        "{subject} has entered the {control_lower} control state."
+      ],
+      "allowed_tokens": [
+        "subject",
+        "control_lower"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "CONTROL_CHANGED: (e) => [\n    `${e.participants[0]} is ${e.effects.control.toLowerCase()}.`,\n  ],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "RU_RETIRED",
+      "native_event_type": "RU_RETIRED",
+      "variant_count": 3,
+      "variants": [
+        "{subject} is out of the race: {reason}.",
+        "The race ends here for {subject}—{reason}.",
+        "{subject} retires; the recorded reason is {reason}."
+      ],
+      "allowed_tokens": [
+        "subject",
+        "reason"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "RU_RETIRED: (e) => [`${e.participants[0]} is out: ${e.effects.reason}.`],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "WRECK_CREATED",
+      "native_event_type": "WRECK_CREATED",
+      "variant_count": 3,
+      "variants": [
+        "{subject} is a stationary wreck on the course.",
+        "The wreck of {subject} remains in the racing area.",
+        "{subject} has left a stationary wreck on the course."
+      ],
+      "allowed_tokens": [
+        "subject"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "WRECK_CREATED: (e) => [\n    `${e.participants[0]} remains on the track as a stationary wreck.`,\n  ],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "WRECK_IMPACT",
+      "native_event_type": "WRECK_IMPACT",
+      "variant_count": 3,
+      "variants": [
+        "Another impact at the wreck of {wreckId}.",
+        "The stationary wreck of {wreckId} has been struck again.",
+        "More trouble at the wreck marked {wreckId}."
+      ],
+      "allowed_tokens": [
+        "wreckId"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "WRECK_IMPACT: (e) => [`Another impact at the wreck of ${e.effects.wreckId}.`],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "INCIDENT",
+      "native_event_type": "INCIDENT",
+      "variant_count": 3,
+      "variants": [
+        "A {incident_type} intrusion obstructs lane {lane_1based}!",
+        "Race control reports {incident_type} in lane {lane_1based}.",
+        "An obstruction in lane {lane_1based}: {incident_type}."
+      ],
+      "allowed_tokens": [
+        "incident_type",
+        "lane_1based"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "INCIDENT: (e) => [\n    `A ${e.effects.type} intrusion obstructs lane ${e.effects.lane + 1}!`,\n  ],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "INCIDENT_CLEARED",
+      "native_event_type": "INCIDENT_CLEARED",
+      "variant_count": 3,
+      "variants": [
+        "The temporary obstruction has cleared.",
+        "Race control reports the obstruction removed.",
+        "The affected lane is clear of that temporary obstruction."
+      ],
+      "allowed_tokens": [],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "INCIDENT_CLEARED: () => [\"The temporary track obstruction has cleared.\"],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "SIGN_ACTIVATED",
+      "native_event_type": "SIGN_ACTIVATED",
+      "variant_count": 3,
+      "variants": [
+        "{subject} receives the sign: {sign}.",
+        "The stable’s instruction reaches {subject}: {sign}.",
+        "A sign is active for {subject}—{sign}."
+      ],
+      "allowed_tokens": [
+        "subject",
+        "sign"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "SIGN_ACTIVATED: (e) => [\n    `${e.participants[0]} receives the sign: ${e.effects.sign}.`,\n  ],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "COURSE_ENTERED",
+      "native_event_type": "COURSE_ENTERED",
+      "variant_count": 3,
+      "variants": [
+        "{subject} sets out on {track}.",
+        "{subject} is away on the {track} course.",
+        "The {track} awaits {subject}."
+      ],
+      "allowed_tokens": [
+        "subject",
+        "track"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "COURSE_ENTERED: e => [`${e.participants[0]} is away on ${e.effects.track}.`],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "SEGMENT_ENTERED",
+      "native_event_type": "SEGMENT_ENTERED",
+      "variant_count": 3,
+      "variants": [
+        "{subject} reaches {terrain}; {segment_motion}.",
+        "The next section for {subject} is {terrain}, {segment_motion}.",
+        "{subject} enters {terrain}—{segment_motion}."
+      ],
+      "allowed_tokens": [
+        "subject",
+        "terrain",
+        "segment_motion"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "SEGMENT_ENTERED: e => [`${e.participants[0]} reaches ${e.effects.terrain}${e.effects.type === \"turn\" ? \", turning \" + (e.effects.direction > 0 ? \"right\" : \"left\") : \" straightaway\"}.`],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "CHECKPOINT_CROSSED",
+      "native_event_type": "CHECKPOINT_CROSSED",
+      "variant_count": 3,
+      "variants": [
+        "{subject} passes checkpoint {checkpoint}.",
+        "Checkpoint {checkpoint} is behind {subject}.",
+        "{subject} crosses the marker at checkpoint {checkpoint}."
+      ],
+      "allowed_tokens": [
+        "subject",
+        "checkpoint"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "CHECKPOINT_CROSSED: e => [`${e.participants[0]} sweeps through checkpoint ${e.effects.checkpoint}.`],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "FINAL_LAP",
+      "native_event_type": "FINAL_LAP",
+      "variant_count": 3,
+      "variants": [
+        "{subject} begins the final lap!",
+        "One lap remains for {subject}.",
+        "{subject} heads into the last lap."
+      ],
+      "allowed_tokens": [
+        "subject"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "FINAL_LAP: (e) => [`${e.participants[0]} begins the final lap!`],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "RU_FINISHED",
+      "native_event_type": "RU_FINISHED",
+      "variant_count": 3,
+      "variants": [
+        "{subject} crosses the finish in {time_4dp} seconds!",
+        "The clock stops for {subject}: {time_4dp} seconds.",
+        "{subject} has finished, timed at {time_4dp} seconds."
+      ],
+      "allowed_tokens": [
+        "subject",
+        "time_4dp"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "RU_FINISHED: (e) => [\n    `${e.participants[0]} crosses the finish in ${e.effects.time.toFixed(4)} seconds!`,\n  ],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "RU_EXITED",
+      "native_event_type": "RU_EXITED",
+      "variant_count": 3,
+      "variants": [
+        "{subject} has cleared the track exit.",
+        "{subject} has cleared the exit; other racers may still be on course.",
+        "{subject} is off the racing surface."
+      ],
+      "allowed_tokens": [
+        "subject"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "RU_EXITED: (e) => [`${e.participants[0]} has safely cleared the track exit.`],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "RACE_STALLED",
+      "native_event_type": "RACE_STALLED",
+      "variant_count": 3,
+      "variants": [
+        "Race control ends the stalled race. Unfinished entries receive no finish time.",
+        "The race is stalled. No official settlement or championship advancement is implied.",
+        "A stalled race is called; no finish time is awarded to unfinished entries."
+      ],
+      "allowed_tokens": [],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "RACE_STALLED: () => [\n    \"Race control ends the stalled race. Unfinished entries receive no finish time.\",\n  ],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "RACE_ENDED",
+      "native_event_type": "RACE_ENDED",
+      "variant_count": 3,
+      "variants": [
+        "The race has ended. Official classification is ready.",
+        "That concludes the race; the official classification is available.",
+        "The final racing action is over, and the classification is ready."
+      ],
+      "allowed_tokens": [],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "RACE_ENDED: () => [\"The race is over. The official classification is ready.\"],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "INTEGRITY_ERROR",
+      "native_event_type": "INTEGRITY_ERROR",
+      "variant_count": 3,
+      "variants": [
+        "Race stopped: an integrity diagnostic requires attention.",
+        "An integrity check has halted proceedings.",
+        "Race control reports an integrity error; the race is stopped."
+      ],
+      "allowed_tokens": [],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "INTEGRITY_ERROR: () => [\n    \"Race stopped: an integrity diagnostic requires attention.\",\n  ],",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    }
+  ],
+  "reconciliation": "CONTENT_DRAFT_REVISED; NO_RUNTIME_IMPORT_OR_IMPLEMENTATION_AUTHORIZATION"
+}

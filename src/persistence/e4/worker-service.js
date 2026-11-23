@@ -1,3 +1,7 @@
+import {MemoryAttempt} from '../race/memory-attempt.js';
+import {assertPresentationRestore} from '../career-presentation.js';
+import {validateRuntime,defaultRuntime} from './runtime.js';
+import {validatePresentationOwner,preservePresentation} from './presentation.js';
 import {ChampionshipViewer} from '../../career/championships/viewer.js';
 import {makeE5Command} from '../../career/championships/e5/contracts.js';
 import {createSettlementCapability} from '../../career/championships/e5/capabilities.js';
@@ -39,16 +43,18 @@ class DurableRunner extends ChampionshipRunner {
   this.cached=new CachedSession(this.storage,{identity,interval:1,fallback:'birth',getCareerAnchor:()=>{const next=this.storage.getItem(SAVE_KEY);if(next!==raw){anchor=validatedAnchor(this.career,this.storage,identity.raceId);raw=next;}return anchor;}});return this.cached;
  }
 }
-function view(career,runner){const s=career.state,x=activeChampionship(s);let frame=null,reason=null,operational=null,watermark=null,sessionRevision=null,warning=null;try{if(x?.raceId&&x.phase!=='NO_STARTERS_PENDING'&&!x.raceResults.some(r=>r.raceId===x.raceId&&r.kind==='NoStarters')){const session=runner.session();session.open();const n=session.state;operational=session.record.authority.value.operational;watermark=session.record.authority.value.watermark;sessionRevision=session.record.authority.value.revision;warning=session.problem;frame={tick:n.tick,time:n.time,status:n.status,config:n.config,track:n.track,playerId:n.playerId,entrants:n.entrants.map(r=>({id:r.id,q:r.q,lane:r.lane,status:r.status,physical:r.physical,speed:r.speed,signs:r.signs,ru:r.ru}))};}}catch(e){reason=e.message;}return {state:s,frame,operational,watermark,sessionRevision,warning,reason};}
+function view(career,runner){const s=career.state,x=activeChampionship(s);let frame=null,reason=null,operational=null,watermark=null,sessionRevision=null,warning=null;try{if(x?.raceId&&x.phase!=='NO_STARTERS_PENDING'&&!x.raceResults.some(r=>r.raceId===x.raceId&&r.kind==='NoStarters')){const session=runner.session();session.open();const n=session.state;operational=session.record.authority.value.operational;watermark=session.record.authority.value.watermark;sessionRevision=session.record.authority.value.revision;warning=session.problem;frame={tick:n.tick,time:n.time,status:n.status,config:n.config,track:n.track,playerId:n.playerId,entrants:n.entrants.map(r=>({id:r.id,q:r.q,lane:r.lane,status:r.status,physical:r.physical,speed:r.speed,signs:r.signs,ru:r.ru}))};}}catch(e){reason=e.message;}return {state:s,presentation:structuredClone(career.presentation),frame,operational,watermark,sessionRevision,warning,reason};}
 export function createWorkerService(){
- let cache=null,pending=null,serial=0;
+ let cache=null,pending=null,serial=0,attempt=null;
  function load(snapshot,tolerant=false){
   checkRecords(snapshot.records);if(!Number.isSafeInteger(snapshot.generation)||snapshot.generation<0)throw Error('Invalid generation');
+  validateRuntime(snapshot.runtime??defaultRuntime());
   const key=snapshotKey(snapshot);
   if(cache&&sameSnapshot(cache.key,key))return {hit:true,...cache};
   const map=new Map(snapshot.records),storage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)};
   if(!map.has(SAVE_KEY))throw Error('No career authority');// CareerStore.open below performs the full untrusted envelope validation once.
   const career=new CareerStore(storage);career.open();if(career.mode!=='automatic'||!career.current)throw Error('Corrupt/untrusted career authority: '+career.problem);
+  validatePresentationOwner(snapshot.runtime,career);
   let problem=null;try{
   for(const x of Object.values(career.state.championshipFoundation?.instances??{})){
    for(const result of x.raceResults??[])if(result.kind==='NativeCleared'&&!map.has(result.reference.storageKey))throw Error('Missing retained official session authority');
@@ -72,23 +78,26 @@ export function createWorkerService(){
   if(message.type==='ack'){
    if(!pending||pending.token!==message.token)throw Error('Unknown candidate acknowledgement');
    // Durable commit is checked by the coordinator, never asserted by this worker.
-   cache=pending.validated;pending=null;return {version:1,accepted:true,durable:false};
+   cache=pending.validated;if(attempt){if(pending.operation==='memoryPrepare')attempt.prepared=true;else if(['metadata','presentation'].includes(pending.operation))attempt.rebase({...cache.key,generation:pending.generation,records:pending.records},cache.career);else if(pending.operation==='official')attempt=null;}pending=null;return {version:1,accepted:true,durable:false};
   }
   if(pending)throw Error('Candidate pending; commit or reset first');
   if(message.type==='condition')return {version:1,result:pack(mapCondition(unpack(message.input))),durable:false};
+  if(message.type==='attemptInfo')return {available:!!attempt&&attempt.identity.raceId===message.raceId,durable:false};
+  if(message.type==='attemptExecute'){if(!attempt)throw Error('Unsaved attempt unavailable; restart from the saved starting state');return attempt.execute(message);}
+  if(message.type==='attemptRead'){if(message.snapshot.recordsHash&&message.snapshot.recordsHash!==await digestText(JSON.stringify(message.snapshot.records)))throw Error('RECOVERY_REQUIRED: durable record manifest mismatch');const loaded=load(message.snapshot),x=activeChampionship(loaded.career.current);if(!attempt||attempt.identity.raceId!==x?.raceId)attempt=new MemoryAttempt(loaded,message.snapshot,message.channel);else if(attempt.generation!==message.snapshot.generation)throw Error('STALE_WRITER: race changed; reload before restarting');return attempt.read(message.channel);}
   if(message.type==='prepareRestore'){
-   const b=await decodeBackup(message.text),source=load({generation:b.payload.sourceGeneration,records:b.payload.records});
+   const b=await decodeBackup(message.text),source=load({generation:b.payload.sourceGeneration,records:b.payload.records,runtime:b.payload.runtime});
    if(source.career.current.profile.id!==b.payload.profileId||source.career.current.career.id!==b.payload.careerId)throw Error('Backup career ownership mismatch');
    if(b.payload.previous)load(b.payload.previous);
    const target=new Map(b.payload.records),matched=message.snapshot.recordsHash&&message.snapshot.recordsHash===b.payload.sourceRecordsHash&&message.snapshot.generation===b.payload.sourceGeneration&&message.snapshot.migration?.digest===b.payload.rootDigest;let old=null;try{old=message.snapshot.records.length?load(message.snapshot,true):message.baseline?.length?load({generation:0,records:message.baseline}):null;}catch(e){if(!matched)throw e;}if(old?.problem&&!matched)throw Error('Corrupt authority requires an exact generation/record-manifest backup');
-   if(old){if(old.career.current.profile.id!==b.payload.profileId||old.career.current.career.id!==b.payload.careerId)throw Error('Unrelated career would be overwritten; use an empty destination');
+   if(old){assertPresentationRestore(old.career.presentation,source.career.presentation,{existing:true});preservePresentation(message.snapshot.runtime,b.payload.runtime);if(old.career.current.profile.id!==b.payload.profileId||old.career.current.career.id!==b.payload.careerId)throw Error('Unrelated career would be overwritten; use an empty destination');
     for(const[k,v]of old.map){if(k===SAVE_KEY||matched&&old.problem)continue;const next=target.get(k);if(!next)throw Error('Restore would discard retained session authority');const a=JSON.parse(v),n=JSON.parse(next),av=a.authority.value,nv=n.authority.value;
-     if(nv.revision<av.revision||nv.setupHash!==av.setupHash||JSON.stringify(n.journal.value.slice(0,a.journal.value.length))!==JSON.stringify(a.journal.value))throw Error('Restore would rewind/conflict with acknowledged inputs');
+     const forward=n.version===2&&av.operational==='ACTIVE'&&nv.operational==='RESULT_COMMITTED'&&n.boundary?.value?.sourceAuthorityHash===wireHash(a.authority);if(nv.setupHash!==av.setupHash||(!forward&&(nv.revision<av.revision||JSON.stringify(n.journal.value.slice(0,a.journal.value.length))!==JSON.stringify(a.journal.value))))throw Error('Restore would rewind/conflict with acknowledged inputs');
      if(av.operational==='RESULT_COMMITTED'&&JSON.stringify(a)!==JSON.stringify(n))throw Error('Restore conflicts with immutable official result');
     }
     cache=null;if(target.get(SAVE_KEY)!==old.map.get(SAVE_KEY)){old.career.importSave(target.get(SAVE_KEY),{confirmed:true});target.set(SAVE_KEY,old.map.get(SAVE_KEY));}
    }
-   const records=[...target].sort(([a],[b])=>a<b?-1:a>b?1:0);load({...message.snapshot,records});cache=null;
+   const records=[...target].sort(([a],[b])=>a<b?-1:a>b?1:0);load({...message.snapshot,records,runtime:b.payload.runtime});cache=null;
    const receipts=mergeRestoreReceipts(message.snapshot.restoreReceipts??[],b.payload.restoreReceipts),prior=receipts.find(r=>r.digest===b.digest);
    if(prior){const currentHash=await digestText(JSON.stringify(message.snapshot.records));if(prior.resultHash!==currentHash)throw Error('Restore already consumed and authority advanced; no rollback');return {duplicate:true,durable:false};}
    const resultHash=await digestText(JSON.stringify(records));return {durable:false,records,runtime:b.payload.runtime,receipt:{digest:b.digest,resultHash},receipts:mergeRestoreReceipts(receipts,[{digest:b.digest,resultHash}]),digest:b.digest,previous:b.payload.previous,sourceGeneration:b.payload.sourceGeneration,rootDigest:message.snapshot.migration?.digest??b.payload.rootDigest,profileId:b.payload.profileId,careerId:b.payload.careerId};
@@ -127,13 +136,16 @@ export function createWorkerService(){
     if(!cp||a.previousHash&&!prev)throw Error('Checkpoint cannot be reconstructed exactly; complete matching backup required');r.checkpoint=cp;r.previous=prev;map.set(k,JSON.stringify(r));
    }
    if(expected&&await digestText(JSON.stringify([...map]))!==expected)throw Error('Repair cannot prove the original durable record manifest');
-   load({...message.snapshot,records:[...map]});cache=null;
+   const repaired=load({...message.snapshot,records:[...map]});assertPresentationRestore(career.presentation,repaired.career.presentation,{existing:true});cache=null;
   }
+  else if(op==='activeTeam'){career.setActiveTeam(message.request);}
   else if(op==='career'){if(!['transaction','migrateFoundation','migrateCycles','migrateEconomy','migrateSchema','create','importSave','recover'].includes(message.method))throw Error('Unsupported career method');if(message.method==='transaction'&&['cycle.settle','e5.settle'].includes(message.args[0]?.type))throw Error('E5 completion authority is unavailable');if(['create','importSave','recover'].includes(message.method)&&[...map.keys()].some(k=>k!==SAVE_KEY))throw Error('Use complete backup restoration; career-only replacement cannot discard session authority');career[message.method](...message.args);}
   else if(op==='e5'){if(!['e5.enable','e5.refresh','e5.register','e5.selectRun','e5.settle','e5.selectLegacy'].includes(message.command))throw Error('Unsupported E5 operation');const command=makeE5Command(career.state,message.command,message.payload,message.id);career.transaction(command,message.command==='e5.settle'&&!career.current.transactions.some(r=>r.transaction.type==='e5.settle'&&r.transaction.payload.instanceId===message.payload.instanceId)?{settlement:createSettlementCapability(career,storage)}:{});}
   else if(op==='controller'){const type=message.command;if(!['controller.enable','controller.enableE3','championship.register','championship.coach','championship.withdraw'].includes(type))throw Error('Unsupported controller command');career.transaction(makeControllerCommand(career.state,type,message.payload,message.id));}
   else if(op==='refreshOffers'){const offers=[developmentOffer()];career.transaction(makeControllerCommand(career.state,'championship.refreshOffers',{offers},message.id),{catalog:createCatalogBoundary(v=>fingerprint(v)===fingerprint(offers)).accept(offers)});}
-  else if(op==='metadata'){}
+  else if(op==='memoryPrepare'){if(!attempt)throw Error('Unsaved attempt unavailable; cannot fabricate a result');attempt.prepare(loaded,message.snapshot,'e2-result-'+fingerprint([activeChampionship(career.state).id,activeChampionship(career.state).raceId]).slice(0,40));loaded.runner.cached=null;}
+  else if(op==='presentation'){career.setRadioPreference(message.enabled,message.expectedPresentationRevision);}
+  else if(op==='metadata'){validateRuntime(message.runtime);preservePresentation(message.snapshot.runtime,message.runtime);}
   else if(op==='retry')runner.retry(message.id);
   else if(op==='start')career.transaction(makeControllerCommand(career.state,'championship.start',{instanceId:activeChampionship(career.state).id},message.id));
   else if(op==='birth'){if(activeChampionship(career.state)?.phase!=='NO_STARTERS_PENDING')runner.ensure();}
@@ -150,7 +162,8 @@ export function createWorkerService(){
    }
    runner.publish(message.id);
   }else throw Error('Unsupported prepared operation');
-  const records=[...map];checkRecords(records);const candidateHash=await digestText(JSON.stringify(records));pending={token:'candidate-'+(++serial),validated:{key:snapshotKey({...message.snapshot,generation:message.snapshot.generation+1,records,...(Object.hasOwn(message.snapshot,'recordsHash')?{recordsHash:candidateHash}:{}),...(message.runtime?{runtime:message.runtime}:{})}),map,storage,career,runner}};
+  validatePresentationOwner(message.runtime??message.snapshot.runtime,career);
+  const records=[...map];checkRecords(records);const candidateHash=await digestText(JSON.stringify(records));pending={operation:op,generation:message.snapshot.generation+1,records,token:'candidate-'+(++serial),validated:{key:snapshotKey({...message.snapshot,generation:message.snapshot.generation+1,records,...(Object.hasOwn(message.snapshot,'recordsHash')?{recordsHash:candidateHash}:{}),...(message.runtime?{runtime:message.runtime}:{})}),map,storage,career,runner}};
   return {version:1,token:pending.token,records,recordsHash:candidateHash,...(viewerPacket?{viewer:viewerPacket}:{}),durable:false,elapsedMs:performance.now()-started,phase:activeChampionship(career.state)?.phase,revision:career.current.revision};
  };
 }

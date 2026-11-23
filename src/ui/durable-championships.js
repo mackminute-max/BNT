@@ -15,19 +15,24 @@ export function mountDurableChampionships({databaseOptions,legacyStorage,getLega
  $('e4Repair').onclick=action(async()=>{ui.playing=false;await ui.coordinator.repair();ui.notice='Original record manifest reconstructed and committed without replaying effects.';});
  $('e4Reload').onclick=action(async()=>{ui.playing=false;await attach();ui.notice='Durable authority revalidated. Playback requires explicit resume.';});$('e4Restart').onclick=action(async()=>{ui.playing=false;ui.coordinator.worker.restart();await ui.refresh();ui.notice='Worker restarted; only durable authority was restored.';});
  ui.e5=async(command,payload)=>{ui.playing=false;return op('e5',{command,payload});};
+ ui.race=async(type,args={})=>{if(!ui.durable||!ui.coordinator)throw Error('Durable race birth required');const packet=type==='read'?await ui.coordinator.attemptRead(args.channel):await ui.coordinator.attemptExecute(args);if(packet.frames?.length)ui.view.frame={...ui.view.frame,...packet.frames.at(-1)};return packet;};
  ui.game=async(operation,args={})=>{
   ui.playing=false;clearTimeout(timer);if(!ui.coordinator||!ui.durable)throw Error('Enable durable saves first');
   let result;if(operation==='read')return ui.coordinator.viewerRead(args.channel);
   if(operation==='viewer'){result=await ui.coordinator.operate('viewer',{...args,expectedGeneration:ui.view.generation});ui.view.generation=result.generation;if(result.viewer?.frames.length)ui.view.frame={...ui.view.frame,...result.viewer.frames.at(-1)};return result;}
+  if(operation==='verify'){const checked=await ui.coordinator.validate();await ui.refresh();if(!ui.view.state||ui.view.reason)throw Error(ui.view.reason||'No valid saved career');return checked;}
+  if(operation==='activeTeam'){result=await ui.coordinator.operate('activeTeam',{request:args,expectedGeneration:ui.view.generation});await ui.refresh();return result;}
+  if(operation==='presentation'){result=await ui.coordinator.radioPreference(args.enabled,args.expectedPresentationRevision,ui.view.generation);await ui.refresh();return result;}
   if(operation==='metadata'){result=await ui.coordinator.metadata(args);ui.view.generation=result.generation;ui.view.runtime={...ui.view.runtime,...args};return result;}
-  if(operation==='publish')result=await ui.coordinator.publish(newId('career-official'),{expectedGeneration:ui.view.generation});
+  if(operation==='finishAttempt'||operation==='publish'&&globalThis.__BNT_BOUNDARY_RACES__&&ui.view.frame&&['Ended','Stalled','Error'].includes(ui.view.frame.status)&&ui.view.operational!=='RESULT_COMMITTED')result=await ui.coordinator.finishAttempt(newId('career-official'),{expectedGeneration:ui.view.generation});
+  else if(operation==='publish')result=await ui.coordinator.publish(newId('career-official'),{expectedGeneration:ui.view.generation});
   else if(operation==='restart'){ui.coordinator.worker.restart();}
   else if(operation==='resumeRestore')result=await ui.coordinator.resumeRestore({confirmed:true,legacy:legacyStorage});
   else if(operation==='repair')result=await ui.coordinator.repair();
   else if(['start','birth','retry'].includes(operation))result=await ui.coordinator.operate(operation,{id:newId('career-'+operation),expectedGeneration:ui.view.generation});
   else if(operation==='withdraw')result=await ui.coordinator.operate('controller',{id:newId('career-withdraw'),expectedGeneration:ui.view.generation,command:'championship.withdraw',payload:{instanceId:activeChampionship(ui.view.state).id,confirmed:true}});
   else if(operation==='coach')result=await ui.coordinator.operate('controller',{id:newId('career-coach'),expectedGeneration:ui.view.generation,command:'championship.coach',payload:args});
-  else if(operation==='headless'){if(!activeChampionship(ui.view.state)?.withdrawal)throw Error('Headless continuation is only available after player withdrawal');result=await ui.coordinator.operate('advance',{id:newId('career-ai'),expectedGeneration:ui.view.generation,ticks:args.ticks??100});}
+  else if(operation==='headless'){const x=activeChampionship(ui.view.state);if(!x?.withdrawal)throw Error('Headless continuation is only available after player withdrawal');if(globalThis.__BNT_BOUNDARY_RACES__){const channel='ai-'+x.raceId;let packet=await ui.coordinator.attemptRead(channel),remaining=args.ticks??100;while(remaining>0&&!packet.completion){const frame=packet.frames.at(-1),ticks=Math.min(20,remaining);packet=await ui.coordinator.attemptExecute({channel,binding:packet.binding,action:'advance',id:newId('ai'),view:{tick:frame.tick,time:frame.time},ticks});remaining-=ticks;}if(packet.frames.length)ui.view.frame={...ui.view.frame,...packet.frames.at(-1)};return packet;}result=await ui.coordinator.operate('advance',{id:newId('career-ai'),expectedGeneration:ui.view.generation,ticks:args.ticks??100});}
   else throw Error('Unsupported player championship action');await ui.refresh();return result;
  };
  const op=async(operation,args={})=>{const result=await ui.coordinator.operate(operation,{id:newId('e4'),expectedGeneration:ui.view?.generation,...args});await ui.refresh();return result;};

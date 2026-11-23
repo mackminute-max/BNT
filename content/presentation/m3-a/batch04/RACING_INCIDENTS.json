@@ -1,0 +1,38 @@
+{
+  "schema": "bnt-race-presentation-draft-v1",
+  "sourceRevision": "a70ec6e836b765488dbe793606e8c103b8dad3da",
+  "kind": "incidents",
+  "status": "DRAFT_FOR_CODEX_REVIEW",
+  "importable": false,
+  "runtimeChangesAuthorized": false,
+  "records": [
+    {
+      "key": "debris",
+      "proposed_title": "Track Debris",
+      "description": "Loose material has entered the racing surface. The race simulation determines the resulting obstruction and any consequences.",
+      "radio_cue": "Debris on the course! Race control has an obstruction to watch.",
+      "visual_brief": "Generic angular fragments of wood and stone; no identifiable wreck or guaranteed collision.",
+      "source": "src/sim/incidents.js",
+      "mechanics": "UNCHANGED"
+    },
+    {
+      "key": "animal",
+      "proposed_title": "Loose Animal",
+      "description": "An animal has strayed into the racing area. Its type, location and consequences are not defined by this copy.",
+      "radio_cue": "An animal has wandered onto the track—an unwelcome visitor!",
+      "visual_brief": "Neutral quadruped silhouette without a specific approved species; readable at small size.",
+      "source": "src/sim/incidents.js",
+      "mechanics": "UNCHANGED"
+    },
+    {
+      "key": "spectator",
+      "proposed_title": "Spectator Intrusion",
+      "description": "A spectator has crossed into the racing area. The simulation determines the actual disruption.",
+      "radio_cue": "A spectator is on the racing surface! That is no place to watch from.",
+      "visual_brief": "One generic humanoid silhouette beyond the barrier; no injury or ancestry implication.",
+      "source": "src/sim/incidents.js",
+      "mechanics": "UNCHANGED"
+    }
+  ],
+  "reconciliation": "CONTENT_DRAFT_REVISED; NO_RUNTIME_IMPORT_OR_IMPLEMENTATION_AUTHORIZATION"
+}

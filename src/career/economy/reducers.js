@@ -1,3 +1,4 @@
+import {componentReasons} from '../component-eligibility.js';
 import {canonical} from '../../core/determinism.js';
 import {freeze,integrityStatus} from '../assets.js';
 import {defaultRU,validateRU,derive} from '../../model/ru.js';
@@ -106,9 +107,7 @@ export function previewRU3(state,selection,{assignmentId=null}={}){
  const assembled=Boolean(current&&current.driverId===driverId&&current.chariotId===chariotId&&canonical(current.beastIds)===canonical(beastIds));
  if(!Array.isArray(beastIds)||beastIds.length!==2||new Set(beastIds).size!==2)reasons.push('Select two distinct beasts');
  for(const [kind,key] of [['personnel',driverId],...(Array.isArray(beastIds)?beastIds:[]).map(k=>['beasts',k]),['chariots',chariotId]]){
-  const a=r[kind][key];if(!a||a.ownerCareerId!==state.career.id){reasons.push('Missing/foreign component');continue;}
-  if(a.references.assignment?.some(k=>k!==assignmentId))reasons.push('Exclusive assignment conflict');
-  if(!a.available||['Major','Critical'].includes(a.injury)||['Critical','Destroyed'].includes(a.status))reasons.push('Unavailable/ineligible component: '+a.name);
+  reasons.push(...componentReasons(state,kind,key,assignmentId));
  }
  if(reasons.length)return freeze({assembled,eligible:false,reasons,native:null,derived:null});
  const driver=r.personnel[driverId],beasts=beastIds.map(k=>r.beasts[k]),chariot=r.chariots[chariotId],native=defaultRU('management-preview');

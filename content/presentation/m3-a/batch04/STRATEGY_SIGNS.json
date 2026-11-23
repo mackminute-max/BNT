@@ -1,0 +1,83 @@
+{
+  "schema": "bnt-race-presentation-draft-v1",
+  "sourceRevision": "a70ec6e836b765488dbe793606e8c103b8dad3da",
+  "kind": "strategy_signs",
+  "status": "DRAFT_FOR_CODEX_REVIEW",
+  "importable": false,
+  "runtimeChangesAuthorized": false,
+  "records": [
+    {
+      "key": "Push the Pace",
+      "existing_label": "Push the Pace",
+      "radio_short": "Press the Advantage",
+      "tooltip": "A call to seek greater pace. The native directive and resistance rules determine how the driver responds.",
+      "commentary_cue": "The {sign} instruction has activated; the driver’s response remains governed by native AI and constraints.",
+      "activation_note": "A queued Sign activates at the starting signal if queued before the race starts; otherwise at the next start/finish crossing on closed courses or the applicable Rally checkpoint. Queueing is not activation and consumes an existing opportunity.",
+      "visual_brief": "An angular raised pennant with three forward speed chevrons; burnt orange field, ivory chevrons.",
+      "mechanics": "UNCHANGED",
+      "source": "src/ai/signs.js",
+      "commentary_cue_trigger": "SIGN_ACTIVATED only; never on queue acknowledgment"
+    },
+    {
+      "key": "Conserve Strength",
+      "existing_label": "Conserve Strength",
+      "radio_short": "Keep Something Back",
+      "tooltip": "An instruction to manage effort rather than spend it all at once. It is not a guarantee of lower fatigue.",
+      "commentary_cue": "The {sign} instruction has activated; the driver’s response remains governed by native AI and constraints.",
+      "activation_note": "A queued Sign activates at the starting signal if queued before the race starts; otherwise at the next start/finish crossing on closed courses or the applicable Rally checkpoint. Queueing is not activation and consumes an existing opportunity.",
+      "visual_brief": "A deep blue pennant with a compact shield enclosing a single horizontal bar.",
+      "mechanics": "UNCHANGED",
+      "source": "src/ai/signs.js",
+      "commentary_cue_trigger": "SIGN_ACTIVATED only; never on queue acknowledgment"
+    },
+    {
+      "key": "Seek Open Track",
+      "existing_label": "Seek Open Track",
+      "radio_short": "Find Clear Running",
+      "tooltip": "The stable asks the driver to favor room to maneuver when the field allows it.",
+      "commentary_cue": "The {sign} instruction has activated; the driver’s response remains governed by native AI and constraints.",
+      "activation_note": "A queued Sign activates at the starting signal if queued before the race starts; otherwise at the next start/finish crossing on closed courses or the applicable Rally checkpoint. Queueing is not activation and consumes an existing opportunity.",
+      "visual_brief": "A pale ivory pennant with two diverging black track lines and a clear center channel.",
+      "mechanics": "UNCHANGED",
+      "source": "src/ai/signs.js",
+      "commentary_cue_trigger": "SIGN_ACTIVATED only; never on queue acknowledgment"
+    },
+    {
+      "key": "Race Defensively",
+      "existing_label": "Race Defensively",
+      "radio_short": "Protect the Rig",
+      "tooltip": "A caution to reduce exposure to threats and collisions. The driver still decides how to execute it.",
+      "commentary_cue": "The {sign} instruction has activated; the driver’s response remains governed by native AI and constraints.",
+      "activation_note": "A queued Sign activates at the starting signal if queued before the race starts; otherwise at the next start/finish crossing on closed courses or the applicable Rally checkpoint. Queueing is not activation and consumes an existing opportunity.",
+      "visual_brief": "A dark teal pennant carrying a broad angular shield and a small chariot-wheel silhouette.",
+      "mechanics": "UNCHANGED",
+      "source": "src/ai/signs.js",
+      "commentary_cue_trigger": "SIGN_ACTIVATED only; never on queue acknowledgment"
+    },
+    {
+      "key": "Engage Rivals",
+      "existing_label": "Engage Rivals",
+      "radio_short": "Make Them Work",
+      "tooltip": "Combat format only. Instruct the driver to seek engagement with rivals when possible; an attack is not guaranteed.",
+      "commentary_cue": "The {sign} instruction has activated; the driver’s response remains governed by native AI and constraints.",
+      "activation_note": "A queued Sign activates at the starting signal if queued before the race starts; otherwise at the next start/finish crossing on closed courses or the applicable Rally checkpoint. Queueing is not activation and consumes an existing opportunity.",
+      "visual_brief": "A red pennant with two opposed angular wheel motifs; no weapons or implied guaranteed attack.",
+      "mechanics": "UNCHANGED",
+      "source": "src/ai/signs.js",
+      "commentary_cue_trigger": "SIGN_ACTIVATED only; never on queue acknowledgment"
+    },
+    {
+      "key": "Hold Position",
+      "existing_label": "Hold Position",
+      "radio_short": "Defend the Place",
+      "tooltip": "The stable instructs the driver to protect their current position where possible.",
+      "commentary_cue": "The {sign} instruction has activated; the driver’s response remains governed by native AI and constraints.",
+      "activation_note": "A queued Sign activates at the starting signal if queued before the race starts; otherwise at the next start/finish crossing on closed courses or the applicable Rally checkpoint. Queueing is not activation and consumes an existing opportunity.",
+      "visual_brief": "A charcoal pennant with a heavy vertical bar framed by two short parallel lane lines.",
+      "mechanics": "UNCHANGED",
+      "source": "src/ai/signs.js",
+      "commentary_cue_trigger": "SIGN_ACTIVATED only; never on queue acknowledgment"
+    }
+  ],
+  "reconciliation": "CONTENT_DRAFT_REVISED; NO_RUNTIME_IMPORT_OR_IMPLEMENTATION_AUTHORIZATION"
+}

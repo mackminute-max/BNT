@@ -51,10 +51,11 @@ export class RaceSessionStore {
   inspect(){return {mode:this.mode,requiresCheckpoint:this.requiresCheckpoint,problem:this.problem,revision:this.record?unsealWire(this.record.authority).revision:null,state:this.state?clone(this.state):null};}
   decode(text){
     if(typeof text!=='string'||new TextEncoder().encode(text).length>MAX_CHECKPOINT_BYTES)throw Error('RECOVERY_REQUIRED: oversized race session');
-    const r=JSON.parse(text);exact(r,['kind','version','authority','journal','checkpoint','previous','publication']);
-    if(r.kind!=='BNT-race-session'||r.version!==1)throw Error('RECOVERY_REQUIRED: incompatible race session');
-    const a=unsealWire(r.authority);exact(a,['version','identity','anchor','revision','watermark','headHash','setupHash','journalHash','checkpointHash','previousHash','publicationHash','operational','reason','proofEntitlementIds']);
-    if(a.version!==1||wireHash(a.identity)!==wireHash(this.identity)||!Number.isSafeInteger(a.revision)||a.revision<0||!['ACTIVE','RACE_CLEARANCE_BLOCKED','RESULT_COMMITTED'].includes(a.operational))throw Error('RECOVERY_REQUIRED: invalid session authority');this.assertAnchor(a.anchor);
+    const r=JSON.parse(text);exact(r,['kind','version','authority','journal','checkpoint','previous','publication',...(r.version===2?['boundary']:[])]);
+    if(r.kind!=='BNT-race-session'||![1,2].includes(r.version))throw Error('RECOVERY_REQUIRED: incompatible race session');
+    const a=unsealWire(r.authority);exact(a,['version','identity','anchor','revision','watermark','headHash','setupHash','journalHash','checkpointHash','previousHash','publicationHash','operational','reason','proofEntitlementIds',...(r.version===2?['boundaryHash']:[])]);
+    if(a.version!==r.version||wireHash(a.identity)!==wireHash(this.identity)||!Number.isSafeInteger(a.revision)||a.revision<0||!['ACTIVE','RACE_CLEARANCE_BLOCKED','RESULT_COMMITTED'].includes(a.operational))throw Error('RECOVERY_REQUIRED: invalid session authority');this.assertAnchor(a.anchor);
+    if(r.version===2){const b=unsealWire(r.boundary);exact(b,['kind','version','policy','attemptId','sourceAuthorityHash','sourceRevision']);id(b.attemptId);if(b.kind!=='BNT-boundary-attempt'||b.version!==1||b.policy!=='restart-seeded-v1'||!/^[a-f0-9]{64}$/.test(b.sourceAuthorityHash)||!Number.isSafeInteger(b.sourceRevision)||b.sourceRevision<0||a.boundaryHash!==wireHash(r.boundary)||a.operational!=='RESULT_COMMITTED')throw Error('RECOVERY_REQUIRED: invalid boundary attempt');}
     if(!Array.isArray(a.proofEntitlementIds)||a.proofEntitlementIds.length>100||new Set(a.proofEntitlementIds).size!==a.proofEntitlementIds.length)throw Error('Invalid proof entitlement identities');a.proofEntitlementIds.forEach(id);
     const journal=unsealWire(r.journal);if(!Array.isArray(journal)||journal.length>1000||journal.length!==a.watermark||wireHash(journal)!==a.journalHash)throw Error('RECOVERY_REQUIRED: missing journal');
     const ids=new Set();for(let i=0;i<journal.length;i++){const j=journal[i];exact(j,['sequence','request','requestHash','before','after']);request(j.request);if(j.sequence!==i+1||j.request.expectedRevision!==i||ids.has(j.request.id)||j.requestHash!==wireHash(j.request)||i&&j.before!==journal[i-1].after)throw Error('RECOVERY_REQUIRED: incomplete/reordered journal');ids.add(j.request.id);}
@@ -91,7 +92,7 @@ export class RaceSessionStore {
   }
   publish(r,s,{revision,anchor,watermark,operational,reason,proofEntitlementIds}){
     this.assertAnchor(anchor);
-    const a={version:1,identity:this.identity,anchor,revision,watermark,headHash:stateHash(s),setupHash:setupFingerprint(s),journalHash:wireHash(unsealWire(r.journal)),checkpointHash:wireHash(r.checkpoint),previousHash:r.previous?wireHash(r.previous):null,publicationHash:wireHash(r.publication),operational,reason,proofEntitlementIds};
+    const a={version:r.version,...(r.version===2?{boundaryHash:wireHash(r.boundary)}:{}),identity:this.identity,anchor,revision,watermark,headHash:stateHash(s),setupHash:setupFingerprint(s),journalHash:wireHash(unsealWire(r.journal)),checkpointHash:wireHash(r.checkpoint),previousHash:r.previous?wireHash(r.previous):null,publicationHash:wireHash(r.publication),operational,reason,proofEntitlementIds};
     r.authority=sealWire(a);const text=JSON.stringify(r);this.decode(text); // complete validation before publication
     if(new TextEncoder().encode(text).length>MAX_CHECKPOINT_BYTES)throw Error('Race session exceeds 8 MiB; not committed');
     if(this.mode!=='manual'){

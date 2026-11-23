@@ -26,7 +26,7 @@ export function mountCareerSaves({ download }) {
   if(!context)try { storage = window.localStorage; } catch {}
   const legacyStore = new CareerStore(storage);legacyStore.open();let durableUI=null;
   const mutations=new Set(['transaction','migrateFoundation','migrateCycles','migrateEconomy','migrateSchema','create','importSave','recover']);
-  const store=new Proxy(legacyStore,{get(target,key){if((durableUI?.coordinator&&durableUI.durable)){if(key==='state')return durableUI.view?.state??null;if(key==='mode')return durableUI.view?.reason?'blocked':'automatic';if(key==='problem')return durableUI.view?.reason??'';if(['requiresCheckpoint','recoveryPending'].includes(key))return false;if(key==='schema2Session')return (durableUI.view?.state?.schema??0)>=2;if(key==='exportToken')return null;if(['previewEconomy','previewCycles'].includes(key))return ()=>durableUI.coordinator.previewCareer(key);if(key==='export')return ()=>durableUI.coordinator.legacyExport();if(mutations.has(key))return (...args)=>durableUI.career(key,args);}const v=target[key];return typeof v==='function'?v.bind(target):v;}});
+  const store=new Proxy(legacyStore,{get(target,key){if((durableUI?.coordinator&&durableUI.durable)){if(key==='state')return durableUI.view?.state??null;if(key==='presentation')return durableUI.view?.presentation??null;if(key==='mode')return durableUI.view?.reason?'blocked':'automatic';if(key==='problem')return durableUI.view?.reason??'';if(['requiresCheckpoint','recoveryPending'].includes(key))return false;if(key==='schema2Session')return (durableUI.view?.state?.schema??0)>=2;if(key==='exportToken')return null;if(['previewEconomy','previewCycles'].includes(key))return ()=>durableUI.coordinator.previewCareer(key);if(key==='export')return ()=>durableUI.coordinator.legacyExport();if(mutations.has(key))return (...args)=>durableUI.career(key,args);}const v=target[key];return typeof v==='function'?v.bind(target):v;}});
   let staged = null, lastToken = null, notice = '', queue = Promise.resolve(), pendingCount=0;
   let managementRefresh = () => {};
   let renderStable = () => {}, renderEconomy = () => {}, renderCycles = () => {}, renderChampionships = () => {};
@@ -167,6 +167,7 @@ export function mountCareerSaves({ download }) {
     get durable() { return Boolean(durableUI?.durable); },
     get durableView() { return durableUI?.view ?? null; },
     newId,
+    race(type,args={}){if(!globalThis.__BNT_BOUNDARY_RACES__)throw Error('Boundary race UI unavailable');return durableUI.race(type,args);},
     game(operation,args={}) {let result;const fn=async()=>{if(!durableUI?.durable)throw Error('Enable durable saves first');result=await durableUI.game(operation,args);};fn.e4Operation=true;const done=act(fn)();return done.then(()=>{const error=actionResults.get(done)?.error;if(error)throw error;return result;});},
     e5(command,payload) {
       let result;const operation=async()=>{if(!durableUI?.durable)throw Error('Enable durable saves before championship operations');result=await durableUI.e5(command,payload);};operation.e4Operation=true;

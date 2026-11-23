@@ -1,0 +1,30 @@
+{
+  "schema": "bnt-content-sidecar-draft-v1",
+  "status": "DRAFT_REVIEW_REQUIRED",
+  "content_kind": "contract_terms",
+  "integration": "presentation_only; keys must be mapped to existing code by Codex",
+  "records": [
+    {
+      "key": "short",
+      "duration_cycles": 3,
+      "label": "Short Contract",
+      "description": "A three-cycle employment commitment. Suitable for short-term roster coverage; wages and any applicable contract charges are calculated by the game."
+    },
+    {
+      "key": "standard",
+      "duration_cycles": 8,
+      "label": "Standard Contract",
+      "description": "An eight-cycle employment commitment for maintaining a working roster. Actual wage and termination terms are determined by the existing contract rules."
+    },
+    {
+      "key": "long",
+      "duration_cycles": 16,
+      "label": "Long Contract",
+      "description": "A sixteen-cycle employment commitment. Plan for the ongoing wage obligation; the contract does not confer permanent ownership or immunity from expiration."
+    }
+  ],
+  "sourceRevision": "a70ec6e836b765488dbe793606e8c103b8dad3da",
+  "importable": false,
+  "review_notes": "Semantically compatible candidate copy; no native field additions or changes.",
+  "reconciliation": "CONTENT_DRAFT_REVISED; NO_RUNTIME_IMPORT_OR_IMPLEMENTATION_AUTHORIZATION"
+}

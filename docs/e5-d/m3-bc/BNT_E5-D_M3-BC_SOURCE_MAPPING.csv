@@ -1,0 +1,47 @@
+Feature,Source ID,Native source,Typed input,Display adapter,Boundary
+B,m2c-offer-driver-budget-1,src/management/content.js:5,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-driver-budget-2,src/management/content.js:6,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-driver-standard-1,src/management/content.js:7,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-driver-standard-2,src/management/content.js:8,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-driver-premium-1,src/management/content.js:9,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-beast-budget-1,src/management/content.js:10,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-beast-budget-2,src/management/content.js:11,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-beast-standard-1,src/management/content.js:12,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-beast-standard-2,src/management/content.js:13,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-beast-standard-3,src/management/content.js:14,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-beast-premium-1,src/management/content.js:15,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-chariot-budget-1,src/management/content.js:16,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-chariot-standard-1,src/management/content.js:17,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-chariot-premium-1,src/management/content.js:18,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-specialist-budget-1,src/management/content.js:19,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-specialist-standard-1,src/management/content.js:20,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-specialist-premium-1,src/management/content.js:21,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-equipment-budget-1,src/management/content.js:22,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-equipment-budget-2,src/management/content.js:23,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-equipment-budget-3,src/management/content.js:24,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-equipment-standard-1,src/management/content.js:25,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-equipment-standard-2,src/management/content.js:26,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+B,m2c-offer-equipment-standard-3,src/management/content.js:27,native id or economics.sourceOfferId,"recruitIdentity(record,validated career presentation)",Immutable pack; player-pages.card; cosmetic only; native fallback
+C,RACE_STARTED,src/reporting/commentary.js:3,,commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,OVERTAKE,src/reporting/commentary.js:7,"passer,passed",commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,LEAD_CHANGED,src/reporting/commentary.js:11,leader,commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,CONTACT,src/reporting/commentary.js:12,participants,commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,ATTACK,src/reporting/commentary.js:13,"attacker,defender,action,attack_outcome",commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,DAMAGE,src/reporting/commentary.js:16,"subject,amount_1dp,component",commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,CONTROL_CHANGED,src/reporting/commentary.js:19,"subject,control_lower",commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,RU_RETIRED,src/reporting/commentary.js:22,"subject,reason",commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,WRECK_CREATED,src/reporting/commentary.js:23,subject,commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,WRECK_IMPACT,src/reporting/commentary.js:26,wreckId,commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,INCIDENT,src/reporting/commentary.js:27,"incident_type,lane_1based",commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,INCIDENT_CLEARED,src/reporting/commentary.js:30,,commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,SIGN_ACTIVATED,src/reporting/commentary.js:31,"subject,sign",commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,COURSE_ENTERED,src/reporting/commentary.js:34,"subject,track",commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,SEGMENT_ENTERED,src/reporting/commentary.js:35,"subject,terrain,segment_motion",commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,CHECKPOINT_CROSSED,src/reporting/commentary.js:36,"subject,checkpoint",commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,FINAL_LAP,src/reporting/commentary.js:37,subject,commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,RU_FINISHED,src/reporting/commentary.js:38,"subject,time_4dp",commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,RU_EXITED,src/reporting/commentary.js:41,subject,commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,RACE_STALLED,src/reporting/commentary.js:42,,commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,RACE_ENDED,src/reporting/commentary.js:45,,commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,INTEGRITY_ERROR,src/reporting/commentary.js:46,,commentaryTokens / createRadioDisplay.accept,Same accepted event ID/time/type; one display line; native fallback
+C,DIRECTIVE_RESISTANCE,src/reporting/commentary.js:71,participants[0]; effects.directive.sign/selected/reason,commentaryTokens / fixed sentence,AI_DECISION-derived only; reporter gating/throttle unchanged

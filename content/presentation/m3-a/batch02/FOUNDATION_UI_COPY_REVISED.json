@@ -1,0 +1,72 @@
+{
+  "schema": "bnt-content-sidecar-draft-v1",
+  "status": "DRAFT_REVIEW_REQUIRED",
+  "content_kind": "ui_strings",
+  "integration": "presentation_only; keys must be mapped to existing code by Codex",
+  "records": [
+    {
+      "key": "new_career_empty",
+      "text": "A new stable begins without a racing roster until you select a starting package.",
+      "status": "REVISED_CANDIDATE"
+    },
+    {
+      "key": "package_commit",
+      "text": "This starting package is a one-time grant. Review its roster, equipment, facilities, and starting funds before confirming.",
+      "status": "REVISED_CANDIDATE"
+    },
+    {
+      "key": "market_fixed",
+      "text": "Recruitment offers are limited to the current market. Acquiring an offer removes it from the available list.",
+      "status": "REVISED_CANDIDATE"
+    },
+    {
+      "key": "ru_composition",
+      "text": "A racing unit uses one driver, two distinct owned draft beasts in a fixed order, and one chariot. Condition, availability, assignment and contract rules also apply.",
+      "status": "REVISED_CANDIDATE"
+    },
+    {
+      "key": "service_locked",
+      "text": "Stable services are unavailable while a championship is active or its required settlement and final choices remain unfinished.",
+      "status": "REVISED_CANDIDATE"
+    },
+    {
+      "key": "contract_expiry",
+      "text": "An expired contract requires a decision before the employee can continue under a renewed agreement.",
+      "status": "REVISED_CANDIDATE"
+    },
+    {
+      "key": "reward_pending",
+      "text": "Pending reward: this entitlement has not yet been credited to your career.",
+      "status": "REVISED_CANDIDATE"
+    },
+    {
+      "key": "reward_credited",
+      "text": "Credited reward: this entitlement has been settled and recorded.",
+      "status": "REVISED_CANDIDATE"
+    },
+    {
+      "key": "reward_deferred",
+      "text": "This records your selection only. No gameplay bonus, Gold, recovery, unlock or Legacy Points are granted by this placeholder.",
+      "status": "REVISED_CANDIDATE"
+    },
+    {
+      "key": "legacy_slots",
+      "text": "Three Legacy loadout slots are recorded, but equipping Legacy effects is not available in this version.",
+      "status": "REVISED_CANDIDATE"
+    },
+    {
+      "key": "race_results",
+      "text": "Official results and settlement determine championship awards. Race commentary is not an official result.",
+      "status": "REVISED_CANDIDATE"
+    },
+    {
+      "key": "load_warning",
+      "text": "Restoration requires a compatible validated backup and explicit confirmation. Career-only JSON does not include race-session authority; use a complete championship backup when sessions are required. Unrelated careers and protected progress cannot be overwritten by confirmation alone.",
+      "status": "REVISED_CANDIDATE"
+    }
+  ],
+  "sourceRevision": "a70ec6e836b765488dbe793606e8c103b8dad3da",
+  "importable": false,
+  "review_notes": "Candidate UI keys are new; require contextual binding. Pending/credited reward messages apply only to settlement entitlements, not placeholder choices. Legacy slots apply only to schema6.",
+  "reconciliation": "CONTENT_DRAFT_REVISED; NO_RUNTIME_IMPORT_OR_IMPLEMENTATION_AUTHORIZATION"
+}

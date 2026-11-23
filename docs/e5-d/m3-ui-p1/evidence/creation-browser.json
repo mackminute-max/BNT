@@ -1,0 +1,71 @@
+{
+  "sha256": "77e96a6c3db3c3c5409f14d50f1f9dc6bd8fa69aa14524b9a8e3c47dab30adf4",
+  "groups": [
+    "traditional: creation → initialized Market/Finances/Events → native registration/start; no manual upgrades; Help/Save in Options; no ordinary race writes",
+    "beastmaster: creation → initialized Market/Finances/Events → native registration/start; no manual upgrades; Help/Save in Options; no ordinary race writes",
+    "mechanist: creation → initialized Market/Finances/Events → native registration/start; no manual upgrades; Help/Save in Options; no ordinary race writes",
+    "veteran: creation → initialized Market/Finances/Events → native registration/start; no manual upgrades; Help/Save in Options; no ordinary race writes",
+    "scrappy: creation → initialized Market/Finances/Events → native registration/start; no manual upgrades; Help/Save in Options; no ordinary race writes"
+  ],
+  "packages": [
+    {
+      "packageId": "traditional",
+      "schema": 6,
+      "goldBeforeFee": 1200,
+      "goldAfterFee": 1175,
+      "startingGrants": 1,
+      "marketOffers": 23,
+      "events": 6,
+      "nativeTick": 52,
+      "raceWrites": 0
+    },
+    {
+      "packageId": "beastmaster",
+      "schema": 6,
+      "goldBeforeFee": 850,
+      "goldAfterFee": 825,
+      "startingGrants": 1,
+      "marketOffers": 23,
+      "events": 6,
+      "nativeTick": 54,
+      "raceWrites": 0
+    },
+    {
+      "packageId": "mechanist",
+      "schema": 6,
+      "goldBeforeFee": 800,
+      "goldAfterFee": 775,
+      "startingGrants": 1,
+      "marketOffers": 23,
+      "events": 6,
+      "nativeTick": 55,
+      "raceWrites": 0
+    },
+    {
+      "packageId": "veteran",
+      "schema": 6,
+      "goldBeforeFee": 650,
+      "goldAfterFee": 625,
+      "startingGrants": 1,
+      "marketOffers": 23,
+      "events": 6,
+      "nativeTick": 54,
+      "raceWrites": 0
+    },
+    {
+      "packageId": "scrappy",
+      "schema": 6,
+      "goldBeforeFee": 750,
+      "goldAfterFee": 725,
+      "startingGrants": 1,
+      "marketOffers": 23,
+      "events": 6,
+      "nativeTick": 55,
+      "raceWrites": 0
+    }
+  ],
+  "errors": [],
+  "dialogs": [],
+  "requests": [],
+  "result": "PASS"
+}

@@ -1,3 +1,4 @@
+import {validateCareerPresentation} from './career-presentation.js';
 import { isMaintenance } from '../career/economy/maintenance-history.js';
 import { isDomainCommand } from '../career/domain-commands.js';
 import { checksum, canonical } from '../core/determinism.js';
@@ -21,8 +22,8 @@ export function inspectEnvelope(text) {
   let envelope;
   try { envelope = JSON.parse(text); } catch (error) { if (bytes > MAX_SAVE_BYTES) throw Error('Invalid or oversized career save'); throw error; }
   if (bytes > MAX_SAVE_BYTES && !Object.hasOwn(envelope ?? {}, 'protectedHistory')) throw Error('Invalid or oversized schema-1 save');
-  exact(envelope, ['kind', 'schema', 'primary', 'recovery', 'provenance', ...(Object.hasOwn(envelope, 'protectedHistory') ? ['protectedHistory', 'maintenanceClock'] : [])], 'game save');
-  if (envelope.kind !== 'BNT-game-save' || envelope.schema !== 1) throw Error('Incompatible game save type/schema');
+  exact(envelope, ['kind', 'schema', 'primary', 'recovery', 'provenance', ...(envelope.schema === 2 ? ['presentation'] : []), ...(Object.hasOwn(envelope, 'protectedHistory') ? ['protectedHistory', 'maintenanceClock'] : [])], 'game save');
+  if (envelope.kind !== 'BNT-game-save' || ![1,2].includes(envelope.schema)) throw Error('Incompatible game save type/schema');
   const rawMarks = unseal(envelope.provenance);
   if (!Array.isArray(rawMarks)) throw Error('Invalid provenance registry');
   const marks = mergeMarks(rawMarks);
@@ -42,11 +43,13 @@ export function inspectEnvelope(text) {
       if (!isDomainCommand(tx) && !marks.some(m => m.id === entry.id && m.profileId === tx.profileId && m.careerId === tx.careerId && m.revision === tx.expectedRevision + 1 && m.type === tx.type && m.reason === tx.reason && m.delta === tx.delta)) throw Error('Protected registry/provenance mismatch');
     }
   }
+  const presentation = envelope.schema===2 ? validateCareerPresentation(unseal(envelope.presentation)) : null;
   const errors = {}, valid = {};
   for (const key of ['primary', 'recovery']) {
     if (key === 'recovery' && envelope[key] === null) { valid[key] = null; continue; }
     try {
       const state = validateState(unseal(envelope[key]));
+      if(presentation){validateCareerPresentation(presentation,state,{owned:key==='primary'});if(key==='primary'&&!state.management?.initialized)throw Error('Presentation requires initialized primary');}
       for (const m of state.provenance) if (!marks.some(k => canonical(k) === canonical(m))) throw Error('Checkpoint provenance missing from registry');
       // Primary cannot clear known marks; a historical recovery checkpoint may predate them.
       if (state.schema >= 2 && !Object.hasOwn(envelope, 'protectedHistory')) throw Error('Schema-2 checkpoint requires protected registry');
@@ -59,20 +62,20 @@ export function inspectEnvelope(text) {
       valid[key] = structuredClone(state);
     } catch (e) { errors[key] = e.message; valid[key] = null; }
   }
-  return { envelope, marks, protectedHistory, maintenanceClock, primary: valid.primary, recovery: valid.recovery, errors };
+  return { envelope, marks, protectedHistory, maintenanceClock, presentation, primary: valid.primary, recovery: valid.recovery, errors };
 }
 export function parseEnvelope(text) {
   const result = inspectEnvelope(text);
   if (!result.primary || Object.keys(result.errors).length) throw Error('Invalid career save: ' + JSON.stringify(result.errors));
   return result;
 }
-export function makeEnvelope(primary, recovery = null, knownMarks = [], knownHistory = [], knownMaintenance = 0) {
+export function makeEnvelope(primary, recovery = null, knownMarks = [], knownHistory = [], knownMaintenance = 0, presentation = null) {
   const marks = mergeMarks(knownMarks, primary.provenance, recovery?.provenance ?? []);
   const useHistory = primary.schema >= 2 || recovery?.schema >= 2 || knownHistory.length > 0;
   const protectedHistory = useHistory ? completeProtectedRegistry(mergeProtected(knownHistory, protectedFromState(primary), protectedFromState(recovery)), marks) : [];
   const state = withProvenance(primary, marks, protectedHistory);
   const maintenanceClock = Math.max(knownMaintenance, primary.maintenanceRevision ?? 0, recovery?.maintenanceRevision ?? 0);
-  const envelope = { kind: 'BNT-game-save', schema: 1, primary: seal(state), recovery: recovery ? seal(validateState(recovery)) : null, provenance: seal(marks), ...(useHistory ? { protectedHistory: seal(protectedHistory), maintenanceClock: seal(maintenanceClock) } : {}) };
+  const envelope = { kind: 'BNT-game-save', schema: presentation ? 2 : 1, ...(presentation ? {presentation:seal(validateCareerPresentation(presentation,state))} : {}), primary: seal(state), recovery: recovery ? seal(validateState(recovery)) : null, provenance: seal(marks), ...(useHistory ? { protectedHistory: seal(protectedHistory), maintenanceClock: seal(maintenanceClock) } : {}) };
   const text = JSON.stringify(envelope); parseEnvelope(text);
   return { envelope, text, state };
 }

@@ -1,0 +1,92 @@
+{
+  "schema": "bnt-content-sidecar-draft-v1",
+  "sourceRevision": "a70ec6e836b765488dbe793606e8c103b8dad3da",
+  "status": "DRAFT_REVIEW_REQUIRED",
+  "importable": false,
+  "content_kind": "services",
+  "integration": "presentation_only; no existing generic loader or binding",
+  "records": [
+    {
+      "key": "driver-recovery",
+      "proposed_title": "Driver Recovery",
+      "description": "Arrange recovery for a fatigued driver. The existing service rules determine the resulting change.",
+      "native_cost": 40,
+      "native_target": {
+        "registry": "personnel",
+        "field": "fatigue"
+      },
+      "source": "src/career/economy/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "driver-treatment",
+      "proposed_title": "Driver Treatment",
+      "description": "Provide treatment for an injured driver, subject to the game's current eligibility and cost rules.",
+      "native_cost": 100,
+      "native_target": {
+        "registry": "personnel",
+        "field": "injury",
+        "role": "Physician",
+        "ward": true
+      },
+      "source": "src/career/economy/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "beast-care",
+      "proposed_title": "Beast Care",
+      "description": "Attend to a draft beast's fatigue and readiness through the current stable service.",
+      "native_cost": 30,
+      "native_target": {
+        "registry": "beasts",
+        "field": "fatigue",
+        "role": "Beast Handler"
+      },
+      "source": "src/career/economy/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "beast-treatment",
+      "proposed_title": "Beast Treatment",
+      "description": "Arrange treatment for an injured draft beast under the existing care rules.",
+      "native_cost": 80,
+      "native_target": {
+        "registry": "beasts",
+        "field": "injury",
+        "role": "Beast Handler",
+        "ward": true
+      },
+      "source": "src/career/economy/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "chariot-repair",
+      "proposed_title": "Chariot Repair",
+      "description": "Restore lost chariot integrity within the native service limit. This service does not reduce wear; refurbishment handles wear separately.",
+      "native_cost": null,
+      "native_target": {
+        "registry": "chariots",
+        "field": "integrity",
+        "role": "Mechanic",
+        "workshop": true
+      },
+      "source": "src/career/economy/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "chariot-refurbishment",
+      "proposed_title": "Chariot Refurbishment",
+      "description": "Carry out a more extensive chariot service under the existing cost and eligibility rules.",
+      "native_cost": 100,
+      "native_target": {
+        "registry": "chariots",
+        "field": "wear",
+        "role": "Mechanic",
+        "workshop": true
+      },
+      "source": "src/career/economy/catalog.js",
+      "status": "PROPOSED_PRESENTATION"
+    }
+  ],
+  "reconciliation": "CONTENT_DRAFT_REVISED; NO_RUNTIME_IMPORT_OR_IMPLEMENTATION_AUTHORIZATION"
+}

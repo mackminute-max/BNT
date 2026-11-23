@@ -1,0 +1,106 @@
+{
+  "schema": "bnt-content-sidecar-draft-v1",
+  "sourceRevision": "a70ec6e836b765488dbe793606e8c103b8dad3da",
+  "status": "DRAFT_REVIEW_REQUIRED",
+  "importable": false,
+  "content_kind": "starting_packages",
+  "integration": "presentation_only; no existing generic loader or binding",
+  "records": [
+    {
+      "key": "traditional",
+      "existing_label": "Traditional",
+      "proposed_title": "The Traditional Stable",
+      "description": "A balanced opening stable with a driver, two draft beasts, a chariot, standard harness and wheels. Built for learning the circuit without a pronounced specialization.",
+      "starting_gold": 1200,
+      "grant_summary": {
+        "drivers": 1,
+        "beasts": 2,
+        "chariots": 1,
+        "equipment": [
+          "Standard harness",
+          "Standard wheels"
+        ],
+        "facility": "Basic Stable"
+      },
+      "source": "src/career/packages.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "beastmaster",
+      "existing_label": "Beastmaster Yard",
+      "proposed_title": "Beastmaster Yard",
+      "description": "An opening operation oriented toward its draft team. The existing package grants and ratings determine its actual advantages.",
+      "starting_gold": 850,
+      "grant_summary": {
+        "drivers": 1,
+        "beasts": 3,
+        "chariots": 1,
+        "equipment": [
+          "Standard harness",
+          "Standard wheels"
+        ],
+        "facility": "Animal Yard"
+      },
+      "source": "src/career/packages.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "mechanist",
+      "existing_label": "Mechanist Workshop",
+      "proposed_title": "Mechanist Workshop",
+      "description": "A starting stable with a tuned chariot profile and two ordinary, mechanically neutral equipment items. Its Workshop Shed is descriptive starter flavor, not the purchased Workshop upgrade.",
+      "starting_gold": 800,
+      "grant_summary": {
+        "drivers": 1,
+        "beasts": 2,
+        "chariots": 1,
+        "equipment": [
+          "Reinforced harness",
+          "Precision wheels"
+        ],
+        "facility": "Workshop Shed"
+      },
+      "source": "src/career/packages.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "veteran",
+      "existing_label": "Veteran Outfit",
+      "proposed_title": "Veteran Outfit",
+      "description": "A stable assembled around experience and an established racing approach. Its actual starting assets are those listed in the package grant.",
+      "starting_gold": 650,
+      "grant_summary": {
+        "drivers": 2,
+        "beasts": 2,
+        "chariots": 1,
+        "equipment": [
+          "Standard harness",
+          "Standard wheels"
+        ],
+        "facility": "Veteran Quarters"
+      },
+      "source": "src/career/packages.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "scrappy",
+      "existing_label": "Scrappy Underdog",
+      "proposed_title": "Scrappy Underdog",
+      "description": "An improvised entry into the racing world. The package provides its own fixed opening assets and funds; no hidden underdog bonus is implied.",
+      "starting_gold": 750,
+      "grant_summary": {
+        "drivers": 2,
+        "beasts": 3,
+        "chariots": 1,
+        "equipment": [
+          "Patched harness",
+          "Worn wheels"
+        ],
+        "facility": "Makeshift Yard"
+      },
+      "source": "src/career/packages.js",
+      "status": "PROPOSED_PRESENTATION"
+    }
+  ],
+  "reconciliation": "CONTENT_DRAFT_REVISED; NO_RUNTIME_IMPORT_OR_IMPLEMENTATION_AUTHORIZATION"
+}

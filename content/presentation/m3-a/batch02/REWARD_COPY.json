@@ -1,0 +1,165 @@
+{
+  "schema": "bnt-content-sidecar-draft-v1",
+  "sourceRevision": "a70ec6e836b765488dbe793606e8c103b8dad3da",
+  "status": "DRAFT_REVIEW_REQUIRED",
+  "importable": false,
+  "content_kind": "rewards",
+  "integration": "presentation_only; no existing generic loader or binding",
+  "records": [
+    {
+      "key": "run-driver-notes",
+      "scope": "run",
+      "existing_label": "Driver Notes",
+      "category": "Driver development",
+      "description": "Driver Notes is a recorded Run reward selection. This version grants no gameplay bonus, Gold, recovery, unlock or Legacy Points from the selection.",
+      "effect": "DEFERRED",
+      "implementationStatus": "PLACEHOLDER",
+      "source": "src/career/championships/reward-offers.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "run-beast-notes",
+      "scope": "run",
+      "existing_label": "Beast Conditioning Notes",
+      "category": "Beast development",
+      "description": "Beast Conditioning Notes is a recorded Run reward selection. This version grants no gameplay bonus, Gold, recovery, unlock or Legacy Points from the selection.",
+      "effect": "DEFERRED",
+      "implementationStatus": "PLACEHOLDER",
+      "source": "src/career/championships/reward-offers.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "run-chariot-notes",
+      "scope": "run",
+      "existing_label": "Chariot Workshop Notes",
+      "category": "Chariot improvements",
+      "description": "Chariot Workshop Notes is a recorded Run reward selection. This version grants no gameplay bonus, Gold, recovery, unlock or Legacy Points from the selection.",
+      "effect": "DEFERRED",
+      "implementationStatus": "PLACEHOLDER",
+      "source": "src/career/championships/reward-offers.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "run-equipment-notes",
+      "scope": "run",
+      "existing_label": "Equipment Notes",
+      "category": "Equipment",
+      "description": "Equipment Notes is a recorded Run reward selection. This version grants no gameplay bonus, Gold, recovery, unlock or Legacy Points from the selection.",
+      "effect": "DEFERRED",
+      "implementationStatus": "PLACEHOLDER",
+      "source": "src/career/championships/reward-offers.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "run-racing-notes",
+      "scope": "run",
+      "existing_label": "Racing Insights",
+      "category": "Racing advantages",
+      "description": "Racing Insights is a recorded Run reward selection. This version grants no gameplay bonus, Gold, recovery, unlock or Legacy Points from the selection.",
+      "effect": "DEFERRED",
+      "implementationStatus": "PLACEHOLDER",
+      "source": "src/career/championships/reward-offers.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "run-support-notes",
+      "scope": "run",
+      "existing_label": "Support Plan",
+      "category": "Recovery and support",
+      "description": "Support Plan is a recorded Run reward selection. This version grants no gameplay bonus, Gold, recovery, unlock or Legacy Points from the selection.",
+      "effect": "DEFERRED",
+      "implementationStatus": "PLACEHOLDER",
+      "source": "src/career/championships/reward-offers.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "run-opportunity-notes",
+      "scope": "run",
+      "existing_label": "Trading Opportunity Notes",
+      "category": "Financial opportunities",
+      "description": "Trading Opportunity Notes is a recorded Run reward selection. This version grants no gameplay bonus, Gold, recovery, unlock or Legacy Points from the selection.",
+      "effect": "DEFERRED",
+      "implementationStatus": "PLACEHOLDER",
+      "source": "src/career/championships/reward-offers.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "legacy-stable-notes",
+      "scope": "legacy",
+      "existing_label": "Stable Development Notes",
+      "category": "Permanent stable development",
+      "description": "Stable Development Notes is a recorded Legacy reward selection. This version grants no gameplay bonus, Gold, recovery, unlock or Legacy Points from the selection.",
+      "effect": "DEFERRED",
+      "implementationStatus": "PLACEHOLDER",
+      "source": "src/career/championships/reward-offers.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "legacy-owner-notes",
+      "scope": "legacy",
+      "existing_label": "Owner Notebook",
+      "category": "Owner Legacy perks",
+      "description": "Owner Notebook is a recorded Legacy reward selection. This version grants no gameplay bonus, Gold, recovery, unlock or Legacy Points from the selection.",
+      "effect": "DEFERRED",
+      "implementationStatus": "PLACEHOLDER",
+      "source": "src/career/championships/reward-offers.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "legacy-invitation-notes",
+      "scope": "legacy",
+      "existing_label": "Invitation Dossier",
+      "category": "Future championship access",
+      "description": "Invitation Dossier is a recorded Legacy reward selection. This version grants no gameplay bonus, Gold, recovery, unlock or Legacy Points from the selection.",
+      "effect": "DEFERRED",
+      "implementationStatus": "PLACEHOLDER",
+      "source": "src/career/championships/reward-offers.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "legacy-recruitment-notes",
+      "scope": "legacy",
+      "existing_label": "Recruitment Contacts",
+      "category": "Recruitment opportunities",
+      "description": "Recruitment Contacts is a recorded Legacy reward selection. This version grants no gameplay bonus, Gold, recovery, unlock or Legacy Points from the selection.",
+      "effect": "DEFERRED",
+      "implementationStatus": "PLACEHOLDER",
+      "source": "src/career/championships/reward-offers.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "legacy-package-notes",
+      "scope": "legacy",
+      "existing_label": "Starting Package Notes",
+      "category": "Starting-package improvements",
+      "description": "Starting Package Notes is a recorded Legacy reward selection. This version grants no gameplay bonus, Gold, recovery, unlock or Legacy Points from the selection.",
+      "effect": "DEFERRED",
+      "implementationStatus": "PLACEHOLDER",
+      "source": "src/career/championships/reward-offers.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "legacy-facility-notes",
+      "scope": "legacy",
+      "existing_label": "Facility Dossier",
+      "category": "Permanent facility opportunities",
+      "description": "Facility Dossier is a recorded Legacy reward selection. This version grants no gameplay bonus, Gold, recovery, unlock or Legacy Points from the selection.",
+      "effect": "DEFERRED",
+      "implementationStatus": "PLACEHOLDER",
+      "source": "src/career/championships/reward-offers.js",
+      "status": "PROPOSED_PRESENTATION"
+    },
+    {
+      "key": "legacy-distinction-notes",
+      "scope": "legacy",
+      "existing_label": "Stable Distinction",
+      "category": "Cosmetic stable distinctions",
+      "description": "Stable Distinction is a recorded Legacy reward selection. This version grants no gameplay bonus, Gold, recovery, unlock or Legacy Points from the selection.",
+      "effect": "DEFERRED",
+      "implementationStatus": "PLACEHOLDER",
+      "source": "src/career/championships/reward-offers.js",
+      "status": "PROPOSED_PRESENTATION"
+    }
+  ],
+  "reconciliation": "CONTENT_DRAFT_REVISED; NO_RUNTIME_IMPORT_OR_IMPLEMENTATION_AUTHORIZATION"
+}
