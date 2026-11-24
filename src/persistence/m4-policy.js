@@ -1,0 +1,1 @@
+export function requireCurrentM4(state){if(state?.schema!==6||state.e5?.version!==2||state.e5.m4?.version!==1)throw Error('This save belongs to an earlier development build. Open it with its original HTML, or create a new M4 stable. No migration or replacement was performed.');return state;}

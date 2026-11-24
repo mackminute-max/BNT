@@ -31,4 +31,4 @@ export function withProvenance(state, marks, protectedHistory = []) {
   if (state?.schema === 3) return withKnownHistoryV3(state, marks, protectedHistory);
   return state?.schema === 2 ? withKnownHistoryV2(state, marks, mergeProtected(protectedHistory).filter(isLegacyEntry)) : legacy.withProvenance(state, marks);
 }
-export function transact(state, tx, options = {}) { return state?.schema===6 || tx?.type==='e5.enable' ? transactV6(state,tx,options) : state?.schema===5 ? transactV5(state,tx,options) : state?.schema===4 ? transactV4(state,tx,options) : state?.schema === 3 ? transactV3(state, tx) : state?.schema === 2 ? transactV2(state, tx) : legacy.transact(state, tx); }
+export function transact(state, tx, options = {}) { return state?.schema===6 || ['e5.enable','e5.enableM4'].includes(tx?.type) ? transactV6(state,tx,options) : state?.schema===5 ? transactV5(state,tx,options) : state?.schema===4 ? transactV4(state,tx,options) : state?.schema === 3 ? transactV3(state, tx) : state?.schema === 2 ? transactV2(state, tx) : legacy.transact(state, tx); }

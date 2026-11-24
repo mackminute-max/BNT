@@ -126,7 +126,7 @@ export function integrateCondition(s, r, elapsed) {
   );
   r.ru.chariot.wear = clamp(
     r.ru.chariot.wear +
-      c.wearRate * exertion * w.rolling * (1 + surface.roughness) * elapsed,
+      (r.progressionContext ? c.wearRate * exertion * w.rolling * (1 + surface.roughness) * elapsed * r.progressionContext.wearMultiplier : c.wearRate * exertion * w.rolling * (1 + surface.roughness) * elapsed),
     0,
     100,
   );

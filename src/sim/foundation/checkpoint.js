@@ -7,7 +7,7 @@ import {exact,id} from '../../career/legacy-state.js';
 import {pack,unpack,sealWire,unsealWire,wireHash} from './codec.js';
 export const RACE_STATE_VERSION='m2e-race-state-v1';
 export const CHAMPIONSHIP_RACE_STATE_VERSION='m2e-race-state-v2';
-const stateProtocol=s=>s.championshipContext||s.entrants.some(r=>r.coachingContext)?CHAMPIONSHIP_RACE_STATE_VERSION:RACE_STATE_VERSION;
+const stateProtocol=s=>s.championshipContext||s.entrants.some(r=>r.coachingContext||r.progressionContext)?CHAMPIONSHIP_RACE_STATE_VERSION:RACE_STATE_VERSION;
 export function validateRaceBoundary(s){
   if(!s||s.version!==VERSION||s.resolving!==false||!['Ready','Running','Ended','Stalled'].includes(s.status)||!Number.isSafeInteger(s.tick)||s.tick<0||s.tick>1000000||!Number.isFinite(s.time)||s.time<0)throw Error('Invalid/incompatible resolved race boundary');
   const initial=createRace(s.setup);exact(s,Object.keys(initial),'full race state');
@@ -18,7 +18,7 @@ export function validateRaceBoundary(s){
   if(!(s.nextIncidentAt===Infinity||Number.isFinite(s.nextIncidentAt)))throw Error('Invalid incident sentinel');
   if(canonical(s.championshipContext??null)!==canonical(initial.championshipContext??null))throw Error('Championship context changed after start');
   for(const r of s.entrants){
-    validateCoaching(r.coachingContext);const original=initial.entrants.find(e=>e.id===r.id);if(canonical(r.coachingContext??null)!==canonical(original.coachingContext??null))throw Error('Frozen coaching context changed');
+    validateCoaching(r.coachingContext);if(canonical(r.progressionContext??null)!==canonical(initial.entrants.find(e=>e.id===r.id)?.progressionContext??null))throw Error('Frozen progression context changed');const original=initial.entrants.find(e=>e.id===r.id);if(canonical(r.coachingContext??null)!==canonical(original.coachingContext??null))throw Error('Frozen coaching context changed');
     if(s.championshipContext){const p=r.progressEvidence;exact(p,['version','progress','firstTime','firstTick']);if(p.version!==1||!Number.isFinite(p.progress)||!Number.isFinite(p.firstTime)||p.firstTime<0||p.firstTime>s.time+s.config.epsilon||!Number.isInteger(p.firstTick)||p.firstTick<0||p.firstTick>s.tick||r.status==='Racing'&&p.progress!==r.q||r.status==='Retired'&&p.progress!==r.retirement?.progress)throw Error('Invalid authoritative first-progress evidence');}
 
     derive(r.ru,s.config);

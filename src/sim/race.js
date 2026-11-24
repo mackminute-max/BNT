@@ -1,3 +1,4 @@
+import {validateProgressionContext} from '../model/progression-context.js';
 import {beginActionCosts,chargeAction,flushActionCosts,endActionCosts} from './action-costs.js';
 import {INCIDENT_CLOCK_VERSION} from './deterministic-log.js';
 import {validateCoaching} from '../ai/coaching.js';
@@ -120,7 +121,7 @@ export function createRace({
         ru.driver.personality[k] > 100
       )
         throw new Error(`Invalid personality ${k}`);
-    validateCoaching(e.coachingContext);
+    validateCoaching(e.coachingContext);validateProgressionContext(e.progressionContext);if(e.progressionContext&&ru.id!==(playerId??input[0].ru.id))throw Error('Progression is player-only');
     if(e.coachingContext&&ru.id!==(playerId??input[0].ru.id))throw Error('Coaching is player-only');
     validatePayrollContext(e.payrollContext);
     const derived = applyPayrollControl(derive(ru, {
@@ -154,6 +155,7 @@ export function createRace({
       id: ru.id,
       ru,
       derived,
+      ...(e.progressionContext?{progressionContext:structuredClone(e.progressionContext)}:{}),
       ...(e.coachingContext ? {coachingContext:freezeCoaching(e.coachingContext)} : {}),
       ...(championshipContext ? {progressEvidence:{version:1,progress:q,firstTime:0,firstTick:0}} : {}),
       ...(e.payrollContext===undefined?{}:{payrollContext:structuredClone(e.payrollContext)}),
@@ -178,7 +180,7 @@ export function createRace({
       nextAttackTime: 0,
       reactionsRemaining: consequenceTuning.reactionBudget,
       defending: false,
-      signs: { remaining: tuning.signUses, pending: null, active: null },
+      signs: { remaining: e.progressionContext?Math.min(100,tuning.signUses+e.progressionContext.signBonus):tuning.signUses, pending: null, active: null },
       ai: {
         nextDecision: 0,
         goal: "hold",
@@ -239,6 +241,7 @@ export function createRace({
     overrides: { ...c },
     entrants: units.map((r) => ({
       ru: structuredClone(r.ru),
+      ...(r.progressionContext?{progressionContext:structuredClone(r.progressionContext)}:{}),
       ...(r.coachingContext ? {coachingContext:freezeCoaching(r.coachingContext)} : {}),
       ...(r.payrollContext===undefined?{}:{payrollContext:structuredClone(r.payrollContext)}),
       lane: r.lane,

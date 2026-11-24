@@ -11,6 +11,7 @@ export function buildEntitlements(s,x,terms){
  }}
  x.standings.forEach((row,i)=>{add('Gold',row.id,terms.placement[i]??0,'placement');if(row.id===x.playerId)add('Reputation',row.id,terms.reputation.placement[i]??0,'placement');});
  if(x.officialFinal.championId){add('Gold',x.officialFinal.championId,terms.titleGold,'title');if(x.officialFinal.championId===x.playerId)add('Reputation',x.playerId,terms.titleRep,'title');}
+ if(x.m4?.loadout.includes('patron')){const base=out.filter(e=>e.kind==='Gold'&&e.entrantId===x.playerId).reduce((n,e)=>n+e.amount,0);add('Gold',x.playerId,Math.min(1000,Math.floor(base/10)),'legacy-patron');}
  if(new Set(out.map(x=>x.id)).size!==out.length)throw Error('Duplicate E5 entitlement');return out;
 }
 export const sumAwards=(awards,kind,entrantId)=>awards.filter(e=>e.kind===kind&&e.entrantId===entrantId).reduce((n,e)=>plus(n,e.amount),0);

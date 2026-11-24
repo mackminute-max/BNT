@@ -1,3 +1,4 @@
+import {requireCurrentM4} from '../m4-policy.js';
 import {MemoryAttempt} from '../race/memory-attempt.js';
 import {assertPresentationRestore} from '../career-presentation.js';
 import {validateRuntime,defaultRuntime} from './runtime.js';
@@ -54,7 +55,7 @@ export function createWorkerService(){
   const map=new Map(snapshot.records),storage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)};
   if(!map.has(SAVE_KEY))throw Error('No career authority');// CareerStore.open below performs the full untrusted envelope validation once.
   const career=new CareerStore(storage);career.open();if(career.mode!=='automatic'||!career.current)throw Error('Corrupt/untrusted career authority: '+career.problem);
-  validatePresentationOwner(snapshot.runtime,career);
+  if(typeof BNT_M4_BUILD!=='undefined'&&BNT_M4_BUILD)requireCurrentM4(career.current);validatePresentationOwner(snapshot.runtime,career);
   let problem=null;try{
   for(const x of Object.values(career.state.championshipFoundation?.instances??{})){
    for(const result of x.raceResults??[])if(result.kind==='NativeCleared'&&!map.has(result.reference.storageKey))throw Error('Missing retained official session authority');
@@ -140,7 +141,7 @@ export function createWorkerService(){
   }
   else if(op==='activeTeam'){career.setActiveTeam(message.request);}
   else if(op==='career'){if(!['transaction','migrateFoundation','migrateCycles','migrateEconomy','migrateSchema','create','importSave','recover'].includes(message.method))throw Error('Unsupported career method');if(message.method==='transaction'&&['cycle.settle','e5.settle'].includes(message.args[0]?.type))throw Error('E5 completion authority is unavailable');if(['create','importSave','recover'].includes(message.method)&&[...map.keys()].some(k=>k!==SAVE_KEY))throw Error('Use complete backup restoration; career-only replacement cannot discard session authority');career[message.method](...message.args);}
-  else if(op==='e5'){if(!['e5.enable','e5.refresh','e5.register','e5.selectRun','e5.settle','e5.selectLegacy'].includes(message.command))throw Error('Unsupported E5 operation');const command=makeE5Command(career.state,message.command,message.payload,message.id);career.transaction(command,message.command==='e5.settle'&&!career.current.transactions.some(r=>r.transaction.type==='e5.settle'&&r.transaction.payload.instanceId===message.payload.instanceId)?{settlement:createSettlementCapability(career,storage)}:{});}
+  else if(op==='e5'){if(!['e5.enableM4','m4.buyLegacy','m4.equipLegacy','e5.enable','e5.refresh','e5.register','e5.selectRun','e5.settle','e5.selectLegacy'].includes(message.command))throw Error('Unsupported E5 operation');const command=makeE5Command(career.state,message.command,message.payload,message.id);career.transaction(command,message.command==='e5.settle'&&!career.current.transactions.some(r=>r.transaction.type==='e5.settle'&&r.transaction.payload.instanceId===message.payload.instanceId)?{settlement:createSettlementCapability(career,storage)}:{});}
   else if(op==='controller'){const type=message.command;if(!['controller.enable','controller.enableE3','championship.register','championship.coach','championship.withdraw'].includes(type))throw Error('Unsupported controller command');career.transaction(makeControllerCommand(career.state,type,message.payload,message.id));}
   else if(op==='refreshOffers'){const offers=[developmentOffer()];career.transaction(makeControllerCommand(career.state,'championship.refreshOffers',{offers},message.id),{catalog:createCatalogBoundary(v=>fingerprint(v)===fingerprint(offers)).accept(offers)});}
   else if(op==='memoryPrepare'){if(!attempt)throw Error('Unsaved attempt unavailable; cannot fabricate a result');attempt.prepare(loaded,message.snapshot,'e2-result-'+fingerprint([activeChampionship(career.state).id,activeChampionship(career.state).raceId]).slice(0,40));loaded.runner.cached=null;}
@@ -162,6 +163,7 @@ export function createWorkerService(){
    }
    runner.publish(message.id);
   }else throw Error('Unsupported prepared operation');
+  if(typeof BNT_M4_BUILD!=='undefined'&&BNT_M4_BUILD)requireCurrentM4(career.current);
   validatePresentationOwner(message.runtime??message.snapshot.runtime,career);
   const records=[...map];checkRecords(records);const candidateHash=await digestText(JSON.stringify(records));pending={operation:op,generation:message.snapshot.generation+1,records,token:'candidate-'+(++serial),validated:{key:snapshotKey({...message.snapshot,generation:message.snapshot.generation+1,records,...(Object.hasOwn(message.snapshot,'recordsHash')?{recordsHash:candidateHash}:{}),...(message.runtime?{runtime:message.runtime}:{})}),map,storage,career,runner}};
   return {version:1,token:pending.token,records,recordsHash:candidateHash,...(viewerPacket?{viewer:viewerPacket}:{}),durable:false,elapsedMs:performance.now()-started,phase:activeChampionship(career.state)?.phase,revision:career.current.revision};

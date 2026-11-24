@@ -10,7 +10,7 @@ export function packageChoices(){return Object.entries(STARTING_PACKAGES).map(([
 export function packagePreview(key){packageById(key);return {key,package:structuredClone(STARTING_PACKAGES[key]),management:buildPackage('preview',key)};}
 export function validateCreationRequest(r){
  exact(r,['version','id','slotId','profileId','careerId','ownerName','careerName','packageId','emblem','primary','secondary',...(r.version>=2?['recruitIdentities']:[])],'creation request');
- if(![1,2,3].includes(r.version)||(r.version>=2&&typeof r.recruitIdentities!=='boolean')||!/^slot-[a-f0-9-]{36}$/.test(r.slotId))throw Error('Invalid creation request version/slot');for(const k of ['id','profileId','careerId'])id(r[k]);
+ if(![1,2,3,4].includes(r.version)||(r.version>=2&&typeof r.recruitIdentities!=='boolean')||!/^slot-[a-f0-9-]{36}$/.test(r.slotId))throw Error('Invalid creation request version/slot');for(const k of ['id','profileId','careerId'])id(r[k]);
  for(const k of ['ownerName','careerName'])if(typeof r[k]!=='string'||r[k]!==r[k].trim()||!r[k]||r[k].length>100)throw Error('Enter owner and stable names of 1–100 characters');
  packageById(r.packageId);return r;
 }
@@ -20,7 +20,7 @@ export function prepareCreation(request){
  const s=store.state,p=packageById(r.packageId);
  store.transaction({id:r.id+'-grant',profileId:r.profileId,careerId:r.careerId,expectedRevision:s.revision,expectedMaintenanceRevision:s.maintenanceRevision,commandVersion:1,type:'career.initialize',packageId:r.packageId,catalogVersion:CATALOG_VERSION,confirmed:true,reason:'Owner-confirmed starting package at career creation',delta:p.gold,effectId:initializationEffect(r.careerId)});
  if(r.version>=2)store.activateCreationPresentation({recruitIdentities:r.recruitIdentities});
- if(r.version===3)initializeGameplay(store,r.id);
+ if(r.version>=3)initializeGameplay(store,r.id,r.version===4);
  return {records:[...map],state:store.state,runtime};
 }
 
