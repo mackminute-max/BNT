@@ -1,0 +1,182 @@
+{
+  "source": "/workspace/deliverables/bnt-m5-content-v1",
+  "candidateVersion": "1.0.0",
+  "files": 65,
+  "coreCatalogs": 16,
+  "coreRecords": 256,
+  "supplementalDocuments": 16,
+  "visualBriefs": 55,
+  "originalManifestFilesChecked": 63,
+  "originalChecksumEntriesChecked": 64,
+  "catalogHashChecks": [
+    {
+      "path": "catalogs/ancestryGameplay.json",
+      "expected": "f3ea4b9ab75b0a5de1ed4a6b75d53da5c8fbc8293fd6354c93dd29ec217b77a6",
+      "actual": "f3ea4b9ab75b0a5de1ed4a6b75d53da5c8fbc8293fd6354c93dd29ec217b77a6",
+      "match": true
+    },
+    {
+      "path": "catalogs/beastBloodline.json",
+      "expected": "a9820fc7b43770b485d2539b67ae0754edba1b364c365d319fb09b55356189ff",
+      "actual": "a9820fc7b43770b485d2539b67ae0754edba1b364c365d319fb09b55356189ff",
+      "match": true
+    },
+    {
+      "path": "catalogs/beastSpecies.json",
+      "expected": "e38f99b37289d57cb3e9ecf6337b78dde0cd701a2f914d0b5812ea5ac0b4d220",
+      "actual": "e38f99b37289d57cb3e9ecf6337b78dde0cd701a2f914d0b5812ea5ac0b4d220",
+      "match": true
+    },
+    {
+      "path": "catalogs/beastTemperament.json",
+      "expected": "b405b74533dba70adbee26eddfc70423379e8b7d0d3e0293b21dddedd5cdba2e",
+      "actual": "b405b74533dba70adbee26eddfc70423379e8b7d0d3e0293b21dddedd5cdba2e",
+      "match": true
+    },
+    {
+      "path": "catalogs/chariotNaming.json",
+      "expected": "1e1b61bacf5bf01f876d17d04d59767fecfbc0cf3ee073cebb9e27c5b41bbec9",
+      "actual": "1e1b61bacf5bf01f876d17d04d59767fecfbc0cf3ee073cebb9e27c5b41bbec9",
+      "match": true
+    },
+    {
+      "path": "catalogs/culturalNaming.json",
+      "expected": "b7a312203f5a2ba2a563a8b7067c23009e7192bc7cd6e799adaf5cca3ef95321",
+      "actual": "b7a312203f5a2ba2a563a8b7067c23009e7192bc7cd6e799adaf5cca3ef95321",
+      "match": true
+    },
+    {
+      "path": "catalogs/driverAI.json",
+      "expected": "191117d965fb04356c25e5c9d25c826b0cf529e26e9e23ea5d5f80398e2f9c69",
+      "actual": "191117d965fb04356c25e5c9d25c826b0cf529e26e9e23ea5d5f80398e2f9c69",
+      "match": true
+    },
+    {
+      "path": "catalogs/driverBackground.json",
+      "expected": "5d618cdd3da20d704e57af7fa99f8165c9eaccd97392c86af199d178c64cfd1d",
+      "actual": "5d618cdd3da20d704e57af7fa99f8165c9eaccd97392c86af199d178c64cfd1d",
+      "match": true
+    },
+    {
+      "path": "catalogs/equipmentNaming.json",
+      "expected": "fdd80874725df8d0c2c0fbd5a9d2407d4bfe361ac585a927e0496a894130fcfa",
+      "actual": "fdd80874725df8d0c2c0fbd5a9d2407d4bfe361ac585a927e0496a894130fcfa",
+      "match": true
+    },
+    {
+      "path": "catalogs/nation.json",
+      "expected": "54627e2528e43551bbfb459d3063ccfd72fc0ed260f7be13721b0925f737905b",
+      "actual": "54627e2528e43551bbfb459d3063ccfd72fc0ed260f7be13721b0925f737905b",
+      "match": true
+    },
+    {
+      "path": "catalogs/qualityRarity.json",
+      "expected": "b6341961907e8065216910521a8b8fcc29fd0afecbbd074bb2da0dc33f43fdf7",
+      "actual": "b6341961907e8065216910521a8b8fcc29fd0afecbbd074bb2da0dc33f43fdf7",
+      "match": true
+    },
+    {
+      "path": "catalogs/rivalGeneration.json",
+      "expected": "2eaf41e73e97ff456340fa936f783c8c89a1fa978e5de3bf4a149593007805be",
+      "actual": "2eaf41e73e97ff456340fa936f783c8c89a1fa978e5de3bf4a149593007805be",
+      "match": true
+    },
+    {
+      "path": "catalogs/rivalIdentity.json",
+      "expected": "085a66f31ad3f414d6b29cc11bf0d16abc088b0ce9e20467a45b9ee79f483838",
+      "actual": "085a66f31ad3f414d6b29cc11bf0d16abc088b0ce9e20467a45b9ee79f483838",
+      "match": true
+    },
+    {
+      "path": "catalogs/staffExpertise.json",
+      "expected": "02894112b7893d354e795e131a751866cf65ad328c5901245fc6393e3e489f14",
+      "actual": "02894112b7893d354e795e131a751866cf65ad328c5901245fc6393e3e489f14",
+      "match": true
+    },
+    {
+      "path": "catalogs/staffProfession.json",
+      "expected": "e6afb5fe694cbb6be2927eb3ecfb95a22f26e82ee8a3d5049a85bf07d8e6126a",
+      "actual": "e6afb5fe694cbb6be2927eb3ecfb95a22f26e82ee8a3d5049a85bf07d8e6126a",
+      "match": true
+    },
+    {
+      "path": "catalogs/visualMetadata.json",
+      "expected": "0ea772743c21d84da0fe50f2cea24c58c7ad3aa21cdde1764620322e1e34c986",
+      "actual": "0ea772743c21d84da0fe50f2cea24c58c7ad3aa21cdde1764620322e1e34c986",
+      "match": true
+    }
+  ],
+  "discrepancies": [],
+  "fileHashes": {
+    "CATALOG_VERSION_MANIFEST.json": "36aa5ff6e5dfcc80f09b38b46b060a3c14aca4cc44be2bf6888d023c395e71a4",
+    "README.md": "45dce2fb04772549a3cce4264cc5bba123ee0a9075ca4a1d5bb6864d3c35f20a",
+    "SHA256SUMS.txt": "8baf130b7e109e2571b84eed809d9c0c1558c67a4de12353cecd3bb83023c036",
+    "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57",
+    "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce",
+    "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+    "catalogs/ancestryGameplay.json": "f3ea4b9ab75b0a5de1ed4a6b75d53da5c8fbc8293fd6354c93dd29ec217b77a6",
+    "catalogs/beastBloodline.json": "a9820fc7b43770b485d2539b67ae0754edba1b364c365d319fb09b55356189ff",
+    "catalogs/beastSpecies.json": "e38f99b37289d57cb3e9ecf6337b78dde0cd701a2f914d0b5812ea5ac0b4d220",
+    "catalogs/beastTemperament.json": "b405b74533dba70adbee26eddfc70423379e8b7d0d3e0293b21dddedd5cdba2e",
+    "catalogs/chariotNaming.json": "1e1b61bacf5bf01f876d17d04d59767fecfbc0cf3ee073cebb9e27c5b41bbec9",
+    "catalogs/culturalNaming.json": "b7a312203f5a2ba2a563a8b7067c23009e7192bc7cd6e799adaf5cca3ef95321",
+    "catalogs/driverAI.json": "191117d965fb04356c25e5c9d25c826b0cf529e26e9e23ea5d5f80398e2f9c69",
+    "catalogs/driverBackground.json": "5d618cdd3da20d704e57af7fa99f8165c9eaccd97392c86af199d178c64cfd1d",
+    "catalogs/equipmentNaming.json": "fdd80874725df8d0c2c0fbd5a9d2407d4bfe361ac585a927e0496a894130fcfa",
+    "catalogs/nation.json": "54627e2528e43551bbfb459d3063ccfd72fc0ed260f7be13721b0925f737905b",
+    "catalogs/qualityRarity.json": "b6341961907e8065216910521a8b8fcc29fd0afecbbd074bb2da0dc33f43fdf7",
+    "catalogs/rivalGeneration.json": "2eaf41e73e97ff456340fa936f783c8c89a1fa978e5de3bf4a149593007805be",
+    "catalogs/rivalIdentity.json": "085a66f31ad3f414d6b29cc11bf0d16abc088b0ce9e20467a45b9ee79f483838",
+    "catalogs/staffExpertise.json": "02894112b7893d354e795e131a751866cf65ad328c5901245fc6393e3e489f14",
+    "catalogs/staffProfession.json": "e6afb5fe694cbb6be2927eb3ecfb95a22f26e82ee8a3d5049a85bf07d8e6126a",
+    "catalogs/visualMetadata.json": "0ea772743c21d84da0fe50f2cea24c58c7ad3aa21cdde1764620322e1e34c986",
+    "evidence/content-validation-results.json": "cfbed575be95f6cbc8c6cccfcf0395f222302962915ad1bd3073bffc9c0e007f",
+    "evidence/git-status-after.txt": "1c5482def0e4bf2431162945d16c045b5aead1c092cd788739cbdf9bc270b395",
+    "evidence/git-status-before.txt": "1c5482def0e4bf2431162945d16c045b5aead1c092cd788739cbdf9bc270b395",
+    "evidence/native-projection-results.json": "a912dc75070b277678d7b7898ba0482d0c5c4c7a6c29f18468c7cea2dda431b3",
+    "evidence/native-summary.txt": "0b1136a0dd3300a945322ae00b5389abd429c9047467769a96a86057fe29f200",
+    "evidence/native-validation-inputs.json": "21c2222d785b5914e0c446ae6000c6d53855eddd945c4a0a26d5f92b1d60053e",
+    "evidence/production-counts.json": "aaedab12dc0638458b02d4733e69318c620ca55789a2fe595d876c84faf1b87b",
+    "evidence/repository-before.json": "b5fa477aff3b43d3b3558de3ffce2a19ed5fcf52ae01cc73ca996c8bb442aaeb",
+    "evidence/statistical-results.json": "2f419149d2a9b4aab895a07b9557e7892173b2852fb68f3fc20639289cc72df0",
+    "evidence/supplemental-schema-results.json": "738a0396b892eec0790f0b9606e48a6a87c2284d613233135f083365adece239",
+    "evidence/supplemental-semantic-results.json": "5e066e1fd075e001990e9666e2d1a79d9d4c923f99c3bf825d7a7943d209af9b",
+    "evidence/validation-summary.txt": "2dae314ffd69130ca402db0c32a8840a3cb22cc542a520dafcaf34d07a70fc85",
+    "metadata/authored-identity-preservation.json": "484c3c667f1670eb264e82826ca3f413e27d880e39982a608812a90cbc12a03a",
+    "metadata/canonical-reference-mapping.json": "2d8ea9c7d2f2ffd4860b3a30b853740c6511942d7a8ddb0701b3172008107322",
+    "metadata/championship-difficulty-bindings.json": "f0c485fb943a3845aa9a9c816bf9fd2a5eaf9cc5bf32904c238de0628e57b967",
+    "metadata/cross-catalog-dependencies.json": "0df3bb6237ef37da725bced9a87e1c74edbb2ca50658adf7ac0fc8f3c7f09bda",
+    "metadata/mechanical-template-bindings.json": "a975c55ecf33b652c500c96d555764b519e94d7aa8765dbadbe7bfd93371bd88",
+    "metadata/name-reservations.json": "8120f89172a0c3ca897340d4d3e4747a19b9170d2241d5129f68e38219c2fbd7",
+    "metadata/pair-compatibility.json": "b82b1bf794705d855df8c1db6778ff6db3cda75117e95a1eeaaff3d759caa778",
+    "metadata/paired-beast-naming.json": "bcacb9d33a1d53197b2ea0e4fdd09a4d72df10f533d77c470e744d9ef08cee65",
+    "metadata/physical-variants.json": "981a5ca0083cf05b0df73a2dec06f03b1a1157d8d08054443a2778370a0c408e",
+    "metadata/provisional-balance-policy.json": "54b6617f04ddb6b483560b7ccb8b840609ca1183ccc1e515d770d33d87f6f3f4",
+    "metadata/racing-associations.json": "b7d4935a48483d9a64a984bcb58f2f8a29ec2bccf3ba3614f3105e4247fa31d5",
+    "metadata/regional-cultural-affinities.json": "66a9092b4e8ddeb5cbae430363daa4e7b0b99dddb947e494b34047664e5c9c4e",
+    "metadata/staff-biographies.json": "fc0f6f5a67eff1a78b414667cef6f69957b5eee07b63d129e834fda7d88c65ab",
+    "metadata/visual-anatomy-rules.json": "d352bc634c555ebe17cb1bfa4cad418165b3367e0cff511eaefc9d00c6948299",
+    "metadata/visual-asset-bindings.json": "8f9b15c451c6516465e9311b7e8dbe620ddc3c97610686a659da4ee127b38c3a",
+    "metadata/visual-asset-production-briefs.json": "03ba63f4aad1747cf21621aba0d9df2ad70658580c497fc42b42c171dd6938db",
+    "reports/CODEX_INTEGRATION.md": "0e0f5360cde3cd76cf60dfb22128154228b428a00cccf3bfbb8a3ca6f008c306",
+    "reports/CONTENT_PRODUCTION_REPORT.md": "ea571e08049fb89fe4e398323f3b7a93a848b1ad61972429fb01a395a9527be3",
+    "reports/CONTENT_VALIDATION_REPORT.md": "154a7f0153daa1616a479639531d6924d21f0c19d680649296a3ef5788c0585c",
+    "reports/PROVISIONAL_MECHANICAL_BALANCE.md": "fe8585e294844fffe9018507e485b3efcf1a9a6f733246b3a6fed333edd7684f",
+    "reports/TECHNICAL_CONTRACT_NOTES.md": "293f1396903bbf901983aad1e932dd76a1ffc6f784d95862bdbf3c3ba8d56721",
+    "reports/VISUAL_ASSET_REQUIREMENTS.md": "ef347b6d084de0cf0952356d7494058a467e83f9701cdf2e0139cc5d3d3219b2",
+    "schemas/M5_Audit_Content_Schemas.json": "56bc407fdb8350db7b052d0cf86665db8f7acc09ffd87b8ca9158308bcb2de18",
+    "schemas/M5_Supplemental_Metadata_Schemas.json": "005e9520014549f15a7cf337a2bf6fd99ce4076a16488bd8b6abbb867aefd474",
+    "tools/finalize_package.py": "4531180756a5b7bee2dc8a8ce45c454c7dff6673685bb9f5dfe3554c1a71a5fa",
+    "tools/native_projection_check.mjs": "78e14bac16ebc939e62a36428c8db52fb78a7a9eaedbdc614b20b5c0768e110c",
+    "tools/package_metadata.py": "dd5d01f02c58cd5d94c6a76a2b98d009c0054961d3107c9949d11acf0fbf972c",
+    "tools/produce_catalogs.py": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510",
+    "tools/produce_visual_briefs.py": "0c1f93ea34a0701891031c35d3221b12345d6e75e87fe3ed5db64460fcd8a821",
+    "tools/validate_content.py": "0450f063983b20507bb162bceddd4b7eb67b6a6d559fb98ceb32fe382f276509",
+    "tools/write_reports.py": "1c3d79528de25034a9853ff9c5b7ffcc488b831f458598402d12c1d192087a38"
+  },
+  "archive": "BNT_M5_Procedural_Content_Candidate_v1.0.zip",
+  "archiveBytes": 408442,
+  "archiveSHA256": "91277de5fd85051c8c446e969da087a1393e23bdba6513e5881577a7a68e7140",
+  "archiveByteComparison": "65/65 match original source",
+  "sourceUnchanged": true
+}
