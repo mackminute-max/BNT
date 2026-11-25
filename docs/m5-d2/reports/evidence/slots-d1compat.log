@@ -1,0 +1,12 @@
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Incompatible|unsupported|earlier|M5/i. Input:
+
+'This is an older development save. Open it with the accepted D1 HTML; D2 does not migrate or replace it.'
+
+    at file:///workspace/BNT/scripts/m5-d2/slots-d1compat.mjs:3:1724 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'This is an older development save. Open it with the accepted D1 HTML; D2 does not migrate or replace it.',
+  expected: /Incompatible|unsupported|earlier|M5/i,
+  operator: 'match',
+  diff: 'simple'
+}

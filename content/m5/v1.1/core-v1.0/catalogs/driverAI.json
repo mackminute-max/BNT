@@ -1,0 +1,638 @@
+[
+  {
+    "id": "ai.technical",
+    "version": 1,
+    "label": "Technical Racer",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "archetype": "technical",
+    "traits": {
+      "aggression": {
+        "kind": "uniform",
+        "min": 27,
+        "max": 53,
+        "mode": 40,
+        "step": 1
+      },
+      "caution": {
+        "kind": "uniform",
+        "min": 56,
+        "max": 82,
+        "mode": 69,
+        "step": 1
+      },
+      "patience": {
+        "kind": "uniform",
+        "min": 51,
+        "max": 77,
+        "mode": 64,
+        "step": 1
+      },
+      "opportunism": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "staminaManagement": {
+        "kind": "uniform",
+        "min": 44,
+        "max": 70,
+        "mode": 57,
+        "step": 1
+      },
+      "tacticalDiscipline": {
+        "kind": "uniform",
+        "min": 54,
+        "max": 80,
+        "mode": 67,
+        "step": 1
+      }
+    },
+    "individualVariation": 5,
+    "influences": [],
+    "unsupportedClaims": [],
+    "preserveGlobalAI": true
+  },
+  {
+    "id": "ai.brawler",
+    "version": 1,
+    "label": "Brawler",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "archetype": "brawler",
+    "traits": {
+      "aggression": {
+        "kind": "uniform",
+        "min": 65,
+        "max": 91,
+        "mode": 78,
+        "step": 1
+      },
+      "caution": {
+        "kind": "uniform",
+        "min": 21,
+        "max": 47,
+        "mode": 34,
+        "step": 1
+      },
+      "patience": {
+        "kind": "uniform",
+        "min": 23,
+        "max": 49,
+        "mode": 36,
+        "step": 1
+      },
+      "opportunism": {
+        "kind": "uniform",
+        "min": 52,
+        "max": 78,
+        "mode": 65,
+        "step": 1
+      },
+      "staminaManagement": {
+        "kind": "uniform",
+        "min": 26,
+        "max": 52,
+        "mode": 39,
+        "step": 1
+      },
+      "tacticalDiscipline": {
+        "kind": "uniform",
+        "min": 32,
+        "max": 58,
+        "mode": 45,
+        "step": 1
+      }
+    },
+    "individualVariation": 5,
+    "influences": [],
+    "unsupportedClaims": [],
+    "preserveGlobalAI": true
+  },
+  {
+    "id": "ai.daredevil",
+    "version": 1,
+    "label": "Daredevil",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "archetype": "daredevil",
+    "traits": {
+      "aggression": {
+        "kind": "uniform",
+        "min": 67,
+        "max": 93,
+        "mode": 80,
+        "step": 1
+      },
+      "caution": {
+        "kind": "uniform",
+        "min": 11,
+        "max": 37,
+        "mode": 24,
+        "step": 1
+      },
+      "patience": {
+        "kind": "uniform",
+        "min": 20,
+        "max": 46,
+        "mode": 33,
+        "step": 1
+      },
+      "opportunism": {
+        "kind": "uniform",
+        "min": 61,
+        "max": 87,
+        "mode": 74,
+        "step": 1
+      },
+      "staminaManagement": {
+        "kind": "uniform",
+        "min": 19,
+        "max": 45,
+        "mode": 32,
+        "step": 1
+      },
+      "tacticalDiscipline": {
+        "kind": "uniform",
+        "min": 26,
+        "max": 52,
+        "mode": 39,
+        "step": 1
+      }
+    },
+    "individualVariation": 5,
+    "influences": [],
+    "unsupportedClaims": [],
+    "preserveGlobalAI": true
+  },
+  {
+    "id": "ai.endurance",
+    "version": 1,
+    "label": "Endurance Specialist",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "archetype": "endurance",
+    "traits": {
+      "aggression": {
+        "kind": "uniform",
+        "min": 22,
+        "max": 48,
+        "mode": 35,
+        "step": 1
+      },
+      "caution": {
+        "kind": "uniform",
+        "min": 49,
+        "max": 75,
+        "mode": 62,
+        "step": 1
+      },
+      "patience": {
+        "kind": "uniform",
+        "min": 55,
+        "max": 81,
+        "mode": 68,
+        "step": 1
+      },
+      "opportunism": {
+        "kind": "uniform",
+        "min": 35,
+        "max": 61,
+        "mode": 48,
+        "step": 1
+      },
+      "staminaManagement": {
+        "kind": "uniform",
+        "min": 69,
+        "max": 95,
+        "mode": 82,
+        "step": 1
+      },
+      "tacticalDiscipline": {
+        "kind": "uniform",
+        "min": 49,
+        "max": 75,
+        "mode": 62,
+        "step": 1
+      }
+    },
+    "individualVariation": 5,
+    "influences": [],
+    "unsupportedClaims": [],
+    "preserveGlobalAI": true
+  },
+  {
+    "id": "ai.opportunist",
+    "version": 1,
+    "label": "Opportunist",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "archetype": "opportunist",
+    "traits": {
+      "aggression": {
+        "kind": "uniform",
+        "min": 43,
+        "max": 69,
+        "mode": 56,
+        "step": 1
+      },
+      "caution": {
+        "kind": "uniform",
+        "min": 30,
+        "max": 56,
+        "mode": 43,
+        "step": 1
+      },
+      "patience": {
+        "kind": "uniform",
+        "min": 38,
+        "max": 64,
+        "mode": 51,
+        "step": 1
+      },
+      "opportunism": {
+        "kind": "uniform",
+        "min": 70,
+        "max": 96,
+        "mode": 83,
+        "step": 1
+      },
+      "staminaManagement": {
+        "kind": "uniform",
+        "min": 35,
+        "max": 61,
+        "mode": 48,
+        "step": 1
+      },
+      "tacticalDiscipline": {
+        "kind": "uniform",
+        "min": 38,
+        "max": 64,
+        "mode": 51,
+        "step": 1
+      }
+    },
+    "individualVariation": 5,
+    "influences": [],
+    "unsupportedClaims": [],
+    "preserveGlobalAI": true
+  },
+  {
+    "id": "ai.defensive",
+    "version": 1,
+    "label": "Defensive Racer",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "archetype": "defensive",
+    "traits": {
+      "aggression": {
+        "kind": "uniform",
+        "min": 22,
+        "max": 48,
+        "mode": 35,
+        "step": 1
+      },
+      "caution": {
+        "kind": "uniform",
+        "min": 66,
+        "max": 92,
+        "mode": 79,
+        "step": 1
+      },
+      "patience": {
+        "kind": "uniform",
+        "min": 55,
+        "max": 81,
+        "mode": 68,
+        "step": 1
+      },
+      "opportunism": {
+        "kind": "uniform",
+        "min": 28,
+        "max": 54,
+        "mode": 41,
+        "step": 1
+      },
+      "staminaManagement": {
+        "kind": "uniform",
+        "min": 51,
+        "max": 77,
+        "mode": 64,
+        "step": 1
+      },
+      "tacticalDiscipline": {
+        "kind": "uniform",
+        "min": 51,
+        "max": 77,
+        "mode": 64,
+        "step": 1
+      }
+    },
+    "individualVariation": 5,
+    "influences": [],
+    "unsupportedClaims": [],
+    "preserveGlobalAI": true
+  },
+  {
+    "id": "ai.professional",
+    "version": 1,
+    "label": "Disciplined Professional",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "archetype": "professional",
+    "traits": {
+      "aggression": {
+        "kind": "uniform",
+        "min": 32,
+        "max": 58,
+        "mode": 45,
+        "step": 1
+      },
+      "caution": {
+        "kind": "uniform",
+        "min": 46,
+        "max": 72,
+        "mode": 59,
+        "step": 1
+      },
+      "patience": {
+        "kind": "uniform",
+        "min": 49,
+        "max": 75,
+        "mode": 62,
+        "step": 1
+      },
+      "opportunism": {
+        "kind": "uniform",
+        "min": 38,
+        "max": 64,
+        "mode": 51,
+        "step": 1
+      },
+      "staminaManagement": {
+        "kind": "uniform",
+        "min": 48,
+        "max": 74,
+        "mode": 61,
+        "step": 1
+      },
+      "tacticalDiscipline": {
+        "kind": "uniform",
+        "min": 70,
+        "max": 96,
+        "mode": 83,
+        "step": 1
+      }
+    },
+    "individualVariation": 5,
+    "influences": [],
+    "unsupportedClaims": [],
+    "preserveGlobalAI": true
+  },
+  {
+    "id": "ai.showboat",
+    "version": 1,
+    "label": "Showboat",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "archetype": "showboat",
+    "traits": {
+      "aggression": {
+        "kind": "uniform",
+        "min": 53,
+        "max": 79,
+        "mode": 66,
+        "step": 1
+      },
+      "caution": {
+        "kind": "uniform",
+        "min": 24,
+        "max": 50,
+        "mode": 37,
+        "step": 1
+      },
+      "patience": {
+        "kind": "uniform",
+        "min": 28,
+        "max": 54,
+        "mode": 41,
+        "step": 1
+      },
+      "opportunism": {
+        "kind": "uniform",
+        "min": 59,
+        "max": 85,
+        "mode": 72,
+        "step": 1
+      },
+      "staminaManagement": {
+        "kind": "uniform",
+        "min": 29,
+        "max": 55,
+        "mode": 42,
+        "step": 1
+      },
+      "tacticalDiscipline": {
+        "kind": "uniform",
+        "min": 30,
+        "max": 56,
+        "mode": 43,
+        "step": 1
+      }
+    },
+    "individualVariation": 5,
+    "influences": [],
+    "unsupportedClaims": [
+      "No crowd-seeking action, applause reward or audience-responsive utility; risk/opportunity persona only."
+    ],
+    "preserveGlobalAI": true
+  },
+  {
+    "id": "ai.front-runner",
+    "version": 1,
+    "label": "Front Runner",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "archetype": "front-runner",
+    "traits": {
+      "aggression": {
+        "kind": "uniform",
+        "min": 54,
+        "max": 80,
+        "mode": 67,
+        "step": 1
+      },
+      "caution": {
+        "kind": "uniform",
+        "min": 27,
+        "max": 53,
+        "mode": 40,
+        "step": 1
+      },
+      "patience": {
+        "kind": "uniform",
+        "min": 33,
+        "max": 59,
+        "mode": 46,
+        "step": 1
+      },
+      "opportunism": {
+        "kind": "uniform",
+        "min": 47,
+        "max": 73,
+        "mode": 60,
+        "step": 1
+      },
+      "staminaManagement": {
+        "kind": "uniform",
+        "min": 34,
+        "max": 60,
+        "mode": 47,
+        "step": 1
+      },
+      "tacticalDiscipline": {
+        "kind": "uniform",
+        "min": 46,
+        "max": 72,
+        "mode": 59,
+        "step": 1
+      }
+    },
+    "individualVariation": 5,
+    "influences": [],
+    "unsupportedClaims": [
+      "No persona-specific lead-conditional behavior hook; existing pace and passing utilities only."
+    ],
+    "preserveGlobalAI": true
+  },
+  {
+    "id": "ai.patient-pursuer",
+    "version": 1,
+    "label": "Patient Pursuer",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "archetype": "patient-pursuer",
+    "traits": {
+      "aggression": {
+        "kind": "uniform",
+        "min": 27,
+        "max": 53,
+        "mode": 40,
+        "step": 1
+      },
+      "caution": {
+        "kind": "uniform",
+        "min": 49,
+        "max": 75,
+        "mode": 62,
+        "step": 1
+      },
+      "patience": {
+        "kind": "uniform",
+        "min": 68,
+        "max": 94,
+        "mode": 81,
+        "step": 1
+      },
+      "opportunism": {
+        "kind": "uniform",
+        "min": 58,
+        "max": 84,
+        "mode": 71,
+        "step": 1
+      },
+      "staminaManagement": {
+        "kind": "uniform",
+        "min": 54,
+        "max": 80,
+        "mode": 67,
+        "step": 1
+      },
+      "tacticalDiscipline": {
+        "kind": "uniform",
+        "min": 51,
+        "max": 77,
+        "mode": 64,
+        "step": 1
+      }
+    },
+    "individualVariation": 5,
+    "influences": [],
+    "unsupportedClaims": [
+      "No new long-term target memory or pursuit plan; patience and opportunity score existing actions."
+    ],
+    "preserveGlobalAI": true
+  }
+]

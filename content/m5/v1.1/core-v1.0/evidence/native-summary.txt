@@ -1,0 +1,56 @@
+{
+  "exit": 0,
+  "passed": 39,
+  "failed": 0,
+  "nativeProjectionCases": 22,
+  "raceDiagnostics": [
+    {
+      "format": "Pure",
+      "kind": "Oval",
+      "checksum": "8e6e6c7f",
+      "tick": 100,
+      "status": "Running",
+      "repeatedExact": true
+    },
+    {
+      "format": "Pure",
+      "kind": "Circuit",
+      "checksum": "a6d3ce8c",
+      "tick": 100,
+      "status": "Running",
+      "repeatedExact": true
+    },
+    {
+      "format": "Pure",
+      "kind": "Rally",
+      "checksum": "711ae1cc",
+      "tick": 100,
+      "status": "Running",
+      "repeatedExact": true
+    },
+    {
+      "format": "Combat",
+      "kind": "Oval",
+      "checksum": "bebaa120",
+      "tick": 100,
+      "status": "Running",
+      "repeatedExact": true
+    },
+    {
+      "format": "Combat",
+      "kind": "Circuit",
+      "checksum": "7b6a1e2b",
+      "tick": 100,
+      "status": "Running",
+      "repeatedExact": true
+    },
+    {
+      "format": "Combat",
+      "kind": "Rally",
+      "checksum": "e360a469",
+      "tick": 100,
+      "status": "Running",
+      "repeatedExact": true
+    }
+  ]
+}

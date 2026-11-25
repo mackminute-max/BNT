@@ -1,0 +1,824 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "id": "visual-rule.a01",
+      "profileId": "visual.a01",
+      "canonicalId": "A01",
+      "typicalAdultDimensions": {
+        "men": {
+          "height_cm": {
+            "min": 165,
+            "max": 190
+          },
+          "weight_kg": {
+            "min": 60,
+            "max": 105
+          }
+        },
+        "women": {
+          "height_cm": {
+            "min": 153,
+            "max": 178
+          },
+          "weight_kg": {
+            "min": 48,
+            "max": 90
+          }
+        }
+      },
+      "typicalLifespanYears": {
+        "min": 65,
+        "max": 90
+      },
+      "requiredAnatomy": "Five fingers and toes; rounded external ears; flat nails; human dentition; no intrinsic horns, tails or unusual skin structures.",
+      "identityConsistency": "Persist anatomy selection; culture/clothing never rerolls biological identity.",
+      "sexConditionalRules": [],
+      "prohibitedFeatures": [],
+      "sourceColorGuidance": "Full natural human range of skin, eye and hair pigments; straight, wavy, curly and tightly coiled hair; freckles, birthmarks and early graying possible.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 34,
+          "endLine": 89,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.a02",
+      "profileId": "visual.a02",
+      "canonicalId": "A02",
+      "typicalAdultDimensions": {
+        "men": {
+          "height_cm": {
+            "min": 180,
+            "max": 215
+          },
+          "weight_kg": {
+            "min": 90,
+            "max": 155
+          }
+        },
+        "women": {
+          "height_cm": {
+            "min": 170,
+            "max": 200
+          },
+          "weight_kg": {
+            "min": 75,
+            "max": 130
+          }
+        }
+      },
+      "typicalLifespanYears": {
+        "min": 55,
+        "max": 80
+      },
+      "requiredAnatomy": "Two lower-jaw tusks (size variable); five digits per hand; ordinary plantigrade feet; rounded-to-pointed ear tips; no mandatory facial piercings or tribal markings.",
+      "identityConsistency": "Persist anatomy selection; culture/clothing never rerolls biological identity.",
+      "sexConditionalRules": [],
+      "prohibitedFeatures": [],
+      "sourceColorGuidance": "Muted green, gray-green, olive, umber and brown skin tones; dark hair common, lighter hair possible; scars and skin texture vary individually.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 90,
+          "endLine": 145,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.a03",
+      "profileId": "visual.a03",
+      "canonicalId": "A03",
+      "typicalAdultDimensions": {
+        "men": {
+          "height_cm": {
+            "min": 210,
+            "max": 245
+          },
+          "weight_kg": {
+            "min": 125,
+            "max": 205
+          }
+        },
+        "women": {
+          "height_cm": {
+            "min": 200,
+            "max": 235
+          },
+          "weight_kg": {
+            "min": 110,
+            "max": 185
+          }
+        }
+      },
+      "typicalLifespanYears": {
+        "min": 70,
+        "max": 100
+      },
+      "requiredAnatomy": "Five digits; rounded or slightly tapered ears; generally sparse body hair; skin patterns may resemble mottling or natural stone-like markings, not literal rock plating.",
+      "identityConsistency": "Persist anatomy selection; culture/clothing never rerolls biological identity.",
+      "sexConditionalRules": [],
+      "prohibitedFeatures": [],
+      "sourceColorGuidance": "Gray, slate, pale taupe, cool brown and stony skin tones; natural darker mottling or patches; hair may be dark, gray or pale and often sparse.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 146,
+          "endLine": 201,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.a04",
+      "profileId": "visual.a04",
+      "canonicalId": "A04",
+      "typicalAdultDimensions": {
+        "men": {
+          "height_cm": {
+            "min": 125,
+            "max": 150
+          },
+          "weight_kg": {
+            "min": 65,
+            "max": 105
+          }
+        },
+        "women": {
+          "height_cm": {
+            "min": 120,
+            "max": 145
+          },
+          "weight_kg": {
+            "min": 60,
+            "max": 100
+          }
+        }
+      },
+      "typicalLifespanYears": {
+        "min": 250,
+        "max": 350
+      },
+      "requiredAnatomy": "Five digits, broad hands and feet, dense hair, strong brows and jaws; female Hill Dwarves never grow facial hair.",
+      "identityConsistency": "Persist anatomy selection; culture/clothing never rerolls biological identity.",
+      "sexConditionalRules": [
+        {
+          "sex": "female",
+          "forbidden": [
+            "all-facial-hair"
+          ]
+        }
+      ],
+      "prohibitedFeatures": [],
+      "sourceColorGuidance": "Warm ivory, peach, ruddy, tan, amber and copper-brown complexions; hair from blond and auburn to dark brown, black and gray.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 202,
+          "endLine": 257,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.a05",
+      "profileId": "visual.a05",
+      "canonicalId": "A05",
+      "typicalAdultDimensions": {
+        "men": {
+          "height_cm": {
+            "min": 125,
+            "max": 150
+          },
+          "weight_kg": {
+            "min": 70,
+            "max": 115
+          }
+        },
+        "women": {
+          "height_cm": {
+            "min": 120,
+            "max": 145
+          },
+          "weight_kg": {
+            "min": 65,
+            "max": 105
+          }
+        }
+      },
+      "typicalLifespanYears": {
+        "min": 250,
+        "max": 350
+      },
+      "requiredAnatomy": "Broad five-fingered hands, sturdy feet, heavy brow and dense bone structure; female Mountain Dwarves may grow exaggerated sideburns and hair along the jawline and chin, but never full beards; no intrinsic stone skin or metallic features.",
+      "identityConsistency": "Persist anatomy selection; culture/clothing never rerolls biological identity.",
+      "sexConditionalRules": [
+        {
+          "sex": "female",
+          "forbidden": [
+            "full-beard"
+          ],
+          "permitted": [
+            "none",
+            "sideburns",
+            "sparse-jawline-chin-hair"
+          ]
+        }
+      ],
+      "prohibitedFeatures": [],
+      "sourceColorGuidance": "Paler ivory, cool beige, ash-tan and muted pink complexions common, with individual darker variants; dark, red, fair or gray hair.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 258,
+          "endLine": 313,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.a06",
+      "profileId": "visual.a06",
+      "canonicalId": "A06",
+      "typicalAdultDimensions": {
+        "men": {
+          "height_cm": {
+            "min": 90,
+            "max": 110
+          },
+          "weight_kg": {
+            "min": 20,
+            "max": 38
+          }
+        },
+        "women": {
+          "height_cm": {
+            "min": 88,
+            "max": 108
+          },
+          "weight_kg": {
+            "min": 19,
+            "max": 36
+          }
+        }
+      },
+      "typicalLifespanYears": {
+        "min": 120,
+        "max": 160
+      },
+      "requiredAnatomy": "Five fingers, five toes, humanlike ears with subtle taper possible; comparatively large feet, often with natural hair on tops of feet.",
+      "identityConsistency": "Persist anatomy selection; culture/clothing never rerolls biological identity.",
+      "sexConditionalRules": [],
+      "prohibitedFeatures": [],
+      "sourceColorGuidance": "Full humanlike pigmentation range; hair frequently thick or curly but not exclusively; eye colors diverse.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 314,
+          "endLine": 369,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.a07",
+      "profileId": "visual.a07",
+      "canonicalId": "A07",
+      "typicalAdultDimensions": {
+        "men": {
+          "height_cm": {
+            "min": 165,
+            "max": 190
+          },
+          "weight_kg": {
+            "min": 50,
+            "max": 80
+          }
+        },
+        "women": {
+          "height_cm": {
+            "min": 160,
+            "max": 185
+          },
+          "weight_kg": {
+            "min": 45,
+            "max": 75
+          }
+        }
+      },
+      "typicalLifespanYears": {
+        "min": 600,
+        "max": 800
+      },
+      "requiredAnatomy": "Long pointed ears, five digits, fine hair, expressive eyes; no mandatory antlers, wings, glowing tattoos or overt faerie appendages.",
+      "identityConsistency": "Persist anatomy selection; culture/clothing never rerolls biological identity.",
+      "sexConditionalRules": [],
+      "prohibitedFeatures": [
+        "automatic-faerie-magic",
+        "mandatory-wings"
+      ],
+      "sourceColorGuidance": "Fair, golden, olive and woodland-brown skin; dark, chestnut, copper, blond or silver-toned hair; eye colors broad, sometimes unusually luminous-looking without actual emission.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 370,
+          "endLine": 425,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.a08",
+      "profileId": "visual.a08",
+      "canonicalId": "A08",
+      "typicalAdultDimensions": {
+        "men": {
+          "height_cm": {
+            "min": 170,
+            "max": 195
+          },
+          "weight_kg": {
+            "min": 55,
+            "max": 85
+          }
+        },
+        "women": {
+          "height_cm": {
+            "min": 165,
+            "max": 190
+          },
+          "weight_kg": {
+            "min": 50,
+            "max": 80
+          }
+        }
+      },
+      "typicalLifespanYears": {
+        "min": 600,
+        "max": 800
+      },
+      "requiredAnatomy": "Pointed ears, five digits, finely textured skin; no innate glowing eyes, desert scales or supernatural markings.",
+      "identityConsistency": "Persist anatomy selection; culture/clothing never rerolls biological identity.",
+      "sexConditionalRules": [],
+      "prohibitedFeatures": [],
+      "sourceColorGuidance": "Predominantly bronze, copper, olive, deep tan and brown complexions with darker pigmentation common; dark hair frequent, sun-lightened strands possible; varied eyes.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 426,
+          "endLine": 481,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.a09",
+      "profileId": "visual.a09",
+      "canonicalId": "A09",
+      "typicalAdultDimensions": {
+        "men": {
+          "height_cm": {
+            "min": 165,
+            "max": 190
+          },
+          "weight_kg": {
+            "min": 55,
+            "max": 85
+          }
+        },
+        "women": {
+          "height_cm": {
+            "min": 160,
+            "max": 185
+          },
+          "weight_kg": {
+            "min": 50,
+            "max": 80
+          }
+        }
+      },
+      "typicalLifespanYears": {
+        "min": 600,
+        "max": 800
+      },
+      "requiredAnatomy": "**Approved amphibious physiology:** breathe air and water; subtle subtle paired functional gill slits on the sides of the neck, behind and below the ears; mild webbing between fingers and toes; pointed ears; five digits.",
+      "identityConsistency": "Persist anatomy selection; culture/clothing never rerolls biological identity.",
+      "sexConditionalRules": [],
+      "prohibitedFeatures": [
+        "fish-tail",
+        "full-body-fish-scales",
+        "missing-standard-gills"
+      ],
+      "sourceColorGuidance": "Commonly pale ivory, cool rose, pearl, light gray-beige and muted sea-toned complexions, with darker natural variation; hair pale blond, silver, sandy, brown or dark; weathering and windblown styling are acquired.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 482,
+          "endLine": 537,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.a10",
+      "profileId": "visual.a10",
+      "canonicalId": "A10",
+      "typicalAdultDimensions": {
+        "men": {
+          "height_cm": {
+            "min": 95,
+            "max": 120
+          },
+          "weight_kg": {
+            "min": 18,
+            "max": 35
+          }
+        },
+        "women": {
+          "height_cm": {
+            "min": 90,
+            "max": 115
+          },
+          "weight_kg": {
+            "min": 17,
+            "max": 33
+          }
+        }
+      },
+      "typicalLifespanYears": {
+        "min": 350,
+        "max": 500
+      },
+      "requiredAnatomy": "Five fingers and toes, prominent external ears, humanlike nails and teeth; no intrinsic mechanical implants or goggles.",
+      "identityConsistency": "Persist anatomy selection; culture/clothing never rerolls biological identity.",
+      "sexConditionalRules": [],
+      "prohibitedFeatures": [],
+      "sourceColorGuidance": "Humanlike range of pigmentation; vivid red, brown, blond, black and gray hair all plausible; freckles and unusual eye shades possible.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 538,
+          "endLine": 593,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.a11",
+      "profileId": "visual.a11",
+      "canonicalId": "A11",
+      "typicalAdultDimensions": {
+        "men": {
+          "height_cm": {
+            "min": 95,
+            "max": 125
+          },
+          "weight_kg": {
+            "min": 22,
+            "max": 45
+          }
+        },
+        "women": {
+          "height_cm": {
+            "min": 90,
+            "max": 120
+          },
+          "weight_kg": {
+            "min": 20,
+            "max": 42
+          }
+        }
+      },
+      "typicalLifespanYears": {
+        "min": 55,
+        "max": 85
+      },
+      "requiredAnatomy": "Five digits, large pointed ears, sharp canine teeth, humanlike feet; no compulsory claws, tails or oversized fangs.",
+      "identityConsistency": "Persist anatomy selection; culture/clothing never rerolls biological identity.",
+      "sexConditionalRules": [],
+      "prohibitedFeatures": [],
+      "sourceColorGuidance": "Green, olive, yellow-green, gray-green, ocher and brown complexions; hair dark, sandy, reddish or pale.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 594,
+          "endLine": 649,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.a12",
+      "profileId": "visual.a12",
+      "canonicalId": "A12",
+      "typicalAdultDimensions": {
+        "men": {
+          "height_cm": {
+            "min": 185,
+            "max": 220
+          },
+          "weight_kg": {
+            "min": 100,
+            "max": 165
+          }
+        },
+        "women": {
+          "height_cm": {
+            "min": 175,
+            "max": 210
+          },
+          "weight_kg": {
+            "min": 85,
+            "max": 145
+          }
+        }
+      },
+      "typicalLifespanYears": {
+        "min": 75,
+        "max": 110
+      },
+      "requiredAnatomy": "Scaled hide, clawed five-fingered hands, reptilian snout and teeth, visible tail, external ear openings rather than human ears; **no wings**; no universal breath weapon.",
+      "identityConsistency": "Persist anatomy selection; culture/clothing never rerolls biological identity.",
+      "sexConditionalRules": [
+        {
+          "sex": "female",
+          "forbidden": [
+            "default-mammalian-breasts"
+          ]
+        }
+      ],
+      "prohibitedFeatures": [
+        "wings",
+        "automatic-breath-weapons",
+        "human-external-ears"
+      ],
+      "sourceColorGuidance": "Rust, ocher, red-brown, slate, green, bronze, dark umber and muted ivory scales; patterned ventral scales and horns; eye color variable.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 650,
+          "endLine": 705,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.a13",
+      "profileId": "visual.a13",
+      "canonicalId": "A13",
+      "typicalAdultDimensions": {
+        "men": {
+          "height_cm": {
+            "min": 155,
+            "max": 185
+          },
+          "weight_kg": {
+            "min": 90,
+            "max": 170
+          }
+        },
+        "women": {
+          "height_cm": {
+            "min": 150,
+            "max": 180
+          },
+          "weight_kg": {
+            "min": 85,
+            "max": 160
+          }
+        }
+      },
+      "typicalLifespanYears": {
+        "min": 70,
+        "max": 120
+      },
+      "requiredAnatomy": "Keratinous beak, scaled or pebbled skin, thick fingers and toes with blunt claws, dorsal shell and ventral plastron; no external human ears.",
+      "identityConsistency": "Persist anatomy selection; culture/clothing never rerolls biological identity.",
+      "sexConditionalRules": [],
+      "prohibitedFeatures": [
+        "detachable-shell",
+        "complete-shell-withdrawal",
+        "water-breathing"
+      ],
+      "sourceColorGuidance": "Olive, moss, umber, tan, gray and deep green skin; shells brown, ocher, olive, charcoal or mottled; varied natural scute patterns.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 706,
+          "endLine": 789,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.b01",
+      "profileId": "visual.b01",
+      "canonicalId": "B01",
+      "requiredAnatomy": "Equine: long face, mobile ears, flowing mane and tail, single hard hoof per leg; deep chest and strong hindquarters.",
+      "sourceColorGuidance": "Bay, black, chestnut, gray, roan, dun, palomino, buckskin, pinto and spotted patterns; mane and tail texture and feathering vary.",
+      "sexVariationStatus": "Stallions often have thicker neck crests and heavier muscle; mares often have slightly finer necks and more refined heads. Geldings are common working and racing animals. Differences are variable, not absolute.",
+      "prohibitedFeatures": [
+        "routine-magic",
+        "new-ability-claims"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.b02",
+      "profileId": "visual.b02",
+      "canonicalId": "B02",
+      "requiredAnatomy": "Massive shaggy elk-like cervid with broad antler crown, deep chest, sloping muscular shoulders, long sure-footed legs and cloven hooves.",
+      "sourceColorGuidance": "Dark umber, russet, gray-brown, soot-brown; lighter throat and belly, winter shag and mane variation.",
+      "sexVariationStatus": "Adult males generally bear larger antler crowns and thicker neck ruffs; females generally have finer heads and may lack antlers. Racing animals of either sex may be selected for harness-clearance traits; antler variation remains a design proposal.",
+      "prohibitedFeatures": [
+        "routine-magic",
+        "new-ability-claims"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 136,
+          "endLine": 217,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.b03",
+      "profileId": "visual.b03",
+      "canonicalId": "B03",
+      "requiredAnatomy": "Oversized domestic boar with broad chest, low center of gravity, thick winter bristles, stout legs, powerful neck, wedge-shaped snout and curved tusks.",
+      "sourceColorGuidance": "Chestnut, black, iron gray, sandy brown, brindle and patchy coats; bristle crest and facial mask variation.",
+      "sexVariationStatus": "Boars commonly heavier in jowl, shoulders and tusk development; sows may have smoother head profile and smaller tusks, while remaining robust.",
+      "prohibitedFeatures": [
+        "routine-magic",
+        "new-ability-claims"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 218,
+          "endLine": 299,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.b04",
+      "profileId": "visual.b04",
+      "canonicalId": "B04",
+      "requiredAnatomy": "Graceful antlerless herbivore with light horse/deer-like head, long legs, deep but slender chest, fine neck, delicate muzzle and compact hooves.",
+      "sourceColorGuidance": "Honey, chestnut, fawn, cream, bay, russet and soft gray, with subtle countershading and occasional dapples.",
+      "sexVariationStatus": "Males may show somewhat thicker neck and shoulders; females often finer through the head and limbs; neither sex has antlers.",
+      "prohibitedFeatures": [
+        "routine-magic",
+        "new-ability-claims",
+        "antlers"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 300,
+          "endLine": 381,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.b05",
+      "profileId": "visual.b05",
+      "canonicalId": "B05",
+      "requiredAnatomy": "Large muscular sheep-like ram with broad forehead, wool or hair coat, thick shoulders, split hooves and curved horn structure; selectively bred for pulling.",
+      "sourceColorGuidance": "Cream, charcoal, slate, russet, white, black and spotted; fleece length and horn pigmentation vary.",
+      "sexVariationStatus": "Rams generally carry heavier horns and neck musculature; ewes often smaller horns or hornless depending on line, but powerful racing ewes remain plausible.",
+      "prohibitedFeatures": [
+        "routine-magic",
+        "new-ability-claims"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 382,
+          "endLine": 463,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.b06",
+      "profileId": "visual.b06",
+      "canonicalId": "B06",
+      "requiredAnatomy": "Canon: enormous omnivorous, social pack-oriented runner blending bear-like strength, bison-like bulk and dire-wolf-like running capacity; curved horns, thick mane, massive shoulders, strong hindquarters and cloven hooves. Canon scale: shoulder 1.8–2.3 m, body 3.5–4.5 m, 900–1,600 kg; life roughly 25–35 years.",
+      "sourceColorGuidance": "Deep brown, black-brown, ash gray, reddish umber and pale buff, with mane and leg markings.",
+      "sexVariationStatus": "Males may have larger neck mane and heavier horns; females remain massive, with somewhat cleaner neck profile. This dimorphism is proposed, not previously established.",
+      "prohibitedFeatures": [
+        "routine-magic",
+        "new-ability-claims"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 464,
+          "endLine": 545,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.b07",
+      "profileId": "visual.b07",
+      "canonicalId": "B07",
+      "requiredAnatomy": "Oversized natural predatory canine with long muzzle, pronounced shoulders, deep ribcage, strong legs, thick neck ruff, large paws and heavy tail.",
+      "sourceColorGuidance": "Gray, charcoal, cream, sable, reddish brown, black and mottled natural wolf patterns.",
+      "sexVariationStatus": "Males often larger and more heavily ruffed; females may be more lightly built while retaining formidable mass.",
+      "prohibitedFeatures": [
+        "routine-magic",
+        "new-ability-claims",
+        "warg-identity"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 546,
+          "endLine": 627,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.b08",
+      "profileId": "visual.b08",
+      "canonicalId": "B08",
+      "requiredAnatomy": "Domesticated four-legged draconic reptile with scaled hide, powerful limbs, long balancing tail and horned or crested head; no wings and no routine breath weapons or spellcasting.",
+      "sourceColorGuidance": "Rust red, bronze, charcoal, slate, dark green; contrasting ventral scales, mottling and bands.",
+      "sexVariationStatus": "Males may have larger cranial horns and neck crests; females may have smoother ridges and slightly narrower heads. Variability is individual and breed-linked.",
+      "prohibitedFeatures": [
+        "routine-magic",
+        "new-ability-claims",
+        "wings",
+        "breath-weapon"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 628,
+          "endLine": 709,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "visual-rule.b09",
+      "profileId": "visual.b09",
+      "canonicalId": "B09",
+      "requiredAnatomy": "Large muscular desert-adapted oryx-like antelope with long powerful legs, strong chest and hindquarters, straight or gently swept prominent horns, distinctive facial markings. No inherent magic.",
+      "sourceColorGuidance": "Ivory, sand, cream, pale gold and reddish brown, with dark facial masks, flank lines and countershading.",
+      "sexVariationStatus": "Both sexes may be horned; males often heavier through neck and horn bases, females generally finer, subject to breeding variation.",
+      "prohibitedFeatures": [
+        "routine-magic",
+        "new-ability-claims"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 710,
+          "endLine": 831,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    }
+  ]
+}

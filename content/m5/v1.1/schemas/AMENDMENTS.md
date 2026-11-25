@@ -1,0 +1,1 @@
+Original schema unchanged. Exact-value strict sidecar schemas add owner-policy and regional Market fields without modifying original record shapes. Core metadata replacement operations apply only to a new version; existing IDs unchanged. Native adapters not implemented.

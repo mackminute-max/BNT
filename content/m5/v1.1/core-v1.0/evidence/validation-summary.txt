@@ -1,0 +1,38 @@
+{
+  "exit": 0,
+  "passedChecks": 6564,
+  "failedChecks": 0,
+  "coreRecordCount": 256,
+  "familyCounts": {
+    "ancestryGameplay": 13,
+    "beastBloodline": 39,
+    "beastSpecies": 9,
+    "beastTemperament": 8,
+    "chariotNaming": 8,
+    "culturalNaming": 35,
+    "driverAI": 10,
+    "driverBackground": 8,
+    "equipmentNaming": 8,
+    "nation": 8,
+    "qualityRarity": 5,
+    "rivalGeneration": 40,
+    "rivalIdentity": 8,
+    "staffExpertise": 3,
+    "staffProfession": 24,
+    "visualMetadata": 30
+  },
+  "statisticalSamples": {
+    "driver": 130000,
+    "beast": 90000,
+    "ai": 100000,
+    "nationalAncestry": 800000,
+    "nationalSpecies": 800000,
+    "qualityDriverAndHorse": 100000,
+    "names": 1024
+  },
+  "limits": [
+    "No native full-race balance or replay certification by Python sampler",
+    "Provisional stats; no integration authority",
+    "Full application Node/browser suites not required for unchanged source and not rerun"
+  ]
+}

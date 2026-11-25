@@ -6,7 +6,7 @@ export function beginActionCosts(s){if(s.autonomous.accelerationFatiguePerSpeed|
 export function chargeAction(s,r,kind,{fatigue=0,strain=0,magnitude=1,sourceId=null}={}){
  if(![fatigue,strain,magnitude].every(n=>Number.isFinite(n)&&n>=0))throw Error('Invalid action resource cost');
  if(r.status!=='Racing'||(!fatigue&&!strain))return;
- const actualFatigue=r.ru.beasts.map(b=>{const old=b.fatigue;b.fatigue=Math.min(100,Math.max(0,old+fatigue*(1.5-b.endurance/100)));return b.fatigue-old;});
+ const actualFatigue=r.ru.beasts.map(b=>{const old=b.fatigue;b.fatigue=Math.min(100,Math.max(0,old+(r.affinityContext?fatigue/r.affinityContext.multiplier:fatigue)*(1.5-b.endurance/100)));return b.fatigue-old;});
  const before=r.ru.driver.strain;r.ru.driver.strain=Math.min(100,Math.max(0,before+strain));const actualStrain=r.ru.driver.strain-before;
  const collector=collectors.get(s),record=collector?.actors.get(r.id)??{beastFatigue:r.ru.beasts.map(()=>0),driverStrain:0,sources:{}};
  actualFatigue.forEach((n,i)=>record.beastFatigue[i]+=n);record.driverStrain+=actualStrain;

@@ -1,0 +1,7602 @@
+[
+  {
+    "id": "rival.n1.dustroad",
+    "version": 1,
+    "label": "Northreach Confederation — dustroad",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 19,
+        "endLine": 260,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n1",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 45
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 30
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 18
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 3
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 3
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 60
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 70
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 25
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 4
+      },
+      {
+        "id": "quality.rare",
+        "weight": 0.9
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.1
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n1",
+      "staff.mechanic.n1",
+      "staff.physician.n1"
+    ],
+    "chariotNamingProfileId": "chariot.n1",
+    "equipmentNamingProfileId": "equipment.n1",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.dustroad",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n1.ironwheel",
+    "version": 1,
+    "label": "Northreach Confederation — ironwheel",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 19,
+        "endLine": 260,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n1",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 45
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 30
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 18
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 3
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 3
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 60
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 35
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 50
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 12
+      },
+      {
+        "id": "quality.rare",
+        "weight": 2.8
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.2
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n1",
+      "staff.mechanic.n1",
+      "staff.physician.n1"
+    ],
+    "chariotNamingProfileId": "chariot.n1",
+    "equipmentNamingProfileId": "equipment.n1",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.ironwheel",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n1.bannerfall",
+    "version": 1,
+    "label": "Northreach Confederation — bannerfall",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 19,
+        "endLine": 260,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n1",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 45
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 30
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 18
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 3
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 3
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 60
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 12
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 50
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 28
+      },
+      {
+        "id": "quality.rare",
+        "weight": 9
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 1
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n1",
+      "staff.mechanic.n1",
+      "staff.physician.n1"
+    ],
+    "chariotNamingProfileId": "chariot.n1",
+    "equipmentNamingProfileId": "equipment.n1",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.bannerfall",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n1.crownfire",
+    "version": 1,
+    "label": "Northreach Confederation — crownfire",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 19,
+        "endLine": 260,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n1",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 45
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 30
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 18
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 3
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 3
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 60
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 4
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 30
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 36
+      },
+      {
+        "id": "quality.rare",
+        "weight": 26
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 4
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n1",
+      "staff.mechanic.n1",
+      "staff.physician.n1"
+    ],
+    "chariotNamingProfileId": "chariot.n1",
+    "equipmentNamingProfileId": "equipment.n1",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.crownfire",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n1.thunder-crown",
+    "version": 1,
+    "label": "Northreach Confederation — thunder-crown",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 19,
+        "endLine": 260,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n1",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 45
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 30
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 18
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 3
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 3
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 60
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 1
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 15
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 29
+      },
+      {
+        "id": "quality.rare",
+        "weight": 45
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 10
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n1",
+      "staff.mechanic.n1",
+      "staff.physician.n1"
+    ],
+    "chariotNamingProfileId": "chariot.n1",
+    "equipmentNamingProfileId": "equipment.n1",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.thunder-crown",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n2.dustroad",
+    "version": 1,
+    "label": "Frosthall Kingdom — dustroad",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 261,
+        "endLine": 550,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n2",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 52
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 35
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 3
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 5
+      },
+      {
+        "id": "ai.professional",
+        "weight": 5
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 60
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 70
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 25
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 4
+      },
+      {
+        "id": "quality.rare",
+        "weight": 0.9
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.1
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n2",
+      "staff.mechanic.n2",
+      "staff.physician.n2"
+    ],
+    "chariotNamingProfileId": "chariot.n2",
+    "equipmentNamingProfileId": "equipment.n2",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.dustroad",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n2.ironwheel",
+    "version": 1,
+    "label": "Frosthall Kingdom — ironwheel",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 261,
+        "endLine": 550,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n2",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 52
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 35
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 3
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 5
+      },
+      {
+        "id": "ai.professional",
+        "weight": 5
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 60
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 35
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 50
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 12
+      },
+      {
+        "id": "quality.rare",
+        "weight": 2.8
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.2
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n2",
+      "staff.mechanic.n2",
+      "staff.physician.n2"
+    ],
+    "chariotNamingProfileId": "chariot.n2",
+    "equipmentNamingProfileId": "equipment.n2",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.ironwheel",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n2.bannerfall",
+    "version": 1,
+    "label": "Frosthall Kingdom — bannerfall",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 261,
+        "endLine": 550,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n2",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 52
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 35
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 3
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 5
+      },
+      {
+        "id": "ai.professional",
+        "weight": 5
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 60
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 12
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 50
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 28
+      },
+      {
+        "id": "quality.rare",
+        "weight": 9
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 1
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n2",
+      "staff.mechanic.n2",
+      "staff.physician.n2"
+    ],
+    "chariotNamingProfileId": "chariot.n2",
+    "equipmentNamingProfileId": "equipment.n2",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.bannerfall",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n2.crownfire",
+    "version": 1,
+    "label": "Frosthall Kingdom — crownfire",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 261,
+        "endLine": 550,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n2",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 52
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 35
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 3
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 5
+      },
+      {
+        "id": "ai.professional",
+        "weight": 5
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 60
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 4
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 30
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 36
+      },
+      {
+        "id": "quality.rare",
+        "weight": 26
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 4
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n2",
+      "staff.mechanic.n2",
+      "staff.physician.n2"
+    ],
+    "chariotNamingProfileId": "chariot.n2",
+    "equipmentNamingProfileId": "equipment.n2",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.crownfire",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n2.thunder-crown",
+    "version": 1,
+    "label": "Frosthall Kingdom — thunder-crown",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 261,
+        "endLine": 550,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n2",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 52
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 35
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 3
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 5
+      },
+      {
+        "id": "ai.professional",
+        "weight": 5
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 60
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 1
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 15
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 29
+      },
+      {
+        "id": "quality.rare",
+        "weight": 45
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 10
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n2",
+      "staff.mechanic.n2",
+      "staff.physician.n2"
+    ],
+    "chariotNamingProfileId": "chariot.n2",
+    "equipmentNamingProfileId": "equipment.n2",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.thunder-crown",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n3.dustroad",
+    "version": 1,
+    "label": "Greenvale Commonwealth — dustroad",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 551,
+        "endLine": 921,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n3",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 38
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 28
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 26
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 5
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 5
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 5
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 60
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 70
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 25
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 4
+      },
+      {
+        "id": "quality.rare",
+        "weight": 0.9
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.1
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n3",
+      "staff.mechanic.n3",
+      "staff.physician.n3"
+    ],
+    "chariotNamingProfileId": "chariot.n3",
+    "equipmentNamingProfileId": "equipment.n3",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.dustroad",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n3.ironwheel",
+    "version": 1,
+    "label": "Greenvale Commonwealth — ironwheel",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 551,
+        "endLine": 921,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n3",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 38
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 28
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 26
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 5
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 5
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 5
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 60
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 35
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 50
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 12
+      },
+      {
+        "id": "quality.rare",
+        "weight": 2.8
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.2
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n3",
+      "staff.mechanic.n3",
+      "staff.physician.n3"
+    ],
+    "chariotNamingProfileId": "chariot.n3",
+    "equipmentNamingProfileId": "equipment.n3",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.ironwheel",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n3.bannerfall",
+    "version": 1,
+    "label": "Greenvale Commonwealth — bannerfall",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 551,
+        "endLine": 921,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n3",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 38
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 28
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 26
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 5
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 5
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 5
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 60
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 12
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 50
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 28
+      },
+      {
+        "id": "quality.rare",
+        "weight": 9
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 1
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n3",
+      "staff.mechanic.n3",
+      "staff.physician.n3"
+    ],
+    "chariotNamingProfileId": "chariot.n3",
+    "equipmentNamingProfileId": "equipment.n3",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.bannerfall",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n3.crownfire",
+    "version": 1,
+    "label": "Greenvale Commonwealth — crownfire",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 551,
+        "endLine": 921,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n3",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 38
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 28
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 26
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 5
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 5
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 5
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 60
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 4
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 30
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 36
+      },
+      {
+        "id": "quality.rare",
+        "weight": 26
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 4
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n3",
+      "staff.mechanic.n3",
+      "staff.physician.n3"
+    ],
+    "chariotNamingProfileId": "chariot.n3",
+    "equipmentNamingProfileId": "equipment.n3",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.crownfire",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n3.thunder-crown",
+    "version": 1,
+    "label": "Greenvale Commonwealth — thunder-crown",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 551,
+        "endLine": 921,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n3",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 38
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 28
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 26
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 5
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 5
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 5
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 60
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 1
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 15
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 29
+      },
+      {
+        "id": "quality.rare",
+        "weight": 45
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 10
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n3",
+      "staff.mechanic.n3",
+      "staff.physician.n3"
+    ],
+    "chariotNamingProfileId": "chariot.n3",
+    "equipmentNamingProfileId": "equipment.n3",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.thunder-crown",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n4.dustroad",
+    "version": 1,
+    "label": "Ironhold Clans — dustroad",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 922,
+        "endLine": 1429,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n4",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 45
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 27
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 6
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 3
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 1
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 25
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 65
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 70
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 25
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 4
+      },
+      {
+        "id": "quality.rare",
+        "weight": 0.9
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.1
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n4",
+      "staff.mechanic.n4",
+      "staff.physician.n4"
+    ],
+    "chariotNamingProfileId": "chariot.n4",
+    "equipmentNamingProfileId": "equipment.n4",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.dustroad",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n4.ironwheel",
+    "version": 1,
+    "label": "Ironhold Clans — ironwheel",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 922,
+        "endLine": 1429,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n4",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 45
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 27
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 6
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 3
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 1
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 25
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 65
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 35
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 50
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 12
+      },
+      {
+        "id": "quality.rare",
+        "weight": 2.8
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.2
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n4",
+      "staff.mechanic.n4",
+      "staff.physician.n4"
+    ],
+    "chariotNamingProfileId": "chariot.n4",
+    "equipmentNamingProfileId": "equipment.n4",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.ironwheel",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n4.bannerfall",
+    "version": 1,
+    "label": "Ironhold Clans — bannerfall",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 922,
+        "endLine": 1429,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n4",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 45
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 27
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 6
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 3
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 1
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 25
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 65
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 12
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 50
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 28
+      },
+      {
+        "id": "quality.rare",
+        "weight": 9
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 1
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n4",
+      "staff.mechanic.n4",
+      "staff.physician.n4"
+    ],
+    "chariotNamingProfileId": "chariot.n4",
+    "equipmentNamingProfileId": "equipment.n4",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.bannerfall",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n4.crownfire",
+    "version": 1,
+    "label": "Ironhold Clans — crownfire",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 922,
+        "endLine": 1429,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n4",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 45
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 27
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 6
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 3
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 1
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 25
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 65
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 4
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 30
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 36
+      },
+      {
+        "id": "quality.rare",
+        "weight": 26
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 4
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n4",
+      "staff.mechanic.n4",
+      "staff.physician.n4"
+    ],
+    "chariotNamingProfileId": "chariot.n4",
+    "equipmentNamingProfileId": "equipment.n4",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.crownfire",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n4.thunder-crown",
+    "version": 1,
+    "label": "Ironhold Clans — thunder-crown",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 922,
+        "endLine": 1429,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n4",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 45
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 27
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 6
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 3
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 1
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 25
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 65
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 1
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 15
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 29
+      },
+      {
+        "id": "quality.rare",
+        "weight": 45
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 10
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n4",
+      "staff.mechanic.n4",
+      "staff.physician.n4"
+    ],
+    "chariotNamingProfileId": "chariot.n4",
+    "equipmentNamingProfileId": "equipment.n4",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.thunder-crown",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n5.dustroad",
+    "version": 1,
+    "label": "Sundaran League — dustroad",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 1430,
+        "endLine": 2027,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n5",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 4
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 3
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 5
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 18
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 3
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 4
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 18
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 2
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 4
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 5
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 3
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 5
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 4
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 3
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 55
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 70
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 25
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 4
+      },
+      {
+        "id": "quality.rare",
+        "weight": 0.9
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.1
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n5",
+      "staff.mechanic.n5",
+      "staff.physician.n5"
+    ],
+    "chariotNamingProfileId": "chariot.n5",
+    "equipmentNamingProfileId": "equipment.n5",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.dustroad",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n5.ironwheel",
+    "version": 1,
+    "label": "Sundaran League — ironwheel",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 1430,
+        "endLine": 2027,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n5",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 4
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 3
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 5
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 18
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 3
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 4
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 18
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 2
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 4
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 5
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 3
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 5
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 4
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 3
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 55
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 35
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 50
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 12
+      },
+      {
+        "id": "quality.rare",
+        "weight": 2.8
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.2
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n5",
+      "staff.mechanic.n5",
+      "staff.physician.n5"
+    ],
+    "chariotNamingProfileId": "chariot.n5",
+    "equipmentNamingProfileId": "equipment.n5",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.ironwheel",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n5.bannerfall",
+    "version": 1,
+    "label": "Sundaran League — bannerfall",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 1430,
+        "endLine": 2027,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n5",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 4
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 3
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 5
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 18
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 3
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 4
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 18
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 2
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 4
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 5
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 3
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 5
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 4
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 3
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 55
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 12
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 50
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 28
+      },
+      {
+        "id": "quality.rare",
+        "weight": 9
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 1
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n5",
+      "staff.mechanic.n5",
+      "staff.physician.n5"
+    ],
+    "chariotNamingProfileId": "chariot.n5",
+    "equipmentNamingProfileId": "equipment.n5",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.bannerfall",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n5.crownfire",
+    "version": 1,
+    "label": "Sundaran League — crownfire",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 1430,
+        "endLine": 2027,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n5",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 4
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 3
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 5
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 18
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 3
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 4
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 18
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 2
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 4
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 5
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 3
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 5
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 4
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 3
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 55
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 4
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 30
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 36
+      },
+      {
+        "id": "quality.rare",
+        "weight": 26
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 4
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n5",
+      "staff.mechanic.n5",
+      "staff.physician.n5"
+    ],
+    "chariotNamingProfileId": "chariot.n5",
+    "equipmentNamingProfileId": "equipment.n5",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.crownfire",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n5.thunder-crown",
+    "version": 1,
+    "label": "Sundaran League — thunder-crown",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 1430,
+        "endLine": 2027,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n5",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 4
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 3
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 5
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 18
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 3
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 4
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 18
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 2
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 4
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 5
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 3
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 5
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 4
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 3
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 55
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 1
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 15
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 29
+      },
+      {
+        "id": "quality.rare",
+        "weight": 45
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 10
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n5",
+      "staff.mechanic.n5",
+      "staff.physician.n5"
+    ],
+    "chariotNamingProfileId": "chariot.n5",
+    "equipmentNamingProfileId": "equipment.n5",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.thunder-crown",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n6.dustroad",
+    "version": 1,
+    "label": "Karthen Hordes — dustroad",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2028,
+        "endLine": 2614,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n6",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 57
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 35
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 3
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 5
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 4
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 5
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 2
+      },
+      {
+        "id": "ai.professional",
+        "weight": 3
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 15
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 45
+      },
+      {
+        "id": "species.b07",
+        "weight": 35
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 70
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 25
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 4
+      },
+      {
+        "id": "quality.rare",
+        "weight": 0.9
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.1
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n6",
+      "staff.mechanic.n6",
+      "staff.physician.n6"
+    ],
+    "chariotNamingProfileId": "chariot.n6",
+    "equipmentNamingProfileId": "equipment.n6",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.dustroad",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n6.ironwheel",
+    "version": 1,
+    "label": "Karthen Hordes — ironwheel",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2028,
+        "endLine": 2614,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n6",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 57
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 35
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 3
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 5
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 4
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 5
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 2
+      },
+      {
+        "id": "ai.professional",
+        "weight": 3
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 15
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 45
+      },
+      {
+        "id": "species.b07",
+        "weight": 35
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 35
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 50
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 12
+      },
+      {
+        "id": "quality.rare",
+        "weight": 2.8
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.2
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n6",
+      "staff.mechanic.n6",
+      "staff.physician.n6"
+    ],
+    "chariotNamingProfileId": "chariot.n6",
+    "equipmentNamingProfileId": "equipment.n6",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.ironwheel",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n6.bannerfall",
+    "version": 1,
+    "label": "Karthen Hordes — bannerfall",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2028,
+        "endLine": 2614,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n6",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 57
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 35
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 3
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 5
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 4
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 5
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 2
+      },
+      {
+        "id": "ai.professional",
+        "weight": 3
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 15
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 45
+      },
+      {
+        "id": "species.b07",
+        "weight": 35
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 12
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 50
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 28
+      },
+      {
+        "id": "quality.rare",
+        "weight": 9
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 1
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n6",
+      "staff.mechanic.n6",
+      "staff.physician.n6"
+    ],
+    "chariotNamingProfileId": "chariot.n6",
+    "equipmentNamingProfileId": "equipment.n6",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.bannerfall",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n6.crownfire",
+    "version": 1,
+    "label": "Karthen Hordes — crownfire",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2028,
+        "endLine": 2614,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n6",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 57
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 35
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 3
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 5
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 4
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 5
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 2
+      },
+      {
+        "id": "ai.professional",
+        "weight": 3
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 15
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 45
+      },
+      {
+        "id": "species.b07",
+        "weight": 35
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 4
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 30
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 36
+      },
+      {
+        "id": "quality.rare",
+        "weight": 26
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 4
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n6",
+      "staff.mechanic.n6",
+      "staff.physician.n6"
+    ],
+    "chariotNamingProfileId": "chariot.n6",
+    "equipmentNamingProfileId": "equipment.n6",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.crownfire",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n6.thunder-crown",
+    "version": 1,
+    "label": "Karthen Hordes — thunder-crown",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2028,
+        "endLine": 2614,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n6",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 57
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 35
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 3
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 5
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 4
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 5
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 2
+      },
+      {
+        "id": "ai.professional",
+        "weight": 3
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 15
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 45
+      },
+      {
+        "id": "species.b07",
+        "weight": 35
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 1
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 15
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 29
+      },
+      {
+        "id": "quality.rare",
+        "weight": 45
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 10
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n6",
+      "staff.mechanic.n6",
+      "staff.physician.n6"
+    ],
+    "chariotNamingProfileId": "chariot.n6",
+    "equipmentNamingProfileId": "equipment.n6",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.thunder-crown",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n7.dustroad",
+    "version": 1,
+    "label": "Velmora Republic — dustroad",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2615,
+        "endLine": 3393,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n7",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 65
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 5
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 4
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 3
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 5
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 3
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 25
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 65
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 70
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 25
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 4
+      },
+      {
+        "id": "quality.rare",
+        "weight": 0.9
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.1
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n7",
+      "staff.mechanic.n7",
+      "staff.physician.n7"
+    ],
+    "chariotNamingProfileId": "chariot.n7",
+    "equipmentNamingProfileId": "equipment.n7",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.dustroad",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n7.ironwheel",
+    "version": 1,
+    "label": "Velmora Republic — ironwheel",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2615,
+        "endLine": 3393,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n7",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 65
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 5
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 4
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 3
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 5
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 3
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 25
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 65
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 35
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 50
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 12
+      },
+      {
+        "id": "quality.rare",
+        "weight": 2.8
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.2
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n7",
+      "staff.mechanic.n7",
+      "staff.physician.n7"
+    ],
+    "chariotNamingProfileId": "chariot.n7",
+    "equipmentNamingProfileId": "equipment.n7",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.ironwheel",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n7.bannerfall",
+    "version": 1,
+    "label": "Velmora Republic — bannerfall",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2615,
+        "endLine": 3393,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n7",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 65
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 5
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 4
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 3
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 5
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 3
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 25
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 65
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 12
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 50
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 28
+      },
+      {
+        "id": "quality.rare",
+        "weight": 9
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 1
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n7",
+      "staff.mechanic.n7",
+      "staff.physician.n7"
+    ],
+    "chariotNamingProfileId": "chariot.n7",
+    "equipmentNamingProfileId": "equipment.n7",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.bannerfall",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n7.crownfire",
+    "version": 1,
+    "label": "Velmora Republic — crownfire",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2615,
+        "endLine": 3393,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n7",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 65
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 5
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 4
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 3
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 5
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 3
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 25
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 65
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 4
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 30
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 36
+      },
+      {
+        "id": "quality.rare",
+        "weight": 26
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 4
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n7",
+      "staff.mechanic.n7",
+      "staff.physician.n7"
+    ],
+    "chariotNamingProfileId": "chariot.n7",
+    "equipmentNamingProfileId": "equipment.n7",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.crownfire",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n7.thunder-crown",
+    "version": 1,
+    "label": "Velmora Republic — thunder-crown",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2615,
+        "endLine": 3393,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n7",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 65
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 5
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 4
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 3
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 5
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 3
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 25
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 65
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 1
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 15
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 29
+      },
+      {
+        "id": "quality.rare",
+        "weight": 45
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 10
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n7",
+      "staff.mechanic.n7",
+      "staff.physician.n7"
+    ],
+    "chariotNamingProfileId": "chariot.n7",
+    "equipmentNamingProfileId": "equipment.n7",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.thunder-crown",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n8.dustroad",
+    "version": 1,
+    "label": "Zarashi Dominion — dustroad",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 3394,
+        "endLine": 4104,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n8",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 950
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 6
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 7
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 5
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 15
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 75
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 70
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 25
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 4
+      },
+      {
+        "id": "quality.rare",
+        "weight": 0.9
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.1
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n8",
+      "staff.mechanic.n8",
+      "staff.physician.n8"
+    ],
+    "chariotNamingProfileId": "chariot.n8",
+    "equipmentNamingProfileId": "equipment.n8",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.dustroad",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n8.ironwheel",
+    "version": 1,
+    "label": "Zarashi Dominion — ironwheel",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 3394,
+        "endLine": 4104,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n8",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 950
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 6
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 7
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 5
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 15
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 75
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 35
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 50
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 12
+      },
+      {
+        "id": "quality.rare",
+        "weight": 2.8
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.2
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n8",
+      "staff.mechanic.n8",
+      "staff.physician.n8"
+    ],
+    "chariotNamingProfileId": "chariot.n8",
+    "equipmentNamingProfileId": "equipment.n8",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.ironwheel",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n8.bannerfall",
+    "version": 1,
+    "label": "Zarashi Dominion — bannerfall",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 3394,
+        "endLine": 4104,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n8",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 950
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 6
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 7
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 5
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 15
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 75
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 12
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 50
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 28
+      },
+      {
+        "id": "quality.rare",
+        "weight": 9
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 1
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n8",
+      "staff.mechanic.n8",
+      "staff.physician.n8"
+    ],
+    "chariotNamingProfileId": "chariot.n8",
+    "equipmentNamingProfileId": "equipment.n8",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.bannerfall",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n8.crownfire",
+    "version": 1,
+    "label": "Zarashi Dominion — crownfire",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 3394,
+        "endLine": 4104,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n8",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 950
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 6
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 7
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 5
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 15
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 75
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 4
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 30
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 36
+      },
+      {
+        "id": "quality.rare",
+        "weight": 26
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 4
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n8",
+      "staff.mechanic.n8",
+      "staff.physician.n8"
+    ],
+    "chariotNamingProfileId": "chariot.n8",
+    "equipmentNamingProfileId": "equipment.n8",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.crownfire",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  },
+  {
+    "id": "rival.n8.thunder-crown",
+    "version": 1,
+    "label": "Zarashi Dominion — thunder-crown",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 3394,
+        "endLine": 4104,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "identityProfileId": "team.n8",
+    "driverAncestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 950
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "driverAIWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 6
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 7
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 5
+      }
+    ],
+    "beastSpeciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 15
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 75
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 1
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 15
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 29
+      },
+      {
+        "id": "quality.rare",
+        "weight": 45
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 10
+      }
+    ],
+    "staffProfileIds": [
+      "staff.handler.n8",
+      "staff.mechanic.n8",
+      "staff.physician.n8"
+    ],
+    "chariotNamingProfileId": "chariot.n8",
+    "equipmentNamingProfileId": "equipment.n8",
+    "beastCount": 2,
+    "persistence": "bounded-identity-population",
+    "championshipDifficultyReference": "difficulty.thunder-crown",
+    "personalityFreeze": "at-entity-generation",
+    "simulateOffscreenEconomy": false
+  }
+]

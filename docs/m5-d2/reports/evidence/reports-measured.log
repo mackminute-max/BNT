@@ -1,0 +1,15 @@
+{
+  "artifact": {
+    "name": "Blood-and-Thunder-M5-D2-Playable.html",
+    "bytes": 5529570,
+    "sha256": "b1feae08d6af7ade30d2502d6c6a5daf12ac79a0172cdf59d220586a6c3fa30f"
+  },
+  "sourceFiles": 875,
+  "changedAgainstD1": 198,
+  "node": {
+    "tests": "1349",
+    "pass": "1349",
+    "fail": "0"
+  },
+  "reports": 9
+}

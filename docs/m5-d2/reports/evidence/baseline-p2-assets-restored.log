@@ -1,0 +1,69 @@
+✔ P2-A native geometry, map bounds and transforms oval (17.864694ms)
+✔ P2-A native geometry, map bounds and transforms C01 (7.252886ms)
+✔ P2-A native geometry, map bounds and transforms rally-short (9.39242ms)
+✔ P2-A native geometry, map bounds and transforms rally-long (30.871619ms)
+✔ P2-A CSS/DPR backing 1 (0.503151ms)
+✔ P2-A CSS/DPR backing 1.25 (0.195388ms)
+✔ P2-A CSS/DPR backing 1.5 (0.082021ms)
+✔ P2-A CSS/DPR backing 2 (0.119186ms)
+✔ P2-A CSS/DPR backing 3 (0.281595ms)
+✔ P2-A open rally end does not wrap and identity does not depend on iteration order (9.904755ms)
+✔ P2-A bounded LRU releases evictions and rejects oversized cache entries (0.437134ms)
+✖ P2-C manifest and complete embedding preserve dimensions, anchors, hashes and project credits (9.641076ms)
+✔ P2-C reject invalid manifest duplicate (1.607279ms)
+✔ P2-C reject invalid manifest version (0.240304ms)
+✔ P2-C reject invalid manifest reference (0.151904ms)
+✔ P2-C reject invalid manifest cycle (0.221797ms)
+✔ P2-C reject invalid manifest dimension (0.100358ms)
+✔ P2-C reject invalid manifest anchor (0.093618ms)
+✔ P2-C reject invalid manifest frame (0.093778ms)
+✔ P2-C reject invalid manifest hash (0.205232ms)
+✔ P2-C reject invalid manifest traversal (0.148118ms)
+✔ P2-C reject invalid manifest license (0.151072ms)
+✔ P2-C reject invalid manifest palette (0.105025ms)
+✔ P2-C restricted XML accepts reviewed geometry and local IDs (1.533419ms)
+✔ P2-C SVG rejects <script/> (0.150522ms)
+✔ P2-C SVG rejects <foreignObject/> (0.094189ms)
+✔ P2-C SVG rejects <filter/> (0.055211ms)
+✔ P2-C SVG rejects <animate/> (0.046959ms)
+✔ P2-C SVG rejects <image href="data:foo"/> (0.042243ms)
+✔ P2-C SVG rejects <text>font</text> (0.043324ms)
+✔ P2-C SVG rejects <path onload="alert(1)"/> (0.046478ms)
+✔ P2-C SVG rejects <path style="fill:url(http://evil)"/> (0.045046ms)
+✔ P2-C SVG rejects <use href="https://evil"/> (0.096893ms)
+✔ P2-C SVG rejects <use href="#missing"/> (0.097293ms)
+✔ P2-C SVG rejects <path fill="url(https://evil)"/> (0.168638ms)
+✔ P2-C SVG rejects <path id="a" id="a"/> (0.069152ms)
+✔ P2-C SVG rejects <path><g/></svg> (0.077283ms)
+✔ P2-C SVG rejects <!DOCTYPE x> (0.048271ms)
+✔ P2-C SVG rejects <?xml-stylesheet href="https://evil"?> (0.043284ms)
+✔ P2-C SVG rejects <path d="M1e999 0"/> (0.075832ms)
+✔ P2-C malformed and entity XML cannot escape strict parser (0.370106ms)
+✔ P2-C PNG signature, CRC and bounded dimensions are validated (12.016116ms)
+✔ P2-C offline scanner rejects resource locations and preserves embedded dynamic data URLs (1.308057ms)
+✔ P2-C SVG rejects reference cycles, deep clips and malformed path arity (0.489611ms)
+ℹ tests 44
+ℹ suites 0
+ℹ pass 43
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 267.830185
+
+✖ failing tests:
+
+test at tests/p2.test.js:8:1
+✖ P2-C manifest and complete embedding preserve dimensions, anchors, hashes and project credits (9.641076ms)
+  Error: ENOENT: no such file or directory, open '/workspace/bnt-m5-d2-baseline/art-source/svg/proof/ru-master.svg'
+      at async open (node:internal/fs/promises:1345:25)
+      at async readFile (node:internal/fs/promises:2003:14)
+      at async embedAssets (file:///workspace/bnt-m5-d2-baseline/scripts/p2/assets.mjs:6:1378)
+      at async TestContext.<anonymous> (file:///workspace/bnt-m5-d2-baseline/tests/p2.test.js:8:147)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/workspace/bnt-m5-d2-baseline/art-source/svg/proof/ru-master.svg'
+  }

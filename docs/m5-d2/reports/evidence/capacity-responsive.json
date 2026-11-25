@@ -1,0 +1,197 @@
+{
+  "scope": "Synthetic protected-history fixtures in real IndexedDB/inline worker, not native championship counts",
+  "controlled": true,
+  "rows": [
+    {
+      "count": 500,
+      "logicalBytes": 96908713,
+      "records": 474,
+      "fetchMs": 728.5999999940395,
+      "rows": [
+        {
+          "label": "D2-backend",
+          "firstCommitMs": 3624.5,
+          "readMs": 4715.5999999940395,
+          "warmCommitMs": 7990.4000000059605
+        }
+      ],
+      "coldMs": 9341.5,
+      "warmValidationMs": 6333.0999999940395,
+      "backupMs": 23775.40000000596,
+      "restoreMs": 41127,
+      "backupBytes": 107917336,
+      "longestMainThreadMs": 4631,
+      "longTasks": [
+        {
+          "start": 329.40000000596046,
+          "duration": 183
+        },
+        {
+          "start": 512.5999999940395,
+          "duration": 325
+        },
+        {
+          "start": 846.9000000059605,
+          "duration": 4631
+        },
+        {
+          "start": 7716.699999988079,
+          "duration": 2862
+        },
+        {
+          "start": 10585.90000000596,
+          "duration": 3112
+        },
+        {
+          "start": 13936.199999988079,
+          "duration": 84
+        },
+        {
+          "start": 14020.699999988079,
+          "duration": 100
+        },
+        {
+          "start": 15699.799999982119,
+          "duration": 2559
+        },
+        {
+          "start": 20207.19999998808,
+          "duration": 3006
+        },
+        {
+          "start": 23225.90000000596,
+          "duration": 98
+        },
+        {
+          "start": 29597.90000000596,
+          "duration": 3179
+        },
+        {
+          "start": 32782.29999998212,
+          "duration": 63
+        },
+        {
+          "start": 35991,
+          "duration": 2566
+        },
+        {
+          "start": 40286,
+          "duration": 2606
+        },
+        {
+          "start": 42897,
+          "duration": 141
+        },
+        {
+          "start": 53692.90000000596,
+          "duration": 51
+        },
+        {
+          "start": 53744.19999998808,
+          "duration": 53
+        },
+        {
+          "start": 55240.5,
+          "duration": 2766
+        },
+        {
+          "start": 58034.40000000596,
+          "duration": 288
+        },
+        {
+          "start": 60050.79999998212,
+          "duration": 3187
+        },
+        {
+          "start": 63285.59999999404,
+          "duration": 144
+        },
+        {
+          "start": 83505.5,
+          "duration": 307
+        },
+        {
+          "start": 83814.79999998212,
+          "duration": 2498
+        },
+        {
+          "start": 87701.5,
+          "duration": 71
+        },
+        {
+          "start": 88112.29999998212,
+          "duration": 2425
+        },
+        {
+          "start": 90545.90000000596,
+          "duration": 82
+        },
+        {
+          "start": 90665.09999999404,
+          "duration": 3746
+        },
+        {
+          "start": 96133.40000000596,
+          "duration": 2973
+        }
+      ],
+      "phaseTasks": [
+        {
+          "name": "first-commit",
+          "start": 2245.7999999821186,
+          "end": 5870.299999982119,
+          "longestTaskMs": 4631
+        },
+        {
+          "name": "read",
+          "start": 5870.4000000059605,
+          "end": 10586,
+          "longestTaskMs": 3112
+        },
+        {
+          "name": "warm-commit",
+          "start": 10586,
+          "end": 18576.40000000596,
+          "longestTaskMs": 3112
+        },
+        {
+          "name": "cold-worker-validation",
+          "start": 18584.40000000596,
+          "end": 27925.90000000596,
+          "longestTaskMs": 3006
+        },
+        {
+          "name": "warm-validation",
+          "start": 27925.90000000596,
+          "end": 34259,
+          "longestTaskMs": 3179
+        },
+        {
+          "name": "backup",
+          "start": 34259,
+          "end": 58034.40000000596,
+          "longestTaskMs": 2766
+        },
+        {
+          "name": "restore",
+          "start": 58321.69999998808,
+          "end": 99448.69999998808,
+          "longestTaskMs": 3746
+        }
+      ],
+      "memory": {
+        "used": 499912740,
+        "total": 510227520
+      },
+      "estimate": {
+        "quota": 10741075968,
+        "usage": 3657728,
+        "usageDetails": {
+          "indexedDB": 3657728
+        }
+      },
+      "revision": 50014
+    }
+  ],
+  "pass": true
+}

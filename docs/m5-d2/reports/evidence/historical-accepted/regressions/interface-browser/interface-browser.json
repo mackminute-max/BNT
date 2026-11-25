@@ -1,0 +1,1410 @@
+{
+  "browser": "156.0.8078.79",
+  "groups": [
+    "Default player view, every original diagnostic ID retained in Developer Tools, grouped controls, navigation preserves paused session and Worker birth count",
+    "Existing preparation flow applies seed/course/format/field; repeated explicit preparations reproduce identical setup",
+    "Driver condition/strain match presented native fields; absent name stays neutral; three reserved slots contain no fictional effects",
+    "Real Worker run held beyond countdown: READY → SET, no tick/GO while blocked; release produces GO only at actual presented playback; pause removes GO",
+    "Restart creates a clean visual sequence, resets existing command generation, and pre-start pause preserves the native countdown value",
+    "Offline active view switch preserves the same running session and Worker, returns at current tick; pause/tail and exactly one native step remain operational",
+    "Controlled native comparison cannot leave Pure Engage Rivals falsely available after its blanket button reset",
+    "Actual native commentary: fixed window, retained reading anchor despite new messages and view switch, Latest/pinned autoscroll, monotonic timestamps, clean restart",
+    "Failed portrait remains readable with neutral fallback and real profile metrics; reduced-motion countdown uses the same words without animation"
+  ],
+  "sequence": [
+    {
+      "stage": "hidden",
+      "word": "",
+      "tick": 0,
+      "phase": "ready",
+      "clock": 0,
+      "hidden": true
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "ready",
+      "word": "READY",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "countdown",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "set",
+      "word": "SET",
+      "tick": 0,
+      "phase": "initial-buffering",
+      "clock": 0,
+      "hidden": false
+    },
+    {
+      "stage": "hidden",
+      "word": "",
+      "tick": 0,
+      "phase": "playing",
+      "clock": 0,
+      "hidden": true
+    },
+    {
+      "stage": "hidden",
+      "word": "",
+      "tick": 0,
+      "phase": "playing",
+      "clock": 0.04989999999999964,
+      "hidden": true
+    },
+    {
+      "stage": "go",
+      "word": "GO!",
+      "tick": 1,
+      "phase": "playing",
+      "clock": 0.06659999999999947,
+      "hidden": false
+    },
+    {
+      "stage": "go",
+      "word": "GO!",
+      "tick": 2,
+      "phase": "playing",
+      "clock": 0.13329999999999928,
+      "hidden": false
+    },
+    {
+      "stage": "go",
+      "word": "GO!",
+      "tick": 3,
+      "phase": "playing",
+      "clock": 0.15000000000000002,
+      "hidden": false
+    },
+    {
+      "stage": "go",
+      "word": "GO!",
+      "tick": 3,
+      "phase": "playing",
+      "clock": 0.16659999999999947,
+      "hidden": false
+    },
+    {
+      "stage": "go",
+      "word": "GO!",
+      "tick": 4,
+      "phase": "playing",
+      "clock": 0.21659999999999946,
+      "hidden": false
+    },
+    {
+      "stage": "go",
+      "word": "GO!",
+      "tick": 4,
+      "phase": "playing",
+      "clock": 0.24989999999999965,
+      "hidden": false
+    },
+    {
+      "stage": "go",
+      "word": "GO!",
+      "tick": 5,
+      "phase": "playing",
+      "clock": 0.2665,
+      "hidden": false
+    },
+    {
+      "stage": "go",
+      "word": "GO!",
+      "tick": 5,
+      "phase": "playing",
+      "clock": 0.28319999999999984,
+      "hidden": false
+    },
+    {
+      "stage": "go",
+      "word": "GO!",
+      "tick": 6,
+      "phase": "playing",
+      "clock": 0.33319999999999983,
+      "hidden": false
+    },
+    {
+      "stage": "go",
+      "word": "GO!",
+      "tick": 7,
+      "phase": "playing",
+      "clock": 0.35000000000000003,
+      "hidden": false
+    },
+    {
+      "stage": "hidden",
+      "word": "",
+      "tick": 7,
+      "phase": "paused",
+      "clock": 0.35000000000000003,
+      "hidden": true
+    }
+  ],
+  "errors": [],
+  "radio": {
+    "sameAnchor": true,
+    "offset": -3,
+    "priorOffset": -3,
+    "top": 945,
+    "atBottom": false,
+    "lastChanged": true,
+    "unread": "1 new message",
+    "height": 180
+  },
+  "navigation": {
+    "same": true,
+    "before": {
+      "generation": "p15-1",
+      "tick": 0,
+      "births": 1
+    },
+    "after": {
+      "generation": "p15-1",
+      "tick": 0,
+      "births": 1
+    },
+    "mainTick": 0,
+    "mapTick": 0
+  }
+}

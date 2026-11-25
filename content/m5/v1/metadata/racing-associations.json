@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "id": "association.n1",
+      "nationId": "N1",
+      "displayName": "Stonepeak Independent Racing Circle",
+      "status": "authored-sporting-network-not-new-government-or-canon-institution",
+      "purpose": "Nonmechanical affinity for generated independent racing organizations.",
+      "grantsPoliticalControl": false,
+      "mechanicalEffect": "none",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 19,
+          "endLine": 260,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "association.n2",
+      "nationId": "N2",
+      "displayName": "Highhall Independent Racing Circle",
+      "status": "authored-sporting-network-not-new-government-or-canon-institution",
+      "purpose": "Nonmechanical affinity for generated independent racing organizations.",
+      "grantsPoliticalControl": false,
+      "mechanicalEffect": "none",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 261,
+          "endLine": 550,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "association.n3",
+      "nationId": "N3",
+      "displayName": "Willowbridge Independent Racing Circle",
+      "status": "authored-sporting-network-not-new-government-or-canon-institution",
+      "purpose": "Nonmechanical affinity for generated independent racing organizations.",
+      "grantsPoliticalControl": false,
+      "mechanicalEffect": "none",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 551,
+          "endLine": 921,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "association.n4",
+      "nationId": "N4",
+      "displayName": "Kharadun Independent Racing Circle",
+      "status": "authored-sporting-network-not-new-government-or-canon-institution",
+      "purpose": "Nonmechanical affinity for generated independent racing organizations.",
+      "grantsPoliticalControl": false,
+      "mechanicalEffect": "none",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 922,
+          "endLine": 1429,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "association.n5",
+      "nationId": "N5",
+      "displayName": "Sundara Independent Racing Circle",
+      "status": "authored-sporting-network-not-new-government-or-canon-institution",
+      "purpose": "Nonmechanical affinity for generated independent racing organizations.",
+      "grantsPoliticalControl": false,
+      "mechanicalEffect": "none",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 1430,
+          "endLine": 2027,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "association.n6",
+      "nationId": "N6",
+      "displayName": "Karthagar Independent Racing Circle",
+      "status": "authored-sporting-network-not-new-government-or-canon-institution",
+      "purpose": "Nonmechanical affinity for generated independent racing organizations.",
+      "grantsPoliticalControl": false,
+      "mechanicalEffect": "none",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2028,
+          "endLine": 2614,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "association.n7",
+      "nationId": "N7",
+      "displayName": "Velmora Independent Racing Circle",
+      "status": "authored-sporting-network-not-new-government-or-canon-institution",
+      "purpose": "Nonmechanical affinity for generated independent racing organizations.",
+      "grantsPoliticalControl": false,
+      "mechanicalEffect": "none",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2615,
+          "endLine": 3393,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "association.n8",
+      "nationId": "N8",
+      "displayName": "Zarathiel Independent Racing Circle",
+      "status": "authored-sporting-network-not-new-government-or-canon-institution",
+      "purpose": "Nonmechanical affinity for generated independent racing organizations.",
+      "grantsPoliticalControl": false,
+      "mechanicalEffect": "none",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 3394,
+          "endLine": 4104,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    }
+  ]
+}

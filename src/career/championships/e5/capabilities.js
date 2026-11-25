@@ -7,7 +7,7 @@ const trusted=new WeakSet(),sources=new WeakMap();
 // native official authority. Worker preparation still is not durable publication.
 export function createSettlementCapability(career,storage){
  const raw=storage.getItem(SAVE_KEY);if(career.mode!=='automatic'||career.raw!==raw)throw Error('Durable settlement source changed');
- const state=parseEnvelope(raw).primary;if(state.schema!==6||fingerprint(state)!==fingerprint(career.current))throw Error('Invalid settlement career authority');
+ const state=parseEnvelope(raw).primary;if(![6,7].includes(state.schema)||fingerprint(state)!==fingerprint(career.current))throw Error('Invalid settlement career authority');
  const x=state.championshipFoundation.instances[state.championshipFoundation.activeId];if(!x||x.phase!=='SETTLEMENT_PENDING'||x.raceResults.length!==x.offer.value.schedule.length)throw Error('Complete frozen schedule required');
  const records=[];for(const result of x.raceResults){if(result.kind==='NoStarters')continue;const text=storage.getItem(result.reference.storageKey);if(!text)throw Error('Missing official native session authority');const session=new RaceSessionStore(storage,{identity:result.proof.identity,getCareerAnchor:()=>result.anchor});const d=session.decode(text);if(d.a.operational!=='RESULT_COMMITTED'||wireHash(d.r.authority)!==result.reference.authorityHash||d.a.identity.raceId!==result.raceId)throw Error('Corrupt/conflicting official native authority');records.push([result.reference.storageKey,text]);}
  const cap=Object.freeze({source:fingerprint(state),instanceId:x.id});trusted.add(cap);sources.set(cap,{storage,raw,records});return cap;

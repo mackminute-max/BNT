@@ -1,0 +1,442 @@
+[
+  {
+    "id": "equipment.n1",
+    "version": 1,
+    "label": "Northreach Confederation equipment naming",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 19,
+        "endLine": 260,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "namingProfileId": "culture.n1.r1",
+    "manufacturers": [
+      "Stonepeak Wheelworks",
+      "Hearthvale Carriage House",
+      "Ironmarch Harnessmakers",
+      "Eastford Track Fittings",
+      "Redgrass Running Gear",
+      "Greywood Rein Workshop"
+    ],
+    "modelNames": [
+      "Road Harness",
+      "Track Harness",
+      "Team Traces",
+      "Wheel Fittings",
+      "Rein Set",
+      "Axle Fittings",
+      "Bridle Set",
+      "Canvas Kit",
+      "Road Wheels",
+      "Track Wheels",
+      "Spare Rigging",
+      "Racing Fittings"
+    ],
+    "nicknames": [
+      "Night Lantern",
+      "Clean Turn",
+      "Rainwalker",
+      "Dustkeeper",
+      "Long Horizon",
+      "Homeward"
+    ],
+    "format": "manufacturer-model",
+    "mechanicalTemplateReference": "template.equipment.neutral-v1",
+    "inventStats": false
+  },
+  {
+    "id": "equipment.n2",
+    "version": 1,
+    "label": "Frosthall Kingdom equipment naming",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 261,
+        "endLine": 550,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "namingProfileId": "culture.n2.r1",
+    "manufacturers": [
+      "Highhall Wheelworks",
+      "Keldhaven Carriage House",
+      "Wintermere Harnessmakers",
+      "Frostspire Track Fittings",
+      "Bronzegate Running Gear",
+      "Silver Crown Rein Workshop"
+    ],
+    "modelNames": [
+      "Road Harness",
+      "Track Harness",
+      "Team Traces",
+      "Wheel Fittings",
+      "Rein Set",
+      "Axle Fittings",
+      "Bridle Set",
+      "Canvas Kit",
+      "Road Wheels",
+      "Track Wheels",
+      "Spare Rigging",
+      "Racing Fittings"
+    ],
+    "nicknames": [
+      "Night Lantern",
+      "Clean Turn",
+      "Rainwalker",
+      "Dustkeeper",
+      "Long Horizon",
+      "Homeward"
+    ],
+    "format": "manufacturer-model",
+    "mechanicalTemplateReference": "template.equipment.neutral-v1",
+    "inventStats": false
+  },
+  {
+    "id": "equipment.n3",
+    "version": 1,
+    "label": "Greenvale Commonwealth equipment naming",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 551,
+        "endLine": 921,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "namingProfileId": "culture.n3.r1",
+    "manufacturers": [
+      "Willowbridge Wheelworks",
+      "Bramblewick Carriage House",
+      "Goldmeadow Harnessmakers",
+      "Alderbrook Track Fittings",
+      "Thornmere Running Gear",
+      "Fernbrook Rein Workshop"
+    ],
+    "modelNames": [
+      "Road Harness",
+      "Track Harness",
+      "Team Traces",
+      "Wheel Fittings",
+      "Rein Set",
+      "Axle Fittings",
+      "Bridle Set",
+      "Canvas Kit",
+      "Road Wheels",
+      "Track Wheels",
+      "Spare Rigging",
+      "Racing Fittings"
+    ],
+    "nicknames": [
+      "Night Lantern",
+      "Clean Turn",
+      "Rainwalker",
+      "Dustkeeper",
+      "Long Horizon",
+      "Homeward"
+    ],
+    "format": "manufacturer-model",
+    "mechanicalTemplateReference": "template.equipment.neutral-v1",
+    "inventStats": false
+  },
+  {
+    "id": "equipment.n4",
+    "version": 1,
+    "label": "Ironhold Clans equipment naming",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 922,
+        "endLine": 1429,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "namingProfileId": "culture.n4.r1",
+    "manufacturers": [
+      "Kharadun Wheelworks",
+      "Brassgate Carriage House",
+      "Deepforge Harnessmakers",
+      "Stonepass Track Fittings",
+      "Coppervale Running Gear",
+      "Durakhold Rein Workshop"
+    ],
+    "modelNames": [
+      "Road Harness",
+      "Track Harness",
+      "Team Traces",
+      "Wheel Fittings",
+      "Rein Set",
+      "Axle Fittings",
+      "Bridle Set",
+      "Canvas Kit",
+      "Road Wheels",
+      "Track Wheels",
+      "Spare Rigging",
+      "Racing Fittings"
+    ],
+    "nicknames": [
+      "Night Lantern",
+      "Clean Turn",
+      "Rainwalker",
+      "Dustkeeper",
+      "Long Horizon",
+      "Homeward"
+    ],
+    "format": "manufacturer-model",
+    "mechanicalTemplateReference": "template.equipment.neutral-v1",
+    "inventStats": false
+  },
+  {
+    "id": "equipment.n5",
+    "version": 1,
+    "label": "Sundaran League equipment naming",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 1430,
+        "endLine": 2027,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "namingProfileId": "culture.n5.r1",
+    "manufacturers": [
+      "Sundara Wheelworks",
+      "Porto Val Carriage House",
+      "Costa Mare Harnessmakers",
+      "Valcera Track Fittings",
+      "Solari Running Gear",
+      "Monte Cera Rein Workshop"
+    ],
+    "modelNames": [
+      "Road Harness",
+      "Track Harness",
+      "Team Traces",
+      "Wheel Fittings",
+      "Rein Set",
+      "Axle Fittings",
+      "Bridle Set",
+      "Canvas Kit",
+      "Road Wheels",
+      "Track Wheels",
+      "Spare Rigging",
+      "Racing Fittings"
+    ],
+    "nicknames": [
+      "Night Lantern",
+      "Clean Turn",
+      "Rainwalker",
+      "Dustkeeper",
+      "Long Horizon",
+      "Homeward"
+    ],
+    "format": "manufacturer-model",
+    "mechanicalTemplateReference": "template.equipment.neutral-v1",
+    "inventStats": false
+  },
+  {
+    "id": "equipment.n6",
+    "version": 1,
+    "label": "Karthen Hordes equipment naming",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2028,
+        "endLine": 2614,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "namingProfileId": "culture.n6.r1",
+    "manufacturers": [
+      "Karthagar Wheelworks",
+      "Redmesa Carriage House",
+      "Goruk Harnessmakers",
+      "Blackford Track Fittings",
+      "Dustbreak Running Gear",
+      "Riverbend Rein Workshop"
+    ],
+    "modelNames": [
+      "Road Harness",
+      "Track Harness",
+      "Team Traces",
+      "Wheel Fittings",
+      "Rein Set",
+      "Axle Fittings",
+      "Bridle Set",
+      "Canvas Kit",
+      "Road Wheels",
+      "Track Wheels",
+      "Spare Rigging",
+      "Racing Fittings"
+    ],
+    "nicknames": [
+      "Night Lantern",
+      "Clean Turn",
+      "Rainwalker",
+      "Dustkeeper",
+      "Long Horizon",
+      "Homeward"
+    ],
+    "format": "manufacturer-model",
+    "mechanicalTemplateReference": "template.equipment.neutral-v1",
+    "inventStats": false
+  },
+  {
+    "id": "equipment.n7",
+    "version": 1,
+    "label": "Velmora Republic equipment naming",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2615,
+        "endLine": 3393,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "namingProfileId": "culture.n7.r1",
+    "manufacturers": [
+      "Velmora Wheelworks",
+      "Valcoria Carriage House",
+      "Dravakar Harnessmakers",
+      "Selvarin Track Fittings",
+      "Korvath Running Gear",
+      "Aurelith Rein Workshop"
+    ],
+    "modelNames": [
+      "Road Harness",
+      "Track Harness",
+      "Team Traces",
+      "Wheel Fittings",
+      "Rein Set",
+      "Axle Fittings",
+      "Bridle Set",
+      "Canvas Kit",
+      "Road Wheels",
+      "Track Wheels",
+      "Spare Rigging",
+      "Racing Fittings"
+    ],
+    "nicknames": [
+      "Night Lantern",
+      "Clean Turn",
+      "Rainwalker",
+      "Dustkeeper",
+      "Long Horizon",
+      "Homeward"
+    ],
+    "format": "manufacturer-model",
+    "mechanicalTemplateReference": "template.equipment.neutral-v1",
+    "inventStats": false
+  },
+  {
+    "id": "equipment.n8",
+    "version": 1,
+    "label": "Zarashi Dominion equipment naming",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 3394,
+        "endLine": 4104,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "namingProfileId": "culture.n8.r1",
+    "manufacturers": [
+      "Zarathiel Wheelworks",
+      "Aeltharis Carriage House",
+      "Silaren Harnessmakers",
+      "Vaelisar Track Fittings",
+      "Thalorien Running Gear",
+      "Aruthor Rein Workshop"
+    ],
+    "modelNames": [
+      "Road Harness",
+      "Track Harness",
+      "Team Traces",
+      "Wheel Fittings",
+      "Rein Set",
+      "Axle Fittings",
+      "Bridle Set",
+      "Canvas Kit",
+      "Road Wheels",
+      "Track Wheels",
+      "Spare Rigging",
+      "Racing Fittings"
+    ],
+    "nicknames": [
+      "Night Lantern",
+      "Clean Turn",
+      "Rainwalker",
+      "Dustkeeper",
+      "Long Horizon",
+      "Homeward"
+    ],
+    "format": "manufacturer-model",
+    "mechanicalTemplateReference": "template.equipment.neutral-v1",
+    "inventStats": false
+  }
+]

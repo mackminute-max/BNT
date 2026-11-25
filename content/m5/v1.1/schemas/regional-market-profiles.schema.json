@@ -1,0 +1,738 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "status",
+    "profiles",
+    "note"
+  ],
+  "properties": {
+    "status": {
+      "const": "DRAFT_FOR_REVIEW"
+    },
+    "profiles": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nationId",
+            "countMin",
+            "countMax",
+            "categories",
+            "permanentStaff",
+            "registeredRUChangeAllowed",
+            "localWeight",
+            "foreignWeight",
+            "nationProfileId",
+            "culturalProfileIds",
+            "chariotNamingProfileId",
+            "equipmentNamingProfileId"
+          ],
+          "properties": {
+            "nationId": {
+              "const": "N1"
+            },
+            "countMin": {
+              "const": 2
+            },
+            "countMax": {
+              "const": 4
+            },
+            "categories": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "const": "driver"
+                },
+                {
+                  "const": "beast"
+                },
+                {
+                  "const": "chariot"
+                },
+                {
+                  "const": "equipment"
+                }
+              ],
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "permanentStaff": {
+              "const": false
+            },
+            "registeredRUChangeAllowed": {
+              "const": false
+            },
+            "localWeight": {
+              "const": 8
+            },
+            "foreignWeight": {
+              "const": 1
+            },
+            "nationProfileId": {
+              "const": "nation.n1"
+            },
+            "culturalProfileIds": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "const": "culture.n1.r1"
+                },
+                {
+                  "const": "culture.n1.r2"
+                },
+                {
+                  "const": "culture.n1.r3"
+                },
+                {
+                  "const": "culture.n1.r4"
+                },
+                {
+                  "const": "culture.n1.r5"
+                },
+                {
+                  "const": "culture.n1.r6"
+                }
+              ],
+              "minItems": 6,
+              "maxItems": 6
+            },
+            "chariotNamingProfileId": {
+              "const": "chariot.n1"
+            },
+            "equipmentNamingProfileId": {
+              "const": "equipment.n1"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nationId",
+            "countMin",
+            "countMax",
+            "categories",
+            "permanentStaff",
+            "registeredRUChangeAllowed",
+            "localWeight",
+            "foreignWeight",
+            "nationProfileId",
+            "culturalProfileIds",
+            "chariotNamingProfileId",
+            "equipmentNamingProfileId"
+          ],
+          "properties": {
+            "nationId": {
+              "const": "N2"
+            },
+            "countMin": {
+              "const": 2
+            },
+            "countMax": {
+              "const": 4
+            },
+            "categories": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "const": "driver"
+                },
+                {
+                  "const": "beast"
+                },
+                {
+                  "const": "chariot"
+                },
+                {
+                  "const": "equipment"
+                }
+              ],
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "permanentStaff": {
+              "const": false
+            },
+            "registeredRUChangeAllowed": {
+              "const": false
+            },
+            "localWeight": {
+              "const": 8
+            },
+            "foreignWeight": {
+              "const": 1
+            },
+            "nationProfileId": {
+              "const": "nation.n2"
+            },
+            "culturalProfileIds": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "const": "culture.n2.r1"
+                },
+                {
+                  "const": "culture.n2.r2"
+                },
+                {
+                  "const": "culture.n2.r3"
+                }
+              ],
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "chariotNamingProfileId": {
+              "const": "chariot.n2"
+            },
+            "equipmentNamingProfileId": {
+              "const": "equipment.n2"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nationId",
+            "countMin",
+            "countMax",
+            "categories",
+            "permanentStaff",
+            "registeredRUChangeAllowed",
+            "localWeight",
+            "foreignWeight",
+            "nationProfileId",
+            "culturalProfileIds",
+            "chariotNamingProfileId",
+            "equipmentNamingProfileId"
+          ],
+          "properties": {
+            "nationId": {
+              "const": "N3"
+            },
+            "countMin": {
+              "const": 2
+            },
+            "countMax": {
+              "const": 4
+            },
+            "categories": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "const": "driver"
+                },
+                {
+                  "const": "beast"
+                },
+                {
+                  "const": "chariot"
+                },
+                {
+                  "const": "equipment"
+                }
+              ],
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "permanentStaff": {
+              "const": false
+            },
+            "registeredRUChangeAllowed": {
+              "const": false
+            },
+            "localWeight": {
+              "const": 8
+            },
+            "foreignWeight": {
+              "const": 1
+            },
+            "nationProfileId": {
+              "const": "nation.n3"
+            },
+            "culturalProfileIds": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "const": "culture.n3.r1"
+                },
+                {
+                  "const": "culture.n3.r2"
+                },
+                {
+                  "const": "culture.n3.r3"
+                },
+                {
+                  "const": "culture.n3.r4"
+                }
+              ],
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "chariotNamingProfileId": {
+              "const": "chariot.n3"
+            },
+            "equipmentNamingProfileId": {
+              "const": "equipment.n3"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nationId",
+            "countMin",
+            "countMax",
+            "categories",
+            "permanentStaff",
+            "registeredRUChangeAllowed",
+            "localWeight",
+            "foreignWeight",
+            "nationProfileId",
+            "culturalProfileIds",
+            "chariotNamingProfileId",
+            "equipmentNamingProfileId"
+          ],
+          "properties": {
+            "nationId": {
+              "const": "N4"
+            },
+            "countMin": {
+              "const": 2
+            },
+            "countMax": {
+              "const": 4
+            },
+            "categories": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "const": "driver"
+                },
+                {
+                  "const": "beast"
+                },
+                {
+                  "const": "chariot"
+                },
+                {
+                  "const": "equipment"
+                }
+              ],
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "permanentStaff": {
+              "const": false
+            },
+            "registeredRUChangeAllowed": {
+              "const": false
+            },
+            "localWeight": {
+              "const": 8
+            },
+            "foreignWeight": {
+              "const": 1
+            },
+            "nationProfileId": {
+              "const": "nation.n4"
+            },
+            "culturalProfileIds": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "const": "culture.n4.r1"
+                },
+                {
+                  "const": "culture.n4.r2"
+                },
+                {
+                  "const": "culture.n4.r3"
+                }
+              ],
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "chariotNamingProfileId": {
+              "const": "chariot.n4"
+            },
+            "equipmentNamingProfileId": {
+              "const": "equipment.n4"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nationId",
+            "countMin",
+            "countMax",
+            "categories",
+            "permanentStaff",
+            "registeredRUChangeAllowed",
+            "localWeight",
+            "foreignWeight",
+            "nationProfileId",
+            "culturalProfileIds",
+            "chariotNamingProfileId",
+            "equipmentNamingProfileId"
+          ],
+          "properties": {
+            "nationId": {
+              "const": "N5"
+            },
+            "countMin": {
+              "const": 2
+            },
+            "countMax": {
+              "const": 4
+            },
+            "categories": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "const": "driver"
+                },
+                {
+                  "const": "beast"
+                },
+                {
+                  "const": "chariot"
+                },
+                {
+                  "const": "equipment"
+                }
+              ],
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "permanentStaff": {
+              "const": false
+            },
+            "registeredRUChangeAllowed": {
+              "const": false
+            },
+            "localWeight": {
+              "const": 8
+            },
+            "foreignWeight": {
+              "const": 1
+            },
+            "nationProfileId": {
+              "const": "nation.n5"
+            },
+            "culturalProfileIds": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "const": "culture.n5.r1"
+                },
+                {
+                  "const": "culture.n5.r2"
+                },
+                {
+                  "const": "culture.n5.r3"
+                },
+                {
+                  "const": "culture.n5.r4"
+                }
+              ],
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "chariotNamingProfileId": {
+              "const": "chariot.n5"
+            },
+            "equipmentNamingProfileId": {
+              "const": "equipment.n5"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nationId",
+            "countMin",
+            "countMax",
+            "categories",
+            "permanentStaff",
+            "registeredRUChangeAllowed",
+            "localWeight",
+            "foreignWeight",
+            "nationProfileId",
+            "culturalProfileIds",
+            "chariotNamingProfileId",
+            "equipmentNamingProfileId"
+          ],
+          "properties": {
+            "nationId": {
+              "const": "N6"
+            },
+            "countMin": {
+              "const": 2
+            },
+            "countMax": {
+              "const": 4
+            },
+            "categories": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "const": "driver"
+                },
+                {
+                  "const": "beast"
+                },
+                {
+                  "const": "chariot"
+                },
+                {
+                  "const": "equipment"
+                }
+              ],
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "permanentStaff": {
+              "const": false
+            },
+            "registeredRUChangeAllowed": {
+              "const": false
+            },
+            "localWeight": {
+              "const": 8
+            },
+            "foreignWeight": {
+              "const": 1
+            },
+            "nationProfileId": {
+              "const": "nation.n6"
+            },
+            "culturalProfileIds": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "const": "culture.n6.r1"
+                },
+                {
+                  "const": "culture.n6.r2"
+                },
+                {
+                  "const": "culture.n6.r3"
+                },
+                {
+                  "const": "culture.n6.r4"
+                },
+                {
+                  "const": "culture.n6.r5"
+                }
+              ],
+              "minItems": 5,
+              "maxItems": 5
+            },
+            "chariotNamingProfileId": {
+              "const": "chariot.n6"
+            },
+            "equipmentNamingProfileId": {
+              "const": "equipment.n6"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nationId",
+            "countMin",
+            "countMax",
+            "categories",
+            "permanentStaff",
+            "registeredRUChangeAllowed",
+            "localWeight",
+            "foreignWeight",
+            "nationProfileId",
+            "culturalProfileIds",
+            "chariotNamingProfileId",
+            "equipmentNamingProfileId"
+          ],
+          "properties": {
+            "nationId": {
+              "const": "N7"
+            },
+            "countMin": {
+              "const": 2
+            },
+            "countMax": {
+              "const": 4
+            },
+            "categories": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "const": "driver"
+                },
+                {
+                  "const": "beast"
+                },
+                {
+                  "const": "chariot"
+                },
+                {
+                  "const": "equipment"
+                }
+              ],
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "permanentStaff": {
+              "const": false
+            },
+            "registeredRUChangeAllowed": {
+              "const": false
+            },
+            "localWeight": {
+              "const": 8
+            },
+            "foreignWeight": {
+              "const": 1
+            },
+            "nationProfileId": {
+              "const": "nation.n7"
+            },
+            "culturalProfileIds": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "const": "culture.n7.r1"
+                },
+                {
+                  "const": "culture.n7.r2"
+                },
+                {
+                  "const": "culture.n7.r3"
+                },
+                {
+                  "const": "culture.n7.r4"
+                },
+                {
+                  "const": "culture.n7.r5"
+                }
+              ],
+              "minItems": 5,
+              "maxItems": 5
+            },
+            "chariotNamingProfileId": {
+              "const": "chariot.n7"
+            },
+            "equipmentNamingProfileId": {
+              "const": "equipment.n7"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nationId",
+            "countMin",
+            "countMax",
+            "categories",
+            "permanentStaff",
+            "registeredRUChangeAllowed",
+            "localWeight",
+            "foreignWeight",
+            "nationProfileId",
+            "culturalProfileIds",
+            "chariotNamingProfileId",
+            "equipmentNamingProfileId"
+          ],
+          "properties": {
+            "nationId": {
+              "const": "N8"
+            },
+            "countMin": {
+              "const": 2
+            },
+            "countMax": {
+              "const": 4
+            },
+            "categories": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "const": "driver"
+                },
+                {
+                  "const": "beast"
+                },
+                {
+                  "const": "chariot"
+                },
+                {
+                  "const": "equipment"
+                }
+              ],
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "permanentStaff": {
+              "const": false
+            },
+            "registeredRUChangeAllowed": {
+              "const": false
+            },
+            "localWeight": {
+              "const": 8
+            },
+            "foreignWeight": {
+              "const": 1
+            },
+            "nationProfileId": {
+              "const": "nation.n8"
+            },
+            "culturalProfileIds": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "const": "culture.n8.r1"
+                },
+                {
+                  "const": "culture.n8.r2"
+                },
+                {
+                  "const": "culture.n8.r3"
+                },
+                {
+                  "const": "culture.n8.r4"
+                },
+                {
+                  "const": "culture.n8.r5"
+                }
+              ],
+              "minItems": 5,
+              "maxItems": 5
+            },
+            "chariotNamingProfileId": {
+              "const": "chariot.n8"
+            },
+            "equipmentNamingProfileId": {
+              "const": "equipment.n8"
+            }
+          }
+        }
+      ],
+      "minItems": 8,
+      "maxItems": 8
+    },
+    "note": {
+      "const": "Use existing native acquisition and valuation; regional weight is a relative nation weight, not a stat modifier."
+    }
+  }
+}

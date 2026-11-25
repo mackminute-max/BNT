@@ -1,0 +1,149 @@
+{
+  "reference": "3b0d043",
+  "rows": [
+    {
+      "file": "oval-Pure-0.json",
+      "tick": 98,
+      "wireSHA256": "6a5222e91967e2492f1443b27f676f45c9e9333e45bea1bd4340746422698c91",
+      "bytes": 125643,
+      "after10Ticks": "734e5146",
+      "matched": true
+    },
+    {
+      "file": "oval-Pure-1.json",
+      "tick": 798,
+      "wireSHA256": "067b681f5238dd58109efafea8127efdaccf00b7ed8ceeb3bac88fe8e33f3400",
+      "bytes": 488722,
+      "after10Ticks": "e4cb0b39",
+      "matched": true
+    },
+    {
+      "file": "oval-Pure-2.json",
+      "tick": 1398,
+      "wireSHA256": "0c51b9295e92189918135b1063163815829316d20ee83b832e7307f4bfced220",
+      "bytes": 801195,
+      "after10Ticks": "3eec7c09",
+      "matched": true
+    },
+    {
+      "file": "oval-Combat-0.json",
+      "tick": 98,
+      "wireSHA256": "9eca86e428cfcd2b998bedb6da59e1f5f14c7159657694dccb90addf52a2aede",
+      "bytes": 603065,
+      "after10Ticks": "f41bd340",
+      "matched": true
+    },
+    {
+      "file": "oval-Combat-1.json",
+      "tick": 798,
+      "wireSHA256": "ac4e1582de1ad7045556a9ca71a48306b962c535ce864d4163fc6dd67d036796",
+      "bytes": 2058306,
+      "after10Ticks": "7d51c0ca",
+      "matched": true
+    },
+    {
+      "file": "oval-Combat-2.json",
+      "tick": 1398,
+      "wireSHA256": "266a9b833d6f08d95fc32cfc0481a2301d40666896d817d6cbe05c85b949d393",
+      "bytes": 3071736,
+      "after10Ticks": "81112352",
+      "matched": true
+    },
+    {
+      "file": "C01-Pure-0.json",
+      "tick": 98,
+      "wireSHA256": "966364c8f63ce2448fb3326945f4b51f74576df71aab9df93e19a70009bc46e6",
+      "bytes": 429213,
+      "after10Ticks": "00c066b3",
+      "matched": true
+    },
+    {
+      "file": "C01-Pure-1.json",
+      "tick": 998,
+      "wireSHA256": "48d85378c7c1a51aaf899f18556ba71d77ef9826f1db571b535ace2666a76e59",
+      "bytes": 2135906,
+      "after10Ticks": "d598cca9",
+      "matched": true
+    },
+    {
+      "file": "C01-Pure-2.json",
+      "tick": 2198,
+      "wireSHA256": "cb40554cad842fdeb89e305045410776b9cb36d1e40644f50713b1e8dc0a5863",
+      "bytes": 4174541,
+      "after10Ticks": "c98813cc",
+      "matched": true
+    },
+    {
+      "file": "C01-Combat-0.json",
+      "tick": 98,
+      "wireSHA256": "9792be5ed8d0a8e542c514b5eec44ad2da6aaaf0cb0760b8fa6f03fcfb081ed3",
+      "bytes": 623709,
+      "after10Ticks": "ce5141cc",
+      "matched": true
+    },
+    {
+      "file": "C01-Combat-1.json",
+      "tick": 998,
+      "wireSHA256": "e76d02126e1c620c4c72bdecd0c314d4440193720b65ba4332b9fc84e17112e2",
+      "bytes": 2704191,
+      "after10Ticks": "eec9d3e5",
+      "matched": true
+    },
+    {
+      "file": "C01-Combat-2.json",
+      "tick": 2198,
+      "wireSHA256": "f83fa28235e975469f7a565a1b9d0d9aea775ee478527797d5919e95269b763c",
+      "bytes": 5045397,
+      "after10Ticks": "5bc0e4df",
+      "matched": true
+    },
+    {
+      "file": "rally-short-Combat-0.json",
+      "tick": 98,
+      "wireSHA256": "4c5ea771f8c92ebd0376aab903d802202d59cac039cfff864ecf7f0ee9ea9d44",
+      "bytes": 563261,
+      "after10Ticks": "760e385b",
+      "matched": true
+    },
+    {
+      "file": "rally-short-Combat-1.json",
+      "tick": 598,
+      "wireSHA256": "e9b36a92975f07acc50ee5131d7119fa07649656655aff20302769e597061923",
+      "bytes": 1703850,
+      "after10Ticks": "874f21f1",
+      "matched": true
+    },
+    {
+      "file": "rally-short-Combat-2.json",
+      "tick": 998,
+      "wireSHA256": "d54a6517e323decff8a2e1e78da220a46473a9f38abb238f87fa6d84f7f93a34",
+      "bytes": 2372954,
+      "after10Ticks": "e3290aec",
+      "matched": true
+    },
+    {
+      "file": "rally-long-Combat-0.json",
+      "tick": 98,
+      "wireSHA256": "d21e3930c6c2d46212e9c700108dc9a94d82e53580d01c9e51738da5a2e72bac",
+      "bytes": 576177,
+      "after10Ticks": "acd3042d",
+      "matched": true
+    },
+    {
+      "file": "rally-long-Combat-1.json",
+      "tick": 1798,
+      "wireSHA256": "dd15b0b47b3cd133d1ef7ec515850206d72242f8f909743e54494bb60d016e46",
+      "bytes": 3894269,
+      "after10Ticks": "c9952a85",
+      "matched": true
+    },
+    {
+      "file": "rally-long-Combat-2.json",
+      "tick": 2998,
+      "wireSHA256": "93e8c9eb41c04c482d499c89375fe8f691e19027ae18ee80aa4fb8cd3c0e4fb2",
+      "bytes": 5983437,
+      "after10Ticks": "71ba6e1a",
+      "matched": true
+    }
+  ]
+}

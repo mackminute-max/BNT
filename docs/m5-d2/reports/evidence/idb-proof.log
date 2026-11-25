@@ -1,0 +1,26 @@
+{
+  groups: [
+    'aborted transaction does not activate birth',
+    'birth remains absent after abort',
+    'committed birth exact bytes and generation',
+    'stale connection cannot publish a duplicate generation',
+    'incorrect exact read set rejects',
+    'previous complete generation retained',
+    'recovery activation is monotonic',
+    'stale recovery token rejects',
+    'cold native current validator accepts committed career',
+    'small reference-only durable root',
+    'physical GC removes only unreachable body',
+    'GC preserves current and previous authority',
+    'prior recovery restores game facts with newer absolute writer chronology',
+    'missing current root fails closed',
+    'missing current root cannot be mistaken for empty career',
+    'independent validated clock permits explicit recovery after current-root loss',
+    'multi-chunk restore staging reconstructs exact bytes',
+    'missing restore chunk rejects without fabricated recovery',
+    'staged restore corruption does not alter current root'
+  ],
+  passed: 19,
+  logicalBytes: 393496,
+  browser: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36'
+}

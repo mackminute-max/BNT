@@ -5,11 +5,12 @@ export const M3BC_ENABLED=typeof BNT_M3BC_BUILD!=='undefined'&&BNT_M3BC_BUILD;
 function freeze(v){if(v&&typeof v==='object'){for(const x of Object.values(v))freeze(x);Object.freeze(v);}return v;}freeze(DATA);
 const identities=new Map(DATA.identities.map(x=>[x.sourceOfferId,x.presentation_identity]));
 const pools=new Map(DATA.radio.map(x=>[x.key,x]));
-export function recruitIdentity(record,presentation){
- const fallback=nativeIdentity(record),pin=presentation?.identityPack;
+export function recruitIdentity(record,presentation,state=null){
+ const generated=state?.schema===7?state.m5.identities[record?.id]:null,fallback={...nativeIdentity(record),...(generated?{ancestry:generated.ancestryLabel??null,nationalOrigin:generated.originNationLabel??null,cosmeticSpecies:generated.speciesLabel??null,stockStyle:generated.stockLabel??null,characterization:generated.aiLabel??null,bio:generated.backgroundLabel??''}:{})},pin=presentation?.identityPack;
+ if(state?.m5?.d2&&generated?.category==='beast'&&generated.authored&&generated.authored.species_id!==generated.speciesId)return fallback;
  if(pin?.version!==PACK_VERSION||pin.digest!==PACK_DIGEST)return fallback;
- const m=identities.get(record?.economics?.sourceOfferId??record?.id);if(!m)return fallback;
- return {...fallback,name:m.name??fallback.name,ancestry:m.ancestry??fallback.ancestry,bio:m.biography??fallback.bio,nationalOrigin:m.national_origin_name??m.stylistic_origin_name??null,cosmeticSpecies:m.species??null,stockStyle:m.stock_style??null,characterization:m.personality??null,disclaimer:m.characterization_disclaimer??null,provisional:false,version:pin.version};
+ const m=identities.get(generated?.authored?generated.sourceOfferId:record?.economics?.sourceOfferId??record?.id);if(!m)return fallback;
+ return {...fallback,name:m.name??fallback.name,ancestry:m.ancestry??fallback.ancestry,bio:m.biography??fallback.bio,nationalOrigin:m.national_origin_name??m.stylistic_origin_name??null,cosmeticSpecies:m.species??null,stockStyle:m.stock_style??null,characterization:m.personality??null,disclaimer:m.characterization_disclaimer??null,provisional:false,version:pin.version,...(state?.m5?.d2&&generated?{ancestry:generated.ancestryLabel??null,cosmeticSpecies:generated.speciesLabel??null}: {})};
 }
 const text=v=>typeof v==='string'&&v.length>0?v:null;
 const numeric=v=>typeof v==='number'&&Number.isFinite(v)?v:null;

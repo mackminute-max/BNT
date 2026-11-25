@@ -1,0 +1,56 @@
+short-one [
+  {
+    label: 'accepted-D1',
+    first100Ms: 11.73009300000001,
+    status: 'Ended',
+    ticks: 601
+  },
+  {
+    label: 'M5-source',
+    first100Ms: 11.264407000000006,
+    status: 'Ended',
+    ticks: 601
+  }
+]
+circuit-four [
+  {
+    label: 'accepted-D1',
+    first100Ms: 14.493365000000011,
+    status: 'Ended',
+    ticks: 1476
+  },
+  {
+    label: 'M5-source',
+    first100Ms: 16.065040000000067,
+    status: 'Ended',
+    ticks: 1476
+  }
+]
+oval-eight [
+  {
+    label: 'accepted-D1',
+    first100Ms: 31.32432300000005,
+    status: 'Ended',
+    ticks: 925
+  },
+  {
+    label: 'M5-source',
+    first100Ms: 44.279300999999805,
+    status: 'Ended',
+    ticks: 925
+  }
+]
+long-rally-eight [
+  {
+    label: 'accepted-D1',
+    first100Ms: 43.40080200000011,
+    status: 'Ended',
+    ticks: 4335
+  },
+  {
+    label: 'M5-source',
+    first100Ms: 39.10537699999986,
+    status: 'Ended',
+    ticks: 4335
+  }
+]

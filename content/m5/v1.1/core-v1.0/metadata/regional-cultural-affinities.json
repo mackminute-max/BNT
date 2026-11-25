@@ -1,0 +1,675 @@
+{
+  "version": 1,
+  "regions": [
+    {
+      "id": "culture.n1.r1",
+      "nationId": "N1",
+      "regionLabel": "Stonepeak",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Stonepeak"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 19,
+          "endLine": 260,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n1.r2",
+      "nationId": "N1",
+      "regionLabel": "Hearthvale",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Hearthvale"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 19,
+          "endLine": 260,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n1.r3",
+      "nationId": "N1",
+      "regionLabel": "Ironmarch",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Ironmarch"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 19,
+          "endLine": 260,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n1.r4",
+      "nationId": "N1",
+      "regionLabel": "Eastford",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Eastford"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 19,
+          "endLine": 260,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n1.r5",
+      "nationId": "N1",
+      "regionLabel": "Redgrass",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Redgrass"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 19,
+          "endLine": 260,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n1.r6",
+      "nationId": "N1",
+      "regionLabel": "Greywood",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Greywood"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 19,
+          "endLine": 260,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n2.r1",
+      "nationId": "N2",
+      "regionLabel": "Highhall",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Highhall"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 261,
+          "endLine": 550,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n2.r2",
+      "nationId": "N2",
+      "regionLabel": "Keldhaven",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Keldhaven"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 261,
+          "endLine": 550,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n2.r3",
+      "nationId": "N2",
+      "regionLabel": "Wintermere",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Wintermere"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 261,
+          "endLine": 550,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n3.r1",
+      "nationId": "N3",
+      "regionLabel": "Heartlands",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Willowbridge"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 551,
+          "endLine": 921,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n3.r2",
+      "nationId": "N3",
+      "regionLabel": "Riverlands",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Bramblewick"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 551,
+          "endLine": 921,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n3.r3",
+      "nationId": "N3",
+      "regionLabel": "Woodlands",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Goldmeadow"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 551,
+          "endLine": 921,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n3.r4",
+      "nationId": "N3",
+      "regionLabel": "Fae-touched communities",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Alderbrook"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 551,
+          "endLine": 921,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n4.r1",
+      "nationId": "N4",
+      "regionLabel": "Hold families",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Kharadun"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 922,
+          "endLine": 1429,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n4.r2",
+      "nationId": "N4",
+      "regionLabel": "Commercial cities",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Brassgate"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 922,
+          "endLine": 1429,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n4.r3",
+      "nationId": "N4",
+      "regionLabel": "Guild houses",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Deepforge"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 922,
+          "endLine": 1429,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n5.r1",
+      "nationId": "N5",
+      "regionLabel": "Central civic",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Sundara"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 1430,
+          "endLine": 2027,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n5.r2",
+      "nationId": "N5",
+      "regionLabel": "Coastal ports",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Porto Val"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 1430,
+          "endLine": 2027,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n5.r3",
+      "nationId": "N5",
+      "regionLabel": "Inland towns",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Costa Mare"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 1430,
+          "endLine": 2027,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n5.r4",
+      "nationId": "N5",
+      "regionLabel": "Overseas civic communities",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Valcera"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 1430,
+          "endLine": 2027,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n6.r1",
+      "nationId": "N6",
+      "regionLabel": "Karthagar",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Karthagar"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2028,
+          "endLine": 2614,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n6.r2",
+      "nationId": "N6",
+      "regionLabel": "Redmesa",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Redmesa"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2028,
+          "endLine": 2614,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n6.r3",
+      "nationId": "N6",
+      "regionLabel": "Goruk",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Goruk"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2028,
+          "endLine": 2614,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n6.r4",
+      "nationId": "N6",
+      "regionLabel": "Blackford",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Blackford"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2028,
+          "endLine": 2614,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n6.r5",
+      "nationId": "N6",
+      "regionLabel": "Dustbreak",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Dustbreak"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2028,
+          "endLine": 2614,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n7.r1",
+      "nationId": "N7",
+      "regionLabel": "Valcoria",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Velmora"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2615,
+          "endLine": 3393,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n7.r2",
+      "nationId": "N7",
+      "regionLabel": "Dravakar",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Valcoria"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2615,
+          "endLine": 3393,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n7.r3",
+      "nationId": "N7",
+      "regionLabel": "Selvarin",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Dravakar"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2615,
+          "endLine": 3393,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n7.r4",
+      "nationId": "N7",
+      "regionLabel": "Korvath",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Selvarin"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2615,
+          "endLine": 3393,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n7.r5",
+      "nationId": "N7",
+      "regionLabel": "Aurelith",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Korvath"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2615,
+          "endLine": 3393,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n8.r1",
+      "nationId": "N8",
+      "regionLabel": "Zarathiel",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Zarathiel"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 3394,
+          "endLine": 4104,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n8.r2",
+      "nationId": "N8",
+      "regionLabel": "Aeltharis",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Aeltharis"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 3394,
+          "endLine": 4104,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n8.r3",
+      "nationId": "N8",
+      "regionLabel": "Silareth",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Silaren"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 3394,
+          "endLine": 4104,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n8.r4",
+      "nationId": "N8",
+      "regionLabel": "Vaelithar",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Vaelisar"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 3394,
+          "endLine": 4104,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "culture.n8.r5",
+      "nationId": "N8",
+      "regionLabel": "Thalaren",
+      "status": "authored-regional-profile-source-guided",
+      "style": "Shared national lexicon; regional affinity, family and team association remain metadata, never ancestry restrictions.",
+      "regionAffinityRoots": [
+        "Thalorien"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 3394,
+          "endLine": 4104,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    }
+  ],
+  "rules": {
+    "nationalityAncestryCulture": "Independent identity fields; regional affiliations do not restrict ancestry.",
+    "nativeZarashi": "N8 non-A08 residents are visitors/immigrants/foreign-origin; never label them indigenous Zarashi.",
+    "diasporaLanguage": "Overseas Sundari civic profiles do not invent or replace distinct overseas languages."
+  }
+}

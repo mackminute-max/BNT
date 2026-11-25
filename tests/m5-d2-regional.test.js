@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {regionalReady} from '../src/career/m5/d2/lifecycle.js';
+const fixture=()=>({s:{m5:{d2:{regional:null}},e5:{instances:{x:{runOffers:[],runSelections:[]}}}},x:{id:'x',phase:'INTERMISSION_READY',withdrawal:null,raceResults:[{resultId:'official'}]}});
+test('regional stock opens after official intermission even when no Run offer is eligible',()=>{const {s,x}=fixture();assert(regionalReady(s,x));});
+test('pending reward blocks regional stock until selection, and existing stock cannot reroll',()=>{const {s,x}=fixture();s.e5.instances.x.runOffers=[{id:'run'}];assert(!regionalReady(s,x));s.e5.instances.x.runSelections=[{offerId:'run'}];assert(regionalReady(s,x));s.m5.d2.regional={};assert(!regionalReady(s,x));});
+for(const phase of ['REGISTERED','RACING','CLEARANCE_PENDING','SETTLEMENT_PENDING','AI_CONTINUATION'])test('regional stock blocked in '+phase,()=>{const {s,x}=fixture();x.phase=phase;assert(!regionalReady(s,x));});
+test('withdrawal or absent official evidence cannot create stock',()=>{const {s,x}=fixture();x.withdrawal={kind:'Voluntary'};assert(!regionalReady(s,x));x.withdrawal=null;x.raceResults=[];assert(!regionalReady(s,x));});

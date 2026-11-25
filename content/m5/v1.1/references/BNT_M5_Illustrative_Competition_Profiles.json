@@ -1,0 +1,753 @@
+{
+  "format": "BNT-M5-competition-authoring-v1",
+  "catalogVersion": "m5.competition.examples.v1",
+  "approval": "UNAPPROVED_EXAMPLES",
+  "records": {
+    "geometry": [
+      {
+        "id": "geometry.short",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Short Oval reference",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "kind": "Oval",
+        "resolver": "native-preset",
+        "nativeId": "short-oval",
+        "laneCount": 4,
+        "laneWidth": 4,
+        "rallyOptions": null,
+        "checkpointPolicy": "native-three-v1",
+        "freezeResolvedCourse": true
+      },
+      {
+        "id": "geometry.standard",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Standard Oval reference",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "kind": "Oval",
+        "resolver": "native-preset",
+        "nativeId": "oval",
+        "laneCount": 4,
+        "laneWidth": 4,
+        "rallyOptions": null,
+        "checkpointPolicy": "native-three-v1",
+        "freezeResolvedCourse": true
+      },
+      {
+        "id": "geometry.long-rally",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Long Rally reference",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "kind": "Rally",
+        "resolver": "rally-generator-v1",
+        "nativeId": "generated-long",
+        "laneCount": 4,
+        "laneWidth": 4,
+        "rallyOptions": {
+          "category": "long",
+          "turnFrequency": 0.55,
+          "turnSeverity": 0.5,
+          "terrainProfile": "rugged",
+          "maxAttempts": 12
+        },
+        "checkpointPolicy": "category-sign-points-v1",
+        "freezeResolvedCourse": true
+      }
+    ],
+    "environment": [
+      {
+        "id": "environment.north-road",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Road surface and variable rain",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "assignments": [
+          {
+            "selector": "all",
+            "segmentId": null,
+            "terrain": "stone"
+          }
+        ],
+        "weatherWeights": [
+          {
+            "weather": "Clear",
+            "weight": 7
+          },
+          {
+            "weather": "Rain",
+            "weight": 3
+          }
+        ],
+        "customPhysics": false,
+        "terrainWeightOrder": [
+          "dirt",
+          "stone",
+          "gravel",
+          "sand",
+          "mud"
+        ]
+      }
+    ],
+    "naming": [
+      {
+        "id": "naming.venue",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Northreach venue names",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "usage": "venue",
+        "nationIds": [
+          "N1"
+        ],
+        "culturalNamingProfileId": "culture.n1.r6",
+        "roots": [
+          "Greywood",
+          "Thornvale",
+          "Blackwater",
+          "Eastford"
+        ],
+        "endings": [
+          "Wheelgrounds",
+          "Crossing",
+          "Ring",
+          "Racecourse"
+        ],
+        "grammar": "place-ending",
+        "maxLength": 100,
+        "maxRetries": 32,
+        "genericFallback": false
+      },
+      {
+        "id": "naming.event",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Northreach event names",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "usage": "event",
+        "nationIds": [
+          "N1"
+        ],
+        "culturalNamingProfileId": "culture.n1.r6",
+        "roots": [
+          "Greywood",
+          "Thornvale",
+          "Blackwater",
+          "Eastford"
+        ],
+        "endings": [
+          "Trial",
+          "Run",
+          "Challenge"
+        ],
+        "grammar": "place-ending",
+        "maxLength": 100,
+        "maxRetries": 32,
+        "genericFallback": false
+      },
+      {
+        "id": "naming.championship",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Northreach championship names",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "usage": "championship",
+        "nationIds": [
+          "N1"
+        ],
+        "culturalNamingProfileId": "culture.n1.r6",
+        "roots": [
+          "Greywood",
+          "Thornvale",
+          "Blackwater",
+          "Eastford"
+        ],
+        "endings": [
+          "Cup",
+          "Series",
+          "Circuit"
+        ],
+        "grammar": "place-ending",
+        "maxLength": 100,
+        "maxRetries": 32,
+        "genericFallback": false
+      }
+    ],
+    "presentation": [
+      {
+        "id": "presentation.north",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Northreach venue framing",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "worldVisualProfileId": "visual.n1",
+        "style": "dark-deco-retro-cartoon-v1",
+        "architectureTags": [
+          "angular-timber-stands",
+          "stone-gate"
+        ],
+        "environmentTags": [
+          "wooded-ridge",
+          "overcast-sky"
+        ],
+        "palette": [
+          "#233947",
+          "#d5a447",
+          "#667d75"
+        ],
+        "motifs": [
+          "storm-antler",
+          "wheel"
+        ],
+        "assetRefs": [
+          "architecture.tower.proof.v1",
+          "architecture.arch.proof.v1"
+        ],
+        "uniqueArtRequired": false,
+        "futureBrief": null
+      }
+    ],
+    "venue": [
+      {
+        "id": "venue.thornvale",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Illustrative prestige venue",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "permanence": "prestige",
+        "properName": "Thornvale Wheelgrounds",
+        "nationId": "N1",
+        "regionId": "culture.n1.r6",
+        "geometryWeights": [
+          {
+            "id": "geometry.short",
+            "weight": 1
+          }
+        ],
+        "environmentId": "environment.north-road",
+        "namingProfileId": "naming.venue",
+        "presentationId": "presentation.north",
+        "supportedFormats": [
+          "Pure",
+          "Combat"
+        ],
+        "seedPolicy": "pinned",
+        "pinnedSeed": 20261124,
+        "description": "Unapproved authored example of national venue identity over an existing oval.",
+        "signatureTraits": [
+          "compact oval",
+          "stone coefficients",
+          "rain probability"
+        ]
+      },
+      {
+        "id": "venue.regional",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Illustrative renewable regional venue profile",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "permanence": "renewable-profile",
+        "properName": null,
+        "nationId": "N1",
+        "regionId": "culture.n1.r6",
+        "geometryWeights": [
+          {
+            "id": "geometry.standard",
+            "weight": 1
+          }
+        ],
+        "environmentId": "environment.north-road",
+        "namingProfileId": "naming.venue",
+        "presentationId": "presentation.north",
+        "supportedFormats": [
+          "Pure",
+          "Combat"
+        ],
+        "seedPolicy": "generation-domain",
+        "pinnedSeed": null,
+        "description": "Unapproved profile; successful generated identity uses proper naming grammar, never this profile label.",
+        "signatureTraits": [
+          "standard oval",
+          "regional naming"
+        ]
+      },
+      {
+        "id": "venue.fixed-rally",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Illustrative fixed prestige rally",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "permanence": "prestige",
+        "properName": "Greywood Ridge Run",
+        "nationId": "N1",
+        "regionId": "culture.n1.r6",
+        "geometryWeights": [
+          {
+            "id": "geometry.long-rally",
+            "weight": 1
+          }
+        ],
+        "environmentId": "environment.north-road",
+        "namingProfileId": "naming.venue",
+        "presentationId": "presentation.north",
+        "supportedFormats": [
+          "Pure",
+          "Combat"
+        ],
+        "seedPolicy": "pinned",
+        "pinnedSeed": 20261124,
+        "description": "Unapproved seed-pinned example; retain generated resolved course and version, not seed alone.",
+        "signatureTraits": [
+          "long open route",
+          "fixed seed",
+          "category Sign Points"
+        ]
+      }
+    ],
+    "event": [
+      {
+        "id": "event.oval-pure",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Pure oval event profile",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "venueWeights": [
+          {
+            "id": "venue.thornvale",
+            "weight": 1
+          },
+          {
+            "id": "venue.regional",
+            "weight": 1
+          }
+        ],
+        "namingProfileId": "naming.event",
+        "format": "Pure",
+        "distanceMode": "laps",
+        "laps": {
+          "min": 1,
+          "max": 1
+        },
+        "grid": "random",
+        "eligibleContexts": [
+          "dustroad"
+        ],
+        "rulesBinding": "native-race-v1",
+        "rewardsFromChampionshipBinding": true
+      },
+      {
+        "id": "event.oval-combat",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Combat oval event profile",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "venueWeights": [
+          {
+            "id": "venue.thornvale",
+            "weight": 1
+          },
+          {
+            "id": "venue.regional",
+            "weight": 1
+          }
+        ],
+        "namingProfileId": "naming.event",
+        "format": "Combat",
+        "distanceMode": "laps",
+        "laps": {
+          "min": 1,
+          "max": 1
+        },
+        "grid": "standings",
+        "eligibleContexts": [
+          "dustroad"
+        ],
+        "rulesBinding": "native-race-v1",
+        "rewardsFromChampionshipBinding": true
+      },
+      {
+        "id": "event.rally-combat",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Combat rally event profile",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "venueWeights": [
+          {
+            "id": "venue.fixed-rally",
+            "weight": 1
+          }
+        ],
+        "namingProfileId": "naming.event",
+        "format": "Combat",
+        "distanceMode": "point-to-point",
+        "laps": {
+          "min": 1,
+          "max": 1
+        },
+        "grid": "standings",
+        "eligibleContexts": [
+          "crownfire",
+          "thunder-crown"
+        ],
+        "rulesBinding": "native-race-v1",
+        "rewardsFromChampionshipBinding": true
+      }
+    ],
+    "tier": [
+      {
+        "id": "tier.dustroad",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Native Dustroad mechanics binding",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "contextId": "dustroad",
+        "nativeCatalogId": "dustroad",
+        "qualificationBinding": "native.dustroad",
+        "feeAndAwardBinding": "native.dustroad",
+        "completionBonusTier": 1,
+        "fieldSize": 4,
+        "raceCount": 2,
+        "generatedTrophyPolicy": "REQUIRES_OWNER_DISPOSITION",
+        "strengthReference": "difficulty.dustroad",
+        "adaptiveScaling": false
+      }
+    ],
+    "locals": [
+      {
+        "id": "local.north.dustroad",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Northreach local competitors",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "contextId": "dustroad",
+        "nationWeights": [
+          {
+            "nationId": "N1",
+            "weight": 8
+          },
+          {
+            "nationId": "N2",
+            "weight": 1
+          }
+        ],
+        "existingRivalProfileWeights": [
+          {
+            "id": "rival.n1.dustroad",
+            "weight": 1
+          },
+          {
+            "id": "rival.n2.dustroad",
+            "weight": 1
+          }
+        ],
+        "importProbability": 0.1,
+        "frozenForChampionship": true,
+        "persistAsActiveAfterArchive": false,
+        "historicalNamesRetained": true
+      }
+    ],
+    "rivals": [
+      {
+        "id": "rivals.dustroad",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Lazy fixed-tier population",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "contextId": "dustroad",
+        "populationMin": 3,
+        "populationMax": 5,
+        "participantsMin": 2,
+        "participantsMax": 3,
+        "reserveLocalSlots": 1,
+        "lazyBirth": true,
+        "fixedAttributesAndPersonality": true,
+        "birthProfileWeights": [
+          {
+            "id": "rival.n1.dustroad",
+            "weight": 1
+          },
+          {
+            "id": "rival.n2.dustroad",
+            "weight": 1
+          }
+        ],
+        "localProfileId": "local.north.dustroad",
+        "betweenChampionshipCondition": "REQUIRES_OWNER_DISPOSITION",
+        "offscreenSimulation": false
+      }
+    ],
+    "renewal": [
+      {
+        "id": "renewal.opportunities",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Committed opportunity renewal",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "resource": "championship-opportunities",
+        "trigger": "career-initialized-and-terminal-archived",
+        "count": {
+          "min": 2,
+          "max": 3
+        },
+        "requiresCompletedFrozenSchedule": true,
+        "zeroStartWithdrawalPolicy": "REQUIRES_OWNER_DISPOSITION",
+        "allowPageOpenRenewal": false,
+        "replacementOnPurchase": false,
+        "regionalPermanentStaff": false,
+        "postGenerationCommitRequired": true,
+        "registeredRUChangeAllowed": false
+      },
+      {
+        "id": "renewal.home",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Full Home Market renewal",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "resource": "home-market",
+        "trigger": "career-initialized-and-terminal-archived",
+        "count": {
+          "min": 23,
+          "max": 24
+        },
+        "requiresCompletedFrozenSchedule": true,
+        "zeroStartWithdrawalPolicy": "REQUIRES_OWNER_DISPOSITION",
+        "allowPageOpenRenewal": false,
+        "replacementOnPurchase": false,
+        "regionalPermanentStaff": false,
+        "postGenerationCommitRequired": true,
+        "registeredRUChangeAllowed": false
+      },
+      {
+        "id": "renewal.regional",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Limited regional market batch",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "resource": "regional-market",
+        "trigger": "official-intermission-after-run-choice",
+        "count": {
+          "min": 2,
+          "max": 4
+        },
+        "requiresCompletedFrozenSchedule": false,
+        "zeroStartWithdrawalPolicy": "retain-existing-batch",
+        "allowPageOpenRenewal": false,
+        "replacementOnPurchase": false,
+        "regionalPermanentStaff": false,
+        "postGenerationCommitRequired": true,
+        "registeredRUChangeAllowed": false
+      }
+    ],
+    "championship": [
+      {
+        "id": "championship.north-example",
+        "version": 1,
+        "approval": "UNAPPROVED_EXAMPLE",
+        "label": "Unapproved national championship profile",
+        "sources": [
+          {
+            "authority": "audit-proposal",
+            "file": "tools/create-contracts.py",
+            "sha256": "4969e98c09116bebe8d4cb6352d6c72ac56030dc4318ad3ea8e0aebcfee13a90",
+            "startLine": 1,
+            "endLine": 52
+          }
+        ],
+        "category": "generated",
+        "properName": null,
+        "namingProfileId": "naming.championship",
+        "tierBindingId": "tier.dustroad",
+        "geographicScope": "national",
+        "nationIds": [
+          "N1"
+        ],
+        "regionIds": [
+          "culture.n1.r6"
+        ],
+        "eventWeights": [
+          {
+            "id": "event.oval-pure",
+            "weight": 1
+          },
+          {
+            "id": "event.oval-combat",
+            "weight": 1
+          }
+        ],
+        "raceCount": {
+          "min": 2,
+          "max": 2
+        },
+        "scheduleOrder": "native-context-pattern",
+        "venueRepeatLimit": 2,
+        "prestigeMin": 1,
+        "maxAttempts": 32,
+        "rivalPopulationPolicyId": "rivals.dustroad",
+        "renewalPolicyId": "renewal.opportunities",
+        "presentationId": "presentation.north",
+        "travelMechanics": false
+      }
+    ]
+  }
+}

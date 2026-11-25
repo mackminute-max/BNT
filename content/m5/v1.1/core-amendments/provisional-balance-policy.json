@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "id": "policy.m5-budget-v1",
+  "status": "PROVISIONAL_NOT_OWNER_BALANCE_ACCEPTED",
+  "driverComposition": [
+    "baseline uniform distribution",
+    "ancestryDelta",
+    "background.attributeDelta",
+    "ancestry.experienceDelta (explicit0 here)",
+    "selected experienceLevel.attributeDelta",
+    "quality.driverDelta",
+    "uniform individualVariation offset",
+    "final clamp0..100 once"
+  ],
+  "beastComposition": [
+    "species baseline",
+    "stock.statDelta",
+    "temperament.attributeDelta",
+    "quality.beastDelta",
+    "uniform individualVariation offset",
+    "final clamp0..100 once"
+  ],
+  "rounding": "Integer draws and integer offsets in this catalog; no fractional quantization introduced.",
+  "qualitySelection": "Context quality table overrides profile qualityProfileId; that field is the ordinary fallback only, not a second quality roll. Never apply quality twice.",
+  "qualityValuation": "native-tier-quality-v1; per-quality provisional Q; wageQuality applies only to personnel, null for beast/chariot/equipment. Native quote/price/term/receipt authority unchanged.",
+  "qualityRatingBounds": "0..100 validates final vector, not an extra uniform stat roll or a replacement for composed distributions.",
+  "importSemantics": "With nation.importWeight choose foreign-origin pool from other seven national profiles; otherwise resident weights. Preserve sampled residentNationId, originNationId, ancestryId and cultureProfileId separately. N8 non-A08 must carry foreign origin.",
+  "nationalBackgroundAndAI": "Background/AI weights are nonexclusive. For driver AI, multiply background weights by national weights then normalize over stable sorted IDs; no ancestry term.",
+  "staffCulturePolicy": "Each nation has its own three profession profiles with explicit native role and national naming profile. No unannounced nation override is needed.",
+  "rivalCultureOverride": "Select nation culture then use its name/organization pools; primary cultureProfileId/namingProfileId are national defaults, not locks.",
+  "rivalQualityBinding": "Use difficulty table once per coherent team; resolve shared native tier and approved per-member variance without a new rival economy.",
+  "traitClamping": "Trait distribution + single uniform individualVariation offset; clamp0..100. No global utility weights, AI cadence, errors or Sign rules altered.",
+  "staffPolicyId": "policy.staff-native-terms-v1",
+  "eligibility": "Native affordability/capacity/contracts/condition and championship rules still gate every output.",
+  "scouting": "No hidden-stat/scouting mechanics invented.",
+  "correlationPolicy": "Empty driver correlations initially; no unimplemented correlation sampler assumed.",
+  "retentionPolicy": "No history pruning or market refresh cadence is selected by content. Codex must resolve native protected-generation/persistence gates first.",
+  "competitionSupplement": {
+    "version": "m5-competition-v1.1",
+    "policy": "owner-policy-mapping.json",
+    "fixedBirth": true,
+    "adaptiveScaling": false,
+    "localLocationWeighting": true,
+    "specialStrengthContext": "difficulty.thunder-crown"
+  }
+}

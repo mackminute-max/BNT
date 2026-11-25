@@ -1,0 +1,2230 @@
+[
+  {
+    "id": "visual.a01",
+    "version": 1,
+    "label": "Human anatomy metadata",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 34,
+        "endLine": 89,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [
+      "A01"
+    ],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [
+      "adult-athlete",
+      "adult-stout",
+      "adult-lean",
+      "source-valid-anatomy"
+    ],
+    "hairTags": [
+      "short-crop",
+      "braid",
+      "tied-back",
+      "loose",
+      "shaved",
+      "curly"
+    ],
+    "facialHairTags": [
+      "none",
+      "short-beard",
+      "sideburns"
+    ],
+    "skinOrCoatPalette": [
+      "#d9b494",
+      "#a77957",
+      "#6c4937"
+    ],
+    "markings": [
+      "natural-pigment-variation"
+    ],
+    "clothingTags": [
+      "practical-racing-uniform",
+      "workwear",
+      "formal-stable-coat"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "portrait.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.a02",
+    "version": 1,
+    "label": "Orc anatomy metadata",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 90,
+        "endLine": 145,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [
+      "A02"
+    ],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [
+      "adult-athlete",
+      "adult-stout",
+      "adult-lean",
+      "source-valid-anatomy"
+    ],
+    "hairTags": [
+      "short-crop",
+      "braid",
+      "tied-back",
+      "loose",
+      "shaved",
+      "curly"
+    ],
+    "facialHairTags": [
+      "none",
+      "short-beard",
+      "sideburns"
+    ],
+    "skinOrCoatPalette": [
+      "#8c8b6c",
+      "#687164",
+      "#544b3b"
+    ],
+    "markings": [
+      "natural-pigment-variation"
+    ],
+    "clothingTags": [
+      "practical-racing-uniform",
+      "workwear",
+      "formal-stable-coat"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "portrait.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.a03",
+    "version": 1,
+    "label": "Goliath anatomy metadata",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 146,
+        "endLine": 201,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [
+      "A03"
+    ],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [
+      "adult-athlete",
+      "adult-stout",
+      "adult-lean",
+      "source-valid-anatomy"
+    ],
+    "hairTags": [
+      "short-crop",
+      "braid",
+      "tied-back",
+      "loose",
+      "shaved",
+      "curly"
+    ],
+    "facialHairTags": [
+      "none",
+      "short-beard",
+      "sideburns"
+    ],
+    "skinOrCoatPalette": [
+      "#88877f",
+      "#6b7379",
+      "#a49c8e",
+      "#78685d"
+    ],
+    "markings": [
+      "natural-pigment-variation"
+    ],
+    "clothingTags": [
+      "practical-racing-uniform",
+      "workwear",
+      "formal-stable-coat"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "portrait.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.a04",
+    "version": 1,
+    "label": "Hill Dwarf anatomy metadata",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 202,
+        "endLine": 257,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [
+      "A04"
+    ],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [
+      "adult-athlete",
+      "adult-stout",
+      "adult-lean",
+      "source-valid-anatomy"
+    ],
+    "hairTags": [
+      "short-crop",
+      "braid",
+      "tied-back",
+      "loose",
+      "shaved",
+      "curly"
+    ],
+    "facialHairTags": [
+      "none",
+      "short-beard",
+      "sideburns"
+    ],
+    "skinOrCoatPalette": [
+      "#efcfb4",
+      "#d5a387",
+      "#b8794e",
+      "#805138"
+    ],
+    "markings": [
+      "natural-pigment-variation"
+    ],
+    "clothingTags": [
+      "practical-racing-uniform",
+      "workwear",
+      "formal-stable-coat"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "portrait.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.a05",
+    "version": 1,
+    "label": "Mountain Dwarf anatomy metadata",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 258,
+        "endLine": 313,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [
+      "A05"
+    ],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [
+      "adult-athlete",
+      "adult-stout",
+      "adult-lean",
+      "source-valid-anatomy"
+    ],
+    "hairTags": [
+      "short-crop",
+      "braid",
+      "tied-back",
+      "loose",
+      "shaved",
+      "curly"
+    ],
+    "facialHairTags": [
+      "none",
+      "short-beard",
+      "sideburns"
+    ],
+    "skinOrCoatPalette": [
+      "#e2d5ca",
+      "#c4b4a3",
+      "#ad8d7d",
+      "#806657"
+    ],
+    "markings": [
+      "natural-pigment-variation"
+    ],
+    "clothingTags": [
+      "practical-racing-uniform",
+      "workwear",
+      "formal-stable-coat"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "portrait.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.a06",
+    "version": 1,
+    "label": "Halfling anatomy metadata",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 314,
+        "endLine": 369,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [
+      "A06"
+    ],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [
+      "adult-athlete",
+      "adult-stout",
+      "adult-lean",
+      "source-valid-anatomy"
+    ],
+    "hairTags": [
+      "short-crop",
+      "braid",
+      "tied-back",
+      "loose",
+      "shaved",
+      "curly"
+    ],
+    "facialHairTags": [
+      "none",
+      "short-beard",
+      "sideburns"
+    ],
+    "skinOrCoatPalette": [
+      "#d9b494",
+      "#a77957",
+      "#6c4937"
+    ],
+    "markings": [
+      "natural-pigment-variation"
+    ],
+    "clothingTags": [
+      "practical-racing-uniform",
+      "workwear",
+      "formal-stable-coat"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "portrait.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.a07",
+    "version": 1,
+    "label": "Forest Elf anatomy metadata",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 370,
+        "endLine": 425,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [
+      "A07"
+    ],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [
+      "adult-athlete",
+      "adult-stout",
+      "adult-lean",
+      "source-valid-anatomy"
+    ],
+    "hairTags": [
+      "short-crop",
+      "braid",
+      "tied-back",
+      "loose",
+      "shaved",
+      "curly"
+    ],
+    "facialHairTags": [
+      "none",
+      "short-beard",
+      "sideburns"
+    ],
+    "skinOrCoatPalette": [
+      "#d9b494",
+      "#a77957",
+      "#6c4937"
+    ],
+    "markings": [
+      "natural-pigment-variation"
+    ],
+    "clothingTags": [
+      "practical-racing-uniform",
+      "workwear",
+      "formal-stable-coat"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "portrait.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.a08",
+    "version": 1,
+    "label": "High Elf anatomy metadata",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 426,
+        "endLine": 481,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [
+      "A08"
+    ],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [
+      "adult-athlete",
+      "adult-stout",
+      "adult-lean",
+      "source-valid-anatomy"
+    ],
+    "hairTags": [
+      "short-crop",
+      "braid",
+      "tied-back",
+      "loose",
+      "shaved",
+      "curly"
+    ],
+    "facialHairTags": [
+      "none",
+      "short-beard",
+      "sideburns"
+    ],
+    "skinOrCoatPalette": [
+      "#a76f43",
+      "#b78354",
+      "#815237",
+      "#5e3929"
+    ],
+    "markings": [
+      "natural-pigment-variation"
+    ],
+    "clothingTags": [
+      "practical-racing-uniform",
+      "workwear",
+      "formal-stable-coat"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "portrait.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.a09",
+    "version": 1,
+    "label": "Sea Elf anatomy metadata",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 482,
+        "endLine": 537,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [
+      "A09"
+    ],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [
+      "adult-athlete",
+      "adult-stout",
+      "adult-lean",
+      "source-valid-anatomy"
+    ],
+    "hairTags": [
+      "short-crop",
+      "braid",
+      "tied-back",
+      "loose",
+      "shaved",
+      "curly"
+    ],
+    "facialHairTags": [
+      "none",
+      "short-beard",
+      "sideburns"
+    ],
+    "skinOrCoatPalette": [
+      "#e3d1c5",
+      "#c8b7af",
+      "#b8b6ab",
+      "#8b6b55"
+    ],
+    "markings": [
+      "natural-pigment-variation"
+    ],
+    "clothingTags": [
+      "practical-racing-uniform",
+      "workwear",
+      "formal-stable-coat"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "portrait.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.a10",
+    "version": 1,
+    "label": "Gnome anatomy metadata",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 538,
+        "endLine": 593,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [
+      "A10"
+    ],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [
+      "adult-athlete",
+      "adult-stout",
+      "adult-lean",
+      "source-valid-anatomy"
+    ],
+    "hairTags": [
+      "short-crop",
+      "braid",
+      "tied-back",
+      "loose",
+      "shaved",
+      "curly"
+    ],
+    "facialHairTags": [
+      "none",
+      "short-beard",
+      "sideburns"
+    ],
+    "skinOrCoatPalette": [
+      "#d9b494",
+      "#a77957",
+      "#6c4937"
+    ],
+    "markings": [
+      "natural-pigment-variation"
+    ],
+    "clothingTags": [
+      "practical-racing-uniform",
+      "workwear",
+      "formal-stable-coat"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "portrait.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.a11",
+    "version": 1,
+    "label": "Goblin anatomy metadata",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 594,
+        "endLine": 649,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [
+      "A11"
+    ],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [
+      "adult-athlete",
+      "adult-stout",
+      "adult-lean",
+      "source-valid-anatomy"
+    ],
+    "hairTags": [
+      "short-crop",
+      "braid",
+      "tied-back",
+      "loose",
+      "shaved",
+      "curly"
+    ],
+    "facialHairTags": [
+      "none",
+      "short-beard",
+      "sideburns"
+    ],
+    "skinOrCoatPalette": [
+      "#8c8b6c",
+      "#687164",
+      "#544b3b"
+    ],
+    "markings": [
+      "natural-pigment-variation"
+    ],
+    "clothingTags": [
+      "practical-racing-uniform",
+      "workwear",
+      "formal-stable-coat"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "portrait.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.a12",
+    "version": 1,
+    "label": "Dragonkin anatomy metadata",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 650,
+        "endLine": 705,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [
+      "A12"
+    ],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [
+      "adult-athlete",
+      "adult-stout",
+      "adult-lean",
+      "source-valid-anatomy"
+    ],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#8c8b6c",
+      "#687164",
+      "#544b3b"
+    ],
+    "markings": [
+      "natural-pigment-variation"
+    ],
+    "clothingTags": [
+      "practical-racing-uniform",
+      "workwear",
+      "formal-stable-coat"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "portrait.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.a13",
+    "version": 1,
+    "label": "Tortle anatomy metadata",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 706,
+        "endLine": 789,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [
+      "A13"
+    ],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [
+      "adult-athlete",
+      "adult-stout",
+      "adult-lean",
+      "source-valid-anatomy"
+    ],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#8c8b6c",
+      "#687164",
+      "#544b3b"
+    ],
+    "markings": [
+      "natural-pigment-variation"
+    ],
+    "clothingTags": [
+      "practical-racing-uniform",
+      "workwear",
+      "formal-stable-coat"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "portrait.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.b01",
+    "version": 1,
+    "label": "Horse appearance",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 24,
+        "endLine": 135,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [
+      "B01"
+    ],
+    "ageCategories": [
+      "adult",
+      "mature"
+    ],
+    "bodyTags": [
+      "source-valid-quadruped",
+      "working-line",
+      "racing-line"
+    ],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#6e3f26",
+      "#2c2927",
+      "#a79b8c",
+      "#c4a16c"
+    ],
+    "markings": [
+      "source-valid-countershading",
+      "natural-mottling"
+    ],
+    "clothingTags": [
+      "paired-racing-harness"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "racing-stock"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "ru.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.b02",
+    "version": 1,
+    "label": "Storm Elk (Hroven) appearance",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 136,
+        "endLine": 217,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [
+      "B02"
+    ],
+    "ageCategories": [
+      "adult",
+      "mature"
+    ],
+    "bodyTags": [
+      "source-valid-quadruped",
+      "working-line",
+      "racing-line"
+    ],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#493a30",
+      "#715347",
+      "#9c8269"
+    ],
+    "markings": [
+      "source-valid-countershading",
+      "natural-mottling"
+    ],
+    "clothingTags": [
+      "paired-racing-harness"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "racing-stock"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "ru.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.b03",
+    "version": 1,
+    "label": "Crown Boar (Brond) appearance",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 218,
+        "endLine": 299,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [
+      "B03"
+    ],
+    "ageCategories": [
+      "adult",
+      "mature"
+    ],
+    "bodyTags": [
+      "source-valid-quadruped",
+      "working-line",
+      "racing-line"
+    ],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#5d3b2c",
+      "#32302e",
+      "#a98c63"
+    ],
+    "markings": [
+      "source-valid-countershading",
+      "natural-mottling"
+    ],
+    "clothingTags": [
+      "paired-racing-harness"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "racing-stock"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "ru.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.b04",
+    "version": 1,
+    "label": "Meadowstrider (Vellin) appearance",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 300,
+        "endLine": 381,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [
+      "B04"
+    ],
+    "ageCategories": [
+      "adult",
+      "mature"
+    ],
+    "bodyTags": [
+      "source-valid-quadruped",
+      "working-line",
+      "racing-line"
+    ],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#bf8d55",
+      "#b8a188",
+      "#dfc99c"
+    ],
+    "markings": [
+      "source-valid-countershading",
+      "natural-mottling"
+    ],
+    "clothingTags": [
+      "paired-racing-harness"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "racing-stock"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "ru.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.b05",
+    "version": 1,
+    "label": "Racing Ram appearance",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 382,
+        "endLine": 463,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [
+      "B05"
+    ],
+    "ageCategories": [
+      "adult",
+      "mature"
+    ],
+    "bodyTags": [
+      "source-valid-quadruped",
+      "working-line",
+      "racing-line"
+    ],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#e0d4ba",
+      "#4d4b49",
+      "#a16a4a"
+    ],
+    "markings": [
+      "source-valid-countershading",
+      "natural-mottling"
+    ],
+    "clothingTags": [
+      "paired-racing-harness"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "racing-stock"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "ru.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.b06",
+    "version": 1,
+    "label": "Grun’Jho appearance",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 464,
+        "endLine": 545,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [
+      "B06"
+    ],
+    "ageCategories": [
+      "adult",
+      "mature"
+    ],
+    "bodyTags": [
+      "source-valid-quadruped",
+      "working-line",
+      "racing-line"
+    ],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#352c25",
+      "#615c56",
+      "#965a3c",
+      "#c4af85"
+    ],
+    "markings": [
+      "source-valid-countershading",
+      "natural-mottling"
+    ],
+    "clothingTags": [
+      "paired-racing-harness"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "racing-stock"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "ru.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.b07",
+    "version": 1,
+    "label": "Dire Wolf appearance",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 546,
+        "endLine": 627,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [
+      "B07"
+    ],
+    "ageCategories": [
+      "adult",
+      "mature"
+    ],
+    "bodyTags": [
+      "source-valid-quadruped",
+      "working-line",
+      "racing-line"
+    ],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#777673",
+      "#353638",
+      "#d1c4a7",
+      "#8f6048"
+    ],
+    "markings": [
+      "source-valid-countershading",
+      "natural-mottling"
+    ],
+    "clothingTags": [
+      "paired-racing-harness"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "racing-stock"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "ru.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.b08",
+    "version": 1,
+    "label": "Wingless Drake appearance",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 628,
+        "endLine": 709,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [
+      "B08"
+    ],
+    "ageCategories": [
+      "adult",
+      "mature"
+    ],
+    "bodyTags": [
+      "source-valid-quadruped",
+      "working-line",
+      "racing-line"
+    ],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#8d4937",
+      "#9e7948",
+      "#4b585a",
+      "#3e5746"
+    ],
+    "markings": [
+      "source-valid-countershading",
+      "natural-mottling"
+    ],
+    "clothingTags": [
+      "paired-racing-harness"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "racing-stock"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "ru.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.b09",
+    "version": 1,
+    "label": "Sunhorn (Saelor) appearance",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 710,
+        "endLine": 831,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [
+      "B09"
+    ],
+    "ageCategories": [
+      "adult",
+      "mature"
+    ],
+    "bodyTags": [
+      "source-valid-quadruped",
+      "working-line",
+      "racing-line"
+    ],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#e1cda0",
+      "#f0e2c6",
+      "#c09b61",
+      "#a97147"
+    ],
+    "markings": [
+      "source-valid-countershading",
+      "natural-mottling"
+    ],
+    "clothingTags": [
+      "paired-racing-harness"
+    ],
+    "culturalAccessoryTags": [],
+    "professionTags": [
+      "racing-stock"
+    ],
+    "heraldicMotifs": [
+      "wheel"
+    ],
+    "teamPalette": [
+      "#203944",
+      "#dfb863"
+    ],
+    "chariotLiveryTags": [],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "ru.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.n1",
+    "version": 1,
+    "label": "Northreach Confederation cultural styling",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 19,
+        "endLine": 260,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#233947",
+      "#d5a447",
+      "#667d75"
+    ],
+    "markings": [],
+    "clothingTags": [
+      "regional-track-coat",
+      "practical-crew-uniform"
+    ],
+    "culturalAccessoryTags": [
+      "removable-club-pin",
+      "regional-textile-trim"
+    ],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "tower",
+      "storm-antler",
+      "forked-river"
+    ],
+    "teamPalette": [
+      "#233947",
+      "#d5a447",
+      "#667d75"
+    ],
+    "chariotLiveryTags": [
+      "primary-body",
+      "secondary-trim",
+      "emblem-panel"
+    ],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "emblem.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.n2",
+    "version": 1,
+    "label": "Frosthall Kingdom cultural styling",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 261,
+        "endLine": 550,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#25344e",
+      "#d4dce0",
+      "#9a3c3c"
+    ],
+    "markings": [],
+    "clothingTags": [
+      "regional-track-coat",
+      "practical-crew-uniform"
+    ],
+    "culturalAccessoryTags": [
+      "removable-club-pin",
+      "regional-textile-trim"
+    ],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "crown",
+      "falcon",
+      "twin-gate"
+    ],
+    "teamPalette": [
+      "#25344e",
+      "#d4dce0",
+      "#9a3c3c"
+    ],
+    "chariotLiveryTags": [
+      "primary-body",
+      "secondary-trim",
+      "emblem-panel"
+    ],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "emblem.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.n3",
+    "version": 1,
+    "label": "Greenvale Commonwealth cultural styling",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 551,
+        "endLine": 921,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#274e43",
+      "#d8b865",
+      "#68774b"
+    ],
+    "markings": [],
+    "clothingTags": [
+      "regional-track-coat",
+      "practical-crew-uniform"
+    ],
+    "culturalAccessoryTags": [
+      "removable-club-pin",
+      "regional-textile-trim"
+    ],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "fox",
+      "river-reed",
+      "harvest-wheel"
+    ],
+    "teamPalette": [
+      "#274e43",
+      "#d8b865",
+      "#68774b"
+    ],
+    "chariotLiveryTags": [
+      "primary-body",
+      "secondary-trim",
+      "emblem-panel"
+    ],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "emblem.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.n4",
+    "version": 1,
+    "label": "Ironhold Clans cultural styling",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 922,
+        "endLine": 1429,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#34383e",
+      "#b77e43",
+      "#75939a"
+    ],
+    "markings": [],
+    "clothingTags": [
+      "regional-track-coat",
+      "practical-crew-uniform"
+    ],
+    "culturalAccessoryTags": [
+      "removable-club-pin",
+      "regional-textile-trim"
+    ],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "anvil",
+      "ram-horn",
+      "split-chevron"
+    ],
+    "teamPalette": [
+      "#34383e",
+      "#b77e43",
+      "#75939a"
+    ],
+    "chariotLiveryTags": [
+      "primary-body",
+      "secondary-trim",
+      "emblem-panel"
+    ],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "emblem.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.n5",
+    "version": 1,
+    "label": "Sundaran League cultural styling",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 1430,
+        "endLine": 2027,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#135963",
+      "#e1b653",
+      "#d27747"
+    ],
+    "markings": [],
+    "clothingTags": [
+      "regional-track-coat",
+      "practical-crew-uniform"
+    ],
+    "culturalAccessoryTags": [
+      "removable-club-pin",
+      "regional-textile-trim"
+    ],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "sunburst",
+      "tide",
+      "crossed-reins"
+    ],
+    "teamPalette": [
+      "#135963",
+      "#e1b653",
+      "#d27747"
+    ],
+    "chariotLiveryTags": [
+      "primary-body",
+      "secondary-trim",
+      "emblem-panel"
+    ],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "emblem.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.n6",
+    "version": 1,
+    "label": "Karthen Hordes cultural styling",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2028,
+        "endLine": 2614,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#56352f",
+      "#d5a75b",
+      "#6d7773"
+    ],
+    "markings": [],
+    "clothingTags": [
+      "regional-track-coat",
+      "practical-crew-uniform"
+    ],
+    "culturalAccessoryTags": [
+      "removable-club-pin",
+      "regional-textile-trim"
+    ],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "running-herd",
+      "banner",
+      "river-knot"
+    ],
+    "teamPalette": [
+      "#56352f",
+      "#d5a75b",
+      "#6d7773"
+    ],
+    "chariotLiveryTags": [
+      "primary-body",
+      "secondary-trim",
+      "emblem-panel"
+    ],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "emblem.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.n7",
+    "version": 1,
+    "label": "Velmora Republic cultural styling",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2615,
+        "endLine": 3393,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#493e5d",
+      "#c99751",
+      "#527478"
+    ],
+    "markings": [],
+    "clothingTags": [
+      "regional-track-coat",
+      "practical-crew-uniform"
+    ],
+    "culturalAccessoryTags": [
+      "removable-club-pin",
+      "regional-textile-trim"
+    ],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "stepped-wingless-crest",
+      "civic-arch",
+      "standard"
+    ],
+    "teamPalette": [
+      "#493e5d",
+      "#c99751",
+      "#527478"
+    ],
+    "chariotLiveryTags": [
+      "primary-body",
+      "secondary-trim",
+      "emblem-panel"
+    ],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "emblem.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  },
+  {
+    "id": "visual.n8",
+    "version": 1,
+    "label": "Zarashi Dominion cultural styling",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 3394,
+        "endLine": 4104,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "ancestryIds": [],
+    "speciesIds": [],
+    "ageCategories": [
+      "young-adult",
+      "adult",
+      "mature",
+      "elder"
+    ],
+    "bodyTags": [],
+    "hairTags": [],
+    "facialHairTags": [],
+    "skinOrCoatPalette": [
+      "#664e37",
+      "#e6cb79",
+      "#4f7b7a"
+    ],
+    "markings": [],
+    "clothingTags": [
+      "regional-track-coat",
+      "practical-crew-uniform"
+    ],
+    "culturalAccessoryTags": [
+      "removable-club-pin",
+      "regional-textile-trim"
+    ],
+    "professionTags": [
+      "driver",
+      "Beast Handler",
+      "Mechanic",
+      "Physician"
+    ],
+    "heraldicMotifs": [
+      "sunhorn",
+      "oasis-star",
+      "water-line"
+    ],
+    "teamPalette": [
+      "#664e37",
+      "#e6cb79",
+      "#4f7b7a"
+    ],
+    "chariotLiveryTags": [
+      "primary-body",
+      "secondary-trim",
+      "emblem-panel"
+    ],
+    "portraitAssetIds": [],
+    "spriteAssetIds": [],
+    "fallbackAssetId": "emblem.generic.marker.v1",
+    "assetResolution": "validated-build-manifest-no-network"
+  }
+]

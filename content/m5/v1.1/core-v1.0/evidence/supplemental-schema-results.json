@@ -1,0 +1,25 @@
+{
+  "exit": 0,
+  "schemaSyntax": "PASS",
+  "documentsPassed": 16,
+  "failed": 0,
+  "documents": [
+    "authored-identity-preservation",
+    "canonical-reference-mapping",
+    "championship-difficulty-bindings",
+    "cross-catalog-dependencies",
+    "mechanical-template-bindings",
+    "name-reservations",
+    "pair-compatibility",
+    "paired-beast-naming",
+    "physical-variants",
+    "provisional-balance-policy",
+    "racing-associations",
+    "regional-cultural-affinities",
+    "staff-biographies",
+    "visual-anatomy-rules",
+    "visual-asset-bindings",
+    "visual-asset-production-briefs"
+  ],
+  "limits": "Shape validation only; semantic source/reference checks are separately reported."
+}

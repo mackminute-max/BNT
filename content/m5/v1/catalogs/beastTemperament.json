@@ -1,0 +1,226 @@
+[
+  {
+    "id": "temperament.steady",
+    "version": 1,
+    "label": "Steady",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "temperament": "Steady",
+    "attributeDelta": {
+      "speed": -2,
+      "power": 0,
+      "agility": -2,
+      "endurance": 0,
+      "discipline": 4,
+      "toughness": 0
+    },
+    "description": "Provisional stat tendency with individual overlap; no autonomous intent, special ability or guaranteed behavior.",
+    "unsupportedClaims": [
+      "No per-beast nerve/stress field, target selection or independent AI."
+    ],
+    "independentAI": false
+  },
+  {
+    "id": "temperament.spirited",
+    "version": 1,
+    "label": "Spirited",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "temperament": "Spirited",
+    "attributeDelta": {
+      "speed": 3,
+      "power": 0,
+      "agility": 2,
+      "endurance": 0,
+      "discipline": -5,
+      "toughness": 0
+    },
+    "description": "Provisional stat tendency with individual overlap; no autonomous intent, special ability or guaranteed behavior.",
+    "unsupportedClaims": [
+      "No per-beast nerve/stress field, target selection or independent AI."
+    ],
+    "independentAI": false
+  },
+  {
+    "id": "temperament.aggressive",
+    "version": 1,
+    "label": "Aggressive",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "temperament": "Aggressive",
+    "attributeDelta": {
+      "speed": 0,
+      "power": 4,
+      "agility": 0,
+      "endurance": 0,
+      "discipline": -4,
+      "toughness": 0
+    },
+    "description": "Provisional stat tendency with individual overlap; no autonomous intent, special ability or guaranteed behavior.",
+    "unsupportedClaims": [
+      "No per-beast nerve/stress field, target selection or independent AI."
+    ],
+    "independentAI": false
+  },
+  {
+    "id": "temperament.nervous",
+    "version": 1,
+    "label": "Nervous",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "temperament": "Nervous",
+    "attributeDelta": {
+      "speed": 2,
+      "power": 0,
+      "agility": 2,
+      "endurance": 0,
+      "discipline": -4,
+      "toughness": 0
+    },
+    "description": "Provisional stat tendency with individual overlap; no autonomous intent, special ability or guaranteed behavior.",
+    "unsupportedClaims": [
+      "No per-beast nerve/stress field, target selection or independent AI."
+    ],
+    "independentAI": false
+  },
+  {
+    "id": "temperament.stubborn",
+    "version": 1,
+    "label": "Stubborn",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "temperament": "Stubborn",
+    "attributeDelta": {
+      "speed": 0,
+      "power": 2,
+      "agility": 0,
+      "endurance": 0,
+      "discipline": -3,
+      "toughness": 1
+    },
+    "description": "Provisional stat tendency with individual overlap; no autonomous intent, special ability or guaranteed behavior.",
+    "unsupportedClaims": [
+      "No per-beast nerve/stress field, target selection or independent AI."
+    ],
+    "independentAI": false
+  },
+  {
+    "id": "temperament.eager",
+    "version": 1,
+    "label": "Eager",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "temperament": "Eager",
+    "attributeDelta": {
+      "speed": 3,
+      "power": 0,
+      "agility": 0,
+      "endurance": -2,
+      "discipline": -1,
+      "toughness": 0
+    },
+    "description": "Provisional stat tendency with individual overlap; no autonomous intent, special ability or guaranteed behavior.",
+    "unsupportedClaims": [
+      "No per-beast nerve/stress field, target selection or independent AI."
+    ],
+    "independentAI": false
+  },
+  {
+    "id": "temperament.tireless",
+    "version": 1,
+    "label": "Tireless",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "temperament": "Tireless",
+    "attributeDelta": {
+      "speed": -2,
+      "power": -3,
+      "agility": 0,
+      "endurance": 5,
+      "discipline": 0,
+      "toughness": 0
+    },
+    "description": "Provisional stat tendency with individual overlap; no autonomous intent, special ability or guaranteed behavior.",
+    "unsupportedClaims": [
+      "No per-beast nerve/stress field, target selection or independent AI."
+    ],
+    "independentAI": false
+  },
+  {
+    "id": "temperament.docile",
+    "version": 1,
+    "label": "Docile",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "temperament": "Docile",
+    "attributeDelta": {
+      "speed": -3,
+      "power": -2,
+      "agility": 0,
+      "endurance": 0,
+      "discipline": 5,
+      "toughness": 0
+    },
+    "description": "Provisional stat tendency with individual overlap; no autonomous intent, special ability or guaranteed behavior.",
+    "unsupportedClaims": [
+      "No per-beast nerve/stress field, target selection or independent AI."
+    ],
+    "independentAI": false
+  }
+]

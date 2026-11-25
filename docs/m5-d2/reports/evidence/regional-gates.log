@@ -1,0 +1,16 @@
+✔ regional stock opens after official intermission even when no Run offer is eligible (1.704171ms)
+✔ pending reward blocks regional stock until selection, and existing stock cannot reroll (0.336586ms)
+✔ regional stock blocked in REGISTERED (0.254315ms)
+✔ regional stock blocked in RACING (0.202408ms)
+✔ regional stock blocked in CLEARANCE_PENDING (0.174697ms)
+✔ regional stock blocked in SETTLEMENT_PENDING (0.21043ms)
+✔ regional stock blocked in AI_CONTINUATION (0.27834ms)
+✔ withdrawal or absent official evidence cannot create stock (0.301444ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 304.479386

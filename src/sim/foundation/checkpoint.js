@@ -1,3 +1,4 @@
+import {validateAffinityContext} from '../../model/affinity.js';
 import {validateCoaching} from '../../ai/coaching.js';
 import {canonical} from '../../core/determinism.js';
 import {createRace,assertState,classification} from '../race.js';
@@ -7,7 +8,8 @@ import {exact,id} from '../../career/legacy-state.js';
 import {pack,unpack,sealWire,unsealWire,wireHash} from './codec.js';
 export const RACE_STATE_VERSION='m2e-race-state-v1';
 export const CHAMPIONSHIP_RACE_STATE_VERSION='m2e-race-state-v2';
-const stateProtocol=s=>s.championshipContext||s.entrants.some(r=>r.coachingContext||r.progressionContext)?CHAMPIONSHIP_RACE_STATE_VERSION:RACE_STATE_VERSION;
+export const AFFINITY_RACE_STATE_VERSION='m5-race-state-v3';
+const stateProtocol=s=>s.entrants.some(r=>r.affinityContext)?AFFINITY_RACE_STATE_VERSION:s.championshipContext||s.entrants.some(r=>r.coachingContext||r.progressionContext)?CHAMPIONSHIP_RACE_STATE_VERSION:RACE_STATE_VERSION;
 export function validateRaceBoundary(s){
   if(!s||s.version!==VERSION||s.resolving!==false||!['Ready','Running','Ended','Stalled'].includes(s.status)||!Number.isSafeInteger(s.tick)||s.tick<0||s.tick>1000000||!Number.isFinite(s.time)||s.time<0)throw Error('Invalid/incompatible resolved race boundary');
   const initial=createRace(s.setup);exact(s,Object.keys(initial),'full race state');
@@ -18,7 +20,7 @@ export function validateRaceBoundary(s){
   if(!(s.nextIncidentAt===Infinity||Number.isFinite(s.nextIncidentAt)))throw Error('Invalid incident sentinel');
   if(canonical(s.championshipContext??null)!==canonical(initial.championshipContext??null))throw Error('Championship context changed after start');
   for(const r of s.entrants){
-    validateCoaching(r.coachingContext);if(canonical(r.progressionContext??null)!==canonical(initial.entrants.find(e=>e.id===r.id)?.progressionContext??null))throw Error('Frozen progression context changed');const original=initial.entrants.find(e=>e.id===r.id);if(canonical(r.coachingContext??null)!==canonical(original.coachingContext??null))throw Error('Frozen coaching context changed');
+    validateAffinityContext(r.affinityContext);if(canonical(r.affinityContext??null)!==canonical(initial.entrants.find(e=>e.id===r.id)?.affinityContext??null))throw Error('Frozen affinity context changed');validateCoaching(r.coachingContext);if(canonical(r.progressionContext??null)!==canonical(initial.entrants.find(e=>e.id===r.id)?.progressionContext??null))throw Error('Frozen progression context changed');const original=initial.entrants.find(e=>e.id===r.id);if(canonical(r.coachingContext??null)!==canonical(original.coachingContext??null))throw Error('Frozen coaching context changed');
     if(s.championshipContext){const p=r.progressEvidence;exact(p,['version','progress','firstTime','firstTick']);if(p.version!==1||!Number.isFinite(p.progress)||!Number.isFinite(p.firstTime)||p.firstTime<0||p.firstTime>s.time+s.config.epsilon||!Number.isInteger(p.firstTick)||p.firstTick<0||p.firstTick>s.tick||r.status==='Racing'&&p.progress!==r.q||r.status==='Retired'&&p.progress!==r.retirement?.progress)throw Error('Invalid authoritative first-progress evidence');}
 
     derive(r.ru,s.config);
@@ -37,7 +39,7 @@ export function checkpointRace(s,identity,watermark=0){
 export function restoreRace(record,{identity,setupHash,watermark}={}){
   const x=unsealWire(record);exact(x,['kind','version','stateVersion','simulationVersion','identity','setupFingerprint','watermark','tick','state']);
   validateIdentity(x.identity);
-  if(x.kind!=='BNT-race-checkpoint'||x.version!==1||![RACE_STATE_VERSION,CHAMPIONSHIP_RACE_STATE_VERSION].includes(x.stateVersion)||x.simulationVersion!==VERSION)throw Error('Incompatible race checkpoint version');
+  if(x.kind!=='BNT-race-checkpoint'||x.version!==1||![RACE_STATE_VERSION,CHAMPIONSHIP_RACE_STATE_VERSION,AFFINITY_RACE_STATE_VERSION].includes(x.stateVersion)||x.simulationVersion!==VERSION)throw Error('Incompatible race checkpoint version');
   if(identity&&wireHash(identity)!==wireHash(x.identity)||setupHash&&setupHash!==x.setupFingerprint||watermark!==undefined&&watermark!==x.watermark)throw Error('Incompatible race checkpoint identity/watermark');
   const s=validateRaceBoundary(unpack(x.state));
   if(x.stateVersion!==stateProtocol(s))throw Error('Incompatible checkpoint behavior version');

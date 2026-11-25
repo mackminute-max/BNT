@@ -1,0 +1,1666 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "BNT-M5-competition-authoring-v1"
+    },
+    "catalogVersion": {
+      "$ref": "#/$defs/id"
+    },
+    "approval": {
+      "enum": [
+        "UNAPPROVED_EXAMPLES",
+        "DRAFT_FOR_REVIEW",
+        "APPROVED"
+      ]
+    },
+    "records": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "geometry": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/geometry"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "environment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/environment"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "naming": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/naming"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "venue": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/venue"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "event": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/event"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "tier": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/tier"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "championship": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/championship"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "rivals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rivals"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "locals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/locals"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "presentation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/presentation"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "renewal": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/renewal"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "geometry",
+        "environment",
+        "naming",
+        "venue",
+        "event",
+        "tier",
+        "championship",
+        "rivals",
+        "locals",
+        "presentation",
+        "renewal"
+      ]
+    }
+  },
+  "required": [
+    "format",
+    "catalogVersion",
+    "approval",
+    "records"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://blood-and-thunder.invalid/m5/competition-authoring-v1",
+  "title": "Proposed supplemental competition authoring schemas, not runtime/save schemas",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]{0,63}$"
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "weighted": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 1e-06,
+          "maximum": 1000000
+        }
+      },
+      "required": [
+        "id",
+        "weight"
+      ]
+    },
+    "weights": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/weighted"
+      },
+      "minItems": 1,
+      "maxItems": 128
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "authority": {
+          "enum": [
+            "canon",
+            "native-contract",
+            "audit-proposal"
+          ]
+        },
+        "file": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 250
+        },
+        "sha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "startLine": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        },
+        "endLine": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        }
+      },
+      "required": [
+        "authority",
+        "file",
+        "sha256",
+        "startLine",
+        "endLine"
+      ]
+    },
+    "geometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "approval": {
+          "enum": [
+            "UNAPPROVED_EXAMPLE",
+            "DRAFT_FOR_REVIEW",
+            "APPROVED"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "kind": {
+          "enum": [
+            "Oval",
+            "Circuit",
+            "Rally"
+          ]
+        },
+        "resolver": {
+          "enum": [
+            "native-preset",
+            "rally-generator-v1"
+          ]
+        },
+        "nativeId": {
+          "enum": [
+            "short-oval",
+            "oval",
+            "grand-oval",
+            "C01",
+            "C02",
+            "C03",
+            "C04",
+            "C05",
+            "C06",
+            "C07",
+            "C08",
+            "C09",
+            "C10",
+            "C11",
+            "C12",
+            "technical-circuit",
+            "fast-circuit",
+            "mixed-rally",
+            "technical-rally",
+            "generated-short",
+            "generated-medium",
+            "generated-long"
+          ]
+        },
+        "laneCount": {
+          "const": 4
+        },
+        "laneWidth": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "rallyOptions": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "category": {
+                  "enum": [
+                    "short",
+                    "medium",
+                    "long"
+                  ]
+                },
+                "turnFrequency": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "turnSeverity": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "terrainProfile": {
+                  "enum": [
+                    "balanced",
+                    "road",
+                    "rugged"
+                  ]
+                },
+                "maxAttempts": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 32
+                }
+              },
+              "required": [
+                "category",
+                "turnFrequency",
+                "turnSeverity",
+                "terrainProfile",
+                "maxAttempts"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "checkpointPolicy": {
+          "enum": [
+            "native-three-v1",
+            "category-sign-points-v1"
+          ]
+        },
+        "freezeResolvedCourse": {
+          "const": true
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "kind",
+        "resolver",
+        "nativeId",
+        "laneCount",
+        "laneWidth",
+        "rallyOptions",
+        "checkpointPolicy",
+        "freezeResolvedCourse"
+      ]
+    },
+    "surfaceAssignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "selector": {
+          "enum": [
+            "all",
+            "straights",
+            "corners",
+            "segment"
+          ]
+        },
+        "segmentId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "terrain": {
+          "enum": [
+            "dirt",
+            "stone",
+            "gravel",
+            "sand",
+            "mud"
+          ]
+        }
+      },
+      "required": [
+        "selector",
+        "segmentId",
+        "terrain"
+      ]
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "approval": {
+          "enum": [
+            "UNAPPROVED_EXAMPLE",
+            "DRAFT_FOR_REVIEW",
+            "APPROVED"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "assignments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/surfaceAssignment"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "weatherWeights": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "weather": {
+                "enum": [
+                  "Clear",
+                  "Rain",
+                  "Heavy Rain/Mud",
+                  "Dust/Wind",
+                  "Extreme Heat"
+                ]
+              },
+              "weight": {
+                "type": "number",
+                "minimum": 1e-06,
+                "maximum": 1000000
+              }
+            },
+            "required": [
+              "weather",
+              "weight"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 5
+        },
+        "customPhysics": {
+          "const": false
+        },
+        "terrainWeightOrder": {
+          "const": [
+            "dirt",
+            "stone",
+            "gravel",
+            "sand",
+            "mud"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "assignments",
+        "weatherWeights",
+        "customPhysics",
+        "terrainWeightOrder"
+      ]
+    },
+    "naming": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "approval": {
+          "enum": [
+            "UNAPPROVED_EXAMPLE",
+            "DRAFT_FOR_REVIEW",
+            "APPROVED"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "usage": {
+          "enum": [
+            "venue",
+            "event",
+            "championship"
+          ]
+        },
+        "nationIds": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "N1",
+              "N2",
+              "N3",
+              "N4",
+              "N5",
+              "N6",
+              "N7",
+              "N8"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "culturalNamingProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "roots": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "minItems": 2,
+          "maxItems": 512
+        },
+        "endings": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "minItems": 2,
+          "maxItems": 128
+        },
+        "grammar": {
+          "enum": [
+            "place-ending",
+            "root-ending"
+          ]
+        },
+        "maxLength": {
+          "type": "integer",
+          "minimum": 8,
+          "maximum": 100
+        },
+        "maxRetries": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64
+        },
+        "genericFallback": {
+          "const": false
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "usage",
+        "nationIds",
+        "culturalNamingProfileId",
+        "roots",
+        "endings",
+        "grammar",
+        "maxLength",
+        "maxRetries",
+        "genericFallback"
+      ]
+    },
+    "venue": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "approval": {
+          "enum": [
+            "UNAPPROVED_EXAMPLE",
+            "DRAFT_FOR_REVIEW",
+            "APPROVED"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "permanence": {
+          "enum": [
+            "prestige",
+            "renewable-profile"
+          ]
+        },
+        "properName": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "nationId": {
+          "enum": [
+            "N1",
+            "N2",
+            "N3",
+            "N4",
+            "N5",
+            "N6",
+            "N7",
+            "N8"
+          ]
+        },
+        "regionId": {
+          "$ref": "#/$defs/id"
+        },
+        "geometryWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "environmentId": {
+          "$ref": "#/$defs/id"
+        },
+        "namingProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "presentationId": {
+          "$ref": "#/$defs/id"
+        },
+        "supportedFormats": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "Pure",
+              "Combat"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 2
+        },
+        "seedPolicy": {
+          "enum": [
+            "pinned",
+            "generation-domain"
+          ]
+        },
+        "pinnedSeed": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1200
+        },
+        "signatureTraits": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 1,
+          "maxItems": 12
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "permanence",
+        "properName",
+        "nationId",
+        "regionId",
+        "geometryWeights",
+        "environmentId",
+        "namingProfileId",
+        "presentationId",
+        "supportedFormats",
+        "seedPolicy",
+        "pinnedSeed",
+        "description",
+        "signatureTraits"
+      ]
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "approval": {
+          "enum": [
+            "UNAPPROVED_EXAMPLE",
+            "DRAFT_FOR_REVIEW",
+            "APPROVED"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "venueWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "namingProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "format": {
+          "enum": [
+            "Pure",
+            "Combat"
+          ]
+        },
+        "distanceMode": {
+          "enum": [
+            "laps",
+            "point-to-point"
+          ]
+        },
+        "laps": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "min": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ]
+        },
+        "grid": {
+          "enum": [
+            "random",
+            "standings",
+            "reverse"
+          ]
+        },
+        "eligibleContexts": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "dustroad",
+              "ironwheel",
+              "bannerfall",
+              "crownfire",
+              "thunder-crown"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 5
+        },
+        "rulesBinding": {
+          "const": "native-race-v1"
+        },
+        "rewardsFromChampionshipBinding": {
+          "const": true
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "venueWeights",
+        "namingProfileId",
+        "format",
+        "distanceMode",
+        "laps",
+        "grid",
+        "eligibleContexts",
+        "rulesBinding",
+        "rewardsFromChampionshipBinding"
+      ]
+    },
+    "tier": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "approval": {
+          "enum": [
+            "UNAPPROVED_EXAMPLE",
+            "DRAFT_FOR_REVIEW",
+            "APPROVED"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "contextId": {
+          "enum": [
+            "dustroad",
+            "ironwheel",
+            "bannerfall",
+            "crownfire",
+            "thunder-crown"
+          ]
+        },
+        "nativeCatalogId": {
+          "enum": [
+            "dustroad",
+            "ironwheel",
+            "bannerfall",
+            "crownfire",
+            "thunder-crown",
+            "iron-gauntlet"
+          ]
+        },
+        "qualificationBinding": {
+          "enum": [
+            "native.dustroad",
+            "native.ironwheel",
+            "native.bannerfall",
+            "native.crownfire",
+            "native.thunder-crown",
+            "native.iron-gauntlet"
+          ]
+        },
+        "feeAndAwardBinding": {
+          "enum": [
+            "native.dustroad",
+            "native.ironwheel",
+            "native.bannerfall",
+            "native.crownfire",
+            "native.thunder-crown",
+            "native.iron-gauntlet"
+          ]
+        },
+        "completionBonusTier": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "fieldSize": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "raceCount": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        "generatedTrophyPolicy": {
+          "enum": [
+            "named-only",
+            "context-shared",
+            "REQUIRES_OWNER_DISPOSITION"
+          ]
+        },
+        "strengthReference": {
+          "$ref": "#/$defs/id"
+        },
+        "adaptiveScaling": {
+          "const": false
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "contextId",
+        "nativeCatalogId",
+        "qualificationBinding",
+        "feeAndAwardBinding",
+        "completionBonusTier",
+        "fieldSize",
+        "raceCount",
+        "generatedTrophyPolicy",
+        "strengthReference",
+        "adaptiveScaling"
+      ]
+    },
+    "championship": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "approval": {
+          "enum": [
+            "UNAPPROVED_EXAMPLE",
+            "DRAFT_FOR_REVIEW",
+            "APPROVED"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "category": {
+          "enum": [
+            "permanent",
+            "generated",
+            "prestige",
+            "single-event-special"
+          ]
+        },
+        "properName": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "namingProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "tierBindingId": {
+          "$ref": "#/$defs/id"
+        },
+        "geographicScope": {
+          "enum": [
+            "regional",
+            "national",
+            "international"
+          ]
+        },
+        "nationIds": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "N1",
+              "N2",
+              "N3",
+              "N4",
+              "N5",
+              "N6",
+              "N7",
+              "N8"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "regionIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 1,
+          "maxItems": 35
+        },
+        "eventWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "raceCount": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "min": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ]
+        },
+        "scheduleOrder": {
+          "enum": [
+            "native-context-pattern",
+            "authored-order",
+            "seeded-weighted"
+          ]
+        },
+        "venueRepeatLimit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        "prestigeMin": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 12
+        },
+        "maxAttempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64
+        },
+        "rivalPopulationPolicyId": {
+          "$ref": "#/$defs/id"
+        },
+        "renewalPolicyId": {
+          "$ref": "#/$defs/id"
+        },
+        "presentationId": {
+          "$ref": "#/$defs/id"
+        },
+        "travelMechanics": {
+          "const": false
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "category",
+        "properName",
+        "namingProfileId",
+        "tierBindingId",
+        "geographicScope",
+        "nationIds",
+        "regionIds",
+        "eventWeights",
+        "raceCount",
+        "scheduleOrder",
+        "venueRepeatLimit",
+        "prestigeMin",
+        "maxAttempts",
+        "rivalPopulationPolicyId",
+        "renewalPolicyId",
+        "presentationId",
+        "travelMechanics"
+      ]
+    },
+    "rivals": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "approval": {
+          "enum": [
+            "UNAPPROVED_EXAMPLE",
+            "DRAFT_FOR_REVIEW",
+            "APPROVED"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "contextId": {
+          "enum": [
+            "dustroad",
+            "ironwheel",
+            "bannerfall",
+            "crownfire",
+            "thunder-crown"
+          ]
+        },
+        "populationMin": {
+          "type": "integer",
+          "minimum": 3,
+          "maximum": 5
+        },
+        "populationMax": {
+          "type": "integer",
+          "minimum": 3,
+          "maximum": 5
+        },
+        "participantsMin": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "participantsMax": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "reserveLocalSlots": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 7
+        },
+        "lazyBirth": {
+          "const": true
+        },
+        "fixedAttributesAndPersonality": {
+          "const": true
+        },
+        "birthProfileWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "localProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "betweenChampionshipCondition": {
+          "enum": [
+            "fresh-native-baseline",
+            "carry-current-condition",
+            "REQUIRES_OWNER_DISPOSITION"
+          ]
+        },
+        "offscreenSimulation": {
+          "const": false
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "contextId",
+        "populationMin",
+        "populationMax",
+        "participantsMin",
+        "participantsMax",
+        "reserveLocalSlots",
+        "lazyBirth",
+        "fixedAttributesAndPersonality",
+        "birthProfileWeights",
+        "localProfileId",
+        "betweenChampionshipCondition",
+        "offscreenSimulation"
+      ]
+    },
+    "locals": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "approval": {
+          "enum": [
+            "UNAPPROVED_EXAMPLE",
+            "DRAFT_FOR_REVIEW",
+            "APPROVED"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "contextId": {
+          "enum": [
+            "dustroad",
+            "ironwheel",
+            "bannerfall",
+            "crownfire",
+            "thunder-crown"
+          ]
+        },
+        "nationWeights": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "nationId": {
+                "enum": [
+                  "N1",
+                  "N2",
+                  "N3",
+                  "N4",
+                  "N5",
+                  "N6",
+                  "N7",
+                  "N8"
+                ]
+              },
+              "weight": {
+                "type": "number",
+                "minimum": 1e-06,
+                "maximum": 1000000
+              }
+            },
+            "required": [
+              "nationId",
+              "weight"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "existingRivalProfileWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "importProbability": {
+          "type": "number",
+          "minimum": 1e-06,
+          "maximum": 1
+        },
+        "frozenForChampionship": {
+          "const": true
+        },
+        "persistAsActiveAfterArchive": {
+          "const": false
+        },
+        "historicalNamesRetained": {
+          "const": true
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "contextId",
+        "nationWeights",
+        "existingRivalProfileWeights",
+        "importProbability",
+        "frozenForChampionship",
+        "persistAsActiveAfterArchive",
+        "historicalNamesRetained"
+      ]
+    },
+    "presentation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "approval": {
+          "enum": [
+            "UNAPPROVED_EXAMPLE",
+            "DRAFT_FOR_REVIEW",
+            "APPROVED"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "worldVisualProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "style": {
+          "const": "dark-deco-retro-cartoon-v1"
+        },
+        "architectureTags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 1,
+          "maxItems": 20
+        },
+        "environmentTags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 1,
+          "maxItems": 20
+        },
+        "palette": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^#[a-fA-F0-9]{6}$"
+          },
+          "minItems": 2,
+          "maxItems": 4
+        },
+        "motifs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 1,
+          "maxItems": 16
+        },
+        "assetRefs": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "ru.generic.marker.v1",
+              "portrait.generic.marker.v1",
+              "emblem.generic.marker.v1",
+              "ru.proof.static.v1",
+              "ru.proof.livery.v1",
+              "portrait.driver.proof.v1",
+              "team.proof.emblem.v1",
+              "team.proof.mark.v1",
+              "ui.proof.corner.v1",
+              "architecture.tower.proof.v1",
+              "architecture.arch.proof.v1"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 16
+        },
+        "uniqueArtRequired": {
+          "const": false
+        },
+        "futureBrief": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/id"
+                },
+                "format": {
+                  "enum": [
+                    "svg",
+                    "png"
+                  ]
+                },
+                "sourcePixels": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 8192
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "runtimePixels": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 2048
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "prompt": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 4000
+                },
+                "licenseRequired": {
+                  "const": true
+                }
+              },
+              "required": [
+                "id",
+                "format",
+                "sourcePixels",
+                "runtimePixels",
+                "prompt",
+                "licenseRequired"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "worldVisualProfileId",
+        "style",
+        "architectureTags",
+        "environmentTags",
+        "palette",
+        "motifs",
+        "assetRefs",
+        "uniqueArtRequired",
+        "futureBrief"
+      ]
+    },
+    "renewal": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "approval": {
+          "enum": [
+            "UNAPPROVED_EXAMPLE",
+            "DRAFT_FOR_REVIEW",
+            "APPROVED"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "resource": {
+          "enum": [
+            "championship-opportunities",
+            "home-market",
+            "regional-market"
+          ]
+        },
+        "trigger": {
+          "enum": [
+            "career-initialized-and-terminal-archived",
+            "official-intermission-after-run-choice"
+          ]
+        },
+        "count": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "min": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 128
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 128
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ]
+        },
+        "requiresCompletedFrozenSchedule": {
+          "type": "boolean"
+        },
+        "zeroStartWithdrawalPolicy": {
+          "enum": [
+            "retain-existing-batch",
+            "renew-after-terminal",
+            "REQUIRES_OWNER_DISPOSITION"
+          ]
+        },
+        "allowPageOpenRenewal": {
+          "const": false
+        },
+        "replacementOnPurchase": {
+          "const": false
+        },
+        "regionalPermanentStaff": {
+          "const": false
+        },
+        "postGenerationCommitRequired": {
+          "const": true
+        },
+        "registeredRUChangeAllowed": {
+          "const": false
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "resource",
+        "trigger",
+        "count",
+        "requiresCompletedFrozenSchedule",
+        "zeroStartWithdrawalPolicy",
+        "allowPageOpenRenewal",
+        "replacementOnPurchase",
+        "regionalPermanentStaff",
+        "postGenerationCommitRequired",
+        "registeredRUChangeAllowed"
+      ]
+    }
+  },
+  "$comment": "Cross-profile/native reward bindings, geometry legality, context field/event counts, native qualification equality, source hashes, ID uniqueness and approval readiness require semantic compilation."
+}

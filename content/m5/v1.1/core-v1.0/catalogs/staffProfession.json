@@ -1,0 +1,930 @@
+[
+  {
+    "id": "staff.handler.n1",
+    "version": 1,
+    "label": "Beast Handler — Northreach Confederation",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 19,
+        "endLine": 260,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Beast Handler",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n1.r1",
+    "serviceIds": [
+      "beast-care",
+      "beast-treatment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.mechanic.n1",
+    "version": 1,
+    "label": "Mechanic — Northreach Confederation",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 19,
+        "endLine": 260,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Mechanic",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n1.r1",
+    "serviceIds": [
+      "chariot-repair",
+      "chariot-refurbishment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.physician.n1",
+    "version": 1,
+    "label": "Physician — Northreach Confederation",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 19,
+        "endLine": 260,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Physician",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n1.r1",
+    "serviceIds": [
+      "driver-treatment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.handler.n2",
+    "version": 1,
+    "label": "Beast Handler — Frosthall Kingdom",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 261,
+        "endLine": 550,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Beast Handler",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n2.r1",
+    "serviceIds": [
+      "beast-care",
+      "beast-treatment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.mechanic.n2",
+    "version": 1,
+    "label": "Mechanic — Frosthall Kingdom",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 261,
+        "endLine": 550,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Mechanic",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n2.r1",
+    "serviceIds": [
+      "chariot-repair",
+      "chariot-refurbishment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.physician.n2",
+    "version": 1,
+    "label": "Physician — Frosthall Kingdom",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 261,
+        "endLine": 550,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Physician",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n2.r1",
+    "serviceIds": [
+      "driver-treatment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.handler.n3",
+    "version": 1,
+    "label": "Beast Handler — Greenvale Commonwealth",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 551,
+        "endLine": 921,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Beast Handler",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n3.r1",
+    "serviceIds": [
+      "beast-care",
+      "beast-treatment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.mechanic.n3",
+    "version": 1,
+    "label": "Mechanic — Greenvale Commonwealth",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 551,
+        "endLine": 921,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Mechanic",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n3.r1",
+    "serviceIds": [
+      "chariot-repair",
+      "chariot-refurbishment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.physician.n3",
+    "version": 1,
+    "label": "Physician — Greenvale Commonwealth",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 551,
+        "endLine": 921,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Physician",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n3.r1",
+    "serviceIds": [
+      "driver-treatment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.handler.n4",
+    "version": 1,
+    "label": "Beast Handler — Ironhold Clans",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 922,
+        "endLine": 1429,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Beast Handler",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n4.r1",
+    "serviceIds": [
+      "beast-care",
+      "beast-treatment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.mechanic.n4",
+    "version": 1,
+    "label": "Mechanic — Ironhold Clans",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 922,
+        "endLine": 1429,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Mechanic",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n4.r1",
+    "serviceIds": [
+      "chariot-repair",
+      "chariot-refurbishment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.physician.n4",
+    "version": 1,
+    "label": "Physician — Ironhold Clans",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 922,
+        "endLine": 1429,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Physician",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n4.r1",
+    "serviceIds": [
+      "driver-treatment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.handler.n5",
+    "version": 1,
+    "label": "Beast Handler — Sundaran League",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 1430,
+        "endLine": 2027,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Beast Handler",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n5.r1",
+    "serviceIds": [
+      "beast-care",
+      "beast-treatment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.mechanic.n5",
+    "version": 1,
+    "label": "Mechanic — Sundaran League",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 1430,
+        "endLine": 2027,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Mechanic",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n5.r1",
+    "serviceIds": [
+      "chariot-repair",
+      "chariot-refurbishment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.physician.n5",
+    "version": 1,
+    "label": "Physician — Sundaran League",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 1430,
+        "endLine": 2027,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Physician",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n5.r1",
+    "serviceIds": [
+      "driver-treatment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.handler.n6",
+    "version": 1,
+    "label": "Beast Handler — Karthen Hordes",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2028,
+        "endLine": 2614,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Beast Handler",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n6.r1",
+    "serviceIds": [
+      "beast-care",
+      "beast-treatment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.mechanic.n6",
+    "version": 1,
+    "label": "Mechanic — Karthen Hordes",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2028,
+        "endLine": 2614,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Mechanic",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n6.r1",
+    "serviceIds": [
+      "chariot-repair",
+      "chariot-refurbishment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.physician.n6",
+    "version": 1,
+    "label": "Physician — Karthen Hordes",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2028,
+        "endLine": 2614,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Physician",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n6.r1",
+    "serviceIds": [
+      "driver-treatment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.handler.n7",
+    "version": 1,
+    "label": "Beast Handler — Velmora Republic",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2615,
+        "endLine": 3393,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Beast Handler",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n7.r1",
+    "serviceIds": [
+      "beast-care",
+      "beast-treatment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.mechanic.n7",
+    "version": 1,
+    "label": "Mechanic — Velmora Republic",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2615,
+        "endLine": 3393,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Mechanic",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n7.r1",
+    "serviceIds": [
+      "chariot-repair",
+      "chariot-refurbishment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.physician.n7",
+    "version": 1,
+    "label": "Physician — Velmora Republic",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2615,
+        "endLine": 3393,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Physician",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n7.r1",
+    "serviceIds": [
+      "driver-treatment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.handler.n8",
+    "version": 1,
+    "label": "Beast Handler — Zarashi Dominion",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 3394,
+        "endLine": 4104,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Beast Handler",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n8.r1",
+    "serviceIds": [
+      "beast-care",
+      "beast-treatment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.mechanic.n8",
+    "version": 1,
+    "label": "Mechanic — Zarashi Dominion",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 3394,
+        "endLine": 4104,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Mechanic",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n8.r1",
+    "serviceIds": [
+      "chariot-repair",
+      "chariot-refurbishment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "staff.physician.n8",
+    "version": 1,
+    "label": "Physician — Zarashi Dominion",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 3394,
+        "endLine": 4104,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "nativeRole": "Physician",
+    "expertiseProfileIds": [
+      "expertise.developing",
+      "expertise.practiced",
+      "expertise.veteran"
+    ],
+    "namingProfileId": "culture.n8.r1",
+    "serviceIds": [
+      "driver-treatment"
+    ],
+    "newMechanicalSkills": false,
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  }
+]

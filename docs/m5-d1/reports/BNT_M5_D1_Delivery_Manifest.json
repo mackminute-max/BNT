@@ -1,0 +1,68 @@
+{
+  "baseline": "6f01da6d9cc0a79fecf9d38cd55989e17fb2651c",
+  "branch": "feat/e5-d-m1-startup-slots-options",
+  "implementationCommit": null,
+  "sourceManifestSHA256": "1655bdd9adcf3418246fbdcfec84f56b19ffa1533d2fdcba865007e4a3828f95",
+  "files": [
+    {
+      "name": "BNT_M5_D1_Capacity_and_Performance_Report.md",
+      "bytes": 7896,
+      "sha256": "e71d8f8841fad9d46be59ab47e18a3e077804ec054da36adb0ef92dead24ed16"
+    },
+    {
+      "name": "BNT_M5_D1_Changed_Files.csv",
+      "bytes": 13155,
+      "sha256": "b5d3cf9eda949d79bebb4d694e6d45ad20847c2f5b4d84bfd31e18e75b60dc2b"
+    },
+    {
+      "name": "BNT_M5_D1_Delivery2_Handoff.md",
+      "bytes": 2951,
+      "sha256": "64ed492132e0dd8a383cc5ec31f6ea7c0683fe71601f3de253649fee2e5cb595"
+    },
+    {
+      "name": "BNT_M5_D1_Generation_Integration_Report.md",
+      "bytes": 5809,
+      "sha256": "e6de21cef4b22e6cdbfd2541b21c64dad4dd3735b3d15c0ea9584448b33d3449"
+    },
+    {
+      "name": "BNT_M5_D1_Implementation_Report.md",
+      "bytes": 7791,
+      "sha256": "82fc99ef41c355a05df20d881d16ec03ec596fd32af486a328c82cf51aea2507"
+    },
+    {
+      "name": "BNT_M5_D1_Local_Acceptance_Checklist.md",
+      "bytes": 5922,
+      "sha256": "cf9d83b4f4e4a732f8a3a28bf53c308d895362ea5e5e955d6d1fc94a5179d691"
+    },
+    {
+      "name": "BNT_M5_D1_Persistence_Contract.md",
+      "bytes": 7983,
+      "sha256": "61e607e2a42665b0328958ea3f96e5e7bce2e094790eadeb539b158707cee3cb"
+    },
+    {
+      "name": "BNT_M5_D1_Source_Manifest.json",
+      "bytes": 22838,
+      "sha256": "1655bdd9adcf3418246fbdcfec84f56b19ffa1533d2fdcba865007e4a3828f95"
+    },
+    {
+      "name": "BNT_M5_D1_Test_Evidence.md",
+      "bytes": 10107,
+      "sha256": "e1a2bd9c3189a0e567e6df2a0abaa801fdc158c1b60f6f77dc40682ea0636ade"
+    },
+    {
+      "name": "BNT_M5_D1_Validation_Matrix.csv",
+      "bytes": 4809,
+      "sha256": "0d99fb96d302bb43768bb844c945a637cc77f16d5a186c01437ff8e659075c1c"
+    },
+    {
+      "name": "Blood-and-Thunder-M5-D1-Playable.html",
+      "bytes": 4363707,
+      "sha256": "efd9c6c1a3d685173f06752931d666e1860795500685f20b8e235f9aac8352ad"
+    },
+    {
+      "name": "README.md",
+      "bytes": 1888,
+      "sha256": "234c6612b3df02f8915cccd232ed8a6e9faae689d64ee5bd43f3fdb272b95ad9"
+    }
+  ]
+}

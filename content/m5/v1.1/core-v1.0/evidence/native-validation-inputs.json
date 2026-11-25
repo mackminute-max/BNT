@@ -1,0 +1,253 @@
+[
+  {
+    "profileId": "ancestry.a01",
+    "category": "driver",
+    "attributes": {
+      "driving": 35,
+      "beastHandling": 69,
+      "combat": 57,
+      "awareness": 64,
+      "nerve": 50
+    }
+  },
+  {
+    "profileId": "ancestry.a02",
+    "category": "driver",
+    "attributes": {
+      "driving": 41,
+      "beastHandling": 36,
+      "combat": 74,
+      "awareness": 46,
+      "nerve": 57
+    }
+  },
+  {
+    "profileId": "ancestry.a03",
+    "category": "driver",
+    "attributes": {
+      "driving": 50,
+      "beastHandling": 48,
+      "combat": 64,
+      "awareness": 67,
+      "nerve": 52
+    }
+  },
+  {
+    "profileId": "ancestry.a04",
+    "category": "driver",
+    "attributes": {
+      "driving": 60,
+      "beastHandling": 47,
+      "combat": 54,
+      "awareness": 62,
+      "nerve": 66
+    }
+  },
+  {
+    "profileId": "ancestry.a05",
+    "category": "driver",
+    "attributes": {
+      "driving": 58,
+      "beastHandling": 62,
+      "combat": 45,
+      "awareness": 50,
+      "nerve": 65
+    }
+  },
+  {
+    "profileId": "ancestry.a06",
+    "category": "driver",
+    "attributes": {
+      "driving": 54,
+      "beastHandling": 40,
+      "combat": 67,
+      "awareness": 47,
+      "nerve": 48
+    }
+  },
+  {
+    "profileId": "ancestry.a07",
+    "category": "driver",
+    "attributes": {
+      "driving": 54,
+      "beastHandling": 73,
+      "combat": 51,
+      "awareness": 62,
+      "nerve": 51
+    }
+  },
+  {
+    "profileId": "ancestry.a08",
+    "category": "driver",
+    "attributes": {
+      "driving": 46,
+      "beastHandling": 63,
+      "combat": 50,
+      "awareness": 43,
+      "nerve": 51
+    }
+  },
+  {
+    "profileId": "ancestry.a09",
+    "category": "driver",
+    "attributes": {
+      "driving": 67,
+      "beastHandling": 41,
+      "combat": 61,
+      "awareness": 52,
+      "nerve": 67
+    }
+  },
+  {
+    "profileId": "ancestry.a10",
+    "category": "driver",
+    "attributes": {
+      "driving": 62,
+      "beastHandling": 49,
+      "combat": 39,
+      "awareness": 57,
+      "nerve": 46
+    }
+  },
+  {
+    "profileId": "ancestry.a11",
+    "category": "driver",
+    "attributes": {
+      "driving": 63,
+      "beastHandling": 64,
+      "combat": 55,
+      "awareness": 49,
+      "nerve": 61
+    }
+  },
+  {
+    "profileId": "ancestry.a12",
+    "category": "driver",
+    "attributes": {
+      "driving": 60,
+      "beastHandling": 41,
+      "combat": 54,
+      "awareness": 62,
+      "nerve": 60
+    }
+  },
+  {
+    "profileId": "ancestry.a13",
+    "category": "driver",
+    "attributes": {
+      "driving": 66,
+      "beastHandling": 65,
+      "combat": 63,
+      "awareness": 53,
+      "nerve": 60
+    }
+  },
+  {
+    "profileId": "species.b01",
+    "category": "beast",
+    "attributes": {
+      "speed": 55,
+      "power": 62,
+      "agility": 46,
+      "endurance": 40,
+      "discipline": 46,
+      "toughness": 55
+    }
+  },
+  {
+    "profileId": "species.b02",
+    "category": "beast",
+    "attributes": {
+      "speed": 62,
+      "power": 63,
+      "agility": 45,
+      "endurance": 55,
+      "discipline": 65,
+      "toughness": 43
+    }
+  },
+  {
+    "profileId": "species.b03",
+    "category": "beast",
+    "attributes": {
+      "speed": 61,
+      "power": 65,
+      "agility": 54,
+      "endurance": 38,
+      "discipline": 40,
+      "toughness": 54
+    }
+  },
+  {
+    "profileId": "species.b04",
+    "category": "beast",
+    "attributes": {
+      "speed": 59,
+      "power": 42,
+      "agility": 59,
+      "endurance": 64,
+      "discipline": 58,
+      "toughness": 47
+    }
+  },
+  {
+    "profileId": "species.b05",
+    "category": "beast",
+    "attributes": {
+      "speed": 51,
+      "power": 51,
+      "agility": 58,
+      "endurance": 55,
+      "discipline": 47,
+      "toughness": 52
+    }
+  },
+  {
+    "profileId": "species.b06",
+    "category": "beast",
+    "attributes": {
+      "speed": 42,
+      "power": 82,
+      "agility": 48,
+      "endurance": 48,
+      "discipline": 48,
+      "toughness": 62
+    }
+  },
+  {
+    "profileId": "species.b07",
+    "category": "beast",
+    "attributes": {
+      "speed": 80,
+      "power": 49,
+      "agility": 52,
+      "endurance": 64,
+      "discipline": 37,
+      "toughness": 45
+    }
+  },
+  {
+    "profileId": "species.b08",
+    "category": "beast",
+    "attributes": {
+      "speed": 51,
+      "power": 67,
+      "agility": 50,
+      "endurance": 40,
+      "discipline": 67,
+      "toughness": 53
+    }
+  },
+  {
+    "profileId": "species.b09",
+    "category": "beast",
+    "attributes": {
+      "speed": 40,
+      "power": 52,
+      "agility": 48,
+      "endurance": 61,
+      "discipline": 61,
+      "toughness": 54
+    }
+  }
+]

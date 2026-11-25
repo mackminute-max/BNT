@@ -8,7 +8,7 @@ export const recordsDigest=async records=>Array.from(new Uint8Array(await crypto
 export const recordBytes=text=>new TextEncoder().encode(text).length;
 export function checkRecords(records){
  if(!Array.isArray(records))throw Error('Invalid durable records');
- const seen=new Set();for(const row of records){if(!Array.isArray(row)||row.length!==2)throw Error('Invalid durable record');const[k,v]=row;if(typeof k!=='string'||!(k==='bnt.career.save.v1'||/^bnt\.race\.foundation\.v1\.[a-f0-9]{64}$/.test(k))||seen.has(k)||typeof v!=='string'||recordBytes(v)>8*1024*1024)throw Error('Invalid identity/duplicate/oversized logical record');seen.add(k);}
+ const seen=new Set();for(const row of records){if(!Array.isArray(row)||row.length!==2)throw Error('Invalid durable record');const[k,v]=row;if(typeof k!=='string'||!(k==='bnt.career.save.v1'||/^bnt\.m5\.history\.[a-f0-9]{64}$/.test(k)||/^bnt\.race\.foundation\.v1\.[a-f0-9]{64}$/.test(k))||seen.has(k)||typeof v!=='string'||recordBytes(v)>8*1024*1024)throw Error('Invalid identity/duplicate/oversized logical record');seen.add(k);}
 }
 // String-pair equality is exactly the previous JSON read-set comparison for
 // validated records, without allocating two escaped copies of the entire history.

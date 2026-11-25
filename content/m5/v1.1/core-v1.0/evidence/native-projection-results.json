@@ -1,0 +1,255 @@
+{
+  "exit": 0,
+  "passed": 39,
+  "failed": 0,
+  "nativeProjectionCases": 22,
+  "nativePersonalityCases": 10,
+  "checks": [
+    "ancestry.a01 validates native RU/derive/acquire factory",
+    "ancestry.a02 validates native RU/derive/acquire factory",
+    "ancestry.a03 validates native RU/derive/acquire factory",
+    "ancestry.a04 validates native RU/derive/acquire factory",
+    "ancestry.a05 validates native RU/derive/acquire factory",
+    "ancestry.a06 validates native RU/derive/acquire factory",
+    "ancestry.a07 validates native RU/derive/acquire factory",
+    "ancestry.a08 validates native RU/derive/acquire factory",
+    "ancestry.a09 validates native RU/derive/acquire factory",
+    "ancestry.a10 validates native RU/derive/acquire factory",
+    "ancestry.a11 validates native RU/derive/acquire factory",
+    "ancestry.a12 validates native RU/derive/acquire factory",
+    "ancestry.a13 validates native RU/derive/acquire factory",
+    "species.b01 validates native RU/derive/acquire factory",
+    "species.b02 validates native RU/derive/acquire factory",
+    "species.b03 validates native RU/derive/acquire factory",
+    "species.b04 validates native RU/derive/acquire factory",
+    "species.b05 validates native RU/derive/acquire factory",
+    "species.b06 validates native RU/derive/acquire factory",
+    "species.b07 validates native RU/derive/acquire factory",
+    "species.b08 validates native RU/derive/acquire factory",
+    "species.b09 validates native RU/derive/acquire factory",
+    "ai.technical native six-trait shape",
+    "ai.brawler native six-trait shape",
+    "ai.daredevil native six-trait shape",
+    "ai.endurance native six-trait shape",
+    "ai.opportunist native six-trait shape",
+    "ai.defensive native six-trait shape",
+    "ai.professional native six-trait shape",
+    "ai.showboat native six-trait shape",
+    "ai.front-runner native six-trait shape",
+    "ai.patient-pursuer native six-trait shape",
+    "Canonical B01 intentionally rejected by existing career species whitelist; required adapter gate remains open",
+    "Pure Oval repeated100-tick native diagnostic",
+    "Pure Circuit repeated100-tick native diagnostic",
+    "Pure Rally repeated100-tick native diagnostic",
+    "Combat Oval repeated100-tick native diagnostic",
+    "Combat Circuit repeated100-tick native diagnostic",
+    "Combat Rally repeated100-tick native diagnostic"
+  ],
+  "derived": [
+    {
+      "profile": "ancestry.a01",
+      "maxSpeed": 18.19684413769892,
+      "acceleration": 2.7749684320366597,
+      "handling": 46.25,
+      "endurance": 50
+    },
+    {
+      "profile": "ancestry.a02",
+      "maxSpeed": 18.19684413769892,
+      "acceleration": 2.606216159731959,
+      "handling": 47.75,
+      "endurance": 50
+    },
+    {
+      "profile": "ancestry.a03",
+      "maxSpeed": 18.19684413769892,
+      "acceleration": 2.72918949007343,
+      "handling": 50,
+      "endurance": 50
+    },
+    {
+      "profile": "ancestry.a04",
+      "maxSpeed": 18.19684413769892,
+      "acceleration": 2.7773811483482067,
+      "handling": 52.5,
+      "endurance": 50
+    },
+    {
+      "profile": "ancestry.a05",
+      "maxSpeed": 18.19684413769892,
+      "acceleration": 2.8619954227339046,
+      "handling": 52,
+      "endurance": 50
+    },
+    {
+      "profile": "ancestry.a06",
+      "maxSpeed": 18.19684413769892,
+      "acceleration": 2.700487566159455,
+      "handling": 51,
+      "endurance": 50
+    },
+    {
+      "profile": "ancestry.a07",
+      "maxSpeed": 18.19684413769892,
+      "acceleration": 2.908946255477027,
+      "handling": 51,
+      "endurance": 50
+    },
+    {
+      "profile": "ancestry.a08",
+      "maxSpeed": 18.19684413769892,
+      "acceleration": 2.800605892895192,
+      "handling": 49,
+      "endurance": 50
+    },
+    {
+      "profile": "ancestry.a09",
+      "maxSpeed": 18.19684413769892,
+      "acceleration": 2.7766228660788634,
+      "handling": 54.25,
+      "endurance": 50
+    },
+    {
+      "profile": "ancestry.a10",
+      "maxSpeed": 18.19684413769892,
+      "acceleration": 2.8011072365443437,
+      "handling": 53,
+      "endurance": 50
+    },
+    {
+      "profile": "ancestry.a11",
+      "maxSpeed": 18.19684413769892,
+      "acceleration": 2.903024133621414,
+      "handling": 53.25,
+      "endurance": 50
+    },
+    {
+      "profile": "ancestry.a12",
+      "maxSpeed": 18.19684413769892,
+      "acceleration": 2.739028359188047,
+      "handling": 52.5,
+      "endurance": 50
+    },
+    {
+      "profile": "ancestry.a13",
+      "maxSpeed": 18.19684413769892,
+      "acceleration": 2.9264682160149036,
+      "handling": 54,
+      "endurance": 50
+    },
+    {
+      "profile": "species.b01",
+      "maxSpeed": 18.92471790320688,
+      "acceleration": 3.323240604139806,
+      "handling": 48.599999999999994,
+      "endurance": 40
+    },
+    {
+      "profile": "species.b02",
+      "maxSpeed": 19.94374117491802,
+      "acceleration": 3.552187391027508,
+      "handling": 48.25,
+      "endurance": 55
+    },
+    {
+      "profile": "species.b03",
+      "maxSpeed": 19.79816642181643,
+      "acceleration": 3.501183508220769,
+      "handling": 51.4,
+      "endurance": 38
+    },
+    {
+      "profile": "species.b04",
+      "maxSpeed": 19.507016915613242,
+      "acceleration": 2.4150518209355485,
+      "handling": 53.15,
+      "endurance": 64
+    },
+    {
+      "profile": "species.b05",
+      "maxSpeed": 18.342418890800513,
+      "acceleration": 2.8346929996165375,
+      "handling": 52.8,
+      "endurance": 55
+    },
+    {
+      "profile": "species.b06",
+      "maxSpeed": 17.03224611288619,
+      "acceleration": 4.445695892165241,
+      "handling": 49.3,
+      "endurance": 48
+    },
+    {
+      "profile": "species.b07",
+      "maxSpeed": 22.564086730746663,
+      "acceleration": 2.6015776029540887,
+      "handling": 50.7,
+      "endurance": 64
+    },
+    {
+      "profile": "species.b08",
+      "maxSpeed": 18.342418890800513,
+      "acceleration": 3.8523559340651885,
+      "handling": 50,
+      "endurance": 40
+    },
+    {
+      "profile": "species.b09",
+      "maxSpeed": 16.741096606683012,
+      "acceleration": 2.924537541622018,
+      "handling": 49.3,
+      "endurance": 61
+    }
+  ],
+  "raceDiagnostics": [
+    {
+      "format": "Pure",
+      "kind": "Oval",
+      "checksum": "8e6e6c7f",
+      "tick": 100,
+      "status": "Running",
+      "repeatedExact": true
+    },
+    {
+      "format": "Pure",
+      "kind": "Circuit",
+      "checksum": "a6d3ce8c",
+      "tick": 100,
+      "status": "Running",
+      "repeatedExact": true
+    },
+    {
+      "format": "Pure",
+      "kind": "Rally",
+      "checksum": "711ae1cc",
+      "tick": 100,
+      "status": "Running",
+      "repeatedExact": true
+    },
+    {
+      "format": "Combat",
+      "kind": "Oval",
+      "checksum": "bebaa120",
+      "tick": 100,
+      "status": "Running",
+      "repeatedExact": true
+    },
+    {
+      "format": "Combat",
+      "kind": "Circuit",
+      "checksum": "7b6a1e2b",
+      "tick": 100,
+      "status": "Running",
+      "repeatedExact": true
+    },
+    {
+      "format": "Combat",
+      "kind": "Rally",
+      "checksum": "e360a469",
+      "tick": 100,
+      "status": "Running",
+      "repeatedExact": true
+    }
+  ],
+  "scope": "Read-only existing native engine; isolated fixtures. No full-race balance acceptance, historical golden modification, protected career integration or persistence simulation."
+}

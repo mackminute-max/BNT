@@ -1,0 +1,2433 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "bnt-m5-content-proposal-v1"
+    },
+    "purpose": {
+      "enum": [
+        "illustrative",
+        "production-candidate"
+      ]
+    },
+    "catalogVersion": {
+      "$ref": "#/$defs/id"
+    },
+    "authorityStatus": {
+      "enum": [
+        "illustrative-not-approved",
+        "owner-approved-candidate"
+      ]
+    },
+    "profiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nation"
+          },
+          "minItems": 1,
+          "maxItems": 10000
+        },
+        "culturalNaming": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/culturalNaming"
+          },
+          "minItems": 1,
+          "maxItems": 10000
+        },
+        "ancestryGameplay": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ancestryGameplay"
+          },
+          "minItems": 1,
+          "maxItems": 10000
+        },
+        "driverBackground": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/driverBackground"
+          },
+          "minItems": 1,
+          "maxItems": 10000
+        },
+        "driverAI": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/driverAI"
+          },
+          "minItems": 1,
+          "maxItems": 10000
+        },
+        "beastSpecies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/beastSpecies"
+          },
+          "minItems": 1,
+          "maxItems": 10000
+        },
+        "beastBloodline": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/beastBloodline"
+          },
+          "minItems": 1,
+          "maxItems": 10000
+        },
+        "beastTemperament": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/beastTemperament"
+          },
+          "minItems": 1,
+          "maxItems": 10000
+        },
+        "staffProfession": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/staffProfession"
+          },
+          "minItems": 1,
+          "maxItems": 10000
+        },
+        "staffExpertise": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/staffExpertise"
+          },
+          "minItems": 1,
+          "maxItems": 10000
+        },
+        "rivalIdentity": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rivalIdentity"
+          },
+          "minItems": 1,
+          "maxItems": 10000
+        },
+        "rivalGeneration": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rivalGeneration"
+          },
+          "minItems": 1,
+          "maxItems": 10000
+        },
+        "chariotNaming": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/chariotNaming"
+          },
+          "minItems": 1,
+          "maxItems": 10000
+        },
+        "equipmentNaming": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/equipmentNaming"
+          },
+          "minItems": 1,
+          "maxItems": 10000
+        },
+        "qualityRarity": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/qualityRarity"
+          },
+          "minItems": 1,
+          "maxItems": 10000
+        },
+        "visualMetadata": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/visualMetadata"
+          },
+          "minItems": 1,
+          "maxItems": 10000
+        }
+      },
+      "required": [
+        "nation",
+        "culturalNaming",
+        "ancestryGameplay",
+        "driverBackground",
+        "driverAI",
+        "beastSpecies",
+        "beastBloodline",
+        "beastTemperament",
+        "staffProfession",
+        "staffExpertise",
+        "rivalIdentity",
+        "rivalGeneration",
+        "chariotNaming",
+        "equipmentNaming",
+        "qualityRarity",
+        "visualMetadata"
+      ]
+    }
+  },
+  "required": [
+    "format",
+    "purpose",
+    "catalogVersion",
+    "authorityStatus",
+    "profiles"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://blood-and-thunder.invalid/schemas/m5/content-proposal-v1",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]{0,63}$"
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "weighted": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 1e-06,
+          "maximum": 1000000
+        }
+      },
+      "required": [
+        "id",
+        "weight"
+      ]
+    },
+    "weights": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/weighted"
+      },
+      "minItems": 1,
+      "maxItems": 128
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "authority": {
+          "enum": [
+            "canon",
+            "authored",
+            "proposed-mechanics"
+          ]
+        },
+        "file": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 250
+        },
+        "startLine": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        },
+        "endLine": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        },
+        "digest": {
+          "$ref": "#/$defs/digest"
+        }
+      },
+      "required": [
+        "authority",
+        "file",
+        "startLine",
+        "endLine",
+        "digest"
+      ]
+    },
+    "distribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "uniform",
+            "triangular"
+          ]
+        },
+        "min": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "max": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "mode": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "step": {
+          "enum": [
+            1,
+            0.1,
+            0.01
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "min",
+        "max",
+        "mode",
+        "step"
+      ]
+    },
+    "driverDistributions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "driving": {
+          "$ref": "#/$defs/distribution"
+        },
+        "beastHandling": {
+          "$ref": "#/$defs/distribution"
+        },
+        "combat": {
+          "$ref": "#/$defs/distribution"
+        },
+        "awareness": {
+          "$ref": "#/$defs/distribution"
+        },
+        "nerve": {
+          "$ref": "#/$defs/distribution"
+        }
+      },
+      "required": [
+        "driving",
+        "beastHandling",
+        "combat",
+        "awareness",
+        "nerve"
+      ]
+    },
+    "beastDistributions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "speed": {
+          "$ref": "#/$defs/distribution"
+        },
+        "power": {
+          "$ref": "#/$defs/distribution"
+        },
+        "agility": {
+          "$ref": "#/$defs/distribution"
+        },
+        "endurance": {
+          "$ref": "#/$defs/distribution"
+        },
+        "discipline": {
+          "$ref": "#/$defs/distribution"
+        },
+        "toughness": {
+          "$ref": "#/$defs/distribution"
+        }
+      },
+      "required": [
+        "speed",
+        "power",
+        "agility",
+        "endurance",
+        "discipline",
+        "toughness"
+      ]
+    },
+    "traitDistributions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "aggression": {
+          "$ref": "#/$defs/distribution"
+        },
+        "caution": {
+          "$ref": "#/$defs/distribution"
+        },
+        "patience": {
+          "$ref": "#/$defs/distribution"
+        },
+        "opportunism": {
+          "$ref": "#/$defs/distribution"
+        },
+        "staminaManagement": {
+          "$ref": "#/$defs/distribution"
+        },
+        "tacticalDiscipline": {
+          "$ref": "#/$defs/distribution"
+        }
+      },
+      "required": [
+        "aggression",
+        "caution",
+        "patience",
+        "opportunism",
+        "staminaManagement",
+        "tacticalDiscipline"
+      ]
+    },
+    "driverDelta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "driving": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "beastHandling": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "combat": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "awareness": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "nerve": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        }
+      },
+      "required": [
+        "driving",
+        "beastHandling",
+        "combat",
+        "awareness",
+        "nerve"
+      ]
+    },
+    "beastDelta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "speed": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "power": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "agility": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "endurance": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "discipline": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "toughness": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        }
+      },
+      "required": [
+        "speed",
+        "power",
+        "agility",
+        "endurance",
+        "discipline",
+        "toughness"
+      ]
+    },
+    "traitDelta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "aggression": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "caution": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "patience": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "opportunism": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "staminaManagement": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "tacticalDiscipline": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        }
+      },
+      "required": [
+        "aggression",
+        "caution",
+        "patience",
+        "opportunism",
+        "staminaManagement",
+        "tacticalDiscipline"
+      ]
+    },
+    "correlation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "first": {
+          "enum": [
+            "driving",
+            "beastHandling",
+            "combat",
+            "awareness",
+            "nerve"
+          ]
+        },
+        "second": {
+          "enum": [
+            "driving",
+            "beastHandling",
+            "combat",
+            "awareness",
+            "nerve"
+          ]
+        },
+        "rho": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "first",
+        "second",
+        "rho"
+      ]
+    },
+    "age": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "enum": [
+            "young-adult",
+            "adult",
+            "mature",
+            "elder"
+          ]
+        },
+        "yearsMin": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2000
+        },
+        "yearsMax": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2000
+        },
+        "mechanicalEffect": {
+          "const": "none"
+        }
+      },
+      "required": [
+        "category",
+        "yearsMin",
+        "yearsMax",
+        "mechanicalEffect"
+      ]
+    },
+    "eligibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "minReputation": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "requiredTrophies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "availability": {
+          "enum": [
+            "ordinary",
+            "curated-event"
+          ]
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      },
+      "required": [
+        "minReputation",
+        "requiredTrophies",
+        "availability",
+        "notes"
+      ]
+    },
+    "valuation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "policy": {
+          "const": "native-tier-quality-v1"
+        },
+        "tier": {
+          "enum": [
+            "Budget",
+            "Standard",
+            "Premium"
+          ]
+        },
+        "quality": {
+          "type": "number",
+          "minimum": 0.85,
+          "maximum": 1.15
+        },
+        "wageQuality": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0.9,
+              "maximum": 1.1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "mechanicalBudgetReference": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      },
+      "required": [
+        "policy",
+        "tier",
+        "quality",
+        "wageQuality",
+        "mechanicalBudgetReference"
+      ]
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "classId": {
+          "$ref": "#/$defs/id"
+        },
+        "allowedPartnerClassIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 1,
+          "maxItems": 32
+        },
+        "physicalSizeTag": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "policy": {
+          "const": "authoring-validation-only-no-new-physics"
+        }
+      },
+      "required": [
+        "classId",
+        "allowedPartnerClassIds",
+        "physicalSizeTag",
+        "policy"
+      ]
+    },
+    "influence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "enum": [
+            "background",
+            "culture"
+          ]
+        },
+        "profileId": {
+          "$ref": "#/$defs/id"
+        },
+        "traitDelta": {
+          "$ref": "#/$defs/traitDelta"
+        }
+      },
+      "required": [
+        "source",
+        "profileId",
+        "traitDelta"
+      ]
+    },
+    "nation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "canonicalNationId": {
+          "enum": [
+            "N1",
+            "N2",
+            "N3",
+            "N4",
+            "N5",
+            "N6",
+            "N7",
+            "N8"
+          ]
+        },
+        "ancestryWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "cultureWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "backgroundWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "aiWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "staffWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "speciesWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "stockWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "qualityWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "namingProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "teamIdentityProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "visualProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "importWeight": {
+          "type": "number",
+          "minimum": 1e-06,
+          "maximum": 1
+        },
+        "racingTraditions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 1,
+          "maxItems": 20
+        },
+        "equipmentPreferences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "economicPolicy": {
+          "const": "native-unmodified"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "label",
+        "sources",
+        "canonicalNationId",
+        "ancestryWeights",
+        "cultureWeights",
+        "backgroundWeights",
+        "aiWeights",
+        "staffWeights",
+        "speciesWeights",
+        "stockWeights",
+        "qualityWeights",
+        "namingProfileId",
+        "teamIdentityProfileId",
+        "visualProfileId",
+        "importWeight",
+        "racingTraditions",
+        "equipmentPreferences",
+        "economicPolicy"
+      ]
+    },
+    "culturalNaming": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "canonicalNationIds": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "N1",
+              "N2",
+              "N3",
+              "N4",
+              "N5",
+              "N6",
+              "N7",
+              "N8"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "ancestryAffinityIds": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "A01",
+              "A02",
+              "A03",
+              "A04",
+              "A05",
+              "A06",
+              "A07",
+              "A08",
+              "A09",
+              "A10",
+              "A11",
+              "A12",
+              "A13"
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 13
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "given": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "minItems": 2,
+          "maxItems": 10000
+        },
+        "family": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "minItems": 2,
+          "maxItems": 10000
+        },
+        "clan": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "minItems": 0,
+          "maxItems": 10000
+        },
+        "nicknames": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "minItems": 0,
+          "maxItems": 10000
+        },
+        "titles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        },
+        "beastNames": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 70
+          },
+          "minItems": 2,
+          "maxItems": 10000
+        },
+        "organizationRoots": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "minItems": 2,
+          "maxItems": 10000
+        },
+        "organizationEndings": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "minItems": 2,
+          "maxItems": 1000
+        },
+        "grammar": {
+          "enum": [
+            "given-family",
+            "given-clan",
+            "given-only"
+          ]
+        },
+        "nicknameProbability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "maxNameLength": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "collisionPolicy": {
+          "const": "bounded-alternative-components-then-fail"
+        },
+        "maxRetries": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "label",
+        "sources",
+        "canonicalNationIds",
+        "ancestryAffinityIds",
+        "language",
+        "given",
+        "family",
+        "clan",
+        "nicknames",
+        "titles",
+        "beastNames",
+        "organizationRoots",
+        "organizationEndings",
+        "grammar",
+        "nicknameProbability",
+        "maxNameLength",
+        "collisionPolicy",
+        "maxRetries"
+      ]
+    },
+    "ancestryGameplay": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "canonicalAncestryId": {
+          "enum": [
+            "A01",
+            "A02",
+            "A03",
+            "A04",
+            "A05",
+            "A06",
+            "A07",
+            "A08",
+            "A09",
+            "A10",
+            "A11",
+            "A12",
+            "A13"
+          ]
+        },
+        "subdivisionId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "baseline": {
+          "$ref": "#/$defs/driverDistributions"
+        },
+        "ancestryDelta": {
+          "$ref": "#/$defs/driverDelta"
+        },
+        "individualVariation": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 30
+        },
+        "correlations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/correlation"
+          },
+          "minItems": 0,
+          "maxItems": 10
+        },
+        "backgroundWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "experienceDelta": {
+          "$ref": "#/$defs/driverDelta"
+        },
+        "qualityProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "age": {
+          "$ref": "#/$defs/age"
+        },
+        "visualProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "eligibility": {
+          "$ref": "#/$defs/eligibility"
+        },
+        "rarityWeight": {
+          "type": "number",
+          "minimum": 1e-06,
+          "maximum": 1000000
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "label",
+        "sources",
+        "canonicalAncestryId",
+        "subdivisionId",
+        "baseline",
+        "ancestryDelta",
+        "individualVariation",
+        "correlations",
+        "backgroundWeights",
+        "experienceDelta",
+        "qualityProfileId",
+        "age",
+        "visualProfileId",
+        "eligibility",
+        "rarityWeight"
+      ]
+    },
+    "driverBackground": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "attributeDelta": {
+          "$ref": "#/$defs/driverDelta"
+        },
+        "experienceLevels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "weight": {
+                "type": "number",
+                "minimum": 1e-06,
+                "maximum": 1000000
+              },
+              "attributeDelta": {
+                "$ref": "#/$defs/driverDelta"
+              }
+            },
+            "required": [
+              "id",
+              "weight",
+              "attributeDelta"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "aiProfileWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "eligibility": {
+          "$ref": "#/$defs/eligibility"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "label",
+        "sources",
+        "attributeDelta",
+        "experienceLevels",
+        "aiProfileWeights",
+        "eligibility"
+      ]
+    },
+    "driverAI": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "archetype": {
+          "enum": [
+            "technical",
+            "brawler",
+            "daredevil",
+            "endurance",
+            "opportunist",
+            "defensive",
+            "professional",
+            "showboat",
+            "front-runner",
+            "patient-pursuer"
+          ]
+        },
+        "traits": {
+          "$ref": "#/$defs/traitDistributions"
+        },
+        "individualVariation": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 30
+        },
+        "influences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/influence"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "unsupportedClaims": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "minItems": 0,
+          "maxItems": 20
+        },
+        "preserveGlobalAI": {
+          "const": true
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "label",
+        "sources",
+        "archetype",
+        "traits",
+        "individualVariation",
+        "influences",
+        "unsupportedClaims",
+        "preserveGlobalAI"
+      ]
+    },
+    "beastSpecies": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "canonicalSpeciesId": {
+          "enum": [
+            "B01",
+            "B02",
+            "B03",
+            "B04",
+            "B05",
+            "B06",
+            "B07",
+            "B08",
+            "B09"
+          ]
+        },
+        "baseline": {
+          "$ref": "#/$defs/beastDistributions"
+        },
+        "individualVariation": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 30
+        },
+        "stockProfileIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 1,
+          "maxItems": 64
+        },
+        "temperamentWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "qualityProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "age": {
+          "$ref": "#/$defs/age"
+        },
+        "compatibility": {
+          "$ref": "#/$defs/compatibility"
+        },
+        "visualProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "eligibility": {
+          "$ref": "#/$defs/eligibility"
+        },
+        "nativeSpeciesAdapter": {
+          "const": "generic_draft_beast-with-canonical-identity"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "label",
+        "sources",
+        "canonicalSpeciesId",
+        "baseline",
+        "individualVariation",
+        "stockProfileIds",
+        "temperamentWeights",
+        "qualityProfileId",
+        "age",
+        "compatibility",
+        "visualProfileId",
+        "eligibility",
+        "nativeSpeciesAdapter"
+      ]
+    },
+    "beastBloodline": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "canonicalSpeciesId": {
+          "enum": [
+            "B01",
+            "B02",
+            "B03",
+            "B04",
+            "B05",
+            "B06",
+            "B07",
+            "B08",
+            "B09"
+          ]
+        },
+        "sourceLocalId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32
+        },
+        "classification": {
+          "enum": [
+            "established_canon_line",
+            "new_v1_catalog_bloodline",
+            "descriptive_stock_style"
+          ]
+        },
+        "statDelta": {
+          "$ref": "#/$defs/beastDelta"
+        },
+        "physicalVariantTags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "temperamentWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "rarityWeight": {
+          "type": "number",
+          "minimum": 1e-06,
+          "maximum": 1000000
+        },
+        "visualProfileId": {
+          "$ref": "#/$defs/id"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "label",
+        "sources",
+        "canonicalSpeciesId",
+        "sourceLocalId",
+        "classification",
+        "statDelta",
+        "physicalVariantTags",
+        "temperamentWeights",
+        "rarityWeight",
+        "visualProfileId"
+      ]
+    },
+    "beastTemperament": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "temperament": {
+          "enum": [
+            "Steady",
+            "Spirited",
+            "Aggressive",
+            "Nervous",
+            "Stubborn",
+            "Eager",
+            "Tireless",
+            "Docile"
+          ]
+        },
+        "attributeDelta": {
+          "$ref": "#/$defs/beastDelta"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "unsupportedClaims": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "minItems": 0,
+          "maxItems": 20
+        },
+        "independentAI": {
+          "const": false
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "label",
+        "sources",
+        "temperament",
+        "attributeDelta",
+        "description",
+        "unsupportedClaims",
+        "independentAI"
+      ]
+    },
+    "staffProfession": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "nativeRole": {
+          "enum": [
+            "Beast Handler",
+            "Mechanic",
+            "Physician"
+          ]
+        },
+        "expertiseProfileIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "namingProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "serviceIds": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "driver-treatment",
+              "beast-care",
+              "beast-treatment",
+              "chariot-repair",
+              "chariot-refurbishment"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 5
+        },
+        "newMechanicalSkills": {
+          "const": false
+        },
+        "eligibility": {
+          "$ref": "#/$defs/eligibility"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "label",
+        "sources",
+        "nativeRole",
+        "expertiseProfileIds",
+        "namingProfileId",
+        "serviceIds",
+        "newMechanicalSkills",
+        "eligibility"
+      ]
+    },
+    "staffExpertise": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "tier": {
+          "enum": [
+            "Budget",
+            "Standard",
+            "Premium"
+          ]
+        },
+        "valuation": {
+          "$ref": "#/$defs/valuation"
+        },
+        "experienceDescription": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "specializationTags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 0,
+          "maxItems": 10
+        },
+        "mechanicalScaling": {
+          "const": "none-existing-role-benefit-only"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "label",
+        "sources",
+        "tier",
+        "valuation",
+        "experienceDescription",
+        "specializationTags",
+        "mechanicalScaling"
+      ]
+    },
+    "rivalIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "canonicalNationId": {
+          "enum": [
+            "N1",
+            "N2",
+            "N3",
+            "N4",
+            "N5",
+            "N6",
+            "N7",
+            "N8"
+          ]
+        },
+        "cultureProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "namingProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "organizationNameMode": {
+          "enum": [
+            "regional-root",
+            "clan-root",
+            "authored-name"
+          ]
+        },
+        "authoredName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "racingPhilosophy": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "visualProfileId": {
+          "$ref": "#/$defs/id"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "label",
+        "sources",
+        "canonicalNationId",
+        "cultureProfileId",
+        "namingProfileId",
+        "organizationNameMode",
+        "racingPhilosophy",
+        "visualProfileId"
+      ]
+    },
+    "rivalGeneration": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "identityProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "driverAncestryWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "driverAIWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "beastSpeciesWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "qualityWeights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weighted"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        },
+        "staffProfileIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 0,
+          "maxItems": 3
+        },
+        "chariotNamingProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "equipmentNamingProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "beastCount": {
+          "const": 2
+        },
+        "persistence": {
+          "const": "bounded-identity-population"
+        },
+        "championshipDifficultyReference": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "personalityFreeze": {
+          "const": "at-entity-generation"
+        },
+        "simulateOffscreenEconomy": {
+          "const": false
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "label",
+        "sources",
+        "identityProfileId",
+        "driverAncestryWeights",
+        "driverAIWeights",
+        "beastSpeciesWeights",
+        "qualityWeights",
+        "staffProfileIds",
+        "chariotNamingProfileId",
+        "equipmentNamingProfileId",
+        "beastCount",
+        "persistence",
+        "championshipDifficultyReference",
+        "personalityFreeze",
+        "simulateOffscreenEconomy"
+      ]
+    },
+    "chariotNaming": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "namingProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "manufacturers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "modelNames": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "minItems": 2,
+          "maxItems": 1000
+        },
+        "nicknames": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        },
+        "format": {
+          "enum": [
+            "manufacturer-model",
+            "model-nickname",
+            "model-only"
+          ]
+        },
+        "mechanicalTemplateReference": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "inventStats": {
+          "const": false
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "label",
+        "sources",
+        "namingProfileId",
+        "manufacturers",
+        "modelNames",
+        "nicknames",
+        "format",
+        "mechanicalTemplateReference",
+        "inventStats"
+      ]
+    },
+    "equipmentNaming": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "namingProfileId": {
+          "$ref": "#/$defs/id"
+        },
+        "manufacturers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "modelNames": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "minItems": 2,
+          "maxItems": 1000
+        },
+        "nicknames": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        },
+        "format": {
+          "enum": [
+            "manufacturer-model",
+            "model-nickname",
+            "model-only"
+          ]
+        },
+        "mechanicalTemplateReference": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "inventStats": {
+          "const": false
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "label",
+        "sources",
+        "namingProfileId",
+        "manufacturers",
+        "modelNames",
+        "nicknames",
+        "format",
+        "mechanicalTemplateReference",
+        "inventStats"
+      ]
+    },
+    "qualityRarity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "tier": {
+          "enum": [
+            "Budget",
+            "Standard",
+            "Premium"
+          ]
+        },
+        "ratingBounds": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "min": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "max": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ]
+        },
+        "driverDelta": {
+          "$ref": "#/$defs/driverDelta"
+        },
+        "beastDelta": {
+          "$ref": "#/$defs/beastDelta"
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 1e-06,
+          "maximum": 1000000
+        },
+        "valuation": {
+          "$ref": "#/$defs/valuation"
+        },
+        "cap": {
+          "const": 100
+        },
+        "rarityLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "budgetPolicy": {
+          "const": "cross-profile-budget-validation-required"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "label",
+        "sources",
+        "tier",
+        "ratingBounds",
+        "driverDelta",
+        "beastDelta",
+        "weight",
+        "valuation",
+        "cap",
+        "rarityLabel",
+        "budgetPolicy"
+      ]
+    },
+    "visualMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "const": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "style": {
+          "const": "dark-deco-retro-cartoon-v1"
+        },
+        "ancestryIds": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "A01",
+              "A02",
+              "A03",
+              "A04",
+              "A05",
+              "A06",
+              "A07",
+              "A08",
+              "A09",
+              "A10",
+              "A11",
+              "A12",
+              "A13"
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 13
+        },
+        "speciesIds": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "B01",
+              "B02",
+              "B03",
+              "B04",
+              "B05",
+              "B06",
+              "B07",
+              "B08",
+              "B09"
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 9
+        },
+        "ageCategories": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "young-adult",
+              "adult",
+              "mature",
+              "elder"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 4
+        },
+        "bodyTags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "hairTags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "facialHairTags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "skinOrCoatPalette": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "minItems": 1,
+          "maxItems": 16
+        },
+        "markings": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "clothingTags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "culturalAccessoryTags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "professionTags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 0,
+          "maxItems": 16
+        },
+        "heraldicMotifs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 1,
+          "maxItems": 32
+        },
+        "teamPalette": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "minItems": 2,
+          "maxItems": 4
+        },
+        "chariotLiveryTags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "portraitAssetIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 0,
+          "maxItems": 128
+        },
+        "spriteAssetIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 0,
+          "maxItems": 128
+        },
+        "fallbackAssetId": {
+          "$ref": "#/$defs/id"
+        },
+        "assetResolution": {
+          "const": "validated-build-manifest-no-network"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "label",
+        "sources",
+        "style",
+        "ancestryIds",
+        "speciesIds",
+        "ageCategories",
+        "bodyTags",
+        "hairTags",
+        "facialHairTags",
+        "skinOrCoatPalette",
+        "markings",
+        "clothingTags",
+        "culturalAccessoryTags",
+        "professionTags",
+        "heraldicMotifs",
+        "teamPalette",
+        "chariotLiveryTags",
+        "portraitAssetIds",
+        "spriteAssetIds",
+        "fallbackAssetId",
+        "assetResolution"
+      ]
+    }
+  },
+  "title": "PROPOSED M5 content authoring bundle, not an implemented save schema",
+  "$comment": "No network resolution required: all $refs are local. JSON Schema cannot prove cross-record ownership, canon facts, sorted RNG schedules, PSD correlations, reference resolution or economic balance. See authoring specification for mandatory semantic compile gates."
+}

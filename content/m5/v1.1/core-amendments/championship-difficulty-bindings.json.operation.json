@@ -1,0 +1,7 @@
+{
+  "operation": "replace-in-new-version-only",
+  "original": "core-v1.0/metadata/championship-difficulty-bindings.json",
+  "originalSha256": "f0c485fb943a3845aa9a9c816bf9fd2a5eaf9cc5bf32904c238de0628e57b967",
+  "newSha256": "737b2b3026f350bb5e681a709e76f3dc0c34ba82874d20490bdd3d9caaffb89d",
+  "referenceMapping": "existing IDs unchanged"
+}

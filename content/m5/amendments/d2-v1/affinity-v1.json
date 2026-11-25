@@ -1,0 +1,181 @@
+{
+  "version": 1,
+  "status": "owner-approved-provisional-balance",
+  "speciesMatchingRequired": true,
+  "ancestries": {
+    "A01": "Human",
+    "A02": "Orc",
+    "A03": "Goliath",
+    "A04": "Hill Dwarf",
+    "A05": "Mountain Dwarf",
+    "A06": "Halfling",
+    "A07": "Forest Elf",
+    "A08": "High Elf",
+    "A09": "Sea Elf",
+    "A10": "Gnome",
+    "A11": "Goblin",
+    "A12": "Dragonkin",
+    "A13": "Tortle"
+  },
+  "species": {
+    "B01": "Horse",
+    "B02": "Storm Elk",
+    "B03": "Crown Boar",
+    "B04": "Meadowstrider",
+    "B05": "Racing Ram",
+    "B06": "Grun’Jho",
+    "B07": "Dire Wolf",
+    "B08": "Wingless Drake",
+    "B09": "Sunhorn"
+  },
+  "modifiers": {
+    "primary": 0.05,
+    "neutral": 0,
+    "mismatch": -0.05
+  },
+  "matrix": {
+    "A01": {
+      "B01": "primary",
+      "B02": "mismatch",
+      "B03": "mismatch",
+      "B04": "mismatch",
+      "B05": "mismatch",
+      "B06": "mismatch",
+      "B07": "mismatch",
+      "B08": "mismatch",
+      "B09": "mismatch"
+    },
+    "A02": {
+      "B01": "neutral",
+      "B02": "mismatch",
+      "B03": "mismatch",
+      "B04": "mismatch",
+      "B05": "mismatch",
+      "B06": "primary",
+      "B07": "primary",
+      "B08": "mismatch",
+      "B09": "mismatch"
+    },
+    "A03": {
+      "B01": "neutral",
+      "B02": "primary",
+      "B03": "mismatch",
+      "B04": "mismatch",
+      "B05": "mismatch",
+      "B06": "primary",
+      "B07": "mismatch",
+      "B08": "mismatch",
+      "B09": "mismatch"
+    },
+    "A04": {
+      "B01": "neutral",
+      "B02": "mismatch",
+      "B03": "primary",
+      "B04": "mismatch",
+      "B05": "primary",
+      "B06": "mismatch",
+      "B07": "mismatch",
+      "B08": "mismatch",
+      "B09": "mismatch"
+    },
+    "A05": {
+      "B01": "neutral",
+      "B02": "mismatch",
+      "B03": "mismatch",
+      "B04": "mismatch",
+      "B05": "primary",
+      "B06": "mismatch",
+      "B07": "mismatch",
+      "B08": "mismatch",
+      "B09": "mismatch"
+    },
+    "A06": {
+      "B01": "neutral",
+      "B02": "mismatch",
+      "B03": "mismatch",
+      "B04": "primary",
+      "B05": "mismatch",
+      "B06": "mismatch",
+      "B07": "mismatch",
+      "B08": "mismatch",
+      "B09": "mismatch"
+    },
+    "A07": {
+      "B01": "neutral",
+      "B02": "primary",
+      "B03": "mismatch",
+      "B04": "primary",
+      "B05": "mismatch",
+      "B06": "mismatch",
+      "B07": "mismatch",
+      "B08": "mismatch",
+      "B09": "mismatch"
+    },
+    "A08": {
+      "B01": "neutral",
+      "B02": "mismatch",
+      "B03": "mismatch",
+      "B04": "mismatch",
+      "B05": "mismatch",
+      "B06": "mismatch",
+      "B07": "mismatch",
+      "B08": "mismatch",
+      "B09": "primary"
+    },
+    "A09": {
+      "B01": "primary",
+      "B02": "mismatch",
+      "B03": "mismatch",
+      "B04": "mismatch",
+      "B05": "mismatch",
+      "B06": "mismatch",
+      "B07": "mismatch",
+      "B08": "mismatch",
+      "B09": "mismatch"
+    },
+    "A10": {
+      "B01": "neutral",
+      "B02": "mismatch",
+      "B03": "mismatch",
+      "B04": "primary",
+      "B05": "primary",
+      "B06": "mismatch",
+      "B07": "mismatch",
+      "B08": "mismatch",
+      "B09": "mismatch"
+    },
+    "A11": {
+      "B01": "neutral",
+      "B02": "mismatch",
+      "B03": "primary",
+      "B04": "mismatch",
+      "B05": "mismatch",
+      "B06": "mismatch",
+      "B07": "primary",
+      "B08": "mismatch",
+      "B09": "mismatch"
+    },
+    "A12": {
+      "B01": "neutral",
+      "B02": "mismatch",
+      "B03": "mismatch",
+      "B04": "mismatch",
+      "B05": "mismatch",
+      "B06": "mismatch",
+      "B07": "mismatch",
+      "B08": "primary",
+      "B09": "mismatch"
+    },
+    "A13": {
+      "B01": "neutral",
+      "B02": "mismatch",
+      "B03": "primary",
+      "B04": "mismatch",
+      "B05": "mismatch",
+      "B06": "mismatch",
+      "B07": "mismatch",
+      "B08": "primary",
+      "B09": "mismatch"
+    }
+  }
+}

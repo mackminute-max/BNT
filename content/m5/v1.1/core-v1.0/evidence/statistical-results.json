@@ -1,0 +1,913 @@
+{
+  "seed": 20261124,
+  "algorithm": "Python3 random.Random isolated authoring diagnostics; NOT proposed native runtime RNG",
+  "perProfileSamples": 10000,
+  "driver": {
+    "ancestry.a01": {
+      "means": {
+        "driving": 55.571,
+        "beastHandling": 55.7414,
+        "combat": 53.0224,
+        "awareness": 55.3704,
+        "nerve": 53.7124
+      },
+      "stddev": {
+        "driving": 9.3122,
+        "beastHandling": 9.3671,
+        "combat": 9.6087,
+        "awareness": 9.3787,
+        "nerve": 9.2252
+      },
+      "min": 28,
+      "max": 82,
+      "atCap": 0
+    },
+    "ancestry.a02": {
+      "means": {
+        "driving": 54.6783,
+        "beastHandling": 55.0897,
+        "combat": 55.0818,
+        "awareness": 55.565,
+        "nerve": 53.734
+      },
+      "stddev": {
+        "driving": 9.329,
+        "beastHandling": 9.3653,
+        "combat": 9.6218,
+        "awareness": 9.3248,
+        "nerve": 9.2092
+      },
+      "min": 29,
+      "max": 86,
+      "atCap": 0
+    },
+    "ancestry.a03": {
+      "means": {
+        "driving": 53.4769,
+        "beastHandling": 54.7367,
+        "combat": 56.1215,
+        "awareness": 55.2924,
+        "nerve": 53.7177
+      },
+      "stddev": {
+        "driving": 9.2981,
+        "beastHandling": 9.3292,
+        "combat": 9.6048,
+        "awareness": 9.415,
+        "nerve": 9.2603
+      },
+      "min": 28,
+      "max": 87,
+      "atCap": 0
+    },
+    "ancestry.a04": {
+      "means": {
+        "driving": 56.4133,
+        "beastHandling": 55.8011,
+        "combat": 51.8954,
+        "awareness": 55.5308,
+        "nerve": 53.7379
+      },
+      "stddev": {
+        "driving": 9.4203,
+        "beastHandling": 9.2928,
+        "combat": 9.5488,
+        "awareness": 9.4156,
+        "nerve": 9.2351
+      },
+      "min": 27,
+      "max": 83,
+      "atCap": 0
+    },
+    "ancestry.a05": {
+      "means": {
+        "driving": 56.4291,
+        "beastHandling": 53.9208,
+        "combat": 54.0703,
+        "awareness": 55.2778,
+        "nerve": 53.6988
+      },
+      "stddev": {
+        "driving": 9.4436,
+        "beastHandling": 9.4402,
+        "combat": 9.5815,
+        "awareness": 9.3419,
+        "nerve": 9.2825
+      },
+      "min": 29,
+      "max": 84,
+      "atCap": 0
+    },
+    "ancestry.a06": {
+      "means": {
+        "driving": 57.5035,
+        "beastHandling": 55.9774,
+        "combat": 51.1737,
+        "awareness": 55.4675,
+        "nerve": 53.7529
+      },
+      "stddev": {
+        "driving": 9.3627,
+        "beastHandling": 9.36,
+        "combat": 9.5151,
+        "awareness": 9.2437,
+        "nerve": 9.3096
+      },
+      "min": 26,
+      "max": 85,
+      "atCap": 0
+    },
+    "ancestry.a07": {
+      "means": {
+        "driving": 56.4374,
+        "beastHandling": 56.6942,
+        "combat": 51.0567,
+        "awareness": 55.533,
+        "nerve": 53.6237
+      },
+      "stddev": {
+        "driving": 9.43,
+        "beastHandling": 9.3741,
+        "combat": 9.562,
+        "awareness": 9.3731,
+        "nerve": 9.192
+      },
+      "min": 27,
+      "max": 82,
+      "atCap": 0
+    },
+    "ancestry.a08": {
+      "means": {
+        "driving": 55.4435,
+        "beastHandling": 56.6562,
+        "combat": 52.206,
+        "awareness": 55.5684,
+        "nerve": 53.7596
+      },
+      "stddev": {
+        "driving": 9.3418,
+        "beastHandling": 9.488,
+        "combat": 9.5646,
+        "awareness": 9.4002,
+        "nerve": 9.265
+      },
+      "min": 28,
+      "max": 83,
+      "atCap": 0
+    },
+    "ancestry.a09": {
+      "means": {
+        "driving": 57.5056,
+        "beastHandling": 54.7303,
+        "combat": 51.9606,
+        "awareness": 55.4365,
+        "nerve": 53.6062
+      },
+      "stddev": {
+        "driving": 9.4068,
+        "beastHandling": 9.3274,
+        "combat": 9.6156,
+        "awareness": 9.2956,
+        "nerve": 9.1164
+      },
+      "min": 27,
+      "max": 83,
+      "atCap": 0
+    },
+    "ancestry.a10": {
+      "means": {
+        "driving": 57.3921,
+        "beastHandling": 56.7777,
+        "combat": 50.1289,
+        "awareness": 55.3463,
+        "nerve": 53.6093
+      },
+      "stddev": {
+        "driving": 9.3913,
+        "beastHandling": 9.2908,
+        "combat": 9.6241,
+        "awareness": 9.2756,
+        "nerve": 9.2634
+      },
+      "min": 26,
+      "max": 84,
+      "atCap": 0
+    },
+    "ancestry.a11": {
+      "means": {
+        "driving": 56.4133,
+        "beastHandling": 56.699,
+        "combat": 51.1634,
+        "awareness": 55.336,
+        "nerve": 53.6763
+      },
+      "stddev": {
+        "driving": 9.3573,
+        "beastHandling": 9.4499,
+        "combat": 9.4899,
+        "awareness": 9.354,
+        "nerve": 9.2656
+      },
+      "min": 27,
+      "max": 83,
+      "atCap": 0
+    },
+    "ancestry.a12": {
+      "means": {
+        "driving": 54.6107,
+        "beastHandling": 54.7314,
+        "combat": 55.0765,
+        "awareness": 55.456,
+        "nerve": 53.6015
+      },
+      "stddev": {
+        "driving": 9.2966,
+        "beastHandling": 9.346,
+        "combat": 9.5775,
+        "awareness": 9.2294,
+        "nerve": 9.2182
+      },
+      "min": 29,
+      "max": 84,
+      "atCap": 0
+    },
+    "ancestry.a13": {
+      "means": {
+        "driving": 53.5635,
+        "beastHandling": 55.815,
+        "combat": 55.0993,
+        "awareness": 55.3186,
+        "nerve": 53.757
+      },
+      "stddev": {
+        "driving": 9.299,
+        "beastHandling": 9.3009,
+        "combat": 9.5576,
+        "awareness": 9.3731,
+        "nerve": 9.1849
+      },
+      "min": 29,
+      "max": 84,
+      "atCap": 0
+    }
+  },
+  "beast": {
+    "species.b01": {
+      "means": {
+        "speed": 54.6305,
+        "power": 54.3537,
+        "agility": 55.4808,
+        "endurance": 55.6975,
+        "discipline": 55.1928,
+        "toughness": 54.5634
+      },
+      "stddev": {
+        "speed": 8.9138,
+        "power": 8.7786,
+        "agility": 8.6842,
+        "endurance": 8.8081,
+        "discipline": 9.314,
+        "toughness": 8.4972
+      },
+      "min": 31,
+      "max": 82,
+      "atCap": 0
+    },
+    "species.b02": {
+      "means": {
+        "speed": 57.7278,
+        "power": 59.5651,
+        "agility": 50.8723,
+        "endurance": 58.1764,
+        "discipline": 45.7116,
+        "toughness": 57.8889
+      },
+      "stddev": {
+        "speed": 8.9304,
+        "power": 8.8063,
+        "agility": 8.7911,
+        "endurance": 8.7386,
+        "discipline": 9.2181,
+        "toughness": 8.4946
+      },
+      "min": 21,
+      "max": 86,
+      "atCap": 0
+    },
+    "species.b03": {
+      "means": {
+        "speed": 47.6345,
+        "power": 62.6372,
+        "agility": 53.5157,
+        "endurance": 53.2205,
+        "discipline": 52.8088,
+        "toughness": 60.1981
+      },
+      "stddev": {
+        "speed": 8.9364,
+        "power": 8.7979,
+        "agility": 8.7051,
+        "endurance": 8.8022,
+        "discipline": 9.3354,
+        "toughness": 8.4565
+      },
+      "min": 25,
+      "max": 88,
+      "atCap": 0
+    },
+    "species.b04": {
+      "means": {
+        "speed": 62.554,
+        "power": 47.7393,
+        "agility": 62.7064,
+        "endurance": 56.066,
+        "discipline": 55.8228,
+        "toughness": 45.088
+      },
+      "stddev": {
+        "speed": 8.9827,
+        "power": 8.7636,
+        "agility": 8.7258,
+        "endurance": 8.7328,
+        "discipline": 9.2794,
+        "toughness": 8.4033
+      },
+      "min": 24,
+      "max": 88,
+      "atCap": 0
+    },
+    "species.b05": {
+      "means": {
+        "speed": 50.6906,
+        "power": 58.6147,
+        "agility": 58.7266,
+        "endurance": 53.0968,
+        "discipline": 54.9197,
+        "toughness": 54.1935
+      },
+      "stddev": {
+        "speed": 8.8365,
+        "power": 8.7543,
+        "agility": 8.6567,
+        "endurance": 8.8525,
+        "discipline": 9.3024,
+        "toughness": 8.3881
+      },
+      "min": 28,
+      "max": 85,
+      "atCap": 0
+    },
+    "species.b06": {
+      "means": {
+        "speed": 49.7927,
+        "power": 66.607,
+        "agility": 45.621,
+        "endurance": 54.2295,
+        "discipline": 50.8409,
+        "toughness": 63.0857
+      },
+      "stddev": {
+        "speed": 8.8546,
+        "power": 8.8727,
+        "agility": 8.7456,
+        "endurance": 8.836,
+        "discipline": 9.2766,
+        "toughness": 8.4681
+      },
+      "min": 22,
+      "max": 92,
+      "atCap": 0
+    },
+    "species.b07": {
+      "means": {
+        "speed": 62.6962,
+        "power": 46.4342,
+        "agility": 61.7622,
+        "endurance": 54.1764,
+        "discipline": 52.823,
+        "toughness": 52.039
+      },
+      "stddev": {
+        "speed": 8.9001,
+        "power": 8.8147,
+        "agility": 8.6502,
+        "endurance": 8.7792,
+        "discipline": 9.3427,
+        "toughness": 8.4713
+      },
+      "min": 24,
+      "max": 88,
+      "atCap": 0
+    },
+    "species.b08": {
+      "means": {
+        "speed": 50.6136,
+        "power": 60.4602,
+        "agility": 50.6189,
+        "endurance": 53.1306,
+        "discipline": 52.8365,
+        "toughness": 62.0657
+      },
+      "stddev": {
+        "speed": 8.9149,
+        "power": 8.8112,
+        "agility": 8.7327,
+        "endurance": 8.8333,
+        "discipline": 9.161,
+        "toughness": 8.4542
+      },
+      "min": 27,
+      "max": 85,
+      "atCap": 0
+    },
+    "species.b09": {
+      "means": {
+        "speed": 59.5606,
+        "power": 49.7609,
+        "agility": 57.6757,
+        "endurance": 64.1847,
+        "discipline": 50.6681,
+        "toughness": 47.9879
+      },
+      "stddev": {
+        "speed": 8.9214,
+        "power": 8.809,
+        "agility": 8.7578,
+        "endurance": 8.7798,
+        "discipline": 9.2843,
+        "toughness": 8.4534
+      },
+      "min": 26,
+      "max": 90,
+      "atCap": 0
+    }
+  },
+  "ai": {
+    "ai.technical": {
+      "means": {
+        "aggression": 40.0854,
+        "caution": 69.0198,
+        "patience": 64.0502,
+        "opportunism": 54.9829,
+        "staminaManagement": 56.887,
+        "tacticalDiscipline": 66.9912
+      },
+      "min": 22,
+      "max": 87
+    },
+    "ai.brawler": {
+      "means": {
+        "aggression": 78.1137,
+        "caution": 34.0627,
+        "patience": 36.1167,
+        "opportunism": 64.9543,
+        "staminaManagement": 38.9932,
+        "tacticalDiscipline": 45.0362
+      },
+      "min": 16,
+      "max": 96
+    },
+    "ai.daredevil": {
+      "means": {
+        "aggression": 79.9486,
+        "caution": 23.9941,
+        "patience": 32.9996,
+        "opportunism": 74.0224,
+        "staminaManagement": 32.0099,
+        "tacticalDiscipline": 39.0583
+      },
+      "min": 6,
+      "max": 98
+    },
+    "ai.endurance": {
+      "means": {
+        "aggression": 34.958,
+        "caution": 62.085,
+        "patience": 68.1382,
+        "opportunism": 48.0149,
+        "staminaManagement": 82.0766,
+        "tacticalDiscipline": 62.0406
+      },
+      "min": 17,
+      "max": 100
+    },
+    "ai.opportunist": {
+      "means": {
+        "aggression": 55.9839,
+        "caution": 42.9484,
+        "patience": 51.0661,
+        "opportunism": 83.0799,
+        "staminaManagement": 47.9733,
+        "tacticalDiscipline": 50.9948
+      },
+      "min": 25,
+      "max": 100
+    },
+    "ai.defensive": {
+      "means": {
+        "aggression": 34.7899,
+        "caution": 78.9319,
+        "patience": 67.9853,
+        "opportunism": 41.0808,
+        "staminaManagement": 63.9017,
+        "tacticalDiscipline": 64.1395
+      },
+      "min": 17,
+      "max": 97
+    },
+    "ai.professional": {
+      "means": {
+        "aggression": 44.9522,
+        "caution": 58.8963,
+        "patience": 61.9303,
+        "opportunism": 50.9849,
+        "staminaManagement": 61.0051,
+        "tacticalDiscipline": 83.0787
+      },
+      "min": 27,
+      "max": 100
+    },
+    "ai.showboat": {
+      "means": {
+        "aggression": 66.0022,
+        "caution": 37.0163,
+        "patience": 41.037,
+        "opportunism": 71.961,
+        "staminaManagement": 42.0207,
+        "tacticalDiscipline": 43.076
+      },
+      "min": 19,
+      "max": 90
+    },
+    "ai.front-runner": {
+      "means": {
+        "aggression": 66.9961,
+        "caution": 39.9672,
+        "patience": 45.9244,
+        "opportunism": 60.1303,
+        "staminaManagement": 46.9477,
+        "tacticalDiscipline": 58.9724
+      },
+      "min": 22,
+      "max": 85
+    },
+    "ai.patient-pursuer": {
+      "means": {
+        "aggression": 40.1192,
+        "caution": 61.9324,
+        "patience": 80.94,
+        "opportunism": 71.0225,
+        "staminaManagement": 67.0726,
+        "tacticalDiscipline": 64.0255
+      },
+      "min": 22,
+      "max": 99
+    }
+  },
+  "nation": {
+    "N1": {
+      "residentAncestrySamples": {
+        "A02": 29469,
+        "A01": 43471,
+        "A13": 983,
+        "A05": 968,
+        "A03": 17351,
+        "A06": 999,
+        "A07": 983,
+        "A08": 964,
+        "A10": 975,
+        "A12": 950,
+        "A04": 954,
+        "A09": 997,
+        "A11": 936
+      },
+      "residentSpeciesSamples": {
+        "B02": 61805,
+        "B01": 30910,
+        "B07": 1014,
+        "B09": 1056,
+        "B06": 1054,
+        "B03": 1080,
+        "B05": 1001,
+        "B08": 1043,
+        "B04": 1037
+      },
+      "samplesEach": 100000,
+      "importPath": "Structural nonzero and separate-origin policy validated; not a gameplay residency simulation."
+    },
+    "N2": {
+      "residentAncestrySamples": {
+        "A01": 53270,
+        "A13": 1013,
+        "A04": 35451,
+        "A11": 1014,
+        "A06": 1001,
+        "A03": 1024,
+        "A09": 1011,
+        "A08": 1042,
+        "A12": 1022,
+        "A10": 1050,
+        "A05": 1051,
+        "A07": 1038,
+        "A02": 1013
+      },
+      "residentSpeciesSamples": {
+        "B03": 61685,
+        "B06": 1028,
+        "B01": 31105,
+        "B02": 1003,
+        "B09": 1071,
+        "B07": 1006,
+        "B05": 1020,
+        "B04": 1008,
+        "B08": 1074
+      },
+      "samplesEach": 100000,
+      "importPath": "Structural nonzero and separate-origin policy validated; not a gameplay residency simulation."
+    },
+    "N3": {
+      "residentAncestrySamples": {
+        "A01": 37455,
+        "A07": 25484,
+        "A06": 27369,
+        "A13": 1013,
+        "A11": 911,
+        "A02": 954,
+        "A09": 986,
+        "A04": 983,
+        "A10": 934,
+        "A03": 963,
+        "A08": 938,
+        "A12": 1032,
+        "A05": 978
+      },
+      "residentSpeciesSamples": {
+        "B04": 61901,
+        "B09": 1018,
+        "B02": 981,
+        "B01": 31012,
+        "B05": 983,
+        "B06": 1037,
+        "B07": 987,
+        "B03": 1064,
+        "B08": 1017
+      },
+      "samplesEach": 100000,
+      "importPath": "Structural nonzero and separate-origin policy validated; not a gameplay residency simulation."
+    },
+    "N4": {
+      "residentAncestrySamples": {
+        "A05": 44421,
+        "A10": 26256,
+        "A01": 19666,
+        "A08": 912,
+        "A02": 961,
+        "A13": 971,
+        "A07": 931,
+        "A11": 990,
+        "A06": 901,
+        "A09": 1008,
+        "A12": 1036,
+        "A03": 1014,
+        "A04": 933
+      },
+      "residentSpeciesSamples": {
+        "B05": 67061,
+        "B01": 25675,
+        "B03": 990,
+        "B09": 1042,
+        "B06": 1099,
+        "B02": 1064,
+        "B07": 1081,
+        "B04": 986,
+        "B08": 1002
+      },
+      "samplesEach": 100000,
+      "importPath": "Structural nonzero and separate-origin policy validated; not a gameplay residency simulation."
+    },
+    "N5": {
+      "residentAncestrySamples": {
+        "A01": 17994,
+        "A09": 16708,
+        "A02": 3676,
+        "A12": 3778,
+        "A04": 6233,
+        "A08": 4530,
+        "A13": 16154,
+        "A05": 6498,
+        "A07": 6381,
+        "A06": 6446,
+        "A10": 6256,
+        "A11": 2650,
+        "A03": 2696
+      },
+      "residentSpeciesSamples": {
+        "B09": 1589,
+        "B01": 87239,
+        "B05": 1585,
+        "B02": 1649,
+        "B04": 1587,
+        "B06": 1584,
+        "B08": 1553,
+        "B03": 1576,
+        "B07": 1638
+      },
+      "samplesEach": 100000,
+      "importPath": "Structural nonzero and separate-origin policy validated; not a gameplay residency simulation."
+    },
+    "N6": {
+      "residentAncestrySamples": {
+        "A02": 55335,
+        "A04": 984,
+        "A11": 34018,
+        "A05": 1007,
+        "A12": 961,
+        "A03": 957,
+        "A01": 943,
+        "A09": 982,
+        "A10": 962,
+        "A07": 916,
+        "A06": 970,
+        "A08": 964,
+        "A13": 1001
+      },
+      "residentSpeciesSamples": {
+        "B07": 34960,
+        "B06": 44282,
+        "B01": 14859,
+        "B08": 967,
+        "B04": 1001,
+        "B03": 1006,
+        "B09": 997,
+        "B05": 975,
+        "B02": 953
+      },
+      "samplesEach": 100000,
+      "importPath": "Structural nonzero and separate-origin policy validated; not a gameplay residency simulation."
+    },
+    "N7": {
+      "residentAncestrySamples": {
+        "A06": 1061,
+        "A12": 67700,
+        "A08": 20782,
+        "A07": 1038,
+        "A13": 1049,
+        "A05": 1073,
+        "A09": 1000,
+        "A02": 1026,
+        "A03": 1070,
+        "A11": 1047,
+        "A04": 1067,
+        "A01": 1071,
+        "A10": 1016
+      },
+      "residentSpeciesSamples": {
+        "B08": 67320,
+        "B01": 25603,
+        "B06": 994,
+        "B05": 984,
+        "B09": 1028,
+        "B03": 1043,
+        "B04": 1048,
+        "B02": 959,
+        "B07": 1021
+      },
+      "samplesEach": 100000,
+      "importPath": "Structural nonzero and separate-origin policy validated; not a gameplay residency simulation."
+    },
+    "N8": {
+      "residentAncestrySamples": {
+        "A08": 98734,
+        "A07": 117,
+        "A06": 105,
+        "A11": 93,
+        "A02": 99,
+        "A09": 104,
+        "A03": 109,
+        "A13": 107,
+        "A04": 110,
+        "A05": 93,
+        "A01": 124,
+        "A10": 113,
+        "A12": 92
+      },
+      "residentSpeciesSamples": {
+        "B09": 77362,
+        "B01": 15331,
+        "B07": 1047,
+        "B08": 1107,
+        "B06": 991,
+        "B03": 1050,
+        "B02": 1028,
+        "B04": 1024,
+        "B05": 1060
+      },
+      "samplesEach": 100000,
+      "importPath": "Structural nonzero and separate-origin policy validated; not a gameplay residency simulation."
+    }
+  },
+  "quality": {
+    "quality.affordable": {
+      "driverMean": 41.6856,
+      "horseMean": 41.9805,
+      "capFraction": 0.0
+    },
+    "quality.ordinary": {
+      "driverMean": 54.7006,
+      "horseMean": 54.9978,
+      "capFraction": 0.0
+    },
+    "quality.specialized": {
+      "driverMean": 57.6979,
+      "horseMean": 57.9931,
+      "capFraction": 0.0
+    },
+    "quality.rare": {
+      "driverMean": 66.7289,
+      "horseMean": 66.9813,
+      "capFraction": 0.0
+    },
+    "quality.exceptional": {
+      "driverMean": 74.6804,
+      "horseMean": 74.9715,
+      "capFraction": 0.0004181818181818182
+    }
+  },
+  "names": {
+    "N1": {
+      "namesGenerated": 128,
+      "uniqueNames": 128,
+      "maxAttempts": 2,
+      "meanAttempts": 1.0312,
+      "maxDeclaredCombinations": 2304
+    },
+    "N2": {
+      "namesGenerated": 128,
+      "uniqueNames": 128,
+      "maxAttempts": 2,
+      "meanAttempts": 1.0469,
+      "maxDeclaredCombinations": 2304
+    },
+    "N3": {
+      "namesGenerated": 128,
+      "uniqueNames": 128,
+      "maxAttempts": 2,
+      "meanAttempts": 1.0234,
+      "maxDeclaredCombinations": 2304
+    },
+    "N4": {
+      "namesGenerated": 128,
+      "uniqueNames": 128,
+      "maxAttempts": 2,
+      "meanAttempts": 1.0469,
+      "maxDeclaredCombinations": 1152
+    },
+    "N5": {
+      "namesGenerated": 128,
+      "uniqueNames": 128,
+      "maxAttempts": 2,
+      "meanAttempts": 1.0156,
+      "maxDeclaredCombinations": 2304
+    },
+    "N6": {
+      "namesGenerated": 128,
+      "uniqueNames": 128,
+      "maxAttempts": 2,
+      "meanAttempts": 1.0547,
+      "maxDeclaredCombinations": 1152
+    },
+    "N7": {
+      "namesGenerated": 128,
+      "uniqueNames": 128,
+      "maxAttempts": 2,
+      "meanAttempts": 1.0234,
+      "maxDeclaredCombinations": 2304
+    },
+    "N8": {
+      "namesGenerated": 128,
+      "uniqueNames": 128,
+      "maxAttempts": 2,
+      "meanAttempts": 1.0234,
+      "maxDeclaredCombinations": 2304
+    }
+  },
+  "contrastingExample": {
+    "exceptionalHorse": {
+      "speed": 78,
+      "power": 65,
+      "agility": 72,
+      "endurance": 64,
+      "discipline": 84,
+      "toughness": 81
+    },
+    "affordableDrake": {
+      "speed": 41,
+      "power": 38,
+      "agility": 34,
+      "endurance": 28,
+      "discipline": 49,
+      "toughness": 56
+    },
+    "interpretation": "Input-budget example only. Race performance and economic balance require native seeded race tests."
+  }
+}

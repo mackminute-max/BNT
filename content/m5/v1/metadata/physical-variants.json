@@ -1,0 +1,746 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "id": "appearance.b01.1",
+      "speciesId": "B01",
+      "stockProfileId": "stock.b01.1-1",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b01-1-1"
+      ],
+      "sourceAppearance": "**Reference / status:** Shire/Clydesdale/Percheron-inspired.\n\n**Visual build:** Very tall, broad, deep barrel and massive hindquarters; thick neck, large hooves, optional feathered fetlocks.\n\n**Behavioral / motion impression:** Measured, steady, powerful visual impression; slow-looking but capable of substantial effort.\n\n**Avoid:** Do not make every heavy horse feather-legged; feathering varies.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b01.2",
+      "speciesId": "B01",
+      "stockProfileId": "stock.b01.1-2",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b01-1-2"
+      ],
+      "sourceAppearance": "**Reference / status:** Ardennes/Suffolk Punch-inspired.\n\n**Visual build:** Shorter, exceptionally deep and rounded, broad forehead, powerful shoulders, comparatively short legs.\n\n**Behavioral / motion impression:** Solid, dependable and grounded silhouette.\n\n**Avoid:** Not a pony; adult mass and bone remain considerable.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b01.3",
+      "speciesId": "B01",
+      "stockProfileId": "stock.b01.1-3",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b01-1-3"
+      ],
+      "sourceAppearance": "**Reference / status:** Thoroughbred-inspired.\n\n**Visual build:** Tall, long-legged, narrow waist, deep chest, lean muscle, long sloping shoulder and fine head.\n\n**Behavioral / motion impression:** Alert, reactive, long-striding presentation.\n\n**Avoid:** Avoid making the body skeletal or fragile.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b01.4",
+      "speciesId": "B01",
+      "stockProfileId": "stock.b01.1-4",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b01-1-4"
+      ],
+      "sourceAppearance": "**Reference / status:** Arabian/Barb-inspired.\n\n**Visual build:** Moderate height, compact athletic torso, dry legs, refined head, high-carried tail or distinctive profile.\n\n**Behavioral / motion impression:** Attentive, economical movement; persistent pacing.\n\n**Avoid:** Distinct from sprint racer by compact frame, not fantasy speed effects.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b01.5",
+      "speciesId": "B01",
+      "stockProfileId": "stock.b01.1-5",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b01-1-5"
+      ],
+      "sourceAppearance": "**Reference / status:** Standardbred/Hackney-inspired.\n\n**Visual build:** Balanced medium build, strong hindquarters, defined joints, substantial neck and high-stepping or efficient trotting gait.\n\n**Behavioral / motion impression:** Disciplined pair-work and controlled carriage movement.\n\n**Avoid:** Not automatically a warhorse or ceremonial animal.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b01.6",
+      "speciesId": "B01",
+      "stockProfileId": "stock.b01.1-6",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b01-1-6"
+      ],
+      "sourceAppearance": "**Reference / status:** Icelandic/Fell pony-inspired.\n\n**Visual build:** Short, thick-coated, broad-footed, muscular, low center of gravity, dense mane and tail.\n\n**Behavioral / motion impression:** Sure-footed and hardy appearance.\n\n**Avoid:** Clearly mature pony, not a foal.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b01.7",
+      "speciesId": "B01",
+      "stockProfileId": "stock.b01.1-7",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b01-1-7"
+      ],
+      "sourceAppearance": "**Reference / status:** Akhal-Teke/Arabian-inspired.\n\n**Visual build:** Long dry limbs, lean narrow torso, fine coat, refined face and sparse feathering.\n\n**Behavioral / motion impression:** Heat-adapted silhouette and light, economical movement.\n\n**Avoid:** Metallic sheen is optional natural coat effect, not magic.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b02.1",
+      "speciesId": "B02",
+      "stockProfileId": "stock.b02.2-1",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b02-2-1"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); dense winter mane and thick lower-leg coat.\n\n**Visual build:** Very broad chest, shaggy neck, powerful forequarters, heavy antlers.\n\n**Behavioral / motion impression:** Imposing cold-country working appearance.\n\n**Avoid:** Do not conceal legs in fur.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 136,
+          "endLine": 217,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b02.2",
+      "speciesId": "B02",
+      "stockProfileId": "stock.b02.2-2",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b02-2-2"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); selected manageable antler spread.\n\n**Visual build:** Leaner legs, tighter coat, compact crown and lighter front end.\n\n**Behavioral / motion impression:** Fast, controlled silhouette for paired harness.\n\n**Avoid:** Keep recognizable elk antlers.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 136,
+          "endLine": 217,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b02.3",
+      "speciesId": "B02",
+      "stockProfileId": "stock.b02.2-3",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b02-2-3"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); woodland edge adaptation.\n\n**Visual build:** Moderate frame, dark dappled coat, comparatively narrow antlers.\n\n**Behavioral / motion impression:** Agile and alert presentation.\n\n**Avoid:** Do not add supernatural forest glow.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 136,
+          "endLine": 217,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b02.4",
+      "speciesId": "B02",
+      "stockProfileId": "stock.b02.2-4",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b02-2-4"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); display-oriented line.\n\n**Visual build:** Deep chest, towering branching antlers, luxuriant mane.\n\n**Behavioral / motion impression:** Regal spectacle; less practical-looking harness profile.\n\n**Avoid:** Do not imply every grandcrown is a race entrant.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 136,
+          "endLine": 217,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b03.1",
+      "speciesId": "B03",
+      "stockProfileId": "stock.b03.3-1",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b03-3-1"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); traditional heavy hauling line.\n\n**Visual build:** Huge shoulders, thick barrel, short strong legs and prominent bristle mane.\n\n**Behavioral / motion impression:** Deliberate power and stability.\n\n**Avoid:** Not a miniature ordinary farm pig.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 218,
+          "endLine": 299,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b03.2",
+      "speciesId": "B03",
+      "stockProfileId": "stock.b03.3-2",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b03-3-2"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); racing selection.\n\n**Visual build:** Longer legs, tighter waist, cleaner bristles and more balanced fore/hind proportions.\n\n**Behavioral / motion impression:** Disciplined pair racing, forceful starts.\n\n**Avoid:** Keep boar head and split hooves.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 218,
+          "endLine": 299,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b03.3",
+      "speciesId": "B03",
+      "stockProfileId": "stock.b03.3-3",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b03-3-3"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); cold upland working line.\n\n**Visual build:** Coarse winter coat, thick neck, compact stature, dark coloration.\n\n**Behavioral / motion impression:** Rugged mountain transport look.\n\n**Avoid:** Not woolly like a sheep.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 218,
+          "endLine": 299,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b03.4",
+      "speciesId": "B03",
+      "stockProfileId": "stock.b03.3-4",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b03-3-4"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); show and ceremonial line.\n\n**Visual build:** Rich reddish coat, dramatic shoulder bristle ridge and prominent tusk curve.\n\n**Behavioral / motion impression:** Highly recognizable silhouette.\n\n**Avoid:** No invented armor or metal body growth.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 218,
+          "endLine": 299,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b04.1",
+      "speciesId": "B04",
+      "stockProfileId": "stock.b04.4-1",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b04-4-1"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); light racing line.\n\n**Visual build:** Long fine legs, tucked waist, elegant head, close coat.\n\n**Behavioral / motion impression:** Agile quick-footed silhouette.\n\n**Avoid:** Do not reduce to a fragile deer.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 300,
+          "endLine": 381,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b04.2",
+      "speciesId": "B04",
+      "stockProfileId": "stock.b04.4-2",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b04-4-2"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); agricultural multipurpose line.\n\n**Visual build:** Deeper barrel, broader shoulders and sturdier hooves, retaining long legs.\n\n**Behavioral / motion impression:** Dependable and versatile.\n\n**Avoid:** Still a Meadowstrider, not a horse.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 300,
+          "endLine": 381,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b04.3",
+      "speciesId": "B04",
+      "stockProfileId": "stock.b04.4-3",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b04-4-3"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); winding-course selection.\n\n**Visual build:** Compact frame, low neck carriage, short back and responsive ears.\n\n**Behavioral / motion impression:** Tight maneuvering, alert movement.\n\n**Avoid:** No antlers or fae glow.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 300,
+          "endLine": 381,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b04.4",
+      "speciesId": "B04",
+      "stockProfileId": "stock.b04.4-4",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b04-4-4"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); festival/show line.\n\n**Visual build:** Pale honey coat, contrasting dorsal shading and particularly fine neck.\n\n**Behavioral / motion impression:** Graceful show silhouette.\n\n**Avoid:** Coat is natural, not enchanted.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 300,
+          "endLine": 381,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b05.1",
+      "speciesId": "B05",
+      "stockProfileId": "stock.b05.5-1",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b05-5-1"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); mountain hauling line.\n\n**Visual build:** Dense barrel, very thick neck, massive spiral horns, short sturdy limbs.\n\n**Behavioral / motion impression:** Monumental power.\n\n**Avoid:** Horns must not intersect harness.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 382,
+          "endLine": 463,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b05.2",
+      "speciesId": "B05",
+      "stockProfileId": "stock.b05.5-2",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b05-5-2"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); lighter racing line.\n\n**Visual build:** Lean body, shorter coat, long strong legs, moderate horn arc.\n\n**Behavioral / motion impression:** Athletic racing silhouette.\n\n**Avoid:** Still unmistakably sheep-like.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 382,
+          "endLine": 463,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b05.3",
+      "speciesId": "B05",
+      "stockProfileId": "stock.b05.5-3",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b05-5-3"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); valley multipurpose line.\n\n**Visual build:** Rounded fleece mass, sturdy frame, broad forehead and moderate horns.\n\n**Behavioral / motion impression:** Robust practical stock.\n\n**Avoid:** Do not mistake wool bulk for muscle.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 382,
+          "endLine": 463,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b05.4",
+      "speciesId": "B05",
+      "stockProfileId": "stock.b05.5-4",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b05-5-4"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); showy aggressive-looking line.\n\n**Visual build:** Red-brown horn tone, compact heavy chest, prominent curved horns.\n\n**Behavioral / motion impression:** Intense visual presence; temperament individual.\n\n**Avoid:** Coloration does not imply aggression.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 382,
+          "endLine": 463,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b06.1",
+      "speciesId": "B06",
+      "stockProfileId": "stock.b06.6-1",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b06-6-1"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); heavy traditional line.\n\n**Visual build:** Towering shoulder hump, immense mane, thick horns and heavy chest.\n\n**Behavioral / motion impression:** Raw monumental presence.\n\n**Avoid:** No bison-only anatomy.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 464,
+          "endLine": 545,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b06.2",
+      "speciesId": "B06",
+      "stockProfileId": "stock.b06.6-2",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b06-6-2"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); open-country running line.\n\n**Visual build:** Relatively leaner flank, longer legs, streamlined mane, strong hips.\n\n**Behavioral / motion impression:** Large fast runner.\n\n**Avoid:** Do not shrink below species identity.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 464,
+          "endLine": 545,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b06.3",
+      "speciesId": "B06",
+      "stockProfileId": "stock.b06.6-3",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b06-6-3"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); dark-coated display line.\n\n**Visual build:** Black-brown body, ash-gray mane, strongly curved horns.\n\n**Behavioral / motion impression:** Dramatic two-tone silhouette.\n\n**Avoid:** No smoke or fire effects.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 464,
+          "endLine": 545,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b06.4",
+      "speciesId": "B06",
+      "stockProfileId": "stock.b06.6-4",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b06-6-4"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); temperament-selected working line.\n\n**Visual build:** Broad body, moderate horn spread, steady posture and relaxed ear carriage.\n\n**Behavioral / motion impression:** Composed paired-harness appearance.\n\n**Avoid:** Calmness is trained/selected, not guaranteed.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 464,
+          "endLine": 545,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b07.1",
+      "speciesId": "B07",
+      "stockProfileId": "stock.b07.7-1",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b07-7-1"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); powerful race line.\n\n**Visual build:** Broad shoulders, deep chest, dark coat and dense neck ruff.\n\n**Behavioral / motion impression:** Intense predatory silhouette.\n\n**Avoid:** No glowing eyes.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 546,
+          "endLine": 627,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b07.2",
+      "speciesId": "B07",
+      "stockProfileId": "stock.b07.7-2",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b07-7-2"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); open frontier endurance line.\n\n**Visual build:** Longer legs, lighter frame, sandy gray coat, narrower head.\n\n**Behavioral / motion impression:** Lean distance-running presence.\n\n**Avoid:** Not a domestic husky.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 546,
+          "endLine": 627,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b07.3",
+      "speciesId": "B07",
+      "stockProfileId": "stock.b07.7-3",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b07-7-3"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); cold-weather heavy coat line.\n\n**Visual build:** Dense silver-gray coat, heavy tail, wide paws and thick chest.\n\n**Behavioral / motion impression:** Cold-country wolf look.\n\n**Avoid:** Keep natural coat, no armor plating.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 546,
+          "endLine": 627,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b07.4",
+      "speciesId": "B07",
+      "stockProfileId": "stock.b07.7-4",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b07-7-4"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); distinctive facial marking line.\n\n**Visual build:** Russet mask, dark dorsal stripe, compact powerful build.\n\n**Behavioral / motion impression:** Readable portrait markings.\n\n**Avoid:** No infernal coloring or magic.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 546,
+          "endLine": 627,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b08.1",
+      "speciesId": "B08",
+      "stockProfileId": "stock.b08.8-1",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b08-8-1"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); heavy work line.\n\n**Visual build:** Thick neck, broad chest, large plated scales, powerful thighs and thick tail.\n\n**Behavioral / motion impression:** Heavy draft silhouette.\n\n**Avoid:** Scales not metal armor.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 628,
+          "endLine": 709,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b08.2",
+      "speciesId": "B08",
+      "stockProfileId": "stock.b08.8-2",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b08-8-2"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); lean racing line.\n\n**Visual build:** Long legs, streamlined torso, smaller crest, narrow tail profile.\n\n**Behavioral / motion impression:** Fast and balanced.\n\n**Avoid:** Must remain robust draconic quadruped.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 628,
+          "endLine": 709,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b08.3",
+      "speciesId": "B08",
+      "stockProfileId": "stock.b08.8-3",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b08-8-3"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); distinctive ornamental line.\n\n**Visual build:** Tall cranial crest, pronounced dorsal ridge, contrasting belly scales.\n\n**Behavioral / motion impression:** Highly readable head silhouette.\n\n**Avoid:** No wings or sails.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 628,
+          "endLine": 709,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b08.4",
+      "speciesId": "B08",
+      "stockProfileId": "stock.b08.8-4",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b08-8-4"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); hardy utility line.\n\n**Visual build:** Dark green mottled scales, wide feet, strong forelegs and compact torso.\n\n**Behavioral / motion impression:** Practical sturdy drake.\n\n**Avoid:** Not an amphibian by default.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 628,
+          "endLine": 709,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b09.1",
+      "speciesId": "B09",
+      "stockProfileId": "stock.b09.9-1",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b09-9-1"
+      ],
+      "sourceAppearance": "**Reference / status:** Canon term for racing-bred Sunhorn.\n\n**Visual build:** Lean powerful legs, streamlined body and controlled horn sweep.\n\n**Behavioral / motion impression:** Competitive racing presentation.\n\n**Avoid:** No implied numerical speed bonus.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 710,
+          "endLine": 831,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b09.2",
+      "speciesId": "B09",
+      "stockProfileId": "stock.b09.9-2",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b09-9-2"
+      ],
+      "sourceAppearance": "**Reference / status:** Canon term for heavy working Sunhorn.\n\n**Visual build:** Broader chest, thicker neck, sturdier limbs and more substantial horns.\n\n**Behavioral / motion impression:** Heavy hauling identity.\n\n**Avoid:** Not a different species.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 710,
+          "endLine": 831,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b09.3",
+      "speciesId": "B09",
+      "stockProfileId": "stock.b09.9-3",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b09-9-3"
+      ],
+      "sourceAppearance": "**Reference / status:** Canon term for light endurance-oriented Sunhorn.\n\n**Visual build:** Dry musculature, long legs, fine coat and narrow body profile.\n\n**Behavioral / motion impression:** Distance-running silhouette.\n\n**Avoid:** Do not render skeletal.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 710,
+          "endLine": 831,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "appearance.b09.4",
+      "speciesId": "B09",
+      "stockProfileId": "stock.b09.9-4",
+      "classification": "physical-variant-not-a-new-species",
+      "tags": [
+        "stock-b09-9-4"
+      ],
+      "sourceAppearance": "**Reference / status:** Named catalog bloodline (v1.0); appearance-focused selection.\n\n**Visual build:** Cream coat, strong dark facial mask and gently swept horns.\n\n**Behavioral / motion impression:** Clear recognizable face pattern.\n\n**Avoid:** Bloodline name is proposed, not preexisting canon.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 710,
+          "endLine": 831,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    }
+  ]
+}

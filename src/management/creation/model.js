@@ -1,3 +1,4 @@
+import {M5CareerStore} from '../../persistence/m5-store.js';
 import {upgradeStarterRecords,addContract} from '../../career/economy/records.js';
 import {initializeGameplay} from './initialize-gameplay.js';
 import {createUninitializedCareer} from '../../career/state.js';
@@ -21,6 +22,7 @@ export function prepareCreation(request){
  store.transaction({id:r.id+'-grant',profileId:r.profileId,careerId:r.careerId,expectedRevision:s.revision,expectedMaintenanceRevision:s.maintenanceRevision,commandVersion:1,type:'career.initialize',packageId:r.packageId,catalogVersion:CATALOG_VERSION,confirmed:true,reason:'Owner-confirmed starting package at career creation',delta:p.gold,effectId:initializationEffect(r.careerId)});
  if(r.version>=2)store.activateCreationPresentation({recruitIdentities:r.recruitIdentities});
  if(r.version>=3)initializeGameplay(store,r.id,r.version===4);
+ if(typeof BNT_M5_BUILD!=='undefined'&&BNT_M5_BUILD){const isolated=new Map(),prepared=new M5CareerStore({getItem:k=>isolated.get(k)??null,setItem:(k,v)=>isolated.set(k,v)});prepared.createCurrent(store.state,store.presentation);return {records:[...isolated],state:prepared.state,runtime};}
  return {records:[...map],state:store.state,runtime};
 }
 

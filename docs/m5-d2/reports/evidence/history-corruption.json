@@ -1,0 +1,11 @@
+{
+  "warm": {
+    "rejected": true,
+    "error": "RECOVERY_REQUIRED: missing/corrupt immutable body bnt.m5.history.295f6545704dee6b4fd1b28e558ee8a07743148b2c76dd0921c1f336121fc5e6"
+  },
+  "cold": {
+    "rejected": true,
+    "error": "RECOVERY_REQUIRED: missing/corrupt immutable body bnt.m5.history.295f6545704dee6b4fd1b28e558ee8a07743148b2c76dd0921c1f336121fc5e6"
+  },
+  "pass": true
+}

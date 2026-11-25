@@ -1,0 +1,45 @@
+{
+  fixture: 'SYNTHETIC validated current/history stress built from two real native archived events; NOT native gameplay count',
+  championshipSummaries: 10,
+  raceSummaries: 100,
+  syntheticOperations: 1000,
+  syntheticHistoricalCandidates: 2000,
+  pages: 9,
+  records: 10,
+  largestRecordBytes: 529306,
+  currentBytes: 529306,
+  totalLogicalBytes: 2445996,
+  pageMs: 342.07197999999994,
+  validationMs: 85.50232500000038,
+  historyValidationMs: 236.7748800000004,
+  totalMs: 1261.306308,
+  memoryBefore: {
+    rss: 80359424,
+    heapTotal: 54190080,
+    heapUsed: 23483520,
+    external: 3908383,
+    arrayBuffers: 1930681
+  },
+  memoryAfter: {
+    rss: 139284480,
+    heapTotal: 97185792,
+    heapUsed: 34108168,
+    external: 3067299,
+    arrayBuffers: 1089557
+  },
+  populations: [
+    {
+      count: 32,
+      actual: 32,
+      ms: 43.33392099999992,
+      bytes: 175705,
+      pass: true
+    },
+    {
+      count: 128,
+      pass: false,
+      error: 'Generation name capacity exhausted; no generic fallback or epoch consumed',
+      ms: 23.482524999999896
+    }
+  ]
+}

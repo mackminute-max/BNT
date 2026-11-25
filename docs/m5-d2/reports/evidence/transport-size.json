@@ -1,0 +1,67 @@
+[
+  {
+    "count": 10,
+    "fullBytes": 2731876,
+    "warmWireBytes": 600183,
+    "warmEncodingMs": 0.03993899999998973,
+    "cache": {
+      "bytes": 3833336,
+      "entries": 9,
+      "maxBytes": 33554432,
+      "maxEntries": 256
+    },
+    "scope": "Lossless message size/encoding comparison, not a durable commit timing"
+  },
+  {
+    "count": 25,
+    "fullBytes": 5938369,
+    "warmWireBytes": 707848,
+    "warmEncodingMs": 0.009673999999989746,
+    "cache": {
+      "bytes": 9409472,
+      "entries": 23,
+      "maxBytes": 33554432,
+      "maxEntries": 256
+    },
+    "scope": "Lossless message size/encoding comparison, not a durable commit timing"
+  },
+  {
+    "count": 50,
+    "fullBytes": 11282803,
+    "warmWireBytes": 690050,
+    "warmEncodingMs": 0.061991000000034546,
+    "cache": {
+      "bytes": 19053652,
+      "entries": 47,
+      "maxBytes": 33554432,
+      "maxEntries": 256
+    },
+    "scope": "Lossless message size/encoding comparison, not a durable commit timing"
+  },
+  {
+    "count": 100,
+    "fullBytes": 21971280,
+    "warmWireBytes": 3433662,
+    "warmEncodingMs": 0.04720899999995254,
+    "cache": {
+      "bytes": 33408364,
+      "entries": 77,
+      "maxBytes": 33554432,
+      "maxEntries": 256
+    },
+    "scope": "Lossless message size/encoding comparison, not a durable commit timing"
+  },
+  {
+    "count": 500,
+    "fullBytes": 107780117,
+    "warmWireBytes": 89553313,
+    "warmEncodingMs": 0.17911400000002686,
+    "cache": {
+      "bytes": 33359496,
+      "entries": 33,
+      "maxBytes": 33554432,
+      "maxEntries": 256
+    },
+    "scope": "Lossless message size/encoding comparison, not a durable commit timing"
+  }
+]

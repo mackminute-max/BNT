@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen M5 Delivery 2 integration amendment v1",
+  "description": "Changing any policy value requires a new reviewed amendment version and content pin.",
+  "const": {
+    "version": 1,
+    "id": "m5-d2-integration-v1",
+    "authority": "M5 Delivery 2 owner authorization and affinity-v1.json",
+    "originalCoreVersion": "1.0.0",
+    "supplementalVersion": "m5-competition-v1.1",
+    "sourceFilesRemainUnmodified": true,
+    "compatibility": {
+      "rulesVersion": "m5-affinity-v1",
+      "sameSpeciesRequired": true,
+      "startingPairSpecies": "B01",
+      "homeDisjointPairsAtLeast": 2,
+      "homeHorsePairsAtLeast": 1
+    },
+    "naming": {
+      "version": 2,
+      "beastGrammar": "beastName of cultureFamily",
+      "chariotGrammar": "manufacturer model of cultureFamily",
+      "organizationGrammar": "organizationRoot organizationEnding of cultureFamily",
+      "maxRetries": 64,
+      "genericFallback": false
+    },
+    "rivals": {
+      "populationPerTier": 4,
+      "persistentEntrants": 2,
+      "minimumLocals": 1,
+      "primarySpeciesProbability": 0.7,
+      "adaptiveScaling": false
+    },
+    "opportunities": {
+      "count": 3,
+      "nativeEconomicPatternsOnly": true,
+      "generatedSignatureTrophies": false
+    },
+    "regionalMarket": {
+      "count": 4,
+      "categories": [
+        "driver",
+        "beast",
+        "chariot",
+        "equipment"
+      ],
+      "staff": false,
+      "recruitersBonus": 0,
+      "registeredTeamChange": false
+    },
+    "saveBoundary": {
+      "schema": 7,
+      "extension": "m5.d2/v1",
+      "namespace": "BNT-M5-D2",
+      "D1ImplicitImport": false,
+      "converter": false
+    }
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "version": "1.1",
+  "authority": "references/OWNER_POLICY.md",
+  "homeAndOpportunityRenewal": {
+    "normalCompletion": true,
+    "involuntaryEliminationAfterParticipation": true,
+    "zeroParticipationElimination": false,
+    "voluntaryWithdrawalBeforeStart": false,
+    "voluntaryWithdrawalAfterStart": false,
+    "failedRegistration": false,
+    "reload": false,
+    "purchase": false,
+    "pageOpen": false
+  },
+  "requiresAuthoritativeTerminalArchive": true,
+  "withdrawal": {
+    "committedLiabilitiesDue": true,
+    "earnedRewardsPreserved": true,
+    "completionBonus": false,
+    "entryRefund": false,
+    "inventedFine": false,
+    "duplicateCharges": false
+  },
+  "recruiters": {
+    "legacyPoints": 6,
+    "activeSlot": false,
+    "extraPremiumPerFullHomeRenewal": 1,
+    "regionalBonus": 0,
+    "normalAcquisitionCost": true
+  },
+  "generatedProgression": {
+    "normalRewards": true,
+    "generalVictoryAndTierCredit": true,
+    "signatureTrophy": false,
+    "signatureSpecificUnlock": false
+  },
+  "rivals": {
+    "populationMin": 3,
+    "populationMax": 5,
+    "defaultPersistentEntrants": 2,
+    "reserveLocalSlots": 1,
+    "adaptiveScaling": false,
+    "betweenChampionshipCondition": "fresh-native-baseline",
+    "withinChampionshipCarryover": true,
+    "offscreenSimulation": false
+  },
+  "scheduleResolution": {
+    "patterns": {
+      "dustroad": [
+        {
+          "kind": "Oval",
+          "format": "Pure",
+          "grid": "random",
+          "laps": 1
+        },
+        {
+          "kind": "Oval",
+          "format": "Combat",
+          "grid": "standings",
+          "laps": 1
+        }
+      ],
+      "ironwheel": [
+        {
+          "kind": "Oval",
+          "format": "Pure",
+          "grid": "random",
+          "laps": 1
+        },
+        {
+          "kind": "Oval",
+          "format": "Combat",
+          "grid": "standings",
+          "laps": 1
+        },
+        {
+          "kind": "Oval",
+          "format": "Pure",
+          "grid": "standings",
+          "laps": 1
+        }
+      ],
+      "bannerfall": [
+        {
+          "kind": "Circuit",
+          "format": "Pure",
+          "grid": "random",
+          "laps": 1
+        },
+        {
+          "kind": "Circuit",
+          "format": "Combat",
+          "grid": "standings",
+          "laps": 1
+        },
+        {
+          "kind": "Circuit",
+          "format": "Pure",
+          "grid": "standings",
+          "laps": 1
+        },
+        {
+          "kind": "Circuit",
+          "format": "Combat",
+          "grid": "standings",
+          "laps": 1
+        }
+      ],
+      "crownfire": [
+        {
+          "kind": "Rally",
+          "format": "Pure",
+          "grid": "random",
+          "laps": 1
+        },
+        {
+          "kind": "Rally",
+          "format": "Combat",
+          "grid": "standings",
+          "laps": 1
+        },
+        {
+          "kind": "Rally",
+          "format": "Pure",
+          "grid": "standings",
+          "laps": 1
+        },
+        {
+          "kind": "Rally",
+          "format": "Combat",
+          "grid": "standings",
+          "laps": 1
+        },
+        {
+          "kind": "Rally",
+          "format": "Pure",
+          "grid": "standings",
+          "laps": 1
+        }
+      ],
+      "thunder-crown": [
+        {
+          "kind": "Oval",
+          "format": "Pure",
+          "grid": "random",
+          "laps": 1
+        },
+        {
+          "kind": "Circuit",
+          "format": "Combat",
+          "grid": "standings",
+          "laps": 1
+        },
+        {
+          "kind": "Rally",
+          "format": "Pure",
+          "grid": "standings",
+          "laps": 1
+        },
+        {
+          "kind": "Circuit",
+          "format": "Combat",
+          "grid": "standings",
+          "laps": 1
+        },
+        {
+          "kind": "Oval",
+          "format": "Pure",
+          "grid": "standings",
+          "laps": 1
+        },
+        {
+          "kind": "Rally",
+          "format": "Combat",
+          "grid": "standings",
+          "laps": 1
+        },
+        {
+          "kind": "Circuit",
+          "format": "Pure",
+          "grid": "standings",
+          "laps": 1
+        }
+      ],
+      "iron-gauntlet": [
+        {
+          "kind": "Oval",
+          "format": "Pure",
+          "grid": "random",
+          "laps": 2
+        },
+        {
+          "kind": "Circuit",
+          "format": "Combat",
+          "grid": "standings",
+          "laps": 2
+        },
+        {
+          "kind": "Rally",
+          "format": "Pure",
+          "grid": "standings",
+          "laps": 2
+        },
+        {
+          "kind": "Rally",
+          "format": "Combat",
+          "grid": "standings",
+          "laps": 2
+        }
+      ]
+    },
+    "match": [
+      "kind",
+      "format",
+      "grid",
+      "laps"
+    ],
+    "surfacePrecedence": [
+      "native-base",
+      "all",
+      "straights-or-corners",
+      "segment"
+    ],
+    "weatherConvertsTerrain": false,
+    "localNationSelection": "80% weighted among host nations, 20% weighted among other nations; if all eight hosts, use all eight",
+    "persistentBirth": "sample once by context, freeze members; two entrants, reserve remaining slots for locals",
+    "internationalCoverage": "at least two host nations; reject bounded failed schedule without renewal"
+  }
+}

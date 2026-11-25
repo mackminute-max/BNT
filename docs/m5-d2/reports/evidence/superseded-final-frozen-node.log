@@ -1,0 +1,631 @@
+
+> blood-and-thunder@0.6.0 test
+> node --test tests/*.test.js
+
+✔ A01 Pure lateral debris impact blocks visible and hidden hazards deterministically (97.148759ms)
+✔ A01 Pure lateral animal impact blocks visible and hidden hazards deterministically (25.549266ms)
+✔ A01 Pure lateral spectator impact blocks visible and hidden hazards deterministically (35.195499ms)
+✔ A01 Combat lateral debris impact blocks visible and hidden hazards deterministically (45.998697ms)
+✔ A01 Combat lateral animal impact blocks visible and hidden hazards deterministically (25.81632ms)
+✔ A01 Combat lateral spectator impact blocks visible and hidden hazards deterministically (56.785391ms)
+✔ A01 expiry allows lateral entry and unchanged stationary contact does not repeat damage (3.484595ms)
+✔ A02 seed ranges reject unsafe endpoints and cumulative overflow before expansion (1.116194ms)
+✔ A03 executed yield overrides Push compliance in diagnostics, events and totals (26.179374ms)
+✔ A03 executed disengage overrides Push compliance in diagnostics, events and totals (19.608542ms)
+✔ A03 effective Conserve obeys its sign; an execution failure remains Prevented (5.528046ms)
+✔ A05 all twenty named scenarios hold normalized reproducible snapshots and explicit invariants (160.08299ms)
+✔ A05 reusable Sprint, retirement, blockage and clearing scenarios exercise documented outcomes (1534.296464ms)
+✔ A05 reusable replacement, pending-retirement and paused-override replay scenarios (309.913045ms)
+✔ T16 pre-race sign activates at starting signal, not while queued (17.507427ms)
+✔ T16 running sign activates only on next forward line crossing (36.651354ms)
+✔ T17/T18 replacement consumes another use, cancellation has no refund, lowering free (1.819581ms)
+✔ E09 invalid Pure sign rejected without charge; Combat sign valid but no nearby rival is inapplicable (4.516676ms)
+✔ T07 Sprint raises individual fatigue; T08 Conserve conditionally recovers (0.825447ms)
+✔ Elapsed partition does not double-count fatigue (0.912825ms)
+✔ T09 five weather presets change grip, visibility, fatigue and rolling outcomes (2.304756ms)
+✔ Perception excludes hidden hazards and competitors and never leaks into utility (8.751786ms)
+✔ Different personalities choose distinguishable paces; sign changes preference without stat buff (8.430672ms)
+✔ Execution errors prevent selected actions and produce compliance diagnostics (1.426622ms)
+✔ Autonomous seeded race and paused sign commands reproduce exact events (330.503294ms)
+✔ Autonomous entrant permutation invariance and bounded lane switching (2944.279236ms)
+✔ Surface grip, rolling resistance and roughness affect physics and exertion (3.960986ms)
+✔ Pending activation replaces active atomically at crossing and retirement prevents activation (4.173931ms)
+✔ Weather races remain deterministic and complete in every preset (909.984899ms)
+✔ Judgment and stress errors are independent diagnostics with bounded inputs (0.680342ms)
+✔ All sign controls and replacements replay in original boundary order (87.682916ms)
+✔ Combat refinement: weapon is preferred at equal speed without bilateral ram benefit (64.900818ms)
+✔ Combat refinement: protected slower RU autonomously rams a faster adjacent rival (38.422094ms)
+✔ Combat refinement: inadequate protection makes the same ram opportunity unacceptable (17.861388ms)
+✔ Combat refinement: ordinary low-payoff offense yields to racing with clear track (5.21879ms)
+✔ Combat refinement: compromised own components change the favorable ram decision to self-preservation (10.324834ms)
+✔ Combat refinement: personality changes tactical preferences without changing equipment or skill (7.27573ms)
+✔ Combat refinement: hidden rival skills, armor, mass, condition and reactions do not leak into scores (11.669515ms)
+✔ Combat refinement: cost of risking a local lead and final-lap position is observable and increases (5.293049ms)
+✔ Combat refinement: every Pure scenario excludes deliberate offensive candidates and events (88.446483ms)
+✔ Combat refinement: queued Engage affects utility, retains accounting and reports actual ram resolution (55.460708ms)
+✔ Combat refinement: all six signs preserve input legality, accounting and deterministic replay (258.602961ms)
+✔ Combat refinement: validation rejects invalid terms, zero normalizers remain finite and config round-trips (28.869619ms)
+✔ Combat refinement: paused utility override is validated, logged and reconstructs exactly (14.289786ms)
+✔ Combat refinement: strong perception constraints and stable target ties preserve permutation and replay (426.164587ms)
+✔ Combat refinement: chance model respects contested tie rule, bounded triangular noise and no simulation RNG (1.581551ms)
+✔ Combat refinement: extreme legal closing speed cannot hide catastrophic recoil behind capped benefit terms (4.37732ms)
+✔ T10 Pure rejects offensive intents, while incidental contact still causes damage (18.8473ms)
+✔ T11 contest margin produces component damage and cooldown prevents repeated attacks (6.23731ms)
+✔ T11 reaction budget is shared across simultaneous attackers and deterministic under permutation (9.041162ms)
+✔ Same-time lethal attack invalidates the later initiative action without spending another reaction (2.521205ms)
+✔ Lateral ram has separate physical energy, recoil and unique contact provenance (1.4726ms)
+✔ T12 control progression and disabled components create persistent stationary one-tile wreck (7.446191ms)
+✔ T13/T14/E05 stationary contact does not repeat damage; renewed closing motion causes new impact (4.61509ms)
+✔ E06 high-speed wreck chain creates additional permanent wrecks without phasing (5.045965ms)
+✔ T15 four-lane wreck barrier terminates explicitly with DNF reasons, no invented finish (99.005471ms)
+✔ E07 all entrants retired yields valid classification and race end (8.486915ms)
+✔ E08 retirement cancels pending sign with no refund and no subsequent activation (1.749579ms)
+✔ Damage exposure is directional, targets individual beasts/driver/chariot and impairs performance (264.455021ms)
+✔ E13 incidents cannot be placed on occupied or exit tiles; expiry is chronological (5.559942ms)
+✔ Incident obstruction is checked by swept paths and impacts cause damage (1.244975ms)
+✔ Incident generation is optional, weighted and repeatable; schedule/config validation rejects bad inputs (2395.465501ms)
+✔ E16 impact-chain overflow and moved wreck are explicit integrity errors (1.888933ms)
+✔ Finished classification remains locked after a disabling clearing collision (0.496712ms)
+✔ Pure and Combat full consequences reproduce across entrant order and captured commands (10437.683709ms)
+✔ E11 lethal contact before finish prevents qualification; post-finish impact preserves official time (21.198936ms)
+✔ Out-of-control braking and recovery are scheduled within the physical clock (1.16747ms)
+✔ Engage Rivals influences real legal Combat choices without physical stat buffs (11.484792ms)
+✔ Structured event history does not change when live diagnostics change (1.810858ms)
+✔ Reaction budget is retained across subevent calls and refreshed only at next tick (2.811612ms)
+✔ Active combat defense changes contest strength; out-of-control defender cannot react (1.429497ms)
+✔ Overspeed corner can crash into a permanent wreck at its final resolved tile (0.753931ms)
+✔ E03 simultaneous physical contact groups use shared pre-effect inputs (3.009905ms)
+✔ Vacating lateral reservation rejects the trailing intent without fabricated impact damage (0.715545ms)
+✔ Stable RU IDs cannot collide with object prototype names in the wreck registry (1.401435ms)
+✔ B01 Pure: successful lane movement preserves unrelated Push compliance (18.553077ms)
+✔ B01 Pure: open-track compliance requires a resolved successful maneuver (6.064976ms)
+✔ B01 Pure: failed lane movement preserves unrelated Push compliance (35.050045ms)
+✔ B01 Pure: open-track compliance requires a resolved blocked maneuver (5.821047ms)
+✔ B01 Pure: contextual yield separates intended, effective and physical pace (10.035707ms)
+✔ B01 Pure: forward blockage prevents Push while retaining the physical constraint (17.645911ms)
+✔ B01 Combat: successful lane movement preserves unrelated Push compliance (8.607283ms)
+✔ B01 Combat: open-track compliance requires a resolved successful maneuver (5.125502ms)
+✔ B01 Combat: failed lane movement preserves unrelated Push compliance (6.832537ms)
+✔ B01 Combat: open-track compliance requires a resolved blocked maneuver (8.059936ms)
+✔ B01 Combat: contextual yield separates intended, effective and physical pace (35.86807ms)
+✔ B01 Combat: forward blockage prevents Push while retaining the physical constraint (9.549ms)
+✔ B01 invalidated combat cannot invalidate a successful pace sign; external commands cannot rewrite an older decision (15.575279ms)
+✔ B01 technical and batch totals agree with linked execution outcomes (5.767508ms)
+✔ B02 Pure: explicit neutral surfaces preserve events, RNG and state (7575.181581ms)
+✔ B02 Pure: increased/decreased surface weights change incident placement deterministically (697.218675ms)
+✔ B02 Pure: disabled incidents and zero frequency remain disabled (15.377498ms)
+✔ B02 Pure: zero surface excludes scheduled placement, and nonneutral configuration round-trips/replays (28.402599ms)
+✔ B02 Combat: explicit neutral surfaces preserve events, RNG and state (7388.708285ms)
+✔ B02 Combat: increased/decreased surface weights change incident placement deterministically (284.675159ms)
+✔ B02 Combat: disabled incidents and zero frequency remain disabled (5.731024ms)
+✔ B02 Combat: zero surface excludes scheduled placement, and nonneutral configuration round-trips/replays (6.509351ms)
+✔ B02 surface modifier rejects invalid numbers, unknown fields and segments without changing a valid setup (15.484476ms)
+✔ B03 Pure: finish snapshot survives live override, clearance, export and replay (561.588697ms)
+✔ B04 Pure: named standing-start photo fixture produces a real deterministic official tie (76.013764ms)
+✔ B03 Combat: finish snapshot survives live override, clearance, export and replay (770.720541ms)
+✔ B04 Combat: named standing-start photo fixture produces a real deterministic official tie (233.982886ms)
+✔ B01 simultaneous AI lane claims have linked physical outcomes independent of entrant order (27.341637ms)
+✔ B01 control loss records constrained pace without forcing sign obedience (19.780125ms)
+✔ B03 batch statistics use the same finish measurements as reconstructed single races (303.972173ms)
+✔ Courses: four irregular presets validate; closed geometry has continuous position and heading (4.321047ms)
+✔ Courses: lane arc distance and rendering derivatives agree; right/left inner lanes reverse (1.895993ms)
+✔ Courses: malformed segments, connections, topology, surfaces, checkpoints and closure reject (3.080148ms)
+✔ Courses: eight aligned stationary grid entrants and mass start operate for every preset (45.65515ms)
+✔ Courses: open keys, perception, hazard and combat range never wrap finish back to start (2.196846ms)
+✔ Courses: Rally terminal finish locks full precision, no laps, rear row physical disadvantage and safe exit (28.462428ms)
+✔ Courses: Rally pre-signal sign activates at start and one cursor crosses each checkpoint once (334.469593ms)
+✔ Courses: in-race Rally signs wait for checkpoints, replacements and lowering retain accounting (182.258288ms)
+✔ Courses: a Rally sign queued after last checkpoint remains pending and never activates at terminal (278.576612ms)
+✔ Courses: fractional checkpoints and several tile boundaries resolve chronologically in one tick (3.056134ms)
+✔ Courses: Circuit line activation preserves initial entry and full completed laps (1959.109468ms)
+✔ Courses: terrain applies existing movement/fatigue model and survives configuration roundtrip (342.196428ms)
+✔ Courses: wreck occupancy across a segment boundary blocks movement without phasing (1.857587ms)
+✔ Courses: deterministic full races, storage permutation and selected-track replay (35073.251051ms)
+✔ Courses: multiple distinct segments, checkpoints, finish and terminal exit can resolve in one tick (16.665336ms)
+✔ Courses: precise simultaneous Rally finish ties use unchanged tolerance and a common terminal line (8.536679ms)
+✔ Courses: combat actions and bilateral damage work on every new geometry; Pure remains prohibited (66.707267ms)
+✔ Courses: terminal wreck obstruction preserves finished classification and explicit blocked-clearance status (5.968664ms)
+✔ Courses: static course preview is visible, hidden hazards remain hidden, and left/right lane utility follows geometry (9.236029ms)
+✔ Courses: existing latest oval configurations migrate explicitly; old replays remain version specific (9.19612ms)
+✔ Courses: Rally ignores closed-lap configuration in movement, finish, and combat racing priorities (1771.638686ms)
+✔ Courses: malformed course scalar cannot silently select the oval adapter (1.966527ms)
+✔ Courses: checkpoint-triggered Push diagnostics and technical compliance describe the applied pace (17.698598ms)
+✔ Courses: lethal contact before terminal prevents a finish, post-terminal collision keeps its locked time (3.048001ms)
+✔ Courses: legal adjacent lane change at a segment boundary retains continuous speed and progress (1.106711ms)
+✔ DR frozen allocation is 600 Combat and 120 exact matched Pure controls (210.990867ms)
+✔ DR all cohort configurations validate and start above disablement limits without injected incidents (437.324992ms)
+✔ DR ram legality is contained in attack legality throughout tested geometry and formats (73.152988ms)
+✔ DR observation preserves full event/RNG/state checksums and actual replay for each cohort (41694.005892ms)
+✔ DR defense threshold contrast excludes passive defense and records actual damage only (0.775813ms)
+✔ DR initially worn components are distinct from new threshold crossings (0.259292ms)
+✔ DR grid rotations and composite surface/traffic strata are balanced by cohort (180.040183ms)
+✔ DR historical condition derivation respects event order at an identical finish timestamp (4.619326ms)
+✔ E5-A view uses authoritative treasury, roster, capacity and native legality without mutation (681.3833ms)
+✔ E5-A new and unavailable save views have explicit restrictions (0.317007ms)
+✔ E5-A assembly persists and reloads through CareerStore, duplicate retry is idempotent (1028.377056ms)
+✔ E5-A invalid duplicate/foreign/unavailable and injury choices do not publish (1111.329346ms)
+✔ E5-A paid action uses existing quote/effect/delta and capacity validation (866.745666ms)
+✔ E5-A failed storage write has no published financial or roster changes (664.92958ms)
+✔ E5-A active championship permits inspection but domain rejects management; E5-B remains unavailable (9947.123411ms)
+✔ E5-A stale quotes and insufficient funds cannot change a career (443.602816ms)
+✔ A1 exact fixed market coverage, unique provisional identities and honest adjusted counts (28.706258ms)
+✔ A1 every profile targets a real acquirable template; no attribute, price or schema mutation (11.485743ms)
+✔ A1 actual market acquisition survives export/reload and enters a legal owned Racing Unit (1703.247369ms)
+✔ A1 preserves approved package and pure inspection: traditional (360.829589ms)
+✔ A1 preserves approved package and pure inspection: beastmaster (374.373185ms)
+✔ A1 preserves approved package and pure inspection: mechanist (405.430086ms)
+✔ A1 preserves approved package and pure inspection: veteran (414.349749ms)
+✔ A1 preserves approved package and pure inspection: scrappy (599.051806ms)
+✔ E5-B full shared-place purses and race victory terms are not split; no champion means no title awards (297.450428ms)
+✔ E5-B DNF and DQ never fabricate finish, podium or race-win rewards (5.452915ms)
+✔ E5-B independent reward definitions are versioned placeholders without mechanical effects (6.109623ms)
+✔ E5-B pure Run and Legacy offer generation is deterministic, distinct and does not consume global randomness (19.357002ms)
+✔ E5-B altered, duplicate-choice and unsupported reward offers reject (28.39478ms)
+✔ Expanded Stables charges existing400 Gold and immediately increases capacity4→6, displays it and survives reload (1144.774597ms)
+✔ approved Run eligibility excludes DQ/DNS/withdrawal/elimination/final; continuing DNF qualifies (32.819489ms)
+✔ approved Legacy eligibility survives forced elimination and DQ but excludes voluntary/no-start/incomplete (0.282586ms)
+✔ schema-6 enable is explicit, lossless, reloadable and rejects unbacked reward ownership (10869.247671ms)
+✔ schema-6 failed write rolls back, stale/unsupported commands reject, old saves remain protected (14053.230829ms)
+✔ schema-6 full export/import preserves all fields and accepts subsequent versioned operations (22595.163201ms)
+✔ E5-C per-tick projections come from actual native execution and preserve exact native digest (20869.086087ms)
+✔ E5-C native queue and buffered boundary delay match accepted P2.2 native operations exactly (38234.932821ms)
+✔ E5-C forged identities, stale revisions and invalid visible references reject without writes (15510.953488ms)
+✔ E5-C viewer restoration opens latest committed head rather than restarting, with queued Sign retained (37054.954839ms)
+✔ E5-C Worker projection preparation is not durable acknowledgment and reset loses no committed input (14907.479139ms)
+✔ E5-C normal continuation projection preserves reward gates, technical blocks and settlement distinction (6.259709ms)
+✔ E5-C P2.2 transport never reports an accepted Sign before the durable response (15286.118478ms)
+✔ E5-C P2.2 transport rejects uncommitted frames rather than presenting them (8526.761865ms)
+✔ E5-C interrupted birth can resume only its existing frozen setup; established missing/corrupt races remain recovery cases (0.221046ms)
+✔ E5-C typed no-starter terminal status needs no native session; a missing real session still blocks (21191.238482ms)
+✔ E5-C coaching editor retains continuous native axes and existing weights without mutation (0.423313ms)
+✔ E5-C.1 continuation is available throughout authoritative active/reward/settlement/recovery phases (1.120501ms)
+✔ E5-C.1 fresh and archived careers hide/disable continuation; unresolved durable recovery remains reachable (0.706802ms)
+✔ M1 slot IDs isolate databases without changing legacy database identity (1.372052ms)
+✔ M1 Continue uses only committed timestamps, blocks invalid slots, and never substitutes a different career (35.988848ms)
+✔ M1 isolated empty foundations have distinct IDs, no assets, no Legacy transfer and original envelope schema (18.077578ms)
+✔ M1 worker previews are read-only and use existing protected CareerStore validation (4282.319152ms)
+✔ M2 five real packages, availability and exhaustive preview preserve catalog values (3.996879ms)
+✔ M2 prepares unchanged protected grant once: traditional (94.898479ms)
+✔ M2 prepares unchanged protected grant once: beastmaster (46.515679ms)
+✔ M2 prepares unchanged protected grant once: mechanist (47.524695ms)
+✔ M2 prepares unchanged protected grant once: veteran (32.388393ms)
+✔ M2 prepares unchanged protected grant once: scrappy (61.60987ms)
+✔ M2 invalid names, cosmetic injection, unsupported/extra fields and unauthorized package reject before allocation (0.814871ms)
+✔ M2 legacy runtime1 remains exact; runtime2 strictly validates cosmetic and guide versions (0.340011ms)
+✔ M2 cosmetic updates and downgrade reject while guide-only updates preserve mechanical state (46.606643ms)
+✔ M2 cold worker validates runtime ownership and protected grant provenance, including cached revisions (64.337079ms)
+✔ M2 complete backup retains cosmetics and guide, legacy backup shape stays version1 (38.635889ms)
+✔ M2 cosmetic-only validated backups cannot bind foreign owners or invent initialization proof (35.444476ms)
+✔ M3-A reviewed compiler emits exactly 12 whitelisted files / 89 text records with live native parity (167.630587ms)
+✔ M3-A parser rejects duplicate/unsafe fields, malformed JSON, non-finite values, excessive size/nesting (1.387474ms)
+✔ M3-A rejects unknown/duplicate/missing source IDs, unsupported schemas, numerical drift and extra authoring fields (14.979712ms)
+✔ M3-A safe text rendering and native fallback do not interpret markup or prototype names (0.574917ms)
+✔ M3-A initialization, settlement/placeholder, recovery and schema guards remain distinct (0.889551ms)
+✔ M3-A exact native track keys cover oval strings, legacy course objects and unknown generated tracks without remapping (0.144202ms)
+✔ M3-A race help preserves all six Sign notes / five weather descriptions and cannot emit native commentary (3.417446ms)
+✔ M3-A passive copy and existing page rendering leave complete career and initialization receipts unchanged (71.954662ms)
+✔ M3-A runtime lookup contains no state/persistence/simulator/reporter imports or draft metadata (4.475694ms)
+✔ P1 in-memory oval has no durable changes and reopens from exact frozen seed (18858.495583ms)
+✔ P1 in-memory circuit has no durable changes and reopens from exact frozen seed (14540.688333ms)
+✔ P1 in-memory rally has no durable changes and reopens from exact frozen seed (16361.692784ms)
+✔ P1 native prepare and official result remain two durable boundaries, repeated official commit idempotent (27561.458871ms)
+✔ P1 unfinished attempt cannot publish and stale source generations reject without modifying save (20676.267034ms)
+✔ P1 corrupt legacy session blocks restart; legitimate old partial session restarts but retained bytes stay unchanged (15861.060338ms)
+✔ P1 queue replacement/cancel preserves opportunity accounting and starting activation; transcript replay remains exact (11150.330177ms)
+✔ P1 acknowledged own radio/metadata-only changes rebase memory; unrelated source changes cannot (11213.789938ms)
+✔ P1 queued Sign activates at exact native oval crossing, not unrelated ticks; full resumed transcript matches (20396.326922ms)
+✔ P1 queued Sign activates at exact native circuit crossing, not unrelated ticks; full resumed transcript matches (32542.6893ms)
+✔ P1 queued Sign activates at exact native rally crossing, not unrelated ticks; full resumed transcript matches (11665.094204ms)
+✔ P1 eight-entrant Long Rally retains complete native outcome within unchanged session bound (77800.976294ms)
+✔ P1 cold attempt creation rejects a mismatched durable record manifest (18024.061211ms)
+✔ BC new creation sidecar after native grant is atomic prepared data, defaults C ON/B opt-in; v1 unchanged (354.85586ms)
+✔ BC prepared creation request supports no injected fields/version and no partial activation (0.326351ms)
+✔ BC career-only round trip preserves presentation and serialized IDs, permits a later preference transaction (160.334099ms)
+✔ BC legacy preference opt-in is explicit, persistent, independent and reversible without financial changes (89.924362ms)
+✔ BC stale sidecar revisions and stale raw writers reject with rollback (148.932807ms)
+✔ BC storage denial retains primary/recovery/pin and does not acknowledge preference saved (137.410992ms)
+✔ BC corrupt/unsupported sidecars and foreign ownership reject before import mutation (200.567034ms)
+✔ BC old unmarked backups and contradictory pins cannot replace an activated cohort (264.878114ms)
+✔ BC older mutable preference backups and equal-revision conflicts reject; empty destination can load valid old backup (218.547018ms)
+✔ BC corrupt primary recovery keeps current immutable pack and latest preference without regrant (123.374777ms)
+✔ BC cold corruption of sidecar blocks automatic writes rather than losing pin (55.304659ms)
+✔ BC separate owners/pins/preferences never mix; foreign confirmed import leaves marked save intact (161.851269ms)
+✔ BC full backup and worker restore retain sidecar; stale complete backup and pin removal reject (269.020258ms)
+✔ BC worker cache binds exact envelope bytes and revision, prepared preference is not durable (90.293774ms)
+✔ BC identity mapping covers 23 unchanged offer IDs and all owned source bindings; unsupported fallback exact (69.735792ms)
+✔ BC native market acquisition retains pack through migrations, native costs/contracts and later purchases (1064.277714ms)
+✔ BC typed native display mapping: RACE_STARTED (5.105843ms)
+✔ BC typed native display mapping: OVERTAKE (0.269497ms)
+✔ BC typed native display mapping: LEAD_CHANGED (0.146996ms)
+✔ BC typed native display mapping: CONTACT (3.108571ms)
+✔ BC typed native display mapping: ATTACK (0.212242ms)
+✔ BC typed native display mapping: DAMAGE (0.227104ms)
+✔ BC typed native display mapping: CONTROL_CHANGED (0.133186ms)
+✔ BC typed native display mapping: RU_RETIRED (0.109962ms)
+✔ BC typed native display mapping: WRECK_CREATED (0.137272ms)
+✔ BC typed native display mapping: WRECK_IMPACT (0.142109ms)
+✔ BC typed native display mapping: INCIDENT (0.120838ms)
+✔ BC typed native display mapping: INCIDENT_CLEARED (0.117393ms)
+✔ BC typed native display mapping: SIGN_ACTIVATED (0.103283ms)
+✔ BC typed native display mapping: COURSE_ENTERED (0.09488ms)
+✔ BC typed native display mapping: SEGMENT_ENTERED (0.112676ms)
+✔ BC typed native display mapping: CHECKPOINT_CROSSED (0.093838ms)
+✔ BC typed native display mapping: FINAL_LAP (0.082802ms)
+✔ BC typed native display mapping: RU_FINISHED (0.099427ms)
+✔ BC typed native display mapping: RU_EXITED (0.083843ms)
+✔ BC typed native display mapping: RACE_STALLED (0.069613ms)
+✔ BC typed native display mapping: RACE_ENDED (0.106066ms)
+✔ BC typed native display mapping: INTEGRITY_ERROR (0.074811ms)
+✔ BC special resistance preserves native gate/throttle and fixed sentence, never creates a line (0.181668ms)
+✔ BC missing typed context, unsupported keys, duplicate IDs, wrong event/time/type fall back exactly (0.136181ms)
+✔ BC event ordering/priority/throttle and official narrative are unaffected by alternate rendering (24.88786ms)
+✔ BC display projection joins the released batch only and never producer-ahead events (0.207846ms)
+✔ BC bounded display cache can restore all native visible wording after opt-out without reporter mutation (0.493938ms)
+✔ BC even direct CareerStore publication cannot discard an existing presentation pin (74.875005ms)
+✔ UI-P1 fresh traditional stages all systems once and directly registers/starts native race (50236.66711ms)
+✔ UI-P1 fresh beastmaster stages all systems once and directly registers/starts native race (52844.179612ms)
+✔ UI-P1 fresh mechanist stages all systems once and directly registers/starts native race (43911.227298ms)
+✔ UI-P1 fresh veteran stages all systems once and directly registers/starts native race (45149.240819ms)
+✔ UI-P1 fresh scrappy stages all systems once and directly registers/starts native race (40740.650708ms)
+✔ UI-P1 old creation-v2 stays schema2 and opening does not upgrade it (19.457607ms)
+✔ UI-P1 driver preview uses native acquisition and exact wage/fee; duplicate and stale commits reject safely (14179.698327ms)
+✔ UI-P1 beast preview uses native acquisition and exact wage/fee; duplicate and stale commits reject safely (17217.667066ms)
+✔ UI-P1 chariot preview uses native acquisition and exact wage/fee; duplicate and stale commits reject safely (18713.327775ms)
+✔ UI-P1 specialist preview uses native acquisition and exact wage/fee; duplicate and stale commits reject safely (23431.527147ms)
+✔ UI-P1 contextual preview is read-only; stale command and unaffordable purchase cannot change career (10636.614948ms)
+✔ M3-UI partial deactivate, reload, exact reactivation use existing protected assignment and preserve pin/radio (3042.496564ms)
+✔ M3-UI chariot and ordered beast slots deactivate and fill without duplicates (3436.687593ms)
+✔ M3-UI explicit third-beast slot selection never auto-replaces; cancellation is pure (2505.678931ms)
+✔ M3-UI stale selection and denied envelope write preserve exact old authority (1600.137026ms)
+✔ M3-UI active championship blocks selection changes without touching frozen team (12003.557909ms)
+✔ M3-UI missing/foreign assets reject and sidecar-v2 import/export preserves every selected ID (2023.331467ms)
+✔ M3-UI driver/chariot replacement uses real purchases and unchanged native eligibility (3348.921679ms)
+✔ M3-UI component eligibility preserves unavailability, Major injury, occupied assets and expired contracts (320.429793ms)
+✔ M3-UI unknown fields, unsupported versions, foreign references and older selection rollback reject (2427.425113ms)
+✔ M3-UI modern identity-pack pin and default radio survive Barn extension, radio change and cold career import (161.745182ms)
+✔ M3-UI selected partial asset removal cannot create dangling ownership; deactivate before sale (1928.305284ms)
+✔ M3-UI foundation-only historical schema5 dashboard has no invented facts and renders without mutation (1216.151421ms)
+✔ Main M3 route and work inventory includes all existing management domains and thirteen native work types (2.043261ms)
+✔ Main M3 next action uses explicit setup/recovery/viability/RU/progression state without mutations (482.65868ms)
+✔ Main M3 active phase continuation delegates to the accepted championshipStep including pending/blocked/end states (8488.326639ms)
+✔ Main M3 native work previews preserve exact quote/error semantics and complete store bytes across every type (355.8037ms)
+✔ Main M3 target filtering retains ordered/native records and exposes training, engineering, service and contract targets (311.520633ms)
+✔ Main M3 active management lock cannot be bypassed by a UI preview or route (8780.191623ms)
+✔ Main M3 insufficient funds and unmet service effects retain native reasons without enabling a commit (356.342053ms)
+✔ Main M3 route memory is bounded by known routes, restores scroll/focus and cannot create arbitrary routes (4.56804ms)
+✔ Main M3 player-facing labels retain frozen championship names and existing rival identity rather than source IDs (8611.887761ms)
+✔ Phase 2 matrix has exactly 500 races per format, unique IDs, valid controls and all weather presets (178.879308ms)
+✔ Phase 2 archetypes and personalities have equal budgets with balanced grid exposure (105.520356ms)
+✔ Phase 2 schedule is state/tick deterministic and respects entry delays (9.606033ms)
+✔ Phase 2 passive instrumentation preserves authoritative checksum/events/RNG and exact replay (649.063011ms)
+✔ Phase 2 bounded runs never fabricate a finish or elapsed metric (34.758641ms)
+✔ Phase 2 runner supports cancellation and preserves its actual completed count (6867.454859ms)
+✔ Phase 2 descriptive statistics do not coerce missing nonfinish times to zero (1.865007ms)
+✔ Phase 2 paired statistics match blocks and preserve complete-pair denominators (22.992252ms)
+✔ Phase 2 confidence intervals resample independent seed clusters deterministically (2.329912ms)
+✔ Phase 2 supplemental panel changes only player context and preserves matched sign controls (37.936769ms)
+✔ T24 configuration validates version, ranges, integer fields and unknown keys (1.522824ms)
+✔ T24 scenario rejects duplicate IDs, overlap, invalid components and initial state (5.708569ms)
+✔ Seed draws are keyed, repeatable, bounded and independent of call order (0.316727ms)
+✔ T06 mismatch bottleneck produces 70.5 speed, coordination reduces power (0.325009ms)
+✔ RU power sums; configurable team size; individual impairment applied before aggregation (0.310648ms)
+✔ All component attributes have a testable derived effect (3.815711ms)
+✔ E20 lane geometry has unequal turn distance and radius, equal straights (0.229518ms)
+✔ Constant acceleration travel and fractional arrival solve analytically (0.275095ms)
+✔ Standing grid is aligned on straight, stationary, row separated without distance credit (1.150334ms)
+✔ T01 full eight-RU three-lap race repeats exact events and classification (718.488945ms)
+✔ T02 full race is independent of entrant storage order (795.673579ms)
+✔ T03 same destination lateral claim has one deterministic winner (1.77829ms)
+✔ T04 lane swap checks swept occupancy and rejects both without overlap (0.652922ms)
+✔ Adjacent lane change preserves speed with no arbitrary penalty; nonadjacent rejected (0.505795ms)
+✔ E01 high-speed path checks every swept tile; E04 contact stops remaining subinterval (0.80126ms)
+✔ E02 no stored blocked travel; E05 continuous stationary contact not duplicated (0.673753ms)
+✔ E03 simultaneous forward convoy moves from snapshot independent of storage order (5.21954ms)
+✔ T05 corner overspeed evaluates risk without hard speed cap (0.688344ms)
+✔ Braking changes continuous velocity, without negative speed (0.796032ms)
+✔ T19 front/rear first entry completes zero laps and preserves rear disadvantage (117.695032ms)
+✔ T20 fractional finish times retained, official tie tolerance uses first group time (78.366538ms)
+✔ Basic finish clearing locks time, exits only after legal physical travel (89.724413ms)
+✔ E16 invalid numeric state and subevent overflow stop with diagnostic (5.70847ms)
+✔ Time limit reports unfinished classification rather than fabricated finishes (7.05186ms)
+✔ DNF progress ordering and administrative stable-ID tie; DNS separate (1.363789ms)
+✔ Boundary command inputs captured and reproduce foundation events (828.563052ms)
+✔ E20 short and long configured segments finish with correct common-line counts (89.20945ms)
+✔ Batch invariants: seeds 1..8 complete without overlap or nonfinite state (914.803669ms)
+✔ T20 actual simultaneous finish crossings yield equal unrounded timestamps and shared place (3.180386ms)
+✔ E11 obstruction before finish prevents crossing; contact beyond finish preserves official time (2.350663ms)
+✔ Repeated multi-RU lateral conflicts and permutations do not produce order bias (53.772793ms)
+✔ Configurable balance overrides validate and change derivation (0.504884ms)
+✔ Headless engine has no DOM, storage, wall-clock or global randomness dependencies (56.049907ms)
+✔ Captured records are immutable snapshots and digest includes hidden resolver state (26.723761ms)
+✔ M2-A: clean migration preserves full M1 data and grants no Gold/assets/progress (8.849347ms)
+✔ M2-A: edited migration retains original receipt identities, exact payloads and developer provenance (8.972989ms)
+✔ M2-A: valid M1 pending checkpoint is retained byte-for-byte as inert starting data (229.355839ms)
+✔ M2-A: incompatible or damaged M1 input fails migration rather than discarding its checkpoint (8.197487ms)
+✔ M2-A: atomic explicit store migration retains exact old sealed checkpoint and both schema versions load (35.230805ms)
+✔ M2-A: migration confirmation, ownership and both revisions are mandatory; no writes on rejection (0.807229ms)
+✔ M2-A: migration write failure leaves original state/bytes intact and manual retry requires checkpoint acknowledgment (27.122549ms)
+✔ M2-A: schema2 save exact roundtrip into fresh store preserves fields and accepts a versioned transaction (50.922803ms)
+✔ M2-A: new commands require commandVersion, independent effect identity and both expected revisions (9.283036ms)
+✔ M2-A: protected identities/effects survive older import and lost verbose result returns nonmutating ALREADY_COMMITTED (23.907031ms)
+✔ M2-A: M1 provenance without a verbose receipt migrates to a protected identity without inventing balance/result (10.734765ms)
+✔ M2-A: strict external schema1 downgrade is rejected; explicit import upgrade retains P0 and provenance (46.00615ms)
+✔ M2-A: corrupt schema2 primary offers old schema1 recovery and re-upgrades explicitly without grants or duplicate effects (16.402495ms)
+✔ M2-A: protected-registry corruption and missing identities block load/import without overwriting valid state (23.799844ms)
+✔ M2-A: returned receipts are immutable isolated views; altered receipt/index facts fail validation (8.523217ms)
+✔ M2-A: compaction preparation is pure and cannot discard protected identities or known effect facts (0.802272ms)
+✔ M2-A: initialization, asset grants, reward/cycle/Legacy actions remain disabled until their stage is authorized (0.799889ms)
+✔ M2-A: ownership reference graph validates typed owned entities and reciprocal equipment/property/employment links (0.704628ms)
+✔ M2-A: exclusive assignment identity and duplicate/unknown references are rejected without domain mutation (0.289767ms)
+✔ M2-A: stale maintenance token after same-career import rejects a cached new command even if gameplay revision matches (1.834222ms)
+✔ M2-A: pending records stay inert across future engine versions rather than being discarded or executed (50.495994ms)
+✔ M2-A: migration and versioned history never change independent authoritative race state or RNG (21.364726ms)
+✔ M2-A: large valid M1 pending payload survives migration above the legacy file limit without dropping data (2182.282274ms)
+✔ M2-A: recovery of a clean migration stays schema2 even with zero protected commands (8.107655ms)
+✔ M2-A: sealed maintenance clock survives corrupt primary and prevents revision reuse across old checkpoint recovery (19.022516ms)
+✔ M2-A: malformed/falsy protected registries and forged clock cannot bypass typed envelope validation (2.413276ms)
+✔ M2-A: known M1 identities belonging to previously replaced profiles survive later migration and profile restoration (17.396049ms)
+✔ M2-A: large mixed-schema envelope can recover a valid backup even when primary schema metadata is corrupt (2470.24728ms)
+✔ Draft3 traditional: exact grants, native values, capacities and one assigned RU (27.431204ms)
+✔ Draft3 beastmaster: exact grants, native values, capacities and one assigned RU (30.705858ms)
+✔ Draft3 mechanist: exact grants, native values, capacities and one assigned RU (12.876941ms)
+✔ Draft3 veteran: exact grants, native values, capacities and one assigned RU (10.50688ms)
+✔ Draft3 scrappy: exact grants, native values, capacities and one assigned RU (135.570082ms)
+✔ Draft3: catalog literal values independently match approved tables (0.634475ms)
+✔ Draft3: no implicit initialization on create, load, migration, preview or import (40.704389ms)
+✔ Draft3: confirmations, identity, catalog, deltas, dual revisions and effect IDs fail without mutation (2.216786ms)
+✔ Draft3: active-career edits, transactions, zeroed prior balance and pending checkpoint block grant (14.087715ms)
+✔ Draft3: other-career Owner Profile provenance does not contaminate pristine active career (1.726263ms)
+✔ Draft3: initialized export/import preserves every field and accepts another valid transaction (151.01061ms)
+✔ Draft3: old-save restoration retains initialization tombstone; same and alternate commands cannot grant (52.898925ms)
+✔ Draft3: corrupt primary recovers pre-initialization checkpoint without second grant (51.281282ms)
+✔ Draft3: mixed schema-1 recovery after initialization retains original history and prevents grant (79.045012ms)
+✔ Draft3: failed atomic publish preserves original bytes, state, protected history and all assets (76.05677ms)
+✔ M2-B: failed import and corrupted receipt or asset never replace a loaded career (126.508607ms)
+✔ M2-B: graph rejects bad references, reciprocity, wrong types and exclusive overlaps (2.933291ms)
+✔ M2-B: typed validators reject invalid ranges, enums, capacity and unapproved effects (29.997464ms)
+✔ M2-B: prospective assembly rejects missing/foreign/duplicate/unavailable and exclusive conflicts (2.065173ms)
+✔ M2-B: preview is pure, deterministic, immutable and keeps management fatigue distinct (9.923039ms)
+✔ M2-B: reassembly with reserves and disassembly are atomic idempotent and roundtrip (236.928412ms)
+✔ M2-B: stale/reused assignment effects and invalid selection preserve loaded bytes (98.426325ms)
+✔ M2-B: public stored state and receipt results are isolated immutable snapshots (86.999822ms)
+✔ Draft3: no later-stage actions or hidden grants are enabled (21.949917ms)
+✔ Draft3: deterministic racing, replay and RNG remain independent of stable operations (889.142986ms)
+✔ M2-B: restored initialized save permits legitimate reassembly but retains exact old command identity (270.48201ms)
+✔ M2-B: a failed initialization does not leak a protected fact through create or reload (61.380578ms)
+✔ M2-B: retained other-career edits in the real store allow a different pristine career (78.317987ms)
+✔ M2-C first gate: portable SHA-256 matches independent Node vectors and Unicode (1.763709ms)
+✔ M2-C first gate: old validators and exact old entry bytes remain unchanged and strict (11.93987ms)
+✔ M2-C first gate: maintenance acknowledgment has no gameplay receipt or revision effect (1.256832ms)
+✔ M2-C first gate: exact retry returns same acknowledgment; protected tombstone never invents result (6.538082ms)
+✔ M2-C first gate: shared 2000 cap includes maintenance; no protected facts discarded (1113.997937ms)
+✔ M2-C first gate: outer history v1 preserves marker across old checkpoint import and reload (32.149424ms)
+✔ M2-C first gate: retained maintenance survives corrupt-primary recovery and explicit mixed checkpoint handling (2.979139ms)
+✔ M2-C first gate: atomic write failure keeps previous bytes/state/protection and manual export remains valid (8.050411ms)
+✔ M2-C first gate: pure actual schema-3 target keeps every gameplay receipt, +1 maintenance and one protected fact (42.156497ms)
+✔ M2-C first gate: fingerprint, both revisions and all versions checked before publishing schema-3 target (48.697704ms)
+✔ M2-C first gate: real schema-3 candidate atomic publish, import/recovery and quota rollback preserve old source (384.219667ms)
+✔ M2-C exact price fixtures: native H, neutral specialist/equipment and positive decimal ties (6.486507ms)
+✔ M2-C corrected R2.1 starter fixture: mean 50 is Standard, basis 325 and current-H resale 138 (290.206333ms)
+✔ M2-C valuation-health-v1 keeps integrity/condition/wear and fatigue separate (120.301453ms)
+✔ M2-C fractional training and engineering cost bands use each pre-increment native rating (0.412117ms)
+✔ M2-C fixed market counts, templates, roles and neutral item records across deterministic careers (7.780663ms)
+✔ M2-C generator rejection sampling handles inclusive edges without modulo bias (0.221436ms)
+✔ M2-C synthetic service fixtures: fixed partial recovery, injury treatment, repair and native-field separation (270.347236ms)
+✔ M2-C synthetic funded XP reducer: fractional progression, exact discount and no saved XP grant (258.693792ms)
+✔ M2-C synthetic discounted service fixtures require active qualified specialist and purchased facility (1167.699462ms)
+✔ M2-C independent golden market vector career (0.686671ms)
+✔ M2-C independent golden market vector A (0.312771ms)
+✔ M2-C independent golden market vector career_42 (0.371187ms)
+✔ M2-C independent golden market vector aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (1.575501ms)
+✔ M2-C exact decimal helpers handle high precision and subnormal finite native inputs (718.992012ms)
+✔ M2-C synthetic contract fixtures: short/standard/long wages, signing terms and termination fees (223.344666ms)
+✔ M2-C synthetic Beast Handler discount: care rounds 25.5 to 26; treatment plus ward is 60 (789.541946ms)
+✔ M2-C synthetic Training Grounds applies one final XP ceiling after summing increments (467.337014ms)
+
+Interrupted while running:
+
+⚠ tests/m2-c-transactions.test.js (tests/m2-c-transactions.test.js:1:1)
+⚠ tests/m2-d-maintenance.test.js (tests/m2-d-maintenance.test.js:1:1)
+⚠ tests/m2-d-racing.test.js (tests/m2-d-racing.test.js:1:1)
+⚠ tests/m2-d-transactions.test.js (tests/m2-d-transactions.test.js:1:1)
+⚠ tests/m2-e-e2-e3.test.js (tests/m2-e-e2-e3.test.js:1:1)
+⚠ tests/m2-e-e3-completion.test.js (tests/m2-e-e3-completion.test.js:1:1)
+✖ tests/m2-c-transactions.test.js (163994.106452ms)
+✔ M2-D first gate: pure traditional migration preserves receipts/native assets and dual clocks (366.285862ms)
+✔ M2-D first gate: pure beastmaster migration preserves receipts/native assets and dual clocks (240.735565ms)
+✔ M2-D first gate: pure mechanist migration preserves receipts/native assets and dual clocks (222.175681ms)
+✔ M2-D first gate: pure veteran migration preserves receipts/native assets and dual clocks (554.892591ms)
+✔ M2-D first gate: pure scrappy migration preserves receipts/native assets and dual clocks (246.563918ms)
+✔ M2-D first gate: mixed maintenance strictness and history identity collisions (203.505614ms)
+✔ M2-D first gate: stale migration source and mismatched ownership reject without source mutation (247.686916ms)
+✔ M2-D first gate: envelope round trip and compatible old checkpoint retains future maintenance only globally (566.809632ms)
+✔ M2-D first gate: changed lifecycle payload or manifest cannot bypass reconstruction (230.224176ms)
+✔ M2-D first gate: failed publication preserves original bytes and current/history (1092.213978ms)
+✔ M2-D first gate: maintenance counts toward shared 2000 protected identity cap (1076.919606ms)
+✔ M2-D persistent migration gate: explicit preview/confirm, pure preview, dual revisions, retry and failed source (736.765661ms)
+✔ M2-D persistent migration: denied write and stale bytes leave gameplay/history unchanged (1050.20604ms)
+✔ M2-D A12: malformed/oversized transport rejected, no historical schema-3 validation changed (244.887996ms)
+✔ M2-D A12: migration tombstone returns no replay, malformed variant cannot enter registry (599.179987ms)
+✔ M2-D payroll-control-v1 Current applies only effective control (33.782653ms)
+✔ M2-D payroll-control-v1 Overdue applies only effective control (4.578185ms)
+✔ M2-D payroll-control-v1 Delinquent applies only effective control (0.364727ms)
+✔ M2-D payroll-control-v1 Critical applies only effective control (0.24446ms)
+✔ M2-D payroll-control-v1 Default applies only effective control (0.402213ms)
+✔ M2-D missing context preserves neutral race bytes and replay; explicit Current is deterministic (4512.307559ms)
+✔ M2-D payroll context isolates entrants, persists every derivation and snapshot cannot change via caller mutation (645.570111ms)
+✔ M2-D malformed payroll context rejects {"version":1,"rulesVersion":"payroll-control-v1","careerId":"career","championshipId":"championship","status":"Default","multiplier":1} (5.506423ms)
+✔ M2-D malformed payroll context rejects {"version":2,"rulesVersion":"payroll-control-v1","careerId":"career","championshipId":"championship","status":"Current","multiplier":1} (0.498494ms)
+✔ M2-D malformed payroll context rejects {"version":1,"rulesVersion":"payroll-control-v1","careerId":"career","championshipId":"championship","status":"Current","multiplier":1,"extra":true} (0.456873ms)
+✔ M2-D malformed payroll context rejects null (0.340372ms)
+✔ M2-D payroll context survives paused native override and reference-driver derivation (376.063105ms)
+✔ M2-D entrant commitment snapshots status and rejects expired contract without changing native source (503.93632ms)
+✔ M2-D A01/A02/A14: trusted completion only, pure preview, exact retry, changed ID/effect/payload and stale fingerprint reject (1231.252994ms)
+✔ M2-D A03: exact zero reward/Gold payroll and personal obligation conservation (1798.00961ms)
+✔ M2-D A03/A04: older claims before current wages; partial/full voluntary payment clears immediately (6151.184888ms)
+✔ M2-D A05 debt threshold 0 (0.228376ms)
+✔ M2-D A05 debt threshold 1 (0.089612ms)
+✔ M2-D A05 debt threshold 2 (0.066669ms)
+✔ M2-D A05 debt threshold 3 (4.48668ms)
+✔ M2-D A05 debt threshold 4 (0.88289ms)
+✔ M2-D A05 debt threshold 5 (0.156921ms)
+✔ M2-D A05: quotes and reducers prohibit discretionary purchases/training but allow essential service quotes (2263.524127ms)
+✔ M2-D A07: final wage assessed before expiry; explicit renewal uses new identity and correct signing/wage (12867.45258ms)
+✔ M2-D A08: no fourth-settlement departure, fifth chooses unpaid unassigned reserve, retains claims (4905.748045ms)
+✔ M2-D A08: unassigned last eligible driver is protected at Default (4072.121806ms)
+✔ M2-D A09: emergency only when ordinary recruitment blocked; fixed one-cycle driver and wage, no other grant (10479.595257ms)
+✔ M2-D A07: expired assigned release requires explicit resolution and preserves debt (7796.551743ms)
+✔ M2-D A11 synthetic reducer: recovery native fields stay separate and Critical never passively heals (72.241462ms)
+✔ M2-D A03: reward overflow and unauthorized/mismatched completion reject atomically (234.612203ms)
+✔ M2-D A10: conservative viability never fails solely for debt, zero Gold or unassembled RU (6336.264109ms)
+✔ M2-D A12: restoring older checkpoint with known debt fails closed, without erasing current bytes (2184.26352ms)
+✔ M2-D A12: settlement write denial rolls back; retry in manual requires exported checkpoint (1741.428774ms)
+✔ M2-D A10/A12: provably exhausted beast supply permits explicit failure; terminal is protected/read-only/exportable (9639.668977ms)
+✔ M2-D A09: full driver capacity and ordinarily affordable recruitment prevent emergency grant (221.340986ms)
+✔ M2-D A03/A14: specialists and reserves accrue wages; terminal withdrawals and disqualifications settle only through authority (2403.503049ms)
+✔ M2-D A03 synthetic allocation ties: current wages stable personnel ID, old claims cycle/person/obligation order (120.500144ms)
+✔ M2-D A12: corrupt primary offers previous checkpoint but unsafe recovery cannot erase newer liabilities (2663.200241ms)
+✔ M2-D A12: complete newer backup imports; missing newer lifecycle facts, changed ownership and protected result reject (2605.742337ms)
+✔ M2-D A02/A12: tombstone duplicate lookup returns null receipt, historical omission is blocked (698.214891ms)
+✔ M2-D A01/A12: stale revisions, source fingerprints and cross-career command reject before writes (400.823746ms)
+✔ M2-D A07: all explicit renewal terms retain base wage and immutable former contract (810.013766ms)
+✔ M2-D A04: released creditor retains claim and later repayment does not require a live employee (91.846903ms)
+✖ tests/m2-e-e2-e3.test.js (58635.974442ms)
+✖ tests/m2-e-e3-completion.test.js (12601.395437ms)
+✖ tests/m2-e-e4-stage2.test.js
+✖ tests/m2-e-e4-worker.test.js
+✖ tests/m2-e-foundation.test.js
+✖ tests/m2-e-performance.test.js
+✖ tests/m4.test.js
+✖ tests/m5-d1.test.js
+✖ tests/m5-d2-affinity.test.js
+✖ tests/m5-d2-content.test.js
+✖ tests/m5-d2-reference.test.js
+✖ tests/m5-d2-transport.test.js
+✖ tests/m5-d2-verified-bytes.test.js
+✖ tests/p1-1.test.js
+✖ tests/p1-2.test.js
+✖ tests/p1-3.test.js
+✖ tests/p1-4.test.js
+✖ tests/p1-5.test.js
+✖ tests/p1-playable.test.js
+✖ tests/p2-1.test.js
+✖ tests/p2-2.test.js
+✖ tests/p2.test.js
+✖ tests/persistence.test.js
+✖ tests/prototype.test.js
+✖ tests/track-expansion.test.js
+ℹ tests 504
+ℹ suites 0
+ℹ pass 478
+ℹ fail 0
+ℹ cancelled 26
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 471785.636707
+
+✖ failing tests:
+
+test at tests/m2-c-transactions.test.js:1:1
+✖ tests/m2-c-transactions.test.js (163994.106452ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/m2-e-e2-e3.test.js:1:1
+✖ tests/m2-e-e2-e3.test.js (58635.974442ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/m2-e-e3-completion.test.js:1:1
+✖ tests/m2-e-e3-completion.test.js (12601.395437ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/m2-e-e4-stage2.test.js:1:1
+✖ tests/m2-e-e4-stage2.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/m2-e-e4-worker.test.js:1:1
+✖ tests/m2-e-e4-worker.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/m2-e-foundation.test.js:1:1
+✖ tests/m2-e-foundation.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/m2-e-performance.test.js:1:1
+✖ tests/m2-e-performance.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/m4.test.js:1:1
+✖ tests/m4.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/m5-d1.test.js:1:1
+✖ tests/m5-d1.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/m5-d2-affinity.test.js:1:1
+✖ tests/m5-d2-affinity.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/m5-d2-content.test.js:1:1
+✖ tests/m5-d2-content.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/m5-d2-reference.test.js:1:1
+✖ tests/m5-d2-reference.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/m5-d2-transport.test.js:1:1
+✖ tests/m5-d2-transport.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/m5-d2-verified-bytes.test.js:1:1
+✖ tests/m5-d2-verified-bytes.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/p1-1.test.js:1:1
+✖ tests/p1-1.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/p1-2.test.js:1:1
+✖ tests/p1-2.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/p1-3.test.js:1:1
+✖ tests/p1-3.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/p1-4.test.js:1:1
+✖ tests/p1-4.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/p1-5.test.js:1:1
+✖ tests/p1-5.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/p1-playable.test.js:1:1
+✖ tests/p1-playable.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/p2-1.test.js:1:1
+✖ tests/p2-1.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/p2-2.test.js:1:1
+✖ tests/p2-2.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/p2.test.js:1:1
+✖ tests/p2.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/persistence.test.js:1:1
+✖ tests/persistence.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/prototype.test.js:1:1
+✖ tests/prototype.test.js
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/track-expansion.test.js:1:1
+✖ tests/track-expansion.test.js
+  'Promise resolution is still pending but the event loop has already resolved'

@@ -1,0 +1,201 @@
+{
+  "status": "DRAFT_FOR_REVIEW",
+  "profiles": [
+    {
+      "nationId": "N1",
+      "countMin": 2,
+      "countMax": 4,
+      "categories": [
+        "driver",
+        "beast",
+        "chariot",
+        "equipment"
+      ],
+      "permanentStaff": false,
+      "registeredRUChangeAllowed": false,
+      "localWeight": 8,
+      "foreignWeight": 1,
+      "nationProfileId": "nation.n1",
+      "culturalProfileIds": [
+        "culture.n1.r1",
+        "culture.n1.r2",
+        "culture.n1.r3",
+        "culture.n1.r4",
+        "culture.n1.r5",
+        "culture.n1.r6"
+      ],
+      "chariotNamingProfileId": "chariot.n1",
+      "equipmentNamingProfileId": "equipment.n1"
+    },
+    {
+      "nationId": "N2",
+      "countMin": 2,
+      "countMax": 4,
+      "categories": [
+        "driver",
+        "beast",
+        "chariot",
+        "equipment"
+      ],
+      "permanentStaff": false,
+      "registeredRUChangeAllowed": false,
+      "localWeight": 8,
+      "foreignWeight": 1,
+      "nationProfileId": "nation.n2",
+      "culturalProfileIds": [
+        "culture.n2.r1",
+        "culture.n2.r2",
+        "culture.n2.r3"
+      ],
+      "chariotNamingProfileId": "chariot.n2",
+      "equipmentNamingProfileId": "equipment.n2"
+    },
+    {
+      "nationId": "N3",
+      "countMin": 2,
+      "countMax": 4,
+      "categories": [
+        "driver",
+        "beast",
+        "chariot",
+        "equipment"
+      ],
+      "permanentStaff": false,
+      "registeredRUChangeAllowed": false,
+      "localWeight": 8,
+      "foreignWeight": 1,
+      "nationProfileId": "nation.n3",
+      "culturalProfileIds": [
+        "culture.n3.r1",
+        "culture.n3.r2",
+        "culture.n3.r3",
+        "culture.n3.r4"
+      ],
+      "chariotNamingProfileId": "chariot.n3",
+      "equipmentNamingProfileId": "equipment.n3"
+    },
+    {
+      "nationId": "N4",
+      "countMin": 2,
+      "countMax": 4,
+      "categories": [
+        "driver",
+        "beast",
+        "chariot",
+        "equipment"
+      ],
+      "permanentStaff": false,
+      "registeredRUChangeAllowed": false,
+      "localWeight": 8,
+      "foreignWeight": 1,
+      "nationProfileId": "nation.n4",
+      "culturalProfileIds": [
+        "culture.n4.r1",
+        "culture.n4.r2",
+        "culture.n4.r3"
+      ],
+      "chariotNamingProfileId": "chariot.n4",
+      "equipmentNamingProfileId": "equipment.n4"
+    },
+    {
+      "nationId": "N5",
+      "countMin": 2,
+      "countMax": 4,
+      "categories": [
+        "driver",
+        "beast",
+        "chariot",
+        "equipment"
+      ],
+      "permanentStaff": false,
+      "registeredRUChangeAllowed": false,
+      "localWeight": 8,
+      "foreignWeight": 1,
+      "nationProfileId": "nation.n5",
+      "culturalProfileIds": [
+        "culture.n5.r1",
+        "culture.n5.r2",
+        "culture.n5.r3",
+        "culture.n5.r4"
+      ],
+      "chariotNamingProfileId": "chariot.n5",
+      "equipmentNamingProfileId": "equipment.n5"
+    },
+    {
+      "nationId": "N6",
+      "countMin": 2,
+      "countMax": 4,
+      "categories": [
+        "driver",
+        "beast",
+        "chariot",
+        "equipment"
+      ],
+      "permanentStaff": false,
+      "registeredRUChangeAllowed": false,
+      "localWeight": 8,
+      "foreignWeight": 1,
+      "nationProfileId": "nation.n6",
+      "culturalProfileIds": [
+        "culture.n6.r1",
+        "culture.n6.r2",
+        "culture.n6.r3",
+        "culture.n6.r4",
+        "culture.n6.r5"
+      ],
+      "chariotNamingProfileId": "chariot.n6",
+      "equipmentNamingProfileId": "equipment.n6"
+    },
+    {
+      "nationId": "N7",
+      "countMin": 2,
+      "countMax": 4,
+      "categories": [
+        "driver",
+        "beast",
+        "chariot",
+        "equipment"
+      ],
+      "permanentStaff": false,
+      "registeredRUChangeAllowed": false,
+      "localWeight": 8,
+      "foreignWeight": 1,
+      "nationProfileId": "nation.n7",
+      "culturalProfileIds": [
+        "culture.n7.r1",
+        "culture.n7.r2",
+        "culture.n7.r3",
+        "culture.n7.r4",
+        "culture.n7.r5"
+      ],
+      "chariotNamingProfileId": "chariot.n7",
+      "equipmentNamingProfileId": "equipment.n7"
+    },
+    {
+      "nationId": "N8",
+      "countMin": 2,
+      "countMax": 4,
+      "categories": [
+        "driver",
+        "beast",
+        "chariot",
+        "equipment"
+      ],
+      "permanentStaff": false,
+      "registeredRUChangeAllowed": false,
+      "localWeight": 8,
+      "foreignWeight": 1,
+      "nationProfileId": "nation.n8",
+      "culturalProfileIds": [
+        "culture.n8.r1",
+        "culture.n8.r2",
+        "culture.n8.r3",
+        "culture.n8.r4",
+        "culture.n8.r5"
+      ],
+      "chariotNamingProfileId": "chariot.n8",
+      "equipmentNamingProfileId": "equipment.n8"
+    }
+  ],
+  "note": "Use existing native acquisition and valuation; regional weight is a relative nation weight, not a stat modifier."
+}

@@ -1,0 +1,334 @@
+{
+  "authority": "Actual production worker/domain/native simulator; commit adapter is an isolated Map, not a browser durability claim",
+  "cases": [
+    {
+      "mode": "generated-dustroad-0",
+      "tier": "dustroad",
+      "scope": "national",
+      "synthetic": [
+        "Qualification Reputation seeded in isolated fixture only; no production grant or balance change"
+      ],
+      "events": [
+        {
+          "index": 0,
+          "ticks": 1781,
+          "starters": 4,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 1196.037253999999
+        },
+        {
+          "index": 1,
+          "ticks": 1102,
+          "starters": 4,
+          "playerStarted": true,
+          "phase": "SETTLEMENT_PENDING",
+          "withdrawal": null,
+          "publicationMs": 1190.0946920000024
+        }
+      ],
+      "blocked": null,
+      "largestLogicalRecordBytes": 606442,
+      "playbackWrites": 0,
+      "archived": true,
+      "marketEpoch": 1,
+      "checkpoint": 2,
+      "assessedWages": 35,
+      "arrears": 0,
+      "paidStatements": [
+        {
+          "obligationId": "m2d-752b90fc5e8032279dede61711f07bd3094173a35a8d8946",
+          "amount": 35
+        }
+      ],
+      "treasury": 1395,
+      "records": 1,
+      "logicalBytes": 446631,
+      "coldReload": true
+    },
+    {
+      "mode": "generated-ironwheel-4",
+      "tier": "ironwheel",
+      "scope": "national",
+      "synthetic": [
+        "Qualification Reputation seeded in isolated fixture only; no production grant or balance change"
+      ],
+      "events": [
+        {
+          "index": 0,
+          "ticks": 1580,
+          "starters": 5,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 1201.45536
+        },
+        {
+          "index": 1,
+          "ticks": 1419,
+          "starters": 5,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 1262.534464999997
+        },
+        {
+          "index": 2,
+          "ticks": 2903,
+          "starters": 5,
+          "playerStarted": true,
+          "phase": "SETTLEMENT_PENDING",
+          "withdrawal": null,
+          "publicationMs": 1415.6860830000005
+        }
+      ],
+      "blocked": null,
+      "largestLogicalRecordBytes": 1120094,
+      "playbackWrites": 0,
+      "archived": true,
+      "marketEpoch": 1,
+      "checkpoint": 2,
+      "assessedWages": 35,
+      "arrears": 0,
+      "paidStatements": [
+        {
+          "obligationId": "m2d-29de02727f3e7bfc2be78ba01a64b99f6aa796766162e1c8",
+          "amount": 35
+        }
+      ],
+      "treasury": 1405,
+      "records": 1,
+      "logicalBytes": 508996,
+      "coldReload": true
+    },
+    {
+      "mode": "generated-bannerfall-4",
+      "tier": "bannerfall",
+      "scope": "national",
+      "synthetic": [
+        "Qualification Reputation seeded in isolated fixture only; no production grant or balance change"
+      ],
+      "events": [
+        {
+          "index": 0,
+          "ticks": 3329,
+          "starters": 6,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 2048.776192999998
+        },
+        {
+          "index": 1,
+          "ticks": 2618,
+          "starters": 6,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 1850.1566140000068
+        },
+        {
+          "index": 2,
+          "ticks": 3479,
+          "starters": 6,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 2165.1808820000006
+        },
+        {
+          "index": 3,
+          "ticks": 3426,
+          "starters": 6,
+          "playerStarted": true,
+          "phase": "SETTLEMENT_PENDING",
+          "withdrawal": null,
+          "publicationMs": 2398.550486999986
+        }
+      ],
+      "blocked": null,
+      "largestLogicalRecordBytes": 2429231,
+      "playbackWrites": 0,
+      "archived": true,
+      "marketEpoch": 1,
+      "checkpoint": 2,
+      "assessedWages": 35,
+      "arrears": 0,
+      "paidStatements": [
+        {
+          "obligationId": "m2d-dde1fa64a0197e31d3bca4e977843fa676096759f4507dc4",
+          "amount": 35
+        }
+      ],
+      "treasury": 1485,
+      "records": 1,
+      "logicalBytes": 550025,
+      "coldReload": true
+    },
+    {
+      "mode": "generated-crownfire-3",
+      "tier": "crownfire",
+      "scope": "international",
+      "synthetic": [
+        "Qualification Reputation seeded in isolated fixture only; no production grant or balance change"
+      ],
+      "events": [
+        {
+          "index": 0,
+          "ticks": 3897,
+          "starters": 7,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 2002.0211950000084
+        },
+        {
+          "index": 1,
+          "ticks": 2322,
+          "starters": 7,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 2198.7414080000017
+        },
+        {
+          "index": 2,
+          "ticks": 5799,
+          "starters": 7,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 2918.7827149999794
+        },
+        {
+          "index": 3,
+          "ticks": 3531,
+          "starters": 7,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 1973.9341659999918
+        },
+        {
+          "index": 4,
+          "ticks": 1972,
+          "starters": 7,
+          "playerStarted": true,
+          "phase": "SETTLEMENT_PENDING",
+          "withdrawal": null,
+          "publicationMs": 1388.8941549999872
+        }
+      ],
+      "blocked": null,
+      "largestLogicalRecordBytes": 3755838,
+      "playbackWrites": 0,
+      "archived": true,
+      "marketEpoch": 1,
+      "checkpoint": 2,
+      "assessedWages": 35,
+      "arrears": 0,
+      "paidStatements": [
+        {
+          "obligationId": "m2d-5632edd38a7b5377fef8e8607129b94cb2308bed50f6b3be",
+          "amount": 35
+        }
+      ],
+      "treasury": 1319,
+      "records": 1,
+      "logicalBytes": 525784,
+      "coldReload": true
+    },
+    {
+      "mode": "generated-thunder-crown-0",
+      "tier": "thunder-crown",
+      "scope": "international",
+      "synthetic": [
+        "Qualification Reputation seeded in isolated fixture only; no production grant or balance change"
+      ],
+      "events": [
+        {
+          "index": 0,
+          "ticks": 1030,
+          "starters": 8,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 1129.1623160000017
+        },
+        {
+          "index": 1,
+          "ticks": 4504,
+          "starters": 8,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 2727.3391430000192
+        },
+        {
+          "index": 2,
+          "ticks": 2189,
+          "starters": 8,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 1628.032636000018
+        },
+        {
+          "index": 3,
+          "ticks": 3918,
+          "starters": 8,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 2448.200003999984
+        },
+        {
+          "index": 4,
+          "ticks": 1267,
+          "starters": 8,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 1157.249634000007
+        },
+        {
+          "index": 5,
+          "ticks": 2608,
+          "starters": 8,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 2037.3088379999972
+        },
+        {
+          "index": 6,
+          "ticks": 5195,
+          "starters": 7,
+          "playerStarted": true,
+          "phase": "SETTLEMENT_PENDING",
+          "withdrawal": null,
+          "publicationMs": 5907.832740000042
+        }
+      ],
+      "blocked": null,
+      "largestLogicalRecordBytes": 3441118,
+      "playbackWrites": 0,
+      "archived": true,
+      "marketEpoch": 1,
+      "checkpoint": 2,
+      "assessedWages": 35,
+      "arrears": 0,
+      "paidStatements": [
+        {
+          "obligationId": "m2d-ffa299f2a18f68c6f54f364b00b45217dde51ec08ddc0bbd",
+          "amount": 35
+        }
+      ],
+      "treasury": 1090,
+      "records": 1,
+      "logicalBytes": 701567,
+      "coldReload": true
+    }
+  ]
+}

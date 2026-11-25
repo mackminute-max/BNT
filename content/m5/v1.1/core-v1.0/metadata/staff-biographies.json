@@ -1,0 +1,209 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "id": "staff-background.handler.yard",
+      "professionProfileIds": [
+        "staff.handler.n1",
+        "staff.handler.n2",
+        "staff.handler.n3",
+        "staff.handler.n4",
+        "staff.handler.n5",
+        "staff.handler.n6",
+        "staff.handler.n7",
+        "staff.handler.n8"
+      ],
+      "background": "Worked in busy stable yards under varied racing schedules.",
+      "specialization": "Descriptive professional practice, same supported native services.",
+      "personalityMetadata": "Plain-spoken and methodical",
+      "ageMechanicalEffect": "none"
+    },
+    {
+      "id": "staff-background.handler.travel",
+      "professionProfileIds": [
+        "staff.handler.n1",
+        "staff.handler.n2",
+        "staff.handler.n3",
+        "staff.handler.n4",
+        "staff.handler.n5",
+        "staff.handler.n6",
+        "staff.handler.n7",
+        "staff.handler.n8"
+      ],
+      "background": "Served traveling teams on provincial routes.",
+      "specialization": "Descriptive professional practice, same supported native services.",
+      "personalityMetadata": "Adaptable and observant",
+      "ageMechanicalEffect": "none"
+    },
+    {
+      "id": "staff-background.handler.club",
+      "professionProfileIds": [
+        "staff.handler.n1",
+        "staff.handler.n2",
+        "staff.handler.n3",
+        "staff.handler.n4",
+        "staff.handler.n5",
+        "staff.handler.n6",
+        "staff.handler.n7",
+        "staff.handler.n8"
+      ],
+      "background": "Maintained a long association with a local racing club.",
+      "specialization": "Descriptive professional practice, same supported native services.",
+      "personalityMetadata": "Patient and candid",
+      "ageMechanicalEffect": "none"
+    },
+    {
+      "id": "staff-background.handler.independent",
+      "professionProfileIds": [
+        "staff.handler.n1",
+        "staff.handler.n2",
+        "staff.handler.n3",
+        "staff.handler.n4",
+        "staff.handler.n5",
+        "staff.handler.n6",
+        "staff.handler.n7",
+        "staff.handler.n8"
+      ],
+      "background": "Built a practice serving independent racing stables.",
+      "specialization": "Descriptive professional practice, same supported native services.",
+      "personalityMetadata": "Practical and direct",
+      "ageMechanicalEffect": "none"
+    },
+    {
+      "id": "staff-background.mechanic.yard",
+      "professionProfileIds": [
+        "staff.mechanic.n1",
+        "staff.mechanic.n2",
+        "staff.mechanic.n3",
+        "staff.mechanic.n4",
+        "staff.mechanic.n5",
+        "staff.mechanic.n6",
+        "staff.mechanic.n7",
+        "staff.mechanic.n8"
+      ],
+      "background": "Worked in busy stable yards under varied racing schedules.",
+      "specialization": "Descriptive professional practice, same supported native services.",
+      "personalityMetadata": "Plain-spoken and methodical",
+      "ageMechanicalEffect": "none"
+    },
+    {
+      "id": "staff-background.mechanic.travel",
+      "professionProfileIds": [
+        "staff.mechanic.n1",
+        "staff.mechanic.n2",
+        "staff.mechanic.n3",
+        "staff.mechanic.n4",
+        "staff.mechanic.n5",
+        "staff.mechanic.n6",
+        "staff.mechanic.n7",
+        "staff.mechanic.n8"
+      ],
+      "background": "Served traveling teams on provincial routes.",
+      "specialization": "Descriptive professional practice, same supported native services.",
+      "personalityMetadata": "Adaptable and observant",
+      "ageMechanicalEffect": "none"
+    },
+    {
+      "id": "staff-background.mechanic.club",
+      "professionProfileIds": [
+        "staff.mechanic.n1",
+        "staff.mechanic.n2",
+        "staff.mechanic.n3",
+        "staff.mechanic.n4",
+        "staff.mechanic.n5",
+        "staff.mechanic.n6",
+        "staff.mechanic.n7",
+        "staff.mechanic.n8"
+      ],
+      "background": "Maintained a long association with a local racing club.",
+      "specialization": "Descriptive professional practice, same supported native services.",
+      "personalityMetadata": "Patient and candid",
+      "ageMechanicalEffect": "none"
+    },
+    {
+      "id": "staff-background.mechanic.independent",
+      "professionProfileIds": [
+        "staff.mechanic.n1",
+        "staff.mechanic.n2",
+        "staff.mechanic.n3",
+        "staff.mechanic.n4",
+        "staff.mechanic.n5",
+        "staff.mechanic.n6",
+        "staff.mechanic.n7",
+        "staff.mechanic.n8"
+      ],
+      "background": "Built a practice serving independent racing stables.",
+      "specialization": "Descriptive professional practice, same supported native services.",
+      "personalityMetadata": "Practical and direct",
+      "ageMechanicalEffect": "none"
+    },
+    {
+      "id": "staff-background.physician.yard",
+      "professionProfileIds": [
+        "staff.physician.n1",
+        "staff.physician.n2",
+        "staff.physician.n3",
+        "staff.physician.n4",
+        "staff.physician.n5",
+        "staff.physician.n6",
+        "staff.physician.n7",
+        "staff.physician.n8"
+      ],
+      "background": "Worked in busy stable yards under varied racing schedules.",
+      "specialization": "Descriptive professional practice, same supported native services.",
+      "personalityMetadata": "Plain-spoken and methodical",
+      "ageMechanicalEffect": "none"
+    },
+    {
+      "id": "staff-background.physician.travel",
+      "professionProfileIds": [
+        "staff.physician.n1",
+        "staff.physician.n2",
+        "staff.physician.n3",
+        "staff.physician.n4",
+        "staff.physician.n5",
+        "staff.physician.n6",
+        "staff.physician.n7",
+        "staff.physician.n8"
+      ],
+      "background": "Served traveling teams on provincial routes.",
+      "specialization": "Descriptive professional practice, same supported native services.",
+      "personalityMetadata": "Adaptable and observant",
+      "ageMechanicalEffect": "none"
+    },
+    {
+      "id": "staff-background.physician.club",
+      "professionProfileIds": [
+        "staff.physician.n1",
+        "staff.physician.n2",
+        "staff.physician.n3",
+        "staff.physician.n4",
+        "staff.physician.n5",
+        "staff.physician.n6",
+        "staff.physician.n7",
+        "staff.physician.n8"
+      ],
+      "background": "Maintained a long association with a local racing club.",
+      "specialization": "Descriptive professional practice, same supported native services.",
+      "personalityMetadata": "Patient and candid",
+      "ageMechanicalEffect": "none"
+    },
+    {
+      "id": "staff-background.physician.independent",
+      "professionProfileIds": [
+        "staff.physician.n1",
+        "staff.physician.n2",
+        "staff.physician.n3",
+        "staff.physician.n4",
+        "staff.physician.n5",
+        "staff.physician.n6",
+        "staff.physician.n7",
+        "staff.physician.n8"
+      ],
+      "background": "Built a practice serving independent racing stables.",
+      "specialization": "Descriptive professional practice, same supported native services.",
+      "personalityMetadata": "Practical and direct",
+      "ageMechanicalEffect": "none"
+    }
+  ]
+}

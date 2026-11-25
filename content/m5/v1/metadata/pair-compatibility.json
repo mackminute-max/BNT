@@ -1,0 +1,417 @@
+{
+  "version": 1,
+  "nativeComposition": {
+    "beastCount": 2,
+    "distinctMemberIdsRequired": true,
+    "nativeClassId": "pair.native-two-beast",
+    "mixedSpeciesLegalAtAttributeProjection": true,
+    "newPhysics": false
+  },
+  "records": [
+    {
+      "speciesA": "B01",
+      "speciesB": "B01",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": false,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B01",
+      "speciesB": "B02",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B01",
+      "speciesB": "B03",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B01",
+      "speciesB": "B04",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B01",
+      "speciesB": "B05",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B01",
+      "speciesB": "B06",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": true,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B01",
+      "speciesB": "B07",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B01",
+      "speciesB": "B08",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B01",
+      "speciesB": "B09",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B02",
+      "speciesB": "B02",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": false,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B02",
+      "speciesB": "B03",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B02",
+      "speciesB": "B04",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B02",
+      "speciesB": "B05",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B02",
+      "speciesB": "B06",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": true,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B02",
+      "speciesB": "B07",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B02",
+      "speciesB": "B08",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B02",
+      "speciesB": "B09",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B03",
+      "speciesB": "B03",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": false,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B03",
+      "speciesB": "B04",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B03",
+      "speciesB": "B05",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B03",
+      "speciesB": "B06",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": true,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B03",
+      "speciesB": "B07",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B03",
+      "speciesB": "B08",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B03",
+      "speciesB": "B09",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B04",
+      "speciesB": "B04",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": false,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B04",
+      "speciesB": "B05",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B04",
+      "speciesB": "B06",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": true,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B04",
+      "speciesB": "B07",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B04",
+      "speciesB": "B08",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B04",
+      "speciesB": "B09",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B05",
+      "speciesB": "B05",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": false,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B05",
+      "speciesB": "B06",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": true,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B05",
+      "speciesB": "B07",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B05",
+      "speciesB": "B08",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B05",
+      "speciesB": "B09",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B06",
+      "speciesB": "B06",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": false,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B06",
+      "speciesB": "B07",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": true,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B06",
+      "speciesB": "B08",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": true,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B06",
+      "speciesB": "B09",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": true,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B07",
+      "speciesB": "B07",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": false,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B07",
+      "speciesB": "B08",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B07",
+      "speciesB": "B09",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B08",
+      "speciesB": "B08",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": false,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B08",
+      "speciesB": "B09",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": true,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    },
+    {
+      "speciesA": "B09",
+      "speciesB": "B09",
+      "nativeAttributeProjection": "supported",
+      "gameplayBan": false,
+      "artHarnessReview": false,
+      "specialSizeReview": false,
+      "note": "Visual alignment review only; no new mass, handling penalty, stat bonus or harness restriction."
+    }
+  ]
+}

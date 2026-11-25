@@ -1,3 +1,4 @@
+import {applyAffinity,validateAffinityContext} from '../model/affinity.js';
 import {validateProgressionContext} from '../model/progression-context.js';
 import {beginActionCosts,chargeAction,flushActionCosts,endActionCosts} from './action-costs.js';
 import {INCIDENT_CLOCK_VERSION} from './deterministic-log.js';
@@ -121,15 +122,15 @@ export function createRace({
         ru.driver.personality[k] > 100
       )
         throw new Error(`Invalid personality ${k}`);
-    validateCoaching(e.coachingContext);validateProgressionContext(e.progressionContext);if(e.progressionContext&&ru.id!==(playerId??input[0].ru.id))throw Error('Progression is player-only');
+    validateAffinityContext(e.affinityContext);validateCoaching(e.coachingContext);validateProgressionContext(e.progressionContext);if(e.progressionContext&&ru.id!==(playerId??input[0].ru.id))throw Error('Progression is player-only');
     if(e.coachingContext&&ru.id!==(playerId??input[0].ru.id))throw Error('Coaching is player-only');
     validatePayrollContext(e.payrollContext);
-    const derived = applyPayrollControl(derive(ru, {
+    const derived = applyPayrollControl(applyAffinity(derive(ru, {
       ...c,
       crowdMorale: environment.crowdMorale,
       grip: c.grip * environment.grip,
       speedReference: c.speedReference / environment.rolling,
-    }),e.payrollContext);
+    }),e.affinityContext,c),e.payrollContext);
     if (seen.has(ru.id)) throw new Error(`Duplicate ID ${ru.id}`);
     seen.add(ru.id);
     const lane = e.lane ?? i % c.lanes,
@@ -155,6 +156,7 @@ export function createRace({
       id: ru.id,
       ru,
       derived,
+      ...(e.affinityContext?{affinityContext:structuredClone(e.affinityContext)}:{}),
       ...(e.progressionContext?{progressionContext:structuredClone(e.progressionContext)}:{}),
       ...(e.coachingContext ? {coachingContext:freezeCoaching(e.coachingContext)} : {}),
       ...(championshipContext ? {progressEvidence:{version:1,progress:q,firstTime:0,firstTick:0}} : {}),
@@ -241,6 +243,7 @@ export function createRace({
     overrides: { ...c },
     entrants: units.map((r) => ({
       ru: structuredClone(r.ru),
+      ...(r.affinityContext?{affinityContext:structuredClone(r.affinityContext)}:{}),
       ...(r.progressionContext?{progressionContext:structuredClone(r.progressionContext)}:{}),
       ...(r.coachingContext ? {coachingContext:freezeCoaching(r.coachingContext)} : {}),
       ...(r.payrollContext===undefined?{}:{payrollContext:structuredClone(r.payrollContext)}),
@@ -418,14 +421,14 @@ export function classification(s) {
 }
 function deriveAt(s, r) {
   const surface = location(r.q, r.lane, s.config, s.track).surface;
-  return applyPayrollControl(derive(r.ru, {
+  return applyPayrollControl(applyAffinity(derive(r.ru, {
     ...s.config,
     crowdMorale: s.environment.crowdMorale,
     grip: s.config.grip * s.environment.grip * surface.grip,
     speedReference:
       s.config.speedReference /
       (s.environment.rolling * surface.rollingResistance),
-  }),r.payrollContext);
+  }),r.affinityContext,s.config),r.payrollContext);
 }
 function randomDraw(s, ...keys) {
   s.rng.draws++;

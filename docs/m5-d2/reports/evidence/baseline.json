@@ -1,0 +1,12 @@
+{
+  "head": "6f01da6d9cc0a79fecf9d38cd55989e17fb2651c",
+  "branch": "feat/e5-d-m1-startup-slots-options",
+  "verifiedManifestFiles": 113,
+  "manifestSHA256": "f644f8957b41b55dbbc8ec0317a452702971157255e2c5cb4dca702c2fb31300",
+  "artifact": {
+    "name": "Blood-and-Thunder-M5-D1-Playable.html",
+    "bytes": 4363707,
+    "sha256": "efd9c6c1a3d685173f06752931d666e1860795500685f20b8e235f9aac8352ad"
+  },
+  "statusBefore": " M docs/m2-a/evidence/migration-review.png\n M docs/m2-b/evidence/implementation/browser-example-save.json\n M docs/m2-b/evidence/implementation/stable-foundation.png\n M docs/persistence-foundation/evidence/manual-checkpoint.png\n M src/career/championships/e5/capabilities.js\n M src/career/championships/e5/contracts.js\n M src/career/championships/e5/schema6.js\n M src/career/m4/catalog.js\n M src/career/m4/progression.js\n M src/career/state.js\n M src/management/career-race/flow.js\n M src/management/championship-e5.js\n M src/management/creation/model.js\n M src/management/headquarters/consolidated.js\n M src/management/headquarters/model.js\n M src/management/headquarters/workflow.js\n M src/management/player-pages.js\n M src/management/startup/entry.js\n M src/management/startup/shell.js\n M src/management/startup/slots.js\n M src/persistence/career-store.js\n M src/persistence/e4/backup.js\n M src/persistence/e4/client.js\n M src/persistence/e4/indexeddb.js\n M src/persistence/e4/presentation.js\n M src/persistence/e4/worker-service.js\n M src/persistence/envelope.js\n M src/persistence/m4-policy.js\n M src/presentation/content/m3-bc.js\n M src/ui/durable-championships.js\n?? content/m5/\n?? dist/Blood-and-Thunder-M5-D1-Playable.html\n?? docs/m2-e/BNT_M2_E_PRE_IMPLEMENTATION_TECHNICAL_READINESS_AUDIT.md\n?? docs/m5-d1/\n?? scripts/m5-d1/\n?? src/career/m5/\n?? src/persistence/m5-store.js\n?? src/persistence/m5/\n?? tests/m5-d1.test.js\n"
+}

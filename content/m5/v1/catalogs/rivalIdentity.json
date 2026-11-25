@@ -1,0 +1,218 @@
+[
+  {
+    "id": "team.n1",
+    "version": 1,
+    "label": "Northreach Confederation racing organizations",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 19,
+        "endLine": 260,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalNationId": "N1",
+    "cultureProfileId": "culture.n1.r1",
+    "namingProfileId": "culture.n1.r1",
+    "organizationNameMode": "regional-root",
+    "racingPhilosophy": "Preparation before bravado",
+    "visualProfileId": "visual.n1"
+  },
+  {
+    "id": "team.n2",
+    "version": 1,
+    "label": "Frosthall Kingdom racing organizations",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 261,
+        "endLine": 550,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalNationId": "N2",
+    "cultureProfileId": "culture.n2.r1",
+    "namingProfileId": "culture.n2.r1",
+    "organizationNameMode": "regional-root",
+    "racingPhilosophy": "Keep a clean line under pressure",
+    "visualProfileId": "visual.n2"
+  },
+  {
+    "id": "team.n3",
+    "version": 1,
+    "label": "Greenvale Commonwealth racing organizations",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 551,
+        "endLine": 921,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalNationId": "N3",
+    "cultureProfileId": "culture.n3.r1",
+    "namingProfileId": "culture.n3.r1",
+    "organizationNameMode": "regional-root",
+    "racingPhilosophy": "Read openings; protect the team",
+    "visualProfileId": "visual.n3"
+  },
+  {
+    "id": "team.n4",
+    "version": 1,
+    "label": "Ironhold Clans racing organizations",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 922,
+        "endLine": 1429,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalNationId": "N4",
+    "cultureProfileId": "culture.n4.r1",
+    "namingProfileId": "culture.n4.r1",
+    "organizationNameMode": "regional-root",
+    "racingPhilosophy": "Sound running gear and steady execution",
+    "visualProfileId": "visual.n4"
+  },
+  {
+    "id": "team.n5",
+    "version": 1,
+    "label": "Sundaran League racing organizations",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 1430,
+        "endLine": 2027,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalNationId": "N5",
+    "cultureProfileId": "culture.n5.r1",
+    "namingProfileId": "culture.n5.r1",
+    "organizationNameMode": "regional-root",
+    "racingPhilosophy": "Adapt to the field and changing conditions",
+    "visualProfileId": "visual.n5"
+  },
+  {
+    "id": "team.n6",
+    "version": 1,
+    "label": "Karthen Hordes racing organizations",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2028,
+        "endLine": 2614,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalNationId": "N6",
+    "cultureProfileId": "culture.n6.r1",
+    "namingProfileId": "culture.n6.r1",
+    "organizationNameMode": "regional-root",
+    "racingPhilosophy": "Sustain pace, then press the opening",
+    "visualProfileId": "visual.n6"
+  },
+  {
+    "id": "team.n7",
+    "version": 1,
+    "label": "Velmora Republic racing organizations",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2615,
+        "endLine": 3393,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalNationId": "N7",
+    "cultureProfileId": "culture.n7.r1",
+    "namingProfileId": "culture.n7.r1",
+    "organizationNameMode": "regional-root",
+    "racingPhilosophy": "Commit decisively with clear team signals",
+    "visualProfileId": "visual.n7"
+  },
+  {
+    "id": "team.n8",
+    "version": 1,
+    "label": "Zarashi Dominion racing organizations",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 3394,
+        "endLine": 4104,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalNationId": "N8",
+    "cultureProfileId": "culture.n8.r1",
+    "namingProfileId": "culture.n8.r1",
+    "organizationNameMode": "regional-root",
+    "racingPhilosophy": "Preserve condition and finish with purpose",
+    "visualProfileId": "visual.n8"
+  }
+]

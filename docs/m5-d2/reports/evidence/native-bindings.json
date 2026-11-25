@@ -1,0 +1,32 @@
+[
+  {
+    "id": "dustroad",
+    "exactNativeSnapshotMatch": true,
+    "completionBonusTier": 1
+  },
+  {
+    "id": "ironwheel",
+    "exactNativeSnapshotMatch": true,
+    "completionBonusTier": 2
+  },
+  {
+    "id": "bannerfall",
+    "exactNativeSnapshotMatch": true,
+    "completionBonusTier": 3
+  },
+  {
+    "id": "crownfire",
+    "exactNativeSnapshotMatch": true,
+    "completionBonusTier": 4
+  },
+  {
+    "id": "thunder-crown",
+    "exactNativeSnapshotMatch": true,
+    "completionBonusTier": 5
+  },
+  {
+    "id": "iron-gauntlet",
+    "exactNativeSnapshotMatch": true,
+    "completionBonusTier": 5
+  }
+]

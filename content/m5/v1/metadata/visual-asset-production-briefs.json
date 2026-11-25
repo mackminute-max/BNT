@@ -1,0 +1,2470 @@
+{
+  "version": 1,
+  "status": "NONVISUAL_BRIEFS_ONLY_NO_IMAGES_PRODUCED",
+  "requirements": [
+    {
+      "id": "brief.portrait.a01",
+      "intendedAssetId": "portrait.a01.v1",
+      "category": "person-portrait",
+      "canonicalId": "A01",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "neutral adult",
+        "experienced adult",
+        "alternate hair/markings consistent with anatomy"
+      ],
+      "compositing": "Keep anatomy stable; removable cultural clothing/livery variants; do not change face structure between team variants.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single bust portrait of an adult Human racing professional, calm alert expression, face readable at64px, three-quarter view, head and shoulders inside a central80% crop safe zone, transparent background, no scenic backdrop, no border, no letters or watermark. Five fingers and toes; rounded external ears; flat nails; human dentition; no intrinsic horns, tails or unusual skin structures. Full natural human range of skin, eye and hair pigments; straight, wavy, curly and tightly coiled hair; freckles, birthmarks and early graying possible. Preserve broad diversity of faces, skin tones, ages and physiques. Avoid treating one ethnicity or nation as the default human appearance. Clothing: unbranded practical racing coat, open enough to preserve distinctive anatomy; no nation-specific styling hard-coded into biological identity. Sex-conditional constraints: []. Deliver one clean 1024×1024 source illustration; final transparent runtime export256×256 after art QA.",
+      "acceptance": [
+        "Clean alpha edges, no cropped ears/horns/gills/shell silhouette",
+        "Anatomy source and sex-conditional rules satisfied",
+        "No text, logos, magical ability cues or invented anatomy",
+        "Legible at64/128 CSSpx; alpha and crop inspected"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 34,
+          "endLine": 89,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.a02",
+      "intendedAssetId": "portrait.a02.v1",
+      "category": "person-portrait",
+      "canonicalId": "A02",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "neutral adult",
+        "experienced adult",
+        "alternate hair/markings consistent with anatomy"
+      ],
+      "compositing": "Keep anatomy stable; removable cultural clothing/livery variants; do not change face structure between team variants.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single bust portrait of an adult Orc racing professional, calm alert expression, face readable at64px, three-quarter view, head and shoulders inside a central80% crop safe zone, transparent background, no scenic backdrop, no border, no letters or watermark. Two lower-jaw tusks (size variable); five digits per hand; ordinary plantigrade feet; rounded-to-pointed ear tips; no mandatory facial piercings or tribal markings. Muted green, gray-green, olive, umber and brown skin tones; dark hair common, lighter hair possible; scars and skin texture vary individually. Keep tusks and broad jaw legible in portraits. Do not depict as boar-headed, permanently enraged or uniformly monstrous. Clothing: unbranded practical racing coat, open enough to preserve distinctive anatomy; no nation-specific styling hard-coded into biological identity. Sex-conditional constraints: []. Deliver one clean 1024×1024 source illustration; final transparent runtime export256×256 after art QA.",
+      "acceptance": [
+        "Clean alpha edges, no cropped ears/horns/gills/shell silhouette",
+        "Anatomy source and sex-conditional rules satisfied",
+        "No text, logos, magical ability cues or invented anatomy",
+        "Legible at64/128 CSSpx; alpha and crop inspected"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 90,
+          "endLine": 145,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.a03",
+      "intendedAssetId": "portrait.a03.v1",
+      "category": "person-portrait",
+      "canonicalId": "A03",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "neutral adult",
+        "experienced adult",
+        "alternate hair/markings consistent with anatomy"
+      ],
+      "compositing": "Keep anatomy stable; removable cultural clothing/livery variants; do not change face structure between team variants.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single bust portrait of an adult Goliath racing professional, calm alert expression, face readable at64px, three-quarter view, head and shoulders inside a central80% crop safe zone, transparent background, no scenic backdrop, no border, no letters or watermark. Five digits; rounded or slightly tapered ears; generally sparse body hair; skin patterns may resemble mottling or natural stone-like markings, not literal rock plating. Gray, slate, pale taupe, cool brown and stony skin tones; natural darker mottling or patches; hair may be dark, gray or pale and often sparse. Always establish a height scale. Avoid giant proportions beyond the specified range, horns, literal stone skin or mandatory tattoos. Clothing: unbranded practical racing coat, open enough to preserve distinctive anatomy; no nation-specific styling hard-coded into biological identity. Sex-conditional constraints: []. Deliver one clean 1024×1024 source illustration; final transparent runtime export256×256 after art QA.",
+      "acceptance": [
+        "Clean alpha edges, no cropped ears/horns/gills/shell silhouette",
+        "Anatomy source and sex-conditional rules satisfied",
+        "No text, logos, magical ability cues or invented anatomy",
+        "Legible at64/128 CSSpx; alpha and crop inspected"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 146,
+          "endLine": 201,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.a04",
+      "intendedAssetId": "portrait.a04.v1",
+      "category": "person-portrait",
+      "canonicalId": "A04",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "neutral adult",
+        "experienced adult",
+        "alternate hair/markings consistent with anatomy"
+      ],
+      "compositing": "Keep anatomy stable; removable cultural clothing/livery variants; do not change face structure between team variants.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single bust portrait of an adult Hill Dwarf racing professional, calm alert expression, face readable at64px, three-quarter view, head and shoulders inside a central80% crop safe zone, transparent background, no scenic backdrop, no border, no letters or watermark. Five digits, broad hands and feet, dense hair, strong brows and jaws; female Hill Dwarves never grow facial hair. Warm ivory, peach, ruddy, tan, amber and copper-brown complexions; hair from blond and auburn to dark brown, black and gray. Distinct from Mountain Dwarves through warmer coloration and fuller silhouette, especially women; do not draw as short humans. Clothing: unbranded practical racing coat, open enough to preserve distinctive anatomy; no nation-specific styling hard-coded into biological identity. Sex-conditional constraints: [{\"sex\": \"female\", \"forbidden\": [\"all-facial-hair\"]}]. Deliver one clean 1024×1024 source illustration; final transparent runtime export256×256 after art QA.",
+      "acceptance": [
+        "Clean alpha edges, no cropped ears/horns/gills/shell silhouette",
+        "Anatomy source and sex-conditional rules satisfied",
+        "No text, logos, magical ability cues or invented anatomy",
+        "Legible at64/128 CSSpx; alpha and crop inspected"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 202,
+          "endLine": 257,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.a05",
+      "intendedAssetId": "portrait.a05.v1",
+      "category": "person-portrait",
+      "canonicalId": "A05",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "neutral adult",
+        "experienced adult",
+        "alternate hair/markings consistent with anatomy"
+      ],
+      "compositing": "Keep anatomy stable; removable cultural clothing/livery variants; do not change face structure between team variants.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single bust portrait of an adult Mountain Dwarf racing professional, calm alert expression, face readable at64px, three-quarter view, head and shoulders inside a central80% crop safe zone, transparent background, no scenic backdrop, no border, no letters or watermark. Broad five-fingered hands, sturdy feet, heavy brow and dense bone structure; female Mountain Dwarves may grow exaggerated sideburns and hair along the jawline and chin, but never full beards; no intrinsic stone skin or metallic features. Paler ivory, cool beige, ash-tan and muted pink complexions common, with individual darker variants; dark, red, fair or gray hair. Square, compact, muscular silhouette and cooler/lighter complexion; avoid equating all dwarves with Mountain Dwarves. Clothing: unbranded practical racing coat, open enough to preserve distinctive anatomy; no nation-specific styling hard-coded into biological identity. Sex-conditional constraints: [{\"sex\": \"female\", \"forbidden\": [\"full-beard\"], \"permitted\": [\"none\", \"sideburns\", \"sparse-jawline-chin-hair\"]}]. Deliver one clean 1024×1024 source illustration; final transparent runtime export256×256 after art QA.",
+      "acceptance": [
+        "Clean alpha edges, no cropped ears/horns/gills/shell silhouette",
+        "Anatomy source and sex-conditional rules satisfied",
+        "No text, logos, magical ability cues or invented anatomy",
+        "Legible at64/128 CSSpx; alpha and crop inspected"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 258,
+          "endLine": 313,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.a06",
+      "intendedAssetId": "portrait.a06.v1",
+      "category": "person-portrait",
+      "canonicalId": "A06",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "neutral adult",
+        "experienced adult",
+        "alternate hair/markings consistent with anatomy"
+      ],
+      "compositing": "Keep anatomy stable; removable cultural clothing/livery variants; do not change face structure between team variants.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single bust portrait of an adult Halfling racing professional, calm alert expression, face readable at64px, three-quarter view, head and shoulders inside a central80% crop safe zone, transparent background, no scenic backdrop, no border, no letters or watermark. Five fingers, five toes, humanlike ears with subtle taper possible; comparatively large feet, often with natural hair on tops of feet. Full humanlike pigmentation range; hair frequently thick or curly but not exclusively; eye colors diverse. Adult facial anatomy and mature proportions; avoid portraying halflings as human children or gnomes with identical features. Clothing: unbranded practical racing coat, open enough to preserve distinctive anatomy; no nation-specific styling hard-coded into biological identity. Sex-conditional constraints: []. Deliver one clean 1024×1024 source illustration; final transparent runtime export256×256 after art QA.",
+      "acceptance": [
+        "Clean alpha edges, no cropped ears/horns/gills/shell silhouette",
+        "Anatomy source and sex-conditional rules satisfied",
+        "No text, logos, magical ability cues or invented anatomy",
+        "Legible at64/128 CSSpx; alpha and crop inspected"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 314,
+          "endLine": 369,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.a07",
+      "intendedAssetId": "portrait.a07.v1",
+      "category": "person-portrait",
+      "canonicalId": "A07",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "neutral adult",
+        "experienced adult",
+        "alternate hair/markings consistent with anatomy"
+      ],
+      "compositing": "Keep anatomy stable; removable cultural clothing/livery variants; do not change face structure between team variants.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single bust portrait of an adult Forest Elf racing professional, calm alert expression, face readable at64px, three-quarter view, head and shoulders inside a central80% crop safe zone, transparent background, no scenic backdrop, no border, no letters or watermark. Long pointed ears, five digits, fine hair, expressive eyes; no mandatory antlers, wings, glowing tattoos or overt faerie appendages. Fair, golden, olive and woodland-brown skin; dark, chestnut, copper, blond or silver-toned hair; eye colors broad, sometimes unusually luminous-looking without actual emission. Elegant, delicate silhouette with long ears and subtle fae facial traits; avoid turning every forest elf into a winged fairy. Clothing: unbranded practical racing coat, open enough to preserve distinctive anatomy; no nation-specific styling hard-coded into biological identity. Sex-conditional constraints: []. Deliver one clean 1024×1024 source illustration; final transparent runtime export256×256 after art QA.",
+      "acceptance": [
+        "Clean alpha edges, no cropped ears/horns/gills/shell silhouette",
+        "Anatomy source and sex-conditional rules satisfied",
+        "No text, logos, magical ability cues or invented anatomy",
+        "Legible at64/128 CSSpx; alpha and crop inspected"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 370,
+          "endLine": 425,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.a08",
+      "intendedAssetId": "portrait.a08.v1",
+      "category": "person-portrait",
+      "canonicalId": "A08",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "neutral adult",
+        "experienced adult",
+        "alternate hair/markings consistent with anatomy"
+      ],
+      "compositing": "Keep anatomy stable; removable cultural clothing/livery variants; do not change face structure between team variants.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single bust portrait of an adult High Elf racing professional, calm alert expression, face readable at64px, three-quarter view, head and shoulders inside a central80% crop safe zone, transparent background, no scenic backdrop, no border, no letters or watermark. Pointed ears, five digits, finely textured skin; no innate glowing eyes, desert scales or supernatural markings. Predominantly bronze, copper, olive, deep tan and brown complexions with darker pigmentation common; dark hair frequent, sun-lightened strands possible; varied eyes. Dark, dry-looking complexion, sharp features and elegant lean silhouette; avoid pale generic high-elf default. Clothing: unbranded practical racing coat, open enough to preserve distinctive anatomy; no nation-specific styling hard-coded into biological identity. Sex-conditional constraints: []. Deliver one clean 1024×1024 source illustration; final transparent runtime export256×256 after art QA.",
+      "acceptance": [
+        "Clean alpha edges, no cropped ears/horns/gills/shell silhouette",
+        "Anatomy source and sex-conditional rules satisfied",
+        "No text, logos, magical ability cues or invented anatomy",
+        "Legible at64/128 CSSpx; alpha and crop inspected"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 426,
+          "endLine": 481,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.a09",
+      "intendedAssetId": "portrait.a09.v1",
+      "category": "person-portrait",
+      "canonicalId": "A09",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "neutral adult",
+        "experienced adult",
+        "alternate hair/markings consistent with anatomy"
+      ],
+      "compositing": "Keep anatomy stable; removable cultural clothing/livery variants; do not change face structure between team variants.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single bust portrait of an adult Sea Elf racing professional, calm alert expression, face readable at64px, three-quarter view, head and shoulders inside a central80% crop safe zone, transparent background, no scenic backdrop, no border, no letters or watermark. **Approved amphibious physiology:** breathe air and water; subtle subtle paired functional gill slits on the sides of the neck, behind and below the ears; mild webbing between fingers and toes; pointed ears; five digits. Commonly pale ivory, cool rose, pearl, light gray-beige and muted sea-toned complexions, with darker natural variation; hair pale blond, silver, sandy, brown or dark; weathering and windblown styling are acquired. Keep pointed ears, subtle gills and partial webbing visible; avoid fish tails, full-body scales, fins covering the face or obligatory blue skin. Clothing: unbranded practical racing coat, open enough to preserve distinctive anatomy; no nation-specific styling hard-coded into biological identity. Sex-conditional constraints: []. Deliver one clean 1024×1024 source illustration; final transparent runtime export256×256 after art QA.",
+      "acceptance": [
+        "Clean alpha edges, no cropped ears/horns/gills/shell silhouette",
+        "Anatomy source and sex-conditional rules satisfied",
+        "No text, logos, magical ability cues or invented anatomy",
+        "Legible at64/128 CSSpx; alpha and crop inspected"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 482,
+          "endLine": 537,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.a10",
+      "intendedAssetId": "portrait.a10.v1",
+      "category": "person-portrait",
+      "canonicalId": "A10",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "neutral adult",
+        "experienced adult",
+        "alternate hair/markings consistent with anatomy"
+      ],
+      "compositing": "Keep anatomy stable; removable cultural clothing/livery variants; do not change face structure between team variants.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single bust portrait of an adult Gnome racing professional, calm alert expression, face readable at64px, three-quarter view, head and shoulders inside a central80% crop safe zone, transparent background, no scenic backdrop, no border, no letters or watermark. Five fingers and toes, prominent external ears, humanlike nails and teeth; no intrinsic mechanical implants or goggles. Humanlike range of pigmentation; vivid red, brown, blond, black and gray hair all plausible; freckles and unusual eye shades possible. Differentiate from halflings through face, ear and nose silhouette, not mandatory hats or equipment. Clothing: unbranded practical racing coat, open enough to preserve distinctive anatomy; no nation-specific styling hard-coded into biological identity. Sex-conditional constraints: []. Deliver one clean 1024×1024 source illustration; final transparent runtime export256×256 after art QA.",
+      "acceptance": [
+        "Clean alpha edges, no cropped ears/horns/gills/shell silhouette",
+        "Anatomy source and sex-conditional rules satisfied",
+        "No text, logos, magical ability cues or invented anatomy",
+        "Legible at64/128 CSSpx; alpha and crop inspected"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 538,
+          "endLine": 593,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.a11",
+      "intendedAssetId": "portrait.a11.v1",
+      "category": "person-portrait",
+      "canonicalId": "A11",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "neutral adult",
+        "experienced adult",
+        "alternate hair/markings consistent with anatomy"
+      ],
+      "compositing": "Keep anatomy stable; removable cultural clothing/livery variants; do not change face structure between team variants.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single bust portrait of an adult Goblin racing professional, calm alert expression, face readable at64px, three-quarter view, head and shoulders inside a central80% crop safe zone, transparent background, no scenic backdrop, no border, no letters or watermark. Five digits, large pointed ears, sharp canine teeth, humanlike feet; no compulsory claws, tails or oversized fangs. Green, olive, yellow-green, gray-green, ocher and brown complexions; hair dark, sandy, reddish or pale. Keep oversized ears, sharp face and compact adult build; do not render as childlike or feral by default. Clothing: unbranded practical racing coat, open enough to preserve distinctive anatomy; no nation-specific styling hard-coded into biological identity. Sex-conditional constraints: []. Deliver one clean 1024×1024 source illustration; final transparent runtime export256×256 after art QA.",
+      "acceptance": [
+        "Clean alpha edges, no cropped ears/horns/gills/shell silhouette",
+        "Anatomy source and sex-conditional rules satisfied",
+        "No text, logos, magical ability cues or invented anatomy",
+        "Legible at64/128 CSSpx; alpha and crop inspected"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 594,
+          "endLine": 649,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.a12",
+      "intendedAssetId": "portrait.a12.v1",
+      "category": "person-portrait",
+      "canonicalId": "A12",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "neutral adult",
+        "experienced adult",
+        "alternate hair/markings consistent with anatomy"
+      ],
+      "compositing": "Keep anatomy stable; removable cultural clothing/livery variants; do not change face structure between team variants.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single bust portrait of an adult Dragonkin racing professional, calm alert expression, face readable at64px, three-quarter view, head and shoulders inside a central80% crop safe zone, transparent background, no scenic backdrop, no border, no letters or watermark. Scaled hide, clawed five-fingered hands, reptilian snout and teeth, visible tail, external ear openings rather than human ears; **no wings**; no universal breath weapon. Rust, ocher, red-brown, slate, green, bronze, dark umber and muted ivory scales; patterned ventral scales and horns; eye color variable. Clearly reptilian face, scales, tail and horn/ridge system; no wings or fire effects unless separately authorized. Clothing: unbranded practical racing coat, open enough to preserve distinctive anatomy; no nation-specific styling hard-coded into biological identity. Sex-conditional constraints: [{\"sex\": \"female\", \"forbidden\": [\"default-mammalian-breasts\"]}]. Deliver one clean 1024×1024 source illustration; final transparent runtime export256×256 after art QA.",
+      "acceptance": [
+        "Clean alpha edges, no cropped ears/horns/gills/shell silhouette",
+        "Anatomy source and sex-conditional rules satisfied",
+        "No text, logos, magical ability cues or invented anatomy",
+        "Legible at64/128 CSSpx; alpha and crop inspected"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 650,
+          "endLine": 705,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.a13",
+      "intendedAssetId": "portrait.a13.v1",
+      "category": "person-portrait",
+      "canonicalId": "A13",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "neutral adult",
+        "experienced adult",
+        "alternate hair/markings consistent with anatomy"
+      ],
+      "compositing": "Keep anatomy stable; removable cultural clothing/livery variants; do not change face structure between team variants.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single bust portrait of an adult Tortle racing professional, calm alert expression, face readable at64px, three-quarter view, head and shoulders inside a central80% crop safe zone, transparent background, no scenic backdrop, no border, no letters or watermark. Keratinous beak, scaled or pebbled skin, thick fingers and toes with blunt claws, dorsal shell and ventral plastron; no external human ears. Olive, moss, umber, tan, gray and deep green skin; shells brown, ocher, olive, charcoal or mottled; varied natural scute patterns. Shell/plastron must be anatomically integral; avoid a costume-like detachable shell or human torso with shell strapped on. Clothing: unbranded practical racing coat, open enough to preserve distinctive anatomy; no nation-specific styling hard-coded into biological identity. Sex-conditional constraints: []. Deliver one clean 1024×1024 source illustration; final transparent runtime export256×256 after art QA.",
+      "acceptance": [
+        "Clean alpha edges, no cropped ears/horns/gills/shell silhouette",
+        "Anatomy source and sex-conditional rules satisfied",
+        "No text, logos, magical ability cues or invented anatomy",
+        "Legible at64/128 CSSpx; alpha and crop inspected"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 706,
+          "endLine": 789,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.b01",
+      "intendedAssetId": "portrait.b01.v1",
+      "category": "beast-portrait",
+      "canonicalId": "B01",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single head-and-shoulders portrait, three-quarter view, calm racing-trained adult, full ear/horn/tusk silhouette within80% crop-safe area. Anatomy: Equine: long face, mobile ears, flowing mane and tail, single hard hoof per leg; deep chest and strong hindquarters. Coat: Bay, black, chestnut, gray, roan, dun, palomino, buckskin, pinto and spotted patterns; mane and tail texture and feathering vary. Avoid: routine-magic, new-ability-claims. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.ru.b01",
+      "intendedAssetId": "ru.b01.v1",
+      "category": "complete-racing-unit",
+      "canonicalId": "B01",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        64
+      ],
+      "displayCSSPixels": [
+        48,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64,
+        32
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one TRUE orthographic top-down complete racing unit facing RIGHT: two clearly distinct harnessed Horse aligned forward on the right, driver and chariot behind them to the left, readable separation between both animals, harness and wheels, no perspective horizon or three-quarter camera. Use a neutral practical chariot, unbranded livery panels and simple adult driver silhouette. Keep baseline centred at(64,32) in the final128×64 frame and leave4px transparent padding. Art does not define or change collision geometry. Preserve species proportions within the fixed visual bounds; do not claim physical size penalties or new harness physics. Anatomy: Equine: long face, mobile ears, flowing mane and tail, single hard hoof per leg; deep chest and strong hindquarters. Coat: Bay, black, chestnut, gray, roan, dun, palomino, buckskin, pinto and spotted patterns; mane and tail texture and feathering vary. Avoid: routine-magic, new-ability-claims. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.b02",
+      "intendedAssetId": "portrait.b02.v1",
+      "category": "beast-portrait",
+      "canonicalId": "B02",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single head-and-shoulders portrait, three-quarter view, calm racing-trained adult, full ear/horn/tusk silhouette within80% crop-safe area. Anatomy: Massive shaggy elk-like cervid with broad antler crown, deep chest, sloping muscular shoulders, long sure-footed legs and cloven hooves. Coat: Dark umber, russet, gray-brown, soot-brown; lighter throat and belly, winter shag and mane variation. Avoid: routine-magic, new-ability-claims. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 136,
+          "endLine": 217,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.ru.b02",
+      "intendedAssetId": "ru.b02.v1",
+      "category": "complete-racing-unit",
+      "canonicalId": "B02",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        64
+      ],
+      "displayCSSPixels": [
+        48,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64,
+        32
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one TRUE orthographic top-down complete racing unit facing RIGHT: two clearly distinct harnessed Storm Elk (Hroven) aligned forward on the right, driver and chariot behind them to the left, readable separation between both animals, harness and wheels, no perspective horizon or three-quarter camera. Use a neutral practical chariot, unbranded livery panels and simple adult driver silhouette. Keep baseline centred at(64,32) in the final128×64 frame and leave4px transparent padding. Art does not define or change collision geometry. Preserve species proportions within the fixed visual bounds; do not claim physical size penalties or new harness physics. Anatomy: Massive shaggy elk-like cervid with broad antler crown, deep chest, sloping muscular shoulders, long sure-footed legs and cloven hooves. Coat: Dark umber, russet, gray-brown, soot-brown; lighter throat and belly, winter shag and mane variation. Avoid: routine-magic, new-ability-claims. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 136,
+          "endLine": 217,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.b03",
+      "intendedAssetId": "portrait.b03.v1",
+      "category": "beast-portrait",
+      "canonicalId": "B03",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single head-and-shoulders portrait, three-quarter view, calm racing-trained adult, full ear/horn/tusk silhouette within80% crop-safe area. Anatomy: Oversized domestic boar with broad chest, low center of gravity, thick winter bristles, stout legs, powerful neck, wedge-shaped snout and curved tusks. Coat: Chestnut, black, iron gray, sandy brown, brindle and patchy coats; bristle crest and facial mask variation. Avoid: routine-magic, new-ability-claims. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 218,
+          "endLine": 299,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.ru.b03",
+      "intendedAssetId": "ru.b03.v1",
+      "category": "complete-racing-unit",
+      "canonicalId": "B03",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        64
+      ],
+      "displayCSSPixels": [
+        48,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64,
+        32
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one TRUE orthographic top-down complete racing unit facing RIGHT: two clearly distinct harnessed Crown Boar (Brond) aligned forward on the right, driver and chariot behind them to the left, readable separation between both animals, harness and wheels, no perspective horizon or three-quarter camera. Use a neutral practical chariot, unbranded livery panels and simple adult driver silhouette. Keep baseline centred at(64,32) in the final128×64 frame and leave4px transparent padding. Art does not define or change collision geometry. Preserve species proportions within the fixed visual bounds; do not claim physical size penalties or new harness physics. Anatomy: Oversized domestic boar with broad chest, low center of gravity, thick winter bristles, stout legs, powerful neck, wedge-shaped snout and curved tusks. Coat: Chestnut, black, iron gray, sandy brown, brindle and patchy coats; bristle crest and facial mask variation. Avoid: routine-magic, new-ability-claims. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 218,
+          "endLine": 299,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.b04",
+      "intendedAssetId": "portrait.b04.v1",
+      "category": "beast-portrait",
+      "canonicalId": "B04",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single head-and-shoulders portrait, three-quarter view, calm racing-trained adult, full ear/horn/tusk silhouette within80% crop-safe area. Anatomy: Graceful antlerless herbivore with light horse/deer-like head, long legs, deep but slender chest, fine neck, delicate muzzle and compact hooves. Coat: Honey, chestnut, fawn, cream, bay, russet and soft gray, with subtle countershading and occasional dapples. Avoid: routine-magic, new-ability-claims, antlers. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 300,
+          "endLine": 381,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.ru.b04",
+      "intendedAssetId": "ru.b04.v1",
+      "category": "complete-racing-unit",
+      "canonicalId": "B04",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        64
+      ],
+      "displayCSSPixels": [
+        48,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64,
+        32
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one TRUE orthographic top-down complete racing unit facing RIGHT: two clearly distinct harnessed Meadowstrider (Vellin) aligned forward on the right, driver and chariot behind them to the left, readable separation between both animals, harness and wheels, no perspective horizon or three-quarter camera. Use a neutral practical chariot, unbranded livery panels and simple adult driver silhouette. Keep baseline centred at(64,32) in the final128×64 frame and leave4px transparent padding. Art does not define or change collision geometry. Preserve species proportions within the fixed visual bounds; do not claim physical size penalties or new harness physics. Anatomy: Graceful antlerless herbivore with light horse/deer-like head, long legs, deep but slender chest, fine neck, delicate muzzle and compact hooves. Coat: Honey, chestnut, fawn, cream, bay, russet and soft gray, with subtle countershading and occasional dapples. Avoid: routine-magic, new-ability-claims, antlers. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 300,
+          "endLine": 381,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.b05",
+      "intendedAssetId": "portrait.b05.v1",
+      "category": "beast-portrait",
+      "canonicalId": "B05",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single head-and-shoulders portrait, three-quarter view, calm racing-trained adult, full ear/horn/tusk silhouette within80% crop-safe area. Anatomy: Large muscular sheep-like ram with broad forehead, wool or hair coat, thick shoulders, split hooves and curved horn structure; selectively bred for pulling. Coat: Cream, charcoal, slate, russet, white, black and spotted; fleece length and horn pigmentation vary. Avoid: routine-magic, new-ability-claims. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 382,
+          "endLine": 463,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.ru.b05",
+      "intendedAssetId": "ru.b05.v1",
+      "category": "complete-racing-unit",
+      "canonicalId": "B05",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        64
+      ],
+      "displayCSSPixels": [
+        48,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64,
+        32
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one TRUE orthographic top-down complete racing unit facing RIGHT: two clearly distinct harnessed Racing Ram aligned forward on the right, driver and chariot behind them to the left, readable separation between both animals, harness and wheels, no perspective horizon or three-quarter camera. Use a neutral practical chariot, unbranded livery panels and simple adult driver silhouette. Keep baseline centred at(64,32) in the final128×64 frame and leave4px transparent padding. Art does not define or change collision geometry. Preserve species proportions within the fixed visual bounds; do not claim physical size penalties or new harness physics. Anatomy: Large muscular sheep-like ram with broad forehead, wool or hair coat, thick shoulders, split hooves and curved horn structure; selectively bred for pulling. Coat: Cream, charcoal, slate, russet, white, black and spotted; fleece length and horn pigmentation vary. Avoid: routine-magic, new-ability-claims. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 382,
+          "endLine": 463,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.b06",
+      "intendedAssetId": "portrait.b06.v1",
+      "category": "beast-portrait",
+      "canonicalId": "B06",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single head-and-shoulders portrait, three-quarter view, calm racing-trained adult, full ear/horn/tusk silhouette within80% crop-safe area. Anatomy: Canon: enormous omnivorous, social pack-oriented runner blending bear-like strength, bison-like bulk and dire-wolf-like running capacity; curved horns, thick mane, massive shoulders, strong hindquarters and cloven hooves. Canon scale: shoulder 1.8–2.3 m, body 3.5–4.5 m, 900–1,600 kg; life roughly 25–35 years. Coat: Deep brown, black-brown, ash gray, reddish umber and pale buff, with mane and leg markings. Avoid: routine-magic, new-ability-claims. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 464,
+          "endLine": 545,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.ru.b06",
+      "intendedAssetId": "ru.b06.v1",
+      "category": "complete-racing-unit",
+      "canonicalId": "B06",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        64
+      ],
+      "displayCSSPixels": [
+        48,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64,
+        32
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one TRUE orthographic top-down complete racing unit facing RIGHT: two clearly distinct harnessed Grun’Jho aligned forward on the right, driver and chariot behind them to the left, readable separation between both animals, harness and wheels, no perspective horizon or three-quarter camera. Use a neutral practical chariot, unbranded livery panels and simple adult driver silhouette. Keep baseline centred at(64,32) in the final128×64 frame and leave4px transparent padding. Art does not define or change collision geometry. Preserve species proportions within the fixed visual bounds; do not claim physical size penalties or new harness physics. Anatomy: Canon: enormous omnivorous, social pack-oriented runner blending bear-like strength, bison-like bulk and dire-wolf-like running capacity; curved horns, thick mane, massive shoulders, strong hindquarters and cloven hooves. Canon scale: shoulder 1.8–2.3 m, body 3.5–4.5 m, 900–1,600 kg; life roughly 25–35 years. Coat: Deep brown, black-brown, ash gray, reddish umber and pale buff, with mane and leg markings. Avoid: routine-magic, new-ability-claims. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 464,
+          "endLine": 545,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.b07",
+      "intendedAssetId": "portrait.b07.v1",
+      "category": "beast-portrait",
+      "canonicalId": "B07",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single head-and-shoulders portrait, three-quarter view, calm racing-trained adult, full ear/horn/tusk silhouette within80% crop-safe area. Anatomy: Oversized natural predatory canine with long muzzle, pronounced shoulders, deep ribcage, strong legs, thick neck ruff, large paws and heavy tail. Coat: Gray, charcoal, cream, sable, reddish brown, black and mottled natural wolf patterns. Avoid: routine-magic, new-ability-claims, warg-identity. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 546,
+          "endLine": 627,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.ru.b07",
+      "intendedAssetId": "ru.b07.v1",
+      "category": "complete-racing-unit",
+      "canonicalId": "B07",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        64
+      ],
+      "displayCSSPixels": [
+        48,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64,
+        32
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one TRUE orthographic top-down complete racing unit facing RIGHT: two clearly distinct harnessed Dire Wolf aligned forward on the right, driver and chariot behind them to the left, readable separation between both animals, harness and wheels, no perspective horizon or three-quarter camera. Use a neutral practical chariot, unbranded livery panels and simple adult driver silhouette. Keep baseline centred at(64,32) in the final128×64 frame and leave4px transparent padding. Art does not define or change collision geometry. Preserve species proportions within the fixed visual bounds; do not claim physical size penalties or new harness physics. Anatomy: Oversized natural predatory canine with long muzzle, pronounced shoulders, deep ribcage, strong legs, thick neck ruff, large paws and heavy tail. Coat: Gray, charcoal, cream, sable, reddish brown, black and mottled natural wolf patterns. Avoid: routine-magic, new-ability-claims, warg-identity. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 546,
+          "endLine": 627,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.b08",
+      "intendedAssetId": "portrait.b08.v1",
+      "category": "beast-portrait",
+      "canonicalId": "B08",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single head-and-shoulders portrait, three-quarter view, calm racing-trained adult, full ear/horn/tusk silhouette within80% crop-safe area. Anatomy: Domesticated four-legged draconic reptile with scaled hide, powerful limbs, long balancing tail and horned or crested head; no wings and no routine breath weapons or spellcasting. Coat: Rust red, bronze, charcoal, slate, dark green; contrasting ventral scales, mottling and bands. Avoid: routine-magic, new-ability-claims, wings, breath-weapon. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 628,
+          "endLine": 709,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.ru.b08",
+      "intendedAssetId": "ru.b08.v1",
+      "category": "complete-racing-unit",
+      "canonicalId": "B08",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        64
+      ],
+      "displayCSSPixels": [
+        48,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64,
+        32
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one TRUE orthographic top-down complete racing unit facing RIGHT: two clearly distinct harnessed Wingless Drake aligned forward on the right, driver and chariot behind them to the left, readable separation between both animals, harness and wheels, no perspective horizon or three-quarter camera. Use a neutral practical chariot, unbranded livery panels and simple adult driver silhouette. Keep baseline centred at(64,32) in the final128×64 frame and leave4px transparent padding. Art does not define or change collision geometry. Preserve species proportions within the fixed visual bounds; do not claim physical size penalties or new harness physics. Anatomy: Domesticated four-legged draconic reptile with scaled hide, powerful limbs, long balancing tail and horned or crested head; no wings and no routine breath weapons or spellcasting. Coat: Rust red, bronze, charcoal, slate, dark green; contrasting ventral scales, mottling and bands. Avoid: routine-magic, new-ability-claims, wings, breath-weapon. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 628,
+          "endLine": 709,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.portrait.b09",
+      "intendedAssetId": "portrait.b09.v1",
+      "category": "beast-portrait",
+      "canonicalId": "B09",
+      "sourcePixels": [
+        1024,
+        1024
+      ],
+      "runtimePixels": [
+        256,
+        256
+      ],
+      "displayCSSPixels": [
+        64,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        128,
+        156
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create a single head-and-shoulders portrait, three-quarter view, calm racing-trained adult, full ear/horn/tusk silhouette within80% crop-safe area. Anatomy: Large muscular desert-adapted oryx-like antelope with long powerful legs, strong chest and hindquarters, straight or gently swept prominent horns, distinctive facial markings. No inherent magic. Coat: Ivory, sand, cream, pale gold and reddish brown, with dark facial masks, flank lines and countershading. Avoid: routine-magic, new-ability-claims. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 710,
+          "endLine": 831,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.ru.b09",
+      "intendedAssetId": "ru.b09.v1",
+      "category": "complete-racing-unit",
+      "canonicalId": "B09",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        64
+      ],
+      "displayCSSPixels": [
+        48,
+        128
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64,
+        32
+      ],
+      "reusableVariants": [
+        "source-qualified stock appearance",
+        "same silhouette with team-color mask"
+      ],
+      "compositing": "Separate flat neutral livery mask for team colors; do not tint animal coat or anatomy globally.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one TRUE orthographic top-down complete racing unit facing RIGHT: two clearly distinct harnessed Sunhorn (Saelor) aligned forward on the right, driver and chariot behind them to the left, readable separation between both animals, harness and wheels, no perspective horizon or three-quarter camera. Use a neutral practical chariot, unbranded livery panels and simple adult driver silhouette. Keep baseline centred at(64,32) in the final128×64 frame and leave4px transparent padding. Art does not define or change collision geometry. Preserve species proportions within the fixed visual bounds; do not claim physical size penalties or new harness physics. Anatomy: Large muscular desert-adapted oryx-like antelope with long powerful legs, strong chest and hindquarters, straight or gently swept prominent horns, distinctive facial markings. No inherent magic. Coat: Ivory, sand, cream, pale gold and reddish brown, with dark facial masks, flank lines and countershading. Avoid: routine-magic, new-ability-claims. Transparent background only; no shadow baked outside asset bounds, lettering, watermark or number. Final exports require exact pixel dimensions and alpha QA; do not treat a preview as a game-ready validated file.",
+      "acceptance": [
+        "Actual output dimensions and RGBA alpha verified",
+        "Species anatomy and no unauthorized ability cues",
+        "Two separate animals/one driver/one chariot for RU; no extra limbs or missing harness",
+        "Native collision model untouched; direction/anchor consistent"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 710,
+          "endLine": 831,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "brief.emblem.n1",
+      "intendedAssetId": "emblem.n1.v1",
+      "category": "team-emblem",
+      "canonicalId": "N1",
+      "sourcePixels": [
+        512,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        128
+      ],
+      "displayCSSPixels": [
+        24,
+        128
+      ],
+      "format": "SVG with viewBox0 0 512 512; optional transparent PNG128×128",
+      "anchorPixels": [
+        64.0,
+        64.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #233947, secondary #d5a447. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one ORIGINAL independent racing-club insignia, not a national seal or government emblem. Use a bold simple tower motif, geometrically balanced angular shield/circle, strong negative space, legible monochrome silhouette at24px. Cultural setting: Northreach Confederation. Palette #233947, #d5a447, #667d75; motifs tower, storm-antler, forked-river. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 19,
+          "endLine": 260,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.chariot.n1",
+      "intendedAssetId": "chariot.n1.v1",
+      "category": "chariot-illustration",
+      "canonicalId": "N1",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        512,
+        256
+      ],
+      "displayCSSPixels": [
+        96,
+        256
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        256.0,
+        128.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #233947, secondary #d5a447. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one unbranded chariot product illustration, side/three-quarter object view with complete wheels and chassis, standard functional racing design; regional livery as removable decoration only. Cultural setting: Northreach Confederation. Palette #233947, #d5a447, #667d75; motifs tower, storm-antler, forked-river. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 19,
+          "endLine": 260,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.equipment.n1",
+      "intendedAssetId": "equipment.n1.v1",
+      "category": "equipment-product",
+      "canonicalId": "N1",
+      "sourcePixels": [
+        512,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        128
+      ],
+      "displayCSSPixels": [
+        96,
+        256
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64.0,
+        64.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #233947, secondary #d5a447. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one clear product illustration of an existing neutral racing harness/wheel-fitting kit, readable isolated forms, practical leather/canvas/metal materials; no spikes, new weapons or implied gameplay buffs. Cultural setting: Northreach Confederation. Palette #233947, #d5a447, #667d75; motifs tower, storm-antler, forked-river. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 19,
+          "endLine": 260,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.emblem.n2",
+      "intendedAssetId": "emblem.n2.v1",
+      "category": "team-emblem",
+      "canonicalId": "N2",
+      "sourcePixels": [
+        512,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        128
+      ],
+      "displayCSSPixels": [
+        24,
+        128
+      ],
+      "format": "SVG with viewBox0 0 512 512; optional transparent PNG128×128",
+      "anchorPixels": [
+        64.0,
+        64.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #25344e, secondary #d4dce0. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one ORIGINAL independent racing-club insignia, not a national seal or government emblem. Use a bold simple crown motif, geometrically balanced angular shield/circle, strong negative space, legible monochrome silhouette at24px. Cultural setting: Frosthall Kingdom. Palette #25344e, #d4dce0, #9a3c3c; motifs crown, falcon, twin-gate. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 261,
+          "endLine": 550,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.chariot.n2",
+      "intendedAssetId": "chariot.n2.v1",
+      "category": "chariot-illustration",
+      "canonicalId": "N2",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        512,
+        256
+      ],
+      "displayCSSPixels": [
+        96,
+        256
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        256.0,
+        128.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #25344e, secondary #d4dce0. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one unbranded chariot product illustration, side/three-quarter object view with complete wheels and chassis, standard functional racing design; regional livery as removable decoration only. Cultural setting: Frosthall Kingdom. Palette #25344e, #d4dce0, #9a3c3c; motifs crown, falcon, twin-gate. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 261,
+          "endLine": 550,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.equipment.n2",
+      "intendedAssetId": "equipment.n2.v1",
+      "category": "equipment-product",
+      "canonicalId": "N2",
+      "sourcePixels": [
+        512,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        128
+      ],
+      "displayCSSPixels": [
+        96,
+        256
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64.0,
+        64.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #25344e, secondary #d4dce0. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one clear product illustration of an existing neutral racing harness/wheel-fitting kit, readable isolated forms, practical leather/canvas/metal materials; no spikes, new weapons or implied gameplay buffs. Cultural setting: Frosthall Kingdom. Palette #25344e, #d4dce0, #9a3c3c; motifs crown, falcon, twin-gate. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 261,
+          "endLine": 550,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.emblem.n3",
+      "intendedAssetId": "emblem.n3.v1",
+      "category": "team-emblem",
+      "canonicalId": "N3",
+      "sourcePixels": [
+        512,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        128
+      ],
+      "displayCSSPixels": [
+        24,
+        128
+      ],
+      "format": "SVG with viewBox0 0 512 512; optional transparent PNG128×128",
+      "anchorPixels": [
+        64.0,
+        64.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #274e43, secondary #d8b865. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one ORIGINAL independent racing-club insignia, not a national seal or government emblem. Use a bold simple fox motif, geometrically balanced angular shield/circle, strong negative space, legible monochrome silhouette at24px. Cultural setting: Greenvale Commonwealth. Palette #274e43, #d8b865, #68774b; motifs fox, river-reed, harvest-wheel. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 551,
+          "endLine": 921,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.chariot.n3",
+      "intendedAssetId": "chariot.n3.v1",
+      "category": "chariot-illustration",
+      "canonicalId": "N3",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        512,
+        256
+      ],
+      "displayCSSPixels": [
+        96,
+        256
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        256.0,
+        128.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #274e43, secondary #d8b865. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one unbranded chariot product illustration, side/three-quarter object view with complete wheels and chassis, standard functional racing design; regional livery as removable decoration only. Cultural setting: Greenvale Commonwealth. Palette #274e43, #d8b865, #68774b; motifs fox, river-reed, harvest-wheel. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 551,
+          "endLine": 921,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.equipment.n3",
+      "intendedAssetId": "equipment.n3.v1",
+      "category": "equipment-product",
+      "canonicalId": "N3",
+      "sourcePixels": [
+        512,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        128
+      ],
+      "displayCSSPixels": [
+        96,
+        256
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64.0,
+        64.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #274e43, secondary #d8b865. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one clear product illustration of an existing neutral racing harness/wheel-fitting kit, readable isolated forms, practical leather/canvas/metal materials; no spikes, new weapons or implied gameplay buffs. Cultural setting: Greenvale Commonwealth. Palette #274e43, #d8b865, #68774b; motifs fox, river-reed, harvest-wheel. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 551,
+          "endLine": 921,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.emblem.n4",
+      "intendedAssetId": "emblem.n4.v1",
+      "category": "team-emblem",
+      "canonicalId": "N4",
+      "sourcePixels": [
+        512,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        128
+      ],
+      "displayCSSPixels": [
+        24,
+        128
+      ],
+      "format": "SVG with viewBox0 0 512 512; optional transparent PNG128×128",
+      "anchorPixels": [
+        64.0,
+        64.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #34383e, secondary #b77e43. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one ORIGINAL independent racing-club insignia, not a national seal or government emblem. Use a bold simple anvil motif, geometrically balanced angular shield/circle, strong negative space, legible monochrome silhouette at24px. Cultural setting: Ironhold Clans. Palette #34383e, #b77e43, #75939a; motifs anvil, ram-horn, split-chevron. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 922,
+          "endLine": 1429,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.chariot.n4",
+      "intendedAssetId": "chariot.n4.v1",
+      "category": "chariot-illustration",
+      "canonicalId": "N4",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        512,
+        256
+      ],
+      "displayCSSPixels": [
+        96,
+        256
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        256.0,
+        128.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #34383e, secondary #b77e43. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one unbranded chariot product illustration, side/three-quarter object view with complete wheels and chassis, standard functional racing design; regional livery as removable decoration only. Cultural setting: Ironhold Clans. Palette #34383e, #b77e43, #75939a; motifs anvil, ram-horn, split-chevron. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 922,
+          "endLine": 1429,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.equipment.n4",
+      "intendedAssetId": "equipment.n4.v1",
+      "category": "equipment-product",
+      "canonicalId": "N4",
+      "sourcePixels": [
+        512,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        128
+      ],
+      "displayCSSPixels": [
+        96,
+        256
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64.0,
+        64.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #34383e, secondary #b77e43. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one clear product illustration of an existing neutral racing harness/wheel-fitting kit, readable isolated forms, practical leather/canvas/metal materials; no spikes, new weapons or implied gameplay buffs. Cultural setting: Ironhold Clans. Palette #34383e, #b77e43, #75939a; motifs anvil, ram-horn, split-chevron. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 922,
+          "endLine": 1429,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.emblem.n5",
+      "intendedAssetId": "emblem.n5.v1",
+      "category": "team-emblem",
+      "canonicalId": "N5",
+      "sourcePixels": [
+        512,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        128
+      ],
+      "displayCSSPixels": [
+        24,
+        128
+      ],
+      "format": "SVG with viewBox0 0 512 512; optional transparent PNG128×128",
+      "anchorPixels": [
+        64.0,
+        64.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #135963, secondary #e1b653. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one ORIGINAL independent racing-club insignia, not a national seal or government emblem. Use a bold simple sunburst motif, geometrically balanced angular shield/circle, strong negative space, legible monochrome silhouette at24px. Cultural setting: Sundaran League. Palette #135963, #e1b653, #d27747; motifs sunburst, tide, crossed-reins. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 1430,
+          "endLine": 2027,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.chariot.n5",
+      "intendedAssetId": "chariot.n5.v1",
+      "category": "chariot-illustration",
+      "canonicalId": "N5",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        512,
+        256
+      ],
+      "displayCSSPixels": [
+        96,
+        256
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        256.0,
+        128.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #135963, secondary #e1b653. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one unbranded chariot product illustration, side/three-quarter object view with complete wheels and chassis, standard functional racing design; regional livery as removable decoration only. Cultural setting: Sundaran League. Palette #135963, #e1b653, #d27747; motifs sunburst, tide, crossed-reins. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 1430,
+          "endLine": 2027,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.equipment.n5",
+      "intendedAssetId": "equipment.n5.v1",
+      "category": "equipment-product",
+      "canonicalId": "N5",
+      "sourcePixels": [
+        512,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        128
+      ],
+      "displayCSSPixels": [
+        96,
+        256
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64.0,
+        64.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #135963, secondary #e1b653. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one clear product illustration of an existing neutral racing harness/wheel-fitting kit, readable isolated forms, practical leather/canvas/metal materials; no spikes, new weapons or implied gameplay buffs. Cultural setting: Sundaran League. Palette #135963, #e1b653, #d27747; motifs sunburst, tide, crossed-reins. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 1430,
+          "endLine": 2027,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.emblem.n6",
+      "intendedAssetId": "emblem.n6.v1",
+      "category": "team-emblem",
+      "canonicalId": "N6",
+      "sourcePixels": [
+        512,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        128
+      ],
+      "displayCSSPixels": [
+        24,
+        128
+      ],
+      "format": "SVG with viewBox0 0 512 512; optional transparent PNG128×128",
+      "anchorPixels": [
+        64.0,
+        64.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #56352f, secondary #d5a75b. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one ORIGINAL independent racing-club insignia, not a national seal or government emblem. Use a bold simple running-herd motif, geometrically balanced angular shield/circle, strong negative space, legible monochrome silhouette at24px. Cultural setting: Karthen Hordes. Palette #56352f, #d5a75b, #6d7773; motifs running-herd, banner, river-knot. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2028,
+          "endLine": 2614,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.chariot.n6",
+      "intendedAssetId": "chariot.n6.v1",
+      "category": "chariot-illustration",
+      "canonicalId": "N6",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        512,
+        256
+      ],
+      "displayCSSPixels": [
+        96,
+        256
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        256.0,
+        128.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #56352f, secondary #d5a75b. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one unbranded chariot product illustration, side/three-quarter object view with complete wheels and chassis, standard functional racing design; regional livery as removable decoration only. Cultural setting: Karthen Hordes. Palette #56352f, #d5a75b, #6d7773; motifs running-herd, banner, river-knot. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2028,
+          "endLine": 2614,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.equipment.n6",
+      "intendedAssetId": "equipment.n6.v1",
+      "category": "equipment-product",
+      "canonicalId": "N6",
+      "sourcePixels": [
+        512,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        128
+      ],
+      "displayCSSPixels": [
+        96,
+        256
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64.0,
+        64.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #56352f, secondary #d5a75b. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one clear product illustration of an existing neutral racing harness/wheel-fitting kit, readable isolated forms, practical leather/canvas/metal materials; no spikes, new weapons or implied gameplay buffs. Cultural setting: Karthen Hordes. Palette #56352f, #d5a75b, #6d7773; motifs running-herd, banner, river-knot. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2028,
+          "endLine": 2614,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.emblem.n7",
+      "intendedAssetId": "emblem.n7.v1",
+      "category": "team-emblem",
+      "canonicalId": "N7",
+      "sourcePixels": [
+        512,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        128
+      ],
+      "displayCSSPixels": [
+        24,
+        128
+      ],
+      "format": "SVG with viewBox0 0 512 512; optional transparent PNG128×128",
+      "anchorPixels": [
+        64.0,
+        64.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #493e5d, secondary #c99751. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one ORIGINAL independent racing-club insignia, not a national seal or government emblem. Use a bold simple stepped-wingless-crest motif, geometrically balanced angular shield/circle, strong negative space, legible monochrome silhouette at24px. Cultural setting: Velmora Republic. Palette #493e5d, #c99751, #527478; motifs stepped-wingless-crest, civic-arch, standard. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2615,
+          "endLine": 3393,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.chariot.n7",
+      "intendedAssetId": "chariot.n7.v1",
+      "category": "chariot-illustration",
+      "canonicalId": "N7",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        512,
+        256
+      ],
+      "displayCSSPixels": [
+        96,
+        256
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        256.0,
+        128.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #493e5d, secondary #c99751. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one unbranded chariot product illustration, side/three-quarter object view with complete wheels and chassis, standard functional racing design; regional livery as removable decoration only. Cultural setting: Velmora Republic. Palette #493e5d, #c99751, #527478; motifs stepped-wingless-crest, civic-arch, standard. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2615,
+          "endLine": 3393,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.equipment.n7",
+      "intendedAssetId": "equipment.n7.v1",
+      "category": "equipment-product",
+      "canonicalId": "N7",
+      "sourcePixels": [
+        512,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        128
+      ],
+      "displayCSSPixels": [
+        96,
+        256
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64.0,
+        64.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #493e5d, secondary #c99751. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one clear product illustration of an existing neutral racing harness/wheel-fitting kit, readable isolated forms, practical leather/canvas/metal materials; no spikes, new weapons or implied gameplay buffs. Cultural setting: Velmora Republic. Palette #493e5d, #c99751, #527478; motifs stepped-wingless-crest, civic-arch, standard. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2615,
+          "endLine": 3393,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.emblem.n8",
+      "intendedAssetId": "emblem.n8.v1",
+      "category": "team-emblem",
+      "canonicalId": "N8",
+      "sourcePixels": [
+        512,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        128
+      ],
+      "displayCSSPixels": [
+        24,
+        128
+      ],
+      "format": "SVG with viewBox0 0 512 512; optional transparent PNG128×128",
+      "anchorPixels": [
+        64.0,
+        64.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #664e37, secondary #e6cb79. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one ORIGINAL independent racing-club insignia, not a national seal or government emblem. Use a bold simple sunhorn motif, geometrically balanced angular shield/circle, strong negative space, legible monochrome silhouette at24px. Cultural setting: Zarashi Dominion. Palette #664e37, #e6cb79, #4f7b7a; motifs sunhorn, oasis-star, water-line. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 3394,
+          "endLine": 4104,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.chariot.n8",
+      "intendedAssetId": "chariot.n8.v1",
+      "category": "chariot-illustration",
+      "canonicalId": "N8",
+      "sourcePixels": [
+        1024,
+        512
+      ],
+      "runtimePixels": [
+        512,
+        256
+      ],
+      "displayCSSPixels": [
+        96,
+        256
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        256.0,
+        128.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #664e37, secondary #e6cb79. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one unbranded chariot product illustration, side/three-quarter object view with complete wheels and chassis, standard functional racing design; regional livery as removable decoration only. Cultural setting: Zarashi Dominion. Palette #664e37, #e6cb79, #4f7b7a; motifs sunhorn, oasis-star, water-line. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 3394,
+          "endLine": 4104,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "brief.equipment.n8",
+      "intendedAssetId": "equipment.n8.v1",
+      "category": "equipment-product",
+      "canonicalId": "N8",
+      "sourcePixels": [
+        512,
+        512
+      ],
+      "runtimePixels": [
+        128,
+        128
+      ],
+      "displayCSSPixels": [
+        96,
+        256
+      ],
+      "format": "transparent PNG RGBA sRGB",
+      "anchorPixels": [
+        64.0,
+        64.0
+      ],
+      "reusableVariants": [
+        "primary-secondary palette",
+        "monochrome high-contrast",
+        "small-size silhouette"
+      ],
+      "compositing": "Primary #664e37, secondary #e6cb79. Keep color roles replaceable; no statistic/ownership meaning.",
+      "prompt": "Original Blood and Thunder fantasy racing art in Dark Deco Retro Cartoon style: confident heavy smooth outlines, angular graphic shapes, restrained two- or three-tone cel shading, large deliberate shadows and strong silhouettes. No pixel grid, photorealism, existing superhero characters, copyrighted logos or baked-in text. Create one clear product illustration of an existing neutral racing harness/wheel-fitting kit, readable isolated forms, practical leather/canvas/metal materials; no spikes, new weapons or implied gameplay buffs. Cultural setting: Zarashi Dominion. Palette #664e37, #e6cb79, #4f7b7a; motifs sunhorn, oasis-star, water-line. Transparent background, no letters or numerals, no watermark. If using an image-only generator, deliver clean transparent raster concept and commission vector tracing separately; do not label a raster image or auto-trace as authored SVG. Any delivered SVG must contain no scripts, external resources/fonts, foreignObject or expensive filters.",
+      "acceptance": [
+        "Artwork original, license/source recorded",
+        "No baked text or governmental-identity implication",
+        "Source/runtime crop/dimensions verified",
+        "SVG requires actual path QA; no automatic promise from image generation"
+      ],
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 3394,
+          "endLine": 4104,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    }
+  ],
+  "globalQA": [
+    "No runtime network fetches",
+    "Deduplicate shared anatomy and stock assets",
+    "Stock line/style variation uses metadata and overlays; no39 mandatory unique portraits",
+    "Embedded-manifest maximum64 assets and existing proof-only status are current renderer limits; future art integration must validate staged asset choices",
+    "Shared abstract builtins are current resolved fallback references, not missing files or character names"
+  ]
+}

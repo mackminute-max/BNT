@@ -1,0 +1,1144 @@
+{
+  "version": 1,
+  "world": "Erf",
+  "continent": "Vaern",
+  "sourceAuthority": "original-canon",
+  "entities": [
+    {
+      "id": "A01",
+      "name": "Human",
+      "entityType": "ancestry",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 34,
+          "endLine": 89,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "A02",
+      "name": "Orc",
+      "entityType": "ancestry",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 90,
+          "endLine": 145,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "A03",
+      "name": "Goliath",
+      "entityType": "ancestry",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 146,
+          "endLine": 201,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "A04",
+      "name": "Hill Dwarf",
+      "entityType": "ancestry",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 202,
+          "endLine": 257,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "A05",
+      "name": "Mountain Dwarf",
+      "entityType": "ancestry",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 258,
+          "endLine": 313,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "A06",
+      "name": "Halfling",
+      "entityType": "ancestry",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 314,
+          "endLine": 369,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "A07",
+      "name": "Forest Elf",
+      "entityType": "ancestry",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 370,
+          "endLine": 425,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "A08",
+      "name": "High Elf",
+      "entityType": "ancestry",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 426,
+          "endLine": 481,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "A09",
+      "name": "Sea Elf",
+      "entityType": "ancestry",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 482,
+          "endLine": 537,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "A10",
+      "name": "Gnome",
+      "entityType": "ancestry",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 538,
+          "endLine": 593,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "A11",
+      "name": "Goblin",
+      "entityType": "ancestry",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 594,
+          "endLine": 649,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "A12",
+      "name": "Dragonkin",
+      "entityType": "ancestry",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 650,
+          "endLine": 705,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "A13",
+      "name": "Tortle",
+      "entityType": "ancestry",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+          "startLine": 706,
+          "endLine": 789,
+          "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+        }
+      ]
+    },
+    {
+      "id": "B01",
+      "name": "Horse",
+      "entityType": "beast_species",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "B02",
+      "name": "Storm Elk (Hroven)",
+      "entityType": "beast_species",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 136,
+          "endLine": 217,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "B03",
+      "name": "Crown Boar (Brond)",
+      "entityType": "beast_species",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 218,
+          "endLine": 299,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "B04",
+      "name": "Meadowstrider (Vellin)",
+      "entityType": "beast_species",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 300,
+          "endLine": 381,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "B05",
+      "name": "Racing Ram",
+      "entityType": "beast_species",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 382,
+          "endLine": 463,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "B06",
+      "name": "Grun’Jho",
+      "entityType": "beast_species",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 464,
+          "endLine": 545,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "B07",
+      "name": "Dire Wolf",
+      "entityType": "beast_species",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 546,
+          "endLine": 627,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "B08",
+      "name": "Wingless Drake",
+      "entityType": "beast_species",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 628,
+          "endLine": 709,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "B09",
+      "name": "Sunhorn (Saelor)",
+      "entityType": "beast_species",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 710,
+          "endLine": 831,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "N1",
+      "name": "Northreach Confederation",
+      "entityType": "nation",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 19,
+          "endLine": 260,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "N2",
+      "name": "Frosthall Kingdom",
+      "entityType": "nation",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 261,
+          "endLine": 550,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "N3",
+      "name": "Greenvale Commonwealth",
+      "entityType": "nation",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 551,
+          "endLine": 921,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "N4",
+      "name": "Ironhold Clans",
+      "entityType": "nation",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 922,
+          "endLine": 1429,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "N5",
+      "name": "Sundaran League",
+      "entityType": "nation",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 1430,
+          "endLine": 2027,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "N6",
+      "name": "Karthen Hordes",
+      "entityType": "nation",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2028,
+          "endLine": 2614,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "N7",
+      "name": "Velmora Republic",
+      "entityType": "nation",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 2615,
+          "endLine": 3393,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    },
+    {
+      "id": "N8",
+      "name": "Zarashi Dominion",
+      "entityType": "nation",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+          "startLine": 3394,
+          "endLine": 4104,
+          "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+        }
+      ]
+    }
+  ],
+  "ancestrySubdivisions": [
+    {
+      "id": "A04",
+      "name": "Hill Dwarf",
+      "status": "independently-enumerated-canonical-ancestry-not-extra-subtype"
+    },
+    {
+      "id": "A05",
+      "name": "Mountain Dwarf",
+      "status": "independently-enumerated-canonical-ancestry-not-extra-subtype"
+    },
+    {
+      "id": "A07",
+      "name": "Forest Elf",
+      "status": "independently-enumerated-canonical-ancestry-not-extra-subtype"
+    },
+    {
+      "id": "A08",
+      "name": "High Elf",
+      "status": "independently-enumerated-canonical-ancestry-not-extra-subtype"
+    },
+    {
+      "id": "A09",
+      "name": "Sea Elf",
+      "status": "independently-enumerated-canonical-ancestry-not-extra-subtype"
+    }
+  ],
+  "stock": [
+    {
+      "id": "stock.b01.1-1",
+      "speciesId": "B01",
+      "sourceLocalId": "1.1",
+      "name": "Heavy draft",
+      "classification": "descriptive_stock_style",
+      "statusText": "Shire/Clydesdale/Percheron-inspired.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b01.1-2",
+      "speciesId": "B01",
+      "sourceLocalId": "1.2",
+      "name": "Compact draft",
+      "classification": "descriptive_stock_style",
+      "statusText": "Ardennes/Suffolk Punch-inspired.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b01.1-3",
+      "speciesId": "B01",
+      "sourceLocalId": "1.3",
+      "name": "Sprint racer",
+      "classification": "descriptive_stock_style",
+      "statusText": "Thoroughbred-inspired.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b01.1-4",
+      "speciesId": "B01",
+      "sourceLocalId": "1.4",
+      "name": "Endurance runner",
+      "classification": "descriptive_stock_style",
+      "statusText": "Arabian/Barb-inspired.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b01.1-5",
+      "speciesId": "B01",
+      "sourceLocalId": "1.5",
+      "name": "Light carriage",
+      "classification": "descriptive_stock_style",
+      "statusText": "Standardbred/Hackney-inspired.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b01.1-6",
+      "speciesId": "B01",
+      "sourceLocalId": "1.6",
+      "name": "Mountain pony",
+      "classification": "descriptive_stock_style",
+      "statusText": "Icelandic/Fell pony-inspired.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b01.1-7",
+      "speciesId": "B01",
+      "sourceLocalId": "1.7",
+      "name": "Desert courser",
+      "classification": "descriptive_stock_style",
+      "statusText": "Akhal-Teke/Arabian-inspired.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 24,
+          "endLine": 135,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b02.2-1",
+      "speciesId": "B02",
+      "sourceLocalId": "2.1",
+      "name": "Highland shag",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); dense winter mane and thick lower-leg coat.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 136,
+          "endLine": 217,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b02.2-2",
+      "speciesId": "B02",
+      "sourceLocalId": "2.2",
+      "name": "Racing crown",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); selected manageable antler spread.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 136,
+          "endLine": 217,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b02.2-3",
+      "speciesId": "B02",
+      "sourceLocalId": "2.3",
+      "name": "Greywood runner",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); woodland edge adaptation.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 136,
+          "endLine": 217,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b02.2-4",
+      "speciesId": "B02",
+      "sourceLocalId": "2.4",
+      "name": "Ceremonial grandcrown",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); display-oriented line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 136,
+          "endLine": 217,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b03.3-1",
+      "speciesId": "B03",
+      "sourceLocalId": "3.1",
+      "name": "Royal hauler",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); traditional heavy hauling line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 218,
+          "endLine": 299,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b03.3-2",
+      "speciesId": "B03",
+      "sourceLocalId": "3.2",
+      "name": "Circuit brond",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); racing selection.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 218,
+          "endLine": 299,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b03.3-3",
+      "speciesId": "B03",
+      "sourceLocalId": "3.3",
+      "name": "Upland bristleback",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); cold upland working line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 218,
+          "endLine": 299,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b03.3-4",
+      "speciesId": "B03",
+      "sourceLocalId": "3.4",
+      "name": "Coppercrest",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); show and ceremonial line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 218,
+          "endLine": 299,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b04.4-1",
+      "speciesId": "B04",
+      "sourceLocalId": "4.1",
+      "name": "Valley swift",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); light racing line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 300,
+          "endLine": 381,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b04.4-2",
+      "speciesId": "B04",
+      "sourceLocalId": "4.2",
+      "name": "Orchard drafter",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); agricultural multipurpose line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 300,
+          "endLine": 381,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b04.4-3",
+      "speciesId": "B04",
+      "sourceLocalId": "4.3",
+      "name": "Woodland turner",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); winding-course selection.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 300,
+          "endLine": 381,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b04.4-4",
+      "speciesId": "B04",
+      "sourceLocalId": "4.4",
+      "name": "Goldenfield",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); festival/show line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 300,
+          "endLine": 381,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b05.5-1",
+      "speciesId": "B05",
+      "sourceLocalId": "5.1",
+      "name": "Stonehorn heavy",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); mountain hauling line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 382,
+          "endLine": 463,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b05.5-2",
+      "speciesId": "B05",
+      "sourceLocalId": "5.2",
+      "name": "Silverfleece runner",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); lighter racing line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 382,
+          "endLine": 463,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b05.5-3",
+      "speciesId": "B05",
+      "sourceLocalId": "5.3",
+      "name": "Coppervale woolback",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); valley multipurpose line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 382,
+          "endLine": 463,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b05.5-4",
+      "speciesId": "B05",
+      "sourceLocalId": "5.4",
+      "name": "Redhorn charger",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); showy aggressive-looking line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 382,
+          "endLine": 463,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b06.6-1",
+      "speciesId": "B06",
+      "sourceLocalId": "6.1",
+      "name": "Thunderback",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); heavy traditional line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 464,
+          "endLine": 545,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b06.6-2",
+      "speciesId": "B06",
+      "sourceLocalId": "6.2",
+      "name": "Longstride",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); open-country running line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 464,
+          "endLine": 545,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b06.6-3",
+      "speciesId": "B06",
+      "sourceLocalId": "6.3",
+      "name": "Ashmane",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); dark-coated display line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 464,
+          "endLine": 545,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b06.6-4",
+      "speciesId": "B06",
+      "sourceLocalId": "6.4",
+      "name": "Herdkeeper",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); temperament-selected working line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 464,
+          "endLine": 545,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b07.7-1",
+      "speciesId": "B07",
+      "sourceLocalId": "7.1",
+      "name": "Blackford fang",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); powerful race line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 546,
+          "endLine": 627,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b07.7-2",
+      "speciesId": "B07",
+      "sourceLocalId": "7.2",
+      "name": "Dustbreak longrunner",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); open frontier endurance line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 546,
+          "endLine": 627,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b07.7-3",
+      "speciesId": "B07",
+      "sourceLocalId": "7.3",
+      "name": "Frostgray",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); cold-weather heavy coat line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 546,
+          "endLine": 627,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b07.7-4",
+      "speciesId": "B07",
+      "sourceLocalId": "7.4",
+      "name": "Redmask",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); distinctive facial marking line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 546,
+          "endLine": 627,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b08.8-1",
+      "speciesId": "B08",
+      "sourceLocalId": "8.1",
+      "name": "Bronze hauler",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); heavy work line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 628,
+          "endLine": 709,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b08.8-2",
+      "speciesId": "B08",
+      "sourceLocalId": "8.2",
+      "name": "Slate racer",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); lean racing line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 628,
+          "endLine": 709,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b08.8-3",
+      "speciesId": "B08",
+      "sourceLocalId": "8.3",
+      "name": "Crestback",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); distinctive ornamental line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 628,
+          "endLine": 709,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b08.8-4",
+      "speciesId": "B08",
+      "sourceLocalId": "8.4",
+      "name": "Marshgreen",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); hardy utility line.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 628,
+          "endLine": 709,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b09.9-1",
+      "speciesId": "B09",
+      "sourceLocalId": "9.1",
+      "name": "Saelorin racing line",
+      "classification": "established_canon_line",
+      "statusText": "Canon term for racing-bred Sunhorn.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 710,
+          "endLine": 831,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b09.9-2",
+      "speciesId": "B09",
+      "sourceLocalId": "9.2",
+      "name": "Arusael working line",
+      "classification": "established_canon_line",
+      "statusText": "Canon term for heavy working Sunhorn.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 710,
+          "endLine": 831,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b09.9-3",
+      "speciesId": "B09",
+      "sourceLocalId": "9.3",
+      "name": "Silsael endurance line",
+      "classification": "established_canon_line",
+      "statusText": "Canon term for light endurance-oriented Sunhorn.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 710,
+          "endLine": 831,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    },
+    {
+      "id": "stock.b09.9-4",
+      "speciesId": "B09",
+      "sourceLocalId": "9.4",
+      "name": "Ivorymask",
+      "classification": "new_v1_catalog_bloodline",
+      "statusText": "Named catalog bloodline (v1.0); appearance-focused selection.",
+      "sources": [
+        {
+          "authority": "canon",
+          "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+          "startLine": 710,
+          "endLine": 831,
+          "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+        }
+      ]
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "/workspace/attachments/ab47540c-af6c-4c2e-a85b-5a02ab1ca681/Blood_and_Thunder_AI_Database_v2.zip!/Blood_and_Thunder_AI_Database_v2/sources/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+      "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+      "lines": 4104,
+      "auditCopy": "/workspace/deliverables/bnt-m5-audit/evidence/canon-Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md"
+    },
+    {
+      "path": "/workspace/attachments/ab47540c-af6c-4c2e-a85b-5a02ab1ca681/Blood_and_Thunder_AI_Database_v2.zip!/Blood_and_Thunder_AI_Database_v2/sources/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+      "sha256": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce",
+      "lines": 831,
+      "auditCopy": "/workspace/deliverables/bnt-m5-audit/evidence/canon-Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md"
+    },
+    {
+      "path": "/workspace/attachments/ab47540c-af6c-4c2e-a85b-5a02ab1ca681/Blood_and_Thunder_AI_Database_v2.zip!/Blood_and_Thunder_AI_Database_v2/sources/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+      "sha256": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57",
+      "lines": 789,
+      "auditCopy": "/workspace/deliverables/bnt-m5-audit/evidence/canon-Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md"
+    }
+  ],
+  "missingMaterials": [
+    "No separate precompiled World Identity Catalog was supplied/found; this mapping indexes supplied canon and does not replace it.",
+    "Related national-reference filename Updated_2026-11-21 is mentioned by canon; no separate differently named source is available. Byte-matching supplied v1.0 nation copies are used."
+  ]
+}

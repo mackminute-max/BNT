@@ -1,0 +1,962 @@
+[
+  {
+    "id": "brief.venue.n1.prestige-1",
+    "venueId": "venue.n1.prestige-1",
+    "consumer": "future venue detail card",
+    "composition": "Wide three-quarter view of Stone Grand Arena; grandstand and gravel track, Northreach Confederation architectural cues from cited canon.",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 19,
+        "endLine": 260
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "palette": [
+      "#233947",
+      "#d5a447",
+      "#667d75"
+    ],
+    "motifs": [
+      "tower",
+      "storm-antler",
+      "forked-river"
+    ],
+    "architecture": [
+      "stone gatehouses and timber stands"
+    ],
+    "reuse": "Reuse national architecture and heraldry; optional detail card only"
+  },
+  {
+    "id": "brief.venue.n1.prestige-2",
+    "venueId": "venue.n1.prestige-2",
+    "consumer": "future venue detail card",
+    "composition": "Wide three-quarter view of Hearth Heritage Course; grandstand and gravel track, Northreach Confederation architectural cues from cited canon.",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 19,
+        "endLine": 260
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "palette": [
+      "#233947",
+      "#d5a447",
+      "#667d75"
+    ],
+    "motifs": [
+      "tower",
+      "storm-antler",
+      "forked-river"
+    ],
+    "architecture": [
+      "stone gatehouses and timber stands"
+    ],
+    "reuse": "Reuse national architecture and heraldry; optional detail card only"
+  },
+  {
+    "id": "brief.venue.n2.prestige-1",
+    "venueId": "venue.n2.prestige-1",
+    "consumer": "future venue detail card",
+    "composition": "Wide three-quarter view of Crown Grand Arena; grandstand and dirt track, Frosthall Kingdom architectural cues from cited canon.",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 261,
+        "endLine": 550
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "palette": [
+      "#25344e",
+      "#d4dce0",
+      "#9a3c3c"
+    ],
+    "motifs": [
+      "crown",
+      "falcon",
+      "twin-gate"
+    ],
+    "architecture": [
+      "stepped stone halls and steep roofs"
+    ],
+    "reuse": "Reuse national architecture and heraldry; optional detail card only"
+  },
+  {
+    "id": "brief.venue.n2.prestige-2",
+    "venueId": "venue.n2.prestige-2",
+    "consumer": "future venue detail card",
+    "composition": "Wide three-quarter view of Alder Heritage Course; grandstand and dirt track, Frosthall Kingdom architectural cues from cited canon.",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 261,
+        "endLine": 550
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "palette": [
+      "#25344e",
+      "#d4dce0",
+      "#9a3c3c"
+    ],
+    "motifs": [
+      "crown",
+      "falcon",
+      "twin-gate"
+    ],
+    "architecture": [
+      "stepped stone halls and steep roofs"
+    ],
+    "reuse": "Reuse national architecture and heraldry; optional detail card only"
+  },
+  {
+    "id": "brief.venue.n3.prestige-1",
+    "venueId": "venue.n3.prestige-1",
+    "consumer": "future venue detail card",
+    "composition": "Wide three-quarter view of Willow Grand Arena; grandstand and dirt track, Greenvale Commonwealth architectural cues from cited canon.",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 551,
+        "endLine": 921
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "palette": [
+      "#274e43",
+      "#d8b865",
+      "#68774b"
+    ],
+    "motifs": [
+      "fox",
+      "river-reed",
+      "harvest-wheel"
+    ],
+    "architecture": [
+      "leaf-pattern colonnades and timber galleries"
+    ],
+    "reuse": "Reuse national architecture and heraldry; optional detail card only"
+  },
+  {
+    "id": "brief.venue.n3.prestige-2",
+    "venueId": "venue.n3.prestige-2",
+    "consumer": "future venue detail card",
+    "composition": "Wide three-quarter view of Applebrook Heritage Course; grandstand and dirt track, Greenvale Commonwealth architectural cues from cited canon.",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 551,
+        "endLine": 921
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "palette": [
+      "#274e43",
+      "#d8b865",
+      "#68774b"
+    ],
+    "motifs": [
+      "fox",
+      "river-reed",
+      "harvest-wheel"
+    ],
+    "architecture": [
+      "leaf-pattern colonnades and timber galleries"
+    ],
+    "reuse": "Reuse national architecture and heraldry; optional detail card only"
+  },
+  {
+    "id": "brief.venue.n4.prestige-1",
+    "venueId": "venue.n4.prestige-1",
+    "consumer": "future venue detail card",
+    "composition": "Wide three-quarter view of Anvil Grand Arena; grandstand and stone track, Ironhold Clans architectural cues from cited canon.",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 922,
+        "endLine": 1429
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "palette": [
+      "#34383e",
+      "#b77e43",
+      "#75939a"
+    ],
+    "motifs": [
+      "anvil",
+      "ram-horn",
+      "split-chevron"
+    ],
+    "architecture": [
+      "massive masonry portals and metal trusses"
+    ],
+    "reuse": "Reuse national architecture and heraldry; optional detail card only"
+  },
+  {
+    "id": "brief.venue.n4.prestige-2",
+    "venueId": "venue.n4.prestige-2",
+    "consumer": "future venue detail card",
+    "composition": "Wide three-quarter view of Copperforge Heritage Course; grandstand and stone track, Ironhold Clans architectural cues from cited canon.",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 922,
+        "endLine": 1429
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "palette": [
+      "#34383e",
+      "#b77e43",
+      "#75939a"
+    ],
+    "motifs": [
+      "anvil",
+      "ram-horn",
+      "split-chevron"
+    ],
+    "architecture": [
+      "massive masonry portals and metal trusses"
+    ],
+    "reuse": "Reuse national architecture and heraldry; optional detail card only"
+  },
+  {
+    "id": "brief.venue.n5.prestige-1",
+    "venueId": "venue.n5.prestige-1",
+    "consumer": "future venue detail card",
+    "composition": "Wide three-quarter view of Suncrest Grand Arena; grandstand and stone track, Sundaran League architectural cues from cited canon.",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 1430,
+        "endLine": 2027
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "palette": [
+      "#135963",
+      "#e1b653",
+      "#d27747"
+    ],
+    "motifs": [
+      "sunburst",
+      "tide",
+      "crossed-reins"
+    ],
+    "architecture": [
+      "civic arcades and shaded terraces"
+    ],
+    "reuse": "Reuse national architecture and heraldry; optional detail card only"
+  },
+  {
+    "id": "brief.venue.n5.prestige-2",
+    "venueId": "venue.n5.prestige-2",
+    "consumer": "future venue detail card",
+    "composition": "Wide three-quarter view of Pearlport Heritage Course; grandstand and stone track, Sundaran League architectural cues from cited canon.",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 1430,
+        "endLine": 2027
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "palette": [
+      "#135963",
+      "#e1b653",
+      "#d27747"
+    ],
+    "motifs": [
+      "sunburst",
+      "tide",
+      "crossed-reins"
+    ],
+    "architecture": [
+      "civic arcades and shaded terraces"
+    ],
+    "reuse": "Reuse national architecture and heraldry; optional detail card only"
+  },
+  {
+    "id": "brief.venue.n6.prestige-1",
+    "venueId": "venue.n6.prestige-1",
+    "consumer": "future venue detail card",
+    "composition": "Wide three-quarter view of Redsteppe Grand Arena; grandstand and dirt track, Karthen Hordes architectural cues from cited canon.",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 2028,
+        "endLine": 2614
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "palette": [
+      "#56352f",
+      "#d5a75b",
+      "#6d7773"
+    ],
+    "motifs": [
+      "running-herd",
+      "banner",
+      "river-knot"
+    ],
+    "architecture": [
+      "low fortified walls and broad earthworks"
+    ],
+    "reuse": "Reuse national architecture and heraldry; optional detail card only"
+  },
+  {
+    "id": "brief.venue.n6.prestige-2",
+    "venueId": "venue.n6.prestige-2",
+    "consumer": "future venue detail card",
+    "composition": "Wide three-quarter view of Windhoof Heritage Course; grandstand and dirt track, Karthen Hordes architectural cues from cited canon.",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 2028,
+        "endLine": 2614
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "palette": [
+      "#56352f",
+      "#d5a75b",
+      "#6d7773"
+    ],
+    "motifs": [
+      "running-herd",
+      "banner",
+      "river-knot"
+    ],
+    "architecture": [
+      "low fortified walls and broad earthworks"
+    ],
+    "reuse": "Reuse national architecture and heraldry; optional detail card only"
+  },
+  {
+    "id": "brief.venue.n7.prestige-1",
+    "venueId": "venue.n7.prestige-1",
+    "consumer": "future venue detail card",
+    "composition": "Wide three-quarter view of Bronze Grand Arena; grandstand and stone track, Velmora Republic architectural cues from cited canon.",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 2615,
+        "endLine": 3393
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "palette": [
+      "#493e5d",
+      "#c99751",
+      "#527478"
+    ],
+    "motifs": [
+      "stepped-wingless-crest",
+      "civic-arch",
+      "standard"
+    ],
+    "architecture": [
+      "formal grandstands and geometric civic towers"
+    ],
+    "reuse": "Reuse national architecture and heraldry; optional detail card only"
+  },
+  {
+    "id": "brief.venue.n7.prestige-2",
+    "venueId": "venue.n7.prestige-2",
+    "consumer": "future venue detail card",
+    "composition": "Wide three-quarter view of Forumgate Heritage Course; grandstand and stone track, Velmora Republic architectural cues from cited canon.",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 2615,
+        "endLine": 3393
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "palette": [
+      "#493e5d",
+      "#c99751",
+      "#527478"
+    ],
+    "motifs": [
+      "stepped-wingless-crest",
+      "civic-arch",
+      "standard"
+    ],
+    "architecture": [
+      "formal grandstands and geometric civic towers"
+    ],
+    "reuse": "Reuse national architecture and heraldry; optional detail card only"
+  },
+  {
+    "id": "brief.venue.n8.prestige-1",
+    "venueId": "venue.n8.prestige-1",
+    "consumer": "future venue detail card",
+    "composition": "Wide three-quarter view of Sundial Grand Arena; grandstand and sand track, Zarashi Dominion architectural cues from cited canon.",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 3394,
+        "endLine": 4104
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "palette": [
+      "#664e37",
+      "#e6cb79",
+      "#4f7b7a"
+    ],
+    "motifs": [
+      "sunhorn",
+      "oasis-star",
+      "water-line"
+    ],
+    "architecture": [
+      "angular screens and shaded courtyards"
+    ],
+    "reuse": "Reuse national architecture and heraldry; optional detail card only"
+  },
+  {
+    "id": "brief.venue.n8.prestige-2",
+    "venueId": "venue.n8.prestige-2",
+    "consumer": "future venue detail card",
+    "composition": "Wide three-quarter view of Azurewell Heritage Course; grandstand and sand track, Zarashi Dominion architectural cues from cited canon.",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 3394,
+        "endLine": 4104
+      }
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "palette": [
+      "#664e37",
+      "#e6cb79",
+      "#4f7b7a"
+    ],
+    "motifs": [
+      "sunhorn",
+      "oasis-star",
+      "water-line"
+    ],
+    "architecture": [
+      "angular screens and shaded courtyards"
+    ],
+    "reuse": "Reuse national architecture and heraldry; optional detail card only"
+  },
+  {
+    "id": "brief.presentation.n1",
+    "consumer": "reusable regional venue card",
+    "composition": "Wide three-quarter architecture and track approach; stone gatehouses and timber stands",
+    "palette": [
+      "#233947",
+      "#d5a447",
+      "#667d75"
+    ],
+    "motifs": [
+      "tower",
+      "storm-antler",
+      "forked-river"
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "reuse": "All regional venues sharing this presentation",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 19,
+        "endLine": 260
+      },
+      {
+        "authority": "audit-proposal",
+        "file": "core-v1.0/catalogs/visualMetadata.json",
+        "sha256": "0ea772743c21d84da0fe50f2cea24c58c7ad3aa21cdde1764620322e1e34c986",
+        "startLine": 1,
+        "endLine": 2230
+      }
+    ]
+  },
+  {
+    "id": "brief.presentation.n2",
+    "consumer": "reusable regional venue card",
+    "composition": "Wide three-quarter architecture and track approach; stepped stone halls and steep roofs",
+    "palette": [
+      "#25344e",
+      "#d4dce0",
+      "#9a3c3c"
+    ],
+    "motifs": [
+      "crown",
+      "falcon",
+      "twin-gate"
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "reuse": "All regional venues sharing this presentation",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 261,
+        "endLine": 550
+      },
+      {
+        "authority": "audit-proposal",
+        "file": "core-v1.0/catalogs/visualMetadata.json",
+        "sha256": "0ea772743c21d84da0fe50f2cea24c58c7ad3aa21cdde1764620322e1e34c986",
+        "startLine": 1,
+        "endLine": 2230
+      }
+    ]
+  },
+  {
+    "id": "brief.presentation.n3",
+    "consumer": "reusable regional venue card",
+    "composition": "Wide three-quarter architecture and track approach; leaf-pattern colonnades and timber galleries",
+    "palette": [
+      "#274e43",
+      "#d8b865",
+      "#68774b"
+    ],
+    "motifs": [
+      "fox",
+      "river-reed",
+      "harvest-wheel"
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "reuse": "All regional venues sharing this presentation",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 551,
+        "endLine": 921
+      },
+      {
+        "authority": "audit-proposal",
+        "file": "core-v1.0/catalogs/visualMetadata.json",
+        "sha256": "0ea772743c21d84da0fe50f2cea24c58c7ad3aa21cdde1764620322e1e34c986",
+        "startLine": 1,
+        "endLine": 2230
+      }
+    ]
+  },
+  {
+    "id": "brief.presentation.n4",
+    "consumer": "reusable regional venue card",
+    "composition": "Wide three-quarter architecture and track approach; massive masonry portals and metal trusses",
+    "palette": [
+      "#34383e",
+      "#b77e43",
+      "#75939a"
+    ],
+    "motifs": [
+      "anvil",
+      "ram-horn",
+      "split-chevron"
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "reuse": "All regional venues sharing this presentation",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 922,
+        "endLine": 1429
+      },
+      {
+        "authority": "audit-proposal",
+        "file": "core-v1.0/catalogs/visualMetadata.json",
+        "sha256": "0ea772743c21d84da0fe50f2cea24c58c7ad3aa21cdde1764620322e1e34c986",
+        "startLine": 1,
+        "endLine": 2230
+      }
+    ]
+  },
+  {
+    "id": "brief.presentation.n5",
+    "consumer": "reusable regional venue card",
+    "composition": "Wide three-quarter architecture and track approach; civic arcades and shaded terraces",
+    "palette": [
+      "#135963",
+      "#e1b653",
+      "#d27747"
+    ],
+    "motifs": [
+      "sunburst",
+      "tide",
+      "crossed-reins"
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "reuse": "All regional venues sharing this presentation",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 1430,
+        "endLine": 2027
+      },
+      {
+        "authority": "audit-proposal",
+        "file": "core-v1.0/catalogs/visualMetadata.json",
+        "sha256": "0ea772743c21d84da0fe50f2cea24c58c7ad3aa21cdde1764620322e1e34c986",
+        "startLine": 1,
+        "endLine": 2230
+      }
+    ]
+  },
+  {
+    "id": "brief.presentation.n6",
+    "consumer": "reusable regional venue card",
+    "composition": "Wide three-quarter architecture and track approach; low fortified walls and broad earthworks",
+    "palette": [
+      "#56352f",
+      "#d5a75b",
+      "#6d7773"
+    ],
+    "motifs": [
+      "running-herd",
+      "banner",
+      "river-knot"
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "reuse": "All regional venues sharing this presentation",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 2028,
+        "endLine": 2614
+      },
+      {
+        "authority": "audit-proposal",
+        "file": "core-v1.0/catalogs/visualMetadata.json",
+        "sha256": "0ea772743c21d84da0fe50f2cea24c58c7ad3aa21cdde1764620322e1e34c986",
+        "startLine": 1,
+        "endLine": 2230
+      }
+    ]
+  },
+  {
+    "id": "brief.presentation.n7",
+    "consumer": "reusable regional venue card",
+    "composition": "Wide three-quarter architecture and track approach; formal grandstands and geometric civic towers",
+    "palette": [
+      "#493e5d",
+      "#c99751",
+      "#527478"
+    ],
+    "motifs": [
+      "stepped-wingless-crest",
+      "civic-arch",
+      "standard"
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "reuse": "All regional venues sharing this presentation",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 2615,
+        "endLine": 3393
+      },
+      {
+        "authority": "audit-proposal",
+        "file": "core-v1.0/catalogs/visualMetadata.json",
+        "sha256": "0ea772743c21d84da0fe50f2cea24c58c7ad3aa21cdde1764620322e1e34c986",
+        "startLine": 1,
+        "endLine": 2230
+      }
+    ]
+  },
+  {
+    "id": "brief.presentation.n8",
+    "consumer": "reusable regional venue card",
+    "composition": "Wide three-quarter architecture and track approach; angular screens and shaded courtyards",
+    "palette": [
+      "#664e37",
+      "#e6cb79",
+      "#4f7b7a"
+    ],
+    "motifs": [
+      "sunhorn",
+      "oasis-star",
+      "water-line"
+    ],
+    "style": "dark-deco-retro-cartoon-v1",
+    "format": "png",
+    "dimensionsProposed": [
+      1024,
+      576
+    ],
+    "transparency": false,
+    "anchor": "not applicable",
+    "fallback": "existing native track renderer",
+    "registrationAuthorized": false,
+    "reuse": "All regional venues sharing this presentation",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "references/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(4).md",
+        "sha256": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5",
+        "startLine": 3394,
+        "endLine": 4104
+      },
+      {
+        "authority": "audit-proposal",
+        "file": "core-v1.0/catalogs/visualMetadata.json",
+        "sha256": "0ea772743c21d84da0fe50f2cea24c58c7ad3aa21cdde1764620322e1e34c986",
+        "startLine": 1,
+        "endLine": 2230
+      }
+    ]
+  }
+]

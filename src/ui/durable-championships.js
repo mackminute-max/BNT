@@ -12,7 +12,7 @@ export function mountDurableChampionships({databaseOptions,legacyStorage,getLega
  ui.career=async(method,args)=>{await ui.coordinator.career(method,args);await ui.refresh();};
  function action(fn){const wrapped=async()=>{ui.pending=true;started=performance.now();render();renderParent();try{await fn();await ui.refresh();}catch(e){ui.playing=false;ui.notice=e.message;try{await ui.refresh();}catch{}throw e;}finally{ui.pending=false;render();}};wrapped.e4Operation=true;return act(wrapped);}
  $('e4Migrate').onclick=action(async()=>{ui.playing=false;if(!await confirmAction('Move this complete career and required sessions to IndexedDB? Original Web Storage bytes remain historical. Export a backup first. No Gold or gameplay changes.'))return;await attach();await ui.coordinator.migrate(legacyStorage,{confirmed:true});await ui.refresh();ui.notice='Durable backend activated; original legacy bytes preserved.';});
- $('e4Repair').onclick=action(async()=>{ui.playing=false;await ui.coordinator.repair();ui.notice='Original record manifest reconstructed and committed without replaying effects.';});
+ $('e4Repair').onclick=action(async()=>{ui.playing=false;if(globalThis.__BNT_M5__&&!await confirmAction('Restore the previous valid save? Newer decisions may be lost. The replaced generation is quarantined.'))return;await ui.coordinator.repair({confirmed:!!globalThis.__BNT_M5__});ui.notice='Original record manifest reconstructed and committed without replaying effects.';});
  $('e4Reload').onclick=action(async()=>{ui.playing=false;await attach();ui.notice='Durable authority revalidated. Playback requires explicit resume.';});$('e4Restart').onclick=action(async()=>{ui.playing=false;ui.coordinator.worker.restart();await ui.refresh();ui.notice='Worker restarted; only durable authority was restored.';});
  ui.e5=async(command,payload)=>{ui.playing=false;return op('e5',{command,payload});};
  ui.race=async(type,args={})=>{if(!ui.durable||!ui.coordinator)throw Error('Durable race birth required');const packet=type==='read'?await ui.coordinator.attemptRead(args.channel):await ui.coordinator.attemptExecute(args);if(packet.frames?.length)ui.view.frame={...ui.view.frame,...packet.frames.at(-1)};return packet;};
@@ -28,7 +28,7 @@ export function mountDurableChampionships({databaseOptions,legacyStorage,getLega
   else if(operation==='publish')result=await ui.coordinator.publish(newId('career-official'),{expectedGeneration:ui.view.generation});
   else if(operation==='restart'){ui.coordinator.worker.restart();}
   else if(operation==='resumeRestore')result=await ui.coordinator.resumeRestore({confirmed:true,legacy:legacyStorage});
-  else if(operation==='repair')result=await ui.coordinator.repair();
+  else if(operation==='repair')result=await ui.coordinator.repair({confirmed:args.confirmed===true});
   else if(['start','birth','retry'].includes(operation))result=await ui.coordinator.operate(operation,{id:newId('career-'+operation),expectedGeneration:ui.view.generation});
   else if(operation==='withdraw')result=await ui.coordinator.operate('controller',{id:newId('career-withdraw'),expectedGeneration:ui.view.generation,command:'championship.withdraw',payload:{instanceId:activeChampionship(ui.view.state).id,confirmed:true}});
   else if(operation==='coach')result=await ui.coordinator.operate('controller',{id:newId('career-coach'),expectedGeneration:ui.view.generation,command:'championship.coach',payload:args});

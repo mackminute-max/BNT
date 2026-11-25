@@ -1,0 +1,29 @@
+{
+  "status": "AUTHORING_CHECKS_PASS",
+  "records": {
+    "geometry": 18,
+    "environment": 8,
+    "naming": 24,
+    "venue": 121,
+    "event": 72,
+    "tier": 6,
+    "championship": 40,
+    "rivals": 5,
+    "locals": 5,
+    "presentation": 8,
+    "renewal": 3
+  },
+  "fullOriginalSchemaPass": true,
+  "coreChecksumPass": true,
+  "namePools": 24,
+  "namesSampled": 1536,
+  "nameRetries": 648,
+  "scheduleSamples": 400,
+  "nativeRuntimeTestsExecuted": 0,
+  "limitations": [
+    "schedule samples are profile references, not native resolved courses",
+    "weighted event sampling and international coverage tested; native RNG and full field birth not tested",
+    "policy assertions are not transaction tests",
+    "Iron Gauntlet completion tier requires native confirmation"
+  ]
+}

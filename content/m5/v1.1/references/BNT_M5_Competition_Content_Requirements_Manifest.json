@@ -1,0 +1,531 @@
+{
+  "format": "BNT-M5-competition-requirements-v1",
+  "status": "PROPOSED_AUTHORING_CONTRACT_NOT_NATIVE_IMPLEMENTATION",
+  "dependsOnM5A": "../bnt-m5a-feasibility/evidence/completion.json",
+  "existingContentCandidate": {
+    "path": "/workspace/deliverables/bnt-m5-content-v1",
+    "version": "1.0.0",
+    "records": 256,
+    "bytesMustRemainUnchanged": true
+  },
+  "coverageTargets": {
+    "prestigeVenues": {
+      "perNation": 2,
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "totalPlanningTarget": 16,
+      "engineCap": false
+    },
+    "fixedGeometryCatalog": {
+      "oval": 3,
+      "circuit": 12,
+      "legacyAliasesAndPresets": 4
+    },
+    "generatedRallyCategories": [
+      "short",
+      "medium",
+      "long"
+    ],
+    "competitionContexts": [
+      "dustroad",
+      "ironwheel",
+      "bannerfall",
+      "crownfire",
+      "thunder-crown"
+    ],
+    "nativeSpecialException": "iron-gauntlet",
+    "persistentRivals": {
+      "perTierMin": 3,
+      "perTierMax": 5,
+      "totalForFiveTiers": "15–25, not a mandatory32 minimum",
+      "perFieldTarget": "2–3, cap to leave1 local where field allows"
+    }
+  },
+  "families": [
+    {
+      "family": "geometry",
+      "schemaRef": "#/$defs/geometry",
+      "requiredFields": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "kind",
+        "resolver",
+        "nativeId",
+        "laneCount",
+        "laneWidth",
+        "rallyOptions",
+        "checkpointPolicy",
+        "freezeResolvedCourse"
+      ],
+      "optionalFields": [],
+      "illustrativeRecords": 3,
+      "requiredProductionCoverage": "validated compatible bindings",
+      "approvalStatus": "content-production-can-start; illustrative decisions unresolved for production",
+      "dependencies": [
+        "native geometry catalog",
+        "native rally generator"
+      ],
+      "validationRequired": [
+        "JSON Schema exact fields/types",
+        "typed references and canonical provenance",
+        "native setup/grid/corridor/context rules",
+        "production approval and resolved policy fields"
+      ],
+      "nativeMapping": "Explicit compiler/authority adapter; never direct insertion into current native state",
+      "authoringPriority": 1
+    },
+    {
+      "family": "environment",
+      "schemaRef": "#/$defs/environment",
+      "requiredFields": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "assignments",
+        "weatherWeights",
+        "customPhysics",
+        "terrainWeightOrder"
+      ],
+      "optionalFields": [],
+      "illustrativeRecords": 1,
+      "requiredProductionCoverage": "validated compatible bindings",
+      "approvalStatus": "content-production-can-start; illustrative decisions unresolved for production",
+      "dependencies": [
+        "native terrain/weather tables",
+        "geometry segment IDs"
+      ],
+      "validationRequired": [
+        "JSON Schema exact fields/types",
+        "typed references and canonical provenance",
+        "native setup/grid/corridor/context rules",
+        "production approval and resolved policy fields"
+      ],
+      "nativeMapping": "Explicit compiler/authority adapter; never direct insertion into current native state",
+      "authoringPriority": 1
+    },
+    {
+      "family": "naming",
+      "schemaRef": "#/$defs/naming",
+      "requiredFields": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "usage",
+        "nationIds",
+        "culturalNamingProfileId",
+        "roots",
+        "endings",
+        "grammar",
+        "maxLength",
+        "maxRetries",
+        "genericFallback"
+      ],
+      "optionalFields": [],
+      "illustrativeRecords": 3,
+      "requiredProductionCoverage": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "approvalStatus": "content-production-can-start; illustrative decisions unresolved for production",
+      "dependencies": [
+        "existing culturalNaming profiles",
+        "canonical nation/region references"
+      ],
+      "validationRequired": [
+        "JSON Schema exact fields/types",
+        "typed references and canonical provenance",
+        "native setup/grid/corridor/context rules",
+        "production approval and resolved policy fields"
+      ],
+      "nativeMapping": "Explicit compiler/authority adapter; never direct insertion into current native state",
+      "authoringPriority": 1
+    },
+    {
+      "family": "presentation",
+      "schemaRef": "#/$defs/presentation",
+      "requiredFields": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "worldVisualProfileId",
+        "style",
+        "architectureTags",
+        "environmentTags",
+        "palette",
+        "motifs",
+        "assetRefs",
+        "uniqueArtRequired",
+        "futureBrief"
+      ],
+      "optionalFields": [],
+      "illustrativeRecords": 1,
+      "requiredProductionCoverage": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "approvalStatus": "content-production-can-start; illustrative decisions unresolved for production",
+      "dependencies": [
+        "existing visualMetadata profiles",
+        "native asset manifest"
+      ],
+      "validationRequired": [
+        "JSON Schema exact fields/types",
+        "typed references and canonical provenance",
+        "native setup/grid/corridor/context rules",
+        "production approval and resolved policy fields"
+      ],
+      "nativeMapping": "Explicit compiler/authority adapter; never direct insertion into current native state",
+      "authoringPriority": 1
+    },
+    {
+      "family": "venue",
+      "schemaRef": "#/$defs/venue",
+      "requiredFields": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "permanence",
+        "properName",
+        "nationId",
+        "regionId",
+        "geometryWeights",
+        "environmentId",
+        "namingProfileId",
+        "presentationId",
+        "supportedFormats",
+        "seedPolicy",
+        "pinnedSeed",
+        "description",
+        "signatureTraits"
+      ],
+      "optionalFields": [],
+      "illustrativeRecords": 3,
+      "requiredProductionCoverage": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "approvalStatus": "content-production-can-start; illustrative decisions unresolved for production",
+      "dependencies": [
+        "geometry",
+        "environment",
+        "naming",
+        "presentation"
+      ],
+      "validationRequired": [
+        "JSON Schema exact fields/types",
+        "typed references and canonical provenance",
+        "native setup/grid/corridor/context rules",
+        "production approval and resolved policy fields"
+      ],
+      "nativeMapping": "Explicit compiler/authority adapter; never direct insertion into current native state",
+      "authoringPriority": 2
+    },
+    {
+      "family": "event",
+      "schemaRef": "#/$defs/event",
+      "requiredFields": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "venueWeights",
+        "namingProfileId",
+        "format",
+        "distanceMode",
+        "laps",
+        "grid",
+        "eligibleContexts",
+        "rulesBinding",
+        "rewardsFromChampionshipBinding"
+      ],
+      "optionalFields": [],
+      "illustrativeRecords": 3,
+      "requiredProductionCoverage": "validated compatible bindings",
+      "approvalStatus": "content-production-can-start; illustrative decisions unresolved for production",
+      "dependencies": [
+        "venue",
+        "naming",
+        "native race/award context"
+      ],
+      "validationRequired": [
+        "JSON Schema exact fields/types",
+        "typed references and canonical provenance",
+        "native setup/grid/corridor/context rules",
+        "production approval and resolved policy fields"
+      ],
+      "nativeMapping": "Explicit compiler/authority adapter; never direct insertion into current native state",
+      "authoringPriority": 3
+    },
+    {
+      "family": "tier",
+      "schemaRef": "#/$defs/tier",
+      "requiredFields": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "contextId",
+        "nativeCatalogId",
+        "qualificationBinding",
+        "feeAndAwardBinding",
+        "completionBonusTier",
+        "fieldSize",
+        "raceCount",
+        "generatedTrophyPolicy",
+        "strengthReference",
+        "adaptiveScaling"
+      ],
+      "optionalFields": [],
+      "illustrativeRecords": 1,
+      "requiredProductionCoverage": [
+        "dustroad",
+        "ironwheel",
+        "bannerfall",
+        "crownfire",
+        "thunder-crown"
+      ],
+      "approvalStatus": "content-production-can-start; illustrative decisions unresolved for production",
+      "dependencies": [
+        "native catalog qualification/fees/purses",
+        "existing difficulty bindings",
+        "M4 BONUS_TIERS"
+      ],
+      "validationRequired": [
+        "JSON Schema exact fields/types",
+        "typed references and canonical provenance",
+        "native setup/grid/corridor/context rules",
+        "production approval and resolved policy fields"
+      ],
+      "nativeMapping": "Explicit compiler/authority adapter; never direct insertion into current native state",
+      "authoringPriority": 2
+    },
+    {
+      "family": "locals",
+      "schemaRef": "#/$defs/locals",
+      "requiredFields": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "contextId",
+        "nationWeights",
+        "existingRivalProfileWeights",
+        "importProbability",
+        "frozenForChampionship",
+        "persistAsActiveAfterArchive",
+        "historicalNamesRetained"
+      ],
+      "optionalFields": [],
+      "illustrativeRecords": 1,
+      "requiredProductionCoverage": [
+        "dustroad",
+        "ironwheel",
+        "bannerfall",
+        "crownfire",
+        "thunder-crown"
+      ],
+      "approvalStatus": "content-production-can-start; illustrative decisions unresolved for production",
+      "dependencies": [
+        "existing nation/driver/beast/naming factories",
+        "tier",
+        "frozen identity registry"
+      ],
+      "validationRequired": [
+        "JSON Schema exact fields/types",
+        "typed references and canonical provenance",
+        "native setup/grid/corridor/context rules",
+        "production approval and resolved policy fields"
+      ],
+      "nativeMapping": "Explicit compiler/authority adapter; never direct insertion into current native state",
+      "authoringPriority": 3
+    },
+    {
+      "family": "rivals",
+      "schemaRef": "#/$defs/rivals",
+      "requiredFields": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "contextId",
+        "populationMin",
+        "populationMax",
+        "participantsMin",
+        "participantsMax",
+        "reserveLocalSlots",
+        "lazyBirth",
+        "fixedAttributesAndPersonality",
+        "birthProfileWeights",
+        "localProfileId",
+        "betweenChampionshipCondition",
+        "offscreenSimulation"
+      ],
+      "optionalFields": [],
+      "illustrativeRecords": 1,
+      "requiredProductionCoverage": [
+        "dustroad",
+        "ironwheel",
+        "bannerfall",
+        "crownfire",
+        "thunder-crown"
+      ],
+      "approvalStatus": "content-production-can-start; illustrative decisions unresolved for production",
+      "dependencies": [
+        "existing rivalGeneration recipes",
+        "locals",
+        "tier",
+        "M5-A checkpoint authority"
+      ],
+      "validationRequired": [
+        "JSON Schema exact fields/types",
+        "typed references and canonical provenance",
+        "native setup/grid/corridor/context rules",
+        "production approval and resolved policy fields"
+      ],
+      "nativeMapping": "Explicit compiler/authority adapter; never direct insertion into current native state",
+      "authoringPriority": 3
+    },
+    {
+      "family": "renewal",
+      "schemaRef": "#/$defs/renewal",
+      "requiredFields": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "resource",
+        "trigger",
+        "count",
+        "requiresCompletedFrozenSchedule",
+        "zeroStartWithdrawalPolicy",
+        "allowPageOpenRenewal",
+        "replacementOnPurchase",
+        "regionalPermanentStaff",
+        "postGenerationCommitRequired",
+        "registeredRUChangeAllowed"
+      ],
+      "optionalFields": [],
+      "illustrativeRecords": 3,
+      "requiredProductionCoverage": "validated compatible bindings",
+      "approvalStatus": "content-production-can-start; illustrative decisions unresolved for production",
+      "dependencies": [
+        "M5-A generation epochs/atomic commits",
+        "approved abandonment policy",
+        "native management restrictions"
+      ],
+      "validationRequired": [
+        "JSON Schema exact fields/types",
+        "typed references and canonical provenance",
+        "native setup/grid/corridor/context rules",
+        "production approval and resolved policy fields"
+      ],
+      "nativeMapping": "Explicit compiler/authority adapter; never direct insertion into current native state",
+      "authoringPriority": 3
+    },
+    {
+      "family": "championship",
+      "schemaRef": "#/$defs/championship",
+      "requiredFields": [
+        "id",
+        "version",
+        "approval",
+        "label",
+        "sources",
+        "category",
+        "properName",
+        "namingProfileId",
+        "tierBindingId",
+        "geographicScope",
+        "nationIds",
+        "regionIds",
+        "eventWeights",
+        "raceCount",
+        "scheduleOrder",
+        "venueRepeatLimit",
+        "prestigeMin",
+        "maxAttempts",
+        "rivalPopulationPolicyId",
+        "renewalPolicyId",
+        "presentationId",
+        "travelMechanics"
+      ],
+      "optionalFields": [],
+      "illustrativeRecords": 1,
+      "requiredProductionCoverage": [
+        "dustroad",
+        "ironwheel",
+        "bannerfall",
+        "crownfire",
+        "thunder-crown"
+      ],
+      "approvalStatus": "content-production-can-start; illustrative decisions unresolved for production",
+      "dependencies": [
+        "tier",
+        "event",
+        "naming",
+        "rivals",
+        "renewal",
+        "presentation"
+      ],
+      "validationRequired": [
+        "JSON Schema exact fields/types",
+        "typed references and canonical provenance",
+        "native setup/grid/corridor/context rules",
+        "production approval and resolved policy fields"
+      ],
+      "nativeMapping": "Explicit compiler/authority adapter; never direct insertion into current native state",
+      "authoringPriority": 3
+    }
+  ],
+  "productionSemanticBlockers": [
+    "generated trophy/victory qualification credit policy",
+    "cross-championship rival abstract recovery",
+    "zero-start voluntary-abandonment renewal policy",
+    "native static catalog and surface/event adapter",
+    "M5-A production checkpoint/current validators/typed records",
+    "regional market intermission command exception; no roster substitution"
+  ],
+  "noFullProductionCatalogProduced": true
+}

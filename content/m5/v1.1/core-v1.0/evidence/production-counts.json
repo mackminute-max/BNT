@@ -1,0 +1,18 @@
+{
+  "nation": 8,
+  "culturalNaming": 35,
+  "ancestryGameplay": 13,
+  "driverBackground": 8,
+  "driverAI": 10,
+  "beastSpecies": 9,
+  "beastBloodline": 39,
+  "beastTemperament": 8,
+  "staffProfession": 24,
+  "staffExpertise": 3,
+  "rivalIdentity": 8,
+  "rivalGeneration": 40,
+  "chariotNaming": 8,
+  "equipmentNaming": 8,
+  "qualityRarity": 5,
+  "visualMetadata": 30
+}

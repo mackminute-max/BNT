@@ -1,0 +1,7 @@
+{
+  "operation": "replace-in-new-version-only",
+  "original": "core-v1.0/metadata/provisional-balance-policy.json",
+  "originalSha256": "54b6617f04ddb6b483560b7ccb8b840609ca1183ccc1e515d770d33d87f6f3f4",
+  "newSha256": "30c810af0ee766a21c2af9524f242ce006d3ccf410575db9de10c7bfe310ec44",
+  "referenceMapping": "existing IDs unchanged"
+}

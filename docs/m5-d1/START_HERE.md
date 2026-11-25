@@ -1,0 +1,9 @@
+# Blood and Thunder — M5 Delivery 1 production authorization
+
+Owner authorizes implementation of Protected Foundation & Renewable Assets, not Delivery 2. Read this file, OWNER_POLICY.md, IMPLEMENTATION.md and ACCEPTANCE.md before editing. The original audit archive is included unchanged as reference. Latest owner policy overrides earlier audit proposals. Work against actual current source, preserving existing uncommitted work. Do not commit, merge, push or deploy.
+
+Baseline: Blood-and-Thunder-E5-D-M4-Playable.html, 3,159,171 bytes, SHA256 d77e49e40457c5de0255e3c95779941bec67023a4760248a69760f60b7a8d60c; schema6, m4-progression-v1; 888 historical Node tests; owner Windows acceptance passed. Verify artifact and working-tree provenance before editing. Do not overwrite M4. Preserve offline single-file HTML, vanilla JS/Canvas, inline worker and IndexedDB; Node only for tooling.
+
+Inputs: included M5-A and competition audit ZIP (extract outside source tree); actual M5 Procedural Content Candidate v1.0 (16 core catalogs, 256 records, manifest and supplemental metadata), earlier asset readiness contracts, original World Bible and accepted source/artifact. Locate the actual candidate in Codex workspace/deliverables/bnt-m5-content-v1 or obtain it from owner. The candidate is NOT included here; do not reconstruct missing catalogs from summaries or use illustrative audit records as production content. Verify source/catalog hashes and versions. Record missing inputs and stop affected integration, not unrelated foundation work.
+
+Priority: complete playable game, not perfection. Implement in dependency order, prove a real championship loop early. Routine engineering choices delegated; escalate material gameplay changes, unsafe authority transition, unsupported effects or changed economic formulas. Stop at Delivery 1 acceptance and await owner review. Delivery 2 requires separate authorization.

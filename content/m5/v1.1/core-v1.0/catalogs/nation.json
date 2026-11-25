@@ -1,0 +1,3334 @@
+[
+  {
+    "id": "nation.n1",
+    "version": 1,
+    "label": "Northreach Confederation",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 19,
+        "endLine": 260,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalNationId": "N1",
+    "ancestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 45
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 30
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 18
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "cultureWeights": [
+      {
+        "id": "culture.n1.r1",
+        "weight": 1
+      },
+      {
+        "id": "culture.n1.r2",
+        "weight": 1
+      },
+      {
+        "id": "culture.n1.r3",
+        "weight": 1
+      },
+      {
+        "id": "culture.n1.r4",
+        "weight": 1
+      },
+      {
+        "id": "culture.n1.r5",
+        "weight": 1
+      },
+      {
+        "id": "culture.n1.r6",
+        "weight": 1
+      }
+    ],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "aiWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 3
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 3
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "staffWeights": [
+      {
+        "id": "staff.handler.n1",
+        "weight": 1
+      },
+      {
+        "id": "staff.mechanic.n1",
+        "weight": 1
+      },
+      {
+        "id": "staff.physician.n1",
+        "weight": 1
+      }
+    ],
+    "speciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 60
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "stockWeights": [
+      {
+        "id": "stock.b01.1-1",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-2",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-3",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-4",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-5",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-6",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-7",
+        "weight": 30
+      },
+      {
+        "id": "stock.b02.2-1",
+        "weight": 60
+      },
+      {
+        "id": "stock.b02.2-2",
+        "weight": 60
+      },
+      {
+        "id": "stock.b02.2-3",
+        "weight": 60
+      },
+      {
+        "id": "stock.b02.2-4",
+        "weight": 60
+      },
+      {
+        "id": "stock.b03.3-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-4",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 58
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 32
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 7
+      },
+      {
+        "id": "quality.rare",
+        "weight": 2.7
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.3
+      }
+    ],
+    "namingProfileId": "culture.n1.r1",
+    "teamIdentityProfileId": "team.n1",
+    "visualProfileId": "visual.n1",
+    "importWeight": 0.1,
+    "racingTraditions": [
+      "Territorial clubs",
+      "Frontier route reading",
+      "Shaggy draft stock"
+    ],
+    "equipmentPreferences": [
+      "equipment.n1"
+    ],
+    "economicPolicy": "native-unmodified"
+  },
+  {
+    "id": "nation.n2",
+    "version": 1,
+    "label": "Frosthall Kingdom",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 261,
+        "endLine": 550,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalNationId": "N2",
+    "ancestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 52
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 35
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "cultureWeights": [
+      {
+        "id": "culture.n2.r1",
+        "weight": 1
+      },
+      {
+        "id": "culture.n2.r2",
+        "weight": 1
+      },
+      {
+        "id": "culture.n2.r3",
+        "weight": 1
+      }
+    ],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "aiWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 3
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 5
+      },
+      {
+        "id": "ai.professional",
+        "weight": 5
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "staffWeights": [
+      {
+        "id": "staff.handler.n2",
+        "weight": 1
+      },
+      {
+        "id": "staff.mechanic.n2",
+        "weight": 1
+      },
+      {
+        "id": "staff.physician.n2",
+        "weight": 1
+      }
+    ],
+    "speciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 60
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "stockWeights": [
+      {
+        "id": "stock.b01.1-1",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-2",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-3",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-4",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-5",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-6",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-7",
+        "weight": 30
+      },
+      {
+        "id": "stock.b02.2-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-1",
+        "weight": 60
+      },
+      {
+        "id": "stock.b03.3-2",
+        "weight": 60
+      },
+      {
+        "id": "stock.b03.3-3",
+        "weight": 60
+      },
+      {
+        "id": "stock.b03.3-4",
+        "weight": 60
+      },
+      {
+        "id": "stock.b04.4-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-4",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 58
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 32
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 7
+      },
+      {
+        "id": "quality.rare",
+        "weight": 2.7
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.3
+      }
+    ],
+    "namingProfileId": "culture.n2.r1",
+    "teamIdentityProfileId": "team.n2",
+    "visualProfileId": "visual.n2",
+    "importWeight": 0.1,
+    "racingTraditions": [
+      "Royal and family racing patronage",
+      "Cold-weather husbandry",
+      "Low-centre pulling stock"
+    ],
+    "equipmentPreferences": [
+      "equipment.n2"
+    ],
+    "economicPolicy": "native-unmodified"
+  },
+  {
+    "id": "nation.n3",
+    "version": 1,
+    "label": "Greenvale Commonwealth",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 551,
+        "endLine": 921,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalNationId": "N3",
+    "ancestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 38
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 28
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 26
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "cultureWeights": [
+      {
+        "id": "culture.n3.r1",
+        "weight": 1
+      },
+      {
+        "id": "culture.n3.r2",
+        "weight": 1
+      },
+      {
+        "id": "culture.n3.r3",
+        "weight": 1
+      },
+      {
+        "id": "culture.n3.r4",
+        "weight": 1
+      }
+    ],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "aiWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 5
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 5
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 5
+      }
+    ],
+    "staffWeights": [
+      {
+        "id": "staff.handler.n3",
+        "weight": 1
+      },
+      {
+        "id": "staff.mechanic.n3",
+        "weight": 1
+      },
+      {
+        "id": "staff.physician.n3",
+        "weight": 1
+      }
+    ],
+    "speciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 30
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 60
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "stockWeights": [
+      {
+        "id": "stock.b01.1-1",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-2",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-3",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-4",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-5",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-6",
+        "weight": 30
+      },
+      {
+        "id": "stock.b01.1-7",
+        "weight": 30
+      },
+      {
+        "id": "stock.b02.2-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-1",
+        "weight": 60
+      },
+      {
+        "id": "stock.b04.4-2",
+        "weight": 60
+      },
+      {
+        "id": "stock.b04.4-3",
+        "weight": 60
+      },
+      {
+        "id": "stock.b04.4-4",
+        "weight": 60
+      },
+      {
+        "id": "stock.b05.5-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-4",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 58
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 32
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 7
+      },
+      {
+        "id": "quality.rare",
+        "weight": 2.7
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.3
+      }
+    ],
+    "namingProfileId": "culture.n3.r1",
+    "teamIdentityProfileId": "team.n3",
+    "visualProfileId": "visual.n3",
+    "importWeight": 0.1,
+    "racingTraditions": [
+      "Civic festival racing",
+      "Technical turns",
+      "Riverland and woodland club traditions"
+    ],
+    "equipmentPreferences": [
+      "equipment.n3"
+    ],
+    "economicPolicy": "native-unmodified"
+  },
+  {
+    "id": "nation.n4",
+    "version": 1,
+    "label": "Ironhold Clans",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 922,
+        "endLine": 1429,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalNationId": "N4",
+    "ancestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 45
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 27
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "cultureWeights": [
+      {
+        "id": "culture.n4.r1",
+        "weight": 1
+      },
+      {
+        "id": "culture.n4.r2",
+        "weight": 1
+      },
+      {
+        "id": "culture.n4.r3",
+        "weight": 1
+      }
+    ],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "aiWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 6
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 3
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 3
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 1
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "staffWeights": [
+      {
+        "id": "staff.handler.n4",
+        "weight": 1
+      },
+      {
+        "id": "staff.mechanic.n4",
+        "weight": 1
+      },
+      {
+        "id": "staff.physician.n4",
+        "weight": 1
+      }
+    ],
+    "speciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 25
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 65
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "stockWeights": [
+      {
+        "id": "stock.b01.1-1",
+        "weight": 25
+      },
+      {
+        "id": "stock.b01.1-2",
+        "weight": 25
+      },
+      {
+        "id": "stock.b01.1-3",
+        "weight": 25
+      },
+      {
+        "id": "stock.b01.1-4",
+        "weight": 25
+      },
+      {
+        "id": "stock.b01.1-5",
+        "weight": 25
+      },
+      {
+        "id": "stock.b01.1-6",
+        "weight": 25
+      },
+      {
+        "id": "stock.b01.1-7",
+        "weight": 25
+      },
+      {
+        "id": "stock.b02.2-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-1",
+        "weight": 65
+      },
+      {
+        "id": "stock.b05.5-2",
+        "weight": 65
+      },
+      {
+        "id": "stock.b05.5-3",
+        "weight": 65
+      },
+      {
+        "id": "stock.b05.5-4",
+        "weight": 65
+      },
+      {
+        "id": "stock.b06.6-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-4",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 58
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 32
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 7
+      },
+      {
+        "id": "quality.rare",
+        "weight": 2.7
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.3
+      }
+    ],
+    "namingProfileId": "culture.n4.r1",
+    "teamIdentityProfileId": "team.n4",
+    "visualProfileId": "visual.n4",
+    "importWeight": 0.1,
+    "racingTraditions": [
+      "Guild craftsmanship",
+      "Wheel and harness maintenance",
+      "Independent professional racing houses"
+    ],
+    "equipmentPreferences": [
+      "equipment.n4"
+    ],
+    "economicPolicy": "native-unmodified"
+  },
+  {
+    "id": "nation.n5",
+    "version": 1,
+    "label": "Sundaran League",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 1430,
+        "endLine": 2027,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalNationId": "N5",
+    "ancestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 4
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 3
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 5
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 18
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 7
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 3
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 4
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 18
+      }
+    ],
+    "cultureWeights": [
+      {
+        "id": "culture.n5.r1",
+        "weight": 1
+      },
+      {
+        "id": "culture.n5.r2",
+        "weight": 1
+      },
+      {
+        "id": "culture.n5.r3",
+        "weight": 1
+      },
+      {
+        "id": "culture.n5.r4",
+        "weight": 1
+      }
+    ],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "aiWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 2
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 4
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 5
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 3
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 5
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 4
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 3
+      }
+    ],
+    "staffWeights": [
+      {
+        "id": "staff.handler.n5",
+        "weight": 1
+      },
+      {
+        "id": "staff.mechanic.n5",
+        "weight": 1
+      },
+      {
+        "id": "staff.physician.n5",
+        "weight": 1
+      }
+    ],
+    "speciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 55
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "stockWeights": [
+      {
+        "id": "stock.b01.1-1",
+        "weight": 55
+      },
+      {
+        "id": "stock.b01.1-2",
+        "weight": 55
+      },
+      {
+        "id": "stock.b01.1-3",
+        "weight": 55
+      },
+      {
+        "id": "stock.b01.1-4",
+        "weight": 55
+      },
+      {
+        "id": "stock.b01.1-5",
+        "weight": 55
+      },
+      {
+        "id": "stock.b01.1-6",
+        "weight": 55
+      },
+      {
+        "id": "stock.b01.1-7",
+        "weight": 55
+      },
+      {
+        "id": "stock.b02.2-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-4",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 58
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 32
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 7
+      },
+      {
+        "id": "quality.rare",
+        "weight": 2.7
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.3
+      }
+    ],
+    "namingProfileId": "culture.n5.r1",
+    "teamIdentityProfileId": "team.n5",
+    "visualProfileId": "visual.n5",
+    "importWeight": 0.18,
+    "racingTraditions": [
+      "International open fields",
+      "Civic racing clubs",
+      "Maritime trade and imported stock"
+    ],
+    "equipmentPreferences": [
+      "equipment.n5"
+    ],
+    "economicPolicy": "native-unmodified"
+  },
+  {
+    "id": "nation.n6",
+    "version": 1,
+    "label": "Karthen Hordes",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2028,
+        "endLine": 2614,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalNationId": "N6",
+    "ancestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 57
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 35
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "cultureWeights": [
+      {
+        "id": "culture.n6.r1",
+        "weight": 1
+      },
+      {
+        "id": "culture.n6.r2",
+        "weight": 1
+      },
+      {
+        "id": "culture.n6.r3",
+        "weight": 1
+      },
+      {
+        "id": "culture.n6.r4",
+        "weight": 1
+      },
+      {
+        "id": "culture.n6.r5",
+        "weight": 1
+      }
+    ],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "aiWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 3
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 5
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 4
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 5
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 2
+      },
+      {
+        "id": "ai.professional",
+        "weight": 3
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "staffWeights": [
+      {
+        "id": "staff.handler.n6",
+        "weight": 1
+      },
+      {
+        "id": "staff.mechanic.n6",
+        "weight": 1
+      },
+      {
+        "id": "staff.physician.n6",
+        "weight": 1
+      }
+    ],
+    "speciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 15
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 45
+      },
+      {
+        "id": "species.b07",
+        "weight": 35
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "stockWeights": [
+      {
+        "id": "stock.b01.1-1",
+        "weight": 15
+      },
+      {
+        "id": "stock.b01.1-2",
+        "weight": 15
+      },
+      {
+        "id": "stock.b01.1-3",
+        "weight": 15
+      },
+      {
+        "id": "stock.b01.1-4",
+        "weight": 15
+      },
+      {
+        "id": "stock.b01.1-5",
+        "weight": 15
+      },
+      {
+        "id": "stock.b01.1-6",
+        "weight": 15
+      },
+      {
+        "id": "stock.b01.1-7",
+        "weight": 15
+      },
+      {
+        "id": "stock.b02.2-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-1",
+        "weight": 45
+      },
+      {
+        "id": "stock.b06.6-2",
+        "weight": 45
+      },
+      {
+        "id": "stock.b06.6-3",
+        "weight": 45
+      },
+      {
+        "id": "stock.b06.6-4",
+        "weight": 45
+      },
+      {
+        "id": "stock.b07.7-1",
+        "weight": 35
+      },
+      {
+        "id": "stock.b07.7-2",
+        "weight": 35
+      },
+      {
+        "id": "stock.b07.7-3",
+        "weight": 35
+      },
+      {
+        "id": "stock.b07.7-4",
+        "weight": 35
+      },
+      {
+        "id": "stock.b08.8-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-4",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 58
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 32
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 7
+      },
+      {
+        "id": "quality.rare",
+        "weight": 2.7
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.3
+      }
+    ],
+    "namingProfileId": "culture.n6.r1",
+    "teamIdentityProfileId": "team.n6",
+    "visualProfileId": "visual.n6",
+    "importWeight": 0.1,
+    "racingTraditions": [
+      "Horde and clan affiliations",
+      "Long-distance stock husbandry",
+      "Urban and pastoral racing"
+    ],
+    "equipmentPreferences": [
+      "equipment.n6"
+    ],
+    "economicPolicy": "native-unmodified"
+  },
+  {
+    "id": "nation.n7",
+    "version": 1,
+    "label": "Velmora Republic",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 2615,
+        "endLine": 3393,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalNationId": "N7",
+    "ancestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 20
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 65
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "cultureWeights": [
+      {
+        "id": "culture.n7.r1",
+        "weight": 1
+      },
+      {
+        "id": "culture.n7.r2",
+        "weight": 1
+      },
+      {
+        "id": "culture.n7.r3",
+        "weight": 1
+      },
+      {
+        "id": "culture.n7.r4",
+        "weight": 1
+      },
+      {
+        "id": "culture.n7.r5",
+        "weight": 1
+      }
+    ],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "aiWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 5
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 4
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 3
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 5
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 3
+      }
+    ],
+    "staffWeights": [
+      {
+        "id": "staff.handler.n7",
+        "weight": 1
+      },
+      {
+        "id": "staff.mechanic.n7",
+        "weight": 1
+      },
+      {
+        "id": "staff.physician.n7",
+        "weight": 1
+      }
+    ],
+    "speciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 25
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 65
+      },
+      {
+        "id": "species.b09",
+        "weight": 1
+      }
+    ],
+    "stockWeights": [
+      {
+        "id": "stock.b01.1-1",
+        "weight": 25
+      },
+      {
+        "id": "stock.b01.1-2",
+        "weight": 25
+      },
+      {
+        "id": "stock.b01.1-3",
+        "weight": 25
+      },
+      {
+        "id": "stock.b01.1-4",
+        "weight": 25
+      },
+      {
+        "id": "stock.b01.1-5",
+        "weight": 25
+      },
+      {
+        "id": "stock.b01.1-6",
+        "weight": 25
+      },
+      {
+        "id": "stock.b01.1-7",
+        "weight": 25
+      },
+      {
+        "id": "stock.b02.2-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-1",
+        "weight": 65
+      },
+      {
+        "id": "stock.b08.8-2",
+        "weight": 65
+      },
+      {
+        "id": "stock.b08.8-3",
+        "weight": 65
+      },
+      {
+        "id": "stock.b08.8-4",
+        "weight": 65
+      },
+      {
+        "id": "stock.b09.9-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-4",
+        "weight": 1
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 58
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 32
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 7
+      },
+      {
+        "id": "quality.rare",
+        "weight": 2.7
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.3
+      }
+    ],
+    "namingProfileId": "culture.n7.r1",
+    "teamIdentityProfileId": "team.n7",
+    "visualProfileId": "visual.n7",
+    "importWeight": 0.1,
+    "racingTraditions": [
+      "Republican civic clubs",
+      "Disciplined professional racing",
+      "Wingless drake husbandry"
+    ],
+    "equipmentPreferences": [
+      "equipment.n7"
+    ],
+    "economicPolicy": "native-unmodified"
+  },
+  {
+    "id": "nation.n8",
+    "version": 1,
+    "label": "Zarashi Dominion",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Vaern_Eight_Nations_Canon_v1.0(3).md",
+        "startLine": 3394,
+        "endLine": 4104,
+        "digest": "5b7f151fddd3c43c69e31e1f8a26d85452eddd6d9bf8d24f92d9e322f33707c5"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalNationId": "N8",
+    "ancestryWeights": [
+      {
+        "id": "ancestry.a01",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a02",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a03",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a04",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a05",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a06",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a07",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a08",
+        "weight": 950
+      },
+      {
+        "id": "ancestry.a09",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a10",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a11",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a12",
+        "weight": 1
+      },
+      {
+        "id": "ancestry.a13",
+        "weight": 1
+      }
+    ],
+    "cultureWeights": [
+      {
+        "id": "culture.n8.r1",
+        "weight": 1
+      },
+      {
+        "id": "culture.n8.r2",
+        "weight": 1
+      },
+      {
+        "id": "culture.n8.r3",
+        "weight": 1
+      },
+      {
+        "id": "culture.n8.r4",
+        "weight": 1
+      },
+      {
+        "id": "culture.n8.r5",
+        "weight": 1
+      }
+    ],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "aiWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 6
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 7
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 5
+      }
+    ],
+    "staffWeights": [
+      {
+        "id": "staff.handler.n8",
+        "weight": 1
+      },
+      {
+        "id": "staff.mechanic.n8",
+        "weight": 1
+      },
+      {
+        "id": "staff.physician.n8",
+        "weight": 1
+      }
+    ],
+    "speciesWeights": [
+      {
+        "id": "species.b01",
+        "weight": 15
+      },
+      {
+        "id": "species.b02",
+        "weight": 1
+      },
+      {
+        "id": "species.b03",
+        "weight": 1
+      },
+      {
+        "id": "species.b04",
+        "weight": 1
+      },
+      {
+        "id": "species.b05",
+        "weight": 1
+      },
+      {
+        "id": "species.b06",
+        "weight": 1
+      },
+      {
+        "id": "species.b07",
+        "weight": 1
+      },
+      {
+        "id": "species.b08",
+        "weight": 1
+      },
+      {
+        "id": "species.b09",
+        "weight": 75
+      }
+    ],
+    "stockWeights": [
+      {
+        "id": "stock.b01.1-1",
+        "weight": 15
+      },
+      {
+        "id": "stock.b01.1-2",
+        "weight": 15
+      },
+      {
+        "id": "stock.b01.1-3",
+        "weight": 15
+      },
+      {
+        "id": "stock.b01.1-4",
+        "weight": 15
+      },
+      {
+        "id": "stock.b01.1-5",
+        "weight": 15
+      },
+      {
+        "id": "stock.b01.1-6",
+        "weight": 15
+      },
+      {
+        "id": "stock.b01.1-7",
+        "weight": 15
+      },
+      {
+        "id": "stock.b02.2-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b02.2-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b03.3-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b04.4-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b05.5-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b06.6-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b07.7-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-1",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-2",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-3",
+        "weight": 1
+      },
+      {
+        "id": "stock.b08.8-4",
+        "weight": 1
+      },
+      {
+        "id": "stock.b09.9-1",
+        "weight": 75
+      },
+      {
+        "id": "stock.b09.9-2",
+        "weight": 75
+      },
+      {
+        "id": "stock.b09.9-3",
+        "weight": 75
+      },
+      {
+        "id": "stock.b09.9-4",
+        "weight": 75
+      }
+    ],
+    "qualityWeights": [
+      {
+        "id": "quality.affordable",
+        "weight": 58
+      },
+      {
+        "id": "quality.ordinary",
+        "weight": 32
+      },
+      {
+        "id": "quality.specialized",
+        "weight": 7
+      },
+      {
+        "id": "quality.rare",
+        "weight": 2.7
+      },
+      {
+        "id": "quality.exceptional",
+        "weight": 0.3
+      }
+    ],
+    "namingProfileId": "culture.n8.r1",
+    "teamIdentityProfileId": "team.n8",
+    "visualProfileId": "visual.n8",
+    "importWeight": 0.04,
+    "racingTraditions": [
+      "Desert endurance",
+      "Precise terrain reading",
+      "Sunhorn husbandry and lineage records"
+    ],
+    "equipmentPreferences": [
+      "equipment.n8"
+    ],
+    "economicPolicy": "native-unmodified"
+  }
+]

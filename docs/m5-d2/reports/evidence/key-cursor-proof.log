@@ -1,0 +1,6 @@
+{
+  directDelete: 'rejected',
+  name: 'InvalidStateError',
+  message: "Failed to execute 'delete' on 'IDBCursor': The cursor is a key cursor.",
+  storeDelete: 'committed'
+}

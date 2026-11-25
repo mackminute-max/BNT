@@ -1,0 +1,54 @@
+ M src/career/championships/controller.js
+ M src/career/championships/e5/contracts.js
+ M src/career/championships/e5/rewards.js
+ M src/career/championships/e5/schema6.js
+ M src/career/state.js
+ M src/management/career-race/flow.js
+ M src/management/championship-e5.js
+ M src/management/creation/initialize-gameplay.js
+ M src/management/creation/model.js
+ M src/management/creation/onboarding.js
+ M src/management/creation/wizard.js
+ M src/management/headquarters/consolidated.css
+ M src/management/headquarters/consolidated.js
+ M src/management/headquarters/workflow.js
+ M src/management/playable.js
+ M src/management/player-pages.js
+ M src/management/startup/entry.js
+ M src/management/startup/shell.js
+ M src/management/startup/slots.js
+ M src/persistence/e4/worker-service.js
+ M src/sim/environment.js
+ M src/sim/foundation/checkpoint.js
+ M src/sim/race.js
+ M tests/e5-d-m3-bc.test.js
+?? dist/Blood-and-Thunder-E5-D-M4-Playable.html
+?? docs/e5-d/m4/M4_AUTHORIZATION.md
+?? docs/m2-e/BNT_M2_E_PRE_IMPLEMENTATION_TECHNICAL_READINESS_AUDIT.md
+?? scripts/e5-d/m4/accepted-regressions.mjs
+?? scripts/e5-d/m4/build.mjs
+?? scripts/e5-d/m4/checkpoint-proof.mjs
+?? scripts/e5-d/m4/clock-parity.mjs
+?? scripts/e5-d/m4/completion-browser.mjs
+?? scripts/e5-d/m4/completion-proof.mjs
+?? scripts/e5-d/m4/earned-progression.mjs
+?? scripts/e5-d/m4/extend-earned.mjs
+?? scripts/e5-d/m4/fault-proof.mjs
+?? scripts/e5-d/m4/file-browser.mjs
+?? scripts/e5-d/m4/fixture.mjs
+?? scripts/e5-d/m4/layout-browser.mjs
+?? scripts/e5-d/m4/legacy-browser.mjs
+?? scripts/e5-d/m4/packages-proof.mjs
+?? scripts/e5-d/m4/profile.mjs
+?? scripts/e5-d/m4/recruiter-proof.mjs
+?? scripts/e5-d/m4/references.mjs
+?? scripts/e5-d/m4/reward-fault.mjs
+?? scripts/e5-d/m4/scope-proof.mjs
+?? scripts/e5-d/m4/smoke-browser.mjs
+?? scripts/e5-d/m4/version-browser.mjs
+?? src/career/m4/catalog.js
+?? src/career/m4/progression.js
+?? src/management/m4.js
+?? src/model/progression-context.js
+?? src/persistence/m4-policy.js
+?? tests/m4.test.js

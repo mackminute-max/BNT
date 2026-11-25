@@ -1,0 +1,46 @@
+{
+  "fixture": "SYNTHETIC validated current/history stress built from two real native archived events; NOT native gameplay count",
+  "championshipSummaries": 25,
+  "raceSummaries": 250,
+  "syntheticOperations": 2500,
+  "syntheticHistoricalCandidates": 5000,
+  "pages": 23,
+  "records": 24,
+  "largestRecordBytes": 623677,
+  "currentBytes": 623677,
+  "totalLogicalBytes": 5328465,
+  "pageMs": 1327.166994,
+  "validationMs": 42.21801899999991,
+  "historyValidationMs": 589.750591,
+  "totalMs": 2508.876456,
+  "memoryBefore": {
+    "rss": 79962112,
+    "heapTotal": 53731328,
+    "heapUsed": 24699880,
+    "external": 3908383,
+    "arrayBuffers": 1930681
+  },
+  "memoryAfter": {
+    "rss": 159145984,
+    "heapTotal": 112177152,
+    "heapUsed": 45635272,
+    "external": 2861931,
+    "arrayBuffers": 884189
+  },
+  "populations": [
+    {
+      "count": 32,
+      "actual": 32,
+      "ms": 7.767725000000155,
+      "bytes": 186428,
+      "pass": true
+    },
+    {
+      "count": 128,
+      "actual": 128,
+      "ms": 68.49038400000018,
+      "bytes": 744592,
+      "pass": true
+    }
+  ]
+}

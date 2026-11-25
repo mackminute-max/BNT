@@ -1,0 +1,7607 @@
+{
+  "scope": "300 real standalone native races, actual pinned D2 tier-quality/ancestry/species/personality profiles; 30 seeds per tier/format. Population size here equals fixture field minus player, not a production population policy change.",
+  "groups": [
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "n": 30,
+      "wins": 26,
+      "finishes": 30,
+      "blocked": 0,
+      "injuries": 0,
+      "meanChariotCondition": 100
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "n": 30,
+      "wins": 26,
+      "finishes": 30,
+      "blocked": 0,
+      "injuries": 0,
+      "meanChariotCondition": 100
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "n": 30,
+      "wins": 20,
+      "finishes": 30,
+      "blocked": 0,
+      "injuries": 0,
+      "meanChariotCondition": 100
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "n": 30,
+      "wins": 20,
+      "finishes": 30,
+      "blocked": 0,
+      "injuries": 0,
+      "meanChariotCondition": 100
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "n": 30,
+      "wins": 2,
+      "finishes": 30,
+      "blocked": 0,
+      "injuries": 0,
+      "meanChariotCondition": 100
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "n": 30,
+      "wins": 2,
+      "finishes": 30,
+      "blocked": 0,
+      "injuries": 0,
+      "meanChariotCondition": 100
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "n": 30,
+      "wins": 9,
+      "finishes": 30,
+      "blocked": 0,
+      "injuries": 0,
+      "meanChariotCondition": 99.95373209142768
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "n": 30,
+      "wins": 9,
+      "finishes": 30,
+      "blocked": 0,
+      "injuries": 0,
+      "meanChariotCondition": 100
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "n": 30,
+      "wins": 4,
+      "finishes": 30,
+      "blocked": 0,
+      "injuries": 0,
+      "meanChariotCondition": 99.81757392865342
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "n": 30,
+      "wins": 4,
+      "finishes": 30,
+      "blocked": 0,
+      "injuries": 1,
+      "meanChariotCondition": 99.64461727233758
+    }
+  ],
+  "rows": [
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 1,
+      "field": 4,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 754,
+      "ms": 368.91572899999994,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "99e0750e"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 2,
+      "field": 4,
+      "origin": "N2",
+      "ancestry": "A01",
+      "species": "B03",
+      "quality": "quality.affordable",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 750,
+      "ms": 498.784501,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "2580e5ff"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 3,
+      "field": 4,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 752,
+      "ms": 289.25773200000003,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "bf058571"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 4,
+      "field": 4,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 751,
+      "ms": 312.404407,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "f70ee634"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 5,
+      "field": 4,
+      "origin": "N5",
+      "ancestry": "A13",
+      "species": "B03",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 751,
+      "ms": 340.122069,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "71ab60cb"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 6,
+      "field": 4,
+      "origin": "N6",
+      "ancestry": "A11",
+      "species": "B06",
+      "quality": "quality.affordable",
+      "affinity": 0.95,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 754,
+      "ms": 356.889905,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "3333d1c0"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 7,
+      "field": 4,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 750,
+      "ms": 287.91541400000006,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "7797c4af"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 8,
+      "field": 4,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 751,
+      "ms": 505.32637499999964,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "73d42fa0"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 9,
+      "field": 4,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 754,
+      "ms": 301.91483100000005,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "e5cd9d8f"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 10,
+      "field": 4,
+      "origin": "N2",
+      "ancestry": "A06",
+      "species": "B04",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 752,
+      "ms": 269.2066559999994,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "25904f34"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 11,
+      "field": 4,
+      "origin": "N3",
+      "ancestry": "A06",
+      "species": "B04",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 752,
+      "ms": 289.8710740000006,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "3d9ee4fe"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 12,
+      "field": 4,
+      "origin": "N4",
+      "ancestry": "A06",
+      "species": "B04",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 752,
+      "ms": 289.563983,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "18c212b6"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 13,
+      "field": 4,
+      "origin": "N5",
+      "ancestry": "A13",
+      "species": "B01",
+      "quality": "quality.affordable",
+      "affinity": 1,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 751,
+      "ms": 305.89271199999985,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "7e1f8b88"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 14,
+      "field": 4,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B07",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 752,
+      "ms": 267.5841760000003,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "d61302de"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 15,
+      "field": 4,
+      "origin": "N7",
+      "ancestry": "A01",
+      "species": "B08",
+      "quality": "quality.affordable",
+      "affinity": 0.95,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 752,
+      "ms": 414.70877199999995,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "103595ac"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 16,
+      "field": 4,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 752,
+      "ms": 385.1995479999996,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "1b56b443"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 17,
+      "field": 4,
+      "origin": "N1",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 753,
+      "ms": 289.30440999999973,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "0e500c40"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 18,
+      "field": 4,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B03",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 753,
+      "ms": 297.4341599999998,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "3afe8cc5"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 19,
+      "field": 4,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 751,
+      "ms": 330.65628300000026,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "364a0cad"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 20,
+      "field": 4,
+      "origin": "N4",
+      "ancestry": "A10",
+      "species": "B05",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 753,
+      "ms": 294.81161599999996,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "998ed0bc"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 21,
+      "field": 4,
+      "origin": "N5",
+      "ancestry": "A02",
+      "species": "B07",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 751,
+      "ms": 491.4883039999995,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "852c4e86"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 22,
+      "field": 4,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B06",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 750,
+      "ms": 368.1070410000002,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "5bfe31f4"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 23,
+      "field": 4,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 751,
+      "ms": 295.3297590000002,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "4f69385d"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 24,
+      "field": 4,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 776,
+      "ms": 322.67129699999896,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "06c4eba1"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 25,
+      "field": 4,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 753,
+      "ms": 314.89011200000095,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "f13f861c"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 26,
+      "field": 4,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B05",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 749,
+      "ms": 317.0654370000011,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "18fa81f6"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 27,
+      "field": 4,
+      "origin": "N3",
+      "ancestry": "A07",
+      "species": "B04",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 753,
+      "ms": 355.39398000000074,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "5e117a59"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 28,
+      "field": 4,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 753,
+      "ms": 116.12182200000098,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "30037963"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 29,
+      "field": 4,
+      "origin": "N5",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 757,
+      "ms": 151.52412600000025,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "139bede1"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Pure",
+      "seed": 30,
+      "field": 4,
+      "origin": "N6",
+      "ancestry": "A11",
+      "species": "B07",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 754,
+      "ms": 129.62094099999922,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "4b18c4ae"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 1,
+      "field": 4,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 754,
+      "ms": 186.84754299999986,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "b63056ff"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 2,
+      "field": 4,
+      "origin": "N2",
+      "ancestry": "A01",
+      "species": "B03",
+      "quality": "quality.affordable",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 750,
+      "ms": 206.2425400000011,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "15179767"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 3,
+      "field": 4,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 752,
+      "ms": 276.9095809999999,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "bd14fbcb"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 4,
+      "field": 4,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 751,
+      "ms": 285.6712660000012,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "41cec3fd"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 5,
+      "field": 4,
+      "origin": "N5",
+      "ancestry": "A13",
+      "species": "B03",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 751,
+      "ms": 135.7915039999989,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "7b74de90"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 6,
+      "field": 4,
+      "origin": "N6",
+      "ancestry": "A11",
+      "species": "B06",
+      "quality": "quality.affordable",
+      "affinity": 0.95,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 754,
+      "ms": 176.6332829999992,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "95d8da4b"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 7,
+      "field": 4,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 750,
+      "ms": 162.8154829999985,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "7482c86a"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 8,
+      "field": 4,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 751,
+      "ms": 242.21477500000037,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "756a95a5"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 9,
+      "field": 4,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 754,
+      "ms": 152.51206099999945,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "7b1db500"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 10,
+      "field": 4,
+      "origin": "N2",
+      "ancestry": "A06",
+      "species": "B04",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 752,
+      "ms": 170.23489400000108,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "89c0a33d"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 11,
+      "field": 4,
+      "origin": "N3",
+      "ancestry": "A06",
+      "species": "B04",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 752,
+      "ms": 174.44363599999997,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "0c621578"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 12,
+      "field": 4,
+      "origin": "N4",
+      "ancestry": "A06",
+      "species": "B04",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 752,
+      "ms": 282.7911430000004,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "41e58316"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 13,
+      "field": 4,
+      "origin": "N5",
+      "ancestry": "A13",
+      "species": "B01",
+      "quality": "quality.affordable",
+      "affinity": 1,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 751,
+      "ms": 263.7230070000005,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "279354b9"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 14,
+      "field": 4,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B07",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 752,
+      "ms": 422.8894049999999,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "d0ebc8a0"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 15,
+      "field": 4,
+      "origin": "N7",
+      "ancestry": "A01",
+      "species": "B08",
+      "quality": "quality.affordable",
+      "affinity": 0.95,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 752,
+      "ms": 259.7015740000006,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "17b3ac5a"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 16,
+      "field": 4,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 752,
+      "ms": 154.75882400000046,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "01a0f68d"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 17,
+      "field": 4,
+      "origin": "N1",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 753,
+      "ms": 228.97266599999966,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "1e24e26a"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 18,
+      "field": 4,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B03",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 753,
+      "ms": 269.77323499999875,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "fb5bcef4"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 19,
+      "field": 4,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 751,
+      "ms": 303.6321749999988,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "c82d63ab"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 20,
+      "field": 4,
+      "origin": "N4",
+      "ancestry": "A10",
+      "species": "B05",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 753,
+      "ms": 298.37038199999915,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "53bfb6a3"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 21,
+      "field": 4,
+      "origin": "N5",
+      "ancestry": "A02",
+      "species": "B07",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 751,
+      "ms": 301.70523499999945,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "1c0224cd"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 22,
+      "field": 4,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B06",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 750,
+      "ms": 308.44607800000085,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "45be83cb"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 23,
+      "field": 4,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 751,
+      "ms": 188.25706300000093,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "381e06c9"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 24,
+      "field": 4,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 776,
+      "ms": 138.78902200000084,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "f2f7ab85"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 25,
+      "field": 4,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 753,
+      "ms": 151.50537000000259,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "f11acbf4"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 26,
+      "field": 4,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B05",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 749,
+      "ms": 261.6720270000005,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "b4119d01"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 27,
+      "field": 4,
+      "origin": "N3",
+      "ancestry": "A07",
+      "species": "B04",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 753,
+      "ms": 138.07997799999794,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "9b6615c9"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 28,
+      "field": 4,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 753,
+      "ms": 344.822027000002,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "29d487c4"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 29,
+      "field": 4,
+      "origin": "N5",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 757,
+      "ms": 242.13584200000332,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "917797a5"
+    },
+    {
+      "tier": "dustroad",
+      "format": "Combat",
+      "seed": 30,
+      "field": 4,
+      "origin": "N6",
+      "ancestry": "A11",
+      "species": "B07",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 754,
+      "ms": 142.1147119999987,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "df0c79f1"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 1,
+      "field": 5,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B02",
+      "quality": "quality.ordinary",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 380.966715999999,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "a123a014"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 2,
+      "field": 5,
+      "origin": "N2",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 349.15782500000205,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "61e9121d"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 3,
+      "field": 5,
+      "origin": "N3",
+      "ancestry": "A07",
+      "species": "B04",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 312.69562999999835,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "91f41fd3"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 4,
+      "field": 5,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 480.408370000001,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "2040c516"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 5,
+      "field": 5,
+      "origin": "N5",
+      "ancestry": "A05",
+      "species": "B01",
+      "quality": "quality.affordable",
+      "affinity": 1,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 557.6940729999988,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "149936a9"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 6,
+      "field": 5,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B07",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 317.04589699999997,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "be817773"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 7,
+      "field": 5,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 401.92957899999965,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "5f797a11"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 8,
+      "field": 5,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 394.4283209999994,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "5c86f762"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 9,
+      "field": 5,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 370.7202120000002,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "ab6c0e47"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 10,
+      "field": 5,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B05",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1071,
+      "ms": 531.0748850000018,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "612d39ca"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 11,
+      "field": 5,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 508.7266469999995,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "911e40a6"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 12,
+      "field": 5,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 468.61847299999863,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "67e9c96c"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 13,
+      "field": 5,
+      "origin": "N5",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1071,
+      "ms": 454.11887900000147,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "7e1294f6"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 14,
+      "field": 5,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B06",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 388.3939559999999,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "52b38cae"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 15,
+      "field": 5,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 552.145617000002,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "7974aeba"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 16,
+      "field": 5,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 292.38003200000094,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "01a93ee2"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 17,
+      "field": 5,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 400.1121120000025,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "f3ce1e9b"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 18,
+      "field": 5,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B03",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1071,
+      "ms": 222.60207600000285,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "84f0e69d"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 19,
+      "field": 5,
+      "origin": "N3",
+      "ancestry": "A07",
+      "species": "B04",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 533.6326490000029,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "d8a32881"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 20,
+      "field": 5,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1071,
+      "ms": 490.27046600000176,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          97.40824479425132
+        ],
+        "chariot": 100
+      },
+      "checksum": "c8f482a9"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 21,
+      "field": 5,
+      "origin": "N5",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 318.49056500000006,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "d466dcfa"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 22,
+      "field": 5,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B07",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 425.05056700000205,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "639ea75b"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 23,
+      "field": 5,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 285.7825960000009,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "7687a4f3"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 24,
+      "field": 5,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 393.25594900000215,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "2301afe6"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 25,
+      "field": 5,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 469.7911019999992,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "81bb630a"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 26,
+      "field": 5,
+      "origin": "N2",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1127,
+      "ms": 307.06217099999776,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "d4b6ab30"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 27,
+      "field": 5,
+      "origin": "N3",
+      "ancestry": "A07",
+      "species": "B04",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 262.53254300000117,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "42693e00"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 28,
+      "field": 5,
+      "origin": "N4",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 333.35319399999935,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "550843a5"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 29,
+      "field": 5,
+      "origin": "N5",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 337.58189899999707,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "e46bc1d1"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Pure",
+      "seed": 30,
+      "field": 5,
+      "origin": "N6",
+      "ancestry": "A11",
+      "species": "B07",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 442.48376700000154,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "b0f9cd25"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 1,
+      "field": 5,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B02",
+      "quality": "quality.ordinary",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 557.7688150000031,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "fa4ade6f"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 2,
+      "field": 5,
+      "origin": "N2",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 452.31224400000065,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "32ae5dd5"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 3,
+      "field": 5,
+      "origin": "N3",
+      "ancestry": "A07",
+      "species": "B04",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 334.1769569999997,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "38bf2164"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 4,
+      "field": 5,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 300.5969780000014,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "ecf6679e"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 5,
+      "field": 5,
+      "origin": "N5",
+      "ancestry": "A05",
+      "species": "B01",
+      "quality": "quality.affordable",
+      "affinity": 1,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 355.63747800000056,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "70bba09c"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 6,
+      "field": 5,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B07",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 571.414506000001,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "04db9cde"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 7,
+      "field": 5,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 398.7800720000014,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "5bd0b83d"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 8,
+      "field": 5,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 361.93446600000607,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "9675b942"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 9,
+      "field": 5,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 463.8352690000029,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "8832f515"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 10,
+      "field": 5,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B05",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1071,
+      "ms": 464.8995419999992,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "86fae708"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 11,
+      "field": 5,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 685.3900960000028,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "caad1731"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 12,
+      "field": 5,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 1085.734792000003,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "666b81da"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 13,
+      "field": 5,
+      "origin": "N5",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1071,
+      "ms": 877.442916,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "f92874ad"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 14,
+      "field": 5,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B06",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 778.5554499999998,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "182d9d3c"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 15,
+      "field": 5,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 349.8261809999967,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "ccb427a8"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 16,
+      "field": 5,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 407.25533800000267,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "58815354"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 17,
+      "field": 5,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 588.8477360000034,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "ecbc8a39"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 18,
+      "field": 5,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B03",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1071,
+      "ms": 376.24682100000064,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "5dc8d1f9"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 19,
+      "field": 5,
+      "origin": "N3",
+      "ancestry": "A07",
+      "species": "B04",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 392.652783000005,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "d0d18495"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 20,
+      "field": 5,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1071,
+      "ms": 396.93570300000283,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          97.40824479425132
+        ],
+        "chariot": 100
+      },
+      "checksum": "91e16ff9"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 21,
+      "field": 5,
+      "origin": "N5",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 526.5203049999982,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "c11a7285"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 22,
+      "field": 5,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B07",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 604.8812959999996,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "7e6ded84"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 23,
+      "field": 5,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 447.91470400000253,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "4a8b92e5"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 24,
+      "field": 5,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 350.1260819999952,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "02d2847e"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 25,
+      "field": 5,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 526.5400740000041,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "5cc84795"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 26,
+      "field": 5,
+      "origin": "N2",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1127,
+      "ms": 890.3241609999968,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "eb8114a1"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 27,
+      "field": 5,
+      "origin": "N3",
+      "ancestry": "A07",
+      "species": "B04",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 523.5404980000021,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "8a8e06b1"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 28,
+      "field": 5,
+      "origin": "N4",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 430.256014999999,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "36ff8502"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 29,
+      "field": 5,
+      "origin": "N5",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 461.4360400000005,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "30c6c202"
+    },
+    {
+      "tier": "ironwheel",
+      "format": "Combat",
+      "seed": 30,
+      "field": 5,
+      "origin": "N6",
+      "ancestry": "A11",
+      "species": "B07",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1113,
+      "ms": 539.1309429999965,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "7eef3e76"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 1,
+      "field": 6,
+      "origin": "N1",
+      "ancestry": "A11",
+      "species": "B07",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1449,
+      "ms": 938.2383719999998,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "9cf784fd"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 2,
+      "field": 6,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B05",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1512,
+      "ms": 822.8752870000026,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "2d373606"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 3,
+      "field": 6,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1804,
+      "ms": 887.9272159999964,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "06203067"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 4,
+      "field": 6,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1526,
+      "ms": 1129.5419640000036,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "7019dd7a"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 5,
+      "field": 6,
+      "origin": "N5",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1507,
+      "ms": 1038.3167780000003,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "c082d712"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 6,
+      "field": 6,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B06",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1531,
+      "ms": 923.1937889999972,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "e4155fed"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 7,
+      "field": 6,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1550,
+      "ms": 889.0350659999967,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "517c545f"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 8,
+      "field": 6,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1475,
+      "ms": 707.989078999999,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "6af6e8b3"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 9,
+      "field": 6,
+      "origin": "N1",
+      "ancestry": "A02",
+      "species": "B06",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1509,
+      "ms": 2093.231394000002,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "d1e8e968"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 10,
+      "field": 6,
+      "origin": "N2",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1511,
+      "ms": 1143.1933979999958,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "1e97057b"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 11,
+      "field": 6,
+      "origin": "N3",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1532,
+      "ms": 1134.4002129999935,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "f348e324"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 12,
+      "field": 6,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1530,
+      "ms": 1145.694110000004,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "fee3cc46"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 13,
+      "field": 6,
+      "origin": "N5",
+      "ancestry": "A03",
+      "species": "B02",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1531,
+      "ms": 1074.7736020000011,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "e8c07318"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 14,
+      "field": 6,
+      "origin": "N6",
+      "ancestry": "A11",
+      "species": "B07",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1545,
+      "ms": 1003.4144400000005,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "3e18e902"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 15,
+      "field": 6,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1697,
+      "ms": 888.8047699999952,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "ab71d01c"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 16,
+      "field": 6,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B07",
+      "quality": "quality.ordinary",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1621,
+      "ms": 899.3230239999975,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "e4df3d53"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 17,
+      "field": 6,
+      "origin": "N1",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1760,
+      "ms": 1210.2752790000013,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "125dab23"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 18,
+      "field": 6,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B03",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1534,
+      "ms": 903.7150700000057,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "da0f4916"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 19,
+      "field": 6,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1482,
+      "ms": 950.373259,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "b26fb60c"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 20,
+      "field": 6,
+      "origin": "N4",
+      "ancestry": "A10",
+      "species": "B05",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1674,
+      "ms": 1780.947159999996,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "baa07d0b"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 21,
+      "field": 6,
+      "origin": "N5",
+      "ancestry": "A03",
+      "species": "B02",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1498,
+      "ms": 1437.2928390000015,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "bca9fd4f"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 22,
+      "field": 6,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B06",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1506,
+      "ms": 1932.9917330000026,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "2bae8325"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 23,
+      "field": 6,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1525,
+      "ms": 1528.7329570000002,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "3c65d635"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 24,
+      "field": 6,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1512,
+      "ms": 598.8859660000016,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "27577de4"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 25,
+      "field": 6,
+      "origin": "N1",
+      "ancestry": "A03",
+      "species": "B02",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1536,
+      "ms": 1323.2153280000057,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "f81e296d"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 26,
+      "field": 6,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B04",
+      "quality": "quality.ordinary",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1552,
+      "ms": 1725.7621809999982,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "4521b4b3"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 27,
+      "field": 6,
+      "origin": "N3",
+      "ancestry": "A06",
+      "species": "B04",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1500,
+      "ms": 1634.4873669999943,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "5d1dbf1b"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 28,
+      "field": 6,
+      "origin": "N4",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1495,
+      "ms": 1468.0842479999992,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "b9d12021"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 29,
+      "field": 6,
+      "origin": "N5",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1778,
+      "ms": 1891.9830829999992,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "1068de14"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Pure",
+      "seed": 30,
+      "field": 6,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B06",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1673,
+      "ms": 1766.4860530000005,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "a27462b8"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 1,
+      "field": 6,
+      "origin": "N1",
+      "ancestry": "A11",
+      "species": "B07",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1449,
+      "ms": 1475.8792359999934,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "d18a224d"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 2,
+      "field": 6,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B05",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1512,
+      "ms": 1730.8846560000093,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "65522310"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 3,
+      "field": 6,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1804,
+      "ms": 1895.1008530000108,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "c7496998"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 4,
+      "field": 6,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1526,
+      "ms": 1790.6882710000064,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "1c88f06e"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 5,
+      "field": 6,
+      "origin": "N5",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1507,
+      "ms": 1657.6130549999943,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "c545eeea"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 6,
+      "field": 6,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B06",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1531,
+      "ms": 1954.3390849999996,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "5ae3b23b"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 7,
+      "field": 6,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1550,
+      "ms": 1825.246960999997,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "3a381368"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 8,
+      "field": 6,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1475,
+      "ms": 1774.812672,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "33f17c63"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 9,
+      "field": 6,
+      "origin": "N1",
+      "ancestry": "A02",
+      "species": "B06",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1509,
+      "ms": 1833.7640370000008,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "07352189"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 10,
+      "field": 6,
+      "origin": "N2",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1511,
+      "ms": 2082.8421760000056,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "8cffab10"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 11,
+      "field": 6,
+      "origin": "N3",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1532,
+      "ms": 1873.1796560000075,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "e2755f45"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 12,
+      "field": 6,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1530,
+      "ms": 1727.001928999991,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "75b865bb"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 13,
+      "field": 6,
+      "origin": "N5",
+      "ancestry": "A03",
+      "species": "B02",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1531,
+      "ms": 1957.5034199999936,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "65ffb838"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 14,
+      "field": 6,
+      "origin": "N6",
+      "ancestry": "A11",
+      "species": "B07",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1545,
+      "ms": 2110.8002540000016,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "8d1a1db5"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 15,
+      "field": 6,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1697,
+      "ms": 1893.2173089999997,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "40fb9553"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 16,
+      "field": 6,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B07",
+      "quality": "quality.ordinary",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1621,
+      "ms": 1721.87212,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "81f835e5"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 17,
+      "field": 6,
+      "origin": "N1",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1760,
+      "ms": 2010.1100940000033,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "bede6684"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 18,
+      "field": 6,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B03",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1534,
+      "ms": 1671.7753449999873,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "7a6d2bee"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 19,
+      "field": 6,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1482,
+      "ms": 1813.8138720000134,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "a3b1d302"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 20,
+      "field": 6,
+      "origin": "N4",
+      "ancestry": "A10",
+      "species": "B05",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1674,
+      "ms": 1899.3522320000047,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "485abb34"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 21,
+      "field": 6,
+      "origin": "N5",
+      "ancestry": "A03",
+      "species": "B02",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1498,
+      "ms": 1657.9194149999967,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "0facf1e6"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 22,
+      "field": 6,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B06",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1506,
+      "ms": 1970.7355970000062,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "f5504a09"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 23,
+      "field": 6,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1525,
+      "ms": 1482.6454329999979,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "b3be9510"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 24,
+      "field": 6,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1512,
+      "ms": 2152.5434180000157,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "020d70bc"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 25,
+      "field": 6,
+      "origin": "N1",
+      "ancestry": "A03",
+      "species": "B02",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1536,
+      "ms": 2469.1043549999886,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "e6c587cc"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 26,
+      "field": 6,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B04",
+      "quality": "quality.ordinary",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1552,
+      "ms": 1635.649974,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "6170790b"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 27,
+      "field": 6,
+      "origin": "N3",
+      "ancestry": "A06",
+      "species": "B04",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1500,
+      "ms": 2200.7422179999994,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "8f8b754a"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 28,
+      "field": 6,
+      "origin": "N4",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1495,
+      "ms": 1819.810232000018,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "e89c248c"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 29,
+      "field": 6,
+      "origin": "N5",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1778,
+      "ms": 2559.432524999982,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "8f41a526"
+    },
+    {
+      "tier": "bannerfall",
+      "format": "Combat",
+      "seed": 30,
+      "field": 6,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B06",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1673,
+      "ms": 1916.670072000008,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "8ad50b6e"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 1,
+      "field": 7,
+      "origin": "N1",
+      "ancestry": "A06",
+      "species": "B04",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1646,
+      "ms": 2787.9964829999954,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "62445f67"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 2,
+      "field": 7,
+      "origin": "N2",
+      "ancestry": "A02",
+      "species": "B07",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1641,
+      "ms": 2343.225051000016,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "dd47cefd"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 3,
+      "field": 7,
+      "origin": "N3",
+      "ancestry": "A07",
+      "species": "B04",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1640,
+      "ms": 2307.990299999976,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "9e7c1c9c"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 4,
+      "field": 7,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1652,
+      "ms": 2854.3913990000146,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "da52908a"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 5,
+      "field": 7,
+      "origin": "N5",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1638,
+      "ms": 2539.3130170000077,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 98.75366936455895
+      },
+      "checksum": "dcc04f0c"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 6,
+      "field": 7,
+      "origin": "N6",
+      "ancestry": "A07",
+      "species": "B04",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1631,
+      "ms": 2032.5585629999987,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "05389044"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 7,
+      "field": 7,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B01",
+      "quality": "quality.rare",
+      "affinity": 1,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1642,
+      "ms": 3337.3529209999833,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "c4e1b0d3"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 8,
+      "field": 7,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1641,
+      "ms": 1789.9909549999866,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "8c2544c4"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 9,
+      "field": 7,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B02",
+      "quality": "quality.specialized",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1641,
+      "ms": 3258.4305389999936,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "e33422e1"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 10,
+      "field": 7,
+      "origin": "N2",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1644,
+      "ms": 3837.1738070000138,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "4e8c8bb5"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 11,
+      "field": 7,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1636,
+      "ms": 3009.298119999992,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "5d60e2da"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 12,
+      "field": 7,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1641,
+      "ms": 3002.4480760000006,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "02660995"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 13,
+      "field": 7,
+      "origin": "N5",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1649,
+      "ms": 2983.6380960000097,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "44b60ff3"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 14,
+      "field": 7,
+      "origin": "N6",
+      "ancestry": "A11",
+      "species": "B06",
+      "quality": "quality.ordinary",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1636,
+      "ms": 2525.436287999997,
+      "condition": {
+        "driver": 99.22224408087574,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "a86be753"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 15,
+      "field": 7,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1648,
+      "ms": 2370.0977300000086,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "f13ed441"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 16,
+      "field": 7,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1643,
+      "ms": 2495.9004399999976,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "06cbe6e6"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 17,
+      "field": 7,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1654,
+      "ms": 2306.3399519999803,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "4ef55870"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 18,
+      "field": 7,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B05",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1642,
+      "ms": 2342.839473,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "f3f93d3c"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 19,
+      "field": 7,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B04",
+      "quality": "quality.ordinary",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1642,
+      "ms": 2504.9740800000145,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "50a6e49d"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 20,
+      "field": 7,
+      "origin": "N4",
+      "ancestry": "A10",
+      "species": "B04",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1649,
+      "ms": 3268.3605579999858,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "147b500f"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 21,
+      "field": 7,
+      "origin": "N5",
+      "ancestry": "A09",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1644,
+      "ms": 2232.5432699999947,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "4c8933d5"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 22,
+      "field": 7,
+      "origin": "N6",
+      "ancestry": "A11",
+      "species": "B03",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1637,
+      "ms": 2204.430565000017,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.85829337827161
+      },
+      "checksum": "d680af48"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 23,
+      "field": 7,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1635,
+      "ms": 2551.673188000015,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "97530e0f"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 24,
+      "field": 7,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1644,
+      "ms": 3087.186952000018,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "c0b4455c"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 25,
+      "field": 7,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1642,
+      "ms": 2577.8709569999774,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "9476d419"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 26,
+      "field": 7,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B03",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1779,
+      "ms": 2911.415064999979,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "2cecd5cd"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 27,
+      "field": 7,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1645,
+      "ms": 3246.4895090000064,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "ab6bce94"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 28,
+      "field": 7,
+      "origin": "N4",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1643,
+      "ms": 3465.7409190000035,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "b16c5fca"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 29,
+      "field": 7,
+      "origin": "N5",
+      "ancestry": "A04",
+      "species": "B05",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1650,
+      "ms": 3151.2812200000044,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "948af122"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Pure",
+      "seed": 30,
+      "field": 7,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B06",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1648,
+      "ms": 3810.6950300000026,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "2f9d117c"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 1,
+      "field": 7,
+      "origin": "N1",
+      "ancestry": "A06",
+      "species": "B04",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1646,
+      "ms": 3289.5185050000146,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "f6705735"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 2,
+      "field": 7,
+      "origin": "N2",
+      "ancestry": "A02",
+      "species": "B07",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1637,
+      "ms": 1705.0687080000062,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "e05d26e8"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 3,
+      "field": 7,
+      "origin": "N3",
+      "ancestry": "A07",
+      "species": "B04",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1639,
+      "ms": 1490.1330339999986,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "2f65f7bb"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 4,
+      "field": 7,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1650,
+      "ms": 2316.850505999988,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "41aa7158"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 5,
+      "field": 7,
+      "origin": "N5",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1636,
+      "ms": 2401.7072159999807,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "5696a38d"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 6,
+      "field": 7,
+      "origin": "N6",
+      "ancestry": "A07",
+      "species": "B04",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1631,
+      "ms": 2504.9547840000014,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "fe990e42"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 7,
+      "field": 7,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B01",
+      "quality": "quality.rare",
+      "affinity": 1,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1642,
+      "ms": 2014.3930779999937,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "d689a070"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 8,
+      "field": 7,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1640,
+      "ms": 2124.5769150000124,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "4ceed917"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 9,
+      "field": 7,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B02",
+      "quality": "quality.specialized",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1641,
+      "ms": 3239.6609720000124,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "3f3fdbbc"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 10,
+      "field": 7,
+      "origin": "N2",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1643,
+      "ms": 3469.1325369999977,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "821f3a05"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 11,
+      "field": 7,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1633,
+      "ms": 2617.1366739999794,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "c1c8c04b"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 12,
+      "field": 7,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1641,
+      "ms": 1555.1339690000168,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          99.98884016123223
+        ],
+        "chariot": 100
+      },
+      "checksum": "baca434f"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 13,
+      "field": 7,
+      "origin": "N5",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1643,
+      "ms": 2279.1706059999997,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "c8c23248"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 14,
+      "field": 7,
+      "origin": "N6",
+      "ancestry": "A11",
+      "species": "B06",
+      "quality": "quality.ordinary",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1639,
+      "ms": 1708.8825760000036,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "be90765a"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 15,
+      "field": 7,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1645,
+      "ms": 1821.9501260000397,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "1a3120c5"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 16,
+      "field": 7,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1643,
+      "ms": 1509.2826490000007,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "e72e44e4"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 17,
+      "field": 7,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1654,
+      "ms": 1378.6824539999943,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "a50d102f"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 18,
+      "field": 7,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B05",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1637,
+      "ms": 1510.3523569999961,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "8646264b"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 19,
+      "field": 7,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B04",
+      "quality": "quality.ordinary",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1633,
+      "ms": 2808.794529000006,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "3977495f"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 20,
+      "field": 7,
+      "origin": "N4",
+      "ancestry": "A10",
+      "species": "B04",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1649,
+      "ms": 2410.968012999976,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "521aa6e0"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 21,
+      "field": 7,
+      "origin": "N5",
+      "ancestry": "A09",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1644,
+      "ms": 2837.6893299999647,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "8cd30e85"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 22,
+      "field": 7,
+      "origin": "N6",
+      "ancestry": "A11",
+      "species": "B03",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1637,
+      "ms": 3342.9354169999715,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "0f927444"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 23,
+      "field": 7,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1632,
+      "ms": 4004.975037999975,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "686d939a"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 24,
+      "field": 7,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1644,
+      "ms": 2670.2663070000126,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "0e9bd4de"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 25,
+      "field": 7,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1637,
+      "ms": 1605.0393639999675,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "6704654d"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 26,
+      "field": 7,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B03",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1771,
+      "ms": 1805.839954999974,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "2d706cfd"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 27,
+      "field": 7,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1639,
+      "ms": 2144.3454979999806,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "8057234f"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 28,
+      "field": 7,
+      "origin": "N4",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1643,
+      "ms": 1656.8660200000159,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "de8391a9"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 29,
+      "field": 7,
+      "origin": "N5",
+      "ancestry": "A04",
+      "species": "B05",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 1650,
+      "ms": 3424.3296529999934,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "11f2e431"
+    },
+    {
+      "tier": "crownfire",
+      "format": "Combat",
+      "seed": 30,
+      "field": 7,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B06",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 1640,
+      "ms": 3577.6449129999964,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "fdc52215"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 1,
+      "field": 8,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B02",
+      "quality": "quality.exceptional",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4411,
+      "ms": 12613.498625000007,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.88675273377994
+      },
+      "checksum": "a3f1eb01"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 2,
+      "field": 8,
+      "origin": "N2",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4405,
+      "ms": 11868.54050100001,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "81ac0318"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 3,
+      "field": 8,
+      "origin": "N3",
+      "ancestry": "A11",
+      "species": "B03",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4384,
+      "ms": 8833.02826599998,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.9678120722227
+      },
+      "checksum": "2457d67e"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 4,
+      "field": 8,
+      "origin": "N4",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4389,
+      "ms": 9914.793141000031,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 98.6153537784955
+      },
+      "checksum": "bbde42a7"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 5,
+      "field": 8,
+      "origin": "N5",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4403,
+      "ms": 9955.030764000025,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "76a1b563"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 6,
+      "field": 8,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B07",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 4406,
+      "ms": 8894.249157999991,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "eb504ae1"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 7,
+      "field": 8,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4397,
+      "ms": 9672.99854,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "49f714f5"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 8,
+      "field": 8,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4828,
+      "ms": 12364.355885999976,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "0a22a28e"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 9,
+      "field": 8,
+      "origin": "N1",
+      "ancestry": "A03",
+      "species": "B02",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4405,
+      "ms": 11624.452289000037,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "c6d4f12e"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 10,
+      "field": 8,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B05",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4402,
+      "ms": 12615.98424999998,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "e64baf03"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 11,
+      "field": 8,
+      "origin": "N3",
+      "ancestry": "A06",
+      "species": "B04",
+      "quality": "quality.exceptional",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 4396,
+      "ms": 8167.191338999954,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "c23aa477"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 12,
+      "field": 8,
+      "origin": "N4",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.exceptional",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 4397,
+      "ms": 7373.253143000009,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "c1bfd42d"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 13,
+      "field": 8,
+      "origin": "N5",
+      "ancestry": "A02",
+      "species": "B07",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4393,
+      "ms": 14469.994590000017,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "da07287d"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 14,
+      "field": 8,
+      "origin": "N6",
+      "ancestry": "A11",
+      "species": "B07",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4513,
+      "ms": 15749.001266999985,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.95364405366303
+      },
+      "checksum": "2044cf5d"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 15,
+      "field": 8,
+      "origin": "N7",
+      "ancestry": "A09",
+      "species": "B08",
+      "quality": "quality.specialized",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4420,
+      "ms": 15655.545669000014,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "752f9185"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 16,
+      "field": 8,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4466,
+      "ms": 19002.754203999997,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 98.68351369074222
+      },
+      "checksum": "e7ac9356"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 17,
+      "field": 8,
+      "origin": "N1",
+      "ancestry": "A02",
+      "species": "B07",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4462,
+      "ms": 9300.542030000011,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.09406611236227
+      },
+      "checksum": "cd0e83fa"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 18,
+      "field": 8,
+      "origin": "N2",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4401,
+      "ms": 7482.855546999956,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          99.68757843170862
+        ],
+        "chariot": 100
+      },
+      "checksum": "bb31016e"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 19,
+      "field": 8,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4401,
+      "ms": 7935.4450999999535,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.97207038809029
+      },
+      "checksum": "170d3e6a"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 20,
+      "field": 8,
+      "origin": "N4",
+      "ancestry": "A10",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4488,
+      "ms": 7004.01082700002,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "b42d866b"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 21,
+      "field": 8,
+      "origin": "N5",
+      "ancestry": "A04",
+      "species": "B05",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4423,
+      "ms": 7424.189940000069,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.99752920455907
+      },
+      "checksum": "ebfaf9a2"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 22,
+      "field": 8,
+      "origin": "N6",
+      "ancestry": "A06",
+      "species": "B04",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4386,
+      "ms": 5623.279702999978,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 98.56811308985134
+      },
+      "checksum": "0fe97711"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 23,
+      "field": 8,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4403,
+      "ms": 5831.791876000003,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.99863763011109
+      },
+      "checksum": "899705b6"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 24,
+      "field": 8,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4390,
+      "ms": 6130.221589999972,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.93453755918814
+      },
+      "checksum": "dffc2a46"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 25,
+      "field": 8,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4440,
+      "ms": 5455.160846999963,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "dbf283e8"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 26,
+      "field": 8,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B03",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4389,
+      "ms": 7777.450123000075,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.8947779529891
+      },
+      "checksum": "d1beaff4"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 27,
+      "field": 8,
+      "origin": "N3",
+      "ancestry": "A07",
+      "species": "B04",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 4495,
+      "ms": 6226.761163999909,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "dedcd797"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 28,
+      "field": 8,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4409,
+      "ms": 5813.991274000029,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.96040959354703
+      },
+      "checksum": "5f2c5809"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 29,
+      "field": 8,
+      "origin": "N5",
+      "ancestry": "A13",
+      "species": "B02",
+      "quality": "quality.rare",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4459,
+      "ms": 5862.726083999965,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "45dafe8d"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Pure",
+      "seed": 30,
+      "field": 8,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B06",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4404,
+      "ms": 6005.47001499997,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "9852be0d"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 1,
+      "field": 8,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B02",
+      "quality": "quality.exceptional",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4411,
+      "ms": 7171.747852000059,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.88675273377994
+      },
+      "checksum": "10240520"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 2,
+      "field": 8,
+      "origin": "N2",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4470,
+      "ms": 6402.521822000039,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "617ef2f9"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 3,
+      "field": 8,
+      "origin": "N3",
+      "ancestry": "A11",
+      "species": "B03",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4386,
+      "ms": 5901.1905609999085,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.97565435078047
+      },
+      "checksum": "4da4bcc2"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 4,
+      "field": 8,
+      "origin": "N4",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4408,
+      "ms": 5964.906670000055,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.90145629839888
+      },
+      "checksum": "fd425587"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 5,
+      "field": 8,
+      "origin": "N5",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4411,
+      "ms": 6612.95904300001,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "01295ed7"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 6,
+      "field": 8,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B07",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 4385,
+      "ms": 5426.661680000019,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "6d37c28e"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 7,
+      "field": 8,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 4397,
+      "ms": 4834.362567999982,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "971d5833"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 8,
+      "field": 8,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.affordable",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4886,
+      "ms": 6015.508514999994,
+      "condition": {
+        "driver": 69.64723201518665,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "6bc63832"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 9,
+      "field": 8,
+      "origin": "N1",
+      "ancestry": "A03",
+      "species": "B02",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4405,
+      "ms": 5538.1290530000115,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "092a6f25"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 10,
+      "field": 8,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B05",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4402,
+      "ms": 4706.415783999953,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "9a3dd464"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 11,
+      "field": 8,
+      "origin": "N3",
+      "ancestry": "A06",
+      "species": "B04",
+      "quality": "quality.exceptional",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 4396,
+      "ms": 4394.420022999984,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "657f039f"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 12,
+      "field": 8,
+      "origin": "N4",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.exceptional",
+      "affinity": 1.05,
+      "finished": true,
+      "win": true,
+      "status": "Ended",
+      "ticks": 4397,
+      "ms": 4638.634061999968,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "16879afe"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 13,
+      "field": 8,
+      "origin": "N5",
+      "ancestry": "A02",
+      "species": "B07",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4394,
+      "ms": 5269.143001000048,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          94.6978077102452,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "4fee7843"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 14,
+      "field": 8,
+      "origin": "N6",
+      "ancestry": "A11",
+      "species": "B07",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4513,
+      "ms": 5716.315606000018,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.96309141568256
+      },
+      "checksum": "d43f1562"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 15,
+      "field": 8,
+      "origin": "N7",
+      "ancestry": "A09",
+      "species": "B08",
+      "quality": "quality.specialized",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4404,
+      "ms": 4790.138649999979,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "64ec2759"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 16,
+      "field": 8,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4466,
+      "ms": 4848.2394649999915,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 98.75181423753615
+      },
+      "checksum": "703c7e08"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 17,
+      "field": 8,
+      "origin": "N1",
+      "ancestry": "A02",
+      "species": "B07",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4463,
+      "ms": 4430.073047999991,
+      "condition": {
+        "driver": 94.30922156181397,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.09406611236227
+      },
+      "checksum": "97a266ff"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 18,
+      "field": 8,
+      "origin": "N2",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4402,
+      "ms": 4675.2202370000305,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          99.68757843170862
+        ],
+        "chariot": 100
+      },
+      "checksum": "3a5ae200"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 19,
+      "field": 8,
+      "origin": "N3",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4470,
+      "ms": 4542.358292000019,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "61e2426c"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 20,
+      "field": 8,
+      "origin": "N4",
+      "ancestry": "A10",
+      "species": "B01",
+      "quality": "quality.specialized",
+      "affinity": 1,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4488,
+      "ms": 4398.438339999993,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "0f2a62fe"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 21,
+      "field": 8,
+      "origin": "N5",
+      "ancestry": "A04",
+      "species": "B05",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4423,
+      "ms": 5225.961427000002,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.99752920455907
+      },
+      "checksum": "dc15614f"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 22,
+      "field": 8,
+      "origin": "N6",
+      "ancestry": "A06",
+      "species": "B04",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4387,
+      "ms": 4433.873071000096,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 92.1782514818746
+      },
+      "checksum": "7a1d8049"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 23,
+      "field": 8,
+      "origin": "N7",
+      "ancestry": "A12",
+      "species": "B08",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4403,
+      "ms": 4725.813101999927,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.99863763011109
+      },
+      "checksum": "6197a683"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 24,
+      "field": 8,
+      "origin": "N8",
+      "ancestry": "A08",
+      "species": "B09",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4390,
+      "ms": 4982.295735000051,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.94576506393705
+      },
+      "checksum": "fa726420"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 25,
+      "field": 8,
+      "origin": "N1",
+      "ancestry": "A01",
+      "species": "B01",
+      "quality": "quality.ordinary",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4452,
+      "ms": 7590.115002000006,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "bb73e619"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 26,
+      "field": 8,
+      "origin": "N2",
+      "ancestry": "A04",
+      "species": "B03",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4389,
+      "ms": 5183.192885000026,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.89477795298865
+      },
+      "checksum": "e8b614a3"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 27,
+      "field": 8,
+      "origin": "N3",
+      "ancestry": "A07",
+      "species": "B04",
+      "quality": "quality.rare",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4495,
+      "ms": 4843.405814000056,
+      "condition": {
+        "driver": 96.00484925160549,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "4142908f"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 28,
+      "field": 8,
+      "origin": "N4",
+      "ancestry": "A05",
+      "species": "B05",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4411,
+      "ms": 5567.55019400001,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.96898215316492
+      },
+      "checksum": "dcffb5aa"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 29,
+      "field": 8,
+      "origin": "N5",
+      "ancestry": "A13",
+      "species": "B02",
+      "quality": "quality.rare",
+      "affinity": 0.95,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4459,
+      "ms": 4386.08897599997,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 100
+      },
+      "checksum": "d56bc129"
+    },
+    {
+      "tier": "thunder-crown",
+      "format": "Combat",
+      "seed": 30,
+      "field": 8,
+      "origin": "N6",
+      "ancestry": "A02",
+      "species": "B06",
+      "quality": "quality.specialized",
+      "affinity": 1.05,
+      "finished": true,
+      "win": false,
+      "status": "Ended",
+      "ticks": 4372,
+      "ms": 4651.659765999997,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          100
+        ],
+        "chariot": 99.7817395349516
+      },
+      "checksum": "b5cba993"
+    }
+  ]
+}

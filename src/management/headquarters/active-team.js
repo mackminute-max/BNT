@@ -1,3 +1,4 @@
+import {matchingPair} from '../../career/m5/d2/compatibility.js';
 import {componentReasons} from '../../career/component-eligibility.js';
 import {consequenceDefaults} from '../../sim/consequences.js';
 import {selectionPreview} from '../model.js';
@@ -15,6 +16,7 @@ export function changeTeam(state,team,kind,key,slot=null){
  if(!active){const p=componentEligibility(state,kind,key);if(!p.eligible)throw Error(p.reasons.join('; '));}
  if(kind==='personnel')t.driverId=active?null:key;else if(kind==='chariots')t.chariotId=active?null:key;
  else if(kind==='beasts'){if(active)t.beastIds[t.beastIds.indexOf(key)]=null;else{const n=t.beastIds.indexOf(null);if(n>=0)t.beastIds[n]=key;else{if(![0,1].includes(slot))throw Error('Choose which beast slot to replace');t.beastIds[slot]=key;}}}else throw Error('Invalid component kind');
+ if(state.m5?.d2&&t.beastIds.every(Boolean)){const p=matchingPair(state,t.beastIds);if(!p.eligible)throw Error(p.reasons.join('; '));}
  return t;
 }
 export function teamReadiness(s,t){return selectionPreview(s,{driverId:t.driverId,beastIds:[...t.beastIds],chariotId:t.chariotId},Object.values(s.management.registries.assignments)[0]?.id);}

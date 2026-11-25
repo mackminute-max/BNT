@@ -1,0 +1,916 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "authority",
+    "homeAndOpportunityRenewal",
+    "requiresAuthoritativeTerminalArchive",
+    "withdrawal",
+    "recruiters",
+    "generatedProgression",
+    "rivals",
+    "scheduleResolution"
+  ],
+  "properties": {
+    "version": {
+      "const": "1.1"
+    },
+    "authority": {
+      "const": "references/OWNER_POLICY.md"
+    },
+    "homeAndOpportunityRenewal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "normalCompletion",
+        "involuntaryEliminationAfterParticipation",
+        "zeroParticipationElimination",
+        "voluntaryWithdrawalBeforeStart",
+        "voluntaryWithdrawalAfterStart",
+        "failedRegistration",
+        "reload",
+        "purchase",
+        "pageOpen"
+      ],
+      "properties": {
+        "normalCompletion": {
+          "const": true
+        },
+        "involuntaryEliminationAfterParticipation": {
+          "const": true
+        },
+        "zeroParticipationElimination": {
+          "const": false
+        },
+        "voluntaryWithdrawalBeforeStart": {
+          "const": false
+        },
+        "voluntaryWithdrawalAfterStart": {
+          "const": false
+        },
+        "failedRegistration": {
+          "const": false
+        },
+        "reload": {
+          "const": false
+        },
+        "purchase": {
+          "const": false
+        },
+        "pageOpen": {
+          "const": false
+        }
+      }
+    },
+    "requiresAuthoritativeTerminalArchive": {
+      "const": true
+    },
+    "withdrawal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "committedLiabilitiesDue",
+        "earnedRewardsPreserved",
+        "completionBonus",
+        "entryRefund",
+        "inventedFine",
+        "duplicateCharges"
+      ],
+      "properties": {
+        "committedLiabilitiesDue": {
+          "const": true
+        },
+        "earnedRewardsPreserved": {
+          "const": true
+        },
+        "completionBonus": {
+          "const": false
+        },
+        "entryRefund": {
+          "const": false
+        },
+        "inventedFine": {
+          "const": false
+        },
+        "duplicateCharges": {
+          "const": false
+        }
+      }
+    },
+    "recruiters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "legacyPoints",
+        "activeSlot",
+        "extraPremiumPerFullHomeRenewal",
+        "regionalBonus",
+        "normalAcquisitionCost"
+      ],
+      "properties": {
+        "legacyPoints": {
+          "const": 6
+        },
+        "activeSlot": {
+          "const": false
+        },
+        "extraPremiumPerFullHomeRenewal": {
+          "const": 1
+        },
+        "regionalBonus": {
+          "const": 0
+        },
+        "normalAcquisitionCost": {
+          "const": true
+        }
+      }
+    },
+    "generatedProgression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "normalRewards",
+        "generalVictoryAndTierCredit",
+        "signatureTrophy",
+        "signatureSpecificUnlock"
+      ],
+      "properties": {
+        "normalRewards": {
+          "const": true
+        },
+        "generalVictoryAndTierCredit": {
+          "const": true
+        },
+        "signatureTrophy": {
+          "const": false
+        },
+        "signatureSpecificUnlock": {
+          "const": false
+        }
+      }
+    },
+    "rivals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "populationMin",
+        "populationMax",
+        "defaultPersistentEntrants",
+        "reserveLocalSlots",
+        "adaptiveScaling",
+        "betweenChampionshipCondition",
+        "withinChampionshipCarryover",
+        "offscreenSimulation"
+      ],
+      "properties": {
+        "populationMin": {
+          "const": 3
+        },
+        "populationMax": {
+          "const": 5
+        },
+        "defaultPersistentEntrants": {
+          "const": 2
+        },
+        "reserveLocalSlots": {
+          "const": 1
+        },
+        "adaptiveScaling": {
+          "const": false
+        },
+        "betweenChampionshipCondition": {
+          "const": "fresh-native-baseline"
+        },
+        "withinChampionshipCarryover": {
+          "const": true
+        },
+        "offscreenSimulation": {
+          "const": false
+        }
+      }
+    },
+    "scheduleResolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "patterns",
+        "match",
+        "surfacePrecedence",
+        "weatherConvertsTerrain",
+        "localNationSelection",
+        "persistentBirth",
+        "internationalCoverage"
+      ],
+      "properties": {
+        "patterns": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dustroad",
+            "ironwheel",
+            "bannerfall",
+            "crownfire",
+            "thunder-crown",
+            "iron-gauntlet"
+          ],
+          "properties": {
+            "dustroad": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Oval"
+                    },
+                    "format": {
+                      "const": "Pure"
+                    },
+                    "grid": {
+                      "const": "random"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Oval"
+                    },
+                    "format": {
+                      "const": "Combat"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                }
+              ],
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "ironwheel": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Oval"
+                    },
+                    "format": {
+                      "const": "Pure"
+                    },
+                    "grid": {
+                      "const": "random"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Oval"
+                    },
+                    "format": {
+                      "const": "Combat"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Oval"
+                    },
+                    "format": {
+                      "const": "Pure"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                }
+              ],
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "bannerfall": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Circuit"
+                    },
+                    "format": {
+                      "const": "Pure"
+                    },
+                    "grid": {
+                      "const": "random"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Circuit"
+                    },
+                    "format": {
+                      "const": "Combat"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Circuit"
+                    },
+                    "format": {
+                      "const": "Pure"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Circuit"
+                    },
+                    "format": {
+                      "const": "Combat"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                }
+              ],
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "crownfire": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Rally"
+                    },
+                    "format": {
+                      "const": "Pure"
+                    },
+                    "grid": {
+                      "const": "random"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Rally"
+                    },
+                    "format": {
+                      "const": "Combat"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Rally"
+                    },
+                    "format": {
+                      "const": "Pure"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Rally"
+                    },
+                    "format": {
+                      "const": "Combat"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Rally"
+                    },
+                    "format": {
+                      "const": "Pure"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                }
+              ],
+              "minItems": 5,
+              "maxItems": 5
+            },
+            "thunder-crown": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Oval"
+                    },
+                    "format": {
+                      "const": "Pure"
+                    },
+                    "grid": {
+                      "const": "random"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Circuit"
+                    },
+                    "format": {
+                      "const": "Combat"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Rally"
+                    },
+                    "format": {
+                      "const": "Pure"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Circuit"
+                    },
+                    "format": {
+                      "const": "Combat"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Oval"
+                    },
+                    "format": {
+                      "const": "Pure"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Rally"
+                    },
+                    "format": {
+                      "const": "Combat"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Circuit"
+                    },
+                    "format": {
+                      "const": "Pure"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 1
+                    }
+                  }
+                }
+              ],
+              "minItems": 7,
+              "maxItems": 7
+            },
+            "iron-gauntlet": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Oval"
+                    },
+                    "format": {
+                      "const": "Pure"
+                    },
+                    "grid": {
+                      "const": "random"
+                    },
+                    "laps": {
+                      "const": 2
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Circuit"
+                    },
+                    "format": {
+                      "const": "Combat"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 2
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Rally"
+                    },
+                    "format": {
+                      "const": "Pure"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 2
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "format",
+                    "grid",
+                    "laps"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "Rally"
+                    },
+                    "format": {
+                      "const": "Combat"
+                    },
+                    "grid": {
+                      "const": "standings"
+                    },
+                    "laps": {
+                      "const": 2
+                    }
+                  }
+                }
+              ],
+              "minItems": 4,
+              "maxItems": 4
+            }
+          }
+        },
+        "match": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "const": "kind"
+            },
+            {
+              "const": "format"
+            },
+            {
+              "const": "grid"
+            },
+            {
+              "const": "laps"
+            }
+          ],
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "surfacePrecedence": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "const": "native-base"
+            },
+            {
+              "const": "all"
+            },
+            {
+              "const": "straights-or-corners"
+            },
+            {
+              "const": "segment"
+            }
+          ],
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "weatherConvertsTerrain": {
+          "const": false
+        },
+        "localNationSelection": {
+          "const": "80% weighted among host nations, 20% weighted among other nations; if all eight hosts, use all eight"
+        },
+        "persistentBirth": {
+          "const": "sample once by context, freeze members; two entrants, reserve remaining slots for locals"
+        },
+        "internationalCoverage": {
+          "const": "at least two host nations; reject bounded failed schedule without renewal"
+        }
+      }
+    }
+  }
+}

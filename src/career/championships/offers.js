@@ -8,17 +8,18 @@ export function qualifies(q,facts){
  if(type==='victoryCountAtLeast'){exact(q[type],['templateId','count']);id(q[type].templateId);gold(q[type].count);return (facts.victories[q[type].templateId]??0)>=q[type].count;}
  throw Error('Unsupported qualification predicate');
 }
-export function freezeOffer(t){
+export function freezeOffer(t,{rulesVersion='m2e-controller-v1'}={}){
+ if(!['m2e-controller-v1','m5-competition-v1'].includes(rulesVersion))throw Error('Unsupported resolved event rules');
  exact(t,['kind','version','templateId','name','entryFee','fieldSize','qualification','schedule','points','dnfPoints']);
  if(t.kind!=='BNT-championship-template'||t.version!==1||typeof t.name!=='string'||!t.name.trim()||t.name.length>100||!Number.isInteger(t.fieldSize)||t.fieldSize<1||t.fieldSize>8||!Array.isArray(t.schedule)||t.schedule.length<1||t.schedule.length>12||!Array.isArray(t.points)||t.points.length!==t.fieldSize)throw Error('Invalid championship template');id(t.templateId);gold(t.entryFee);gold(t.dnfPoints);t.points.forEach(gold);qualifies(t.qualification,{reputation:0,trophies:[],victories:{}});
  const schedule=t.schedule.map((r,i)=>{
-  exact(r,['course','format','weather','laps','grid']);if(!['random','standings','reverse'].includes(r.grid))throw Error('Invalid grid policy');
-  const native=createRace({course:r.course,format:r.format,weather:r.weather,overrides:{laps:r.laps},entrants:createRace().setup.entrants.slice(0,t.fieldSize)});
+  exact(r,['course','format','weather','laps','grid',...(rulesVersion==='m5-competition-v1'&&Object.hasOwn(r,'surfaces')?['surfaces']:[])]);if(!['random','standings','reverse'].includes(r.grid))throw Error('Invalid grid policy');
+  const native=createRace({...(r.surfaces?{surfaces:r.surfaces}:{}),course:r.course,format:r.format,weather:r.weather,overrides:{laps:r.laps},entrants:createRace().setup.entrants.slice(0,t.fieldSize)});
   return {...structuredClone(r),course:structuredClone(native.setup.course??null),config:structuredClone(native.config),raceOrdinal:i};
  });
- const value={...structuredClone(t),schedule,rulesVersion:'m2e-controller-v1'};return freeze({kind:'BNT-championship-offer',version:1,value,fingerprint:fingerprint(value)});
+ const value={...structuredClone(t),schedule,rulesVersion};return freeze({kind:'BNT-championship-offer',version:1,value,fingerprint:fingerprint(value)});
 }
-export function validateOffer(o){exact(o,['kind','version','value','fingerprint']);if(o.kind!=='BNT-championship-offer'||o.version!==1||o.fingerprint!==fingerprint(o.value))throw Error('Invalid frozen offer');const t=structuredClone(o.value);if(t.rulesVersion!=='m2e-controller-v1')throw Error('Unsupported offer rules');delete t.rulesVersion;t.schedule=t.schedule.map(r=>{exact(r,['course','format','weather','laps','grid','config','raceOrdinal']);return {course:r.course,format:r.format,weather:r.weather,laps:r.laps,grid:r.grid};});if(freezeOffer(t).fingerprint!==o.fingerprint)throw Error('Offer is not canonical/valid');return o;}
+export function validateOffer(o){exact(o,['kind','version','value','fingerprint']);if(o.kind!=='BNT-championship-offer'||o.version!==1||o.fingerprint!==fingerprint(o.value))throw Error('Invalid frozen offer');const t=structuredClone(o.value);if(!['m2e-controller-v1','m5-competition-v1'].includes(t.rulesVersion))throw Error('Unsupported offer rules');const rulesVersion=t.rulesVersion;delete t.rulesVersion;t.schedule=t.schedule.map(r=>{exact(r,['course','format','weather','laps','grid','config','raceOrdinal',...(rulesVersion==='m5-competition-v1'&&Object.hasOwn(r,'surfaces')?['surfaces']:[])]);return {course:r.course,format:r.format,weather:r.weather,laps:r.laps,grid:r.grid,...(r.surfaces?{surfaces:r.surfaces}:{})};});if(freezeOffer(t,{rulesVersion}).fingerprint!==o.fingerprint)throw Error('Offer is not canonical/valid');return o;}
 // Explicit development fixture; no production championship catalog or rewards.
 export const developmentOffer=()=>freezeOffer({kind:'BNT-championship-template',version:1,templateId:'controller-fixture',name:'Development Championship Fixture',entryFee:25,fieldSize:4,qualification:{reputationAtLeast:0},schedule:[{course:null,format:'Pure',weather:'Clear',laps:1,grid:'random'},{course:'C01',format:'Combat',weather:'Clear',laps:1,grid:'standings'}],points:[10,8,6,5],dnfPoints:0});
 const catalogCapabilities=new WeakSet();

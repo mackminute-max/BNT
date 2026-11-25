@@ -1,3 +1,4 @@
+import {regionalAllowed} from '../m5/d2/markets.js';
 import {effectiveRU,raceProgression} from '../m4/progression.js';
 import {enableE3,initializeE3Instance,eligibility,noStarterCandidate,publishOfficial,E3_RULES} from './progression.js';
 import {restoreServiceNative} from './condition.js';
@@ -16,7 +17,7 @@ export function activeChampionship(s){return controllerActive(s)?s.championshipF
 function empty(s,tx){return {version:2,rulesVersion:CONTROLLER_RULES,origin:structuredClone(s),enabledBy:structuredClone(tx),activeId:null,instances:{},offers:[developmentOffer()],facts:{reputation:0,trophies:[],victories:{}}};}
 function expectedEffect(s,t){if(['championship.stageClearance','championship.publish','championship.noStarters'].includes(t.type))return controllerEffect(s.career.id,t.type,t.payload.instanceId,s.championshipFoundation.instances[t.payload.instanceId]?.raceId);return controllerEffect(s.career.id,t.type,t.payload.instanceId??'foundation',['controller.enable','controller.enableE3','championship.register'].includes(t.type)?null:s.revision);}
 function apply(s,t,{historical=false,clearance=null,birth=null,catalog=null,recovery=null,noStarters=null}={}){
- if(t.commandVersion!==4){if(controllerActive(s))throw Error('Stable management is read-only while championship is active or unsettled');const result=executeCareerCandidateV4(s,t,{historical});if(s.championshipFoundation.version===3)restoreServiceNative(s,t,result);s.schema=5;return result;}
+ if(t.commandVersion!==4){const regional=regionalAllowed(s,t.type,t.payload);if(controllerActive(s)&&!regional)throw Error('Stable management is read-only while championship is active or unsettled');let result;const active=s.championshipFoundation.activeId;if(regional)s.championshipFoundation.activeId=null;try{result=executeCareerCandidateV4(s,t,{historical});}finally{if(regional)s.championshipFoundation.activeId=active;}if(s.championshipFoundation.version===3)restoreServiceNative(s,t,result);s.schema=5;return result;}
  validateControllerCommand(t);if(t.sourceFingerprint!==controllerSource(s))throw Error('Stale championship source');if(t.effectId!==expectedEffect(s,t))throw Error('Invalid championship effect identity');
  const p=t.payload,before=s.career.treasury;let details;
  if(t.type==='controller.enable'){
@@ -71,10 +72,10 @@ export function prepareRace(instance,index){
  let entrants=instance.entrants.filter(e=>(!instance.withdrawal||!e.player)&&(!instance.conditionState||instance.eligibility.find(a=>a.entrantId===e.id)?.mayStart)).map(e=>({...e}));if(!entrants.length){if(instance.conditionState)return null;throw Error('No starters: authoritative eligibility/no-starter controller required');}
  const seeded=(a,b)=>random(gridSeed,a.id)-random(gridSeed,b.id)||(a.id<b.id?-1:1);
  if(index===0||event.grid==='random')entrants.sort(seeded);else{const ranks=new Map(instance.standings.map((x,i)=>[x.id,i]));entrants.sort((a,b)=>(event.grid==='reverse'?-1:1)*((ranks.get(a.id)??0)-(ranks.get(b.id)??0))||seeded(a,b));}
- const initial=createRace({course:event.course,overrides:event.config,format:event.format,weather:event.weather,entrants:entrants.map(e=>({ru:e.native}))});
- const nativeEntrants=entrants.map((e,i)=>({ru:e.player&&instance.m4?effectiveRU(e.native,instance.m4):structuredClone(e.native),...(e.player&&instance.m4?{progressionContext:raceProgression(instance.m4)}:{}),q:initial.setup.entrants[i].q,lane:initial.setup.entrants[i].lane,...(e.payrollContext?{payrollContext:e.payrollContext}:{}),...(e.player&&instance.coaching?{coachingContext:instance.coaching}:{})}));
+ const initial=createRace({...(event.surfaces?{surfaces:event.surfaces}:{}),course:event.course,overrides:event.config,format:event.format,weather:event.weather,entrants:entrants.map(e=>({ru:e.native}))});
+ const nativeEntrants=entrants.map((e,i)=>({ru:e.player&&instance.m4?effectiveRU(e.native,instance.m4):structuredClone(e.native),...(e.player&&instance.m4?{progressionContext:raceProgression(instance.m4)}:{}),q:initial.setup.entrants[i].q,lane:initial.setup.entrants[i].lane,...(e.affinityContext?{affinityContext:e.affinityContext}:{}),...(e.payrollContext?{payrollContext:e.payrollContext}:{}),...(e.player&&instance.coaching?{coachingContext:instance.coaching}:{})}));
  const raceId='e2-race-'+fingerprint([instance.id,index]).slice(0,40);
- return createRace({seed,course:event.course,overrides:event.config,format:event.format,weather:event.weather,entrants:nativeEntrants,playerId:entrants.find(e=>e.player)?.id??entrants[0].id,championshipContext:{version:1,instanceId:instance.id,raceId}}).setup;
+ return createRace({seed,...(event.surfaces?{surfaces:event.surfaces}:{}),course:event.course,overrides:event.config,format:event.format,weather:event.weather,entrants:nativeEntrants,playerId:entrants.find(e=>e.player)?.id??entrants[0].id,championshipContext:{version:1,instanceId:instance.id,raceId}}).setup;
 }
 const fact=(t,b,r)=>t.commandVersion===4?protectController(t,b,r):t.commandVersion===3?protectCycle(t,b,r):t.commandVersion===2?protectEconomic(t,b,r):protectTransaction(t,b);
 export function validateControllerState(s){

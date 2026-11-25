@@ -18,7 +18,7 @@ export function validatePresentationOwner(runtime,career){
  if(runtime?.version!==2)return;
  const p=validatePresentation(runtime.presentation),s=career.current;
  if(!s||p.profileId!==s.profile.id||p.careerId!==s.career.id||!s.management?.initialized)throw Error('Stable presentation ownership/initialized-career mismatch');
- const proof=career.protectedHistory.find(e=>e.id===p.creationId+'-grant');if(!proof)throw Error('Missing protected starting-package provenance');
+ const proof=career.protectedHistory.find(e=>e.id===p.creationId+'-grant')??(s.schema===7&&s.m5.initialization.id===p.creationId+'-grant'?s.m5.initialization:null);if(!proof)throw Error('Missing protected starting-package provenance');
  const tx=JSON.parse(proof.request);
  if(tx.type!=='career.initialize'||tx.commandVersion!==1||tx.profileId!==p.profileId||tx.careerId!==p.careerId||tx.packageId!==p.packageId||tx.catalogVersion!==CATALOG_VERSION||tx.confirmed!==true)throw Error('Stable presentation starting-package provenance mismatch');
 }

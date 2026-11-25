@@ -1,0 +1,187 @@
+{
+  "version": 1,
+  "status": "provisional-strength-mix-no-championship-rule-change",
+  "records": [
+    {
+      "id": "difficulty.dustroad",
+      "templateId": "dustroad",
+      "rivalProfileIds": [
+        "rival.n1.dustroad",
+        "rival.n2.dustroad",
+        "rival.n3.dustroad",
+        "rival.n4.dustroad",
+        "rival.n5.dustroad",
+        "rival.n6.dustroad",
+        "rival.n7.dustroad",
+        "rival.n8.dustroad"
+      ],
+      "qualityWeights": [
+        {
+          "id": "quality.affordable",
+          "weight": 70
+        },
+        {
+          "id": "quality.ordinary",
+          "weight": 25
+        },
+        {
+          "id": "quality.specialized",
+          "weight": 4
+        },
+        {
+          "id": "quality.rare",
+          "weight": 0.9
+        },
+        {
+          "id": "quality.exceptional",
+          "weight": 0.1
+        }
+      ]
+    },
+    {
+      "id": "difficulty.ironwheel",
+      "templateId": "ironwheel",
+      "rivalProfileIds": [
+        "rival.n1.ironwheel",
+        "rival.n2.ironwheel",
+        "rival.n3.ironwheel",
+        "rival.n4.ironwheel",
+        "rival.n5.ironwheel",
+        "rival.n6.ironwheel",
+        "rival.n7.ironwheel",
+        "rival.n8.ironwheel"
+      ],
+      "qualityWeights": [
+        {
+          "id": "quality.affordable",
+          "weight": 35
+        },
+        {
+          "id": "quality.ordinary",
+          "weight": 50
+        },
+        {
+          "id": "quality.specialized",
+          "weight": 12
+        },
+        {
+          "id": "quality.rare",
+          "weight": 2.8
+        },
+        {
+          "id": "quality.exceptional",
+          "weight": 0.2
+        }
+      ]
+    },
+    {
+      "id": "difficulty.bannerfall",
+      "templateId": "bannerfall",
+      "rivalProfileIds": [
+        "rival.n1.bannerfall",
+        "rival.n2.bannerfall",
+        "rival.n3.bannerfall",
+        "rival.n4.bannerfall",
+        "rival.n5.bannerfall",
+        "rival.n6.bannerfall",
+        "rival.n7.bannerfall",
+        "rival.n8.bannerfall"
+      ],
+      "qualityWeights": [
+        {
+          "id": "quality.affordable",
+          "weight": 12
+        },
+        {
+          "id": "quality.ordinary",
+          "weight": 50
+        },
+        {
+          "id": "quality.specialized",
+          "weight": 28
+        },
+        {
+          "id": "quality.rare",
+          "weight": 9
+        },
+        {
+          "id": "quality.exceptional",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "id": "difficulty.crownfire",
+      "templateId": "crownfire",
+      "rivalProfileIds": [
+        "rival.n1.crownfire",
+        "rival.n2.crownfire",
+        "rival.n3.crownfire",
+        "rival.n4.crownfire",
+        "rival.n5.crownfire",
+        "rival.n6.crownfire",
+        "rival.n7.crownfire",
+        "rival.n8.crownfire"
+      ],
+      "qualityWeights": [
+        {
+          "id": "quality.affordable",
+          "weight": 4
+        },
+        {
+          "id": "quality.ordinary",
+          "weight": 30
+        },
+        {
+          "id": "quality.specialized",
+          "weight": 36
+        },
+        {
+          "id": "quality.rare",
+          "weight": 26
+        },
+        {
+          "id": "quality.exceptional",
+          "weight": 4
+        }
+      ]
+    },
+    {
+      "id": "difficulty.thunder-crown",
+      "templateId": "thunder-crown",
+      "rivalProfileIds": [
+        "rival.n1.thunder-crown",
+        "rival.n2.thunder-crown",
+        "rival.n3.thunder-crown",
+        "rival.n4.thunder-crown",
+        "rival.n5.thunder-crown",
+        "rival.n6.thunder-crown",
+        "rival.n7.thunder-crown",
+        "rival.n8.thunder-crown"
+      ],
+      "qualityWeights": [
+        {
+          "id": "quality.affordable",
+          "weight": 1
+        },
+        {
+          "id": "quality.ordinary",
+          "weight": 15
+        },
+        {
+          "id": "quality.specialized",
+          "weight": 29
+        },
+        {
+          "id": "quality.rare",
+          "weight": 45
+        },
+        {
+          "id": "quality.exceptional",
+          "weight": 10
+        }
+      ]
+    }
+  ],
+  "invitationals": "No new Iron Gauntlet/content changes; existing authorized event can reuse terminal tier mix only after explicit integration mapping."
+}

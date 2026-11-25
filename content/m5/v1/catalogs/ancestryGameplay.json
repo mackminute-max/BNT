@@ -1,0 +1,1627 @@
+[
+  {
+    "id": "ancestry.a01",
+    "version": 1,
+    "label": "Human",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 34,
+        "endLine": 89,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalAncestryId": "A01",
+    "subdivisionId": null,
+    "baseline": {
+      "driving": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "beastHandling": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "combat": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "awareness": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "nerve": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      }
+    },
+    "ancestryDelta": {
+      "driving": 0,
+      "beastHandling": 0,
+      "combat": 0,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "individualVariation": 7,
+    "correlations": [],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "experienceDelta": {
+      "driving": 0,
+      "beastHandling": 0,
+      "combat": 0,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 24,
+      "yearsMax": 58,
+      "mechanicalEffect": "none"
+    },
+    "visualProfileId": "visual.a01",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "rarityWeight": 1
+  },
+  {
+    "id": "ancestry.a02",
+    "version": 1,
+    "label": "Orc",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 90,
+        "endLine": 145,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalAncestryId": "A02",
+    "subdivisionId": null,
+    "baseline": {
+      "driving": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "beastHandling": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "combat": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "awareness": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "nerve": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      }
+    },
+    "ancestryDelta": {
+      "driving": -1,
+      "beastHandling": -1,
+      "combat": 2,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "individualVariation": 7,
+    "correlations": [],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "experienceDelta": {
+      "driving": 0,
+      "beastHandling": 0,
+      "combat": 0,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 22,
+      "yearsMax": 50,
+      "mechanicalEffect": "none"
+    },
+    "visualProfileId": "visual.a02",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "rarityWeight": 1
+  },
+  {
+    "id": "ancestry.a03",
+    "version": 1,
+    "label": "Goliath",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 146,
+        "endLine": 201,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalAncestryId": "A03",
+    "subdivisionId": null,
+    "baseline": {
+      "driving": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "beastHandling": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "combat": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "awareness": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "nerve": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      }
+    },
+    "ancestryDelta": {
+      "driving": -2,
+      "beastHandling": -1,
+      "combat": 3,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "individualVariation": 7,
+    "correlations": [],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "experienceDelta": {
+      "driving": 0,
+      "beastHandling": 0,
+      "combat": 0,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 26,
+      "yearsMax": 65,
+      "mechanicalEffect": "none"
+    },
+    "visualProfileId": "visual.a03",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "rarityWeight": 1
+  },
+  {
+    "id": "ancestry.a04",
+    "version": 1,
+    "label": "Hill Dwarf",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 202,
+        "endLine": 257,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalAncestryId": "A04",
+    "subdivisionId": null,
+    "baseline": {
+      "driving": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "beastHandling": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "combat": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "awareness": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "nerve": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      }
+    },
+    "ancestryDelta": {
+      "driving": 1,
+      "beastHandling": 0,
+      "combat": -1,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "individualVariation": 7,
+    "correlations": [],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "experienceDelta": {
+      "driving": 0,
+      "beastHandling": 0,
+      "combat": 0,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 55,
+      "yearsMax": 220,
+      "mechanicalEffect": "none"
+    },
+    "visualProfileId": "visual.a04",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "rarityWeight": 1
+  },
+  {
+    "id": "ancestry.a05",
+    "version": 1,
+    "label": "Mountain Dwarf",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 258,
+        "endLine": 313,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalAncestryId": "A05",
+    "subdivisionId": null,
+    "baseline": {
+      "driving": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "beastHandling": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "combat": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "awareness": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "nerve": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      }
+    },
+    "ancestryDelta": {
+      "driving": 1,
+      "beastHandling": -2,
+      "combat": 1,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "individualVariation": 7,
+    "correlations": [],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "experienceDelta": {
+      "driving": 0,
+      "beastHandling": 0,
+      "combat": 0,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 55,
+      "yearsMax": 220,
+      "mechanicalEffect": "none"
+    },
+    "visualProfileId": "visual.a05",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "rarityWeight": 1
+  },
+  {
+    "id": "ancestry.a06",
+    "version": 1,
+    "label": "Halfling",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 314,
+        "endLine": 369,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalAncestryId": "A06",
+    "subdivisionId": null,
+    "baseline": {
+      "driving": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "beastHandling": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "combat": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "awareness": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "nerve": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      }
+    },
+    "ancestryDelta": {
+      "driving": 2,
+      "beastHandling": 0,
+      "combat": -2,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "individualVariation": 7,
+    "correlations": [],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "experienceDelta": {
+      "driving": 0,
+      "beastHandling": 0,
+      "combat": 0,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 26,
+      "yearsMax": 100,
+      "mechanicalEffect": "none"
+    },
+    "visualProfileId": "visual.a06",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "rarityWeight": 1
+  },
+  {
+    "id": "ancestry.a07",
+    "version": 1,
+    "label": "Forest Elf",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 370,
+        "endLine": 425,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalAncestryId": "A07",
+    "subdivisionId": null,
+    "baseline": {
+      "driving": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "beastHandling": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "combat": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "awareness": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "nerve": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      }
+    },
+    "ancestryDelta": {
+      "driving": 1,
+      "beastHandling": 1,
+      "combat": -2,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "individualVariation": 7,
+    "correlations": [],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "experienceDelta": {
+      "driving": 0,
+      "beastHandling": 0,
+      "combat": 0,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 40,
+      "yearsMax": 500,
+      "mechanicalEffect": "none"
+    },
+    "visualProfileId": "visual.a07",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "rarityWeight": 1
+  },
+  {
+    "id": "ancestry.a08",
+    "version": 1,
+    "label": "High Elf",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 426,
+        "endLine": 481,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalAncestryId": "A08",
+    "subdivisionId": null,
+    "baseline": {
+      "driving": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "beastHandling": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "combat": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "awareness": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "nerve": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      }
+    },
+    "ancestryDelta": {
+      "driving": 0,
+      "beastHandling": 1,
+      "combat": -1,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "individualVariation": 7,
+    "correlations": [],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "experienceDelta": {
+      "driving": 0,
+      "beastHandling": 0,
+      "combat": 0,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 40,
+      "yearsMax": 500,
+      "mechanicalEffect": "none"
+    },
+    "visualProfileId": "visual.a08",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "rarityWeight": 1
+  },
+  {
+    "id": "ancestry.a09",
+    "version": 1,
+    "label": "Sea Elf",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 482,
+        "endLine": 537,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalAncestryId": "A09",
+    "subdivisionId": null,
+    "baseline": {
+      "driving": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "beastHandling": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "combat": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "awareness": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "nerve": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      }
+    },
+    "ancestryDelta": {
+      "driving": 2,
+      "beastHandling": -1,
+      "combat": -1,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "individualVariation": 7,
+    "correlations": [],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "experienceDelta": {
+      "driving": 0,
+      "beastHandling": 0,
+      "combat": 0,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 40,
+      "yearsMax": 500,
+      "mechanicalEffect": "none"
+    },
+    "visualProfileId": "visual.a09",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "rarityWeight": 1
+  },
+  {
+    "id": "ancestry.a10",
+    "version": 1,
+    "label": "Gnome",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 538,
+        "endLine": 593,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalAncestryId": "A10",
+    "subdivisionId": null,
+    "baseline": {
+      "driving": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "beastHandling": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "combat": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "awareness": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "nerve": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      }
+    },
+    "ancestryDelta": {
+      "driving": 2,
+      "beastHandling": 1,
+      "combat": -3,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "individualVariation": 7,
+    "correlations": [],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "experienceDelta": {
+      "driving": 0,
+      "beastHandling": 0,
+      "combat": 0,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 50,
+      "yearsMax": 300,
+      "mechanicalEffect": "none"
+    },
+    "visualProfileId": "visual.a10",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "rarityWeight": 1
+  },
+  {
+    "id": "ancestry.a11",
+    "version": 1,
+    "label": "Goblin",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 594,
+        "endLine": 649,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalAncestryId": "A11",
+    "subdivisionId": null,
+    "baseline": {
+      "driving": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "beastHandling": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "combat": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "awareness": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "nerve": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      }
+    },
+    "ancestryDelta": {
+      "driving": 1,
+      "beastHandling": 1,
+      "combat": -2,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "individualVariation": 7,
+    "correlations": [],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "experienceDelta": {
+      "driving": 0,
+      "beastHandling": 0,
+      "combat": 0,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 20,
+      "yearsMax": 55,
+      "mechanicalEffect": "none"
+    },
+    "visualProfileId": "visual.a11",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "rarityWeight": 1
+  },
+  {
+    "id": "ancestry.a12",
+    "version": 1,
+    "label": "Dragonkin",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 650,
+        "endLine": 705,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalAncestryId": "A12",
+    "subdivisionId": null,
+    "baseline": {
+      "driving": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "beastHandling": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "combat": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "awareness": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "nerve": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      }
+    },
+    "ancestryDelta": {
+      "driving": -1,
+      "beastHandling": -1,
+      "combat": 2,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "individualVariation": 7,
+    "correlations": [],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "experienceDelta": {
+      "driving": 0,
+      "beastHandling": 0,
+      "combat": 0,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 25,
+      "yearsMax": 75,
+      "mechanicalEffect": "none"
+    },
+    "visualProfileId": "visual.a12",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "rarityWeight": 1
+  },
+  {
+    "id": "ancestry.a13",
+    "version": 1,
+    "label": "Tortle",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Ancestry_Reference_Bible_Canon_v1.0(3).md",
+        "startLine": 706,
+        "endLine": 789,
+        "digest": "44ff83d890f7ee1bf06f7e34d795bd2b6cef7e7a6c747adabdebe96044b29c57"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalAncestryId": "A13",
+    "subdivisionId": null,
+    "baseline": {
+      "driving": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "beastHandling": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "combat": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "awareness": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      },
+      "nerve": {
+        "kind": "uniform",
+        "min": 42,
+        "max": 68,
+        "mode": 55,
+        "step": 1
+      }
+    },
+    "ancestryDelta": {
+      "driving": -2,
+      "beastHandling": 0,
+      "combat": 2,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "individualVariation": 7,
+    "correlations": [],
+    "backgroundWeights": [
+      {
+        "id": "background.courier",
+        "weight": 1
+      },
+      {
+        "id": "background.circuit",
+        "weight": 1
+      },
+      {
+        "id": "background.handler",
+        "weight": 1
+      },
+      {
+        "id": "background.arena",
+        "weight": 1
+      },
+      {
+        "id": "background.rally",
+        "weight": 1
+      },
+      {
+        "id": "background.marshal",
+        "weight": 1
+      },
+      {
+        "id": "background.festival",
+        "weight": 1
+      },
+      {
+        "id": "background.hauler",
+        "weight": 1
+      }
+    ],
+    "experienceDelta": {
+      "driving": 0,
+      "beastHandling": 0,
+      "combat": 0,
+      "awareness": 0,
+      "nerve": 0
+    },
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 25,
+      "yearsMax": 80,
+      "mechanicalEffect": "none"
+    },
+    "visualProfileId": "visual.a13",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "rarityWeight": 1
+  }
+]

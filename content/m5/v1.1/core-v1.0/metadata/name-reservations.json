@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "sourceOfferId": "m2c-offer-driver-budget-1",
+      "displayName": "Iona Reed",
+      "kind": "driver"
+    },
+    {
+      "sourceOfferId": "m2c-offer-driver-budget-2",
+      "displayName": "Torren Flint",
+      "kind": "driver"
+    },
+    {
+      "sourceOfferId": "m2c-offer-driver-standard-1",
+      "displayName": "Sael Willow",
+      "kind": "driver"
+    },
+    {
+      "sourceOfferId": "m2c-offer-driver-standard-2",
+      "displayName": "Brakka Vale",
+      "kind": "driver"
+    },
+    {
+      "sourceOfferId": "m2c-offer-driver-premium-1",
+      "displayName": "Mira Lark",
+      "kind": "driver"
+    },
+    {
+      "sourceOfferId": "m2c-offer-beast-budget-1",
+      "displayName": "Cinder",
+      "kind": "beast"
+    },
+    {
+      "sourceOfferId": "m2c-offer-beast-budget-2",
+      "displayName": "Pebble",
+      "kind": "beast"
+    },
+    {
+      "sourceOfferId": "m2c-offer-beast-standard-1",
+      "displayName": "Copper",
+      "kind": "beast"
+    },
+    {
+      "sourceOfferId": "m2c-offer-beast-standard-2",
+      "displayName": "Juniper",
+      "kind": "beast"
+    },
+    {
+      "sourceOfferId": "m2c-offer-beast-standard-3",
+      "displayName": "Slate",
+      "kind": "beast"
+    },
+    {
+      "sourceOfferId": "m2c-offer-beast-premium-1",
+      "displayName": "Comet",
+      "kind": "beast"
+    },
+    {
+      "sourceOfferId": "m2c-offer-chariot-budget-1",
+      "displayName": "Wayfarer",
+      "kind": "chariot"
+    },
+    {
+      "sourceOfferId": "m2c-offer-chariot-standard-1",
+      "displayName": "Copperline",
+      "kind": "chariot"
+    },
+    {
+      "sourceOfferId": "m2c-offer-chariot-premium-1",
+      "displayName": "Nightglass",
+      "kind": "chariot"
+    },
+    {
+      "sourceOfferId": "m2c-offer-specialist-budget-1",
+      "displayName": "Pella Moss",
+      "kind": "specialist"
+    },
+    {
+      "sourceOfferId": "m2c-offer-specialist-standard-1",
+      "displayName": "Dorrin Ash",
+      "kind": "specialist"
+    },
+    {
+      "sourceOfferId": "m2c-offer-specialist-premium-1",
+      "displayName": "Neris Fern",
+      "kind": "specialist"
+    },
+    {
+      "sourceOfferId": "m2c-offer-equipment-budget-1",
+      "displayName": "Plain Harness Kit",
+      "kind": "equipment"
+    },
+    {
+      "sourceOfferId": "m2c-offer-equipment-budget-2",
+      "displayName": "Canvas Fittings",
+      "kind": "equipment"
+    },
+    {
+      "sourceOfferId": "m2c-offer-equipment-budget-3",
+      "displayName": "Spare Rigging",
+      "kind": "equipment"
+    },
+    {
+      "sourceOfferId": "m2c-offer-equipment-standard-1",
+      "displayName": "Trimmed Harness Kit",
+      "kind": "equipment"
+    },
+    {
+      "sourceOfferId": "m2c-offer-equipment-standard-2",
+      "displayName": "Polished Fittings",
+      "kind": "equipment"
+    },
+    {
+      "sourceOfferId": "m2c-offer-equipment-standard-3",
+      "displayName": "Bound Rigging",
+      "kind": "equipment"
+    }
+  ],
+  "identityRule": "Never clone a curated person/animal/source identity under a new generated entity ID.",
+  "displayCollisionRule": "Reserve casefolded curated names among simultaneously relevant assets. Common names can recur outside that scope; supplement with approved family/clan/stable distinction, never internal IDs.",
+  "poolsRule": "A name component may legitimately appear in a pool even if one full curated name uses it; resolve the completed full identity against reservations before commit."
+}

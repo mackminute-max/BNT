@@ -1,0 +1,475 @@
+{
+  "version": 1,
+  "themes": [
+    {
+      "id": "pair-name.weather",
+      "memberNames": [
+        "Rain",
+        "Gale"
+      ],
+      "speciesIds": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "usage": "Optional display theme; preserve accepted member order and collision checks."
+    },
+    {
+      "id": "pair-name.navigation",
+      "memberNames": [
+        "Beacon",
+        "Lantern"
+      ],
+      "speciesIds": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "usage": "Optional display theme; preserve accepted member order and collision checks."
+    },
+    {
+      "id": "pair-name.time",
+      "memberNames": [
+        "Dawn",
+        "Dusk"
+      ],
+      "speciesIds": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "usage": "Optional display theme; preserve accepted member order and collision checks."
+    },
+    {
+      "id": "pair-name.water",
+      "memberNames": [
+        "Brook",
+        "Reed"
+      ],
+      "speciesIds": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "usage": "Optional display theme; preserve accepted member order and collision checks."
+    },
+    {
+      "id": "pair-name.stone",
+      "memberNames": [
+        "Flint",
+        "Slate"
+      ],
+      "speciesIds": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "usage": "Optional display theme; preserve accepted member order and collision checks."
+    },
+    {
+      "id": "pair-name.light",
+      "memberNames": [
+        "Amber",
+        "Ember"
+      ],
+      "speciesIds": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "usage": "Optional display theme; preserve accepted member order and collision checks."
+    },
+    {
+      "id": "pair-name.road",
+      "memberNames": [
+        "Stride",
+        "Trace"
+      ],
+      "speciesIds": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "usage": "Optional display theme; preserve accepted member order and collision checks."
+    },
+    {
+      "id": "pair-name.garden",
+      "memberNames": [
+        "Clover",
+        "Juniper"
+      ],
+      "speciesIds": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "usage": "Optional display theme; preserve accepted member order and collision checks."
+    },
+    {
+      "id": "pair-name.metal",
+      "memberNames": [
+        "Copper",
+        "Bronze"
+      ],
+      "speciesIds": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "usage": "Optional display theme; preserve accepted member order and collision checks."
+    },
+    {
+      "id": "pair-name.sky",
+      "memberNames": [
+        "Comet",
+        "Cloud"
+      ],
+      "speciesIds": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "usage": "Optional display theme; preserve accepted member order and collision checks."
+    },
+    {
+      "id": "pair-name.music",
+      "memberNames": [
+        "Refrain",
+        "Cadence"
+      ],
+      "speciesIds": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "usage": "Optional display theme; preserve accepted member order and collision checks."
+    },
+    {
+      "id": "pair-name.travel",
+      "memberNames": [
+        "Mile",
+        "Marker"
+      ],
+      "speciesIds": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "usage": "Optional display theme; preserve accepted member order and collision checks."
+    },
+    {
+      "id": "pair-name.tools",
+      "memberNames": [
+        "Rivet",
+        "Spar"
+      ],
+      "speciesIds": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "usage": "Optional display theme; preserve accepted member order and collision checks."
+    },
+    {
+      "id": "pair-name.coast",
+      "memberNames": [
+        "Cove",
+        "Tide"
+      ],
+      "speciesIds": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "usage": "Optional display theme; preserve accepted member order and collision checks."
+    },
+    {
+      "id": "pair-name.desert",
+      "memberNames": [
+        "Shade",
+        "Sunlight"
+      ],
+      "speciesIds": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "usage": "Optional display theme; preserve accepted member order and collision checks."
+    },
+    {
+      "id": "pair-name.ridge",
+      "memberNames": [
+        "Summit",
+        "Valley"
+      ],
+      "speciesIds": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "nationIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "usage": "Optional display theme; preserve accepted member order and collision checks."
+    }
+  ],
+  "rules": {
+    "opportunityCost": null,
+    "mechanicalEffect": "none",
+    "collisionScope": "owned roster + active market + selected rivals",
+    "noInternalIDSuffixes": true
+  }
+}

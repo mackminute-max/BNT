@@ -1,0 +1,351 @@
+{
+  "authority": "Actual production worker/domain/native simulator; commit adapter is an isolated Map, not a browser durability claim",
+  "cases": [
+    {
+      "mode": "normal",
+      "synthetic": [],
+      "events": [
+        {
+          "index": 0,
+          "ticks": 752,
+          "starters": 4,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 491.48196500000086
+        },
+        {
+          "index": 1,
+          "ticks": 1069,
+          "starters": 4,
+          "playerStarted": true,
+          "phase": "SETTLEMENT_PENDING",
+          "withdrawal": null,
+          "publicationMs": 668.9978459999984
+        }
+      ],
+      "blocked": null,
+      "largestLogicalRecordBytes": 481558,
+      "playbackWrites": 0,
+      "archived": true,
+      "marketEpoch": 1,
+      "checkpoint": 1,
+      "assessedWages": 95,
+      "arrears": 0,
+      "paidStatements": [
+        {
+          "obligationId": "m2d-bc4955b1af48f045ef1a969a9574b285455d86688a398050",
+          "amount": 60
+        },
+        {
+          "obligationId": "m2d-172d7ae03812b8f988c3ace7f7a7ce2ceff98b979d39c108",
+          "amount": 35
+        }
+      ],
+      "treasury": 670,
+      "records": 1,
+      "logicalBytes": 573103,
+      "coldReload": true
+    },
+    {
+      "mode": "voluntary-zero",
+      "synthetic": [],
+      "events": [
+        {
+          "index": 0,
+          "ticks": 755,
+          "starters": 3,
+          "playerStarted": false,
+          "phase": "AI_CONTINUATION",
+          "withdrawal": {
+            "kind": "Voluntary",
+            "raceIndex": 0
+          },
+          "publicationMs": 502.963158999999
+        },
+        {
+          "index": 1,
+          "ticks": 1064,
+          "starters": 3,
+          "playerStarted": false,
+          "phase": "SETTLEMENT_PENDING",
+          "withdrawal": {
+            "kind": "Voluntary",
+            "raceIndex": 0
+          },
+          "publicationMs": 558.5704360000018
+        }
+      ],
+      "blocked": null,
+      "largestLogicalRecordBytes": 429890,
+      "playbackWrites": 0,
+      "archived": true,
+      "marketEpoch": 0,
+      "checkpoint": 1,
+      "assessedWages": 95,
+      "arrears": 0,
+      "paidStatements": [
+        {
+          "obligationId": "m2d-9c91bf3e3041939b1a085b6646e1d8269046f1effb4113ec",
+          "amount": 60
+        },
+        {
+          "obligationId": "m2d-65ffaaff19b4a3495321c53caf9f7c796a7added23893169",
+          "amount": 35
+        }
+      ],
+      "treasury": 570,
+      "records": 1,
+      "logicalBytes": 393407,
+      "coldReload": true
+    },
+    {
+      "mode": "voluntary-after-one",
+      "synthetic": [],
+      "events": [
+        {
+          "index": 0,
+          "ticks": 746,
+          "starters": 4,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 565.9937510000018
+        },
+        {
+          "index": 1,
+          "ticks": 982,
+          "starters": 3,
+          "playerStarted": false,
+          "phase": "SETTLEMENT_PENDING",
+          "withdrawal": {
+            "kind": "Voluntary",
+            "raceIndex": 1
+          },
+          "publicationMs": 604.4873149999985
+        }
+      ],
+      "blocked": null,
+      "largestLogicalRecordBytes": 432728,
+      "playbackWrites": 0,
+      "archived": true,
+      "marketEpoch": 0,
+      "checkpoint": 1,
+      "assessedWages": 95,
+      "arrears": 0,
+      "paidStatements": [
+        {
+          "obligationId": "m2d-a1d3507362f02a7f745a1d726591358e20ca445523da4a2c",
+          "amount": 60
+        },
+        {
+          "obligationId": "m2d-32419fbcc1aa7925b4041fbb738d689d06d3ab2d4d89613e",
+          "amount": 35
+        }
+      ],
+      "treasury": 595,
+      "records": 1,
+      "logicalBytes": 341236,
+      "coldReload": true
+    },
+    {
+      "mode": "voluntary-debt",
+      "synthetic": [],
+      "events": [
+        {
+          "index": 0,
+          "ticks": 713,
+          "starters": 3,
+          "playerStarted": false,
+          "phase": "AI_CONTINUATION",
+          "withdrawal": {
+            "kind": "Voluntary",
+            "raceIndex": 0
+          },
+          "publicationMs": 481.02947900000436
+        },
+        {
+          "index": 1,
+          "ticks": 975,
+          "starters": 3,
+          "playerStarted": false,
+          "phase": "SETTLEMENT_PENDING",
+          "withdrawal": {
+            "kind": "Voluntary",
+            "raceIndex": 0
+          },
+          "publicationMs": 696.1131899999964
+        }
+      ],
+      "blocked": null,
+      "largestLogicalRecordBytes": 359986,
+      "playbackWrites": 0,
+      "archived": true,
+      "marketEpoch": 0,
+      "checkpoint": 1,
+      "assessedWages": 95,
+      "arrears": 30,
+      "paidStatements": [
+        {
+          "obligationId": "m2d-998bfbc3864cff42f9a60d8542bcd41dc2584c5710726909",
+          "amount": 60
+        },
+        {
+          "obligationId": "m2d-ef4c50342f7d52669677c3e56e1afdd15562395124655001",
+          "amount": 5
+        }
+      ],
+      "treasury": 0,
+      "records": 1,
+      "logicalBytes": 427058,
+      "coldReload": true
+    },
+    {
+      "mode": "forced-after-start",
+      "synthetic": [
+        "Driver starting condition 39 seeded privately to force native D2 next-event ineligibility"
+      ],
+      "events": [
+        {
+          "index": 0,
+          "ticks": 787,
+          "starters": 4,
+          "playerStarted": true,
+          "phase": "AI_CONTINUATION",
+          "withdrawal": {
+            "kind": "Forced",
+            "raceIndex": 1,
+            "sourceResultId": "e2-result-2181f200236c5f54544b3738aaa424e70399018f",
+            "reason": "Unavailable/ineligible component: Rovan Greyvale"
+          },
+          "publicationMs": 1165.3513859999948
+        },
+        {
+          "index": 1,
+          "ticks": 1049,
+          "starters": 3,
+          "playerStarted": false,
+          "phase": "SETTLEMENT_PENDING",
+          "withdrawal": {
+            "kind": "Forced",
+            "raceIndex": 1,
+            "sourceResultId": "e2-result-2181f200236c5f54544b3738aaa424e70399018f",
+            "reason": "Unavailable/ineligible component: Rovan Greyvale"
+          },
+          "publicationMs": 881.7973619999975
+        }
+      ],
+      "blocked": null,
+      "largestLogicalRecordBytes": 358736,
+      "playbackWrites": 0,
+      "archived": true,
+      "marketEpoch": 1,
+      "checkpoint": 2,
+      "assessedWages": 95,
+      "arrears": 0,
+      "paidStatements": [
+        {
+          "obligationId": "m2d-8a2434794c6810b419b3d61e2a6987577a2d8185d69da17e",
+          "amount": 60
+        },
+        {
+          "obligationId": "m2d-8aab8c2e8783be02144e411c09bf89274d4563caa5fcbd69",
+          "amount": 35
+        }
+      ],
+      "treasury": 580,
+      "records": 1,
+      "logicalBytes": 370598,
+      "coldReload": true
+    },
+    {
+      "mode": "eight-field-seven-events",
+      "synthetic": [
+        "Qualification Reputation seeded in isolated fixture only; no production grant or balance change"
+      ],
+      "events": [
+        {
+          "index": 0,
+          "ticks": 1397,
+          "starters": 8,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 2160.1715190000104
+        },
+        {
+          "index": 1,
+          "ticks": 1639,
+          "starters": 8,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 3634.817906000011
+        },
+        {
+          "index": 2,
+          "ticks": 1729,
+          "starters": 8,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 1589.7634979999857
+        },
+        {
+          "index": 3,
+          "ticks": 3410,
+          "starters": 8,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 4379.658948000026
+        },
+        {
+          "index": 4,
+          "ticks": 1149,
+          "starters": 8,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 1685.547086000006
+        },
+        {
+          "index": 5,
+          "ticks": 1851,
+          "starters": 8,
+          "playerStarted": true,
+          "phase": "INTERMISSION_READY",
+          "withdrawal": null,
+          "publicationMs": 6472.737041000015
+        },
+        {
+          "index": 6,
+          "ticks": 3489,
+          "starters": 8,
+          "playerStarted": true,
+          "phase": "SETTLEMENT_PENDING",
+          "withdrawal": null,
+          "publicationMs": 7772.840968000004
+        }
+      ],
+      "blocked": null,
+      "largestLogicalRecordBytes": 3681350,
+      "playbackWrites": 0,
+      "archived": true,
+      "marketEpoch": 1,
+      "checkpoint": 2,
+      "assessedWages": 35,
+      "arrears": 0,
+      "paidStatements": [
+        {
+          "obligationId": "m2d-06cb9d9557a53c0c801ed9ccceefe87a0c23385e5586d516",
+          "amount": 35
+        }
+      ],
+      "treasury": 1195,
+      "records": 1,
+      "logicalBytes": 687192,
+      "coldReload": true
+    }
+  ]
+}

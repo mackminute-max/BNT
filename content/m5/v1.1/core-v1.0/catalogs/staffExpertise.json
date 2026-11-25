@@ -1,0 +1,86 @@
+[
+  {
+    "id": "expertise.developing",
+    "version": 1,
+    "label": "Early-career professional with verified ordinary service competence.",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "tier": "Budget",
+    "valuation": {
+      "policy": "native-tier-quality-v1",
+      "tier": "Budget",
+      "quality": 0.93,
+      "wageQuality": 0.96,
+      "mechanicalBudgetReference": "policy.staff-native-terms-v1"
+    },
+    "experienceDescription": "Early-career professional with verified ordinary service competence.",
+    "specializationTags": [
+      "stable-practice",
+      "service-planning"
+    ],
+    "mechanicalScaling": "none-existing-role-benefit-only"
+  },
+  {
+    "id": "expertise.practiced",
+    "version": 1,
+    "label": "Established professional with a varied stable-service history.",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "tier": "Standard",
+    "valuation": {
+      "policy": "native-tier-quality-v1",
+      "tier": "Standard",
+      "quality": 1,
+      "wageQuality": 1,
+      "mechanicalBudgetReference": "policy.staff-native-terms-v1"
+    },
+    "experienceDescription": "Established professional with a varied stable-service history.",
+    "specializationTags": [
+      "stable-practice",
+      "service-planning"
+    ],
+    "mechanicalScaling": "none-existing-role-benefit-only"
+  },
+  {
+    "id": "expertise.veteran",
+    "version": 1,
+    "label": "Long-serving professional",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "tier": "Premium",
+    "valuation": {
+      "policy": "native-tier-quality-v1",
+      "tier": "Premium",
+      "quality": 1.08,
+      "wageQuality": 1.06,
+      "mechanicalBudgetReference": "policy.staff-native-terms-v1"
+    },
+    "experienceDescription": "Long-serving professional; higher employment terms do not scale native service discounts.",
+    "specializationTags": [
+      "stable-practice",
+      "service-planning"
+    ],
+    "mechanicalScaling": "none-existing-role-benefit-only"
+  }
+]

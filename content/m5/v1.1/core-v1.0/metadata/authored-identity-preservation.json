@@ -1,0 +1,621 @@
+{
+  "version": 1,
+  "sourcePath": "content/e5-d/m3-bc/RECRUITMENT_IDENTITIES.json",
+  "sourceSHA256": "23e39118bd9536c9eb0a6c4acaf64882b1a85b8a578d55dc74d24e6f19d5a71b",
+  "records": [
+    {
+      "sourceOfferId": "m2c-offer-driver-budget-1",
+      "category": "driver",
+      "tier": "Budget",
+      "ordinal": 1,
+      "source_name": "Iona Reed",
+      "presentation_identity": {
+        "name": "Iona Reed",
+        "ancestry": "Human",
+        "ancestry_id": "A01",
+        "national_origin": "N3",
+        "national_origin_name": "Greenvale Commonwealth",
+        "biography": "A former delivery-cart driver who learned to read crowded roads before ever seeing a grandstand. Iona waits for a clear opening rather than forcing a gap.",
+        "personality": "Watchful and measured; prefers a clean line.",
+        "characterization_disclaimer": "Biography and personality text are fictional presentation; they do not describe, override, or guarantee native AI decisions or six-axis traits."
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-driver-budget-1",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-driver-budget-2",
+      "category": "driver",
+      "tier": "Budget",
+      "ordinal": 2,
+      "source_name": "Torren Flint",
+      "presentation_identity": {
+        "name": "Torren Flint",
+        "ancestry": "Mountain Dwarf",
+        "ancestry_id": "A05",
+        "national_origin": "N4",
+        "national_origin_name": "Ironhold Clans",
+        "biography": "Torren once hauled stone between Ironhold workshops and racing yards. He knows what a poorly balanced wheel sounds like and distrusts any machine he has not inspected.",
+        "personality": "Dry humor; practical, stubborn about maintenance.",
+        "characterization_disclaimer": "Biography and personality text are fictional presentation; they do not describe, override, or guarantee native AI decisions or six-axis traits."
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-driver-budget-2",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-driver-standard-1",
+      "category": "driver",
+      "tier": "Standard",
+      "ordinal": 1,
+      "source_name": "Sael Willow",
+      "presentation_identity": {
+        "name": "Sael Willow",
+        "ancestry": "Forest Elf",
+        "ancestry_id": "A07",
+        "national_origin": "N3",
+        "national_origin_name": "Greenvale Commonwealth",
+        "biography": "Sael grew up on Greenvale lanes where a steady hand mattered more than spectacle. Their reputation rests on keeping draft partners calm through the worst of a crowded bend.",
+        "personality": "Composed, economical movements; attentive to animals.",
+        "characterization_disclaimer": "Biography and personality text are fictional presentation; they do not describe, override, or guarantee native AI decisions or six-axis traits."
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-driver-standard-1",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-driver-standard-2",
+      "category": "driver",
+      "tier": "Standard",
+      "ordinal": 2,
+      "source_name": "Brakka Vale",
+      "presentation_identity": {
+        "name": "Brakka Vale",
+        "ancestry": "Orc",
+        "ancestry_id": "A02",
+        "national_origin": "N6",
+        "national_origin_name": "Karthen Hordes",
+        "biography": "Brakka made a name in rough provincial meets, then left the familiar circuit to find tougher competition. She races hard but keeps her word when a team is on the line.",
+        "personality": "Direct, competitive; respects earned skill.",
+        "characterization_disclaimer": "Biography and personality text are fictional presentation; they do not describe, override, or guarantee native AI decisions or six-axis traits."
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-driver-standard-2",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-driver-premium-1",
+      "category": "driver",
+      "tier": "Premium",
+      "ordinal": 1,
+      "source_name": "Mira Lark",
+      "presentation_identity": {
+        "name": "Mira Lark",
+        "ancestry": "Human",
+        "ancestry_id": "A01",
+        "national_origin": "N7",
+        "national_origin_name": "Velmora Republic",
+        "biography": "Mira has spent years crossing professional circuits and knows the cost of an impatient decision. She seeks a stable that prepares properly and pays its people on time.",
+        "personality": "Cool professional confidence; little tolerance for theatrics.",
+        "characterization_disclaimer": "Biography and personality text are fictional presentation; they do not describe, override, or guarantee native AI decisions or six-axis traits."
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-driver-premium-1",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-beast-budget-1",
+      "category": "beast",
+      "tier": "Budget",
+      "ordinal": 1,
+      "source_name": "Cinder",
+      "presentation_identity": {
+        "name": "Cinder",
+        "species_id": "B01",
+        "species": "Horse",
+        "stock_style": "Compact draft",
+        "biography": "Cinder is a small, soot-coated horse with a white blaze and an alert ear. Its previous handler describes a patient animal that prefers a familiar routine.",
+        "species_cosmetic_only": true
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-beast-budget-1",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-beast-budget-2",
+      "category": "beast",
+      "tier": "Budget",
+      "ordinal": 2,
+      "source_name": "Pebble",
+      "presentation_identity": {
+        "name": "Pebble",
+        "species_id": "B05",
+        "species": "Racing Ram",
+        "stock_style": "Descriptive stock variant",
+        "biography": "Pebble is a broad-shouldered racing ram with pale stone-colored fleece and a deliberate gait. It settles more readily after a handler lets it inspect new gear.",
+        "species_cosmetic_only": true
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-beast-budget-2",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-beast-standard-1",
+      "category": "beast",
+      "tier": "Standard",
+      "ordinal": 1,
+      "source_name": "Copper",
+      "presentation_identity": {
+        "name": "Copper",
+        "species_id": "B03",
+        "species": "Crown Boar (Brond)",
+        "stock_style": "Descriptive stock variant",
+        "biography": "Copper is a rust-bristled Crown Boar accustomed to the bustle of public yards. Its heavy shoulders and blunt snout make it difficult to mistake for ordinary livestock.",
+        "species_cosmetic_only": true
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-beast-standard-1",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-beast-standard-2",
+      "category": "beast",
+      "tier": "Standard",
+      "ordinal": 2,
+      "source_name": "Juniper",
+      "presentation_identity": {
+        "name": "Juniper",
+        "species_id": "B04",
+        "species": "Meadowstrider (Vellin)",
+        "stock_style": "Descriptive stock variant",
+        "biography": "Juniper is a fine-limbed Meadowstrider that watches a handler closely before moving. It has a fawn coat, pale underside and a remarkably quiet stance.",
+        "species_cosmetic_only": true
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-beast-standard-2",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-beast-standard-3",
+      "category": "beast",
+      "tier": "Standard",
+      "ordinal": 3,
+      "source_name": "Slate",
+      "presentation_identity": {
+        "name": "Slate",
+        "species_id": "B02",
+        "species": "Storm Elk (Hroven)",
+        "stock_style": "Descriptive stock variant",
+        "biography": "Slate is a gray-brown Storm Elk with a winter-thick neck ruff. Its former yard prized calm handling and careful clearance around the antler crown.",
+        "species_cosmetic_only": true
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-beast-standard-3",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-beast-premium-1",
+      "category": "beast",
+      "tier": "Premium",
+      "ordinal": 1,
+      "source_name": "Comet",
+      "presentation_identity": {
+        "name": "Comet",
+        "species_id": "B01",
+        "species": "Horse",
+        "stock_style": "Sprint racer",
+        "biography": "Comet is a sleek dark-bay horse with a bright forehead star and a carefully maintained coat. The sale notes emphasize training history, not a guarantee of race results.",
+        "species_cosmetic_only": true
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-beast-premium-1",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-chariot-budget-1",
+      "category": "chariot",
+      "tier": "Budget",
+      "ordinal": 1,
+      "source_name": "Wayfarer",
+      "presentation_identity": {
+        "name": "Wayfarer",
+        "stylistic_origin": "N1",
+        "stylistic_origin_name": "Northreach Confederation",
+        "biography": "A serviceable, visibly repaired racing chariot built around simple timber panels and accessible fittings. Its history is written in the replacement boards.",
+        "model": "Wayfarer"
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-chariot-budget-1",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-chariot-standard-1",
+      "category": "chariot",
+      "tier": "Standard",
+      "ordinal": 1,
+      "source_name": "Copperline",
+      "presentation_identity": {
+        "name": "Copperline",
+        "stylistic_origin": "N7",
+        "stylistic_origin_name": "Velmora Republic",
+        "biography": "A neat racing chassis with copper-toned decorative bands and a balanced, uncluttered body. The finish signals care, not a new equipment class.",
+        "model": "Copperline"
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-chariot-standard-1",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-chariot-premium-1",
+      "category": "chariot",
+      "tier": "Premium",
+      "ordinal": 1,
+      "source_name": "Nightglass",
+      "presentation_identity": {
+        "name": "Nightglass",
+        "stylistic_origin": "N8",
+        "stylistic_origin_name": "Zarashi Dominion",
+        "biography": "A sharply profiled showpiece with dark lacquer and disciplined geometric ornament. Its imposing silhouette is cosmetic; native chariot ratings remain decisive.",
+        "model": "Nightglass"
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-chariot-premium-1",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-specialist-budget-1",
+      "category": "specialist",
+      "tier": "Budget",
+      "ordinal": 1,
+      "source_name": "Pella Moss",
+      "presentation_identity": {
+        "name": "Pella Moss",
+        "ancestry": "Human",
+        "ancestry_id": "A01",
+        "national_origin": "N3",
+        "national_origin_name": "Greenvale Commonwealth",
+        "biography": "Pella learned animal care in roadside yards where patience mattered more than expensive equipment. She can spot a badly seated strap before a driver climbs aboard.",
+        "personality": "Unhurried, observant, speaks softly around beasts."
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-specialist-budget-1",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-specialist-standard-1",
+      "category": "specialist",
+      "tier": "Standard",
+      "ordinal": 1,
+      "source_name": "Dorrin Ash",
+      "presentation_identity": {
+        "name": "Dorrin Ash",
+        "ancestry": "Hill Dwarf",
+        "ancestry_id": "A04",
+        "national_origin": "N4",
+        "national_origin_name": "Ironhold Clans",
+        "biography": "Dorrin has spent years rebuilding bent axles and fitting wheels in crowded paddocks. He trusts measurements, a level bench and his own two hands.",
+        "personality": "Exacting; fond of blunt assessments."
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-specialist-standard-1",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-specialist-premium-1",
+      "category": "specialist",
+      "tier": "Premium",
+      "ordinal": 1,
+      "source_name": "Neris Fern",
+      "presentation_identity": {
+        "name": "Neris Fern",
+        "ancestry": "High Elf",
+        "ancestry_id": "A08",
+        "national_origin": "N3",
+        "national_origin_name": "Greenvale Commonwealth",
+        "biography": "Neris trained in disciplined clinical houses before taking work on the racing circuit. She treats injured competitors without regard to the colors they wear.",
+        "personality": "Precise, reassuring, professionally detached."
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-specialist-premium-1",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-equipment-budget-1",
+      "category": "equipment",
+      "tier": "Budget",
+      "ordinal": 1,
+      "source_name": "Plain Harness Kit",
+      "presentation_identity": {
+        "name": "Plain Harness Kit",
+        "biography": "A plain set of leather traces and straps with sturdy buckles. Functional in appearance; the actual record defines all mechanics."
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-equipment-budget-1",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-equipment-budget-2",
+      "category": "equipment",
+      "tier": "Budget",
+      "ordinal": 2,
+      "source_name": "Canvas Fittings",
+      "presentation_identity": {
+        "name": "Canvas Fittings",
+        "biography": "Canvas-wrapped fittings intended for routine stable use. Their construction suggests utility rather than prestige."
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-equipment-budget-2",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-equipment-budget-3",
+      "category": "equipment",
+      "tier": "Budget",
+      "ordinal": 3,
+      "source_name": "Spare Rigging",
+      "presentation_identity": {
+        "name": "Spare Rigging",
+        "biography": "A bundled collection of replacement straps and rope for ordinary racing equipment. It does not create a repair action."
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-equipment-budget-3",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-equipment-standard-1",
+      "category": "equipment",
+      "tier": "Standard",
+      "ordinal": 1,
+      "source_name": "Trimmed Harness Kit",
+      "presentation_identity": {
+        "name": "Trimmed Harness Kit",
+        "biography": "A tidy harness set with finished edges and matching hardware. Its polished look does not confer additional statistics."
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-equipment-standard-1",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-equipment-standard-2",
+      "category": "equipment",
+      "tier": "Standard",
+      "ordinal": 2,
+      "source_name": "Polished Fittings",
+      "presentation_identity": {
+        "name": "Polished Fittings",
+        "biography": "A matched set of clean metal and leather fittings presented for sale. Visual polish is not a separate performance bonus."
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-equipment-standard-2",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    },
+    {
+      "sourceOfferId": "m2c-offer-equipment-standard-3",
+      "category": "equipment",
+      "tier": "Standard",
+      "ordinal": 3,
+      "source_name": "Bound Rigging",
+      "presentation_identity": {
+        "name": "Bound Rigging",
+        "biography": "A compact, carefully wrapped rigging bundle with uniform bindings and orderly fastening points. Uses the existing neutral equipment record."
+      },
+      "mechanical_effect": "NONE_ADDED",
+      "identity_binding_policy": "DRAFT_ONLY_UNTIL_EXPLICIT_VERSIONED_CAREER_PACK_PIN; legacy/unmarked careers use existing resolver",
+      "metadata_status": "READY_FOR_CODEX_REVIEW",
+      "provenance": {
+        "engine": "Codex exact source inventory, sourceRevision a70ec6e836b765488dbe793606e8c103b8dad3da",
+        "source_file": "src/career/economy/market.js + src/management/content.js",
+        "provisional_presentation_version": "e5-a1-provisional-identities-v1",
+        "canon": "Vaern Eight Nations Canon v1.0; Ancestry Reference Bible v1.0; Draft Beast and Racing Stock Bible v1.0",
+        "creative_addition": "biography, characterization, origin, species/ancestry subtype, and art direction are proposed production additions"
+      },
+      "visual_brief_id": "brief-m2c-offer-equipment-standard-3",
+      "canon_review_status": "OWNER_WAIVED_MISSING_BIBLE_HOLD_FOR_CONTENT_AUTHORING; canon mappings remain source-controlled"
+    }
+  ],
+  "rules": {
+    "rewriteExistingPackPins": false,
+    "nativeGrantsDuplicated": false,
+    "proceduralDuplication": "Exclude curated sourceOfferId/person identity from renewable signature selection once present in active/historical protected scope.",
+    "playerNames": "Never replace stable/owner identity.",
+    "use": "Preserve existing source-offer binding; no mechanical bonuses inferred from biography."
+  }
+}

@@ -104,7 +104,7 @@ export function integrateCondition(s, r, elapsed) {
   const exertion = c[`exertion${r.pace}`] ?? 0;
   for (const b of r.ru.beasts) {
     const load = Math.max(1, r.derived.load);
-    const generation =
+    let generation =
       c.fatigueRate *
       exertion *
       load *
@@ -112,6 +112,7 @@ export function integrateCondition(s, r, elapsed) {
       (1 + surface.roughness) *
       (1.5 - b.endurance / 100) *
       (1 + (100 - b.condition) / 100);
+    if(r.affinityContext)generation/=r.affinityContext.multiplier;
     const recovery =
       exertion <= c.recoveryThreshold
         ? c.recoveryRate * w.recovery * (0.5 + b.endurance / 100)

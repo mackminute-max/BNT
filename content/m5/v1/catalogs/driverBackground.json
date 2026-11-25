@@ -1,0 +1,834 @@
+[
+  {
+    "id": "background.courier",
+    "version": 1,
+    "label": "Road Courier",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "attributeDelta": {
+      "driving": 3,
+      "beastHandling": 1,
+      "combat": -3,
+      "awareness": 2,
+      "nerve": -3
+    },
+    "experienceLevels": [
+      {
+        "id": "experience.developing",
+        "weight": 25,
+        "attributeDelta": {
+          "driving": -3,
+          "beastHandling": -3,
+          "combat": -3,
+          "awareness": -3,
+          "nerve": -3
+        }
+      },
+      {
+        "id": "experience.practiced",
+        "weight": 60,
+        "attributeDelta": {
+          "driving": 0,
+          "beastHandling": 0,
+          "combat": 0,
+          "awareness": 0,
+          "nerve": 0
+        }
+      },
+      {
+        "id": "experience.veteran",
+        "weight": 15,
+        "attributeDelta": {
+          "driving": 3,
+          "beastHandling": 3,
+          "combat": 3,
+          "awareness": 3,
+          "nerve": 3
+        }
+      }
+    ],
+    "aiProfileWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 3
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 2
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 1
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 2
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "background.circuit",
+    "version": 1,
+    "label": "Circuit Apprentice",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "attributeDelta": {
+      "driving": 5,
+      "beastHandling": 0,
+      "combat": -4,
+      "awareness": 1,
+      "nerve": -2
+    },
+    "experienceLevels": [
+      {
+        "id": "experience.developing",
+        "weight": 25,
+        "attributeDelta": {
+          "driving": -3,
+          "beastHandling": -3,
+          "combat": -3,
+          "awareness": -3,
+          "nerve": -3
+        }
+      },
+      {
+        "id": "experience.practiced",
+        "weight": 60,
+        "attributeDelta": {
+          "driving": 0,
+          "beastHandling": 0,
+          "combat": 0,
+          "awareness": 0,
+          "nerve": 0
+        }
+      },
+      {
+        "id": "experience.veteran",
+        "weight": 15,
+        "attributeDelta": {
+          "driving": 3,
+          "beastHandling": 3,
+          "combat": 3,
+          "awareness": 3,
+          "nerve": 3
+        }
+      }
+    ],
+    "aiProfileWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 6
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 2
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 3
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 3
+      },
+      {
+        "id": "ai.professional",
+        "weight": 5
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 2
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 4
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 3
+      }
+    ],
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "background.handler",
+    "version": 1,
+    "label": "Working Team Handler",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "attributeDelta": {
+      "driving": -1,
+      "beastHandling": 5,
+      "combat": -3,
+      "awareness": 0,
+      "nerve": -1
+    },
+    "experienceLevels": [
+      {
+        "id": "experience.developing",
+        "weight": 25,
+        "attributeDelta": {
+          "driving": -3,
+          "beastHandling": -3,
+          "combat": -3,
+          "awareness": -3,
+          "nerve": -3
+        }
+      },
+      {
+        "id": "experience.practiced",
+        "weight": 60,
+        "attributeDelta": {
+          "driving": 0,
+          "beastHandling": 0,
+          "combat": 0,
+          "awareness": 0,
+          "nerve": 0
+        }
+      },
+      {
+        "id": "experience.veteran",
+        "weight": 15,
+        "attributeDelta": {
+          "driving": 3,
+          "beastHandling": 3,
+          "combat": 3,
+          "awareness": 3,
+          "nerve": 3
+        }
+      }
+    ],
+    "aiProfileWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 3
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 1
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 6
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 2
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 3
+      },
+      {
+        "id": "ai.professional",
+        "weight": 5
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 1
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 2
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "background.arena",
+    "version": 1,
+    "label": "Arena Veteran",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "attributeDelta": {
+      "driving": -2,
+      "beastHandling": -2,
+      "combat": 6,
+      "awareness": -3,
+      "nerve": 1
+    },
+    "experienceLevels": [
+      {
+        "id": "experience.developing",
+        "weight": 25,
+        "attributeDelta": {
+          "driving": -3,
+          "beastHandling": -3,
+          "combat": -3,
+          "awareness": -3,
+          "nerve": -3
+        }
+      },
+      {
+        "id": "experience.practiced",
+        "weight": 60,
+        "attributeDelta": {
+          "driving": 0,
+          "beastHandling": 0,
+          "combat": 0,
+          "awareness": 0,
+          "nerve": 0
+        }
+      },
+      {
+        "id": "experience.veteran",
+        "weight": 15,
+        "attributeDelta": {
+          "driving": 3,
+          "beastHandling": 3,
+          "combat": 3,
+          "awareness": 3,
+          "nerve": 3
+        }
+      }
+    ],
+    "aiProfileWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 1
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 7
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 4
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 1
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 2
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 2
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 3
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 2
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 1
+      }
+    ],
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "background.rally",
+    "version": 1,
+    "label": "Rally Scout",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "attributeDelta": {
+      "driving": 1,
+      "beastHandling": 0,
+      "combat": -3,
+      "awareness": 4,
+      "nerve": -2
+    },
+    "experienceLevels": [
+      {
+        "id": "experience.developing",
+        "weight": 25,
+        "attributeDelta": {
+          "driving": -3,
+          "beastHandling": -3,
+          "combat": -3,
+          "awareness": -3,
+          "nerve": -3
+        }
+      },
+      {
+        "id": "experience.practiced",
+        "weight": 60,
+        "attributeDelta": {
+          "driving": 0,
+          "beastHandling": 0,
+          "combat": 0,
+          "awareness": 0,
+          "nerve": 0
+        }
+      },
+      {
+        "id": "experience.veteran",
+        "weight": 15,
+        "attributeDelta": {
+          "driving": 3,
+          "beastHandling": 3,
+          "combat": 3,
+          "awareness": 3,
+          "nerve": 3
+        }
+      }
+    ],
+    "aiProfileWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 4
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 2
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 6
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 3
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 2
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 1
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 5
+      }
+    ],
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "background.marshal",
+    "version": 1,
+    "label": "Former Track Marshal",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "attributeDelta": {
+      "driving": 0,
+      "beastHandling": 1,
+      "combat": -2,
+      "awareness": 3,
+      "nerve": -2
+    },
+    "experienceLevels": [
+      {
+        "id": "experience.developing",
+        "weight": 25,
+        "attributeDelta": {
+          "driving": -3,
+          "beastHandling": -3,
+          "combat": -3,
+          "awareness": -3,
+          "nerve": -3
+        }
+      },
+      {
+        "id": "experience.practiced",
+        "weight": 60,
+        "attributeDelta": {
+          "driving": 0,
+          "beastHandling": 0,
+          "combat": 0,
+          "awareness": 0,
+          "nerve": 0
+        }
+      },
+      {
+        "id": "experience.veteran",
+        "weight": 15,
+        "attributeDelta": {
+          "driving": 3,
+          "beastHandling": 3,
+          "combat": 3,
+          "awareness": 3,
+          "nerve": 3
+        }
+      }
+    ],
+    "aiProfileWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 3
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 1
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 1
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 3
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 3
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 6
+      },
+      {
+        "id": "ai.professional",
+        "weight": 6
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 1
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 3
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 4
+      }
+    ],
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "background.festival",
+    "version": 1,
+    "label": "Festival Racer",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "attributeDelta": {
+      "driving": 1,
+      "beastHandling": 0,
+      "combat": -2,
+      "awareness": -1,
+      "nerve": 2
+    },
+    "experienceLevels": [
+      {
+        "id": "experience.developing",
+        "weight": 25,
+        "attributeDelta": {
+          "driving": -3,
+          "beastHandling": -3,
+          "combat": -3,
+          "awareness": -3,
+          "nerve": -3
+        }
+      },
+      {
+        "id": "experience.practiced",
+        "weight": 60,
+        "attributeDelta": {
+          "driving": 0,
+          "beastHandling": 0,
+          "combat": 0,
+          "awareness": 0,
+          "nerve": 0
+        }
+      },
+      {
+        "id": "experience.veteran",
+        "weight": 15,
+        "attributeDelta": {
+          "driving": 3,
+          "beastHandling": 3,
+          "combat": 3,
+          "awareness": 3,
+          "nerve": 3
+        }
+      }
+    ],
+    "aiProfileWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 2
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 2
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 5
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 1
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 4
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 1
+      },
+      {
+        "id": "ai.professional",
+        "weight": 2
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 7
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 4
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 2
+      }
+    ],
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  },
+  {
+    "id": "background.hauler",
+    "version": 1,
+    "label": "Caravan Hauler",
+    "sources": [
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "attributeDelta": {
+      "driving": -1,
+      "beastHandling": 4,
+      "combat": -2,
+      "awareness": 0,
+      "nerve": -1
+    },
+    "experienceLevels": [
+      {
+        "id": "experience.developing",
+        "weight": 25,
+        "attributeDelta": {
+          "driving": -3,
+          "beastHandling": -3,
+          "combat": -3,
+          "awareness": -3,
+          "nerve": -3
+        }
+      },
+      {
+        "id": "experience.practiced",
+        "weight": 60,
+        "attributeDelta": {
+          "driving": 0,
+          "beastHandling": 0,
+          "combat": 0,
+          "awareness": 0,
+          "nerve": 0
+        }
+      },
+      {
+        "id": "experience.veteran",
+        "weight": 15,
+        "attributeDelta": {
+          "driving": 3,
+          "beastHandling": 3,
+          "combat": 3,
+          "awareness": 3,
+          "nerve": 3
+        }
+      }
+    ],
+    "aiProfileWeights": [
+      {
+        "id": "ai.technical",
+        "weight": 2
+      },
+      {
+        "id": "ai.brawler",
+        "weight": 2
+      },
+      {
+        "id": "ai.daredevil",
+        "weight": 1
+      },
+      {
+        "id": "ai.endurance",
+        "weight": 7
+      },
+      {
+        "id": "ai.opportunist",
+        "weight": 2
+      },
+      {
+        "id": "ai.defensive",
+        "weight": 4
+      },
+      {
+        "id": "ai.professional",
+        "weight": 4
+      },
+      {
+        "id": "ai.showboat",
+        "weight": 1
+      },
+      {
+        "id": "ai.front-runner",
+        "weight": 1
+      },
+      {
+        "id": "ai.patient-pursuer",
+        "weight": 5
+      }
+    ],
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    }
+  }
+]

@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "bindings": [
+    {
+      "id": "template.chariot.native-v1",
+      "nativeFactory": "src/career/economy/market.js:generateMarket + records.js:acquireRecord",
+      "nativeFields": [
+        "stability",
+        "durability",
+        "protection",
+        "rollingEfficiency",
+        "maneuverability"
+      ],
+      "unchangedDefaults": {
+        "weight": 180,
+        "capacity": 400
+      },
+      "sourceTemplates": [
+        "Standard racing chariot",
+        "Workshop-tuned chariot",
+        "Salvaged racing chariot"
+      ],
+      "generationPolicy": "Use existing native tier/stat factory until a separately approved chariot mechanical profile is integrated."
+    },
+    {
+      "id": "template.equipment.neutral-v1",
+      "nativeFactory": "src/career/economy/records.js:acquireRecord",
+      "nativeFields": {
+        "mass": 0,
+        "combat": 0
+      },
+      "sourceTemplates": [
+        "Standard harness",
+        "Standard wheels",
+        "Reinforced harness",
+        "Precision wheels",
+        "Patched harness",
+        "Worn wheels"
+      ],
+      "generationPolicy": "Name/material label only. Do not add effects or change M4 temporary reward aggregation."
+    }
+  ],
+  "materials": [
+    {
+      "id": "material.wood-and-steel",
+      "label": "Timber and steel",
+      "mechanicalEffect": "none"
+    },
+    {
+      "id": "material.leather-and-brass",
+      "label": "Leather with brass fittings",
+      "mechanicalEffect": "none"
+    },
+    {
+      "id": "material.canvas-and-rope",
+      "label": "Canvas and braided cord",
+      "mechanicalEffect": "none"
+    }
+  ]
+}

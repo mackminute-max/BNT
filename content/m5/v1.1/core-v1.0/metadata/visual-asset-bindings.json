@@ -1,0 +1,386 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "profileId": "visual.a01",
+      "briefIds": [
+        "brief.portrait.a01"
+      ],
+      "currentAssetId": "portrait.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.a01.v1"
+      ],
+      "activation": "Only after authored bytes, license metadata and native manifest validation; no automatic file lookup."
+    },
+    {
+      "profileId": "visual.a02",
+      "briefIds": [
+        "brief.portrait.a02"
+      ],
+      "currentAssetId": "portrait.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.a02.v1"
+      ],
+      "activation": "Only after authored bytes, license metadata and native manifest validation; no automatic file lookup."
+    },
+    {
+      "profileId": "visual.a03",
+      "briefIds": [
+        "brief.portrait.a03"
+      ],
+      "currentAssetId": "portrait.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.a03.v1"
+      ],
+      "activation": "Only after authored bytes, license metadata and native manifest validation; no automatic file lookup."
+    },
+    {
+      "profileId": "visual.a04",
+      "briefIds": [
+        "brief.portrait.a04"
+      ],
+      "currentAssetId": "portrait.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.a04.v1"
+      ],
+      "activation": "Only after authored bytes, license metadata and native manifest validation; no automatic file lookup."
+    },
+    {
+      "profileId": "visual.a05",
+      "briefIds": [
+        "brief.portrait.a05"
+      ],
+      "currentAssetId": "portrait.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.a05.v1"
+      ],
+      "activation": "Only after authored bytes, license metadata and native manifest validation; no automatic file lookup."
+    },
+    {
+      "profileId": "visual.a06",
+      "briefIds": [
+        "brief.portrait.a06"
+      ],
+      "currentAssetId": "portrait.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.a06.v1"
+      ],
+      "activation": "Only after authored bytes, license metadata and native manifest validation; no automatic file lookup."
+    },
+    {
+      "profileId": "visual.a07",
+      "briefIds": [
+        "brief.portrait.a07"
+      ],
+      "currentAssetId": "portrait.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.a07.v1"
+      ],
+      "activation": "Only after authored bytes, license metadata and native manifest validation; no automatic file lookup."
+    },
+    {
+      "profileId": "visual.a08",
+      "briefIds": [
+        "brief.portrait.a08"
+      ],
+      "currentAssetId": "portrait.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.a08.v1"
+      ],
+      "activation": "Only after authored bytes, license metadata and native manifest validation; no automatic file lookup."
+    },
+    {
+      "profileId": "visual.a09",
+      "briefIds": [
+        "brief.portrait.a09"
+      ],
+      "currentAssetId": "portrait.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.a09.v1"
+      ],
+      "activation": "Only after authored bytes, license metadata and native manifest validation; no automatic file lookup."
+    },
+    {
+      "profileId": "visual.a10",
+      "briefIds": [
+        "brief.portrait.a10"
+      ],
+      "currentAssetId": "portrait.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.a10.v1"
+      ],
+      "activation": "Only after authored bytes, license metadata and native manifest validation; no automatic file lookup."
+    },
+    {
+      "profileId": "visual.a11",
+      "briefIds": [
+        "brief.portrait.a11"
+      ],
+      "currentAssetId": "portrait.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.a11.v1"
+      ],
+      "activation": "Only after authored bytes, license metadata and native manifest validation; no automatic file lookup."
+    },
+    {
+      "profileId": "visual.a12",
+      "briefIds": [
+        "brief.portrait.a12"
+      ],
+      "currentAssetId": "portrait.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.a12.v1"
+      ],
+      "activation": "Only after authored bytes, license metadata and native manifest validation; no automatic file lookup."
+    },
+    {
+      "profileId": "visual.a13",
+      "briefIds": [
+        "brief.portrait.a13"
+      ],
+      "currentAssetId": "portrait.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.a13.v1"
+      ],
+      "activation": "Only after authored bytes, license metadata and native manifest validation; no automatic file lookup."
+    },
+    {
+      "profileId": "visual.b01",
+      "briefIds": [
+        "brief.portrait.b01",
+        "brief.ru.b01"
+      ],
+      "currentAssetId": "ru.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.b01.v1",
+        "ru.b01.v1"
+      ],
+      "activation": "Build-time manifest only; asset selection is presentation, never a simulator species class."
+    },
+    {
+      "profileId": "visual.b02",
+      "briefIds": [
+        "brief.portrait.b02",
+        "brief.ru.b02"
+      ],
+      "currentAssetId": "ru.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.b02.v1",
+        "ru.b02.v1"
+      ],
+      "activation": "Build-time manifest only; asset selection is presentation, never a simulator species class."
+    },
+    {
+      "profileId": "visual.b03",
+      "briefIds": [
+        "brief.portrait.b03",
+        "brief.ru.b03"
+      ],
+      "currentAssetId": "ru.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.b03.v1",
+        "ru.b03.v1"
+      ],
+      "activation": "Build-time manifest only; asset selection is presentation, never a simulator species class."
+    },
+    {
+      "profileId": "visual.b04",
+      "briefIds": [
+        "brief.portrait.b04",
+        "brief.ru.b04"
+      ],
+      "currentAssetId": "ru.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.b04.v1",
+        "ru.b04.v1"
+      ],
+      "activation": "Build-time manifest only; asset selection is presentation, never a simulator species class."
+    },
+    {
+      "profileId": "visual.b05",
+      "briefIds": [
+        "brief.portrait.b05",
+        "brief.ru.b05"
+      ],
+      "currentAssetId": "ru.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.b05.v1",
+        "ru.b05.v1"
+      ],
+      "activation": "Build-time manifest only; asset selection is presentation, never a simulator species class."
+    },
+    {
+      "profileId": "visual.b06",
+      "briefIds": [
+        "brief.portrait.b06",
+        "brief.ru.b06"
+      ],
+      "currentAssetId": "ru.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.b06.v1",
+        "ru.b06.v1"
+      ],
+      "activation": "Build-time manifest only; asset selection is presentation, never a simulator species class."
+    },
+    {
+      "profileId": "visual.b07",
+      "briefIds": [
+        "brief.portrait.b07",
+        "brief.ru.b07"
+      ],
+      "currentAssetId": "ru.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.b07.v1",
+        "ru.b07.v1"
+      ],
+      "activation": "Build-time manifest only; asset selection is presentation, never a simulator species class."
+    },
+    {
+      "profileId": "visual.b08",
+      "briefIds": [
+        "brief.portrait.b08",
+        "brief.ru.b08"
+      ],
+      "currentAssetId": "ru.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.b08.v1",
+        "ru.b08.v1"
+      ],
+      "activation": "Build-time manifest only; asset selection is presentation, never a simulator species class."
+    },
+    {
+      "profileId": "visual.b09",
+      "briefIds": [
+        "brief.portrait.b09",
+        "brief.ru.b09"
+      ],
+      "currentAssetId": "ru.generic.marker.v1",
+      "futureAssetIds": [
+        "portrait.b09.v1",
+        "ru.b09.v1"
+      ],
+      "activation": "Build-time manifest only; asset selection is presentation, never a simulator species class."
+    },
+    {
+      "profileId": "visual.n1",
+      "briefIds": [
+        "brief.emblem.n1",
+        "brief.chariot.n1",
+        "brief.equipment.n1"
+      ],
+      "currentAssetId": "emblem.generic.marker.v1",
+      "futureAssetIds": [
+        "emblem.n1.v1",
+        "chariot.n1.v1",
+        "equipment.n1.v1"
+      ],
+      "activation": "After art approval and build manifest update; existing proof-only manifest status limitation needs separate art integration authorization."
+    },
+    {
+      "profileId": "visual.n2",
+      "briefIds": [
+        "brief.emblem.n2",
+        "brief.chariot.n2",
+        "brief.equipment.n2"
+      ],
+      "currentAssetId": "emblem.generic.marker.v1",
+      "futureAssetIds": [
+        "emblem.n2.v1",
+        "chariot.n2.v1",
+        "equipment.n2.v1"
+      ],
+      "activation": "After art approval and build manifest update; existing proof-only manifest status limitation needs separate art integration authorization."
+    },
+    {
+      "profileId": "visual.n3",
+      "briefIds": [
+        "brief.emblem.n3",
+        "brief.chariot.n3",
+        "brief.equipment.n3"
+      ],
+      "currentAssetId": "emblem.generic.marker.v1",
+      "futureAssetIds": [
+        "emblem.n3.v1",
+        "chariot.n3.v1",
+        "equipment.n3.v1"
+      ],
+      "activation": "After art approval and build manifest update; existing proof-only manifest status limitation needs separate art integration authorization."
+    },
+    {
+      "profileId": "visual.n4",
+      "briefIds": [
+        "brief.emblem.n4",
+        "brief.chariot.n4",
+        "brief.equipment.n4"
+      ],
+      "currentAssetId": "emblem.generic.marker.v1",
+      "futureAssetIds": [
+        "emblem.n4.v1",
+        "chariot.n4.v1",
+        "equipment.n4.v1"
+      ],
+      "activation": "After art approval and build manifest update; existing proof-only manifest status limitation needs separate art integration authorization."
+    },
+    {
+      "profileId": "visual.n5",
+      "briefIds": [
+        "brief.emblem.n5",
+        "brief.chariot.n5",
+        "brief.equipment.n5"
+      ],
+      "currentAssetId": "emblem.generic.marker.v1",
+      "futureAssetIds": [
+        "emblem.n5.v1",
+        "chariot.n5.v1",
+        "equipment.n5.v1"
+      ],
+      "activation": "After art approval and build manifest update; existing proof-only manifest status limitation needs separate art integration authorization."
+    },
+    {
+      "profileId": "visual.n6",
+      "briefIds": [
+        "brief.emblem.n6",
+        "brief.chariot.n6",
+        "brief.equipment.n6"
+      ],
+      "currentAssetId": "emblem.generic.marker.v1",
+      "futureAssetIds": [
+        "emblem.n6.v1",
+        "chariot.n6.v1",
+        "equipment.n6.v1"
+      ],
+      "activation": "After art approval and build manifest update; existing proof-only manifest status limitation needs separate art integration authorization."
+    },
+    {
+      "profileId": "visual.n7",
+      "briefIds": [
+        "brief.emblem.n7",
+        "brief.chariot.n7",
+        "brief.equipment.n7"
+      ],
+      "currentAssetId": "emblem.generic.marker.v1",
+      "futureAssetIds": [
+        "emblem.n7.v1",
+        "chariot.n7.v1",
+        "equipment.n7.v1"
+      ],
+      "activation": "After art approval and build manifest update; existing proof-only manifest status limitation needs separate art integration authorization."
+    },
+    {
+      "profileId": "visual.n8",
+      "briefIds": [
+        "brief.emblem.n8",
+        "brief.chariot.n8",
+        "brief.equipment.n8"
+      ],
+      "currentAssetId": "emblem.generic.marker.v1",
+      "futureAssetIds": [
+        "emblem.n8.v1",
+        "chariot.n8.v1",
+        "equipment.n8.v1"
+      ],
+      "activation": "After art approval and build manifest update; existing proof-only manifest status limitation needs separate art integration authorization."
+    }
+  ],
+  "stockVariationBrief": "metadata/physical-variants.json supplies source-qualified stock changes; reuse species brief with that appearance guidance. Do not create an extra39 mandatory baseline assets."
+}

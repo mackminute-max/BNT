@@ -1,0 +1,26 @@
+✔ D2 versioned native reference oval/Pure/primary (253.76283ms)
+✔ D2 versioned native reference oval/Pure/neutral (147.996067ms)
+✔ D2 versioned native reference oval/Pure/mismatch (165.840119ms)
+✔ D2 versioned native reference oval/Combat/primary (196.361484ms)
+✔ D2 versioned native reference oval/Combat/neutral (195.72413ms)
+✔ D2 versioned native reference oval/Combat/mismatch (211.103049ms)
+✔ D2 versioned native reference circuit/Pure/primary (587.062928ms)
+✔ D2 versioned native reference circuit/Pure/neutral (837.832191ms)
+✔ D2 versioned native reference circuit/Pure/mismatch (650.414676ms)
+✔ D2 versioned native reference circuit/Combat/primary (554.88723ms)
+✔ D2 versioned native reference circuit/Combat/neutral (583.046525ms)
+✔ D2 versioned native reference circuit/Combat/mismatch (554.330951ms)
+✔ D2 versioned native reference rally/Pure/primary (460.817076ms)
+✔ D2 versioned native reference rally/Pure/neutral (666.316159ms)
+✔ D2 versioned native reference rally/Pure/mismatch (501.520764ms)
+✔ D2 versioned native reference rally/Combat/primary (476.136481ms)
+✔ D2 versioned native reference rally/Combat/neutral (418.410615ms)
+✔ D2 versioned native reference rally/Combat/mismatch (501.842835ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8178.457198

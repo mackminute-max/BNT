@@ -1,0 +1,32 @@
+{
+  groups: [
+    'interrupted restore is not acknowledged',
+    'staged birth exposes no playable partial career',
+    'real inline worker restore/creation resumes',
+    'worker failure before prepare rejects',
+    'worker failure cannot publish a generation',
+    'lost acknowledgment reported as unconfirmed',
+    'committed acquisition recovered after lost acknowledgment',
+    'identical stale acquisition retry has exactly-once effects',
+    'caller-supplied historical options cannot bypass native authority',
+    'complete same-career export/restore preserves revision and native state',
+    'duplicate complete restore is idempotent',
+    'corrupt/foreign backup rejected before activation',
+    'corrupt current is blocked; valid previous is disclosed',
+    'previous recovery requires explicit confirmation',
+    'exact backup repairs corrupt bodies with monotonic publication',
+    'confirmed previous recovery activates a newer generation',
+    'retained pre-recovery acknowledgment is idempotent',
+    'unacknowledged pre-rollback stale command cannot apply an acquisition',
+    'active complete restore discards only unfinished memory progress and restarts original seed',
+    'actual native race reaches D5 clearance',
+    'native buffered playback makes zero durable writes',
+    'actual official publication abort is not acknowledged',
+    'official abort preserves condition, standings, Gold and durable prepare',
+    'native official result commits once',
+    'official retry cannot duplicate conditions or standings'
+  ],
+  passed: 25,
+  sourceRecords: 1,
+  bytes: 484329
+}

@@ -1,0 +1,2075 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://blood-and-thunder.invalid/m5/supplemental-content-metadata-v1",
+  "title": "M5 proposed compile-time supplemental metadata; not a native save schema",
+  "$comment": "Exact current document shapes and bounded types. Cross-catalog/canon/anatomy constraints are semantically validated; these schemas do not authorize runtime adoption.",
+  "$defs": {
+    "authored-identity-preservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "records": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "canon_review_status": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "category": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "identity_binding_policy": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "mechanical_effect": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "metadata_status": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "ordinal": {
+                "type": "integer",
+                "minimum": -1000000,
+                "maximum": 9007199254740991
+              },
+              "presentation_identity": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "ancestry": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "ancestry_id": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "biography": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "characterization_disclaimer": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "model": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "national_origin": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "national_origin_name": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "personality": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "species": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "species_cosmetic_only": {
+                    "type": "boolean"
+                  },
+                  "species_id": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "stock_style": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "stylistic_origin": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "stylistic_origin_name": {
+                    "type": "string",
+                    "maxLength": 100000
+                  }
+                },
+                "required": [
+                  "biography",
+                  "name"
+                ]
+              },
+              "provenance": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "canon": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "creative_addition": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "engine": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "provisional_presentation_version": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "source_file": {
+                    "type": "string",
+                    "maxLength": 100000
+                  }
+                },
+                "required": [
+                  "canon",
+                  "creative_addition",
+                  "engine",
+                  "provisional_presentation_version",
+                  "source_file"
+                ]
+              },
+              "sourceOfferId": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "source_name": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "tier": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "visual_brief_id": {
+                "type": "string",
+                "maxLength": 100000
+              }
+            },
+            "required": [
+              "canon_review_status",
+              "category",
+              "identity_binding_policy",
+              "mechanical_effect",
+              "metadata_status",
+              "ordinal",
+              "presentation_identity",
+              "provenance",
+              "sourceOfferId",
+              "source_name",
+              "tier",
+              "visual_brief_id"
+            ]
+          }
+        },
+        "rules": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "nativeGrantsDuplicated": {
+              "type": "boolean"
+            },
+            "playerNames": {
+              "type": "string",
+              "maxLength": 100000
+            },
+            "proceduralDuplication": {
+              "type": "string",
+              "maxLength": 100000
+            },
+            "rewriteExistingPackPins": {
+              "type": "boolean"
+            },
+            "use": {
+              "type": "string",
+              "maxLength": 100000
+            }
+          },
+          "required": [
+            "nativeGrantsDuplicated",
+            "playerNames",
+            "proceduralDuplication",
+            "rewriteExistingPackPins",
+            "use"
+          ]
+        },
+        "sourcePath": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "sourceSHA256": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "version": {
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "records",
+        "rules",
+        "sourcePath",
+        "sourceSHA256",
+        "version"
+      ]
+    },
+    "canonical-reference-mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ancestrySubdivisions": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "name": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "status": {
+                "type": "string",
+                "maxLength": 100000
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "status"
+            ]
+          }
+        },
+        "continent": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "entities": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "entityType": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "id": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "name": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "sources": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "authority": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "digest": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "endLine": {
+                      "type": "integer",
+                      "minimum": -1000000,
+                      "maximum": 9007199254740991
+                    },
+                    "file": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "startLine": {
+                      "type": "integer",
+                      "minimum": -1000000,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "authority",
+                    "digest",
+                    "endLine",
+                    "file",
+                    "startLine"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "entityType",
+              "id",
+              "name",
+              "sources"
+            ]
+          }
+        },
+        "missingMaterials": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "string",
+            "maxLength": 100000
+          }
+        },
+        "sourceAuthority": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "sourceFiles": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "auditCopy": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "lines": {
+                "type": "integer",
+                "minimum": -1000000,
+                "maximum": 9007199254740991
+              },
+              "path": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "sha256": {
+                "type": "string",
+                "maxLength": 100000
+              }
+            },
+            "required": [
+              "auditCopy",
+              "lines",
+              "path",
+              "sha256"
+            ]
+          }
+        },
+        "stock": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "classification": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "id": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "name": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "sourceLocalId": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "sources": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "authority": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "digest": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "endLine": {
+                      "type": "integer",
+                      "minimum": -1000000,
+                      "maximum": 9007199254740991
+                    },
+                    "file": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "startLine": {
+                      "type": "integer",
+                      "minimum": -1000000,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "authority",
+                    "digest",
+                    "endLine",
+                    "file",
+                    "startLine"
+                  ]
+                }
+              },
+              "speciesId": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "statusText": {
+                "type": "string",
+                "maxLength": 100000
+              }
+            },
+            "required": [
+              "classification",
+              "id",
+              "name",
+              "sourceLocalId",
+              "sources",
+              "speciesId",
+              "statusText"
+            ]
+          }
+        },
+        "version": {
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 9007199254740991
+        },
+        "world": {
+          "type": "string",
+          "maxLength": 100000
+        }
+      },
+      "required": [
+        "ancestrySubdivisions",
+        "continent",
+        "entities",
+        "missingMaterials",
+        "sourceAuthority",
+        "sourceFiles",
+        "stock",
+        "version",
+        "world"
+      ]
+    },
+    "championship-difficulty-bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "invitationals": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "records": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "qualityWeights": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "weight": {
+                      "anyOf": [
+                        {
+                          "type": "number",
+                          "minimum": -1000000,
+                          "maximum": 9007199254740991
+                        },
+                        {
+                          "type": "integer",
+                          "minimum": -1000000,
+                          "maximum": 9007199254740991
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "weight"
+                  ]
+                }
+              },
+              "rivalProfileIds": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "string",
+                  "maxLength": 100000
+                }
+              },
+              "templateId": {
+                "type": "string",
+                "maxLength": 100000
+              }
+            },
+            "required": [
+              "id",
+              "qualityWeights",
+              "rivalProfileIds",
+              "templateId"
+            ]
+          }
+        },
+        "status": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "version": {
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "invitationals",
+        "records",
+        "status",
+        "version"
+      ]
+    },
+    "cross-catalog-dependencies": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "catalogDependencies": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "catalog": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "requires": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "string",
+                  "maxLength": 100000
+                }
+              }
+            },
+            "required": [
+              "catalog",
+              "requires"
+            ]
+          }
+        },
+        "externalDependencies": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "authority": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "id": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "path": {
+                "type": "string",
+                "maxLength": 100000
+              }
+            },
+            "required": [
+              "authority",
+              "id",
+              "path"
+            ]
+          }
+        },
+        "loadPolicy": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "records": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "dependsOn": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "string",
+                  "maxLength": 100000
+                }
+              },
+              "family": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "id": {
+                "type": "string",
+                "maxLength": 100000
+              }
+            },
+            "required": [
+              "dependsOn",
+              "family",
+              "id"
+            ]
+          }
+        },
+        "version": {
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "catalogDependencies",
+        "externalDependencies",
+        "loadPolicy",
+        "records",
+        "version"
+      ]
+    },
+    "mechanical-template-bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "bindings": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "generationPolicy": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "id": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "nativeFactory": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "nativeFields": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "combat": {
+                        "type": "integer",
+                        "minimum": -1000000,
+                        "maximum": 9007199254740991
+                      },
+                      "mass": {
+                        "type": "integer",
+                        "minimum": -1000000,
+                        "maximum": 9007199254740991
+                      }
+                    },
+                    "required": [
+                      "combat",
+                      "mass"
+                    ]
+                  },
+                  {
+                    "type": "array",
+                    "maxItems": 20000,
+                    "items": {
+                      "type": "string",
+                      "maxLength": 100000
+                    }
+                  }
+                ]
+              },
+              "sourceTemplates": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "string",
+                  "maxLength": 100000
+                }
+              },
+              "unchangedDefaults": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "capacity": {
+                    "type": "integer",
+                    "minimum": -1000000,
+                    "maximum": 9007199254740991
+                  },
+                  "weight": {
+                    "type": "integer",
+                    "minimum": -1000000,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "capacity",
+                  "weight"
+                ]
+              }
+            },
+            "required": [
+              "generationPolicy",
+              "id",
+              "nativeFactory",
+              "nativeFields",
+              "sourceTemplates"
+            ]
+          }
+        },
+        "materials": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "label": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "mechanicalEffect": {
+                "type": "string",
+                "maxLength": 100000
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "mechanicalEffect"
+            ]
+          }
+        },
+        "version": {
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "bindings",
+        "materials",
+        "version"
+      ]
+    },
+    "name-reservations": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "displayCollisionRule": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "identityRule": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "poolsRule": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "records": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "displayName": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "kind": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "sourceOfferId": {
+                "type": "string",
+                "maxLength": 100000
+              }
+            },
+            "required": [
+              "displayName",
+              "kind",
+              "sourceOfferId"
+            ]
+          }
+        },
+        "version": {
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "displayCollisionRule",
+        "identityRule",
+        "poolsRule",
+        "records",
+        "version"
+      ]
+    },
+    "pair-compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nativeComposition": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "beastCount": {
+              "type": "integer",
+              "minimum": -1000000,
+              "maximum": 9007199254740991
+            },
+            "distinctMemberIdsRequired": {
+              "type": "boolean"
+            },
+            "mixedSpeciesLegalAtAttributeProjection": {
+              "type": "boolean"
+            },
+            "nativeClassId": {
+              "type": "string",
+              "maxLength": 100000
+            },
+            "newPhysics": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "beastCount",
+            "distinctMemberIdsRequired",
+            "mixedSpeciesLegalAtAttributeProjection",
+            "nativeClassId",
+            "newPhysics"
+          ]
+        },
+        "records": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "artHarnessReview": {
+                "type": "boolean"
+              },
+              "gameplayBan": {
+                "type": "boolean"
+              },
+              "nativeAttributeProjection": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "note": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "specialSizeReview": {
+                "type": "boolean"
+              },
+              "speciesA": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "speciesB": {
+                "type": "string",
+                "maxLength": 100000
+              }
+            },
+            "required": [
+              "artHarnessReview",
+              "gameplayBan",
+              "nativeAttributeProjection",
+              "note",
+              "specialSizeReview",
+              "speciesA",
+              "speciesB"
+            ]
+          }
+        },
+        "version": {
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "nativeComposition",
+        "records",
+        "version"
+      ]
+    },
+    "paired-beast-naming": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rules": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "collisionScope": {
+              "type": "string",
+              "maxLength": 100000
+            },
+            "mechanicalEffect": {
+              "type": "string",
+              "maxLength": 100000
+            },
+            "noInternalIDSuffixes": {
+              "type": "boolean"
+            },
+            "opportunityCost": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "collisionScope",
+            "mechanicalEffect",
+            "noInternalIDSuffixes",
+            "opportunityCost"
+          ]
+        },
+        "themes": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "memberNames": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "string",
+                  "maxLength": 100000
+                }
+              },
+              "nationIds": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "string",
+                  "maxLength": 100000
+                }
+              },
+              "speciesIds": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "string",
+                  "maxLength": 100000
+                }
+              },
+              "usage": {
+                "type": "string",
+                "maxLength": 100000
+              }
+            },
+            "required": [
+              "id",
+              "memberNames",
+              "nationIds",
+              "speciesIds",
+              "usage"
+            ]
+          }
+        },
+        "version": {
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "rules",
+        "themes",
+        "version"
+      ]
+    },
+    "physical-variants": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "records": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "classification": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "id": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "sourceAppearance": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "sources": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "authority": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "digest": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "endLine": {
+                      "type": "integer",
+                      "minimum": -1000000,
+                      "maximum": 9007199254740991
+                    },
+                    "file": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "startLine": {
+                      "type": "integer",
+                      "minimum": -1000000,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "authority",
+                    "digest",
+                    "endLine",
+                    "file",
+                    "startLine"
+                  ]
+                }
+              },
+              "speciesId": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "stockProfileId": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "tags": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "string",
+                  "maxLength": 100000
+                }
+              }
+            },
+            "required": [
+              "classification",
+              "id",
+              "sourceAppearance",
+              "sources",
+              "speciesId",
+              "stockProfileId",
+              "tags"
+            ]
+          }
+        },
+        "version": {
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "records",
+        "version"
+      ]
+    },
+    "provisional-balance-policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "beastComposition": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "string",
+            "maxLength": 100000
+          }
+        },
+        "correlationPolicy": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "driverComposition": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "string",
+            "maxLength": 100000
+          }
+        },
+        "eligibility": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "id": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "importSemantics": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "nationalBackgroundAndAI": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "qualityRatingBounds": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "qualitySelection": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "qualityValuation": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "retentionPolicy": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "rivalCultureOverride": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "rivalQualityBinding": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "rounding": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "scouting": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "staffCulturePolicy": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "staffPolicyId": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "status": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "traitClamping": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "version": {
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "beastComposition",
+        "correlationPolicy",
+        "driverComposition",
+        "eligibility",
+        "id",
+        "importSemantics",
+        "nationalBackgroundAndAI",
+        "qualityRatingBounds",
+        "qualitySelection",
+        "qualityValuation",
+        "retentionPolicy",
+        "rivalCultureOverride",
+        "rivalQualityBinding",
+        "rounding",
+        "scouting",
+        "staffCulturePolicy",
+        "staffPolicyId",
+        "status",
+        "traitClamping",
+        "version"
+      ]
+    },
+    "racing-associations": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "records": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "displayName": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "grantsPoliticalControl": {
+                "type": "boolean"
+              },
+              "id": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "mechanicalEffect": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "nationId": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "purpose": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "sources": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "authority": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "digest": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "endLine": {
+                      "type": "integer",
+                      "minimum": -1000000,
+                      "maximum": 9007199254740991
+                    },
+                    "file": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "startLine": {
+                      "type": "integer",
+                      "minimum": -1000000,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "authority",
+                    "digest",
+                    "endLine",
+                    "file",
+                    "startLine"
+                  ]
+                }
+              },
+              "status": {
+                "type": "string",
+                "maxLength": 100000
+              }
+            },
+            "required": [
+              "displayName",
+              "grantsPoliticalControl",
+              "id",
+              "mechanicalEffect",
+              "nationId",
+              "purpose",
+              "sources",
+              "status"
+            ]
+          }
+        },
+        "version": {
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "records",
+        "version"
+      ]
+    },
+    "regional-cultural-affinities": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "regions": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "nationId": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "regionAffinityRoots": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "string",
+                  "maxLength": 100000
+                }
+              },
+              "regionLabel": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "sources": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "authority": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "digest": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "endLine": {
+                      "type": "integer",
+                      "minimum": -1000000,
+                      "maximum": 9007199254740991
+                    },
+                    "file": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "startLine": {
+                      "type": "integer",
+                      "minimum": -1000000,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "authority",
+                    "digest",
+                    "endLine",
+                    "file",
+                    "startLine"
+                  ]
+                }
+              },
+              "status": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "style": {
+                "type": "string",
+                "maxLength": 100000
+              }
+            },
+            "required": [
+              "id",
+              "nationId",
+              "regionAffinityRoots",
+              "regionLabel",
+              "sources",
+              "status",
+              "style"
+            ]
+          }
+        },
+        "rules": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "diasporaLanguage": {
+              "type": "string",
+              "maxLength": 100000
+            },
+            "nationalityAncestryCulture": {
+              "type": "string",
+              "maxLength": 100000
+            },
+            "nativeZarashi": {
+              "type": "string",
+              "maxLength": 100000
+            }
+          },
+          "required": [
+            "diasporaLanguage",
+            "nationalityAncestryCulture",
+            "nativeZarashi"
+          ]
+        },
+        "version": {
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "regions",
+        "rules",
+        "version"
+      ]
+    },
+    "staff-biographies": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "records": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "ageMechanicalEffect": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "background": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "id": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "personalityMetadata": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "professionProfileIds": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "string",
+                  "maxLength": 100000
+                }
+              },
+              "specialization": {
+                "type": "string",
+                "maxLength": 100000
+              }
+            },
+            "required": [
+              "ageMechanicalEffect",
+              "background",
+              "id",
+              "personalityMetadata",
+              "professionProfileIds",
+              "specialization"
+            ]
+          }
+        },
+        "version": {
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "records",
+        "version"
+      ]
+    },
+    "visual-anatomy-rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rules": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "canonicalId": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "id": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "identityConsistency": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "profileId": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "prohibitedFeatures": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "string",
+                  "maxLength": 100000
+                }
+              },
+              "requiredAnatomy": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "sexConditionalRules": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "forbidden": {
+                      "type": "array",
+                      "maxItems": 20000,
+                      "items": {
+                        "type": "string",
+                        "maxLength": 100000
+                      }
+                    },
+                    "permitted": {
+                      "type": "array",
+                      "maxItems": 20000,
+                      "items": {
+                        "type": "string",
+                        "maxLength": 100000
+                      }
+                    },
+                    "sex": {
+                      "type": "string",
+                      "maxLength": 100000
+                    }
+                  },
+                  "required": [
+                    "forbidden",
+                    "sex"
+                  ]
+                }
+              },
+              "sexVariationStatus": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "sourceColorGuidance": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "sources": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "authority": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "digest": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "endLine": {
+                      "type": "integer",
+                      "minimum": -1000000,
+                      "maximum": 9007199254740991
+                    },
+                    "file": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "startLine": {
+                      "type": "integer",
+                      "minimum": -1000000,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "authority",
+                    "digest",
+                    "endLine",
+                    "file",
+                    "startLine"
+                  ]
+                }
+              },
+              "typicalAdultDimensions": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "men": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "height_cm": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "max": {
+                            "type": "integer",
+                            "minimum": -1000000,
+                            "maximum": 9007199254740991
+                          },
+                          "min": {
+                            "type": "integer",
+                            "minimum": -1000000,
+                            "maximum": 9007199254740991
+                          }
+                        },
+                        "required": [
+                          "max",
+                          "min"
+                        ]
+                      },
+                      "weight_kg": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "max": {
+                            "type": "integer",
+                            "minimum": -1000000,
+                            "maximum": 9007199254740991
+                          },
+                          "min": {
+                            "type": "integer",
+                            "minimum": -1000000,
+                            "maximum": 9007199254740991
+                          }
+                        },
+                        "required": [
+                          "max",
+                          "min"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "height_cm",
+                      "weight_kg"
+                    ]
+                  },
+                  "women": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "height_cm": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "max": {
+                            "type": "integer",
+                            "minimum": -1000000,
+                            "maximum": 9007199254740991
+                          },
+                          "min": {
+                            "type": "integer",
+                            "minimum": -1000000,
+                            "maximum": 9007199254740991
+                          }
+                        },
+                        "required": [
+                          "max",
+                          "min"
+                        ]
+                      },
+                      "weight_kg": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "max": {
+                            "type": "integer",
+                            "minimum": -1000000,
+                            "maximum": 9007199254740991
+                          },
+                          "min": {
+                            "type": "integer",
+                            "minimum": -1000000,
+                            "maximum": 9007199254740991
+                          }
+                        },
+                        "required": [
+                          "max",
+                          "min"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "height_cm",
+                      "weight_kg"
+                    ]
+                  }
+                },
+                "required": [
+                  "men",
+                  "women"
+                ]
+              },
+              "typicalLifespanYears": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "max": {
+                    "type": "integer",
+                    "minimum": -1000000,
+                    "maximum": 9007199254740991
+                  },
+                  "min": {
+                    "type": "integer",
+                    "minimum": -1000000,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "max",
+                  "min"
+                ]
+              }
+            },
+            "required": [
+              "canonicalId",
+              "id",
+              "profileId",
+              "prohibitedFeatures",
+              "requiredAnatomy",
+              "sourceColorGuidance",
+              "sources"
+            ]
+          }
+        },
+        "version": {
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "rules",
+        "version"
+      ]
+    },
+    "visual-asset-bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "records": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "activation": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "briefIds": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "string",
+                  "maxLength": 100000
+                }
+              },
+              "currentAssetId": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "futureAssetIds": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "string",
+                  "maxLength": 100000
+                }
+              },
+              "profileId": {
+                "type": "string",
+                "maxLength": 100000
+              }
+            },
+            "required": [
+              "activation",
+              "briefIds",
+              "currentAssetId",
+              "futureAssetIds",
+              "profileId"
+            ]
+          }
+        },
+        "stockVariationBrief": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "version": {
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "records",
+        "stockVariationBrief",
+        "version"
+      ]
+    },
+    "visual-asset-production-briefs": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "globalQA": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "string",
+            "maxLength": 100000
+          }
+        },
+        "requirements": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "acceptance": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "string",
+                  "maxLength": 100000
+                }
+              },
+              "anchorPixels": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": -1000000,
+                      "maximum": 9007199254740991
+                    },
+                    {
+                      "type": "integer",
+                      "minimum": -1000000,
+                      "maximum": 9007199254740991
+                    }
+                  ]
+                }
+              },
+              "canonicalId": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "category": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "compositing": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "displayCSSPixels": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "integer",
+                  "minimum": -1000000,
+                  "maximum": 9007199254740991
+                }
+              },
+              "format": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "id": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "intendedAssetId": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "prompt": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "reusableVariants": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "string",
+                  "maxLength": 100000
+                }
+              },
+              "runtimePixels": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "integer",
+                  "minimum": -1000000,
+                  "maximum": 9007199254740991
+                }
+              },
+              "sourcePixels": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "integer",
+                  "minimum": -1000000,
+                  "maximum": 9007199254740991
+                }
+              },
+              "sources": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "authority": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "digest": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "endLine": {
+                      "type": "integer",
+                      "minimum": -1000000,
+                      "maximum": 9007199254740991
+                    },
+                    "file": {
+                      "type": "string",
+                      "maxLength": 100000
+                    },
+                    "startLine": {
+                      "type": "integer",
+                      "minimum": -1000000,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "authority",
+                    "digest",
+                    "endLine",
+                    "file",
+                    "startLine"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "acceptance",
+              "anchorPixels",
+              "canonicalId",
+              "category",
+              "compositing",
+              "displayCSSPixels",
+              "format",
+              "id",
+              "intendedAssetId",
+              "prompt",
+              "reusableVariants",
+              "runtimePixels",
+              "sourcePixels",
+              "sources"
+            ]
+          }
+        },
+        "status": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "version": {
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "globalQA",
+        "requirements",
+        "status",
+        "version"
+      ]
+    }
+  }
+}

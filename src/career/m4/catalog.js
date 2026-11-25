@@ -26,7 +26,7 @@ export const RUN_REWARDS=freeze([
  row('negotiation','Prize Negotiation','Trading Opportunities','gold',null,100,'Receive 100 spendable Gold immediately; not a future prize multiplier.')
 ]);
 export const LEGACY_UPGRADES=freeze([
- {id:'recruiters',name:'Veteran Recruiters',cost:4,kind:'permanent',description:'Add one extra Premium driver candidate to this stable’s fixed market.',effects:[]},
+ {id:'recruiters',name:'Veteran Recruiters',cost:typeof BNT_M5_BUILD!=='undefined'&&BNT_M5_BUILD?6:4,kind:'permanent',description:typeof BNT_M5_BUILD!=='undefined'&&BNT_M5_BUILD?'One extra Premium driver now and at each full Home Market renewal; normal hiring costs apply.':'Add one extra Premium driver candidate to this stable’s fixed market.',effects:[]},
  {id:'engineers',name:'Master Engineers',cost:4,kind:'permanent',description:'+5 Stability and +5 Maneuverability for every registered chariot.',effects:[['chariot.stability',5],['chariot.maneuverability',5]]},
  {id:'beastmaster',name:'Beastmaster’s Legacy',cost:4,kind:'permanent',description:'+5 Discipline and +5 Endurance for both registered beasts.',effects:[['beasts.discipline',5],['beasts.endurance',5]]},
  {id:'distinguished',name:'Distinguished Stable',cost:5,kind:'permanent',description:'+5 Awareness and +5 Nerve for every registered driver.',effects:[['driver.awareness',5],['driver.nerve',5]]},
@@ -35,5 +35,5 @@ export const LEGACY_UPGRADES=freeze([
  {id:'patron',name:'Influential Patron',cost:5,kind:'active',icon:'✦',description:'+10% championship Gold prizes, rounded down once; maximum 1,000 bonus Gold per championship.',effects:[]},
  {id:'strategist',name:'Master Strategist',cost:6,kind:'active',icon:'⚑',description:'+1 Strategy Sign opportunity per race for your driver.',effects:[]}
 ]);
-export function upgrade(id){const d=LEGACY_UPGRADES.find(d=>d.id===id);if(!d)throw Error('Unknown Legacy Upgrade');return d;}
+export function upgrade(id,state=null){const d=LEGACY_UPGRADES.find(d=>d.id===id);if(!d)throw Error('Unknown Legacy Upgrade');return state?.schema===7&&id==='recruiters'?{...d,cost:6}:d;}
 export const BONUS_TIERS=freeze({dustroad:1,ironwheel:2,bannerfall:3,crownfire:4,'thunder-crown':5,'iron-gauntlet':5});

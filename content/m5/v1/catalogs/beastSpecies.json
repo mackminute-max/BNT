@@ -1,0 +1,1175 @@
+[
+  {
+    "id": "species.b01",
+    "version": 1,
+    "label": "Horse",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 24,
+        "endLine": 135,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalSpeciesId": "B01",
+    "baseline": {
+      "speed": {
+        "kind": "uniform",
+        "min": 43,
+        "max": 67,
+        "mode": 55,
+        "step": 1
+      },
+      "power": {
+        "kind": "uniform",
+        "min": 43,
+        "max": 67,
+        "mode": 55,
+        "step": 1
+      },
+      "agility": {
+        "kind": "uniform",
+        "min": 43,
+        "max": 67,
+        "mode": 55,
+        "step": 1
+      },
+      "endurance": {
+        "kind": "uniform",
+        "min": 43,
+        "max": 67,
+        "mode": 55,
+        "step": 1
+      },
+      "discipline": {
+        "kind": "uniform",
+        "min": 43,
+        "max": 67,
+        "mode": 55,
+        "step": 1
+      },
+      "toughness": {
+        "kind": "uniform",
+        "min": 43,
+        "max": 67,
+        "mode": 55,
+        "step": 1
+      }
+    },
+    "individualVariation": 7,
+    "stockProfileIds": [
+      "stock.b01.1-1",
+      "stock.b01.1-2",
+      "stock.b01.1-3",
+      "stock.b01.1-4",
+      "stock.b01.1-5",
+      "stock.b01.1-6",
+      "stock.b01.1-7"
+    ],
+    "temperamentWeights": [
+      {
+        "id": "temperament.steady",
+        "weight": 3
+      },
+      {
+        "id": "temperament.spirited",
+        "weight": 2
+      },
+      {
+        "id": "temperament.aggressive",
+        "weight": 1
+      },
+      {
+        "id": "temperament.nervous",
+        "weight": 1
+      },
+      {
+        "id": "temperament.stubborn",
+        "weight": 1
+      },
+      {
+        "id": "temperament.eager",
+        "weight": 2
+      },
+      {
+        "id": "temperament.tireless",
+        "weight": 2
+      },
+      {
+        "id": "temperament.docile",
+        "weight": 3
+      }
+    ],
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 5,
+      "yearsMax": 12,
+      "mechanicalEffect": "none"
+    },
+    "compatibility": {
+      "classId": "pair.native-two-beast",
+      "allowedPartnerClassIds": [
+        "pair.native-two-beast"
+      ],
+      "physicalSizeTag": "equine",
+      "policy": "authoring-validation-only-no-new-physics"
+    },
+    "visualProfileId": "visual.b01",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "nativeSpeciesAdapter": "generic_draft_beast-with-canonical-identity"
+  },
+  {
+    "id": "species.b02",
+    "version": 1,
+    "label": "Storm Elk (Hroven)",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 136,
+        "endLine": 217,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalSpeciesId": "B02",
+    "baseline": {
+      "speed": {
+        "kind": "uniform",
+        "min": 46,
+        "max": 70,
+        "mode": 58,
+        "step": 1
+      },
+      "power": {
+        "kind": "uniform",
+        "min": 48,
+        "max": 72,
+        "mode": 60,
+        "step": 1
+      },
+      "agility": {
+        "kind": "uniform",
+        "min": 38,
+        "max": 62,
+        "mode": 50,
+        "step": 1
+      },
+      "endurance": {
+        "kind": "uniform",
+        "min": 45,
+        "max": 69,
+        "mode": 57,
+        "step": 1
+      },
+      "discipline": {
+        "kind": "uniform",
+        "min": 34,
+        "max": 58,
+        "mode": 46,
+        "step": 1
+      },
+      "toughness": {
+        "kind": "uniform",
+        "min": 47,
+        "max": 71,
+        "mode": 59,
+        "step": 1
+      }
+    },
+    "individualVariation": 7,
+    "stockProfileIds": [
+      "stock.b02.2-1",
+      "stock.b02.2-2",
+      "stock.b02.2-3",
+      "stock.b02.2-4"
+    ],
+    "temperamentWeights": [
+      {
+        "id": "temperament.steady",
+        "weight": 3
+      },
+      {
+        "id": "temperament.spirited",
+        "weight": 2
+      },
+      {
+        "id": "temperament.aggressive",
+        "weight": 1
+      },
+      {
+        "id": "temperament.nervous",
+        "weight": 1
+      },
+      {
+        "id": "temperament.stubborn",
+        "weight": 1
+      },
+      {
+        "id": "temperament.eager",
+        "weight": 2
+      },
+      {
+        "id": "temperament.tireless",
+        "weight": 2
+      },
+      {
+        "id": "temperament.docile",
+        "weight": 3
+      }
+    ],
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 5,
+      "yearsMax": 12,
+      "mechanicalEffect": "none"
+    },
+    "compatibility": {
+      "classId": "pair.native-two-beast",
+      "allowedPartnerClassIds": [
+        "pair.native-two-beast"
+      ],
+      "physicalSizeTag": "large-cervid",
+      "policy": "authoring-validation-only-no-new-physics"
+    },
+    "visualProfileId": "visual.b02",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "nativeSpeciesAdapter": "generic_draft_beast-with-canonical-identity"
+  },
+  {
+    "id": "species.b03",
+    "version": 1,
+    "label": "Crown Boar (Brond)",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 218,
+        "endLine": 299,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalSpeciesId": "B03",
+    "baseline": {
+      "speed": {
+        "kind": "uniform",
+        "min": 36,
+        "max": 60,
+        "mode": 48,
+        "step": 1
+      },
+      "power": {
+        "kind": "uniform",
+        "min": 51,
+        "max": 75,
+        "mode": 63,
+        "step": 1
+      },
+      "agility": {
+        "kind": "uniform",
+        "min": 41,
+        "max": 65,
+        "mode": 53,
+        "step": 1
+      },
+      "endurance": {
+        "kind": "uniform",
+        "min": 40,
+        "max": 64,
+        "mode": 52,
+        "step": 1
+      },
+      "discipline": {
+        "kind": "uniform",
+        "min": 41,
+        "max": 65,
+        "mode": 53,
+        "step": 1
+      },
+      "toughness": {
+        "kind": "uniform",
+        "min": 49,
+        "max": 73,
+        "mode": 61,
+        "step": 1
+      }
+    },
+    "individualVariation": 7,
+    "stockProfileIds": [
+      "stock.b03.3-1",
+      "stock.b03.3-2",
+      "stock.b03.3-3",
+      "stock.b03.3-4"
+    ],
+    "temperamentWeights": [
+      {
+        "id": "temperament.steady",
+        "weight": 3
+      },
+      {
+        "id": "temperament.spirited",
+        "weight": 2
+      },
+      {
+        "id": "temperament.aggressive",
+        "weight": 1
+      },
+      {
+        "id": "temperament.nervous",
+        "weight": 1
+      },
+      {
+        "id": "temperament.stubborn",
+        "weight": 1
+      },
+      {
+        "id": "temperament.eager",
+        "weight": 2
+      },
+      {
+        "id": "temperament.tireless",
+        "weight": 2
+      },
+      {
+        "id": "temperament.docile",
+        "weight": 3
+      }
+    ],
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 5,
+      "yearsMax": 12,
+      "mechanicalEffect": "none"
+    },
+    "compatibility": {
+      "classId": "pair.native-two-beast",
+      "allowedPartnerClassIds": [
+        "pair.native-two-beast"
+      ],
+      "physicalSizeTag": "low-boar",
+      "policy": "authoring-validation-only-no-new-physics"
+    },
+    "visualProfileId": "visual.b03",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "nativeSpeciesAdapter": "generic_draft_beast-with-canonical-identity"
+  },
+  {
+    "id": "species.b04",
+    "version": 1,
+    "label": "Meadowstrider (Vellin)",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 300,
+        "endLine": 381,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalSpeciesId": "B04",
+    "baseline": {
+      "speed": {
+        "kind": "uniform",
+        "min": 51,
+        "max": 75,
+        "mode": 63,
+        "step": 1
+      },
+      "power": {
+        "kind": "uniform",
+        "min": 36,
+        "max": 60,
+        "mode": 48,
+        "step": 1
+      },
+      "agility": {
+        "kind": "uniform",
+        "min": 50,
+        "max": 74,
+        "mode": 62,
+        "step": 1
+      },
+      "endurance": {
+        "kind": "uniform",
+        "min": 43,
+        "max": 67,
+        "mode": 55,
+        "step": 1
+      },
+      "discipline": {
+        "kind": "uniform",
+        "min": 44,
+        "max": 68,
+        "mode": 56,
+        "step": 1
+      },
+      "toughness": {
+        "kind": "uniform",
+        "min": 34,
+        "max": 58,
+        "mode": 46,
+        "step": 1
+      }
+    },
+    "individualVariation": 7,
+    "stockProfileIds": [
+      "stock.b04.4-1",
+      "stock.b04.4-2",
+      "stock.b04.4-3",
+      "stock.b04.4-4"
+    ],
+    "temperamentWeights": [
+      {
+        "id": "temperament.steady",
+        "weight": 3
+      },
+      {
+        "id": "temperament.spirited",
+        "weight": 2
+      },
+      {
+        "id": "temperament.aggressive",
+        "weight": 1
+      },
+      {
+        "id": "temperament.nervous",
+        "weight": 1
+      },
+      {
+        "id": "temperament.stubborn",
+        "weight": 1
+      },
+      {
+        "id": "temperament.eager",
+        "weight": 2
+      },
+      {
+        "id": "temperament.tireless",
+        "weight": 2
+      },
+      {
+        "id": "temperament.docile",
+        "weight": 3
+      }
+    ],
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 5,
+      "yearsMax": 12,
+      "mechanicalEffect": "none"
+    },
+    "compatibility": {
+      "classId": "pair.native-two-beast",
+      "allowedPartnerClassIds": [
+        "pair.native-two-beast"
+      ],
+      "physicalSizeTag": "light-antlerless",
+      "policy": "authoring-validation-only-no-new-physics"
+    },
+    "visualProfileId": "visual.b04",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "nativeSpeciesAdapter": "generic_draft_beast-with-canonical-identity"
+  },
+  {
+    "id": "species.b05",
+    "version": 1,
+    "label": "Racing Ram",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 382,
+        "endLine": 463,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalSpeciesId": "B05",
+    "baseline": {
+      "speed": {
+        "kind": "uniform",
+        "min": 39,
+        "max": 63,
+        "mode": 51,
+        "step": 1
+      },
+      "power": {
+        "kind": "uniform",
+        "min": 47,
+        "max": 71,
+        "mode": 59,
+        "step": 1
+      },
+      "agility": {
+        "kind": "uniform",
+        "min": 46,
+        "max": 70,
+        "mode": 58,
+        "step": 1
+      },
+      "endurance": {
+        "kind": "uniform",
+        "min": 40,
+        "max": 64,
+        "mode": 52,
+        "step": 1
+      },
+      "discipline": {
+        "kind": "uniform",
+        "min": 43,
+        "max": 67,
+        "mode": 55,
+        "step": 1
+      },
+      "toughness": {
+        "kind": "uniform",
+        "min": 43,
+        "max": 67,
+        "mode": 55,
+        "step": 1
+      }
+    },
+    "individualVariation": 7,
+    "stockProfileIds": [
+      "stock.b05.5-1",
+      "stock.b05.5-2",
+      "stock.b05.5-3",
+      "stock.b05.5-4"
+    ],
+    "temperamentWeights": [
+      {
+        "id": "temperament.steady",
+        "weight": 3
+      },
+      {
+        "id": "temperament.spirited",
+        "weight": 2
+      },
+      {
+        "id": "temperament.aggressive",
+        "weight": 1
+      },
+      {
+        "id": "temperament.nervous",
+        "weight": 1
+      },
+      {
+        "id": "temperament.stubborn",
+        "weight": 1
+      },
+      {
+        "id": "temperament.eager",
+        "weight": 2
+      },
+      {
+        "id": "temperament.tireless",
+        "weight": 2
+      },
+      {
+        "id": "temperament.docile",
+        "weight": 3
+      }
+    ],
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 5,
+      "yearsMax": 12,
+      "mechanicalEffect": "none"
+    },
+    "compatibility": {
+      "classId": "pair.native-two-beast",
+      "allowedPartnerClassIds": [
+        "pair.native-two-beast"
+      ],
+      "physicalSizeTag": "stocky-ovine",
+      "policy": "authoring-validation-only-no-new-physics"
+    },
+    "visualProfileId": "visual.b05",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "nativeSpeciesAdapter": "generic_draft_beast-with-canonical-identity"
+  },
+  {
+    "id": "species.b06",
+    "version": 1,
+    "label": "Grun’Jho",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 464,
+        "endLine": 545,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalSpeciesId": "B06",
+    "baseline": {
+      "speed": {
+        "kind": "uniform",
+        "min": 38,
+        "max": 62,
+        "mode": 50,
+        "step": 1
+      },
+      "power": {
+        "kind": "uniform",
+        "min": 55,
+        "max": 79,
+        "mode": 67,
+        "step": 1
+      },
+      "agility": {
+        "kind": "uniform",
+        "min": 33,
+        "max": 57,
+        "mode": 45,
+        "step": 1
+      },
+      "endurance": {
+        "kind": "uniform",
+        "min": 41,
+        "max": 65,
+        "mode": 53,
+        "step": 1
+      },
+      "discipline": {
+        "kind": "uniform",
+        "min": 39,
+        "max": 63,
+        "mode": 51,
+        "step": 1
+      },
+      "toughness": {
+        "kind": "uniform",
+        "min": 52,
+        "max": 76,
+        "mode": 64,
+        "step": 1
+      }
+    },
+    "individualVariation": 7,
+    "stockProfileIds": [
+      "stock.b06.6-1",
+      "stock.b06.6-2",
+      "stock.b06.6-3",
+      "stock.b06.6-4"
+    ],
+    "temperamentWeights": [
+      {
+        "id": "temperament.steady",
+        "weight": 3
+      },
+      {
+        "id": "temperament.spirited",
+        "weight": 2
+      },
+      {
+        "id": "temperament.aggressive",
+        "weight": 1
+      },
+      {
+        "id": "temperament.nervous",
+        "weight": 1
+      },
+      {
+        "id": "temperament.stubborn",
+        "weight": 1
+      },
+      {
+        "id": "temperament.eager",
+        "weight": 2
+      },
+      {
+        "id": "temperament.tireless",
+        "weight": 2
+      },
+      {
+        "id": "temperament.docile",
+        "weight": 3
+      }
+    ],
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 6,
+      "yearsMax": 18,
+      "mechanicalEffect": "none"
+    },
+    "compatibility": {
+      "classId": "pair.native-two-beast",
+      "allowedPartnerClassIds": [
+        "pair.native-two-beast"
+      ],
+      "physicalSizeTag": "monumental-runner",
+      "policy": "authoring-validation-only-no-new-physics"
+    },
+    "visualProfileId": "visual.b06",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "nativeSpeciesAdapter": "generic_draft_beast-with-canonical-identity"
+  },
+  {
+    "id": "species.b07",
+    "version": 1,
+    "label": "Dire Wolf",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 546,
+        "endLine": 627,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalSpeciesId": "B07",
+    "baseline": {
+      "speed": {
+        "kind": "uniform",
+        "min": 51,
+        "max": 75,
+        "mode": 63,
+        "step": 1
+      },
+      "power": {
+        "kind": "uniform",
+        "min": 35,
+        "max": 59,
+        "mode": 47,
+        "step": 1
+      },
+      "agility": {
+        "kind": "uniform",
+        "min": 49,
+        "max": 73,
+        "mode": 61,
+        "step": 1
+      },
+      "endurance": {
+        "kind": "uniform",
+        "min": 41,
+        "max": 65,
+        "mode": 53,
+        "step": 1
+      },
+      "discipline": {
+        "kind": "uniform",
+        "min": 41,
+        "max": 65,
+        "mode": 53,
+        "step": 1
+      },
+      "toughness": {
+        "kind": "uniform",
+        "min": 41,
+        "max": 65,
+        "mode": 53,
+        "step": 1
+      }
+    },
+    "individualVariation": 7,
+    "stockProfileIds": [
+      "stock.b07.7-1",
+      "stock.b07.7-2",
+      "stock.b07.7-3",
+      "stock.b07.7-4"
+    ],
+    "temperamentWeights": [
+      {
+        "id": "temperament.steady",
+        "weight": 3
+      },
+      {
+        "id": "temperament.spirited",
+        "weight": 2
+      },
+      {
+        "id": "temperament.aggressive",
+        "weight": 1
+      },
+      {
+        "id": "temperament.nervous",
+        "weight": 1
+      },
+      {
+        "id": "temperament.stubborn",
+        "weight": 1
+      },
+      {
+        "id": "temperament.eager",
+        "weight": 2
+      },
+      {
+        "id": "temperament.tireless",
+        "weight": 2
+      },
+      {
+        "id": "temperament.docile",
+        "weight": 3
+      }
+    ],
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 5,
+      "yearsMax": 12,
+      "mechanicalEffect": "none"
+    },
+    "compatibility": {
+      "classId": "pair.native-two-beast",
+      "allowedPartnerClassIds": [
+        "pair.native-two-beast"
+      ],
+      "physicalSizeTag": "large-canine",
+      "policy": "authoring-validation-only-no-new-physics"
+    },
+    "visualProfileId": "visual.b07",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "nativeSpeciesAdapter": "generic_draft_beast-with-canonical-identity"
+  },
+  {
+    "id": "species.b08",
+    "version": 1,
+    "label": "Wingless Drake",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 628,
+        "endLine": 709,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalSpeciesId": "B08",
+    "baseline": {
+      "speed": {
+        "kind": "uniform",
+        "min": 39,
+        "max": 63,
+        "mode": 51,
+        "step": 1
+      },
+      "power": {
+        "kind": "uniform",
+        "min": 49,
+        "max": 73,
+        "mode": 61,
+        "step": 1
+      },
+      "agility": {
+        "kind": "uniform",
+        "min": 38,
+        "max": 62,
+        "mode": 50,
+        "step": 1
+      },
+      "endurance": {
+        "kind": "uniform",
+        "min": 40,
+        "max": 64,
+        "mode": 52,
+        "step": 1
+      },
+      "discipline": {
+        "kind": "uniform",
+        "min": 41,
+        "max": 65,
+        "mode": 53,
+        "step": 1
+      },
+      "toughness": {
+        "kind": "uniform",
+        "min": 51,
+        "max": 75,
+        "mode": 63,
+        "step": 1
+      }
+    },
+    "individualVariation": 7,
+    "stockProfileIds": [
+      "stock.b08.8-1",
+      "stock.b08.8-2",
+      "stock.b08.8-3",
+      "stock.b08.8-4"
+    ],
+    "temperamentWeights": [
+      {
+        "id": "temperament.steady",
+        "weight": 3
+      },
+      {
+        "id": "temperament.spirited",
+        "weight": 2
+      },
+      {
+        "id": "temperament.aggressive",
+        "weight": 1
+      },
+      {
+        "id": "temperament.nervous",
+        "weight": 1
+      },
+      {
+        "id": "temperament.stubborn",
+        "weight": 1
+      },
+      {
+        "id": "temperament.eager",
+        "weight": 2
+      },
+      {
+        "id": "temperament.tireless",
+        "weight": 2
+      },
+      {
+        "id": "temperament.docile",
+        "weight": 3
+      }
+    ],
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 5,
+      "yearsMax": 12,
+      "mechanicalEffect": "none"
+    },
+    "compatibility": {
+      "classId": "pair.native-two-beast",
+      "allowedPartnerClassIds": [
+        "pair.native-two-beast"
+      ],
+      "physicalSizeTag": "draconic-quadruped",
+      "policy": "authoring-validation-only-no-new-physics"
+    },
+    "visualProfileId": "visual.b08",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "nativeSpeciesAdapter": "generic_draft_beast-with-canonical-identity"
+  },
+  {
+    "id": "species.b09",
+    "version": 1,
+    "label": "Sunhorn (Saelor)",
+    "sources": [
+      {
+        "authority": "canon",
+        "file": "canon/Blood_and_Thunder_Draft_Beast_and_Racing_Stock_Bible_Canon_v1.0(2).md",
+        "startLine": 710,
+        "endLine": 831,
+        "digest": "7273d84556c7a204a9a458eabf626a6eea01cba2b2b7a0f00b862ad52c37cbce"
+      },
+      {
+        "authority": "proposed-mechanics",
+        "file": "tools/produce_catalogs.py",
+        "startLine": 1,
+        "endLine": 171,
+        "digest": "6ada6d62e3d2e6850252e81fd7e7c8fe0f36f4b358fd6bb63645042c5c07f510"
+      }
+    ],
+    "canonicalSpeciesId": "B09",
+    "baseline": {
+      "speed": {
+        "kind": "uniform",
+        "min": 48,
+        "max": 72,
+        "mode": 60,
+        "step": 1
+      },
+      "power": {
+        "kind": "uniform",
+        "min": 38,
+        "max": 62,
+        "mode": 50,
+        "step": 1
+      },
+      "agility": {
+        "kind": "uniform",
+        "min": 45,
+        "max": 69,
+        "mode": 57,
+        "step": 1
+      },
+      "endurance": {
+        "kind": "uniform",
+        "min": 51,
+        "max": 75,
+        "mode": 63,
+        "step": 1
+      },
+      "discipline": {
+        "kind": "uniform",
+        "min": 39,
+        "max": 63,
+        "mode": 51,
+        "step": 1
+      },
+      "toughness": {
+        "kind": "uniform",
+        "min": 37,
+        "max": 61,
+        "mode": 49,
+        "step": 1
+      }
+    },
+    "individualVariation": 7,
+    "stockProfileIds": [
+      "stock.b09.9-1",
+      "stock.b09.9-2",
+      "stock.b09.9-3",
+      "stock.b09.9-4"
+    ],
+    "temperamentWeights": [
+      {
+        "id": "temperament.steady",
+        "weight": 3
+      },
+      {
+        "id": "temperament.spirited",
+        "weight": 2
+      },
+      {
+        "id": "temperament.aggressive",
+        "weight": 1
+      },
+      {
+        "id": "temperament.nervous",
+        "weight": 1
+      },
+      {
+        "id": "temperament.stubborn",
+        "weight": 1
+      },
+      {
+        "id": "temperament.eager",
+        "weight": 2
+      },
+      {
+        "id": "temperament.tireless",
+        "weight": 2
+      },
+      {
+        "id": "temperament.docile",
+        "weight": 3
+      }
+    ],
+    "qualityProfileId": "quality.ordinary",
+    "age": {
+      "category": "adult",
+      "yearsMin": 5,
+      "yearsMax": 12,
+      "mechanicalEffect": "none"
+    },
+    "compatibility": {
+      "classId": "pair.native-two-beast",
+      "allowedPartnerClassIds": [
+        "pair.native-two-beast"
+      ],
+      "physicalSizeTag": "desert-antelope",
+      "policy": "authoring-validation-only-no-new-physics"
+    },
+    "visualProfileId": "visual.b09",
+    "eligibility": {
+      "minReputation": 0,
+      "requiredTrophies": [],
+      "availability": "ordinary",
+      "notes": "Subject to existing capacity, affordability, contract, payroll and championship restrictions."
+    },
+    "nativeSpeciesAdapter": "generic_draft_beast-with-canonical-identity"
+  }
+]
