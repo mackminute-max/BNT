@@ -1,0 +1,27 @@
+✔ M6 immediate Signs: next tick, same-sign noop, no refills, free No Sign (13.56121ms)
+✔ M6 one-charge ability survives checkpoint: thunder-burst (25.695663ms)
+✔ M6 one-charge ability survives checkpoint: second-wind (21.548451ms)
+✔ M6 one-charge ability survives checkpoint: brace (13.559646ms)
+✔ M6 one-charge ability survives checkpoint: perfect-line (9.965722ms)
+✔ M6 one-charge ability survives checkpoint: savage-assault (8.614646ms)
+✔ M6 one-charge ability survives checkpoint: absolute-focus (8.628127ms)
+✔ M6 one-charge ability survives checkpoint: catch-breath (8.644831ms)
+✔ M6 one-charge ability survives checkpoint: steady-team (8.314024ms)
+✔ M6 ability rejection does not charge or change Pure combat rules (0.590792ms)
+✔ legacy race retains default budget and crossing activation path (0.878166ms)
+✔ native Thunder Burst increases actual motion without changing owned attributes (4.742662ms)
+✔ native Second Wind halves both continuous and action beast expenditure (1.146783ms)
+✔ native Brace reduces resolved collision damage only once (1.411593ms)
+✔ native Perfect Line modifies handling and lateral capability, not RU attributes (1.072493ms)
+✔ native Savage Assault multiplies the resolved offensive contest by 1.2 (1.55844ms)
+✔ native Absolute Focus reduces observed driver errors across matched first decisions (70.224297ms)
+✔ native Steady Team increases only eligible recovery rate by 25 percent (0.954178ms)
+✔ M6 duration expiry follows integer simulation ticks and rivals reject player contexts (5.70354ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 332.258212

@@ -1,3 +1,6 @@
+import {DenAttempt} from '../../career/m6/den-runtime.js';
+import {prepareQuote} from '../../career/m6/bookmaker.js';
+import {prepareM6Recovery} from '../m6/recovery.js';
 import {preparePreviousRecovery} from '../../career/m5/recovery.js';
 import {prepareCreation} from '../../management/creation/model.js';
 import {requireCurrentM4} from '../m4-policy.js';
@@ -48,7 +51,7 @@ class DurableRunner extends ChampionshipRunner {
 }
 function view(career,runner){const s=career.state,x=activeChampionship(s);let frame=null,reason=null,operational=null,watermark=null,sessionRevision=null,warning=null;try{if(x?.raceId&&x.phase!=='NO_STARTERS_PENDING'&&!x.raceResults.some(r=>r.raceId===x.raceId&&r.kind==='NoStarters')){const session=runner.session();session.open();const n=session.state;operational=session.record.authority.value.operational;watermark=session.record.authority.value.watermark;sessionRevision=session.record.authority.value.revision;warning=session.problem;frame={tick:n.tick,time:n.time,status:n.status,config:n.config,track:n.track,playerId:n.playerId,entrants:n.entrants.map(r=>({id:r.id,q:r.q,lane:r.lane,status:r.status,physical:r.physical,speed:r.speed,signs:r.signs,ru:r.ru}))};}}catch(e){reason=e.message;}return {state:s,presentation:structuredClone(career.presentation),frame,operational,watermark,sessionRevision,warning,reason};}
 export function createWorkerService(){
- let cache=null,pending=null,serial=0,attempt=null;
+ let cache=null,pending=null,serial=0,attempt=null,denAttempt=null;
  function load(snapshot,tolerant=false){
   checkRecords(snapshot.records);if(!Number.isSafeInteger(snapshot.generation)||snapshot.generation<0)throw Error('Invalid generation');
   validateRuntime(snapshot.runtime??defaultRuntime());
@@ -77,8 +80,8 @@ export function createWorkerService(){
  }
  return async function handle(message){
   const started=performance.now();if(message.version!==1)throw Error('Unsupported worker protocol');
-  if(message.type==='previousCandidate'){const loaded=load(message.previous);if(loaded.career.current.schema!==7)throw Error('M5 recovery only');return preparePreviousRecovery(message.previous,message.token);}
-  if(message.type==='creationCandidate'){if(!(typeof BNT_M5_BUILD!=='undefined'&&BNT_M5_BUILD))throw Error('M5 creation producer unavailable');return {...prepareCreation(message.request),durable:false};}
+  if(message.type==='previousCandidate'){const loaded=load(message.previous);if(loaded.career.current.schema===8)return prepareM6Recovery(message.previous,message.token);if(loaded.career.current.schema!==7)throw Error('M5 recovery only');return preparePreviousRecovery(message.previous,message.token);}
+  if(message.type==='creationCandidate'){if(!(typeof BNT_M5_BUILD!=='undefined'&&BNT_M5_BUILD)&&!(typeof BNT_M6_BUILD!=='undefined'&&BNT_M6_BUILD))throw Error('Current creation producer unavailable');return {...prepareCreation(message.request),durable:false};}
   if(message.type==='probe'){const roundTrip=unpack(pack({positiveInfinity:Infinity,negativeInfinity:-Infinity}));return {version:1,worker:true,typedSentinels:roundTrip.positiveInfinity===Infinity&&roundTrip.negativeInfinity===-Infinity,durable:false};}
   if(message.type==='reset'){cache=null;pending=null;if(message.discardAttempt===true)attempt=null;return {version:1,reset:true,durable:false};}
   if(message.type==='ack'){
@@ -90,6 +93,7 @@ export function createWorkerService(){
   if(message.type==='condition')return {version:1,result:pack(mapCondition(unpack(message.input))),durable:false};
   if(message.type==='attemptInfo')return {available:!!attempt&&attempt.identity.raceId===message.raceId,durable:false};
   if(message.type==='attemptExecute'){if(!attempt)throw Error('Unsaved attempt unavailable; restart from the saved starting state');return attempt.execute(message);}
+  if(['m6DenRead','m6DenAdvance'].includes(message.type)){const loaded=load(message.snapshot);if(!denAttempt||denAttempt.eventId!==loaded.career.current.m6.gambling.den.active?.eventId)denAttempt=new DenAttempt(loaded.career);return message.type==='m6DenRead'?denAttempt.read(loaded.career,message.channel):denAttempt.advance(loaded.career,message);}
   if(message.type==='attemptRead'){if(message.snapshot.recordsHash&&message.snapshot.recordsHash!==await digestText(JSON.stringify(message.snapshot.records)))throw Error('RECOVERY_REQUIRED: durable record manifest mismatch');const loaded=load(message.snapshot),x=activeChampionship(loaded.career.current);if(!attempt||attempt.identity.raceId!==x?.raceId)attempt=new MemoryAttempt(loaded,message.snapshot,message.channel);else if(attempt.generation!==message.snapshot.generation)throw Error('STALE_WRITER: race changed; reload before restarting');return attempt.read(message.channel);}
   if(message.type==='prepareRestore'){
    const b=await decodeBackup(message.text),source=load({generation:b.payload.sourceGeneration,records:b.payload.records,runtime:b.payload.runtime});
@@ -101,7 +105,7 @@ export function createWorkerService(){
      const forward=n.version===2&&av.operational==='ACTIVE'&&nv.operational==='RESULT_COMMITTED'&&n.boundary?.value?.sourceAuthorityHash===wireHash(a.authority);if(nv.setupHash!==av.setupHash||(!forward&&(nv.revision<av.revision||JSON.stringify(n.journal.value.slice(0,a.journal.value.length))!==JSON.stringify(a.journal.value))))throw Error('Restore would rewind/conflict with acknowledged inputs');
      if(av.operational==='RESULT_COMMITTED'&&JSON.stringify(a)!==JSON.stringify(n))throw Error('Restore conflicts with immutable official result');
     }
-    cache=null;if(target.get(SAVE_KEY)!==old.map.get(SAVE_KEY)){old.career.importSave(target.get(SAVE_KEY),{confirmed:true,completeM5:old.career.current.schema===7});target.set(SAVE_KEY,old.map.get(SAVE_KEY));}
+    cache=null;if(target.get(SAVE_KEY)!==old.map.get(SAVE_KEY)){old.career.importSave(target.get(SAVE_KEY),{confirmed:true,completeM5:old.career.current.schema===7,completeM6:old.career.current.schema===8});target.set(SAVE_KEY,old.map.get(SAVE_KEY));}
    }
    const records=[...target].sort(([a],[b])=>a<b?-1:a>b?1:0);load({...message.snapshot,records,runtime:b.payload.runtime});cache=null;
    const receipts=mergeRestoreReceipts(message.snapshot.restoreReceipts??[],b.payload.restoreReceipts),prior=receipts.find(r=>r.digest===b.digest);
@@ -145,8 +149,10 @@ export function createWorkerService(){
    const repaired=load({...message.snapshot,records:[...map]});assertPresentationRestore(career.presentation,repaired.career.presentation,{existing:true});cache=null;
   }
   else if(op==='activeTeam'){career.setActiveTeam(message.request);}
-  else if(op==='career'){if(career.current.schema===7&&(message.method==='importSave'||message.method==='transaction'&&(message.args.length!==1||message.args[0]?.commandVersion>=4)))throw Error('Use protected M5 controller or complete restore operations; caller transaction options are not authority');if(!['transaction','migrateFoundation','migrateCycles','migrateEconomy','migrateSchema','create','importSave','recover'].includes(message.method))throw Error('Unsupported career method');if(message.method==='transaction'&&['cycle.settle','e5.settle'].includes(message.args[0]?.type))throw Error('E5 completion authority is unavailable');if(['create','importSave','recover'].includes(message.method)&&[...map.keys()].some(k=>k!==SAVE_KEY))throw Error('Use complete backup restoration; career-only replacement cannot discard session authority');career[message.method](...message.args);}
-  else if(op==='e5'){if(!['e5.enableM4','m4.buyLegacy','m4.equipLegacy','e5.enable','e5.refresh','e5.register','e5.selectRun','e5.settle','e5.selectLegacy'].includes(message.command))throw Error('Unsupported E5 operation');const command=makeE5Command(career.state,message.command,message.payload,message.id);career.transaction(command,message.command==='e5.settle'&&!career.current.transactions.some(r=>r.transaction.type==='e5.settle'&&r.transaction.payload.instanceId===message.payload.instanceId)?{settlement:createSettlementCapability(career,storage)}:{});}
+  else if(op==='career'){if([7,8].includes(career.current.schema)&&(message.method==='importSave'||message.method==='transaction'&&(message.args.length!==1||message.args[0]?.commandVersion>=4)))throw Error('Use protected M5 controller or complete restore operations; caller transaction options are not authority');if(!['transaction','migrateFoundation','migrateCycles','migrateEconomy','migrateSchema','create','importSave','recover'].includes(message.method))throw Error('Unsupported career method');if(message.method==='transaction'&&['cycle.settle','e5.settle'].includes(message.args[0]?.type))throw Error('E5 completion authority is unavailable');if(['create','importSave','recover'].includes(message.method)&&[...map.keys()].some(k=>k!==SAVE_KEY))throw Error('Use complete backup restoration; career-only replacement cannot discard session authority');career[message.method](...message.args);}
+  else if(op==='m6DenSettle'){const ack=career.current.m6.acks.find(a=>a.id===message.id);if(ack){if(ack.request?.type!=='m6.denSettle')throw Error('Conflicting spectator settlement identity');career.transaction(ack.request);}else{if(!denAttempt)throw Error('Reopen and run the saved spectator event first');const cap=denAttempt.completion(career,storage);career.transaction(makeE5Command(career.state,'m6.denSettle',{eventId:denAttempt.eventId,confirmed:true},message.id),{spectator:cap});denAttempt=null;}}
+  else if(op==='m6quote'){if(career.current.schema!==8)throw Error('M6 bookmaker unavailable');const ack=career.current.m6.acks.find(a=>a.id===message.id);if(ack){if(ack.request?.type!=='m6.quote')throw Error('Conflicting quote identity');career.transaction(ack.request);}else{const cap=prepareQuote(career.state,{scope:message.scope??'championship'});career.transaction(makeE5Command(career.state,'m6.quote',{quote:cap.quote},message.id),{bookmaker:cap});}}
+  else if(op==='e5'){if(!['m6.denStart','m6.wager','m6.selectNation','e5.enableM4','m4.buyLegacy','m4.equipLegacy','e5.enable','e5.refresh','e5.register','e5.selectRun','e5.settle','e5.selectLegacy'].includes(message.command))throw Error('Unsupported E5 operation');const command=makeE5Command(career.state,message.command,message.payload,message.id);career.transaction(command,(message.command==='e5.settle'||(career.current.schema===8&&message.command==='e5.selectLegacy'))&&!career.current.m6?.acks.some(a=>a.id===message.id)&&!career.current.transactions.some(r=>r.transaction.type==='e5.settle'&&r.transaction.payload.instanceId===message.payload.instanceId)?{settlement:createSettlementCapability(career,storage)}:{});}
   else if(op==='controller'){const type=message.command;if(!['controller.enable','controller.enableE3','championship.register','championship.coach','championship.withdraw'].includes(type))throw Error('Unsupported controller command');career.transaction(makeControllerCommand(career.state,type,message.payload,message.id));}
   else if(op==='refreshOffers'){const offers=[developmentOffer()];career.transaction(makeControllerCommand(career.state,'championship.refreshOffers',{offers},message.id),{catalog:createCatalogBoundary(v=>fingerprint(v)===fingerprint(offers)).accept(offers)});}
   else if(op==='memoryPrepare'){if(!attempt)throw Error('Unsaved attempt unavailable; cannot fabricate a result');attempt.prepare(loaded,message.snapshot,'e2-result-'+fingerprint([activeChampionship(career.state).id,activeChampionship(career.state).raceId]).slice(0,40));loaded.runner.cached=null;}
@@ -168,7 +174,7 @@ export function createWorkerService(){
    }
    runner.publish(message.id);
   }else throw Error('Unsupported prepared operation');
-  if(career.current.schema===7&&career.current.championshipFoundation.activeId===null){runner.cached=null;runner.viewer=null;attempt=null;}
+  if([7,8].includes(career.current.schema)&&career.current.championshipFoundation.activeId===null){runner.cached=null;runner.viewer=null;attempt=null;}
   if(typeof BNT_M4_BUILD!=='undefined'&&BNT_M4_BUILD)requireCurrentM4(career.current);
   validatePresentationOwner(message.runtime??message.snapshot.runtime,career);
   const records=[...map];checkRecords(records);const candidateHash=await digestText(JSON.stringify(records));pending={operation:op,generation:message.snapshot.generation+1,records,token:'candidate-'+(++serial),validated:{key:snapshotKey({...message.snapshot,generation:message.snapshot.generation+1,records,...(Object.hasOwn(message.snapshot,'recordsHash')?{recordsHash:candidateHash}:{}),...(message.runtime?{runtime:message.runtime}:{})}),map,storage,career,runner}};

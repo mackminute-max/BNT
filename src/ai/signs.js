@@ -1,3 +1,4 @@
+import {m6Entrant,abilityRequest} from '../sim/m6-interaction.js';
 import {BUFFERED_SIGN_ACTION,requestDelay} from './buffered-signs.js';
 import { emit } from "../events/events.js";
 export const signs = [
@@ -15,6 +16,7 @@ export function signCommand(s, cmd) {
     return false;
   };
   if (!r || r.status !== "Racing") return reject("Player is not racing");
+  if(cmd.action==='ability'){if(abilityRequest(s,r))return true;return reject('Active Ability unavailable');}if(cmd.action===BUFFERED_SIGN_ACTION&&m6Entrant(r))return reject('M6 Signs use the next simulation tick');
   if(cmd.action===BUFFERED_SIGN_ACTION){try{const proof=requestDelay(s,r,cmd.sign);emit(s,"SIGN_DELAY_REQUESTED",[r.id],proof);return true;}catch(error){return reject(error.message);}}
   if (cmd.action === "queue") {
     if (
@@ -22,6 +24,7 @@ export function signCommand(s, cmd) {
       (cmd.sign === "Engage Rivals" && s.format === "Pure")
     )
       return reject("Sign illegal for format");
+    if(m6Entrant(r)&&(r.signs.active===cmd.sign&&!r.signs.pending||r.signs.pending===cmd.sign)){emit(s,'SIGN_UNCHANGED',[r.id],{sign:cmd.sign,remaining:r.signs.remaining});return true;}
     if (!r.signs.remaining) return reject("No sign uses remaining");
     r.signs.remaining--;
     r.signs.pending = cmd.sign;
@@ -33,14 +36,14 @@ export function signCommand(s, cmd) {
     r.signs.pending = null;
     emit(s, "SIGN_CANCELED", [r.id], { remaining: r.signs.remaining });
   } else if (cmd.action === "lower") {
-    r.signs.active = null;
+    r.signs.active = null;if(m6Entrant(r))r.signs.pending=null;
     r.ai.nextDecision = s.tick;
     emit(s, "SIGN_LOWERED", [r.id]);
   } else return reject("Unknown sign action");
   return true;
 }
 export function activateSign(s, r, metadata = null) {
-  if (r.status !== "Racing" || !r.signs.pending) return;
+  if (r.status !== "Racing" || !r.signs.pending) return;if(m6Entrant(r)&&metadata?.m6Boundary!==true)return;
   r.signs.active = r.signs.pending;
   r.signs.pending = null;
   r.ai.nextDecision = s.tick;

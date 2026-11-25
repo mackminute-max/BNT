@@ -1,0 +1,11 @@
+✔ M6 native bookmaker samples use independent seeds and leave official setup unchanged (405.783136ms)
+✔ M6 stake is native treasury atomic, bounded, quote checked and exactly once (1566.845358ms)
+✔ M6 win/loss/DNF/void and dead-heat payouts use official classification only (0.355494ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5427.716735

@@ -1,0 +1,27 @@
+✔ M6 independently validated new package traditional (3670.254237ms)
+✔ M6 independently validated new package beastmaster (2567.22881ms)
+✔ M6 independently validated new package mechanist (2421.130504ms)
+✔ M6 independently validated new package veteran (2584.190861ms)
+✔ M6 independently validated new package scrappy (2806.59086ms)
+✔ M6 Owner sex is visual-only and never changes generated assets or probabilities (5525.147656ms)
+✔ M6 invalid Owner identity rejects {"sex":"unspecified"} (0.336486ms)
+✔ M6 invalid Owner identity rejects {"sex":"other"} (0.123282ms)
+✔ M6 invalid Owner identity rejects {"ancestry":"A99"} (0.171172ms)
+✔ M6 invalid Owner identity rejects {"nationality":"N9"} (0.234215ms)
+✔ M6 invalid Owner identity rejects {"nationality":"N5","startingNation":"N5"} (0.116662ms)
+✔ M6 invalid Owner identity rejects {"nationality":"N3","startingNation":"N1"} (0.066598ms)
+✔ M6 snapshot preserves native fields; corruption/unsupported financial state rejects (24.997641ms)
+✔ M6 failed write and stale request cannot grant or charge a purchase; retry once (76.863781ms)
+✔ M6 bounded acknowledgments reject evicted requests by absolute revision (2759.287345ms)
+✔ M6 national intro preserves two-event economy, actual three-lap oval and clear weather (249.445814ms)
+✔ M6 original board and market do not reroll on read or rejected nation entry (145.176354ms)
+✔ M6 synthetic progression helper: fixed tier order and seven wins, no Bannerfall fabrication (851.313728ms)
+✔ M6 completed national awards round once in aggregate; repeat LP removed (0.609448ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22714.304857

@@ -1,0 +1,37 @@
+{
+  "authority": "Actual native simulator, reducers and live capability proof in isolated Map; not a browser durability claim",
+  "races": [
+    {
+      "tick": 2022,
+      "status": "Ended"
+    },
+    {
+      "tick": 2397,
+      "status": "Ended"
+    }
+  ],
+  "schema": 8,
+  "summaries": [
+    {
+      "id": "m6-run-1-b95fb8e6c072c5ee6e3bba51",
+      "sequence": 1,
+      "nationId": "N1",
+      "type": "intro",
+      "name": "First Dustroad Cup",
+      "placement": 1,
+      "won": true,
+      "starts": 2,
+      "raceWins": 2,
+      "raceLosses": 0,
+      "dnf": 0,
+      "podiums": 2,
+      "grossGold": 240,
+      "netGold": 120,
+      "reputation": 110,
+      "withdrawal": null
+    }
+  ],
+  "bytes": 197652,
+  "records": 1,
+  "coldReload": true
+}

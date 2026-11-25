@@ -1,0 +1,176 @@
+[
+  {
+    "evidence": "node-final",
+    "command": "npm test",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "node-frozen",
+    "command": "npm test",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "m6-protected-final",
+    "command": "node --test tests/m6-*.test.js",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "sundaran-registration",
+    "command": "node scripts/m6/sundaran-registration.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "frozen-targeted",
+    "command": "node --test tests/m6-*.test.js tests/e5-d-m3-ui.test.js tests/e5-d-m3-ui-p1.test.js",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "smoke-packaged-frozen",
+    "command": "node scripts/m6/smoke-browser.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "clock-m6",
+    "command": "node scripts/m6/clock-parity.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "retention-idb",
+    "command": "node scripts/m6/retention-idb.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "organic-prestige",
+    "command": "node scripts/m6/organic-prestige.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "prestige-retry",
+    "command": "node scripts/m6/prestige-retry.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "m6-current-final",
+    "command": "node --test tests/m6-*.test.js",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "references-frozen",
+    "command": "node scripts/m6/references.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "clock-final",
+    "command": "node scripts/m6/clock-parity.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "worker-faults-final",
+    "command": "node scripts/m6/worker-faults.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "idb-final",
+    "command": "node scripts/m6/idb-proof.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "real-quota",
+    "command": "node scripts/m6/real-quota.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "smoke-final",
+    "command": "node scripts/m6/smoke-browser.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "den-browser-final",
+    "command": "node scripts/m6/den-browser.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "file-browser",
+    "command": "node scripts/m6/file-browser.mjs",
+    "exit": 1,
+    "status": "BLOCKED"
+  },
+  {
+    "evidence": "repeated-native-final",
+    "command": "node scripts/m6/repeated-native.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "largest-native-final",
+    "command": "node scripts/m6/largest-native.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "matched-balance",
+    "command": "node scripts/m6/matched-balance.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "capacity-current",
+    "command": "node scripts/m6/capacity-current.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "starter-boundaries",
+    "command": "node scripts/m6/starter-boundaries.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "accepted-regressions",
+    "command": "node scripts/m6/accepted-regressions.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "controlled-performance",
+    "command": "node scripts/m6/controlled-performance.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "build-repro-1",
+    "command": "node scripts/m6/build.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "build-repro-2",
+    "command": "node scripts/m6/build.mjs",
+    "exit": 0,
+    "status": "PASS"
+  },
+  {
+    "evidence": "build-byte-identity",
+    "command": "cmp /tmp/BNT-M6-build-1.html dist/Blood-and-Thunder-M6-Playable.html",
+    "exit": 0,
+    "status": "PASS"
+  }
+]

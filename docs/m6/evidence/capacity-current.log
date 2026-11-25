@@ -1,0 +1,85 @@
+{
+  synthetic: true,
+  championships: 10,
+  raceSummaryEquivalent: 100,
+  bytes: 159375,
+  logicalLimitBytes: 8388608,
+  validateMs: 15.45426100000077,
+  encodeMs: 37.683263999999326,
+  coldReadMs: 26.49979600000006,
+  memory: {
+    rss: 231514112,
+    heapTotal: 172511232,
+    heapUsed: 98410784,
+    external: 3429350,
+    arrayBuffers: 1700164
+  }
+}
+{
+  synthetic: true,
+  championships: 25,
+  raceSummaryEquivalent: 250,
+  bytes: 195912,
+  logicalLimitBytes: 8388608,
+  validateMs: 19.33694099999957,
+  encodeMs: 51.07434099999955,
+  coldReadMs: 18.32960699999967,
+  memory: {
+    rss: 232620032,
+    heapTotal: 174886912,
+    heapUsed: 80322008,
+    external: 3817945,
+    arrayBuffers: 1898624
+  }
+}
+{
+  synthetic: true,
+  championships: 50,
+  raceSummaryEquivalent: 500,
+  bytes: 192980,
+  logicalLimitBytes: 8388608,
+  validateMs: 26.017283999999563,
+  encodeMs: 40.72248800000125,
+  coldReadMs: 21.62293999999929,
+  memory: {
+    rss: 233136128,
+    heapTotal: 176046080,
+    heapUsed: 59271128,
+    external: 3448351,
+    arrayBuffers: 1529030
+  }
+}
+{
+  synthetic: true,
+  championships: 100,
+  raceSummaryEquivalent: 1000,
+  bytes: 201235,
+  logicalLimitBytes: 8388608,
+  validateMs: 17.467835999999807,
+  encodeMs: 22.71031799999946,
+  coldReadMs: 26.40075599999909,
+  memory: {
+    rss: 233607168,
+    heapTotal: 177008640,
+    heapUsed: 104964616,
+    external: 4198123,
+    arrayBuffers: 2278802
+  }
+}
+{
+  synthetic: true,
+  championships: 500,
+  raceSummaryEquivalent: 5000,
+  bytes: 325934,
+  logicalLimitBytes: 8388608,
+  validateMs: 20.94795200000044,
+  encodeMs: 30.966221999999107,
+  coldReadMs: 57.630145000000994,
+  memory: {
+    rss: 236060672,
+    heapTotal: 178688000,
+    heapUsed: 87294936,
+    external: 4590129,
+    arrayBuffers: 2670808
+  }
+}

@@ -10,7 +10,8 @@ export function prototypeRally(category,seed){
  const course=generateRally({seed,category}),fractions=({short:[1/2],medium:[1/3,2/3],long:[1/4,1/2,3/4]})[category];
  const length=course.segments.reduce((n,s)=>n+s.length,0);course.signPointPolicy={version:1,category};course.checkpoints=fractions.map((f,i)=>({id:'SP'+(i+1),distance:length*f}));return normalizeCourse(course);
 }
-export function raceSetup({course='short-oval',seed=145,format='Pure',weather='Clear',build='baseline',value=55,coaching=null,fieldSize=8,laps=2,pacing='competitive',personality='native'}={}){
+export function raceSetup({course='short-oval',seed=145,format='Pure',weather='Clear',build='baseline',value=55,coaching=null,fieldSize=8,laps=2,pacing='competitive',personality='native',nativeSetup=null}={}){
+ if(nativeSetup!==null){if(!(typeof BNT_M6_BUILD!=='undefined'&&BNT_M6_BUILD))throw Error('Owned practice setup unavailable');const native=createRace(nativeSetup);if(native.entrants.length!==1||native.setup.course!=='short-oval'||native.config.laps!==3||native.format!=='Pure'||native.championshipContext||native.entrants[0].progressionContext?.abilityId!==null)throw Error('Invalid owned practice setup');return {setup:native.setup,changes:[]};}
  if(!Number.isInteger(fieldSize)||fieldSize<1||fieldSize>8)throw Error('Field must contain 1..8 entrants');
  if(!Number.isFinite(value)||value<0||value>100)throw Error('Base attributes must be 0..100');
  const profile=pacingProfiles[pacing];if(!profile)throw Error('Unknown prototype pacing profile');

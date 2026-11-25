@@ -1,3 +1,4 @@
+import {requireMarketGrade} from '../m6/markets.js';
 import {regionalQuoteState} from '../m5/d2/markets.js';
 import {validateStateV3,SCHEMA3_FIELDS} from '../economy/schema3.js';
 import {validateGraph3} from '../economy/validation.js';
@@ -23,7 +24,7 @@ export function buildCycleBase(origin,request){
  next.cycles.manifestDigest=fingerprint({management:next.management,rulesVersion:RULES,sourceFingerprint:request.sourceFingerprint});return next;
 }
 export function previewCycles(origin){validateStateV3(origin);return freeze({sourceFingerprint:fingerprint(origin),rulesVersion:RULES,sourceSchema:3,targetSchema:4,expectedRevision:origin.revision,expectedMaintenanceRevision:origin.maintenanceRevision,warning:'No cycle, income, wages, recovery or assets are granted by migration.'});}
-export function quoteEconomy4(s,type,payload){s=regionalQuoteState(s,type,payload);restrict(s,type);if(type==='personnel.terminate'){const p=s.management.registries.personnel[payload.personId]??s.management.registries.specialists[payload.personId];if(p&&s.management.registries.contracts[p.references.contract[0]]?.emergency)throw Error('Emergency contract has no ordinary termination terms; explicitly release after expiry');}return quoteEconomy({...s,schema:3},type,payload);}
+export function quoteEconomy4(s,type,payload){requireMarketGrade(s,type,payload);s=regionalQuoteState(s,type,payload);restrict(s,type);if(type==='personnel.terminate'){const p=s.management.registries.personnel[payload.personId]??s.management.registries.specialists[payload.personId];if(p&&s.management.registries.contracts[p.references.contract[0]]?.emergency)throw Error('Emergency contract has no ordinary termination terms; explicitly release after expiry');}return quoteEconomy({...s,schema:3},type,payload);}
 function execute4(s,tx,{historical=false,completion=null}={}){
  restrict(s,tx.type);
  if(tx.commandVersion===3){

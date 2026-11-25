@@ -1,0 +1,1066 @@
+{
+  "groups": [
+    "Only bottom developer entry; contextual start action",
+    "Five-package pathway and explicit existing compatibility/durable activation",
+    "Real assembled lineup and authored identities on existing23-offer market",
+    "Contextual purchase creates actual owned asset; identity and price survive durable reload",
+    "Purchased beast participates in legal RU; duplicate selection rejected",
+    "Workshop improvement uses original quote/capacity; real specialist offers discoverable",
+    "Dedicated pages, no career/native mutation on entry/navigation/return; player page retained",
+    "Original Component and Bulk all-RU/wildcard edits remain operational, not career edits",
+    "Original controlled M2 treasury editor persists irreversible provenance",
+    "Every original developer control ID remains connected in the new workspace",
+    "All seven player screens at1920 and1366; bottom entry always visible and no horizontal overflow",
+    "Offline exact accepted P2.2 practice survives developer navigation without restart or career effects",
+    "Active championship keeps contextual management read-only and inspectable without progression"
+  ],
+  "errors": [],
+  "inventory": [
+    {
+      "id": "devReturn",
+      "page": "workspace",
+      "connected": true
+    },
+    {
+      "id": "componentScope",
+      "page": "dev-component",
+      "connected": true
+    },
+    {
+      "id": "componentObject",
+      "page": "dev-component",
+      "connected": true
+    },
+    {
+      "id": "componentField",
+      "page": "dev-component",
+      "connected": true
+    },
+    {
+      "id": "componentValue",
+      "page": "dev-component",
+      "connected": true
+    },
+    {
+      "id": "componentMode",
+      "page": "dev-component",
+      "connected": true
+    },
+    {
+      "id": "applyComponent",
+      "page": "dev-component",
+      "connected": true
+    },
+    {
+      "id": "e4Migrate",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Reload",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Repair",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Restart",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Enable",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Offers",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Offer",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Register",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4-coach-aggression",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4-coach-conservation",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4-coach-positioning",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4-coach-riskTolerance",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Coach",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Start",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Play",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Pause",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Step",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Speed",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Cadence",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Settings",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Sign",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Queue",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Lower",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Publish",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Retry",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Withdraw",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Backup",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Legacy",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4RestoreFile",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4Restore",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "e4ResumeRestore",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "careerOwnerName",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "careerName",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "careerCreate",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "careerMigrate",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "careerExport",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "careerAcknowledge",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "careerImportFile",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "careerImportMigrate",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "careerImportApply",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "careerRecover",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "careerRawExport",
+      "page": "dev-save",
+      "connected": true
+    },
+    {
+      "id": "stableNewCareer",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "stablePackage",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "stableInitialize",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "stableDriver",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "stableBeastA",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "stableBeastB",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "stableChariot",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "stableAssemble",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "stableDisassemble",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "cyclePreviewMigration",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "cycleConfirmMigration",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "cyclePreviewSettlement",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "cycleConfirmSettlement",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "cyclePayment",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "cyclePay",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "cyclePerson",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "cycleTerm",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "cycleRenew",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "cycleResolveAssignment",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "cycleRelease",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "cycleEmergency",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "cycleFailure",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "economyPreviewMigration",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "economyConfirmMigration",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "economyExportPreview",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "economyAction",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "economyOffer",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "economyTerm",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "economyAsset",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "economyUpgrade",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "economyService",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "economyAmount",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "economyAttribute",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "economyPoints",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "economyCommit",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champFoundation",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champEnable",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champEnableE3",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champRetry",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champOfferSelect",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champRegister",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champStart",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champStep",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champComplete",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champStage",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champWithdraw",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champ-aggression",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champ-conservation",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champ-positioning",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champ-riskTolerance",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champApplyCoach",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champSign",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champQueue",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "champLower",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "careerTreasuryDelta",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "careerEditReason",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "careerAdjust",
+      "page": "dev-career",
+      "connected": true
+    },
+    {
+      "id": "parameterGroup",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "parameterField",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "parameterValue",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "parameterMode",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "applyParameter",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "surfaceSegment",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "surfaceField",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "surfaceValue",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "applySurface",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "setupJSON",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "applySetup",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "resetSetup",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "captureSetup",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "saveSetup",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "loadSetup",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "exportSetup",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "setupFile",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "batchSeeds",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "batchRun",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "batchCancel",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "batchExport",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "raceKind",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "trackPreset",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "lapCount",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "seed",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "weather",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "format",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "reset",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "play",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "step",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "speed",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "rallySeed",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "rallyCategory",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "rallyTerrain",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "rallyTurns",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "rallyComplexity",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "regenerateRally",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "cameraMode",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "sign",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "queueSign",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "cancelSign",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "lowerSign",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "resultsView",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "exportResults",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "replayFile",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "verifyReplay",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "restartReplay",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "signStrength",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "fatigueRate",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "damageScale",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "incidentRate",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "complete",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "export",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "commentaryEnabled",
+      "page": "dev-race",
+      "connected": true
+    },
+    {
+      "id": "fullLog",
+      "page": "dev-logs",
+      "connected": true
+    },
+    {
+      "id": "inspect",
+      "page": "dev-logs",
+      "connected": true
+    }
+  ],
+  "layouts": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "page": "overview"
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "page": "roster"
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "page": "facilities"
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "page": "finances"
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "page": "championships"
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "page": "records"
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "page": "saves"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "page": "overview"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "page": "roster"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "page": "facilities"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "page": "finances"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "page": "championships"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "page": "records"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "page": "saves"
+    }
+  ],
+  "file": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///workspace/BNT/dist/Blood-and-Thunder-E5-C1-Playable.html\nCall log:\n\u001b[2m  - navigating to \"file:///workspace/BNT/dist/Blood-and-Thunder-E5-C1-Playable.html\", waiting until \"load\"\u001b[22m\n",
+  "originalControlIds": [
+    "raceKind",
+    "trackPreset",
+    "lapCount",
+    "seed",
+    "weather",
+    "format",
+    "reset",
+    "play",
+    "step",
+    "speed",
+    "rallySeed",
+    "rallyCategory",
+    "rallyTerrain",
+    "rallyTurns",
+    "rallyComplexity",
+    "regenerateRally",
+    "cameraMode",
+    "sign",
+    "queueSign",
+    "cancelSign",
+    "lowerSign",
+    "resultsView",
+    "exportResults",
+    "replayFile",
+    "verifyReplay",
+    "restartReplay",
+    "signStrength",
+    "fatigueRate",
+    "damageScale",
+    "incidentRate",
+    "complete",
+    "export",
+    "fullLog",
+    "commentaryEnabled",
+    "inspect",
+    "componentScope",
+    "componentObject",
+    "componentField",
+    "componentValue",
+    "componentMode",
+    "applyComponent",
+    "parameterGroup",
+    "parameterField",
+    "parameterValue",
+    "parameterMode",
+    "applyParameter",
+    "surfaceSegment",
+    "surfaceField",
+    "surfaceValue",
+    "applySurface",
+    "e4Migrate",
+    "e4Reload",
+    "e4Repair",
+    "e4Restart",
+    "e4Enable",
+    "e4Offers",
+    "e4Offer",
+    "e4Register",
+    "e4-coach-aggression",
+    "e4-coach-conservation",
+    "e4-coach-positioning",
+    "e4-coach-riskTolerance",
+    "e4Coach",
+    "e4Start",
+    "e4Play",
+    "e4Pause",
+    "e4Step",
+    "e4Speed",
+    "e4Cadence",
+    "e4Settings",
+    "e4Sign",
+    "e4Queue",
+    "e4Lower",
+    "e4Publish",
+    "e4Retry",
+    "e4Withdraw",
+    "e4Backup",
+    "e4Legacy",
+    "e4RestoreFile",
+    "e4Restore",
+    "e4ResumeRestore",
+    "careerOwnerName",
+    "careerName",
+    "careerCreate",
+    "careerMigrate",
+    "careerTreasuryDelta",
+    "careerEditReason",
+    "careerAdjust",
+    "careerExport",
+    "careerAcknowledge",
+    "careerImportFile",
+    "careerImportMigrate",
+    "careerImportApply",
+    "careerRecover",
+    "careerRawExport",
+    "stableNewCareer",
+    "stablePackage",
+    "stableInitialize",
+    "stableDriver",
+    "stableBeastA",
+    "stableBeastB",
+    "stableChariot",
+    "stableAssemble",
+    "stableDisassemble",
+    "cyclePreviewMigration",
+    "cycleConfirmMigration",
+    "cyclePreviewSettlement",
+    "cycleConfirmSettlement",
+    "cyclePayment",
+    "cyclePay",
+    "cyclePerson",
+    "cycleTerm",
+    "cycleRenew",
+    "cycleResolveAssignment",
+    "cycleRelease",
+    "cycleEmergency",
+    "cycleFailure",
+    "economyPreviewMigration",
+    "economyConfirmMigration",
+    "economyExportPreview",
+    "economyAction",
+    "economyOffer",
+    "economyTerm",
+    "economyAsset",
+    "economyUpgrade",
+    "economyService",
+    "economyAmount",
+    "economyAttribute",
+    "economyPoints",
+    "economyCommit",
+    "champFoundation",
+    "champEnable",
+    "champEnableE3",
+    "champRetry",
+    "champOfferSelect",
+    "champRegister",
+    "champStart",
+    "champStep",
+    "champComplete",
+    "champStage",
+    "champWithdraw",
+    "champ-aggression",
+    "champ-conservation",
+    "champ-positioning",
+    "champ-riskTolerance",
+    "champApplyCoach",
+    "champSign",
+    "champQueue",
+    "champLower",
+    "setupJSON",
+    "applySetup",
+    "resetSetup",
+    "captureSetup",
+    "saveSetup",
+    "loadSetup",
+    "exportSetup",
+    "setupFile",
+    "batchSeeds",
+    "batchRun",
+    "batchCancel",
+    "batchExport"
+  ]
+}

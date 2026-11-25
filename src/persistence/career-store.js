@@ -1,3 +1,4 @@
+import {M6CareerStore} from './m6/store.js';
 import {M5CareerStore} from './m5-store.js';
 import {selectActiveTeam} from './active-team.js';
 import {assertPresentationRestore,radioPreference,validateCareerPresentation,newCareerPresentation} from './career-presentation.js';
@@ -18,7 +19,7 @@ import { SAVE_KEY, inspectEnvelope, parseEnvelope, makeEnvelope } from './envelo
 // Never writes on load, silently selects recovery, or mutates an authoritative race.
 export class CareerStore {
   constructor(storage) {
-    try{if(storage.getItem(SAVE_KEY)?.includes('"kind":"BNT-M5-current-save"'))return new M5CareerStore(storage);}catch{}
+    try{if(storage.getItem(SAVE_KEY)?.includes('"kind":"BNT-M6-current-save"'))return new M6CareerStore(storage);if(storage.getItem(SAVE_KEY)?.includes('"kind":"BNT-M5-current-save"'))return new M5CareerStore(storage);}catch{}
     this.presentation = null; this.storage = storage; this.mode = 'automatic'; this.current = null; this.recovery = null;
     this.marks = []; this.protectedHistory = []; this.maintenanceClock = 0; this.schema2Session = false; this.raw = null; this.quarantine = null; this.problem = '';
     this.requiresCheckpoint = false; this.exportToken = null; this.recoveryPending = false;

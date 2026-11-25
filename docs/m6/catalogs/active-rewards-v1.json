@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "status": "provisional implementation defaults",
+  "chargesPerRace": 1,
+  "slotCount": 1,
+  "durationUnit": "simulation seconds converted to integer ticks using native tick rate",
+  "abilities": [
+    {
+      "id": "thunder-burst",
+      "name": "Thunder Burst",
+      "effect": "maxSpeed +10%; acceleration +15%",
+      "durationSeconds": 5
+    },
+    {
+      "id": "second-wind",
+      "name": "Second Wind",
+      "effect": "continuous and action beast fatigue expenditure -50%",
+      "durationSeconds": 8
+    },
+    {
+      "id": "brace",
+      "name": "Brace for Impact",
+      "effect": "incoming contact/collision damage -30%",
+      "durationSeconds": 6
+    },
+    {
+      "id": "perfect-line",
+      "name": "Perfect Line",
+      "effect": "handling and lateral control +15%",
+      "durationSeconds": 6
+    },
+    {
+      "id": "savage-assault",
+      "name": "Savage Assault",
+      "effect": "offensive contest effectiveness +20%; Combat only",
+      "durationSeconds": 5
+    },
+    {
+      "id": "absolute-focus",
+      "name": "Absolute Focus",
+      "effect": "native decision error probability -50%",
+      "durationSeconds": 8
+    },
+    {
+      "id": "catch-breath",
+      "name": "Catch Your Breath",
+      "effect": "immediate remove up to 10 fatigue points per beast; no injury healing",
+      "durationSeconds": 0
+    },
+    {
+      "id": "steady-team",
+      "name": "Steady the Team",
+      "effect": "eligible control recovery rate +25%",
+      "durationSeconds": 6
+    }
+  ]
+}

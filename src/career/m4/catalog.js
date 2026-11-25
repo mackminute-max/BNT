@@ -35,5 +35,5 @@ export const LEGACY_UPGRADES=freeze([
  {id:'patron',name:'Influential Patron',cost:5,kind:'active',icon:'✦',description:'+10% championship Gold prizes, rounded down once; maximum 1,000 bonus Gold per championship.',effects:[]},
  {id:'strategist',name:'Master Strategist',cost:6,kind:'active',icon:'⚑',description:'+1 Strategy Sign opportunity per race for your driver.',effects:[]}
 ]);
-export function upgrade(id,state=null){const d=LEGACY_UPGRADES.find(d=>d.id===id);if(!d)throw Error('Unknown Legacy Upgrade');return state?.schema===7&&id==='recruiters'?{...d,cost:6}:d;}
+export function upgrade(id,state=null){const d=LEGACY_UPGRADES.find(d=>d.id===id);if(!d)throw Error('Unknown Legacy Upgrade');return [7,8].includes(state?.schema)&&id==='recruiters'?{...d,cost:6,...(state?.schema===8?{description:'One extra driver of your highest unlocked market grade now and at each qualifying Home Market renewal; normal hiring costs apply.'}:{})}:d;}
 export const BONUS_TIERS=freeze({dustroad:1,ironwheel:2,bannerfall:3,crownfire:4,'thunder-crown':5,'iron-gauntlet':5});

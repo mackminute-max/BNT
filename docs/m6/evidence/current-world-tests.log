@@ -1,0 +1,23 @@
+✔ M6 independently validated new package traditional (3463.601678ms)
+✔ M6 independently validated new package beastmaster (2585.234739ms)
+✔ M6 independently validated new package mechanist (2416.914514ms)
+✔ M6 independently validated new package veteran (2638.813711ms)
+✔ M6 independently validated new package scrappy (2886.576186ms)
+✔ M6 Owner sex is visual-only and never changes generated assets or probabilities (5257.245186ms)
+✔ M6 invalid Owner identity rejects {"sex":"unspecified"} (0.330217ms)
+✔ M6 invalid Owner identity rejects {"sex":"other"} (0.1566ms)
+✔ M6 invalid Owner identity rejects {"ancestry":"A99"} (0.103683ms)
+✔ M6 invalid Owner identity rejects {"nationality":"N9"} (0.147707ms)
+✔ M6 invalid Owner identity rejects {"nationality":"N5","startingNation":"N5"} (0.124173ms)
+✔ M6 invalid Owner identity rejects {"nationality":"N3","startingNation":"N1"} (0.071756ms)
+✔ M6 snapshot preserves native fields; corruption/unsupported financial state rejects (11.384464ms)
+✔ M6 failed write and stale request cannot grant or charge a purchase; retry once (27.196482ms)
+✔ M6 bounded acknowledgments reject evicted requests by absolute revision (1153.002934ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20685.191218

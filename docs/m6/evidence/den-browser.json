@@ -1,0 +1,20 @@
+{
+  "result": "PASS",
+  "groups": [
+    "ordinary packaged controls obtain native odds and commit spectator stake",
+    "browser reload restarts frozen spectator event with accepted stake preserved",
+    "actual native spectator event 1 settles through packaged skip control",
+    "actual native spectator event 2 settles through packaged skip control",
+    "actual native spectator event 3 settles through packaged skip control"
+  ],
+  "errors": [],
+  "totals": {
+    "staked": 10,
+    "paid": 36,
+    "bets": 1,
+    "wins": 1,
+    "losses": 0,
+    "voids": 0,
+    "viewed": 3
+  }
+}

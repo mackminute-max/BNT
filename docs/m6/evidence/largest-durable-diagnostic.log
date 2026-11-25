@@ -1,0 +1,17 @@
+{"event":1,"format":"Pure","course":"Rally","ticks":1873,"status":"Ended","withdrawal":null,"careerBytes":476094,"sessionBytes":2966495,"retainedBytes":3452123,"ms":32339.759465}
+{"event":2,"format":"Combat","course":"Rally","ticks":1968,"status":"Ended","withdrawal":null,"careerBytes":494586,"sessionBytes":3735248,"retainedBytes":7215497,"ms":34000.917979}
+{"event":3,"format":"Pure","course":"Rally","ticks":1999,"status":"Ended","withdrawal":null,"careerBytes":520763,"sessionBytes":2780004,"retainedBytes":10031372,"ms":28417.429830999987}
+{"event":4,"format":"Combat","course":"Rally","ticks":2005,"status":"Ended","withdrawal":null,"careerBytes":551149,"sessionBytes":3382697,"retainedBytes":13454133,"ms":36116.585316}
+{"event":5,"format":"Pure","course":"Rally","ticks":1789,"status":"Ended","withdrawal":null,"careerBytes":574083,"sessionBytes":2624546,"retainedBytes":16111284,"ms":26138.480057000008}
+file:///workspace/BNT/src/persistence/race/session-store.js:53
+    if(typeof text!=='string'||new TextEncoder().encode(text).length>MAX_CHECKPOINT_BYTES)throw Error('RECOVERY_REQUIRED: oversized race session');
+                                                                                                ^
+
+Error: RECOVERY_REQUIRED: oversized race session
+    at RaceSessionStore.decode (file:///workspace/BNT/src/persistence/race/session-store.js:53:97)
+    at RaceSessionStore.publish (file:///workspace/BNT/src/persistence/race/session-store.js:96:63)
+    at RaceSessionStore.apply (file:///workspace/BNT/src/persistence/race/session-store.js:127:10)
+    at ChampionshipRunner.advance (file:///workspace/BNT/src/career/championships/orchestrator.js:13:140)
+    at file:///workspace/BNT/scripts/m6/largest-native.mjs:2:1227
+
+Node.js v24.22.1

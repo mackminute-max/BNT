@@ -1,0 +1,25 @@
+requirement,evidence,raw_exit,disposition
+Current-state atomic birth/cold restore,worker-faults-final,0,PASS
+IDB CAS/previous/GC,idb-final,0,PASS
+Real quota/restore abort,real-quota,0,PASS
+Packaged career/Practice/region/full championship,smoke-final,0,PASS
+Packaged AI-only Den,den-browser-final,0,PASS
+Eight actual championships,repeated-native-final,0,PASS
+Seven-event eight-field native fixture,largest-native-final,0,PASS
+Zero/one starters,starter-boundaries,0,PASS
+Historical/payroll references,references-frozen,0,PASS
+Clock Node/Chromium parity,clock-final,0,PASS
+Synthetic compact capacity,capacity-current,0,PASS
+Matched native comparisons,matched-balance,0,PASS
+Final UI/M6 targeted suite,frozen-targeted,0,PASS
+"Native retained records, real IDB backup/restore/compaction",retention-idb,0,PASS
+Organic Prestige challenge,organic-prestige,0,PASS
+Post-loss fixed challenge/retry fee,prestige-retry,0,PASS
+M6 eight-ability browser parity,clock-m6,0,PASS
+Final artifact packaged lifecycle,smoke-packaged-frozen,0,PASS
+Complete regression suite,node-final,0,PASS
+Fresh full suite after Sundaran correction,node-frozen,0,PASS
+Final M6 validation suite,m6-protected-final,0,PASS
+Seven-victory authoritative Sundaran registration,sundaran-registration,0,PASS
+Offline managed file,file-browser,1,BLOCKED
+Reproducible build,build-byte-identity,0,PASS

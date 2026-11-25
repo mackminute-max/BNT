@@ -1,3 +1,4 @@
+import {validateM6} from './m6/schema.js';
 import {validateCurrent,transactCurrent} from './m5/current.js';
 import {validateStateV6,withKnownHistoryV6,transactV6} from './championships/e5/schema6.js';
 import {validateE5Command,assertE5Restore} from './championships/e5/contracts.js';
@@ -17,7 +18,7 @@ export { migrateStateV1, revisionToken, assertRevision } from './schema2.js';
 export const CAREER_SCHEMA = 6;
 export const createCareer = legacy.createCareer;
 export function createUninitializedCareer(options) { return migrateStateV1(legacy.createCareer(options)); }
-export function validateState(state) { return state?.schema === 7 ? validateCurrent(state) : state?.schema === 6 ? validateStateV6(state) : state?.schema === 5 ? validateStateV5(state) : state?.schema === 4 ? validateStateV4(state) : state?.schema === 3 ? validateStateV3(state) : state?.schema === 2 ? validateStateV2(state) : legacy.validateState(state); }
+export function validateState(state) { return state?.schema === 8 ? validateM6(state) : state?.schema === 7 ? validateCurrent(state) : state?.schema === 6 ? validateStateV6(state) : state?.schema === 5 ? validateStateV5(state) : state?.schema === 4 ? validateStateV4(state) : state?.schema === 3 ? validateStateV3(state) : state?.schema === 2 ? validateStateV2(state) : legacy.validateState(state); }
 export function validateTransaction(tx) { return tx?.commandVersion === 5 ? validateE5Command(tx) : tx?.commandVersion === 4 ? validateControllerCommand(tx) : tx?.commandVersion === 3 ? validateCycleCommand(tx) : tx?.commandVersion === 2 ? validateEconomyCommand(tx) : tx && Object.hasOwn(tx, 'commandVersion') ? validateCommandV1(tx) : legacy.validateTransaction(tx); }
 export function withProvenance(state, marks, protectedHistory = []) {
   if (protectedHistory.some(e=>e.careerId===state.career.id && e.profileId!==state.profile.id)) throw Error('Career history belongs to a different Owner Profile');

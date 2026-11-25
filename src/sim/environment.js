@@ -1,3 +1,4 @@
+import {activeAbility} from './m6-interaction.js';
 import { utilityConfig } from "../ai/weights.js";
 import { location } from "../track/oval.js";
 import { clamp } from "../core/determinism.js";
@@ -113,10 +114,12 @@ export function integrateCondition(s, r, elapsed) {
       (1.5 - b.endurance / 100) *
       (1 + (100 - b.condition) / 100);
     if(r.affinityContext)generation/=r.affinityContext.multiplier;
-    const recovery =
+    if(activeAbility(s,r,'second-wind'))generation*=.5;
+    let recovery =
       exertion <= c.recoveryThreshold
         ? c.recoveryRate * w.recovery * (0.5 + b.endurance / 100)
         : 0;
+    if(activeAbility(s,r,'steady-team'))recovery*=1.25;
     b.fatigue = clamp(b.fatigue + (generation - recovery) * elapsed, 0, 100);
   }
   r.ru.driver.strain = clamp(

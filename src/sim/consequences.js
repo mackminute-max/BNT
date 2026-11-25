@@ -1,3 +1,4 @@
+import {activeAbility} from './m6-interaction.js';
 import {chargeAction} from './action-costs.js';
 import { resolveAction } from "../ai/telemetry.js";
 import { byId, clamp, random } from "../core/determinism.js";
@@ -368,11 +369,12 @@ export function flushImpacts(s, refresh) {
         protection *
         Math.max(0.1, s.environment.grip * surface.grip);
       const geometry = s.consequence[direction + "Geometry"] ?? 1;
-      const amount =
+      let amount =
         impact.amount === undefined
           ? (impact.energy * geometry * s.consequence.damageScale * share) /
             resistance
           : impact.amount / resistance;
+      if(['contact','ram','incident'].includes(impact.kind)&&activeAbility(s,live,'brace'))amount*=.7;
       effects.push({
         r: live,
         target,
@@ -486,9 +488,10 @@ export function resolveAttacks(s, intents, refresh) {
         defending: b.defending,
       });
     }
-    const attack =
+    let attack =
       a.derived.combat * c.attackSkillMultiplier +
       (drawConsequence(s, id, "attacker") * 2 - 1) * c.contestNoise;
+    if(activeAbility(s,a,'savage-assault'))attack*=1.2;
     const defense =
       b.ru.driver.driving * c.defenseDriving +
       b.derived.combat * c.defenseCombat +

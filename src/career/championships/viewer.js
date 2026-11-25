@@ -22,16 +22,16 @@ export class ChampionshipViewer {
    session.apply({id:message.id,expectedRevision:session.record.authority.value.revision,tick:s.tick,phase:'advance',ticks:message.ticks,commands:[]},{onStep:n=>this.capture(n,packet)});
   }else if(message.action==='sign'){
    if(activeChampionship(this.career.current).withdrawal)throw Error('Withdrawn player cannot control rivals');
-   if(!['queue','cancel','lower'].includes(message.signAction))throw Error('Invalid viewer Sign action');
+   if(!['queue','cancel','lower',...(s.entrants.find(r=>r.id===s.playerId)?.progressionContext?.version===2?['ability']:[])].includes(message.signAction))throw Error('Invalid viewer Sign action');
    const order=s.commands.length,eventStart=s.events.length;
    session.apply({id:message.id,expectedRevision:session.record.authority.value.revision,tick:s.tick,phase:'paused',ticks:0,commands:[{action:message.signAction,...(message.sign===undefined?{}:{sign:message.sign})}]});
-   const accepted=session.state.events.slice(eventStart).some(e=>e.type==='SIGN_QUEUED'||e.type==='SIGN_CANCELED'||e.type==='SIGN_LOWERED');
-   if(accepted&&message.signAction==='queue'){
+   const accepted=session.state.events.slice(eventStart).some(e=>e.type==='ABILITY_QUEUED'||e.type==='SIGN_UNCHANGED'||e.type==='SIGN_QUEUED'||e.type==='SIGN_CANCELED'||e.type==='SIGN_LOWERED');
+   if(accepted&&message.signAction==='queue'&&s.entrants.find(r=>r.id===s.playerId)?.progressionContext?.version!==2){
     const n=session.state,first=eligibleBoundary(n,{viewTick:message.view.tick,viewTime:message.view.time,preStart:message.preStart===true});
     if(first)session.apply({id:message.id+'-delay',expectedRevision:session.record.authority.value.revision,tick:n.tick,phase:'paused',ticks:0,commands:[{action:BUFFERED_SIGN_ACTION,sign:{version:1,sign:message.sign,queueOrder:order,viewTick:message.view.tick,viewTime:message.view.time,boundaryEventId:first.id,preStart:message.preStart===true}}]});
    }
    this.capture(session.state,packet,session.record.authority.value.revision);
-   packet.command={accepted,queueOrder:order,remaining:session.state.entrants.find(e=>e.id===session.state.playerId)?.signs.remaining,acceptanceTick:session.state.tick,acceptanceTime:session.state.time,reason:accepted?null:session.state.events.at(-1)?.effects?.reason??'Native command rejected'};
+   packet.command={accepted,...(s.entrants.find(r=>r.id===s.playerId)?.progressionContext?.version===2?{unchanged:session.state.events.slice(eventStart).some(e=>e.type==='SIGN_UNCHANGED')} : {}),queueOrder:order,remaining:session.state.entrants.find(e=>e.id===session.state.playerId)?.signs.remaining,acceptanceTick:session.state.tick,acceptanceTime:session.state.time,reason:accepted?null:session.state.events.at(-1)?.effects?.reason??'Native command rejected'};
   }else throw Error('Unknown career viewer operation');
   this.complete(session.state,packet);return packet;
  }

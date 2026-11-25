@@ -1,0 +1,30 @@
+{
+  "pass": true,
+  "scope": "Actual seven-event native retained records in real Chromium IDB and inline Worker; prior unlock/funding accelerated. Concurrent-load timings are diagnostics.",
+  "records": 8,
+  "logicalBytes": 14663715,
+  "commitMs": 6751.300000011921,
+  "readMs": 2272.5,
+  "validationMs": 31345.80000001192,
+  "backupMs": 23211.69999998808,
+  "restoreMs": 70318.69999998808,
+  "backupBytes": 29483815,
+  "compactRecords": 1,
+  "compactBytes": 435351,
+  "garbageCollection": {
+    "durable": true,
+    "removed": 0
+  },
+  "longestMainThreadMs": 6506,
+  "memory": {
+    "used": 210210720,
+    "total": 239373248
+  },
+  "estimate": {
+    "quota": 10737553408,
+    "usage": 135168,
+    "usageDetails": {
+      "indexedDB": 135168
+    }
+  }
+}

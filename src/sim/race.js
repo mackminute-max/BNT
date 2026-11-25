@@ -1,3 +1,4 @@
+import {m6Entrant,m6Boundary,abilityDerived} from './m6-interaction.js';
 import {applyAffinity,validateAffinityContext} from '../model/affinity.js';
 import {validateProgressionContext} from '../model/progression-context.js';
 import {beginActionCosts,chargeAction,flushActionCosts,endActionCosts} from './action-costs.js';
@@ -182,7 +183,8 @@ export function createRace({
       nextAttackTime: 0,
       reactionsRemaining: consequenceTuning.reactionBudget,
       defending: false,
-      signs: { remaining: e.progressionContext?Math.min(100,tuning.signUses+e.progressionContext.signBonus):tuning.signUses, pending: null, active: null },
+      ...(e.progressionContext?.version===2?{m6:{charges:e.progressionContext.abilityId?1:0,pendingAbility:null,activeAbility:null,throughTick:0}}:{}),
+      signs: { remaining: e.progressionContext?.version===2?(t.course&&!t.closed?t.checkpoints.length+1:c.laps)+e.progressionContext.signBonus:e.progressionContext?Math.min(100,tuning.signUses+e.progressionContext.signBonus):tuning.signUses, pending: null, active: null },
       ai: {
         nextDecision: 0,
         goal: "hold",
@@ -421,14 +423,14 @@ export function classification(s) {
 }
 function deriveAt(s, r) {
   const surface = location(r.q, r.lane, s.config, s.track).surface;
-  return applyPayrollControl(applyAffinity(derive(r.ru, {
+  return abilityDerived(s,r,applyPayrollControl(applyAffinity(derive(r.ru, {
     ...s.config,
     crowdMorale: s.environment.crowdMorale,
     grip: s.config.grip * s.environment.grip * surface.grip,
     speedReference:
       s.config.speedReference /
       (s.environment.rolling * surface.rollingResistance),
-  }),r.affinityContext,s.config),r.payrollContext);
+  }),r.affinityContext,s.config),r.payrollContext));
 }
 function randomDraw(s, ...keys) {
   s.rng.draws++;
@@ -919,6 +921,7 @@ export function step(s, commands = []) {
     if (s.consequences)
       for (const r of sorted(s)) updateControl(s, r, "Boundary condition");
     applyCommands(s, [...s.pendingOverrides.splice(0), ...commands]);
+    for(const r of sorted(s))if(m6Entrant(r)){m6Boundary(s,r);activateSign(s,r,{m6Boundary:true});if(s.driverMode!=='autonomous')r.derived=deriveAt(s,r);}
     if (s.status === "Ready") {
       s.status = "Running";
       emit(s, "RACE_STARTED", [], {

@@ -1,0 +1,26 @@
+✔ M6 independently validated new package traditional (3397.654915ms)
+✔ M6 independently validated new package beastmaster (2705.235689ms)
+✔ M6 independently validated new package mechanist (2394.335801ms)
+✔ M6 independently validated new package veteran (2611.076265ms)
+✔ M6 independently validated new package scrappy (2916.357177ms)
+✔ M6 Owner sex is visual-only and never changes generated assets or probabilities (5196.054232ms)
+✔ M6 invalid Owner identity rejects {"sex":"unspecified"} (0.369655ms)
+✔ M6 invalid Owner identity rejects {"sex":"other"} (0.146676ms)
+✔ M6 invalid Owner identity rejects {"ancestry":"A99"} (0.098996ms)
+✔ M6 invalid Owner identity rejects {"nationality":"N9"} (0.143541ms)
+✔ M6 invalid Owner identity rejects {"nationality":"N5","startingNation":"N5"} (0.08123ms)
+✔ M6 invalid Owner identity rejects {"nationality":"N3","startingNation":"N1"} (0.080378ms)
+✔ M6 snapshot preserves native fields; corruption/unsupported financial state rejects (23.941118ms)
+✔ M6 failed write and stale request cannot grant or charge a purchase; retry once (63.653224ms)
+✔ M6 bounded acknowledgments reject evicted requests by absolute revision (2259.15458ms)
+✔ M6 native bookmaker samples use independent seeds and leave official setup unchanged (473.36236ms)
+✔ M6 stake is native treasury atomic, bounded, quote checked and exactly once (1953.049639ms)
+✔ M6 win/loss/DNF/void and dead-heat payouts use official classification only (0.37282ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21828.972806

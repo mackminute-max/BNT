@@ -1,3 +1,4 @@
+import {readM6} from './m6/envelope.js';
 import {readCurrentEnvelope} from '../career/m5/envelope.js';
 import {validateCareerPresentation} from './career-presentation.js';
 import { isMaintenance } from '../career/economy/maintenance-history.js';
@@ -18,6 +19,7 @@ function unseal(record) {
 }
 export function inspectEnvelope(text) {
   if (typeof text !== 'string') throw Error('Invalid career save');
+  if(text.includes('"kind":"BNT-M6-current-save"'))return readM6(text);
   if(text.includes('"kind":"BNT-M5-current-save"'))return readCurrentEnvelope(text);
   const bytes = new TextEncoder().encode(text).length;
   if (bytes > MAX_IMPORT_BYTES) throw Error('Invalid or oversized career save');

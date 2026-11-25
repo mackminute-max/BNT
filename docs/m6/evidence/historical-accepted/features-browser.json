@@ -1,0 +1,21 @@
+{
+  "groups": [
+    "B opt-in defaults OFF; cancel creates no slot, sidecar or package",
+    "new UI opt-in atomically activates immutable B pin, default C ON and one unchanged grant",
+    "accessible C toggle persists across cold reload, independent of native state and B pin",
+    "real offers show authored driver/beast/chariot/equipment/staff identities; browsing preserves native species and mechanics",
+    "career-only JSON contains full sidecar; complete backup restores identical pin/settings into independent browser",
+    "version2 interrupted activation never exposes partial grant/pin; recovery, lost acknowledgment and conflicting opt-in retry verified",
+    "actual buffered native practice radio uses default C; live paused ON/OFF restores all native wording without new lines",
+    "actual old schema6 career defaults native OFF; explicit C opt-in leaves B/native biographies and exact mechanical state unchanged"
+  ],
+  "errors": [],
+  "dialogs": [],
+  "requests": [],
+  "faults": {
+    "recovered": true,
+    "duplicate": true,
+    "conflict": true
+  },
+  "result": "PASS"
+}

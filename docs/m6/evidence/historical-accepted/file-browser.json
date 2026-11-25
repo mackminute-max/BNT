@@ -1,0 +1,8 @@
+{
+  "browser": "156.0.8078.79",
+  "file": "/workspace/BNT/dist/Blood-and-Thunder-E5-D-M3-BC-P1-Playable.html",
+  "offline": true,
+  "requests": [],
+  "result": "BLOCKED",
+  "error": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///workspace/BNT/dist/Blood-and-Thunder-E5-D-M3-BC-P1-Playable.html\nCall log:\n\u001b[2m  - navigating to \"file:///workspace/BNT/dist/Blood-and-Thunder-E5-D-M3-BC-P1-Playable.html\", waiting until \"load\"\u001b[22m\n"
+}

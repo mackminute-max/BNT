@@ -1,3 +1,4 @@
+if(typeof BNT_M6_BUILD!=='undefined'&&BNT_M6_BUILD){globalThis.__BNT_M6__=true;globalThis.__BNT_M5__=true;}
 if(typeof BNT_M5_BUILD!=='undefined'&&BNT_M5_BUILD)globalThis.__BNT_M5__=true;
 if(typeof BNT_M4_BUILD!=='undefined'&&BNT_M4_BUILD)globalThis.__BNT_M4__=true;
 if(typeof BNT_M3UIP1_BUILD!=='undefined'&&BNT_M3UIP1_BUILD)globalThis.__BNT_M3_UI_P1__=true;

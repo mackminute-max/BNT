@@ -1,0 +1,7 @@
+import {validateM6} from '../../career/m6/schema.js';
+import {validateCareerPresentation} from '../career-presentation.js';
+import {sha256} from '../../career/economy/fingerprint.js';
+import {exact} from '../../career/legacy-state.js';
+export const M6_ENVELOPE='BNT-M6-current-save',M6_RECORD_LIMIT=8*1024*1024;
+export function envelopeM6(s,presentation){validateM6(s);validateCareerPresentation(presentation,s);const hash=sha256(JSON.stringify(s)),e={kind:M6_ENVELOPE,version:1,base:{value:s,hash},tail:[],currentHash:hash,presentation},text=JSON.stringify(e);if(new TextEncoder().encode(text).length>M6_RECORD_LIMIT)throw Error('M6 record bound exceeded; no state discarded');return {text,envelope:e};}
+export function readM6(text){if(typeof text!=='string'||new TextEncoder().encode(text).length>M6_RECORD_LIMIT)throw Error('Invalid/oversized M6 envelope');const e=JSON.parse(text);exact(e,['kind','version','base','tail','currentHash','presentation']);exact(e.base,['value','hash']);if(e.kind!==M6_ENVELOPE||e.version!==1||!Array.isArray(e.tail)||e.tail.length||e.base.hash!==e.currentHash||sha256(JSON.stringify(e.base.value))!==e.currentHash)throw Error('Unsupported/corrupt M6 envelope');validateM6(e.base.value);validateCareerPresentation(e.presentation,e.base.value);return {primary:e.base.value,presentation:e.presentation,envelope:e,errors:{},protectedHistory:[],marks:[],maintenanceClock:e.base.value.maintenanceRevision,recovery:null};}

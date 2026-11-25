@@ -1,0 +1,222 @@
+{
+  "baseline": "41ed977f56be53f690adc53622688dcb12609e38 exported read-only with git archive",
+  "comparison": "Identical seeds, configurations, input-free execution and exact old-rule checksums; warmup excluded",
+  "environment": {
+    "node": "v24.22.1",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "controlled": true,
+  "rows": [
+    {
+      "name": "one-short",
+      "field": 1,
+      "format": "Pure",
+      "warmTicks": 0,
+      "status": "Running",
+      "tick": 100,
+      "legacyChecksum": "fc641e39",
+      "raw100Ticks": {
+        "baseline": [
+          9.657839999999993,
+          11.162486999999999,
+          5.1144060000000025,
+          8.844932,
+          9.593065999999965
+        ],
+        "current": [
+          11.148877999999996,
+          6.02810199999999,
+          4.384510000000006,
+          9.194247999999988,
+          4.461624000000029
+        ],
+        "baselineMedian": 9.593065999999965,
+        "currentMedian": 6.02810199999999,
+        "preferredUnder100ms": true
+      },
+      "checkpointEncodeMs": 15.024226999999996,
+      "checkpointJSONMs": 0.05315900000005058,
+      "hashMs": 4.332042999999999,
+      "coldRestoreMs": 10.509124999999983,
+      "checkpointBytes": 25256,
+      "events": 13,
+      "commands": 0,
+      "observedNodeMemory": {
+        "rss": 61919232,
+        "heapTotal": 19976192,
+        "heapUsed": 12624096,
+        "external": 2147969,
+        "arrayBuffers": 170267
+      }
+    },
+    {
+      "name": "four-circuit",
+      "field": 4,
+      "format": "Combat",
+      "warmTicks": 0,
+      "status": "Running",
+      "tick": 100,
+      "legacyChecksum": "63518e19",
+      "raw100Ticks": {
+        "baseline": [
+          43.78584099999995,
+          14.612952000000007,
+          15.121309999999994,
+          21.811523999999963,
+          13.17189899999994
+        ],
+        "current": [
+          16.99451099999999,
+          16.52264500000001,
+          15.320433999999977,
+          19.393756000000053,
+          15.241506999999956
+        ],
+        "baselineMedian": 15.121309999999994,
+        "currentMedian": 16.52264500000001,
+        "preferredUnder100ms": true
+      },
+      "checkpointEncodeMs": 63.61814900000002,
+      "checkpointJSONMs": 0.741072000000031,
+      "hashMs": 20.963007999999945,
+      "coldRestoreMs": 53.751720999999975,
+      "checkpointBytes": 115014,
+      "events": 46,
+      "commands": 0,
+      "observedNodeMemory": {
+        "rss": 99450880,
+        "heapTotal": 50020352,
+        "heapUsed": 22430056,
+        "external": 2484035,
+        "arrayBuffers": 506293
+      }
+    },
+    {
+      "name": "eight-oval",
+      "field": 8,
+      "format": "Combat",
+      "warmTicks": 0,
+      "status": "Running",
+      "tick": 100,
+      "legacyChecksum": "4a5ba539",
+      "raw100Ticks": {
+        "baseline": [
+          25.44467099999997,
+          24.41045799999995,
+          28.278277000000003,
+          43.23867100000007,
+          46.83904499999994
+        ],
+        "current": [
+          25.256845999999996,
+          24.51551299999994,
+          32.317679,
+          64.13857499999995,
+          21.031959000000143
+        ],
+        "baselineMedian": 28.278277000000003,
+        "currentMedian": 25.256845999999996,
+        "preferredUnder100ms": true
+      },
+      "checkpointEncodeMs": 81.22445599999992,
+      "checkpointJSONMs": 0.3418540000000121,
+      "hashMs": 19.520471999999927,
+      "coldRestoreMs": 50.90189299999997,
+      "checkpointBytes": 195046,
+      "events": 91,
+      "commands": 0,
+      "observedNodeMemory": {
+        "rss": 152547328,
+        "heapTotal": 93868032,
+        "heapUsed": 43124320,
+        "external": 2771470,
+        "arrayBuffers": 793728
+      }
+    },
+    {
+      "name": "eight-long-rally",
+      "field": 8,
+      "format": "Combat",
+      "warmTicks": 0,
+      "status": "Running",
+      "tick": 100,
+      "legacyChecksum": "01f6bb2a",
+      "raw100Ticks": {
+        "baseline": [
+          30.526434999999992,
+          27.90848200000005,
+          26.537772000000132,
+          28.958429000000024,
+          27.128212000000076
+        ],
+        "current": [
+          33.17885799999999,
+          25.89989199999991,
+          26.99814000000015,
+          22.980480999999827,
+          26.84440399999994
+        ],
+        "baselineMedian": 27.90848200000005,
+        "currentMedian": 26.84440399999994,
+        "preferredUnder100ms": true
+      },
+      "checkpointEncodeMs": 80.6752469999999,
+      "checkpointJSONMs": 0.8824499999998352,
+      "hashMs": 22.29413899999986,
+      "coldRestoreMs": 61.20260499999995,
+      "checkpointBytes": 241182,
+      "events": 89,
+      "commands": 0,
+      "observedNodeMemory": {
+        "rss": 170528768,
+        "heapTotal": 173592576,
+        "heapUsed": 58658032,
+        "external": 2916264,
+        "arrayBuffers": 938522
+      }
+    },
+    {
+      "name": "late-long-rally",
+      "field": 8,
+      "format": "Combat",
+      "warmTicks": 2000,
+      "status": "Running",
+      "tick": 2100,
+      "legacyChecksum": "d6632a9a",
+      "raw100Ticks": {
+        "baseline": [
+          101.91161300000022,
+          99.59337699999924,
+          98.49625000000015,
+          102.94871100000091,
+          100.32317300000068
+        ],
+        "current": [
+          101.0328669999999,
+          103.73096400000031,
+          99.48703000000023,
+          104.6870940000008,
+          104.9744869999995
+        ],
+        "baselineMedian": 100.32317300000068,
+        "currentMedian": 103.73096400000031,
+        "preferredUnder100ms": false
+      },
+      "checkpointEncodeMs": 1247.6176520000008,
+      "checkpointJSONMs": 5.8598239999992074,
+      "hashMs": 322.2270219999991,
+      "coldRestoreMs": 843.5088499999983,
+      "checkpointBytes": 3806083,
+      "events": 3141,
+      "commands": 0,
+      "observedNodeMemory": {
+        "rss": 515833856,
+        "heapTotal": 429727744,
+        "heapUsed": 350014672,
+        "external": 29391499,
+        "arrayBuffers": 15152317
+      }
+    }
+  ]
+}

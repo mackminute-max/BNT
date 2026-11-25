@@ -15,7 +15,7 @@ export function mountDurableChampionships({databaseOptions,legacyStorage,getLega
  $('e4Repair').onclick=action(async()=>{ui.playing=false;if(globalThis.__BNT_M5__&&!await confirmAction('Restore the previous valid save? Newer decisions may be lost. The replaced generation is quarantined.'))return;await ui.coordinator.repair({confirmed:!!globalThis.__BNT_M5__});ui.notice='Original record manifest reconstructed and committed without replaying effects.';});
  $('e4Reload').onclick=action(async()=>{ui.playing=false;await attach();ui.notice='Durable authority revalidated. Playback requires explicit resume.';});$('e4Restart').onclick=action(async()=>{ui.playing=false;ui.coordinator.worker.restart();await ui.refresh();ui.notice='Worker restarted; only durable authority was restored.';});
  ui.e5=async(command,payload)=>{ui.playing=false;return op('e5',{command,payload});};
- ui.race=async(type,args={})=>{if(!ui.durable||!ui.coordinator)throw Error('Durable race birth required');const packet=type==='read'?await ui.coordinator.attemptRead(args.channel):await ui.coordinator.attemptExecute(args);if(packet.frames?.length)ui.view.frame={...ui.view.frame,...packet.frames.at(-1)};return packet;};
+ ui.race=async(type,args={})=>{if(!ui.durable||!ui.coordinator)throw Error('Durable race birth required');if(type==='denRead')return ui.coordinator.denRead(args.channel);if(type==='denAdvance')return ui.coordinator.denAdvance(args);const packet=type==='read'?await ui.coordinator.attemptRead(args.channel):await ui.coordinator.attemptExecute(args);if(packet.frames?.length)ui.view.frame={...ui.view.frame,...packet.frames.at(-1)};return packet;};
  ui.game=async(operation,args={})=>{
   ui.playing=false;clearTimeout(timer);if(!ui.coordinator||!ui.durable)throw Error('Enable durable saves first');
   let result;if(operation==='read')return ui.coordinator.viewerRead(args.channel);
@@ -26,6 +26,8 @@ export function mountDurableChampionships({databaseOptions,legacyStorage,getLega
   if(operation==='metadata'){result=await ui.coordinator.metadata(args);ui.view.generation=result.generation;ui.view.runtime={...ui.view.runtime,...args};return result;}
   if(operation==='finishAttempt'||operation==='publish'&&globalThis.__BNT_BOUNDARY_RACES__&&ui.view.frame&&['Ended','Stalled','Error'].includes(ui.view.frame.status)&&ui.view.operational!=='RESULT_COMMITTED')result=await ui.coordinator.finishAttempt(newId('career-official'),{expectedGeneration:ui.view.generation});
   else if(operation==='publish')result=await ui.coordinator.publish(newId('career-official'),{expectedGeneration:ui.view.generation});
+  else if(operation==='m6quote')result=await ui.coordinator.operate('m6quote',{scope:args.scope??'championship',id:newId('bookmaker'),expectedGeneration:ui.view.generation});
+  else if(operation==='m6DenSettle')result=await ui.coordinator.operate('m6DenSettle',{id:newId('spectator-settle'),expectedGeneration:ui.view.generation});
   else if(operation==='restart'){ui.coordinator.worker.restart();}
   else if(operation==='resumeRestore')result=await ui.coordinator.resumeRestore({confirmed:true,legacy:legacyStorage});
   else if(operation==='repair')result=await ui.coordinator.repair({confirmed:args.confirmed===true});

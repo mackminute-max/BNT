@@ -1,0 +1,29 @@
+{
+  "oval": {
+    "pairs": 30,
+    "status": {
+      "Ended": 60
+    },
+    "changedChecksums": 30,
+    "changedTicks": 0,
+    "changedWinners": 0
+  },
+  "circuit": {
+    "pairs": 30,
+    "status": {
+      "Ended": 60
+    },
+    "changedChecksums": 30,
+    "changedTicks": 8,
+    "changedWinners": 0
+  },
+  "rally": {
+    "pairs": 30,
+    "status": {
+      "Ended": 60
+    },
+    "changedChecksums": 30,
+    "changedTicks": 0,
+    "changedWinners": 2
+  }
+}

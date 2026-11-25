@@ -1,3 +1,4 @@
+import {activeAbility} from '../sim/m6-interaction.js';
 import {pendingDelay} from './buffered-signs.js';
 import {paceDirective} from './directives.js';
 import {finishUtility} from './finish-utility.js';
@@ -85,13 +86,14 @@ export function decide(s, r) {
   r.ai.nextDecision = s.tick + c.decisionTicks;
   const fatigue =
     r.ru.beasts.reduce((n, b) => n + b.fatigue, 0) / r.ru.beasts.length / 100;
+  const errorFactor=activeAbility(s,r,'absolute-focus')?.5:1;
   const judgment =
-    draw(s, r, "judgment") < c.judgmentError * (1 - r.derived.awareness / 100);
+    draw(s, r, "judgment") < c.judgmentError * (1 - r.derived.awareness / 100) * errorFactor;
   const stress =
     (r.ru.driver.strain / 100 +
       (r.control === "Unstable" ? w.stressInstability : 0)) *
     (1 - r.derived.nerve / 100);
-  const stressFailure = draw(s, r, "stress") < c.stressError * stress;
+  const stressFailure = draw(s, r, "stress") < c.stressError * stress * errorFactor;
   const noise = (action) => {
     s.rng.draws++;
     return (
@@ -301,7 +303,7 @@ export function decide(s, r) {
   if(directive){pace=candidates.find(x=>x.action===directive.selected)??pace;if(directive.decision==='Obeying'&&directive.requested==='Sprint'&&['yield','disengage'].includes(position?.action))position=candidates.filter(x=>!['Conserve','Maintain','Push','Sprint','yield','disengage'].includes(x.action)).sort((a,b)=>b.score-a.score||a.action.localeCompare(b.action))[0];}
   const executionFailure =
     draw(s, r, "execution") <
-    c.executionError * (1 - r.ru.driver.driving / 100);
+    c.executionError * (1 - r.ru.driver.driving / 100) * errorFactor;
   const failed = executionFailure || stressFailure;
   const commands = [];
   if (!failed) {

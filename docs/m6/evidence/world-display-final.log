@@ -1,0 +1,14 @@
+✔ M6 national intro preserves two-event economy, actual three-lap oval and clear weather (1012.990682ms)
+✔ M6 original board and market do not reroll on read or rejected nation entry (636.422119ms)
+✔ M6 synthetic progression helper: fixed tier order and seven wins, no Bannerfall fabrication (3532.463211ms)
+✔ M6 completed national awards round once in aggregate; repeat LP removed (2.236355ms)
+✔ M6 World shows current local names without retaining a disposable registry (608.601617ms)
+✔ all twelve native circuits enforce the approved three/two-lap minimum (31.888739ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18859.671441

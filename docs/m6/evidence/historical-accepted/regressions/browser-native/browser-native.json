@@ -1,0 +1,446 @@
+{
+  "browser": "156.0.8078.79",
+  "clock": [
+    {
+      "seed": 100,
+      "checksum": "60d732c8"
+    },
+    {
+      "seed": 101,
+      "checksum": "4069dbb7"
+    },
+    {
+      "seed": 102,
+      "checksum": "93444c15"
+    },
+    {
+      "seed": 103,
+      "checksum": "a3756575"
+    },
+    {
+      "seed": 104,
+      "checksum": "eb6bcba9"
+    },
+    {
+      "seed": 105,
+      "checksum": "5f63706f"
+    },
+    {
+      "seed": 106,
+      "checksum": "f0c68743"
+    },
+    {
+      "seed": 107,
+      "checksum": "cd110fd8"
+    },
+    {
+      "seed": 108,
+      "checksum": "649f8cd3"
+    },
+    {
+      "seed": 109,
+      "checksum": "719cccbf"
+    },
+    {
+      "seed": 110,
+      "checksum": "60d91548"
+    },
+    {
+      "seed": 111,
+      "checksum": "59880b52"
+    },
+    {
+      "seed": 112,
+      "checksum": "d67327ae"
+    },
+    {
+      "seed": 113,
+      "checksum": "185083da"
+    },
+    {
+      "seed": 114,
+      "checksum": "f0af7a76"
+    },
+    {
+      "seed": 115,
+      "checksum": "2112217f"
+    },
+    {
+      "seed": 116,
+      "checksum": "5715ce60"
+    },
+    {
+      "seed": 117,
+      "checksum": "351e1129"
+    },
+    {
+      "seed": 118,
+      "checksum": "3f7bc203"
+    },
+    {
+      "seed": 119,
+      "checksum": "030df6a5"
+    },
+    {
+      "seed": 120,
+      "checksum": "13b1eb91"
+    },
+    {
+      "seed": 121,
+      "checksum": "bc066da4"
+    },
+    {
+      "seed": 122,
+      "checksum": "f7ef7451"
+    },
+    {
+      "seed": 123,
+      "checksum": "3e10c9ff"
+    },
+    {
+      "seed": 124,
+      "checksum": "30d8264d"
+    },
+    {
+      "seed": 125,
+      "checksum": "9ebca201"
+    },
+    {
+      "seed": 126,
+      "checksum": "4979a361"
+    },
+    {
+      "seed": 127,
+      "checksum": "5f495b85"
+    },
+    {
+      "seed": 128,
+      "checksum": "66a1230d"
+    },
+    {
+      "seed": 129,
+      "checksum": "3d0f7354"
+    },
+    {
+      "seed": 130,
+      "checksum": "001dbbe1"
+    },
+    {
+      "seed": 131,
+      "checksum": "369cb373"
+    },
+    {
+      "seed": 132,
+      "checksum": "911678d8"
+    },
+    {
+      "seed": 133,
+      "checksum": "26d79bed"
+    },
+    {
+      "seed": 134,
+      "checksum": "1f8ffd1a"
+    },
+    {
+      "seed": 135,
+      "checksum": "d12d91ed"
+    },
+    {
+      "seed": 136,
+      "checksum": "40cfcd3c"
+    },
+    {
+      "seed": 137,
+      "checksum": "e4763167"
+    },
+    {
+      "seed": 138,
+      "checksum": "65e27367"
+    },
+    {
+      "seed": 139,
+      "checksum": "c8601c43"
+    },
+    {
+      "seed": 140,
+      "checksum": "fe89ef80"
+    },
+    {
+      "seed": 141,
+      "checksum": "d5dac587"
+    },
+    {
+      "seed": 142,
+      "checksum": "f15067d9"
+    },
+    {
+      "seed": 143,
+      "checksum": "4ca8ed85"
+    },
+    {
+      "seed": 144,
+      "checksum": "8a90cfed"
+    },
+    {
+      "seed": 145,
+      "checksum": "75c906b6"
+    },
+    {
+      "seed": 146,
+      "checksum": "e8d7424b"
+    },
+    {
+      "seed": 147,
+      "checksum": "804b697a"
+    },
+    {
+      "seed": 148,
+      "checksum": "838bbefa"
+    },
+    {
+      "seed": 149,
+      "checksum": "02f3fbd5"
+    },
+    {
+      "seed": 150,
+      "checksum": "49f2928c"
+    },
+    {
+      "seed": 151,
+      "checksum": "9f48afcc"
+    },
+    {
+      "seed": 152,
+      "checksum": "17236429"
+    },
+    {
+      "seed": 153,
+      "checksum": "6591bbad"
+    },
+    {
+      "seed": 154,
+      "checksum": "ccd8fa32"
+    },
+    {
+      "seed": 155,
+      "checksum": "346ce608"
+    },
+    {
+      "seed": 156,
+      "checksum": "7043204e"
+    },
+    {
+      "seed": 157,
+      "checksum": "d62876ae"
+    },
+    {
+      "seed": 158,
+      "checksum": "8009e251"
+    },
+    {
+      "seed": 159,
+      "checksum": "d8baad70"
+    },
+    {
+      "seed": 160,
+      "checksum": "74f69a5f"
+    },
+    {
+      "seed": 161,
+      "checksum": "e9976d32"
+    },
+    {
+      "seed": 162,
+      "checksum": "f2e4e0e5"
+    },
+    {
+      "seed": 163,
+      "checksum": "918b8d44"
+    },
+    {
+      "seed": 164,
+      "checksum": "fe329f35"
+    },
+    {
+      "seed": 165,
+      "checksum": "99696065"
+    },
+    {
+      "seed": 166,
+      "checksum": "1a0ddf4d"
+    },
+    {
+      "seed": 167,
+      "checksum": "87e4f6cf"
+    },
+    {
+      "seed": 168,
+      "checksum": "adeb859c"
+    },
+    {
+      "seed": 169,
+      "checksum": "c0210280"
+    },
+    {
+      "seed": 170,
+      "checksum": "7bfc6610"
+    },
+    {
+      "seed": 171,
+      "checksum": "4b33a2ac"
+    },
+    {
+      "seed": 172,
+      "checksum": "94084e02"
+    },
+    {
+      "seed": 173,
+      "checksum": "92cb7fd8"
+    },
+    {
+      "seed": 174,
+      "checksum": "df1c6255"
+    },
+    {
+      "seed": 175,
+      "checksum": "12160f19"
+    },
+    {
+      "seed": 176,
+      "checksum": "84594e71"
+    },
+    {
+      "seed": 177,
+      "checksum": "4fcfa54c"
+    },
+    {
+      "seed": 178,
+      "checksum": "be71065f"
+    },
+    {
+      "seed": 179,
+      "checksum": "59da1087"
+    },
+    {
+      "seed": 180,
+      "checksum": "2ab661a8"
+    },
+    {
+      "seed": 181,
+      "checksum": "1309d1c8"
+    },
+    {
+      "seed": 182,
+      "checksum": "2da7dab4"
+    },
+    {
+      "seed": 183,
+      "checksum": "49b97bd4"
+    },
+    {
+      "seed": 184,
+      "checksum": "02b27e49"
+    },
+    {
+      "seed": 185,
+      "checksum": "8c9e3b4c"
+    },
+    {
+      "seed": 186,
+      "checksum": "0f3bb3cf"
+    },
+    {
+      "seed": 187,
+      "checksum": "222ef022"
+    },
+    {
+      "seed": 188,
+      "checksum": "fd3ab59d"
+    },
+    {
+      "seed": 189,
+      "checksum": "0eb61df1"
+    },
+    {
+      "seed": 190,
+      "checksum": "81f20966"
+    },
+    {
+      "seed": 191,
+      "checksum": "e1f24b9e"
+    },
+    {
+      "seed": 192,
+      "checksum": "aa46116a"
+    },
+    {
+      "seed": 193,
+      "checksum": "f7a3cd0f"
+    },
+    {
+      "seed": 194,
+      "checksum": "db7418b0"
+    },
+    {
+      "seed": 195,
+      "checksum": "578d69b9"
+    },
+    {
+      "seed": 196,
+      "checksum": "87f1468c"
+    },
+    {
+      "seed": 197,
+      "checksum": "a60bcf80"
+    },
+    {
+      "seed": 198,
+      "checksum": "40307d1d"
+    },
+    {
+      "seed": 199,
+      "checksum": "20df30ea"
+    }
+  ],
+  "races": [
+    {
+      "course": null,
+      "format": "Pure",
+      "checksum": "a74e4f71",
+      "exactCapture": true
+    },
+    {
+      "course": "C01",
+      "format": "Combat",
+      "checksum": "005252df",
+      "exactCapture": true
+    },
+    {
+      "course": "mixed-rally",
+      "format": "Combat",
+      "checksum": "069e4340",
+      "exactCapture": true
+    }
+  ],
+  "delayed": {
+    "checksum": "d4104574",
+    "activation": {
+      "id": 38,
+      "type": "SIGN_ACTIVATED",
+      "time": 1.5,
+      "tick": 30,
+      "fraction": 0,
+      "participants": [
+        "RU1"
+      ],
+      "effects": {
+        "sign": "Conserve Strength",
+        "mode": "buffer-delay-v1",
+        "boundaryEventId": 1,
+        "queueOrder": 0,
+        "acceptedTick": 21
+      }
+    },
+    "checkpointRestored": true
+  }
+}

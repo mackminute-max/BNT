@@ -1,0 +1,24 @@
+{
+  "groups": [
+    "fresh fully initialized M4 career, zero LP and three empty slots",
+    "eight functional Legacy Upgrades displayed, correct insufficient LP guards",
+    "generated Home inventory purchase uses native price and grants once",
+    "all eight world profiles visible; Sundaran authoritatively locked",
+    "packaged one-RU owned Practice, eight controls, native playback and zero career writes",
+    "actual native race and functional Run Reward choice committed",
+    "packaged regional purchase commits exact native cost without changing frozen lineup",
+    "full native championship, final settlement, selection, archival checkpoint and Home renewal",
+    "cold browser reload preserves archive and renewed epoch"
+  ],
+  "errors": [],
+  "fullCycle": {
+    "archiveCount": 1,
+    "activeId": null,
+    "marketEpoch": 1,
+    "checkpoint": 1,
+    "logicalSaveRevision": 12,
+    "playbackDurableWrites": 0,
+    "events": 2
+  },
+  "result": "PASS"
+}

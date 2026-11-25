@@ -1,0 +1,8 @@
+{
+  "context": "Managed Linux Chromium file://; not Windows owner acceptance",
+  "browser": "156.0.8078.79",
+  "network": [],
+  "errors": [],
+  "result": "FAIL",
+  "error": "page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///workspace/BNT/dist/Blood-and-Thunder-M6-Playable.html\nCall log:\n\u001b[2m  - navigating to \"file:///workspace/BNT/dist/Blood-and-Thunder-M6-Playable.html\", waiting until \"load\"\u001b[22m\n\n    at /workspace/BNT/scripts/m6/file-browser.mjs:2:612"
+}
