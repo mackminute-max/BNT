@@ -1,8 +1,0 @@
-{
-  "head": "813f7b0aee8dbe58c7b53184934170b38a051a48",
-  "branch": "feat/e5-d-m1-startup-slots-options",
-  "status": " M docs/m2-a/evidence/migration-review.png\n M docs/m2-b/evidence/implementation/browser-example-save.json\n M docs/m2-b/evidence/implementation/stable-foundation.png\n M docs/persistence-foundation/evidence/manual-checkpoint.png\n?? docs/m2-e/BNT_M2_E_PRE_IMPLEMENTATION_TECHNICAL_READINESS_AUDIT.md\n?? scripts/m5-d2/__pycache__/write-reports.cpython-312.pyc\n",
-  "manifestFilesVerified": 921,
-  "artifactSHA256": "3bdfb86d06a59c1b9672f2adf716413f7d110e5e9b07f3d9c16d6c810255660c",
-  "artifactBytes": 5793928
-}

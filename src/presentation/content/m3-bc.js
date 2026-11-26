@@ -35,7 +35,7 @@ export function commentaryTokens(type,e){
  case 'COURSE_ENTERED':result={subject,track:text(a.track)};break;
  case 'SEGMENT_ENTERED':result={subject,terrain:text(a.terrain),segment_motion:a.type==='turn'?(numeric(a.direction)===null?null:', turning '+(a.direction>0?'right':'left')):text(a.type)?' straightaway':null};break;
  case 'CHECKPOINT_CROSSED':result={subject,checkpoint:typeof a.checkpoint==='string'?text(a.checkpoint):numeric(a.checkpoint)===null?null:String(a.checkpoint)};break;
- case 'RU_FINISHED':result={subject,time_4dp:numeric(a.time)===null?null:a.time.toFixed(4)};break;
+ case 'RU_FINISHED':result={subject,time_4dp:numeric(a.time)===null?null:a.time.toFixed(2)};break;
  case 'DIRECTIVE_RESISTANCE':{const d=a.directive;if(d?.decision!=='Resisting'||a.executionError||a.stressError)return null;result={subject,sign:text(d.sign),selected:text(d.selected),reason:text(d.reason)};break;}
  }
  return result;
@@ -48,7 +48,7 @@ export function alternateLine(line,event,presentation){
  const pool=line.type==='DIRECTIVE_RESISTANCE'?DATA.special[0]:pools.get(line.type);if(!pool)return line;
  const tokens=commentaryTokens(line.type,event);if(!tokens||pool.allowed_tokens.some(k=>typeof tokens[k]!=='string'))return line;
  const template=pool.variants[line.type==='DIRECTIVE_RESISTANCE'?0:hash(`${line.eventId}:${line.type}`)%pool.variants.length];
- return {...line,text:template.replace(/\{([a-z_]+)\}/g,(_,k)=>tokens[k])};
+ return {...line,text:template.replace(/\{([a-z0-9_]+)\}/g,(_,k)=>tokens[k])};
 }
 export function projectAcceptedLines(lines,events,presentation){const byId=new Map();for(const e of events??[]){if(byId.has(e.id))byId.set(e.id,null);else byId.set(e.id,e);}return lines.map(line=>alternateLine(line,byId.get(line.eventId),presentation));}
 // Bounded display history, independent of reporter history/journals. Supports

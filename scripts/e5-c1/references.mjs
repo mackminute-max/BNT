@@ -1,4 +1,0 @@
-// Run the existing replay verifier without overwriting accepted evidence.
-import {readFile,writeFile,unlink,mkdir} from 'node:fs/promises';import {spawnSync} from 'node:child_process';
-const out='/workspace/deliverables/bnt-e5-c1/evidence/references';await mkdir(out,{recursive:true});
-const source=(await readFile('scripts/p2-2/references.mjs','utf8')).replaceAll('/workspace/deliverables/bnt-p2-2/evidence',out),tmp='scripts/p2-2/.c1-references.mjs';await writeFile(tmp,source);let r;try{r=spawnSync(process.execPath,[tmp],{encoding:'utf8',timeout:240000,maxBuffer:8*1024*1024});}finally{await unlink(tmp);}await writeFile(out+'/process.log',(r.stdout??'')+(r.stderr??''));await writeFile(out+'/exit.json',JSON.stringify({exit:r.status,signal:r.signal,error:r.error?.message??null}));console.log(JSON.stringify({exit:r.status}));if(r.status!==0)process.exitCode=1;

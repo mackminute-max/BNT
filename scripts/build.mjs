@@ -1,29 +1,12 @@
-import { build } from "esbuild";
-import { readFile, writeFile, mkdir } from "node:fs/promises";
-const worker = await build({entryPoints:["src/persistence/e4/worker-entry.js"],bundle:true,format:"iife",platform:"browser",target:"es2020",write:false,legalComments:"none"});
-const result = await build({
-  define: {BNT_E4_WORKER_SOURCE: JSON.stringify(worker.outputFiles[0].text)},
-  entryPoints: ["src/ui/app.js"],
-  bundle: true,
-  format: "iife",
-  platform: "browser",
-  target: "es2020",
-  write: false,
-  legalComments: "none",
-});
-const js = result.outputFiles[0].text.replaceAll("</script", "<\\/script");
-const template = await readFile("src/ui/index.html", "utf8");
-const html = template.replace("<!-- BUNDLE -->", `<script>${js}</script>`);
-if (
-  /<(?:script|link|img|iframe)\b[^>]*(?:src|href)\s*=\s*["'](?!data:|#)/i.test(
-    html,
-  ) ||
-  /\b(?:import\s*\(|fetch\s*\(|new\s+WebSocket\s*\()/m.test(js)
-)
-  throw new Error("External runtime dependency found");
-await mkdir("dist", { recursive: true });
-await writeFile("dist/Blood_and_Thunder.html", html);
-await writeFile("dist/Blood-and-Thunder-Track-Test.html", html);
-console.log(
-  `Built dist/Blood_and_Thunder.html (${Buffer.byteLength(html)} bytes)`,
-);
+// Single build: bundles the current game into one offline HTML file at dist/blood-and-thunder.html.
+import {withM6Presentation} from './m6/viewer-presentation.mjs';
+import {playerPresentation} from './e5-d/m3-ui-p1/presentation-source.mjs';
+import {compilePresentation} from './e5-d/m3-bc/compile-content.mjs';
+await compilePresentation();
+import {buildPractice} from './e5-d/m3-bc/practice-build.mjs';
+import {compileCopy} from './e5-d/m3-a/compile-copy.mjs';
+await compileCopy();
+import {build} from 'esbuild';import {readFile,writeFile,mkdir} from 'node:fs/promises';import {createHash} from 'node:crypto';import {buildCareerViewer} from './e5-c/viewer-build.mjs';import {verifyOffline} from './p2/assets.mjs';
+const opts={bundle:true,format:'iife',platform:'browser',target:'es2020',write:false,legalComments:'none'},worker=await build({...opts,entryPoints:['src/persistence/e4/worker-entry.js'],define:{BNT_M6_BUILD:'true',BNT_M4_BUILD:'true'}}),app=await build({...opts,stdin:{contents:"import './src/management/startup/entry.js';",resolveDir:process.cwd()},define:{BNT_M6_BUILD:'true',BNT_M4_BUILD:'true',BNT_M3UIP1_BUILD:'true',BNT_M3UI_BUILD:'true',BNT_M3BC_P1_BUILD:'true',BNT_M3BC_BUILD:'true',BNT_MAIN_M3_BUILD:'true',BNT_M3A_BUILD:'true',BNT_M2_BUILD:'true',BNT_E4_WORKER_SOURCE:JSON.stringify(worker.outputFiles[0].text)}});
+const sha=s=>createHash('sha256').update(s).digest('hex');
+const prototypePractice=withM6Presentation(await buildPractice({m6:true})).replace('</body>','<script>'+playerPresentation+'</script></body>');const viewer=withM6Presentation(await buildCareerViewer({alternateRadio:true,playerUi:true})),js=('globalThis.__BNT_M3BC_PRACTICE_HTML__='+JSON.stringify(prototypePractice)+';\nglobalThis.__BNT_CAREER_VIEWER_HTML__='+JSON.stringify(viewer)+';\n'+app.outputFiles[0].text).replaceAll('</script','<\\/script');const css=await readFile('src/management/home.css','utf8')+'\n'+await readFile('src/management/a1.css','utf8')+'\n'+await readFile('src/management/career-race/interface.css','utf8')+'\n'+await readFile('src/management/startup/shell.css','utf8')+'\n'+await readFile('src/management/creation/creation.css','utf8')+'\n'+await readFile('src/management/headquarters/interface.css','utf8');const uiCss=await readFile('src/management/headquarters/consolidated.css','utf8');const html=(await readFile('src/ui/index.html','utf8')).replace(/<title>[^<]*<\/title>/,'<title>Blood and Thunder</title>').replace('</head>',`<style>${css}\n${uiCss}</style></head>`).replace('<!-- BUNDLE -->',`<script>${js}</script>`);verifyOffline(html,app.outputFiles[0].text);await mkdir('dist',{recursive:true});await writeFile('dist/blood-and-thunder.html',html);console.log(JSON.stringify({file:'dist/blood-and-thunder.html',bytes:Buffer.byteLength(html),sha256:sha(html),viewerBytes:Buffer.byteLength(viewer),embeddedWorker:true}));

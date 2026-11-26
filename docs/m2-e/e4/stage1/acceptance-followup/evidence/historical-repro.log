@@ -1,5 +1,0 @@
-PASS two distinct browser tabs cannot both commit the same generation
-PASS migration interruption at every durable boundary; denied intent and missing database never fall back
-PASS migration retry is independent of Web Storage key enumeration order
-{"origin":"http://127.0.0.1:37043","override":{},"quotaDiagnostic":{"usage":28053,"quota":200000,"overrideActive":true,"usageBreakdown":[{"storageType":"file_systems","usage":0},{"storageType":"indexeddb","usage":28053},{"storageType":"cache_storage","usage":0},{"storageType":"service_workers","usage":0}]}}
-FAIL real IndexedDB quota enforcement through Chromium quota override preserves head: {"error":null,"generation":1,"estimate":{"quota":10745767024,"usage":8348784,"usageDetails":{"indexedDB":8348784}}}

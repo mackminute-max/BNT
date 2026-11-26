@@ -1,3 +1,0 @@
-[feat/m2-e-e4-persistence-recovery 19cf64a] test: prove exact-state validation reuse and malformed-state rejection
- 2 files changed, 5 insertions(+)
- create mode 100644 experiments/e4-architecture/validation-proof.mjs

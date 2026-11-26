@@ -1,8 +1,0 @@
-{
-  "bytes": 438504,
-  "sha256": "f0380795cd81cd041b5138e6274c82149ffaf3396d60a9600b15bdb0c6dc287e",
-  "oldArtifactSHA256": "0ea8784671b473c9e95fe4eed4ba7379bf5cf06e966b2d16a3a383f1f1d2ad37",
-  "repeatedBuildsIdentical": true,
-  "dependencyGuardPassed": true,
-  "source": "5d556f3adca146a6c17996234e34dcf4e98899db"
-}

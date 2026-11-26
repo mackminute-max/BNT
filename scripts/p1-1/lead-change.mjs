@@ -1,9 +1,0 @@
-import assert from 'node:assert/strict';
-import {createRace,step,digest} from '../../src/sim/race.js';import {defaultRU} from '../../src/model/ru.js';import {pacingProfiles} from '../../src/prototype/pacing.js';import {mkdir,writeFile} from 'node:fs/promises';
-const cfg=pacingProfiles.endurance,s=createRace({seed:17,course:'oval',entrants:[{ru:defaultRU('EarlyPush',55),lane:0,q:-.5},{ru:defaultRU('Disciplined',55),lane:1,q:-.5}],overrides:{laps:8,tuning:cfg.tuning},autonomous:{...cfg.autonomous,noise:0},consequence:{incidentRate:0}});
-// Diagnostic pacing intent only: same native condition/physics, parallel lanes.
-// Hold AI cadence for this isolated comparison; all pace commands are recorded by step.
-for(const r of s.entrants)r.ai.nextDecision=Number.MAX_SAFE_INTEGER;
-let earlyGap=null,lateGap=null;const samples=[];
-while(!['Ended','Stalled','Error'].includes(s.status)&&s.tick<20000){const commands=s.tick===0?[{type:'pace',id:'EarlyPush',pace:'Push'},{type:'pace',id:'Disciplined',pace:'Maintain'}]:[];step(s,commands);const [a,b]=s.entrants;if(s.tick===400)earlyGap=a.q-b.q;if(s.tick===4000)lateGap=a.q-b.q;if(s.tick%400===0)samples.push({time:s.time,earlyPushQ:a.q,disciplinedQ:b.q,fatigue:a.ru.beasts.map(b=>b.fatigue),pace:a.pace});}
-const out=process.env.BNT_P11_OUT??'/workspace/deliverables/bnt-p1-1/evidence';await mkdir(out,{recursive:true});const report={fixture:'Diagnostic parallel-lane native 8-lap Standard Oval, equal ratings 55, inside Push vs outside Maintain, no incidents; no fabricated result.',status:s.status,earlyGap,lateGap,checksum:digest(s),entrants:s.entrants.map(r=>({id:r.id,finishTime:r.finishTime,pace:r.pace,fatigue:r.ru.beasts.map(b=>b.fatigue)})),samples};assert.ok(earlyGap>0);assert.ok(lateGap<0);assert.ok(s.entrants[0].finishTime>s.entrants[1].finishTime);await writeFile(out+'/lead-change.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));

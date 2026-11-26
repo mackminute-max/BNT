@@ -1,9 +1,0 @@
-locator.click: Timeout 30000ms exceeded.
-Call log:
-[2m  - waiting for locator('[data-page=market]')[22m
-
-    at /workspace/BNT/scripts/m5-d2/smoke-browser.mjs:3:3534 {
-  log: [ "  - waiting for locator('[data-page=market]')" ],
-  name: 'TimeoutError'
-} []
-{"groups":["fresh fully initialized M4 career, zero LP and three empty slots","eight functional Legacy Upgrades displayed, correct insufficient LP guards","generated Home inventory purchase uses native price and grants once","actual native race and functional Run Reward choice committed"],"errors":[],"result":"FAIL","failure":"locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-page=market]')\u001b[22m\n\n    at /workspace/BNT/scripts/m5-d2/smoke-browser.mjs:3:3534","diagnostics":[]}

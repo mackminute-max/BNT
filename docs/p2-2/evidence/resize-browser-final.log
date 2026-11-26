@@ -1,1 +1,0 @@
-{"groups":["Resize across all target dimensions preserves session/tick/camera target and equal orthographic X/Y scale for both canvases","Internal navigation preserves paused Native tick, generation and camera state exactly","Original Follow Zoom range changes camera without advancing Native time or restarting"],"fullscreen":{"entered":true,"exited":true,"events":1},"errors":[]}

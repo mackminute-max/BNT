@@ -1,9 +1,0 @@
-{
-  "revision": "e8cb4bc53bca7052b9b05a788f5810e1f070b2b3",
-  "version": "0.4.2-corrective",
-  "node": "v24.22.1",
-  "artifactSHA256": "30cea713001b2e1dfdc0b818605161ba5951d15a44e4b87b2210493451354002",
-  "artifactBytes": 163579,
-  "testsLog": "tests-before.log",
-  "referenceCount": 2
-}

@@ -1,5 +1,0 @@
-{
-  "command": "node scripts/combat-ai-refinement/browser.mjs",
-  "exit": 0,
-  "elapsedSeconds": 6.551177501678467
-}
