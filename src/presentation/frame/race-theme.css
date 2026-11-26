@@ -24,7 +24,8 @@ td{border-color:#4a3626!important}
 button{font-family:var(--bt-display)!important;letter-spacing:.04em;font-size:18px!important;color:var(--bt-white)!important;background:linear-gradient(180deg,#7a1420,var(--bt-oxblood) 60%,#3d0a12)!important;border:2px solid var(--bt-bronze)!important;border-radius:3px!important;text-shadow:0 1px 0 #000a}
 button:hover:enabled{border-color:var(--bt-hover)!important;background:linear-gradient(180deg,#9a1a28,var(--bt-crimson) 60%,#5a0f19)!important}
 button:disabled{background:var(--bt-charcoal)!important;color:var(--bt-gray)!important;border-color:var(--bt-gray)!important;text-shadow:none}
-#start{background:linear-gradient(180deg,#c31e2c,var(--bt-crimson) 55%,#6d0f18)!important;border:3px solid var(--gold)!important;font-size:22px!important}
+#start:enabled{background:linear-gradient(180deg,#c31e2c,var(--bt-crimson) 55%,#6d0f18)!important;border:3px solid var(--gold)!important}
+#start{font-size:22px!important}
 button.p2-sign-card{font-family:var(--bt-body)!important;font-size:14px!important;letter-spacing:0;text-align:left;text-shadow:none;background:#140c08!important;border:2px solid #6b5235!important}
 button.p2-sign-card strong,button.p2-sign-card b{font-family:var(--bt-display);font-size:17px;letter-spacing:.04em;font-weight:400;color:var(--bt-white)}
 button.p2-sign-card[aria-pressed=true],button.p2-sign-card.active,button.p2-sign-card.queued,button.p2-sign-card[aria-current=true]{border-color:var(--gold)!important;background:#3a2612!important;box-shadow:inset 0 0 0 1px var(--gold)!important}

@@ -50,6 +50,10 @@ class DurableRunner extends ChampionshipRunner {
  }
 }
 function view(career,runner){const s=career.state,x=activeChampionship(s);let frame=null,reason=null,operational=null,watermark=null,sessionRevision=null,warning=null;try{if(x?.raceId&&x.phase!=='NO_STARTERS_PENDING'&&!x.raceResults.some(r=>r.raceId===x.raceId&&r.kind==='NoStarters')){const session=runner.session();session.open();const n=session.state;operational=session.record.authority.value.operational;watermark=session.record.authority.value.watermark;sessionRevision=session.record.authority.value.revision;warning=session.problem;frame={tick:n.tick,time:n.time,status:n.status,config:n.config,track:n.track,playerId:n.playerId,entrants:n.entrants.map(r=>({id:r.id,q:r.q,lane:r.lane,status:r.status,physical:r.physical,speed:r.speed,signs:r.signs,ru:r.ru}))};}}catch(e){reason=e.message;}return {state:s,presentation:structuredClone(career.presentation),frame,operational,watermark,sessionRevision,warning,reason};}
+// Retained race sessions already fully verified in this worker, keyed by exact
+// record text. Bounded so long careers cannot grow memory without limit.
+const VERIFIED=new Map(),VERIFIED_LIMIT=24;
+function remember(text,proof){let set=VERIFIED.get(text);if(set)VERIFIED.delete(text);else set=new Set();set.add(proof);VERIFIED.set(text,set);while(VERIFIED.size>VERIFIED_LIMIT)VERIFIED.delete(VERIFIED.keys().next().value);}
 export function createWorkerService(){
  let cache=null,pending=null,serial=0,attempt=null,denAttempt=null;
  function load(snapshot,tolerant=false){
@@ -73,7 +77,11 @@ export function createWorkerService(){
   for(const[k,text]of map){if(k===SAVE_KEY||career.current.schema===7&&k.startsWith('bnt.m5.history.'))continue;const r=JSON.parse(text),a=r.authority?.value;if(!a?.identity)throw Error('Missing session identity');
    const state=career.state,x=state.championshipFoundation.instances?.[a.identity.instanceId],archived=x?.raceResults.find(r=>r.raceId===a.identity.raceId);
    if(!x||a.identity.profileId!==state.profile.id||a.identity.careerId!==state.career.id||(!archived&&x.raceId!==a.identity.raceId))throw Error('Unrelated retained session authority');
-   const session=new RaceSessionStore(storage,{identity:a.identity,getCareerAnchor:()=>archived?.anchor??validatedAnchor(career,storage,a.identity.raceId)});if(session.key!==k)throw Error('Session key/identity mismatch');const decoded=session.decode(text);if(archived&&career.current.schema===7&&fingerprint(unpack(unsealWire(decoded.r.publication)))!==fingerprint(archived.proof))throw Error('Official proof differs from durable native publication');if(archived&&archived.reference.authorityHash!==wireHash(decoded.r.authority))throw Error('Retained official authority mismatch');
+   const anchor=archived?.anchor??validatedAnchor(career,storage,a.identity.raceId),session=new RaceSessionStore(storage,{identity:a.identity,getCareerAnchor:()=>anchor});if(session.key!==k)throw Error('Session key/identity mismatch');
+   // Full decode replays and re-hashes the whole race (about a second per race).
+   // The outcome depends only on the record text, identity and anchor, so a
+   // record already proven under the same inputs is not proven again.
+   const proof=k+'\u0000'+wireHash(anchor),decoded=VERIFIED.get(text)?.has(proof)?{r}:session.decode(text);remember(text,proof);if(archived&&career.current.schema===7&&fingerprint(unpack(unsealWire(decoded.r.publication)))!==fingerprint(archived.proof))throw Error('Official proof differs from durable native publication');if(archived&&archived.reference.authorityHash!==wireHash(decoded.r.authority))throw Error('Retained official authority mismatch');
   }
   }catch(e){if(!tolerant)throw e;problem=e.message;}
   const loaded={key,map,storage,career,runner:new DurableRunner(career,storage),problem};cache=problem?null:loaded;return {hit:false,...loaded};
