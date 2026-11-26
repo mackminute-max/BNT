@@ -1,0 +1,24 @@
+{
+  "auditDate": "2026-11-26",
+  "repository": "https://github.com/mackminute-max/BNT.git",
+  "sourceCommit": "05e779f6eef0aa1f8117f1402d0841e83a9c7c80",
+  "branch": "feat/e5-d-m1-startup-slots-options",
+  "defaultBranch": "main",
+  "defaultBranchSHA": "f66ec90a6659dd6bb675815bff4cc33e9850a643",
+  "artifact": {
+    "file": "Blood-and-Thunder-M6-P1-Playable.html",
+    "bytes": 5869373,
+    "sha256": "6f527a9809757c7a18be4fec354dd4da29db5e4e610ae1352d58decaef64030d"
+  },
+  "manifestFilesVerified": 973,
+  "sourceManifestMismatches": [],
+  "workingTreeBefore": " M docs/m2-a/evidence/migration-review.png\n M docs/m2-b/evidence/implementation/browser-example-save.json\n M docs/m2-b/evidence/implementation/stable-foundation.png\n M docs/persistence-foundation/evidence/manual-checkpoint.png\n?? docs/m2-e/BNT_M2_E_PRE_IMPLEMENTATION_TECHNICAL_READINESS_AUDIT.md\n?? scripts/m5-d2/__pycache__/\n",
+  "node": "v24.22.1",
+  "npm": "11.9.0",
+  "scope": "Documentation and packaging only; no game code change; prior full test evidence reused after exact source hash verification.",
+  "auditReferenceRecheck": {
+    "command": "node scripts/m6-p1/references.mjs",
+    "rawExit": 0,
+    "matchedComparisons": 14
+  }
+}
