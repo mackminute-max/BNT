@@ -1,1 +1,0 @@
-{"content": 135, "counts": {"ACCEPT_DRAFT": 120, "REVISE": 15}, "art": 37, "canonRecords": 17, "canonReferences": 25, "sourceChangedFromPinned": ["src/management/playable.js", "src/persistence/e4/worker-service.js", "src/ui/durable-championships.js"]}

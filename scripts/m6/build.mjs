@@ -1,7 +1,0 @@
-import {createHash} from 'node:crypto';
-import {readFile,writeFile} from 'node:fs/promises';
-const sha=s=>createHash('sha256').update(s).digest('hex');
-for(const [path,digest] of [['dist/Blood-and-Thunder-E5-D-M4-Playable.html','d77e49e40457c5de0255e3c95779941bec67023a4760248a69760f60b7a8d60c'],['dist/Blood-and-Thunder-M5-D1-Playable.html','efd9c6c1a3d685173f06752931d666e1860795500685f20b8e235f9aac8352ad'],['dist/Blood-and-Thunder-M5-D2-Playable.html','b1feae08d6af7ade30d2502d6c6a5daf12ac79a0172cdf59d220586a6c3fa30f']])if(sha(await readFile(path))!==digest)throw Error('Accepted artifact changed: '+path);
-const source=await readFile('scripts/e5-d/m4/build.mjs','utf8');
-const adapted="import {withM6Presentation} from './viewer-presentation.mjs';\n"+source.replaceAll("from '../","from '../e5-d/").replaceAll("from '../../e5-c/","from '../e5-c/").replaceAll("from '../../p2/","from '../p2/").replaceAll("BNT_M4_BUILD:'true'","BNT_M6_BUILD:'true',BNT_M4_BUILD:'true'").replaceAll('dist/Blood-and-Thunder-E5-D-M4-Playable.html','dist/Blood-and-Thunder-M6-Playable.html').replace('(await buildPractice())','withM6Presentation(await buildPractice({m6:true}))').replaceAll('E5-D M4 —','M6 —').replace('await buildCareerViewer({alternateRadio:true,playerUi:true})','withM6Presentation(await buildCareerViewer({alternateRadio:true,playerUi:true}))');
-await writeFile('scripts/m6/build.generated.mjs',adapted);await import('./build.generated.mjs');

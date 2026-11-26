@@ -1,9 +1,0 @@
-PASS ordinary UI explicitly migrates and manually starts a frozen race
-PASS paused Sign, automatic full checkpoint and reload preserve accepted order
-PASS complete backup roundtrip, consumed restore identity and interrupted restore
-PASS quota failure during restore activation leaves no mixed authority and resumes safely
-PASS corrupt and incomplete complete backups reject without replacing authority
-PASS checkpoint corruption is repaired only by exact committed journal evidence
-PASS empty-destination restore atomically retains current and previous generation
-PASS lost durable acknowledgement reloads committed input without consuming it twice
-PASS worker restart and full race publication remain deterministic and exactly once

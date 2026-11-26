@@ -1,7 +1,0 @@
-one-short {"exactRecordBytes":true,"recordCount":2,"totalRecordBytes":468679,"fullSnapshotRequestBytes":523818}
-four-circuit {"exactRecordBytes":true,"recordCount":2,"totalRecordBytes":627970,"fullSnapshotRequestBytes":694945}
-eight-oval {"exactRecordBytes":true,"recordCount":2,"totalRecordBytes":768399,"fullSnapshotRequestBytes":827122}
-eight-long {"exactRecordBytes":true,"recordCount":2,"totalRecordBytes":1073505,"fullSnapshotRequestBytes":1171084}
-late-long {"exactRecordBytes":true,"recordCount":2,"totalRecordBytes":3350174,"fullSnapshotRequestBytes":3447785}
-dense {"exactRecordBytes":true,"recordCount":2,"totalRecordBytes":669713,"fullSnapshotRequestBytes":737009}
-retained {"exactRecordBytes":true,"recordCount":13,"totalRecordBytes":29962797,"fullSnapshotRequestBytes":30303995}

@@ -1,5 +1,0 @@
-event 0 INTERMISSION_READY
-selected run
-event 1 SETTLEMENT_PENDING
-settled
-archived 1 ownership 1

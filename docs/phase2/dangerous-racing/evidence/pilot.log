@@ -1,3 +1,0 @@
-{"started":true,"target":15,"workers":4}
-{"completed":15,"target":15,"seconds":10,"perMinute":94,"errors":0,"stalls":0}
-{"done":true,"target":15,"completed":15,"cancelled":false,"toolErrors":[],"countsByFormat":{"Pure":0,"Combat":15},"statuses":{"Ended":15},"bounded":0,"workers":4,"wallSeconds":9.590276227999999}

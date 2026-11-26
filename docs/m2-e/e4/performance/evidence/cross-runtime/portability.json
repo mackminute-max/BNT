@@ -1,6 +1,0 @@
-{
-  "nodeCheckpointInChromium": "3cc91b8c",
-  "chromiumCheckpointInNode": "aebb513e",
-  "withinSourceContextReferencesPreserved": true,
-  "note": "One tick-100 Long Rally checkpoint in both directions; fresh setup-only replay remains divergent. Not proof for every browser/platform."
-}

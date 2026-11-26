@@ -1,23 +1,11 @@
 {
   "name": "blood-and-thunder",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test tests/*.test.js",
     "build": "node scripts/build.mjs",
-    "test:browser": "node scripts/browser-test.mjs",
-    "check": "npm test && npm run build && npm run test:browser",
-    "reference": "node scripts/reference.mjs",
-    "build:p1-5": "node scripts/p1-5/build.mjs",
-    "build:p2": "node scripts/p2/build.mjs",
-    "build:p2-1": "node scripts/p2-1/build.mjs",
-    "build:p2-2": "node scripts/p2-2/build.mjs",
-    "build:e5-a": "node scripts/e5-a/build.mjs",
-    "build:e5-a1": "node scripts/e5-a1/build.mjs",
-    "build:e5-b": "node scripts/e5-b/build.mjs",
-    "build:e5-c": "node scripts/e5-c/build.mjs",
-    "build:e5-c1": "node scripts/e5-c1/build.mjs"
+    "test": "node --test tests/*.test.js"
   },
   "devDependencies": {
     "esbuild": "0.28.2",

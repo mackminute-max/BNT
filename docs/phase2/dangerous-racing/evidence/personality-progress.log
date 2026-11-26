@@ -1,7 +1,0 @@
-{"started":true,"target":100,"workers":2}
-{"completed":20,"target":100,"seconds":22,"perMinute":55,"errors":0,"stalls":0}
-{"completed":40,"target":100,"seconds":38,"perMinute":63,"errors":0,"stalls":0}
-{"completed":60,"target":100,"seconds":55,"perMinute":65,"errors":0,"stalls":0}
-{"completed":80,"target":100,"seconds":77,"perMinute":63,"errors":0,"stalls":0}
-{"completed":100,"target":100,"seconds":97,"perMinute":62,"errors":0,"stalls":0}
-{"done":true,"target":100,"completed":100,"cancelled":false,"toolErrors":[],"countsByFormat":{"Pure":0,"Combat":100},"statuses":{"Ended":100},"bounded":0,"workers":2,"wallSeconds":96.626473723}

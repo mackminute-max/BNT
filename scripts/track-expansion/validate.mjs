@@ -1,8 +1,0 @@
-import {writeFileSync} from 'node:fs';import {gzipSync} from 'node:zlib';import {createHash} from 'node:crypto';import assert from 'node:assert/strict';
-import {createRace} from '../../src/sim/race.js';import {ovalPresets,circuitCatalog} from '../../src/track/catalog.js';import {generateRally} from '../../src/track/rally-generator.js';import {validateFootprint,trackDiagnostics} from '../../src/track/validation.js';
-const root='docs/track-expansion/evidence',cases=[],routes=[];const sha=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
-for(const course of [...Object.keys(ovalPresets),...Object.keys(circuitCatalog)]){const s=createRace({course}),d=trackDiagnostics(s);assert.equal(d.validation.valid,true,d.validation.message);cases.push({course,fixed:true,...d});}
-for(const category of ['short','medium','long'])for(let seed=1;seed<=100;seed++){
- const options={category,seed},a=generateRally(options),b=generateRally(options);assert.deepEqual(a,b);const s=createRace({course:a}),valid=validateFootprint(s.track,s.config);assert.equal(valid.valid,true);assert.equal(new Set(s.track.checkpoints.map(c=>c.q)).size,3);cases.push({category,seed,hash:sha(a),length:s.track.length,segments:s.track.segments.length,attempt:a.generation.attempt,fallback:a.generation.fallback,validation:valid});routes.push(a);
-}
-writeFileSync(root+'/validation.json',JSON.stringify({fixed:15,generated:300,cases},null,2));writeFileSync(root+'/validated-routes.json.gz',gzipSync(JSON.stringify(routes)));console.log(JSON.stringify({fixed:15,generated:300,fallbacks:cases.filter(r=>r.fallback).length,maxAttempt:Math.max(...cases.map(r=>r.attempt??0))}));

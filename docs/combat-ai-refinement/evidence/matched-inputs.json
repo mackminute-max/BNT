@@ -1,8 +1,0 @@
-{
-  "jobs": 300,
-  "identicalRawInputs": true,
-  "sha256": "951efc2988ee7eb1cee6855ae86ce302ea819a239730924a3ab13ba118bcbc6e",
-  "cohorts": 3,
-  "seedBlocksPerCohort": 20,
-  "weatherPresets": 5
-}

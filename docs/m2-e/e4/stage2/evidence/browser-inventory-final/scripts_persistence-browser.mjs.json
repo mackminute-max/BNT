@@ -1,5 +1,0 @@
-{
-  "command": "node scripts/persistence-browser.mjs",
-  "exit": 1,
-  "elapsedSeconds": 18.58534860610962
-}

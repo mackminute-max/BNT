@@ -1,4 +1,0 @@
-import{spawn}from'node:child_process';import{writeFile,open}from'node:fs/promises';
-const out='/workspace/deliverables/e5d-m3-bc-p1/evidence',rows=[];
-for(const name of ['features-browser','creation-browser','faults-browser','import-browser','presentation-faults-browser','hq-browser','restart-browser','file-browser']){const file=await open(out+'/'+name+'-final.log','w');const child=spawn(process.execPath,['scripts/e5-d/m3-bc-p1/'+name+'.mjs'],{stdio:['ignore',file.fd,file.fd]});const code=await new Promise((resolve,reject)=>{child.on('error',reject);child.on('close',resolve);});await file.close();rows.push({name,exit:code});await writeFile(out+'/'+name+'.exit',String(code)+'\n');await writeFile(out+'/browser-exits.json',JSON.stringify(rows,null,2));console.log(JSON.stringify(rows.at(-1)));}
-if(rows.some(r=>r.exit!==0&&r.name!=='file-browser'))process.exitCode=1;

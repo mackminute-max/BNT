@@ -1,9 +1,0 @@
-{
-  pass: true,
-  scope: 'Actual native Prestige loss after eight organic championships, followed by cold native re-registration; no synthetic unlock',
-  fixedPrestigeFingerprint: 'a91a2221f8dc7c8bf6cc94c7c194d3a3f75802a37389fa473e2d71932d6dd9bd',
-  duplicateFee: false,
-  fee: 25,
-  closedThrough: 9,
-  activeSequence: 10
-}

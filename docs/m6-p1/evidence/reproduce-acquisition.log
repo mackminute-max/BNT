@@ -1,8 +1,0 @@
-[
-  {
-    label: 'accepted',
-    error: 'Invalid driver visual identity',
-    sourceUnchangedOnFailure: true
-  },
-  { label: 'candidate', error: null, sourceUnchangedOnFailure: null }
-]

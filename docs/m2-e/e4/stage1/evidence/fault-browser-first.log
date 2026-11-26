@@ -1,3 +1,0 @@
-PASS two distinct browser tabs cannot both commit the same generation
-PASS migration interrupts before commit, after activation, after witness and stale discovery
-FAIL real IndexedDB quota enforcement through Chromium quota override preserves head: {"error":null,"generation":1,"estimate":{"quota":10737713152,"usage":294912,"usageDetails":{"indexedDB":294912}}}

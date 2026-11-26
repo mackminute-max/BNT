@@ -1,9 +1,0 @@
-{
-  "races": 1000,
-  "entries": 8000,
-  "uniqueRaceIds": 1000,
-  "allConfigurationReferencesResolve": true,
-  "allMassBalanceAndPaceChecksPass": true,
-  "maxPaceSecondsError": 2.842170943040401e-14,
-  "maxDamageTelescopingError": 2.842170943040401e-14
-}
