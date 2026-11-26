@@ -1,0 +1,37 @@
+/* Race Day theme (Interface Bible 15): neutral crimson, gold, ivory and dark umber,
+   fitted to one screen with no page scrolling. Injected into the race viewer iframe. */
+:root{--ink:#1E140F;--panel:#2a1c15;--text:#F4D39B;--gold:#FFBC19;
+ --bt-bronze:#B88742;--bt-oxblood:#540F19;--bt-crimson:#A61924;--bt-white:#FFF5E6;--bt-hover:#E99A51;--bt-charcoal:#171A20;--bt-gray:#777777;
+ --bt-display:'Bangers','Impact',sans-serif;--bt-heading:'IM Fell English','Georgia',serif;--bt-body:'Helvetica Neue',Helvetica,Arial,sans-serif}
+html,body{height:100%;overflow:hidden!important}
+body,body.p21,body.career-viewer{margin:0;background:radial-gradient(ellipse at 50% 20%,#2d1b13,#1E140F 60%,#0d0907)!important;color:var(--text);font-family:var(--bt-body)}
+body>header{display:none!important}
+body>main{height:100vh;box-sizing:border-box;padding:8px 10px!important;max-width:none!important;margin:0!important;display:block!important}
+#playerView{height:100%;display:flex!important;flex-direction:column;gap:6px;margin:0!important}
+#playerView .race-layout{flex:1 1 0;min-height:0;gap:8px!important}
+#p22Primary,#p22Support{min-height:0;overflow:auto;gap:8px!important}
+footer.p21-navigation{display:none!important}
+#p21RaceInfo{margin:0!important;color:var(--text);font-size:14px}
+.panel{background:linear-gradient(180deg,#2d1d15f2,#1c120df2)!important;border:2px solid var(--bt-bronze)!important;border-top:3px solid var(--bt-bronze)!important;box-shadow:none!important;color:var(--text);border-radius:2px}
+.panel::before,.panel::after{display:none!important}
+.panel h2,h2{font-family:var(--bt-heading)!important;font-weight:400!important;color:var(--gold)!important;letter-spacing:.01em;text-transform:none!important;font-size:21px!important}
+.p21-sign-bar h2{font-size:19px!important}
+p,td,th,span,small,label,.hint{color:inherit}
+.hint{color:#cdb48a!important}
+th{color:var(--gold)!important;background:none!important}
+td{border-color:#4a3626!important}
+.p22-standings tr[aria-current=true],.p22-standings .player,.p22-standings tr.player{background:#ffbc1926!important}
+button{font-family:var(--bt-display)!important;letter-spacing:.04em;font-size:18px!important;color:var(--bt-white)!important;background:linear-gradient(180deg,#7a1420,var(--bt-oxblood) 60%,#3d0a12)!important;border:2px solid var(--bt-bronze)!important;border-radius:3px!important;text-shadow:0 1px 0 #000a}
+button:hover:enabled{border-color:var(--bt-hover)!important;background:linear-gradient(180deg,#9a1a28,var(--bt-crimson) 60%,#5a0f19)!important}
+button:disabled{background:var(--bt-charcoal)!important;color:var(--bt-gray)!important;border-color:var(--bt-gray)!important;text-shadow:none}
+#start:enabled{background:linear-gradient(180deg,#c31e2c,var(--bt-crimson) 55%,#6d0f18)!important;border:3px solid var(--gold)!important}
+#start{font-size:22px!important}
+button.p2-sign-card{font-family:var(--bt-body)!important;font-size:14px!important;letter-spacing:0;text-align:left;text-shadow:none;background:#140c08!important;border:2px solid #6b5235!important}
+button.p2-sign-card strong,button.p2-sign-card b{font-family:var(--bt-display);font-size:17px;letter-spacing:.04em;font-weight:400;color:var(--bt-white)}
+button.p2-sign-card[aria-pressed=true],button.p2-sign-card.active,button.p2-sign-card.queued,button.p2-sign-card[aria-current=true]{border-color:var(--gold)!important;background:#3a2612!important;box-shadow:inset 0 0 0 1px var(--gold)!important}
+button.p2-sign-card:hover:enabled{border-color:var(--bt-hover)!important;background:#2a1a10!important}
+select,input{background:var(--bt-charcoal)!important;color:var(--bt-white)!important;border:1px solid var(--bt-bronze)!important}
+#radio,.radio{background:#0d0907!important;border:1px solid #4a3626!important;color:var(--text)!important}
+#radio strong,#radio b,.radio .major{color:var(--gold)}
+canvas#map{max-height:28vh;object-fit:contain}
+:focus-visible{outline:3px solid var(--gold)!important;outline-offset:2px}
