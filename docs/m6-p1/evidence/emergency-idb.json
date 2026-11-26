@@ -1,0 +1,24 @@
+{
+  "pass": true,
+  "scope": "Actual native original-stock emergency hire/registration/race/publication records, real IndexedDB and embedded Worker cold validation and complete backup/restore",
+  "records": 2,
+  "backupBytes": 923481,
+  "context": {
+    "version": 2,
+    "rulesVersion": "m6-p1-emergency-neutral-affinity-v1",
+    "ancestryId": "A05",
+    "speciesId": "B01",
+    "multiplier": 1,
+    "emergency": {
+      "version": 1,
+      "profileVersion": "m2d-emergency-driver-v1",
+      "careerId": "p1-neutral-career",
+      "driverId": "m2d-bce24e6eb243e001a203b777e1460d82f040e2949d5de245",
+      "contractId": "m2d-ca41be73d49989cb2fdc2292e37cd9801142e77a2e82a02b",
+      "provenanceHash": "d2d6ebbf71e99557ded1d7447999c105a9c564a281231843b8ccd1c82de3cb56"
+    }
+  },
+  "sex": "male",
+  "sourceProtected": true,
+  "officialResults": 1
+}

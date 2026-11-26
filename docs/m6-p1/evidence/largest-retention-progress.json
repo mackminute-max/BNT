@@ -1,0 +1,86 @@
+[
+  {
+    "event": 1,
+    "format": "Pure",
+    "course": "Rally",
+    "ticks": 1873,
+    "status": "Ended",
+    "withdrawal": null,
+    "careerBytes": 484160,
+    "sessionBytes": 1525303,
+    "retainedBytes": 2009463,
+    "ms": 12779.392024
+  },
+  {
+    "event": 2,
+    "format": "Combat",
+    "course": "Rally",
+    "ticks": 1968,
+    "status": "Ended",
+    "withdrawal": null,
+    "careerBytes": 510594,
+    "sessionBytes": 1917595,
+    "retainedBytes": 3953492,
+    "ms": 15226.801610000002
+  },
+  {
+    "event": 3,
+    "format": "Pure",
+    "course": "Rally",
+    "ticks": 1999,
+    "status": "Ended",
+    "withdrawal": null,
+    "careerBytes": 536725,
+    "sessionBytes": 1441739,
+    "retainedBytes": 5421362,
+    "ms": 11181.839055000004
+  },
+  {
+    "event": 4,
+    "format": "Combat",
+    "course": "Rally",
+    "ticks": 2005,
+    "status": "Ended",
+    "withdrawal": null,
+    "careerBytes": 563187,
+    "sessionBytes": 1736983,
+    "retainedBytes": 7184807,
+    "ms": 11913.507155
+  },
+  {
+    "event": 5,
+    "format": "Pure",
+    "course": "Rally",
+    "ticks": 1789,
+    "status": "Ended",
+    "withdrawal": null,
+    "careerBytes": 589700,
+    "sessionBytes": 1363675,
+    "retainedBytes": 8574995,
+    "ms": 10514.742852000003
+  },
+  {
+    "event": 6,
+    "format": "Combat",
+    "course": "Circuit",
+    "ticks": 6951,
+    "status": "Ended",
+    "withdrawal": null,
+    "careerBytes": 614003,
+    "sessionBytes": 4575369,
+    "retainedBytes": 13174667,
+    "ms": 34402.69787100001
+  },
+  {
+    "event": 7,
+    "format": "Pure",
+    "course": "Rally",
+    "ticks": 2007,
+    "status": "Ended",
+    "withdrawal": null,
+    "careerBytes": 627924,
+    "sessionBytes": 1476855,
+    "retainedBytes": 14665443,
+    "ms": 8720.665439999997
+  }
+]

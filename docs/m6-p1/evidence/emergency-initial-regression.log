@@ -1,0 +1,34 @@
+✔ P1 driver acquisition transfers exact visual, name, identity and provenance without orphan (3291.370905ms)
+✔ P1 failed hire leaves both identity indexes, finances and storage unchanged (34.596774ms)
+✔ P1 presentation extension is strict, deterministic, visual-only and optional for old M6 (36.076025ms)
+✔ P1 frozen rival member identity is reused in Den and championship; native inputs unchanged (106.105478ms)
+✔ P1 shared frozen organization labels do not cascade replacements or guess RU names (0.898875ms)
+✔ P1 beast acquisition and removal leave no orphan presentation or provenance (81.578235ms)
+✔ P1 chariot acquisition and removal leave no orphan presentation or provenance (164.814119ms)
+✔ P1 equipment acquisition and removal leave no orphan presentation or provenance (57.617452ms)
+✔ P1 specialist acquisition and removal leave no orphan presentation or provenance (81.535594ms)
+✔ P1 specialist authored ancestry and sex take precedence over generated fallback (14.303765ms)
+✔ P1 approved ability labels retain stable native IDs (0.852947ms)
+✔ P1 Steady the Team schedules and integrates the same +25% CONTROL rate (7.685784ms)
+✔ P1 Steady the Team no longer changes fatigue recovery; v2 retains legacy behavior (7.049948ms)
+✔ P1 control recovery excludes wrecks, clamps zero, and expires at exact tick (0.815401ms)
+✔ P1 native checkpoint/restart exact sign and ability parity: thunder-burst (38.853105ms)
+✔ P1 native checkpoint/restart exact sign and ability parity: second-wind (57.107491ms)
+✔ P1 native checkpoint/restart exact sign and ability parity: brace (22.8857ms)
+✔ P1 native checkpoint/restart exact sign and ability parity: perfect-line (31.829086ms)
+✔ P1 native checkpoint/restart exact sign and ability parity: savage-assault (32.186497ms)
+✔ P1 native checkpoint/restart exact sign and ability parity: absolute-focus (13.172428ms)
+✔ P1 native checkpoint/restart exact sign and ability parity: catch-breath (19.468184ms)
+✔ P1 native checkpoint/restart exact sign and ability parity: steady-team (13.307977ms)
+✔ P1 detailed Den radio narrates actual lap/exertion events without mutating native authority (505.14066ms)
+✔ P1 supplemental radio throttles exertion by team/time and resets per spectator race (0.259393ms)
+✔ P1 spectator live display uses finished classification priority and actual Rally/lap progress (0.200325ms)
+✔ P1 real native fatigue observations are independent of presentation batches and do not change results (16.954075ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4154.081442

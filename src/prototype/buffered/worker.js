@@ -149,7 +149,7 @@ class NativeWorkerHost {
             this.send("command-status", value.ack);
           }
           const first = eligibleBoundary(s, { viewTick: m.view.tick, viewTime: m.view.time, preStart: this.beforeSignal });
-          if (first&&r.progressionContext?.version!==2) {
+          if (first&&![2,3].includes(r.progressionContext?.version)) {
             const p = { version: 1, sign: m.sign, queueOrder: order, viewTick: m.view.tick, viewTime: m.view.time, boundaryEventId: first.id, preStart: this.beforeSignal };
             if (!issueSign(s, BUFFERED_SIGN_ACTION, p)) throw Error("Validated delay request rejected");
           }

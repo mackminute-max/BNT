@@ -1,0 +1,11 @@
+{
+  "groups": [
+    "ordinary registration, actual first native race and Run choice",
+    "actual regional driver Hire: exact identity, sex, price, no orphan, registered lineup unchanged",
+    "cold reload preserves regional hire and active championship"
+  ],
+  "pass": true,
+  "offerId": "m5-regional-cce70bb595b5bfe328deacd97467a9bd8abfc3e7",
+  "assetId": "owned-5f23ad974970bf0afbf4e484224e4de0",
+  "errors": []
+}

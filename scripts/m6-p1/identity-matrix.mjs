@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';import {writeFile} from 'node:fs/promises';
+import {homeM6Batch,renewHome} from '../../src/career/m6/markets.js';import {prepareCreation} from '../../src/management/creation/model.js';import {fingerprint} from '../../src/career/cycles/contracts.js';import {M6CareerStore} from '../../src/persistence/m6/store.js';import {actionCommand} from '../../src/management/model.js';
+import {driverVisuals} from '../../src/career/m6/current.js';import {refreshPresentationMetadata} from '../../src/career/m6/presentation.js';
+const out='/workspace/deliverables/bnt-m6-p1/evidence',found=new Map(),rows=[];
+for(let i=0;i<2000&&found.size<26;i++){
+ const careerId='p1-identity-'+i,b=homeM6Batch({career:{id:careerId},m6:{owner:{startingNation:'N1'},market:{epoch:1,gradeIndex:0,recruiterGrade:null,reservations:[]}}});
+ for(const [id,p]of Object.entries(b.identities))if(p.category==='driver'){
+  const sex=p.authored?.sex??(parseInt(fingerprint(['m6-driver-visual-sex-v1',careerId,id]).slice(0,8),16)%2?'female':'male'),key=p.ancestryId+'-'+sex;if(!found.has(key))found.set(key,{careerId,id,ancestry:p.ancestryId,sex});
+ }
+}
+assert.equal(found.size,26,'Must exercise every ancestry and sex without substituting generated traits');
+for(const value of found.values()){
+ const c=prepareCreation({version:5,id:value.careerId+'-create',slotId:'slot-11111111-1111-1111-1111-111111111111',profileId:value.careerId+'-owner',careerId:value.careerId,ownerName:'Owner',careerName:'Stable',packageId:'veteran',emblem:'wheel',primary:'#203944',secondary:'#dfb863',recruitIdentities:true,ownerIdentity:{version:1,nationality:'N1',ancestry:'A01',sex:'female',startingNation:'N1'}}),map=new Map(c.records),storage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v),removeItem:k=>map.delete(k)},store=new M6CareerStore(storage);store.open();const renewed=store.state;renewHome(renewed);driverVisuals(renewed);refreshPresentationMetadata(renewed);store.publish(renewed);
+ const property=Object.keys(store.state.management.registries.properties)[0];store.transaction(actionCommand(store.state,'facility.purchase',{propertyId:property,upgradeId:'driver-quarters'},value.careerId+'-quarters'));
+ const before=store.state,offer=before.management.registries.marketOffers[value.id],identity=before.m6.identities[value.id],visual=before.m6.driverVisuals[value.id];assert(offer);assert.equal(identity.ancestryId,value.ancestry);assert.equal(visual.sex,value.sex);
+ const command=actionCommand(before,'market.acquire',{offerId:value.id,term:'short'},value.careerId+'-hire');store.transaction(command);const n=store.state,asset=Object.values(n.management.registries.personnel).find(a=>a.economics?.sourceOfferId===value.id);assert(asset);assert.deepEqual(n.m6.identities[asset.id],identity);assert.deepEqual(n.m6.driverVisuals[asset.id],visual);assert.equal(n.career.treasury,before.career.treasury+command.delta);assert(!n.m6.driverVisuals[value.id]);store.transaction(command);assert.deepEqual(store.state,n);const cold=new M6CareerStore(storage);cold.open();assert.equal(cold.mode,'automatic',cold.problem);assert.deepEqual(cold.state,n);rows.push({...value,assetId:asset.id,cost:-command.delta,continuity:true,duplicateIdempotent:true,coldLoad:true});console.log(rows.at(-1));
+}
+await writeFile(out+'/identity-matrix.json',JSON.stringify({kind:'Actual renewable epoch1 Home offers and native protected acquisition/cold-load. Diagnostic explicitly seeds one market-renewal boundary per separate career for 13x2 coverage; not 26 ordinary UI hires or organically completed championships',count:rows.length,rows},null,2));

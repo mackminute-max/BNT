@@ -1,0 +1,49 @@
+{
+  "artifact": {
+    "filename": "Blood-and-Thunder-M6-P1-Playable.html",
+    "bytes": 5845984,
+    "sha256": "610233c729a3ded3810265d1d59292b28396a61eddd4cd85decdb76737dc3375",
+    "baselineArtifactSHA256": "3bdfb86d06a59c1b9672f2adf716413f7d110e5e9b07f3d9c16d6c810255660c",
+    "buildByteIdentityExit": "0"
+  },
+  "sourceFiles": 963,
+  "changedFiles": 73,
+  "tests": {
+    "baseline-frozen-node": {
+      "tests": 1394,
+      "pass": 1394,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "final-node": {
+      "tests": 1415,
+      "pass": 1415,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "final-frozen-node": {
+      "tests": 1419,
+      "pass": 1419,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "p1-targeted": {
+      "tests": 25,
+      "pass": 25,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "domain-regression": {
+      "tests": 42,
+      "pass": 42,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0
+    }
+  },
+  "frozenSourceMatches": true
+}

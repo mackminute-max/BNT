@@ -183,8 +183,8 @@ export function createRace({
       nextAttackTime: 0,
       reactionsRemaining: consequenceTuning.reactionBudget,
       defending: false,
-      ...(e.progressionContext?.version===2?{m6:{charges:e.progressionContext.abilityId?1:0,pendingAbility:null,activeAbility:null,throughTick:0}}:{}),
-      signs: { remaining: e.progressionContext?.version===2?(t.course&&!t.closed?t.checkpoints.length+1:c.laps)+e.progressionContext.signBonus:e.progressionContext?Math.min(100,tuning.signUses+e.progressionContext.signBonus):tuning.signUses, pending: null, active: null },
+      ...([2,3].includes(e.progressionContext?.version)?{m6:{charges:e.progressionContext.abilityId?1:0,pendingAbility:null,activeAbility:null,throughTick:0}}:{}),
+      signs: { remaining: [2,3].includes(e.progressionContext?.version)?(t.course&&!t.closed?t.checkpoints.length+1:c.laps)+e.progressionContext.signBonus:e.progressionContext?Math.min(100,tuning.signUses+e.progressionContext.signBonus):tuning.signUses, pending: null, active: null },
       ai: {
         nextDecision: 0,
         goal: "hold",

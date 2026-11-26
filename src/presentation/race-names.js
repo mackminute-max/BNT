@@ -1,0 +1,2 @@
+// Display only: names come from the frozen entrant identity, never generation.
+export function namedRaceText(line,entries=[]){const names=new Map(entries.filter(e=>typeof e.id==='string'&&typeof(e.stableName??e.label)==='string').map(e=>[e.id,e.stableName??e.label]));if(!names.size)return line.text;const pattern=[...names.keys()].sort((a,b)=>b.length-a.length).map(id=>id.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|');return line.text.replace(new RegExp(pattern,'g'),id=>names.get(id));}

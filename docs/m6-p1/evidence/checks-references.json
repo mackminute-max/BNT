@@ -1,0 +1,65 @@
+[
+  {
+    "command": "node scripts/m6-p1/references.mjs",
+    "start": "2026-11-25T21:39:23.227Z",
+    "end": "2026-11-25T21:39:37.572Z",
+    "exit": 0,
+    "signal": null
+  },
+  {
+    "command": "node scripts/m6-p1/clock-parity.mjs",
+    "start": "2026-11-25T21:39:37.573Z",
+    "end": "2026-11-25T21:40:16.242Z",
+    "exit": 0,
+    "signal": null
+  },
+  {
+    "command": "node scripts/m6-p1/legacy-continuity.mjs",
+    "start": "2026-11-25T21:40:16.243Z",
+    "end": "2026-11-25T21:40:21.851Z",
+    "exit": 0,
+    "signal": null
+  },
+  {
+    "command": "node scripts/m6-p1/worker-faults.mjs",
+    "start": "2026-11-25T21:40:21.852Z",
+    "end": "2026-11-25T21:40:57.670Z",
+    "exit": 0,
+    "signal": null
+  },
+  {
+    "command": "node scripts/m6-p1/idb-proof.mjs",
+    "start": "2026-11-25T21:40:57.671Z",
+    "end": "2026-11-25T21:41:03.722Z",
+    "exit": 0,
+    "signal": null
+  },
+  {
+    "command": "node scripts/m6-p1/real-quota.mjs",
+    "start": "2026-11-25T21:41:03.722Z",
+    "end": "2026-11-25T21:41:08.835Z",
+    "exit": 0,
+    "signal": null
+  },
+  {
+    "command": "node scripts/m6-p1/smoke-browser.mjs",
+    "start": "2026-11-25T21:41:08.836Z",
+    "end": "2026-11-25T21:42:17.342Z",
+    "exit": 0,
+    "signal": null
+  },
+  {
+    "command": "node scripts/m6-p1/den-browser.mjs",
+    "start": "2026-11-25T21:42:17.343Z",
+    "end": "2026-11-25T21:42:48.797Z",
+    "exit": 0,
+    "signal": null
+  },
+  {
+    "command": "node scripts/m6-p1/retention-idb.mjs",
+    "start": "2026-11-25T21:42:48.798Z",
+    "end": "2026-11-25T21:45:12.729Z",
+    "exit": 0,
+    "signal": null
+  }
+]

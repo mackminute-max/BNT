@@ -1,0 +1,19 @@
+{
+  "result": "CONFIRMED OWNER POLICY GAP",
+  "scope": "Actual native creation, paid facility purchases, active-team deactivation, paid termination and approved emergency command. No synthetic treasury or personnel mutations.",
+  "treasury": 80,
+  "driver": "m2d-e3f7d6f3e6688049eb8050c2c8fdacd89cafca3a5655a2e2",
+  "nativeAttributes": {
+    "driving": 40,
+    "beastHandling": 40,
+    "combat": 40,
+    "awareness": 40,
+    "nerve": 40
+  },
+  "identity": null,
+  "visual": null,
+  "reasons": [
+    "Canonical driver ancestry is unavailable"
+  ],
+  "mechanicalDecision": "Emergency driver has no canonical ancestry; assigning one changes beast affinity. No ancestry or neutral-affinity exception was invented."
+}

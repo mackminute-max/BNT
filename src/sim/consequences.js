@@ -1,3 +1,4 @@
+import {controlRecoveryRate} from './m6-interaction.js';
 import {activeAbility} from './m6-interaction.js';
 import {chargeAction} from './action-costs.js';
 import { resolveAction } from "../ai/telemetry.js";
@@ -213,14 +214,14 @@ export function controlTime(s, r) {
   // At an exact threshold, schedule its departure by a finite epsilon rather than a zero-time loop.
   return Math.max(
     s.config.epsilon * 2,
-    (r.instability - threshold) / c.controlRecovery,
+    (r.instability - threshold) / controlRecoveryRate(s,r),
   );
 }
 export function recoverControl(s, r, elapsed) {
   if (s.consequences && r.physical !== "Wreck") {
     r.instability = Math.max(
       0,
-      r.instability - s.consequence.controlRecovery * elapsed,
+      r.instability - controlRecoveryRate(s,r) * elapsed,
     );
     updateControl(s, r, "Recovery");
   }

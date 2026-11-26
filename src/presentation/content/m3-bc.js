@@ -1,3 +1,6 @@
+import {emergencyIdentity} from '../../career/m6/emergency.js';
+import {presentationMetadata} from '../../career/m6/presentation.js';
+import {CATALOGS} from '../../career/m5/content.generated.js';
 import {hash} from '../../core/determinism.js';
 import {DATA,PACK_VERSION,PACK_DIGEST} from './m3-bc-data.js';
 import {identity as nativeIdentity} from '../../management/content.js';
@@ -6,11 +9,12 @@ function freeze(v){if(v&&typeof v==='object'){for(const x of Object.values(v))fr
 const identities=new Map(DATA.identities.map(x=>[x.sourceOfferId,x.presentation_identity]));
 const pools=new Map(DATA.radio.map(x=>[x.key,x]));
 export function recruitIdentity(record,presentation,state=null){
- const generated=state?.schema===8?state.m6.identities[record?.id]:state?.schema===7?state.m5.identities[record?.id]:null,fallback={...nativeIdentity(record),...(generated?{ancestry:generated.ancestryLabel??null,nationalOrigin:generated.originNationLabel??null,cosmeticSpecies:generated.speciesLabel??null,stockStyle:generated.stockLabel??null,characterization:generated.aiLabel??null,bio:generated.backgroundLabel??'',sex:state?.schema===8?state.m6.driverVisuals[record?.id]?.sex??null:generated.authored?.sex??null}:{})},pin=presentation?.identityPack;
+ const staff=state?.schema===8&&state.m6.identities[record?.id]?.category==='specialist'?(state.m6.presentation??presentationMetadata(state)).staff[record.id]:null;
+ const generated=state?.schema===8?state.m6.identities[record?.id]??emergencyIdentity(state,record?.id):state?.schema===7?state.m5.identities[record?.id]:null,fallback={...nativeIdentity(record),...(generated?{ancestry:generated.ancestryLabel??CATALOGS.ancestryGameplay.find(a=>a.canonicalAncestryId===staff?.ancestryId)?.label??null,nationalOrigin:generated.originNationLabel??null,cosmeticSpecies:generated.speciesLabel??null,stockStyle:generated.stockLabel??null,characterization:generated.aiLabel??null,bio:generated.backgroundLabel??'',sex:state?.schema===8?state.m6.driverVisuals[record?.id]?.sex??staff?.sex??null:generated.authored?.sex??null}:{})},pin=presentation?.identityPack;
  if(state?.m5?.d2&&generated?.category==='beast'&&generated.authored&&generated.authored.species_id!==generated.speciesId)return fallback;
  if(pin?.version!==PACK_VERSION||pin.digest!==PACK_DIGEST)return fallback;
  const m=identities.get(generated?.authored?generated.sourceOfferId:record?.economics?.sourceOfferId??record?.id);if(!m)return fallback;
- return {...fallback,name:m.name??fallback.name,ancestry:m.ancestry??fallback.ancestry,bio:m.biography??fallback.bio,nationalOrigin:m.national_origin_name??m.stylistic_origin_name??null,cosmeticSpecies:m.species??null,stockStyle:m.stock_style??null,characterization:m.personality??null,disclaimer:m.characterization_disclaimer??null,provisional:false,version:pin.version,...((state?.m5?.d2||state?.schema===8)&&generated?{ancestry:generated.ancestryLabel??null,cosmeticSpecies:generated.speciesLabel??null}: {})};
+ return {...fallback,name:m.name??fallback.name,ancestry:m.ancestry??fallback.ancestry,bio:m.biography??fallback.bio,nationalOrigin:m.national_origin_name??m.stylistic_origin_name??null,cosmeticSpecies:m.species??null,stockStyle:m.stock_style??null,characterization:m.personality??null,disclaimer:m.characterization_disclaimer??null,provisional:false,version:pin.version,...((state?.m5?.d2||state?.schema===8)&&generated?{ancestry:generated.ancestryLabel??CATALOGS.ancestryGameplay.find(a=>a.canonicalAncestryId===staff?.ancestryId)?.label??null,cosmeticSpecies:generated.speciesLabel??null}: {})};
 }
 const text=v=>typeof v==='string'&&v.length>0?v:null;
 const numeric=v=>typeof v==='number'&&Number.isFinite(v)?v:null;

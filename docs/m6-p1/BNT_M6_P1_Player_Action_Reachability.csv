@@ -1,0 +1,87 @@
+page,observed_control,disabled_in_sample,coverage
+overview,Go Race,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+overview,Confirm loadout,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+overview,Legacy Upgrades in the Market,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Recruits & Equipment,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Legacy Upgrades,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Hire,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Purchase,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Purchase,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Purchase,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Hire,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Purchase,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Purchase,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Purchase,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Purchase,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Purchase,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Sell asset,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Sell asset,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Sell asset,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Sell asset,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Sell asset,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Purchase for 6 LP,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Purchase for 4 LP,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Purchase for 4 LP,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Purchase for 5 LP,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Purchase for 8 LP,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Purchase for 3 LP,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Purchase for 5 LP,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+markets,Purchase for 6 LP,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+facilities,End contract,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+facilities,End contract,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+facilities,End contract,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+workshop,Purchase,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+workshop,Purchase,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+workshop,Purchase,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+workshop,Purchase,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+workshop,Purchase,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+workshop,Purchase,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+workshop,Purchase,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+workshop,Improve chariot,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+workshop,Detach equipment,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+workshop,Detach equipment,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Treat injury,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Driver recovery,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Train,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Treat injury,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Driver recovery,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Train,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Treat injury,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Driver recovery,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Train,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Treat injury,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Beast care,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Train,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Treat injury,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Beast care,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Train,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Refurbish wear,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+services,Repair chariot,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+championships,Current nation,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+championships,Select nation,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+championships,Select nation,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+championships,Select nation,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+championships,Select nation,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+championships,Select nation,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+championships,Select nation,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+championships,Select nation,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+championships,Select,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+championships,Register,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+championships,Return to Barn,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+world,Current nation,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+world,Select nation,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+world,Select nation,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+world,Select nation,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+world,Select nation,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+world,Select nation,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+world,Select nation,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+world,Select nation,True,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+gambling,Get spectator odds,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+gambling,Watch without a wager,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+gambling,Leave Den,False,Packaged ordinary navigation/read-only inventory captured before restored Barn binding; final Barn actions verified separately; disabled state is context-specific
+Roster & Barn,Activate/deactivate; driver/chariot replacement; both beast-slot choices; cancel,contextual,"Final packaged barn-browser regression, including original-build failure, reload and frozen registration lock"
+Options,Save/Load/Help/export/import/recovery/deletion,contextual,Existing browser runners and Worker faults; Windows repetition pending
+Championship race,Play/Pause/speed/Signs/official finalization,contextual,"Actual packaged native first race, final native API tail separately labeled"
+Regional Market,Direct driver Hire,contextual,Actual packaged native intermission and cold reload
+Gambling Den,Quote/stake/watch/play/pause/speed/skip/settle,contextual,Three actual native spectator events and reload
+Recovery/Finances,Emergency replacement racing unit,contextual,Actual packaged hire/activation/register/race; all nine species native fixture matrix; expiry and backup/restore verified

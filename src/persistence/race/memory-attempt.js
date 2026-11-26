@@ -18,7 +18,7 @@ class MemorySession {
   if(input.expectedRevision!==a.revision||input.tick!==s.tick||!['Ready','Running'].includes(s.status))throw Error('Stale or terminal memory attempt');
   if(input.phase==='paused'){
    if(input.ticks!==0||input.commands.length!==1)throw Error('Invalid paused memory input');const c=input.commands[0];exact(c,['action',...(Object.hasOwn(c,'sign')?['sign']:[])]);
-   if(!['queue','cancel','lower',BUFFERED_SIGN_ACTION,...(s.entrants.find(r=>r.id===s.playerId)?.progressionContext?.version===2?['ability']:[])].includes(c.action))throw Error('Invalid memory Sign action');
+   if(!['queue','cancel','lower',BUFFERED_SIGN_ACTION,...([2,3].includes(s.entrants.find(r=>r.id===s.playerId)?.progressionContext?.version)?['ability']:[])].includes(c.action))throw Error('Invalid memory Sign action');
    const next=[...this.inputs,{tick:s.tick,command:structuredClone(c)}];if(segmentCount(next,s.tick)+1>1000)throw Error('Session journal limit; no input accepted');
    issueSign(s,c.action,c.sign);this.inputs=next;
   }else{

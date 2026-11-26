@@ -1,0 +1,37 @@
+[
+  {
+    "command": "node scripts/m6-p1/repeated-native.mjs",
+    "start": "2026-11-25T20:55:30.664Z",
+    "end": "2026-11-25T21:03:49.957Z",
+    "exit": 0,
+    "signal": null
+  },
+  {
+    "command": "node scripts/m6-p1/organic-prestige.mjs",
+    "start": "2026-11-25T21:03:49.960Z",
+    "end": "2026-11-25T21:06:01.672Z",
+    "exit": 0,
+    "signal": null
+  },
+  {
+    "command": "node scripts/m6-p1/prestige-retry.mjs",
+    "start": "2026-11-25T21:06:01.672Z",
+    "end": "2026-11-25T21:06:03.116Z",
+    "exit": 0,
+    "signal": null
+  },
+  {
+    "command": "node scripts/m6-p1/largest-retention.mjs",
+    "start": "2026-11-25T21:06:03.117Z",
+    "end": "2026-11-25T21:10:13.157Z",
+    "exit": 0,
+    "signal": null
+  },
+  {
+    "command": "node scripts/m6-p1/retention-idb.mjs",
+    "start": "2026-11-25T21:10:13.158Z",
+    "end": "2026-11-25T21:13:07.236Z",
+    "exit": 0,
+    "signal": null
+  }
+]

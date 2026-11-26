@@ -1,0 +1,3 @@
+// Read-only live order. Final classification and payments remain native authority.
+export function spectatorOrder(entrants){return [...entrants].sort((a,b)=>Number(b.status==='Finished')-Number(a.status==='Finished')||(a.finishTime??Infinity)-(b.finishTime??Infinity)||b.q-a.q||a.id.localeCompare(b.id));}
+export function spectatorProgress(r,base){const t=base.track;if(t.course&&!t.closed)return 'Rally '+Math.min(100,Math.max(0,r.q/t.cells*100)).toFixed(1)+'%';return r.status==='Finished'?base.config.laps+' / '+base.config.laps+' laps':'Lap '+Math.min(base.config.laps,(r.completedLaps??0)+1)+' / '+base.config.laps;}

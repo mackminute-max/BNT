@@ -1,0 +1,4 @@
+den-browser { exit: 0, signal: null }
+den-native-proof { exit: 0, signal: null }
+sundaran-registration { exit: 0, signal: null }
+file-browser { exit: 1, signal: null }

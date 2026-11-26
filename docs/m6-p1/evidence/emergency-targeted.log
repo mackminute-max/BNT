@@ -1,0 +1,24 @@
+✔ P1 approved emergency neutral affinity and native condition/contract gates: B01 (4882.17607ms)
+✔ P1 approved emergency neutral affinity and native condition/contract gates: B02 (359.3562ms)
+✔ P1 approved emergency neutral affinity and native condition/contract gates: B03 (336.912161ms)
+✔ P1 approved emergency neutral affinity and native condition/contract gates: B04 (308.827608ms)
+✔ P1 approved emergency neutral affinity and native condition/contract gates: B05 (266.099318ms)
+✔ P1 approved emergency neutral affinity and native condition/contract gates: B06 (336.237528ms)
+✔ P1 approved emergency neutral affinity and native condition/contract gates: B07 (254.467278ms)
+✔ P1 approved emergency neutral affinity and native condition/contract gates: B08 (304.375383ms)
+✔ P1 approved emergency neutral affinity and native condition/contract gates: B09 (334.993109ms)
+✔ P1 emergency requires true native provenance, not missing ancestry or a presentation flag (260.881169ms)
+✔ P1 neutral emergency context persists through exact native checkpoint/restore (321.605089ms)
+✔ P1 ordinary registration cannot import an emergency context or discard protected recruitment history (408.435114ms)
+✔ P1 protected emergency provenance survives source receipt eviction and personnel release (4450.201225ms)
+✔ P1 older native emergency contract is provenance without inventing a historical receipt (312.573001ms)
+✔ P1 failed emergency persistence publishes no driver, portrait or protected birth; retry commits once (351.090442ms)
+✔ P1 malformed/foreign emergency registry rejects before publication (294.182262ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14073.436949

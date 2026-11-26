@@ -1,0 +1,286 @@
+{
+  careerId: 'p1-identity-0',
+  id: 'm5-offer-f121de2711fa2feee36589648e205415db08ec64',
+  ancestry: 'A11',
+  sex: 'female',
+  assetId: 'owned-4696e9a6c57e4ec1e101d0eb63753ace',
+  cost: 185,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-0',
+  id: 'm5-offer-a74871581de448d4204061d878fd6957345374b1',
+  ancestry: 'A01',
+  sex: 'female',
+  assetId: 'owned-6c5bad41ce46941f38b782e7ccdcde4c',
+  cost: 175,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-1',
+  id: 'm5-offer-ade939b9d8967edfdfa2cc9f3ba9a7fa3138a882',
+  ancestry: 'A07',
+  sex: 'male',
+  assetId: 'owned-1b612e2a38a5a22655512a81cfbcc9ca',
+  cost: 175,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-1',
+  id: 'm5-offer-9adcbb304f219d39a5f4d75478549641237c344d',
+  ancestry: 'A06',
+  sex: 'male',
+  assetId: 'owned-29abfe7e52ae9f23667db55bbd6cef51',
+  cost: 180,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-2',
+  id: 'm5-offer-f743ac2e1c2dcf8775b7bb8172c49844cf2963c0',
+  ancestry: 'A08',
+  sex: 'female',
+  assetId: 'owned-f0b71658f2d7fe76c3365695287d76c2',
+  cost: 170,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-2',
+  id: 'm5-offer-07a7bdc8ae04eb290e4fa21a4621f8cc5d8409d8',
+  ancestry: 'A08',
+  sex: 'male',
+  assetId: 'owned-dd3c7d5b95c97f8332a844734fc0ef9b',
+  cost: 185,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-3',
+  id: 'm5-offer-b64e7b46163fc317cd7731e32a2eac78a94554a1',
+  ancestry: 'A02',
+  sex: 'male',
+  assetId: 'owned-572c22661f7eae4dedcc99369ca0794a',
+  cost: 180,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-4',
+  id: 'm5-offer-1c42fdf7c99be8e8d1946433838af80636272f02',
+  ancestry: 'A05',
+  sex: 'male',
+  assetId: 'owned-52fba05157b2ec1d6742300beb24fc23',
+  cost: 185,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-5',
+  id: 'm5-offer-acf7e808846b6c1227f3257e775e12afc0d46393',
+  ancestry: 'A04',
+  sex: 'male',
+  assetId: 'owned-d1b3a660522f0b3d2753464aba4d66bb',
+  cost: 180,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-7',
+  id: 'm5-offer-6e9f0687f2a18813991ac4e771b753c7eea15300',
+  ancestry: 'A01',
+  sex: 'male',
+  assetId: 'owned-4239fcf04b24d40396235dee820db2cd',
+  cost: 175,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-8',
+  id: 'm5-offer-2b1ba595405df4044f6f8cec4e69754232dd5148',
+  ancestry: 'A03',
+  sex: 'female',
+  assetId: 'owned-826d2ad248767e79bb8df8c9c6ff6a5a',
+  cost: 170,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-8',
+  id: 'm5-offer-55c7650c37addab7a9879b150df1ee730a5e84d4',
+  ancestry: 'A10',
+  sex: 'female',
+  assetId: 'owned-a8d7f4d8bd7b54e214b1823478210977',
+  cost: 180,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-10',
+  id: 'm5-offer-895610173a6ca1d1856106b393ac8bdea904b0a1',
+  ancestry: 'A07',
+  sex: 'female',
+  assetId: 'owned-41cca12e68364b46fc6883fbc44ee8e1',
+  cost: 180,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-10',
+  id: 'm5-offer-d60bc4c907518cc4fe455bbd48fbdc33ba047bb5',
+  ancestry: 'A12',
+  sex: 'male',
+  assetId: 'owned-1bc5acf56c48f6a8a1494eb6aaf5725e',
+  cost: 175,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-12',
+  id: 'm5-offer-4f6effa67bd51f354d6004804ef1d4aff5ab2e0b',
+  ancestry: 'A13',
+  sex: 'male',
+  assetId: 'owned-86e625b94d3c79bfa069dfe70bf67152',
+  cost: 180,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-16',
+  id: 'm5-offer-c7edc960c28995a2c39a33c62df42ca63babd0e8',
+  ancestry: 'A11',
+  sex: 'male',
+  assetId: 'owned-06d7a3cd240e63480d7f08cc68b3ddbf',
+  cost: 175,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-17',
+  id: 'm5-offer-04f996a1994a9b7cc6dc22be413ca2f03a9fa15f',
+  ancestry: 'A10',
+  sex: 'male',
+  assetId: 'owned-b51b0aea90b1afce6aaec430f39a6db4',
+  cost: 175,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-17',
+  id: 'm5-offer-eed7ac7503344042c837f32f71741cdcfbd7f3d6',
+  ancestry: 'A09',
+  sex: 'female',
+  assetId: 'owned-8ed0c4b852848ee2828dbfc42b0eca7c',
+  cost: 175,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-18',
+  id: 'm5-offer-0e232ce875f0e743c480e907780762662892f5df',
+  ancestry: 'A12',
+  sex: 'female',
+  assetId: 'owned-6da0cbce28173043dc6c4607a0a1b00f',
+  cost: 185,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-18',
+  id: 'm5-offer-4e54c38dede03564b6604236abb9ca186d76fa37',
+  ancestry: 'A05',
+  sex: 'female',
+  assetId: 'owned-354462cc70ad6812852900fa3fa52259',
+  cost: 175,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-20',
+  id: 'm5-offer-dd936cbe97b9a0a3d1fa831c960dbec1802d8184',
+  ancestry: 'A04',
+  sex: 'female',
+  assetId: 'owned-07f83663485a9032bd7a3f5c371487c4',
+  cost: 180,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-23',
+  id: 'm5-offer-cfdbf18cc593d26193ba6fe6b8be358b5c2fa469',
+  ancestry: 'A02',
+  sex: 'female',
+  assetId: 'owned-8b46412af629d91aef59172085c0bc3b',
+  cost: 180,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-31',
+  id: 'm5-offer-669eb5e286dcbdeb6cf56b9219ee04dc9f80c68b',
+  ancestry: 'A06',
+  sex: 'female',
+  assetId: 'owned-e4d950dc967fa84b3f04582c334b6177',
+  cost: 185,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-32',
+  id: 'm5-offer-80ec8cf3aa2fb416d2c5aee583b0fdf4c136357c',
+  ancestry: 'A09',
+  sex: 'male',
+  assetId: 'owned-329a8a90f2b261a4985b29ec2eb38650',
+  cost: 175,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-75',
+  id: 'm5-offer-67447c481a9c14e4e33f4411d82d4d291fd1dd4a',
+  ancestry: 'A03',
+  sex: 'male',
+  assetId: 'owned-b60e9ae97977739f914a0581dcc5ce06',
+  cost: 185,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}
+{
+  careerId: 'p1-identity-77',
+  id: 'm5-offer-93a09545891a9d80d77db684d04c4b58a0c62356',
+  ancestry: 'A13',
+  sex: 'female',
+  assetId: 'owned-1a452f1478d5f96e12d801b7eb98e256',
+  cost: 175,
+  continuity: true,
+  duplicateIdempotent: true,
+  coldLoad: true
+}

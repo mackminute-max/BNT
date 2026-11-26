@@ -1,0 +1,84 @@
+{
+  "nativeRaces": [
+    {
+      "native": {
+        "ticks": 2161,
+        "checksum": null,
+        "sessionBytes": 691359,
+        "ordinaryStorageWrites": 0
+      },
+      "wager": {
+        "version": 1,
+        "eventId": "e2-race-68a28554371e6a77ec0ea9bf82d795f3183e49e0",
+        "instanceId": "m6-run-1-8ba5505134dce637895d768d",
+        "eventIndex": 0,
+        "entrantId": "e2-e55ae02",
+        "stake": 10,
+        "odds": 3.06,
+        "setupHash": "cb11bf9f66410d60c03a790e31a7a249ac59313bc3a0eb7e8a247e247e5484db",
+        "quoteFingerprint": "9ebfc8743c7343b1144a101b88e6ec7bd965f7bd68c5191fb3a93f976d150273",
+        "status": "RESOLVED",
+        "withdrawnAtResult": false,
+        "resultId": "e2-result-413983d00b78880750cdea14f0179b120e876e13",
+        "outcome": "Won",
+        "payout": 30
+      }
+    },
+    {
+      "native": {
+        "ticks": 2679,
+        "checksum": null,
+        "sessionBytes": 841111,
+        "ordinaryStorageWrites": 0
+      },
+      "wager": {
+        "version": 1,
+        "eventId": "e2-race-a9394484ce340dac91b630ca01d0655b932db5ab",
+        "instanceId": "m6-run-1-8ba5505134dce637895d768d",
+        "eventIndex": 1,
+        "entrantId": "e2-e55ae02",
+        "stake": 10,
+        "odds": 2.93,
+        "setupHash": "2aa8de3c7f4cb8843387282f8eebcf28cb7b622077f089c303793c343e47f434",
+        "quoteFingerprint": "c0ec2bd37e0d94e75ad01838bff49fed92589457e3f94c3bfea0853046cd2a11",
+        "status": "RESOLVED",
+        "withdrawnAtResult": false,
+        "resultId": "e2-result-2524a3d33bd1e88d9888b730d1bde9a82b9d0e57",
+        "outcome": "Won",
+        "payout": 29
+      }
+    }
+  ],
+  "failedFinalWriteRollback": true,
+  "payoutsOnlyAtAtomicFinalChoice": true,
+  "idempotent": true,
+  "coldReload": true,
+  "totals": {
+    "staked": 20,
+    "paid": 59,
+    "bets": 2,
+    "wins": 2,
+    "losses": 0,
+    "voids": 0,
+    "viewed": 0
+  },
+  "summary": {
+    "id": "m6-run-1-8ba5505134dce637895d768d",
+    "sequence": 1,
+    "nationId": "N1",
+    "type": "intro",
+    "name": "First Dustroad Cup",
+    "placement": 1,
+    "won": true,
+    "starts": 2,
+    "raceWins": 2,
+    "raceLosses": 0,
+    "dnf": 0,
+    "podiums": 2,
+    "grossGold": 440,
+    "netGold": 359,
+    "reputation": 110,
+    "withdrawal": null
+  },
+  "finalGold": 1009
+}

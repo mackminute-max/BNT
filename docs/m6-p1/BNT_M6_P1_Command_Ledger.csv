@@ -1,0 +1,61 @@
+command,rawExit,evidence,classification
+npm test (cwd /tmp/bnt-m6-p1-acceptance; final immutable source),0,acceptance-node.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/accepted-regressions.mjs,0,accepted-regressions.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/affinity-assessment.mjs,0,affinity-assessment.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/balance-grid.mjs,0,balance-grid.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/barn-browser.mjs,0,barn-browser.exit,raw result; individual retries and inherited failures dispositioned in test report
+npm test (cwd /tmp/bnt-m6-p1-baseline),0,baseline-frozen-node.exit,raw result; individual retries and inherited failures dispositioned in test report
+npm test (initial in-place run; superseded by immutable baseline),1,baseline-node.exit,harness setup / superseded
+cmp /tmp/BNT-M6-P1-build-1.html dist/Blood-and-Thunder-M6-P1-Playable.html,0,build-byte-identity.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/build.mjs,0,build-repeat.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/build.mjs,0,build.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/capacity-current.mjs,0,capacity-current.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/clock-parity.mjs,0,clock-parity.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/controlled-performance.mjs,0,controlled-performance.exit,raw result; individual retries and inherited failures dispositioned in test report
+core-checks (aggregate; see matching logs/checks JSON),1,core-checks.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/creation-browser.mjs,0,creation-browser.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/den-browser.mjs,0,den-browser.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/den-native-proof.mjs,0,den-native-proof.exit,raw result; individual retries and inherited failures dispositioned in test report
+node --test tests/m6-current.test.js tests/m6-world.test.js tests/m6-gambling.test.js tests/m6-p1-*.test.js,0,domain-regression.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/emergency-browser.mjs,0,emergency-browser.exit,raw result; individual retries and inherited failures dispositioned in test report
+emergency-domain-regression (aggregate; see matching logs/checks JSON),0,emergency-domain-regression.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/emergency-employment.mjs,0,emergency-employment.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/emergency-idb.mjs,0,emergency-idb.exit,raw result; individual retries and inherited failures dispositioned in test report
+emergency-initial-regression (aggregate; see matching logs/checks JSON),0,emergency-initial-regression.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/emergency-investigation.mjs,0,emergency-investigation.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/emergency-native.mjs,0,emergency-native.exit,raw result; individual retries and inherited failures dispositioned in test report
+emergency-targeted (aggregate; see matching logs/checks JSON),0,emergency-targeted.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/file-browser.mjs,1,file-browser.exit,managed file-origin restriction
+final-binding-checks (aggregate; see matching logs/checks JSON),0,final-binding-checks.exit,raw result; individual retries and inherited failures dispositioned in test report
+npm test (cwd /tmp/bnt-m6-p1-final),0,final-frozen-node.exit,raw result; individual retries and inherited failures dispositioned in test report
+"npm test (intermediate candidate, before supplemental radio file)",0,final-node.exit,raw result; individual retries and inherited failures dispositioned in test report
+final-ui-checks (aggregate; see matching logs/checks JSON),1,final-ui-checks.exit,raw result; individual retries and inherited failures dispositioned in test report
+initial frozen shell launched npm from /tmp before archive; harness setup error,254,frozen-launch-initial-error.exit,harness setup / superseded
+node scripts/m6-p1/idb-proof.mjs,0,idb-proof.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/identity-matrix.mjs,0,identity-matrix.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/build.mjs (intermediate),0,initial-build.exit,raw result; individual retries and inherited failures dispositioned in test report
+node --test tests/m6-current.test.js tests/m6-interaction.test.js,0,initial-targeted.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/largest-retention.mjs,0,largest-retention.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/legacy-continuity.mjs,0,legacy-continuity.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/native-wager-championship.mjs,0,native-wager-championship.exit,raw result; individual retries and inherited failures dispositioned in test report
+neutral-final-regression (aggregate; see matching logs/checks JSON),0,neutral-final-regression.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/organic-prestige.mjs,0,organic-prestige.exit,raw result; individual retries and inherited failures dispositioned in test report
+node --test tests/m6-p1-*.test.js,0,p1-targeted-final.exit,raw result; individual retries and inherited failures dispositioned in test report
+node --test tests/m6-p1-*.test.js (pre-staff-binding coverage),0,p1-targeted.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/packages-proof.mjs,0,packages-proof.exit,raw result; individual retries and inherited failures dispositioned in test report
+pre-emergency-full-node (aggregate; see matching logs/checks JSON),0,pre-emergency-full-node.exit,raw result; individual retries and inherited failures dispositioned in test report
+pre-staff-full-node (aggregate; see matching logs/checks JSON),0,pre-staff-full-node.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/prestige-retry.mjs,0,prestige-retry.exit,raw result; individual retries and inherited failures dispositioned in test report
+progression-checks (aggregate; see matching logs/checks JSON),0,progression-checks.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/real-quota.mjs,0,real-quota.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/recruitment-browser.mjs,0,recruitment-browser.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/references.mjs,0,references.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/regional-hire-browser.mjs,0,regional-hire-browser.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/repeated-native.mjs,0,repeated-native.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/reproduce-acquisition.mjs,0,reproduce-acquisition.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/retention-idb.mjs,0,retention-idb.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/smoke-browser.mjs,0,smoke-browser.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/starter-boundaries.mjs,0,starter-boundaries.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/sundaran-registration.mjs,0,sundaran-registration.exit,raw result; individual retries and inherited failures dispositioned in test report
+ui-checks (aggregate; see matching logs/checks JSON),0,ui-checks.exit,raw result; individual retries and inherited failures dispositioned in test report
+node scripts/m6-p1/worker-faults.mjs,0,worker-faults.exit,raw result; individual retries and inherited failures dispositioned in test report

@@ -1,0 +1,321 @@
+{
+  "fixture": "Actual native starting grants and paid service transactions; no synthetic funding or unlocks",
+  "championships": 8,
+  "rows": [
+    {
+      "championship": 1,
+      "races": [
+        {
+          "ticks": 2015,
+          "checksum": null,
+          "sessionBytes": 691203,
+          "ordinaryStorageWrites": 0
+        },
+        {
+          "ticks": 2437,
+          "checksum": null,
+          "sessionBytes": 947631,
+          "ordinaryStorageWrites": 0
+        }
+      ],
+      "summary": {
+        "id": "m6-run-1-d09f334a7dd4cdbe154ffc31",
+        "sequence": 1,
+        "nationId": "N1",
+        "type": "intro",
+        "name": "First Dustroad Cup",
+        "placement": 1,
+        "won": true,
+        "starts": 2,
+        "raceWins": 2,
+        "raceLosses": 0,
+        "dnf": 0,
+        "podiums": 2,
+        "grossGold": 440,
+        "netGold": 320,
+        "reputation": 110,
+        "withdrawal": null
+      },
+      "gold": 970,
+      "bytes": 287929,
+      "records": 1,
+      "ms": 30336.902778
+    },
+    {
+      "championship": 2,
+      "races": [
+        {
+          "ticks": 5975,
+          "checksum": null,
+          "sessionBytes": 2563921,
+          "ordinaryStorageWrites": 0
+        },
+        {
+          "ticks": 5639,
+          "checksum": null,
+          "sessionBytes": 3341091,
+          "ordinaryStorageWrites": 0
+        }
+      ],
+      "summary": {
+        "id": "m6-run-2-e28cb40c5d9a9485e3a8588b",
+        "sequence": 2,
+        "nationId": "N1",
+        "type": "local",
+        "name": "Windfell Series",
+        "placement": 2,
+        "won": false,
+        "starts": 2,
+        "raceWins": 0,
+        "raceLosses": 2,
+        "dnf": 0,
+        "podiums": 2,
+        "grossGold": 290,
+        "netGold": -64,
+        "reputation": 65,
+        "withdrawal": null
+      },
+      "gold": 906,
+      "bytes": 189464,
+      "records": 1,
+      "ms": 115106.226706
+    },
+    {
+      "championship": 3,
+      "races": [
+        {
+          "ticks": 4172,
+          "checksum": null,
+          "sessionBytes": 1242952,
+          "ordinaryStorageWrites": 0
+        },
+        {
+          "ticks": 9302,
+          "checksum": null,
+          "sessionBytes": 3197282,
+          "ordinaryStorageWrites": 0
+        }
+      ],
+      "summary": {
+        "id": "m6-run-3-9d1a42017dcf1f81a34b2ab4",
+        "sequence": 3,
+        "nationId": "N1",
+        "type": "local",
+        "name": "Ridgeholm Masters",
+        "placement": 1,
+        "won": true,
+        "starts": 2,
+        "raceWins": 1,
+        "raceLosses": 1,
+        "dnf": 0,
+        "podiums": 2,
+        "grossGold": 430,
+        "netGold": 310,
+        "reputation": 95,
+        "withdrawal": null
+      },
+      "gold": 1216,
+      "bytes": 222552,
+      "records": 1,
+      "ms": 85063.531323
+    },
+    {
+      "championship": 4,
+      "races": [
+        {
+          "ticks": 6659,
+          "checksum": null,
+          "sessionBytes": 2423992,
+          "ordinaryStorageWrites": 0
+        },
+        {
+          "ticks": 4330,
+          "checksum": null,
+          "sessionBytes": 1464544,
+          "ordinaryStorageWrites": 0
+        }
+      ],
+      "summary": {
+        "id": "m6-run-4-283c02d23d36500afd9dcc32",
+        "sequence": 4,
+        "nationId": "N1",
+        "type": "local",
+        "name": "Pinewatch Masters",
+        "placement": 3,
+        "won": false,
+        "starts": 2,
+        "raceWins": 0,
+        "raceLosses": 2,
+        "dnf": 0,
+        "podiums": 2,
+        "grossGold": 245,
+        "netGold": 125,
+        "reputation": 60,
+        "withdrawal": null
+      },
+      "gold": 1341,
+      "bytes": 237216,
+      "records": 1,
+      "ms": 66044.77230399998
+    },
+    {
+      "championship": 5,
+      "races": [
+        {
+          "ticks": 6750,
+          "checksum": null,
+          "sessionBytes": 2341448,
+          "ordinaryStorageWrites": 0
+        },
+        {
+          "ticks": 3974,
+          "checksum": null,
+          "sessionBytes": 1178280,
+          "ordinaryStorageWrites": 0
+        }
+      ],
+      "summary": {
+        "id": "m6-run-5-c3efe5395423eb744192be3e",
+        "sequence": 5,
+        "nationId": "N1",
+        "type": "local",
+        "name": "Coldbrook Crown",
+        "placement": 2,
+        "won": false,
+        "starts": 2,
+        "raceWins": 0,
+        "raceLosses": 2,
+        "dnf": 0,
+        "podiums": 2,
+        "grossGold": 290,
+        "netGold": 170,
+        "reputation": 65,
+        "withdrawal": null
+      },
+      "gold": 1511,
+      "bytes": 186059,
+      "records": 1,
+      "ms": 54411.92428799998
+    },
+    {
+      "championship": 6,
+      "races": [
+        {
+          "ticks": 2070,
+          "checksum": null,
+          "sessionBytes": 767380,
+          "ordinaryStorageWrites": 0
+        },
+        {
+          "ticks": 6033,
+          "checksum": null,
+          "sessionBytes": 1989288,
+          "ordinaryStorageWrites": 0
+        }
+      ],
+      "summary": {
+        "id": "m6-run-6-46d0a9cd40355eef267afbd4",
+        "sequence": 6,
+        "nationId": "N1",
+        "type": "local",
+        "name": "Stone League",
+        "placement": 2,
+        "won": false,
+        "starts": 2,
+        "raceWins": 0,
+        "raceLosses": 2,
+        "dnf": 0,
+        "podiums": 2,
+        "grossGold": 290,
+        "netGold": 170,
+        "reputation": 65,
+        "withdrawal": null
+      },
+      "gold": 1681,
+      "bytes": 254732,
+      "records": 1,
+      "ms": 35029.10328099999
+    },
+    {
+      "championship": 7,
+      "races": [
+        {
+          "ticks": 1681,
+          "checksum": null,
+          "sessionBytes": 745356,
+          "ordinaryStorageWrites": 0
+        },
+        {
+          "ticks": 6244,
+          "checksum": null,
+          "sessionBytes": 2997043,
+          "ordinaryStorageWrites": 0
+        }
+      ],
+      "summary": {
+        "id": "m6-run-7-65cfbe76dcd505c74fa79acc",
+        "sequence": 7,
+        "nationId": "N1",
+        "type": "local",
+        "name": "Thawford Masters",
+        "placement": 1,
+        "won": true,
+        "starts": 2,
+        "raceWins": 2,
+        "raceLosses": 0,
+        "dnf": 0,
+        "podiums": 2,
+        "grossGold": 440,
+        "netGold": 320,
+        "reputation": 110,
+        "withdrawal": null
+      },
+      "gold": 2001,
+      "bytes": 211437,
+      "records": 1,
+      "ms": 62266.476595000015
+    },
+    {
+      "championship": 8,
+      "races": [
+        {
+          "ticks": 3275,
+          "checksum": null,
+          "sessionBytes": 959572,
+          "ordinaryStorageWrites": 0
+        },
+        {
+          "ticks": 2870,
+          "checksum": null,
+          "sessionBytes": 1011536,
+          "ordinaryStorageWrites": 0
+        }
+      ],
+      "summary": {
+        "id": "m6-run-8-a3ee5907e9945d35e56ecd13",
+        "sequence": 8,
+        "nationId": "N1",
+        "type": "local",
+        "name": "Northbarrow Crown",
+        "placement": 3,
+        "won": false,
+        "starts": 2,
+        "raceWins": 0,
+        "raceLosses": 2,
+        "dnf": 0,
+        "podiums": 2,
+        "grossGold": 345,
+        "netGold": 225,
+        "reputation": 60,
+        "withdrawal": null
+      },
+      "gold": 2226,
+      "bytes": 240888,
+      "records": 1,
+      "ms": 39496.230411000026
+    }
+  ],
+  "services": [],
+  "closedThrough": 8,
+  "currentRecords": 1
+}

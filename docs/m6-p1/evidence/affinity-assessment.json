@@ -1,0 +1,1995 @@
+{
+  "scope": "117 native100-tick paired runs: same synthetic RU attributes and one course/seed isolate approved affinity factors. This does not model the full generated species stat distributions or final balance.",
+  "pairs": 117,
+  "rows": [
+    {
+      "ancestry": "A01",
+      "species": "B01",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "a1ed251a"
+      }
+    },
+    {
+      "ancestry": "A01",
+      "species": "B02",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "b07e2f6f"
+      }
+    },
+    {
+      "ancestry": "A01",
+      "species": "B03",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "14a94d25"
+      }
+    },
+    {
+      "ancestry": "A01",
+      "species": "B04",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "1ea14b57"
+      }
+    },
+    {
+      "ancestry": "A01",
+      "species": "B05",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "476d4ccc"
+      }
+    },
+    {
+      "ancestry": "A01",
+      "species": "B06",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "da27885f"
+      }
+    },
+    {
+      "ancestry": "A01",
+      "species": "B07",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "144d4ebb"
+      }
+    },
+    {
+      "ancestry": "A01",
+      "species": "B08",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "0f711721"
+      }
+    },
+    {
+      "ancestry": "A01",
+      "species": "B09",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "47e670b6"
+      }
+    },
+    {
+      "ancestry": "A02",
+      "species": "B01",
+      "multiplier": 1,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "5ec30d30"
+      }
+    },
+    {
+      "ancestry": "A02",
+      "species": "B02",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "71c68de4"
+      }
+    },
+    {
+      "ancestry": "A02",
+      "species": "B03",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "57953301"
+      }
+    },
+    {
+      "ancestry": "A02",
+      "species": "B04",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "9fdc3e8f"
+      }
+    },
+    {
+      "ancestry": "A02",
+      "species": "B05",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "96802602"
+      }
+    },
+    {
+      "ancestry": "A02",
+      "species": "B06",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "4f7cbbdd"
+      }
+    },
+    {
+      "ancestry": "A02",
+      "species": "B07",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "8f50c135"
+      }
+    },
+    {
+      "ancestry": "A02",
+      "species": "B08",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "972ff54f"
+      }
+    },
+    {
+      "ancestry": "A02",
+      "species": "B09",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "307f2ecb"
+      }
+    },
+    {
+      "ancestry": "A03",
+      "species": "B01",
+      "multiplier": 1,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "a8cd3a33"
+      }
+    },
+    {
+      "ancestry": "A03",
+      "species": "B02",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "b85946d8"
+      }
+    },
+    {
+      "ancestry": "A03",
+      "species": "B03",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "670f8806"
+      }
+    },
+    {
+      "ancestry": "A03",
+      "species": "B04",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "16a6ebf3"
+      }
+    },
+    {
+      "ancestry": "A03",
+      "species": "B05",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "44843c66"
+      }
+    },
+    {
+      "ancestry": "A03",
+      "species": "B06",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "22d1bf80"
+      }
+    },
+    {
+      "ancestry": "A03",
+      "species": "B07",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "0c50fcc7"
+      }
+    },
+    {
+      "ancestry": "A03",
+      "species": "B08",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "9b161513"
+      }
+    },
+    {
+      "ancestry": "A03",
+      "species": "B09",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "3c0bdda8"
+      }
+    },
+    {
+      "ancestry": "A04",
+      "species": "B01",
+      "multiplier": 1,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "507a4700"
+      }
+    },
+    {
+      "ancestry": "A04",
+      "species": "B02",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "933fc143"
+      }
+    },
+    {
+      "ancestry": "A04",
+      "species": "B03",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "af4f3d65"
+      }
+    },
+    {
+      "ancestry": "A04",
+      "species": "B04",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "32d50506"
+      }
+    },
+    {
+      "ancestry": "A04",
+      "species": "B05",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "6d8f8e5d"
+      }
+    },
+    {
+      "ancestry": "A04",
+      "species": "B06",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "9ae12ce4"
+      }
+    },
+    {
+      "ancestry": "A04",
+      "species": "B07",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "b65b32b3"
+      }
+    },
+    {
+      "ancestry": "A04",
+      "species": "B08",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "065e928c"
+      }
+    },
+    {
+      "ancestry": "A04",
+      "species": "B09",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "399f7c8f"
+      }
+    },
+    {
+      "ancestry": "A05",
+      "species": "B01",
+      "multiplier": 1,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "7a393689"
+      }
+    },
+    {
+      "ancestry": "A05",
+      "species": "B02",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "c2c91c9e"
+      }
+    },
+    {
+      "ancestry": "A05",
+      "species": "B03",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "a747a358"
+      }
+    },
+    {
+      "ancestry": "A05",
+      "species": "B04",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "7ff58316"
+      }
+    },
+    {
+      "ancestry": "A05",
+      "species": "B05",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "eca735d4"
+      }
+    },
+    {
+      "ancestry": "A05",
+      "species": "B06",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "1531fe99"
+      }
+    },
+    {
+      "ancestry": "A05",
+      "species": "B07",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "40b2b47f"
+      }
+    },
+    {
+      "ancestry": "A05",
+      "species": "B08",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "e629d366"
+      }
+    },
+    {
+      "ancestry": "A05",
+      "species": "B09",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "6dcbbf8e"
+      }
+    },
+    {
+      "ancestry": "A06",
+      "species": "B01",
+      "multiplier": 1,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "37ed5c05"
+      }
+    },
+    {
+      "ancestry": "A06",
+      "species": "B02",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "6d2ca1eb"
+      }
+    },
+    {
+      "ancestry": "A06",
+      "species": "B03",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "687a7fcf"
+      }
+    },
+    {
+      "ancestry": "A06",
+      "species": "B04",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "1f228d8a"
+      }
+    },
+    {
+      "ancestry": "A06",
+      "species": "B05",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "cc809623"
+      }
+    },
+    {
+      "ancestry": "A06",
+      "species": "B06",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "3381770f"
+      }
+    },
+    {
+      "ancestry": "A06",
+      "species": "B07",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "572f8e95"
+      }
+    },
+    {
+      "ancestry": "A06",
+      "species": "B08",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "5eee6005"
+      }
+    },
+    {
+      "ancestry": "A06",
+      "species": "B09",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "72aa1aae"
+      }
+    },
+    {
+      "ancestry": "A07",
+      "species": "B01",
+      "multiplier": 1,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "0defad62"
+      }
+    },
+    {
+      "ancestry": "A07",
+      "species": "B02",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "64a4168b"
+      }
+    },
+    {
+      "ancestry": "A07",
+      "species": "B03",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "37325f8a"
+      }
+    },
+    {
+      "ancestry": "A07",
+      "species": "B04",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "7ce6e479"
+      }
+    },
+    {
+      "ancestry": "A07",
+      "species": "B05",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "f2fb4f5b"
+      }
+    },
+    {
+      "ancestry": "A07",
+      "species": "B06",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "2a53d059"
+      }
+    },
+    {
+      "ancestry": "A07",
+      "species": "B07",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "efc7b1a2"
+      }
+    },
+    {
+      "ancestry": "A07",
+      "species": "B08",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "dfd1ea48"
+      }
+    },
+    {
+      "ancestry": "A07",
+      "species": "B09",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "b959527c"
+      }
+    },
+    {
+      "ancestry": "A08",
+      "species": "B01",
+      "multiplier": 1,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "13d42560"
+      }
+    },
+    {
+      "ancestry": "A08",
+      "species": "B02",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "2b2cb62f"
+      }
+    },
+    {
+      "ancestry": "A08",
+      "species": "B03",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "72cc7f02"
+      }
+    },
+    {
+      "ancestry": "A08",
+      "species": "B04",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "929d3c86"
+      }
+    },
+    {
+      "ancestry": "A08",
+      "species": "B05",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "401c7b74"
+      }
+    },
+    {
+      "ancestry": "A08",
+      "species": "B06",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "e2ac8741"
+      }
+    },
+    {
+      "ancestry": "A08",
+      "species": "B07",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "4749595d"
+      }
+    },
+    {
+      "ancestry": "A08",
+      "species": "B08",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "8a39e5ce"
+      }
+    },
+    {
+      "ancestry": "A08",
+      "species": "B09",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "50f321d3"
+      }
+    },
+    {
+      "ancestry": "A09",
+      "species": "B01",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "6d2fbe82"
+      }
+    },
+    {
+      "ancestry": "A09",
+      "species": "B02",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "9744cec7"
+      }
+    },
+    {
+      "ancestry": "A09",
+      "species": "B03",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "83125ecd"
+      }
+    },
+    {
+      "ancestry": "A09",
+      "species": "B04",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "5d2fbc69"
+      }
+    },
+    {
+      "ancestry": "A09",
+      "species": "B05",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "4e3df707"
+      }
+    },
+    {
+      "ancestry": "A09",
+      "species": "B06",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "4e439f51"
+      }
+    },
+    {
+      "ancestry": "A09",
+      "species": "B07",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "76e8c2ce"
+      }
+    },
+    {
+      "ancestry": "A09",
+      "species": "B08",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "567ebb95"
+      }
+    },
+    {
+      "ancestry": "A09",
+      "species": "B09",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "6f49cab9"
+      }
+    },
+    {
+      "ancestry": "A10",
+      "species": "B01",
+      "multiplier": 1,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e0e77b20"
+      }
+    },
+    {
+      "ancestry": "A10",
+      "species": "B02",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "a48ad344"
+      }
+    },
+    {
+      "ancestry": "A10",
+      "species": "B03",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "ba28ef28"
+      }
+    },
+    {
+      "ancestry": "A10",
+      "species": "B04",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "58b3227a"
+      }
+    },
+    {
+      "ancestry": "A10",
+      "species": "B05",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "80d38b1c"
+      }
+    },
+    {
+      "ancestry": "A10",
+      "species": "B06",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "9dacce3e"
+      }
+    },
+    {
+      "ancestry": "A10",
+      "species": "B07",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "93f5ad90"
+      }
+    },
+    {
+      "ancestry": "A10",
+      "species": "B08",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "87416ea4"
+      }
+    },
+    {
+      "ancestry": "A10",
+      "species": "B09",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "01d3428e"
+      }
+    },
+    {
+      "ancestry": "A11",
+      "species": "B01",
+      "multiplier": 1,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "373684f2"
+      }
+    },
+    {
+      "ancestry": "A11",
+      "species": "B02",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "141ab29d"
+      }
+    },
+    {
+      "ancestry": "A11",
+      "species": "B03",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "244ac3ca"
+      }
+    },
+    {
+      "ancestry": "A11",
+      "species": "B04",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "1cfd7055"
+      }
+    },
+    {
+      "ancestry": "A11",
+      "species": "B05",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "3be61be8"
+      }
+    },
+    {
+      "ancestry": "A11",
+      "species": "B06",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "0c3cf141"
+      }
+    },
+    {
+      "ancestry": "A11",
+      "species": "B07",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "645f2e03"
+      }
+    },
+    {
+      "ancestry": "A11",
+      "species": "B08",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "05b78b0a"
+      }
+    },
+    {
+      "ancestry": "A11",
+      "species": "B09",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "8206f6d9"
+      }
+    },
+    {
+      "ancestry": "A12",
+      "species": "B01",
+      "multiplier": 1,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "ccce1e5a"
+      }
+    },
+    {
+      "ancestry": "A12",
+      "species": "B02",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "2f0adfba"
+      }
+    },
+    {
+      "ancestry": "A12",
+      "species": "B03",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "8a5bf428"
+      }
+    },
+    {
+      "ancestry": "A12",
+      "species": "B04",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "b43cf81e"
+      }
+    },
+    {
+      "ancestry": "A12",
+      "species": "B05",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "71034d9c"
+      }
+    },
+    {
+      "ancestry": "A12",
+      "species": "B06",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "daa8aa34"
+      }
+    },
+    {
+      "ancestry": "A12",
+      "species": "B07",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "547a4ac6"
+      }
+    },
+    {
+      "ancestry": "A12",
+      "species": "B08",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "71600719"
+      }
+    },
+    {
+      "ancestry": "A12",
+      "species": "B09",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "44313fd1"
+      }
+    },
+    {
+      "ancestry": "A13",
+      "species": "B01",
+      "multiplier": 1,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "c6692286"
+      }
+    },
+    {
+      "ancestry": "A13",
+      "species": "B02",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "63b4a8b5"
+      }
+    },
+    {
+      "ancestry": "A13",
+      "species": "B03",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "b59ee48d"
+      }
+    },
+    {
+      "ancestry": "A13",
+      "species": "B04",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "a4f9b180"
+      }
+    },
+    {
+      "ancestry": "A13",
+      "species": "B05",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "e27803e5"
+      }
+    },
+    {
+      "ancestry": "A13",
+      "species": "B06",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "d0e2a5f0"
+      }
+    },
+    {
+      "ancestry": "A13",
+      "species": "B07",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "f0572826"
+      }
+    },
+    {
+      "ancestry": "A13",
+      "species": "B08",
+      "multiplier": 1.05,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 5.35671618442962,
+        "speed": 18.46196779396447,
+        "fatigue": 0.7268857142857149,
+        "checksum": "60b2d819"
+      }
+    },
+    {
+      "ancestry": "A13",
+      "species": "B09",
+      "multiplier": 0.95,
+      "baseline": {
+        "q": 5.077461068402584,
+        "speed": 17.581411712533004,
+        "fatigue": 0.7632299999999999,
+        "checksum": "e898a2c7"
+      },
+      "affinity": {
+        "q": 4.7982044019811925,
+        "speed": 16.70099997182347,
+        "fatigue": 0.8033999999999999,
+        "checksum": "6cdad898"
+      }
+    }
+  ]
+}

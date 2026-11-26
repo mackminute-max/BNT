@@ -119,7 +119,7 @@ export function integrateCondition(s, r, elapsed) {
       exertion <= c.recoveryThreshold
         ? c.recoveryRate * w.recovery * (0.5 + b.endurance / 100)
         : 0;
-    if(activeAbility(s,r,'steady-team'))recovery*=1.25;
+    if(r.progressionContext?.version===2&&activeAbility(s,r,'steady-team'))recovery*=1.25;
     b.fatigue = clamp(b.fatigue + (generation - recovery) * elapsed, 0, 100);
   }
   r.ru.driver.strain = clamp(

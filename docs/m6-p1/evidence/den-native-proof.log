@@ -1,0 +1,32 @@
+{
+  kind: 'Actual native spectator races; isolated Map proof, not browser durability acceptance',
+  results: [
+    {
+      kind: 'short-oval',
+      format: 'Pure',
+      ticks: 2751,
+      result: [Object]
+    },
+    {
+      kind: 'Circuit',
+      format: 'Combat',
+      ticks: 8072,
+      result: [Object]
+    },
+    { kind: 'Rally', format: 'Pure', ticks: 5885, result: [Object] }
+  ],
+  zeroStableSideEffects: true,
+  exactlyOnce: true,
+  failedWriteRollback: true,
+  coldReload: true,
+  bytes: 56141,
+  totals: {
+    staked: 10,
+    paid: 29,
+    bets: 1,
+    wins: 1,
+    losses: 0,
+    voids: 0,
+    viewed: 3
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "result": "PASS",
+  "groups": [
+    "left fitted map / right shared full radio / standings below, named entrants, backed team and accepted odds; ordinary play/pause before reload",
+    "ordinary packaged controls obtain native odds and commit spectator stake",
+    "browser reload restarts frozen spectator event with accepted stake preserved",
+    "actual native spectator event 1 settles through packaged skip control",
+    "actual native spectator event 2 settles through packaged skip control",
+    "actual native spectator event 3 settles through packaged skip control"
+  ],
+  "errors": [],
+  "totals": {
+    "staked": 10,
+    "paid": 0,
+    "bets": 1,
+    "wins": 0,
+    "losses": 1,
+    "voids": 0,
+    "viewed": 3
+  }
+}

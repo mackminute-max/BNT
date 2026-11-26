@@ -1,0 +1,11 @@
+{"name":"browser","exit":0,"signal":null,"error":null}
+{"name":"features-browser","exit":0,"signal":null,"error":null}
+{"name":"creation-browser","exit":0,"signal":null,"error":null}
+{"name":"faults-browser","exit":0,"signal":null,"error":null}
+{"name":"import-browser","exit":0,"signal":null,"error":null}
+{"name":"presentation-faults-browser","exit":0,"signal":null,"error":null}
+{"name":"hq-browser","exit":0,"signal":null,"error":null}
+{"name":"restart-browser","exit":0,"signal":null,"error":null}
+{"name":"delete-browser","exit":0,"signal":null,"error":null}
+{"name":"file-browser","exit":2,"signal":null,"error":null}
+{"name":"regressions","exit":1,"signal":null,"error":null}

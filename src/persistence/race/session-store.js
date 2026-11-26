@@ -17,7 +17,7 @@ function execute(s,r,onStep=null){
   if(r.phase==='paused'){
     if(r.ticks!==0||r.commands.length!==1)throw Error('Invalid paused input');const c=r.commands[0];
     exact(c,['action',...(Object.hasOwn(c,'sign')?['sign']:[])]);
-    if(!['queue','cancel','lower',BUFFERED_SIGN_ACTION,...(s.entrants.find(r=>r.id===s.playerId)?.progressionContext?.version===2?['ability']:[])].includes(c.action))throw Error('Invalid paused sign');issueSign(s,c.action,c.sign);
+    if(!['queue','cancel','lower',BUFFERED_SIGN_ACTION,...([2,3].includes(s.entrants.find(r=>r.id===s.playerId)?.progressionContext?.version)?['ability']:[])].includes(c.action))throw Error('Invalid paused sign');issueSign(s,c.action,c.sign);
   }else{
     if(r.phase!=='advance'||!Number.isInteger(r.ticks)||r.ticks<1||r.ticks>10000)throw Error('Invalid advance request');
     for(let i=0;i<r.ticks&&['Ready','Running'].includes(s.status);i++){step(s,i===0?r.commands:[]);onStep?.(s);}

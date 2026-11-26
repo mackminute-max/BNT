@@ -1,0 +1,12 @@
+{ kind: 'oval', rotation: 0, ticks: [ 1796, 1796 ] }
+{ kind: 'oval', rotation: 1, ticks: [ 1796, 1743 ] }
+{ kind: 'oval', rotation: 2, ticks: [ 1797, 1797 ] }
+{ kind: 'oval', rotation: 3, ticks: [ 1787, 1787 ] }
+{ kind: 'circuit', rotation: 0, ticks: [ 4388, 4388 ] }
+{ kind: 'circuit', rotation: 1, ticks: [ 4498, 4498 ] }
+{ kind: 'circuit', rotation: 2, ticks: [ 4534, 4534 ] }
+{ kind: 'circuit', rotation: 3, ticks: [ 4374, 4374 ] }
+{ kind: 'long-rally', rotation: 0, ticks: [ 4033, 4033 ] }
+{ kind: 'long-rally', rotation: 1, ticks: [ 4032, 4032 ] }
+{ kind: 'long-rally', rotation: 2, ticks: [ 4026, 4026 ] }
+{ kind: 'long-rally', rotation: 3, ticks: [ 4026, 4026 ] }

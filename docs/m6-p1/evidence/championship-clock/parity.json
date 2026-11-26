@@ -1,0 +1,110 @@
+{
+  "mode": "HTTP numeric diagnostic; no direct-file claim",
+  "targetInitialStates": 100,
+  "actualInitialStates": 100,
+  "failures": [],
+  "fullRaces": [
+    {
+      "course": "Oval",
+      "format": "Pure",
+      "nodeChecksum": "a74e4f71",
+      "browserChecksum": "a74e4f71",
+      "status": "Ended",
+      "matched": true
+    },
+    {
+      "course": "C01",
+      "format": "Combat",
+      "nodeChecksum": "005252df",
+      "browserChecksum": "005252df",
+      "status": "Ended",
+      "matched": true
+    },
+    {
+      "course": "mixed-rally",
+      "format": "Combat",
+      "nodeChecksum": "069e4340",
+      "browserChecksum": "069e4340",
+      "status": "Ended",
+      "matched": true
+    },
+    {
+      "course": "short-oval",
+      "context": "m5-affinity-v1",
+      "nodeChecksum": "8f923ae3",
+      "browserChecksum": "8f923ae3",
+      "matched": true
+    },
+    {
+      "course": "C01",
+      "context": "m5-affinity-v1",
+      "nodeChecksum": "8834ab14",
+      "browserChecksum": "8834ab14",
+      "matched": true
+    },
+    {
+      "course": "mixed-rally",
+      "context": "m5-affinity-v1",
+      "nodeChecksum": "4e9278fc",
+      "browserChecksum": "4e9278fc",
+      "matched": true
+    },
+    {
+      "context": "m6-100-tick-sign-and-ability",
+      "abilityId": "thunder-burst",
+      "nodeChecksum": "d8d80fb3",
+      "browserChecksum": "d8d80fb3",
+      "matched": true
+    },
+    {
+      "context": "m6-100-tick-sign-and-ability",
+      "abilityId": "second-wind",
+      "nodeChecksum": "9bf89d04",
+      "browserChecksum": "9bf89d04",
+      "matched": true
+    },
+    {
+      "context": "m6-100-tick-sign-and-ability",
+      "abilityId": "brace",
+      "nodeChecksum": "3e0f6f64",
+      "browserChecksum": "3e0f6f64",
+      "matched": true
+    },
+    {
+      "context": "m6-100-tick-sign-and-ability",
+      "abilityId": "perfect-line",
+      "nodeChecksum": "ee8bddab",
+      "browserChecksum": "ee8bddab",
+      "matched": true
+    },
+    {
+      "context": "m6-100-tick-sign-and-ability",
+      "abilityId": "savage-assault",
+      "nodeChecksum": "0eebb37e",
+      "browserChecksum": "0eebb37e",
+      "matched": true
+    },
+    {
+      "context": "m6-100-tick-sign-and-ability",
+      "abilityId": "absolute-focus",
+      "nodeChecksum": "9481115f",
+      "browserChecksum": "9481115f",
+      "matched": true
+    },
+    {
+      "context": "m6-100-tick-sign-and-ability",
+      "abilityId": "catch-breath",
+      "nodeChecksum": "5b09b81d",
+      "browserChecksum": "5b09b81d",
+      "matched": true
+    },
+    {
+      "context": "m6-100-tick-sign-and-ability",
+      "abilityId": "steady-team",
+      "nodeChecksum": "fed0c4ca",
+      "browserChecksum": "fed0c4ca",
+      "matched": true
+    }
+  ],
+  "pass": true
+}

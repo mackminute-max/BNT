@@ -1,0 +1,70 @@
+{
+  "artifact": {
+    "filename": "Blood-and-Thunder-M6-P1-Playable.html",
+    "bytes": 5869373,
+    "sha256": "6f527a9809757c7a18be4fec354dd4da29db5e4e610ae1352d58decaef64030d",
+    "baselineArtifactSHA256": "3bdfb86d06a59c1b9672f2adf716413f7d110e5e9b07f3d9c16d6c810255660c",
+    "buildByteIdentityExit": "0"
+  },
+  "sourceFiles": 973,
+  "changedFiles": 86,
+  "tests": {
+    "baseline-frozen-node": {
+      "tests": 1394,
+      "pass": 1394,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "final-node": {
+      "tests": 1415,
+      "pass": 1415,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "final-frozen-node": {
+      "tests": 1435,
+      "pass": 1435,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "acceptance-node": {
+      "tests": 1436,
+      "pass": 1436,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "emergency-targeted": {
+      "tests": 16,
+      "pass": 16,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "p1-targeted-final": {
+      "tests": 42,
+      "pass": 42,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "p1-targeted": {
+      "tests": 25,
+      "pass": 25,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "domain-regression": {
+      "tests": 42,
+      "pass": 42,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0
+    }
+  },
+  "frozenSourceMatches": true
+}
