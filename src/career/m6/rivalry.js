@@ -79,6 +79,10 @@ export function grudgeContextFor(x, e, starters) {
 export function rivalryAfterRace(x, index, ledger) {
   if (!x.m6 || !ledger?.wrecks) return;
   const feud = (x.m6.feud ??= {rules: RIVALRY_RULES, targets: [], wrecks: []});
+  // Series tally for scouting notes: hits landed and turnouts wrecked.
+  const tally = (x.m6.tally ??= {}), t = id => (tally[id] ??= {hits: 0, wrecks: 0});
+  for (const [a, , n] of ledger.hits ?? []) t(a).hits += n;
+  for (const [, by] of ledger.wrecks) if (by) t(by).wrecks++;
   for (const [victim, by] of ledger.wrecks) {
     if (!by || victim === by || (victim !== x.playerId && by !== x.playerId)) continue;
     const rival = victim === x.playerId ? by : victim;
