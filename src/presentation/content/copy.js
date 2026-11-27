@@ -28,4 +28,7 @@ export function uiCopy(key,context={},enabled=COPY_ENABLED){return enabled&&uiAl
 export function raceHelp(state,{sign=null,enabled=COPY_ENABLED}={}){if(!enabled)return '';const weather=state?.weather,current=sign&&Object.hasOwn(COPY.signs,sign)?sign:null;return (current?`<h3>Selected Strategy Sign: ${escapeCopy(current)}</h3>${copyParagraph('signs',current,true)}${textParagraph(activationText(COPY.signs[current].activation),'signs:'+current+':activation')}`:'')+(weather&&Object.hasOwn(COPY.weather,weather)?`<h3>Current weather: ${escapeCopy(weather)}</h3>${copyParagraph('weather',weather,true)}`:'')+helpList('signs','Strategy Sign help',true)+helpList('weather','Weather help',true)+helpList('raceIncidents','Racing incident help',true);}
 
 export function trackCopyKey(event){const c=event?.course;return typeof c==='string'?c:c?.id??(c==null?'oval':'');}
+// Mack 2026-11-27: rally courses are "Point to Point" on every screen, never "1 lap".
+export function isPointToPoint(e){const c=e?.course??e?.track;return e?.config?.raceType==='Rally'||c?.kind==='Rally'||e?.track?.raceType==='Rally'||(!!c&&typeof c==='object'&&c.closed===false);}
+export function distanceLabel(e,laps=e?.laps??e?.config?.laps){return isPointToPoint(e)?'Point to Point':laps==null?'—':laps+(Number(laps)===1?' lap':' laps');}
 export function trackLabel(event){return event?.course?.name??(COPY_ENABLED?COPY.tracks[trackCopyKey(event)]?.label:null)??'Standard Oval';}

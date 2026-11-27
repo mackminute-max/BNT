@@ -36,3 +36,4 @@ select,input{background:var(--bt-charcoal)!important;color:var(--bt-white)!impor
 #radio strong,#radio b,.radio .major{color:var(--gold)}
 canvas#map{max-height:28vh;object-fit:contain}
 :focus-visible{outline:3px solid var(--gold)!important;outline-offset:2px}
+#p21RaceMeta{font-size:.7em;color:var(--text);opacity:.85;font-family:inherit;margin-left:.2em}

@@ -49,6 +49,7 @@ $('start').textContent = 'Start Race'; $('step').textContent = 'Single tick';
 const reduced = $('p2Reduced').closest('label'); controls.append(reduced);
 
 const raceTitle = node('h2'); raceTitle.id = 'p21RaceTitle'; racePanel.prepend(raceTitle);
+const raceTitleName = node('span'), raceTitleMeta = node('small', 'p21-race-meta'); raceTitleMeta.id = 'p21RaceMeta'; raceTitle.append(raceTitleName, raceTitleMeta);
 const stage = node('div', 'p21-race-stage'), raceCanvas = $('race'); raceCanvas.replaceWith(stage); stage.append(raceCanvas);
 const overlay = node('div', 'p21-countdown'); overlay.id = 'p21Countdown'; overlay.hidden = true;
 const countdownWord = node('strong'), countdownDetail = node('span');
@@ -144,7 +145,10 @@ app.renderMetadata = (state = globalThis.P2.currentSnapshot?.state) => {
     if (!labels.length) labels.push('Available');
     text(card.lastElementChild, labels.join(' · ')); card.setAttribute('aria-label', sign + ' — ' + labels.join(', '));
   }
-  text(raceTitle, state.track.name ?? session.options.course);
+  text(raceTitleName, state.track.name ?? session.options.course);
+  // Mack 2026-11-27: race type and distance beside the track name; rallies read "Point to Point".
+  const p2p = state.track.course && !state.track.closed;
+  text(raceTitleMeta, ` · ${state.format} · ${p2p ? 'Point to Point' : state.config.laps + (state.config.laps === 1 ? ' lap' : ' laps')}`);
   const weather = typeof session.options.weather === 'string' ? session.options.weather : null;
   // Mack 2026-11-27: the status line is hidden on the race page; it only appears to report a worker problem.
   raceInfo.hidden = !(session.error || session.fallbackReason);
