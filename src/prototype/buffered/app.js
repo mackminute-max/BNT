@@ -61,7 +61,7 @@ function record(key, value) {
   if (measurements[key].length > 2e3) measurements[key].shift();
 }
 function settings() {
-  return { course: $("course").value, seed: Number($("seed").value), format: $("format").value, weather: $("weather").value, build: $("build").value, value: Number($("value").value), fieldSize: Number($("field").value), laps: Number($("laps").value), pacing: $("pacingPolicy").value, personality: $("personality").value, ...$("customCoach").checked ? { coaching: coachingProfile(Object.fromEntries(coachingAxes.map((k) => [k, Number($("coach-" + k).value)]))) } : {} };
+  return { course: $("course").value, seed: Number($("seed").value), format: $("format").value, weather: $("weather").value, build: $("build").value, value: Number($("value").value), fieldSize: Number($("field").value), laps: Number($("laps").value), pacing: $("pacingPolicy").value, personality: $("personality").value, boons: document.getElementById("boons")?.value ?? "", rivalBoons: document.getElementById("rivalBoons")?.value ?? "", boonLevel: Number(document.getElementById("boonLevel")?.value ?? 1), ...$("customCoach").checked ? { coaching: coachingProfile(Object.fromEntries(coachingAxes.map((k) => [k, Number($("coach-" + k).value)]))) } : {} };
 }
 let pendingPreparation = null, preparing = 0;
 async function prepare(config = settings()) {

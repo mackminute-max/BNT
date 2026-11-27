@@ -5,12 +5,15 @@ import {generateRally} from '../track/rally-generator.js';
 import {normalizeCourse} from '../track/course.js';
 import {meanFatigue,pacingProfiles,PACING_VERSION} from './pacing.js';
 import {compileBuild} from './builds.js';
+import {BOONS,STYLES,ENDOWMENT_RULES} from '../sim/endowments.js';
+import {random as qrRandom} from '../core/determinism.js';
 export const PROTOTYPE_VERSION='p1.4-playable-v1';
 export function prototypeRally(category,seed){
  const course=generateRally({seed,category}),fractions=({short:[1/2],medium:[1/3,2/3],long:[1/4,1/2,3/4]})[category];
  const length=course.segments.reduce((n,s)=>n+s.length,0);course.signPointPolicy={version:1,category};course.checkpoints=fractions.map((f,i)=>({id:'SP'+(i+1),distance:length*f}));return normalizeCourse(course);
 }
-export function raceSetup({course='short-oval',seed=145,format='Pure',weather='Clear',build='baseline',value=55,coaching=null,fieldSize=8,laps=2,pacing='competitive',personality='native',nativeSetup=null}={}){
+export function testBoons(kind,seed,id,level=1){const all=Object.values(BOONS),lv=Math.max(1,Math.min(4,Math.round(level)||1));let pick;if(STYLES.includes(kind))pick=all.filter(b=>b.style===kind);else if(kind==='random')pick=all.map(b=>[qrRandom(seed,'qr-boon:'+id+':'+b.id),b]).sort((a,b)=>a[0]-b[0]).slice(0,3).map(x=>x[1]);else if(BOONS[kind])pick=[BOONS[kind]];else throw Error('Unknown test Boons');return {rules:ENDOWMENT_RULES,boons:pick.map(b=>({id:b.id,level:lv,rarity:'Common'}))};}
+export function raceSetup({course='short-oval',seed=145,format='Pure',weather='Clear',build='baseline',value=55,coaching=null,fieldSize=8,laps=2,pacing='competitive',personality='native',nativeSetup=null,boons='',rivalBoons='',boonLevel=1}={}){
  if(nativeSetup!==null){if(!(typeof BNT_M6_BUILD!=='undefined'&&BNT_M6_BUILD))throw Error('Owned practice setup unavailable');const native=createRace(nativeSetup);if(native.entrants.length!==1||native.setup.course!=='short-oval'||native.config.laps!==3||native.format!=='Pure'||native.championshipContext||native.entrants[0].progressionContext?.abilityId!==null)throw Error('Invalid owned practice setup');return {setup:native.setup,changes:[]};}
  if(!Number.isInteger(fieldSize)||fieldSize<1||fieldSize>8)throw Error('Field must contain 1..8 entrants');
  if(!Number.isFinite(value)||value<0||value>100)throw Error('Base attributes must be 0..100');
@@ -22,6 +25,8 @@ export function raceSetup({course='short-oval',seed=145,format='Pure',weather='C
  for(const part of [player.ru.driver,...player.ru.beasts,player.ru.chariot])for(const key of Object.keys(part))if(!['condition','strain','fatigue','wear','weight','capacity','personality'].includes(key))part[key]=value;
  const compiled=compileBuild(player.ru,build);player.ru=compiled.ru;if(personality!=='native'){if(!driverPersonalities[personality])throw Error('Unknown driver personality');player.ru.driver.personality=structuredClone(driverPersonalities[personality]);}
  if(coaching??compiled.coachingContext)player.coachingContext=coaching??compiled.coachingContext;
+ // Quick Race test Boons: a whole style, or three seeded random Boons.
+ if(boons)player.endowments=testBoons(boons,seed,player.ru.id,boonLevel);if(rivalBoons)for(const e of entrants.slice(1))e.endowments=testBoons(rivalBoons,seed,e.ru.id,boonLevel);
  return {setup:{seed,course:definition,format,weather,autonomous:profile.autonomous,overrides:{laps,tuning:profile.tuning},entrants,playerId:player.ru.id},changes:compiled.changes};
 }
 export class PlayableSession{

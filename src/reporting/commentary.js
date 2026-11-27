@@ -1,4 +1,5 @@
 import { hash } from "../core/determinism.js";
+import { BOONS } from "../sim/endowments.js";
 const templates = {
   RACE_STARTED: () => [
     "And they’re away! The field launches from the standing grid.",
@@ -18,6 +19,10 @@ const templates = {
   ],
   CONTROL_CHANGED: (e) => [
     `${e.participants[0]} is ${e.effects.control.toLowerCase()}.`,
+  ],
+  BOON_FIRED: (e) => [
+    `${e.participants[0]}: ${BOONS[e.effects.boonId]?.name ?? 'a Boon'} kicks in!`,
+    `${BOONS[e.effects.boonId]?.name ?? 'A Boon'} fires for ${e.participants[0]}.`,
   ],
   RU_RETIRED: (e) => [`${e.participants[0]} is out: ${e.effects.reason}.`],
   WRECK_CREATED: (e) => [
