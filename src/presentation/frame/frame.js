@@ -11,7 +11,7 @@ const GROUPS = {
   roster: [['Turnout', /active racing unit|turnout/i], ['Owned Roster', /owned roster|roster/i]],
   workshop: [['Facilities', /facilit/i], ['Workshop', /workshop|engineering|training/i]],
   services: [['Recovery & Services', /recovery|service|care|repair/i], ['Work Review', /work review/i]],
-  championships: [['Active Championship', /active|standings|schedule|next race|current|run reward|endowment/i], ['Available Championships', /national championships|events|details|registration|loadout/i], ['Last Event', /last event|result/i]],
+  championships: [['Active Series', /active|standings|schedule|next race|current|reward|endowment/i], ['Available Series', /your turnout|national championships|series|events|details|registration|loadout/i], ['Last Event', /last event|result/i]],
 };
 // Destinations where each headed panel simply becomes its own tab.
 const PER_HEADING = new Set(['world', 'records', 'finances', 'facilities']);
