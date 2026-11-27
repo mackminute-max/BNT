@@ -1,4 +1,4 @@
-import {m6Entrant,m6Boundary,abilityDerived} from './m6-interaction.js';
+import {m6Entrant,m6Boundary,abilityDerived,rivalAbility} from './m6-interaction.js';
 import {endowed,endowBoundary,endowDerived,initialEndowState,validateEndowments} from './endowments.js';
 import {applyAffinity,validateAffinityContext} from '../model/affinity.js';
 import {validateProgressionContext} from '../model/progression-context.js';
@@ -124,7 +124,7 @@ export function createRace({
         ru.driver.personality[k] > 100
       )
         throw new Error(`Invalid personality ${k}`);
-    validateAffinityContext(e.affinityContext);validateCoaching(e.coachingContext);validateProgressionContext(e.progressionContext);if(e.progressionContext&&ru.id!==(playerId??input[0].ru.id))throw Error('Progression is player-only');
+    validateAffinityContext(e.affinityContext);validateCoaching(e.coachingContext);validateProgressionContext(e.progressionContext);if(e.progressionContext&&ru.id!==(playerId??input[0].ru.id)&&!(e.progressionContext.version===3&&e.progressionContext.abilities?.length&&e.progressionContext.signBonus===0&&e.progressionContext.wearMultiplier===1))throw Error('Progression is player-only');
     if(e.coachingContext&&ru.id!==(playerId??input[0].ru.id))throw Error('Coaching is player-only');
     validatePayrollContext(e.payrollContext);validateEndowments(e.endowments);
     const derived = applyPayrollControl(applyAffinity(derive(ru, {
@@ -964,7 +964,7 @@ export function step(s, commands = []) {
     if (s.consequences)
       for (const r of sorted(s)) updateControl(s, r, "Boundary condition");
     applyCommands(s, [...s.pendingOverrides.splice(0), ...commands]);
-    for(const r of sorted(s))if(m6Entrant(r)){m6Boundary(s,r);activateSign(s,r,{m6Boundary:true});if(s.driverMode!=='autonomous')r.derived=deriveAt(s,r);}
+    for(const r of sorted(s))if(m6Entrant(r)){if(r.id!==s.playerId)rivalAbility(s,r);m6Boundary(s,r);activateSign(s,r,{m6Boundary:true});if(s.driverMode!=='autonomous')r.derived=deriveAt(s,r);}
     if(s.entrants.some(endowed)){endowBoundary(s);if(s.driverMode!=='autonomous')for(const r of sorted(s))if(endowed(r)&&r.status==='Racing')r.derived=deriveAt(s,r);}
     if (s.status === "Ready") {
       s.status = "Running";

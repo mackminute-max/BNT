@@ -177,6 +177,7 @@ body:has(#m1-title:not([hidden])) #m1-wheel,body:has(#bt-splash:not([hidden])) #
 .bt-tiles.bt-small .bt-tile svg{width:44px;height:44px}
 .bt-swatches{display:flex;flex-wrap:wrap;gap:6px}
 .bt-swatch{width:36px;height:36px;min-height:0!important;padding:0!important;border:2px solid #0008!important;clip-path:none!important;background:var(--c)!important;border-radius:2px}
+.bt-color-pick{display:inline-flex;align-items:center;gap:.35rem;margin-left:.3rem;font:600 .8rem system-ui,sans-serif;color:var(--bt-ink,#3a2412);cursor:pointer}.bt-color-pick input{width:40px;height:36px;padding:0;border:2px solid #0008;border-radius:2px;background:none;cursor:pointer}
 .bt-swatch[aria-pressed=true]{outline:3px solid var(--bt-gold);outline-offset:2px;border-color:#fff!important}
 .bt-portrait{display:block;width:100%;max-width:260px;aspect-ratio:1/1;margin:0 auto;border:3px solid var(--bt-gold);background:linear-gradient(180deg,#3a2a1f,#1a120d)}
 .bt-portrait-row{display:flex;align-items:center;justify-content:center;gap:12px}

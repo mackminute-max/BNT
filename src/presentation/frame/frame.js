@@ -32,7 +32,10 @@ function grouping(page, children) {
     const groups = rules.map(([name]) => ({name, items: []}));
     for (const el of children) {
       const h = headingOf(el);
-      let i = rules.findIndex(([, re, sel]) => (sel && el.matches(sel)) || (h && re.test(h)));
+      // A panel may name its tab explicitly, so a renamed heading (for example a
+      // Series name) can never drop it into the wrong tab.
+      const tagged = el.dataset?.btTab ? rules.findIndex(([name]) => name === el.dataset.btTab) : -1;
+      let i = tagged >= 0 ? tagged : rules.findIndex(([, re, sel]) => (sel && el.matches(sel)) || (h && re.test(h)));
       if (i < 0) i = 0;
       groups[i].items.push(el);
     }
@@ -52,7 +55,7 @@ function grouping(page, children) {
 }
 
 export function installFrame() {
-  const remembered = new Map(), signatures = new Map();
+  const remembered = new Map(), signatures = new Map(), focuses = new Map();
   let observer = null, bar = null, applying = false, attachedTo = null;
 
   function decorateNav(nav) {
@@ -90,6 +93,16 @@ export function installFrame() {
       const signature = groups.map(g => g.name).join('|');
       let active = signatures.get(page) === signature ? remembered.get(page) : groups[0].name;
       signatures.set(page, signature);
+      // The panel holding the next action carries data-bt-focus. When that action
+      // changes (race finished, Endowment chosen, Series ended), show its tab.
+      const focusEl = content.querySelector('[data-bt-focus]');
+      const focusKey = focusEl?.dataset.btFocus ?? null;
+      let jumped = false;
+      if (focusKey && focuses.get(page) !== focusKey) {
+        const g = groups.find(g => g.items.some(el => el === focusEl || el.contains(focusEl)));
+        if (g) { active = g.name; jumped = true; }
+      }
+      focuses.set(page, focusKey);
       if (!groups.some(g => g.name === active)) active = groups[0].name;
       remembered.set(page, active);
       bar.replaceChildren(...groups.map(g => {
@@ -102,6 +115,7 @@ export function installFrame() {
         return b;
       }));
       for (const g of groups) if (g.name !== active) for (const el of g.items) el.setAttribute('data-bt-off', '');
+      if (jumped) content.scrollTop = 0;
     } finally {
       applying = false;
     }

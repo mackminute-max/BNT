@@ -16,3 +16,19 @@ export function abilityDerived(s,r,d){if(!m6Entrant(r))return d;if(activeAbility
 export function validateM6Entrant(s,r){if(!m6Entrant(r)){if(r.m6!==undefined)throw Error('M6 state without versioned interaction context');return;}const a=r.m6,id=r.progressionContext.abilityId;if(r.progressionContext.abilities){const list=abilityList(r),ids=list.map(x=>x.id);if(!a||Object.keys(a).sort().join(',')!=='activeAbility,charges,pendingAbility,spent,throughTick'||!Array.isArray(a.spent)||new Set(a.spent).size!==a.spent.length||a.spent.some(x=>!ids.includes(x))||a.charges!==list.length-a.spent.length||!Number.isSafeInteger(a.throughTick)||a.throughTick<0||a.pendingAbility!==null&&(!ids.includes(a.pendingAbility)||a.spent.includes(a.pendingAbility))||a.activeAbility!==null&&!a.spent.includes(a.activeAbility))throw Error('Invalid M6 ability state');return;}if(!a||Object.keys(a).sort().join(',')!=='activeAbility,charges,pendingAbility,throughTick'||![0,1].includes(a.charges)||!Number.isSafeInteger(a.throughTick)||a.throughTick<0||a.pendingAbility!==null&&(a.pendingAbility!==id||a.charges!==1)||a.activeAbility!==null&&(a.activeAbility!==id||a.charges!==0)||!id&&(a.charges||a.pendingAbility||a.activeAbility))throw Error('Invalid M6 ability state');}
 
 export const controlRecoveryRate=(s,r)=>s.consequence.controlRecovery*(p1Entrant(r)&&activeAbility(s,r,'steady-team')?1.25:1);
+
+// Phase 3 (Mack 2026-11-27): rivals earn Active Abilities too. A rival's coach
+// fires each ability once per race when its moment comes. Deterministic: reads
+// only race state, with a small per-team offset so rivals do not all fire at once.
+const offset=id=>{let h=0;for(const c of String(id))h=(h*31+c.charCodeAt(0))>>>0;return (h%9)/100;};
+const RIVAL_TRIGGERS={
+ 'thunder-burst':(s,r,f,o)=>f>=.78+o,
+ 'perfect-line':(s,r,f,o)=>f>=.4+o,
+ 'absolute-focus':(s,r,f,o)=>f>=.3+o,
+ 'steady-team':(s,r,f,o)=>f>=.55+o||r.control&&r.control!=='Normal',
+ 'savage-assault':(s,r,f,o)=>s.format==='Combat'&&f>=.12+o&&f<.75,
+ brace:(s,r,f,o)=>s.format==='Combat'?(r.ru.chariot.condition<80||r.ru.driver.condition<75||f>=.6+o):f>=.65+o,
+ 'second-wind':(s,r,f)=>Math.max(...r.ru.beasts.map(b=>b.fatigue))>=55||f>=.85,
+ 'catch-breath':(s,r,f)=>Math.max(...r.ru.beasts.map(b=>b.fatigue))>=60||f>=.9,
+};
+export function rivalAbility(s,r){if(!m6Entrant(r)||r.id===s.playerId||r.status!=='Racing'||!r.m6?.spent||!r.m6.charges||r.m6.pendingAbility||r.m6.activeAbility)return;const cells=Math.max(1,(s.track?.cells??1)*(s.config?.laps??1)),f=Math.min(1,Math.max(0,(r.q??0)/cells)),o=offset(r.id);for(const a of abilityList(r)){if(r.m6.spent.includes(a.id))continue;if(RIVAL_TRIGGERS[a.id]?.(s,r,f,o)&&abilityRequest(s,r,a.id))return;}}

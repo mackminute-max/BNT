@@ -1,9 +1,10 @@
-// Phase 3 Boon offers. A Run Reward offer in an M6 career is three cards:
-// a Boon, an Active Ability, and a Supplies card (the original Run Rewards).
+// Phase 3 Boon offers. An Endowment offer in an M6 career is three cards:
+// a Boon, an Active Ability, and a Supplies card (the original Endowments).
 // Boons last for the championship (they live in x.m4.run, which is cleared at
 // settlement or withdrawal) and are handed to the race as `endowments`.
 import {BOONS, STYLES, RARITY, LEVEL, ENDOWMENT_RULES, boonStrength} from '../../sim/endowments.js';
 import {fingerprint} from '../cycles/contracts.js';
+import {ABILITIES as ABILITY_IDS, ABILITY_SLOTS as ABILITY_SLOT_LIMIT, M6_P1_INTERACTION} from '../../sim/m6-interaction.js';
 
 export const P3_OFFER_RULES = 'p3-offers-v1';
 export const RARITY_WEIGHTS = Object.freeze({Common: 70, Rare: 24, Epic: 6});
@@ -83,18 +84,52 @@ export function applyBoon(x, d, {driver, beasts}) {
   return {boon: entry, pactCost: d.pact ? PACT_COST : 0};
 }
 
-// Rivals carry Boons too (Mack, 2026-11-26): 2 to 5 by tier, mostly from one
-// style so each rival plays a recognisable way. Charge Boons are left out
-// because rivals have no Active Ability.
-export function rivalEndowments(x, entrantId) {
-  const tier = x?.m6?.competition?.tier ?? 1, intro = x?.m6?.type === 'intro' || x?.m6?.competition?.type === 'intro';
-  const count = intro ? 1 : Math.min(5, tier + 1);
-  const h = k => BigInt('0x' + fingerprint(['p3-rival-boons-v1', x.id, entrantId, k]).slice(0, 12));
+// Rivals earn Endowments the way the player does (Mack, 2026-11-27): one per
+// race they have run in this Series, drawn from the same Boon and Active
+// Ability pools. Each rival leans toward one style. A repeat upgrades what it
+// already holds. Replacement teams start fresh, because they have run no races
+// yet. Deterministic from the Series id, the rival and the race count.
+export const RIVAL_ENDOWMENT_RULES = 'p3-rival-endowments-v2';
+export function rivalRacesRun(x, entrantId) {
+  return (x?.raceResults ?? []).filter(r => r.kind !== 'NoStarters' && r.rows?.some(row => row.id === entrantId)).length;
+}
+export function rivalLoadout(x, entrantId) {
+  const races = rivalRacesRun(x, entrantId);
+  const h = k => BigInt('0x' + fingerprint([RIVAL_ENDOWMENT_RULES, x.id, entrantId, k]).slice(0, 12));
   const style = STYLES[Number(h('style') % BigInt(STYLES.length))];
-  const usable = Object.values(BOONS).filter(b => b.effect.kind !== 'charge');
-  const pool = [...usable.filter(b => b.style === style), ...usable.filter(b => b.style === style), ...usable.filter(b => b.style !== style)];
-  const picked = [];
-  for (let i = 0; picked.length < count && i < 40; i++) { const b = pool[Number(h('pick:' + i) % BigInt(pool.length))]; if (!picked.includes(b)) picked.push(b); }
-  const rarity = tier >= 4 ? 'Rare' : 'Common';
-  return {rules: ENDOWMENT_RULES, boons: picked.map(b => ({id: b.id, level: 1, rarity}))};
+  const combat = x?.m6?.competition?.events?.some?.(e => e?.format === 'Combat') ?? true;
+  const boons = [], abilities = [];
+  for (let k = 0; k < races; k++) {
+    const wantsAbility = abilities.length < ABILITY_SLOT_LIMIT && Number(h('kind:' + k) % 100n) < 35;
+    if (wantsAbility) {
+      const pool = Object.keys(ABILITY_IDS).filter(id => combat || id !== 'savage-assault');
+      const id = pool[Number(h('ability:' + k) % BigInt(pool.length))], held = abilities.find(a => a.id === id);
+      if (held) held.level = Math.min(3, held.level + 1); else abilities.push({id, level: 1});
+      continue;
+    }
+    const weighted = [];
+    for (const b of Object.values(BOONS)) {
+      if (b.effect.kind === 'charge' && !abilities.length) continue;
+      const held = boons.find(x => x.id === b.id);
+      if (held && held.level >= LEVEL.length) continue;
+      weighted.push({b, w: (b.style === style ? 3 : 1) * 10 + (held ? 5 : 0)});
+    }
+    if (!weighted.length) continue;
+    let pick = Number(h('boon:' + k) % BigInt(weighted.reduce((n, p) => n + p.w, 0))), j = 0;
+    for (; j < weighted.length - 1; j++) { if (pick < weighted[j].w) break; pick -= weighted[j].w; }
+    const r = Number(h('rarity:' + k) % 100n), rarity = r < RARITY_WEIGHTS.Common ? 'Common' : r < RARITY_WEIGHTS.Common + RARITY_WEIGHTS.Rare ? 'Rare' : 'Epic';
+    const held = boons.find(x => x.id === weighted[j].b.id);
+    if (held) { held.level++; if (RANK[rarity] > RANK[held.rarity]) held.rarity = rarity; }
+    else boons.push({id: weighted[j].b.id, level: 1, rarity});
+  }
+  return {style, boons, abilities};
+}
+export function rivalEndowments(x, entrantId) {
+  const {boons} = rivalLoadout(x, entrantId);
+  return boons.length ? {rules: ENDOWMENT_RULES, boons} : null;
+}
+// Race input for a rival's Active Abilities (null when it holds none).
+export function rivalAbilityContext(x, entrantId) {
+  const {abilities} = rivalLoadout(x, entrantId);
+  return abilities.length ? {version: 3, interactionRules: M6_P1_INTERACTION, abilityId: abilities[0].id, abilities, signBonus: 0, wearMultiplier: 1} : null;
 }

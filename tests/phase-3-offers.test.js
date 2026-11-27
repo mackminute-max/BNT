@@ -35,7 +35,7 @@ test('Phase 3 picking Boons levels them up and reaches the race as endowments', 
   const e = endowmentsFor(x); validateEndowments(e);
   const race = createRace(prepareRace(x, 0));
   assert.deepEqual(race.entrants.find(r => r.id === race.playerId).endowments, e);
-  assert.ok(race.entrants.filter(r => r.id !== race.playerId).every(r => r.endowments.boons.length === 2));
+  assert.ok(race.entrants.filter(r => r.id !== race.playerId).every(r => !r.endowments), 'rivals start a Series with no Endowments');
 });
 
 test('Phase 3 offers fall back to the original Run Rewards outside M6 careers', () => {
@@ -68,12 +68,22 @@ test('Phase 3 Series lengths: intro 3, then 5, 7 and 9 races', async () => {
     for (const d of nationalBoard('c', nation, n, intro)) { assert.equal(d.terms.purses.length, d.offer.value.schedule.length, d.id); assert.ok(d.terms.purses.every(p => p.length === d.offer.value.fieldSize)); }
 });
 
-test('Phase 3 rivals carry 2 to 5 Boons by tier, mostly from one style', async () => {
-  const {rivalEndowments} = await import('../src/career/p3/boons.js');
-  const {BOONS} = await import('../src/sim/endowments.js');
-  const x = t => ({id: 'inst', m6: {type: 'local', competition: {tier: t}}});
-  assert.deepEqual([1, 2, 3, 4, 5].map(t => rivalEndowments(x(t), 'e1').boons.length), [2, 3, 4, 5, 5]);
-  assert.equal(rivalEndowments({id: 'i', m6: {type: 'intro', competition: {tier: 1}}}, 'e1').boons.length, 1);
-  assert.deepEqual(rivalEndowments(x(3), 'e1'), rivalEndowments(x(3), 'e1'));
-  for (let i = 0; i < 20; i++) { const e = rivalEndowments(x(4), 'e' + i); validateEndowments(e); assert.ok(e.boons.every(b => BOONS[b.id].effect.kind !== 'charge')); }
+test('Phase 3 rivals earn one Endowment per race run; replacements start fresh', async () => {
+  const {rivalEndowments, rivalLoadout, rivalAbilityContext} = await import('../src/career/p3/boons.js');
+  const {validateProgressionContext} = await import('../src/model/progression-context.js');
+  const row = id => ({id});
+  const x = (n, ids = ['e1']) => ({id: 'inst', m6: {type: 'local', competition: {tier: 2, events: [{format: 'Combat'}]}}, raceResults: Array.from({length: n}, (_, i) => ({eventIndex: i, kind: 'Official', rows: ids.map(row)}))});
+  assert.equal(rivalEndowments(x(0), 'e1'), null);
+  assert.equal(rivalAbilityContext(x(0), 'e1'), null);
+  for (const n of [1, 3, 5, 8]) {
+    const l = rivalLoadout(x(n), 'e1');
+    assert.equal(l.boons.reduce((k, b) => k + b.level, 0) + l.abilities.reduce((k, a) => k + a.level, 0), n, 'one Endowment (or upgrade) per race run');
+    assert.ok(l.abilities.length <= 3);
+  }
+  assert.deepEqual(rivalLoadout(x(5), 'e1'), rivalLoadout(x(5), 'e1'));
+  assert.equal(rivalEndowments(x(5, ['e1']), 'late-joiner'), null, 'a replacement that has run no races holds nothing');
+  for (let i = 0; i < 20; i++) {
+    const e = rivalEndowments(x(6, ['e' + i]), 'e' + i); if (e) validateEndowments(e);
+    const c = rivalAbilityContext(x(6, ['e' + i]), 'e' + i); if (c) validateProgressionContext(c);
+  }
 });
