@@ -34,9 +34,18 @@ export const rules = {
   finishTolerance: [0, 0.1, "s"],
   maxRaceTime: [1, 20000, "s"],
   stallTime: [1, 1000, "s"],
+  packCatchup: [0, 0.05, "speed fraction/tile behind leader"],
+  packCatchupMax: [0, 0.5, "speed fraction"],
+  packDeadzone: [0, 40, "tiles"],
+  draftBonus: [0, 0.2, "speed fraction"],
+  draftTiles: [0, 20, "tiles"],
+  formSpread: [0, 0.2, "speed fraction"],
 };
+// Schema 2 (Phase 2 "pack racing") adds catch-up, drafting and per-race form.
+// A stored schema 1 configuration replays exactly as it ran: those effects stay off.
+const SCHEMA2_FIELDS = ['packCatchup', 'packCatchupMax', 'packDeadzone', 'draftBonus', 'draftTiles', 'formSpread'];
 export const defaults = {
-  schema: 1,
+  schema: 2,
   dt: 0.05,
   epsilon: 1e-9,
   positionEpsilon: 1e-8,
@@ -70,6 +79,12 @@ export const defaults = {
   finishTolerance: 0.001,
   maxRaceTime: 1200,
   stallTime: 20,
+  packCatchup: 0.05,
+  packCatchupMax: 0.5,
+  packDeadzone: 0,
+  draftBonus: 0.12,
+  draftTiles: 6,
+  formSpread: 0.05,
 };
 // Numerical balance weights live here; config({ tuning: {...} }) validates overrides.
 export const tuningDefaults = Object.freeze({
@@ -158,8 +173,15 @@ export function config(overrides = {}) {
     if (Math.abs(group.reduce((sum, k) => sum + tuning[k], 0) - 1) > 1e-9)
       throw new Error("Tuning weight group must sum to 1");
   const c = { ...defaults, ...overrides, tuning: Object.freeze(tuning) };
-  if (c.schema !== 1) throw new Error("Unsupported configuration schema");
+  // A schema 1 configuration has no Phase 2 fields at all, so it serializes
+  // exactly as it did when it was stored.
+  if (c.schema === 1) for (const k of SCHEMA2_FIELDS) {
+    if (Object.hasOwn(overrides, k)) throw new Error(`${k} requires configuration schema 2`);
+    delete c[k];
+  }
+  if (![1, 2].includes(c.schema)) throw new Error("Unsupported configuration schema");
   for (const [k, [lo, hi]] of Object.entries(rules)) {
+    if (c.schema === 1 && SCHEMA2_FIELDS.includes(k)) continue;
     if (
       !Number.isFinite(c[k]) ||
       c[k] < lo ||

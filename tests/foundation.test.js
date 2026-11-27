@@ -39,7 +39,7 @@ test("T24 configuration validates version, ranges, integer fields and unknown ke
   for (const overrides of [
     { dt: NaN },
     { dt: Infinity },
-    { schema: 2 },
+    { schema: 3 },
     { lanes: 2.5 },
     { innerRadius: -1 },
     { laps: 0 },

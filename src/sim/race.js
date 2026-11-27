@@ -422,6 +422,28 @@ export function classification(s) {
   ];
 }
 function deriveAt(s, r) {
+  return packed(s, r, baseDerived(s, r));
+}
+// Pack racing (config schema 2): a per-race form draw, catch-up for the trailing
+// field and a slipstream behind a rival in the same lane. Pure function of state.
+function packed(s, r, d) {
+  const c = s.config;
+  if (c.schema < 2) return d;
+  let factor = 1 + c.formSpread * (2 * random(s.seed, "form", r.id) - 1);
+  if (r.status === "Racing" && (c.packCatchup || c.draftBonus)) {
+    let leader = -Infinity, draft = false;
+    for (const o of s.entrants) {
+      if (o.status !== "Racing" || o.id === r.id) continue;
+      if (o.q > leader) leader = o.q;
+      if (o.lane === r.lane && o.q > r.q && o.q - r.q <= c.draftTiles) draft = true;
+    }
+    if (leader - r.q > c.packDeadzone) factor += Math.min(c.packCatchupMax, (leader - r.q - c.packDeadzone) * c.packCatchup);
+    if (draft) factor += c.draftBonus;
+  }
+  // Corner speed goes with the square root of lateral grip, so scale it by factor squared.
+  return factor === 1 ? d : {...d, maxSpeed: d.maxSpeed * factor, lateral: d.lateral * factor * factor, acceleration: d.acceleration * factor};
+}
+function baseDerived(s, r) {
   const surface = location(r.q, r.lane, s.config, s.track).surface;
   return abilityDerived(s,r,applyPayrollControl(applyAffinity(derive(r.ru, {
     ...s.config,
@@ -751,7 +773,8 @@ function motion(s, r) {
       if (gap <= s.config.exitTiles + 1) {
         let position = r.q,
           distance = 0,
-          remaining = gap;
+          // Schema 2: stop short of the occupied tile, never on its boundary.
+          remaining = s.config.schema >= 2 ? Math.max(0, gap - 2 * s.config.positionEpsilon) : gap;
         while (remaining > s.config.positionEpsilon) {
           const portion = Math.min(
             remaining,
@@ -878,8 +901,23 @@ function resolveForward(s, movers) {
 function endIfDone(s) {
   if (
     s.entrants.every((r) => r.status !== "Racing") &&
-    s.entrants.every((r) => r.physical !== "Clearing")
+    // Schema 2: a finisher stuck behind a wreck in its run-off no longer holds the
+    // race open until the stall safeguard; the official result is already locked.
+    s.entrants.every((r) => r.physical !== "Clearing" || (s.config.schema >= 2 && r.blocked))
   ) {
+    s.status = "Ended";
+    emit(s, "RACE_ENDED", [], { classification: classification(s) });
+  } else if (
+    s.config.schema >= 2 && s.consequences &&
+    s.time < s.config.maxRaceTime &&
+    s.time - s.lastProgressTime > s.config.stallTime &&
+    s.entrants.some((r) => r.physical === "Wreck") &&
+    s.entrants.every((r) => r.status !== "Racing" || r.blocked)
+  ) {
+    // Schema 2: wrecks are common, so a field boxed in by wreckage is part of the
+    // race, not an engine stall. The trapped units retire and the race ends.
+    for (const r of sorted(s))
+      if (r.status === "Racing") retire(s, r, "Trapped behind wreckage");
     s.status = "Ended";
     emit(s, "RACE_ENDED", [], { classification: classification(s) });
   } else if (
