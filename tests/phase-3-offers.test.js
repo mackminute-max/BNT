@@ -42,3 +42,18 @@ test('Phase 3 offers fall back to the original Run Rewards outside M6 careers', 
   const {s, x} = setup(); delete x.m6;
   assert.ok(runOffer(s, x, 'r').choices.every(c => c.kind !== 'boon'));
 });
+
+test('Phase 3 Treatment replaces a reward: pay Gold to heal or repair', () => {
+  const {s, x} = setup(), r = s.management.registries, ids = x.entrants.find(e => e.player).assetIds;
+  r.personnel[ids.driver].condition = 40; r.personnel[ids.driver].injury = 'Major'; r.chariots[ids.chariot].condition = 50;
+  s.career.treasury = 1000;
+  const o = runOffer(s, x, 'hurt'), t = o.choices.filter(c => c.kind === 'treatment');
+  assert.deepEqual(t.map(c => c.target), ['driver', 'chariot']);
+  pick(s, x, o, t[0], 'treat-1');
+  assert.equal(r.personnel[ids.driver].condition, 75);
+  assert.equal(r.personnel[ids.driver].injury, 'Minor');
+  assert.equal(s.career.treasury, 1000 - t[0].price);
+  s.career.treasury = 0;
+  const o2 = runOffer(s, x, 'broke'), c = o2.choices.find(c => c.target === 'chariot');
+  assert.throws(() => pick(s, x, o2, c, 'treat-2'), /Gold/);
+});
