@@ -65,6 +65,29 @@ function draw(s, r, kind) {
   s.rng.draws++;
   return random(s.seed, "ai", kind, r.id, s.tick, r.ai.evaluation);
 }
+// Phase 2 racecraft (config schema 2): drivers race the line, not the lane.
+// They take the inside line into corners, dive inside a rival ahead before a
+// corner, and move across to block a rival closing from behind.
+const RACECRAFT = Object.freeze({line: 1.2, dive: 2.2, block: 1.8, diveGap: 5, blockGap: 3, lookahead: 6});
+function turnAhead(s, r, tiles) {
+  for (let k = 0; k <= tiles; k++)
+    if (location(Math.floor(r.q) + k, r.lane, s.config, s.track).type === "turn") return true;
+  return false;
+}
+function racecraft(s, r, perceived, action, lane, route, p) {
+  if (s.config.schema < 2) return {};
+  const R = RACECRAFT, aggression = p.aggression / 100, terms = {};
+  const inside = route ? !!route.corner && (action === "outward" ? 1 : -1) === route.corner.direction : action === "inward";
+  const corner = route ? !!route.corner : turnAhead(s, r, R.lookahead);
+  if (corner && inside) {
+    terms.line = R.line;
+    if (perceived.neighbors.some(o => o.status === "Racing" && o.gap > 0 && o.gap < R.diveGap && Math.abs(o.lane - r.lane) <= 1))
+      terms.dive = R.dive * (0.4 + aggression);
+  }
+  if (perceived.neighbors.some(o => o.status === "Racing" && o.lane === lane && o.gap < 0 && o.gap > -R.blockGap))
+    terms.block = R.block * (0.3 + aggression);
+  return terms;
+}
 export function decide(s, r) {
   const perceived = perceive(s, r),
     p = r.ru.driver.personality,
@@ -204,6 +227,7 @@ export function decide(s, r) {
       w.laneBase,
       {
         distance: route ? (route.corner && (action === "outward" ? 1 : -1) === route.corner.direction ? w.insideBonus : 0) : action === "inward" ? w.insideBonus : 0,
+        ...racecraft(s, r, perceived, action, lane, route, p),
         ...(route?.corner ? { courseLaneRisk: -w.courseLaneRisk * Math.min(2,
           Math.max(0, r.derived.maxSpeed / Math.sqrt(r.derived.lateral *
             (s.track.segments.find(x => x.id === route.corner.segment).radius - route.corner.direction * lane * s.config.laneWidth)) - 1)) } : {}),

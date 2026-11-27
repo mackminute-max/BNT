@@ -180,7 +180,7 @@ for (const format of ["Pure", "Combat"]) {
     const row = exported.technical.entrants.find(x => x.id === r.id);
     assert.deepEqual(row.finishSnapshot, original);
     assert.deepEqual(row.fatigue, [100, 100]);
-    const fatigueAtFinish = s.entrants.flatMap(x => x.finishSnapshot.beasts.map(b => b.fatigue));
+    const fatigueAtFinish = s.entrants.filter(x => x.finishSnapshot).flatMap(x => x.finishSnapshot.beasts.map(b => b.fatigue));
     assert.equal(statistics(s).fatigueAtFinish, fatigueAtFinish.reduce((a,b) => a+b, 0)/fatigueAtFinish.length);
     assert.equal(verifyReplay(capture(s)).checksum, digest(s));
     assert.deepEqual(s.events.find(e => e.type === "RU_FINISHED" && e.participants[0] === r.id).effects.finishSnapshot, original);

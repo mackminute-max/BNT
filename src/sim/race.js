@@ -437,7 +437,7 @@ function packed(s, r, d) {
       if (o.q > leader) leader = o.q;
       if (o.lane === r.lane && o.q > r.q && o.q - r.q <= c.draftTiles) draft = true;
     }
-    if (leader > r.q) factor += Math.min(c.packCatchupMax, (leader - r.q) * c.packCatchup);
+    if (leader - r.q > c.packDeadzone) factor += Math.min(c.packCatchupMax, (leader - r.q - c.packDeadzone) * c.packCatchup);
     if (draft) factor += c.draftBonus;
   }
   // Corner speed goes with the square root of lateral grip, so scale it by factor squared.

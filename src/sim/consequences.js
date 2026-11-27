@@ -6,6 +6,7 @@ import { byId, clamp, random } from "../core/determinism.js";
 import { location, gap } from "../track/oval.js";
 import { emit } from "../events/events.js";
 
+const CRIT_BASE = 0.1, CRIT_MARGIN_CAP = 0.15, CRIT_MULTIPLIER = 2;
 export const consequenceDefaults = Object.freeze({
   componentResistanceBase: 0.5,
   damageScale: 0.006,
@@ -26,9 +27,9 @@ export const consequenceDefaults = Object.freeze({
   ramRange: 1.5,
   attackCooldown: 7,
   reactionBudget: 1,
-  contestNoise: 8,
-  reactionBonus: 10,
-  defendingBonus: 12,
+  contestNoise: 12,
+  reactionBonus: 5,
+  defendingBonus: 6,
   attackDamage: 24,
   marginDamageCap: 1,
   defenseDriving: 0.4,
@@ -407,6 +408,7 @@ export function flushImpacts(s, refresh) {
       before: old,
       after: target.component.condition,
       energy: impact.energy,
+      ...(impact.crit ? {crit: true} : {}),
     });
   }
   const touched = [...new Set(effects.map((e) => e.r.id))].sort();
@@ -502,7 +504,12 @@ export function resolveAttacks(s, intents, refresh) {
       (drawConsequence(s, id, "defender") * 2 - 1) * c.contestNoise;
     const margin = attack - defense,
       success = margin > 0;
+    // Schema 2: a landed blow can be a critical hit (double damage). Skill and
+    // a wide margin raise the chance.
+    const crit = success && s.config.schema >= 2 &&
+      drawConsequence(s, id, "crit") < CRIT_BASE + Math.min(CRIT_MARGIN_CAP, margin / 100) + a.derived.combat / 1000;
     emit(s, "ATTACK", [a.id, b.id], {
+      ...(s.config.schema >= 2 ? {crit} : {}),
       attackId: id,
       attacker: a.id,
       defender: b.id,
@@ -529,9 +536,10 @@ export function resolveAttacks(s, intents, refresh) {
         b: null,
         energy: 0,
         amount:
-          c.attackDamage * (1 + Math.min(c.marginDamageCap, margin / 100)),
+          c.attackDamage * (1 + Math.min(c.marginDamageCap, margin / 100)) * (crit ? CRIT_MULTIPLIER : 1),
         direction: "attack",
         kind: "attack",
+        ...(crit ? {crit: true} : {}),
       });
     flushImpacts(s, refresh);
   }

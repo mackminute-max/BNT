@@ -35,14 +35,15 @@ export const rules = {
   maxRaceTime: [1, 20000, "s"],
   stallTime: [1, 1000, "s"],
   packCatchup: [0, 0.05, "speed fraction/tile behind leader"],
-  packCatchupMax: [0, 0.3, "speed fraction"],
+  packCatchupMax: [0, 0.5, "speed fraction"],
+  packDeadzone: [0, 40, "tiles"],
   draftBonus: [0, 0.2, "speed fraction"],
   draftTiles: [0, 20, "tiles"],
   formSpread: [0, 0.2, "speed fraction"],
 };
 // Schema 2 (Phase 2 "pack racing") adds catch-up, drafting and per-race form.
 // A stored schema 1 configuration replays exactly as it ran: those effects stay off.
-const SCHEMA2_FIELDS = ['packCatchup', 'packCatchupMax', 'draftBonus', 'draftTiles', 'formSpread'];
+const SCHEMA2_FIELDS = ['packCatchup', 'packCatchupMax', 'packDeadzone', 'draftBonus', 'draftTiles', 'formSpread'];
 export const defaults = {
   schema: 2,
   dt: 0.05,
@@ -70,7 +71,7 @@ export const defaults = {
   beastLoadMass: 10,
   bottleneck: 0.3,
   mismatchWeight: 0.12,
-  attributeStrength: 0.5,
+  attributeStrength: 0.8,
   cornerRisk: 0.4,
   cornerSpeedLoss: 0.25,
   clearSpeed: 10,
@@ -78,10 +79,11 @@ export const defaults = {
   finishTolerance: 0.001,
   maxRaceTime: 1200,
   stallTime: 20,
-  packCatchup: 0.02,
-  packCatchupMax: 0.25,
-  draftBonus: 0.08,
-  draftTiles: 5,
+  packCatchup: 0.035,
+  packCatchupMax: 0.35,
+  packDeadzone: 0,
+  draftBonus: 0.12,
+  draftTiles: 6,
   formSpread: 0.05,
 };
 // Numerical balance weights live here; config({ tuning: {...} }) validates overrides.
