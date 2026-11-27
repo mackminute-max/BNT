@@ -4,10 +4,12 @@
 //   Races: one of the two race songs from the moment the race starts; the
 //   Championship song plays for every Championship race and only those.
 // Songs fade into each other. Settings persist per browser; the master volume
-// starts at 20% (Mack 2026-11-27). Sound effects will use the same settings when they arrive.
+// starts at 15% (Mack 2026-11-27). The theme carries on from the title screen
+// into the menus without a break (also across the reload that opens a career),
+// then the menu cycle continues with menu 1. Sound effects will use the same settings when they arrive.
 const KEY = 'bnt.audio.v1';
-export const AUDIO_DEFAULTS = Object.freeze({master: 0.2, music: 1, effects: 1, muted: false, musicMuted: false, effectsMuted: false});
-const FADE_MS = 2500;
+export const AUDIO_DEFAULTS = Object.freeze({master: 0.15, music: 1, effects: 1, muted: false, musicMuted: false, effectsMuted: false});
+const FADE_MS = 2500, HANDOFF = 'bnt.music.handoff';
 
 function load() {
   try { return {...AUDIO_DEFAULTS, ...JSON.parse(localStorage.getItem(KEY) ?? '{}')}; } catch { return {...AUDIO_DEFAULTS}; }
@@ -43,14 +45,16 @@ class Player {
     };
     requestAnimationFrame(tick);
   }
-  play(name, {loop = false} = {}) {
+  play(name, {loop = false, at = 0, fadeMs = FADE_MS} = {}) {
     const src = track(name);
     if (!src) return;
     if (this.current === name && !this.deck.paused) { this.deck.loop = loop; return; }
     const old = this.deck, next = this.decks[1 - this.live];
     this.live = 1 - this.live; this.current = name;
-    next.src = src; next.loop = loop; next.currentTime = 0; next.volume = 0;
-    const start = () => next.play().then(() => { this.waiting = false; this.fade(next, musicVolume(), FADE_MS); }).catch(() => this.waitForGesture(start));
+    next.src = src; next.loop = loop; next.volume = 0;
+    try { next.currentTime = at; } catch {}
+    if (at) next.addEventListener('loadedmetadata', () => { if (next.currentTime < at) next.currentTime = at; }, {once: true});
+    const start = () => next.play().then(() => { this.waiting = false; this.fade(next, musicVolume(), fadeMs); }).catch(() => this.waitForGesture(start));
     if (!old.paused) this.fade(old, 0, FADE_MS, () => old.pause());
     start();
   }
@@ -72,8 +76,16 @@ class Player {
   setScene(scene) {
     if (scene === this.scene) return;
     const prev = this.scene; this.scene = scene;
+    const themeOn = this.current === 'theme_01' && !this.deck.paused;
+    if (prev === null && (scene === 'title' || scene === 'menu') && this.handoff) {
+      // Picking up the theme where it was before the page reloaded.
+      this.play('theme_01', {loop: scene === 'title', at: this.handoff.t, fadeMs: 300});
+      if (scene === 'menu') this.menuStep = MENU_CYCLE.length - 1;
+      return;
+    }
     if (scene === 'title') this.play('theme_01', {loop: true});
     else if (scene === 'creation') this.play(Math.random() < .5 ? 'menu_01' : 'menu_02', {loop: true});
+    else if (scene === 'menu' && prev === 'title' && themeOn) { this.deck.loop = false; this.menuStep = MENU_CYCLE.length - 1; } // theme plays on, then menu 1
     else if (scene === 'menu') { if (prev !== 'menu') this.menuStep = 0; this.play(MENU_CYCLE[this.menuStep]); }
     else if (scene === 'race') this.play(Math.random() < .5 ? 'race_01' : 'race_02', {loop: true});
     else if (scene === 'championship') this.play('race_championship', {loop: true});
@@ -98,6 +110,8 @@ function sceneNow(doc) {
 export function installMusic(doc = globalThis.document) {
   if (player || !doc || !globalThis.__BNT_MEDIA__?.music) return null;
   player = new Player(); player.applyVolume(); globalThis.__BNT_MUSIC__ = player;
+  try { const h = JSON.parse(sessionStorage.getItem(HANDOFF) ?? 'null'); sessionStorage.removeItem(HANDOFF); if (h && Date.now() - h.at < 20000) player.handoff = h; } catch {}
+  addEventListener('pagehide', () => { try { const d = player.deck; if (player.current === 'theme_01' && !d.paused) sessionStorage.setItem(HANDOFF, JSON.stringify({t: d.currentTime, at: Date.now()})); } catch {} });
   const tick = () => { try { const sc = sceneNow(doc); player.setScene(sc === 'pre-race' ? 'silent' : sc); } catch {} };
   tick(); setInterval(tick, 1000);
   return player;
