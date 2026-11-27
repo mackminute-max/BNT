@@ -308,33 +308,43 @@ export const COPY_DATA = {
   },
   "signs": {
     "Push the Pace": {
-      "text": "A call to seek greater pace. The native directive and resistance rules determine how the driver responds.",
+      "text": "Close a gap or break away late. Gain: +7% top speed, +10% acceleration. Cost: Beasts tire 80% faster, chariot wears 30% faster.",
       "label": "Push the Pace",
       "activation": "A queued Sign activates at the starting signal if queued before the race starts; otherwise at the next start/finish crossing on closed courses or the applicable Rally checkpoint. Queueing is not activation and consumes an existing opportunity."
     },
     "Conserve Strength": {
-      "text": "An instruction to manage effort rather than spend it all at once. It is not a guarantee of lower fatigue.",
+      "text": "Save the beasts for the finish. Gain: Beasts tire 60% slower and recover 50% faster. Cost: −5% top speed.",
       "label": "Conserve Strength",
       "activation": "A queued Sign activates at the starting signal if queued before the race starts; otherwise at the next start/finish crossing on closed courses or the applicable Rally checkpoint. Queueing is not activation and consumes an existing opportunity."
     },
     "Seek Open Track": {
-      "text": "The stable asks the driver to favor room to maneuver when the field allows it.",
+      "text": "Get out of traffic and around a slow pack. Gain: +15% handling, faster lane changes. Cost: No slipstream bonus.",
       "label": "Seek Open Track",
       "activation": "A queued Sign activates at the starting signal if queued before the race starts; otherwise at the next start/finish crossing on closed courses or the applicable Rally checkpoint. Queueing is not activation and consumes an existing opportunity."
     },
     "Race Defensively": {
-      "text": "A caution to reduce exposure to threats and collisions. The driver still decides how to execute it.",
+      "text": "Survive a rough race. Gain: Take 30% less damage. Cost: −5% top speed, your hits 50% weaker.",
       "label": "Race Defensively",
       "activation": "A queued Sign activates at the starting signal if queued before the race starts; otherwise at the next start/finish crossing on closed courses or the applicable Rally checkpoint. Queueing is not activation and consumes an existing opportunity."
     },
     "Engage Rivals": {
-      "text": "Combat format only. Instruct the driver to seek engagement with rivals when possible; an attack is not guaranteed.",
+      "text": "Hurt the rivals near you (Combat only). Gain: Your hits 30% stronger. Cost: Take 20% more damage, beasts tire 30% faster.",
       "label": "Engage Rivals",
       "activation": "A queued Sign activates at the starting signal if queued before the race starts; otherwise at the next start/finish crossing on closed courses or the applicable Rally checkpoint. Queueing is not activation and consumes an existing opportunity."
     },
     "Hold Position": {
-      "text": "The stable instructs the driver to protect their current position where possible.",
+      "text": "Protect a lead or a place. Gain: Rivals behind you get no slipstream from you, +10% handling. Cost: −8% acceleration.",
       "label": "Hold Position",
+      "activation": "A queued Sign activates at the starting signal if queued before the race starts; otherwise at the next start/finish crossing on closed courses or the applicable Rally checkpoint. Queueing is not activation and consumes an existing opportunity."
+    },
+    "Ride the Slipstream": {
+      "text": "Sit on a rival's tail and save effort. Gain: Slipstream bonus doubled, beasts tire 25% slower while drafting. Cost: −3% top speed in clean air.",
+      "label": "Ride the Slipstream",
+      "activation": "A queued Sign activates at the starting signal if queued before the race starts; otherwise at the next start/finish crossing on closed courses or the applicable Rally checkpoint. Queueing is not activation and consumes an existing opportunity."
+    },
+    "Play It Safe": {
+      "text": "Get through bad corners, weather or a hurt turnout. Gain: Corner crash risk halved, driver strain builds 50% slower. Cost: −4% top speed.",
+      "label": "Play It Safe",
       "activation": "A queued Sign activates at the starting signal if queued before the race starts; otherwise at the next start/finish crossing on closed courses or the applicable Rally checkpoint. Queueing is not activation and consumes an existing opportunity."
     }
   },

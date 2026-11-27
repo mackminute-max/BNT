@@ -1,4 +1,5 @@
 import {activeAbility} from './m6-interaction.js';
+import {strategyOf,strategyMul,drafting} from './strategies.js';
 import { utilityConfig } from "../ai/weights.js";
 import { location } from "../track/oval.js";
 import { clamp } from "../core/determinism.js";
@@ -115,22 +116,24 @@ export function integrateCondition(s, r, elapsed) {
       (1 + (100 - b.condition) / 100);
     if(r.affinityContext)generation/=r.affinityContext.multiplier;
     if(activeAbility(s,r,'second-wind'))generation*=.5;
+    generation*=strategyMul(r,'fatigue')*(strategyOf(r)?.draftFatigue&&drafting(s,r)?strategyOf(r).draftFatigue:1);
     let recovery =
       exertion <= c.recoveryThreshold
         ? c.recoveryRate * w.recovery * (0.5 + b.endurance / 100)
         : 0;
     if(r.progressionContext?.version===2&&activeAbility(s,r,'steady-team'))recovery*=1.25;
+    recovery*=strategyMul(r,'recovery');
     b.fatigue = clamp(b.fatigue + (generation - recovery) * elapsed, 0, 100);
   }
   r.ru.driver.strain = clamp(
     r.ru.driver.strain +
-      c.strainRate * (exertion + (r.control === "Unstable" ? 1 : 0)) * elapsed,
+      c.strainRate * (exertion + (r.control === "Unstable" ? 1 : 0)) * elapsed * strategyMul(r, "strain"),
     0,
     100,
   );
   r.ru.chariot.wear = clamp(
     r.ru.chariot.wear +
-      (r.progressionContext ? c.wearRate * exertion * w.rolling * (1 + surface.roughness) * elapsed * r.progressionContext.wearMultiplier : c.wearRate * exertion * w.rolling * (1 + surface.roughness) * elapsed),
+      ((r.progressionContext ? c.wearRate * exertion * w.rolling * (1 + surface.roughness) * elapsed * r.progressionContext.wearMultiplier : c.wearRate * exertion * w.rolling * (1 + surface.roughness) * elapsed)) * strategyMul(r, "wear"),
     0,
     100,
   );

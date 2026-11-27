@@ -34,6 +34,7 @@ import {
 } from "./environment.js";
 import { personality, tendencies, decide } from "../ai/driver.js";
 import { signCommand, activateSign } from "../ai/signs.js";
+import { strategyMul, strategyDerived, drafting, coachPick } from "./strategies.js";
 import { config, VERSION } from "../config/config.js";
 import { defaultRU, derive } from "../model/ru.js";
 import { byId, random, streamingChecksum } from "../core/determinism.js";
@@ -426,8 +427,17 @@ export function classification(s) {
     })),
   ];
 }
+// Rival coach call at a sign point: queue a Strategy if it changes and a use is left.
+function rivalStrategy(s, r) {
+  if (r.status !== "Racing" || !r.signs || r.signs.remaining <= 0) return;
+  const pick = coachPick(s, r, random(s.seed, "coach", r.id));
+  if (!pick || pick === r.signs.active || (pick === "Engage Rivals" && s.format === "Pure")) return;
+  r.signs.remaining--;
+  r.signs.pending = pick;
+  emit(s, "RIVAL_STRATEGY", [r.id], { sign: pick, remaining: r.signs.remaining });
+}
 function deriveAt(s, r) {
-  return packed(s, r, baseDerived(s, r));
+  return strategyDerived(s, r, packed(s, r, baseDerived(s, r)), s.config.schema >= 2 && drafting(s, r));
 }
 // Pack racing (config schema 2): a per-race form draw, catch-up for the trailing
 // field and a slipstream behind a rival in the same lane. Pure function of state.
@@ -436,14 +446,13 @@ function packed(s, r, d) {
   if (c.schema < 2) return d;
   let factor = 1 + c.formSpread * (2 * random(s.seed, "form", r.id) - 1);
   if (r.status === "Racing" && (c.packCatchup || c.draftBonus)) {
-    let leader = -Infinity, draft = false;
+    let leader = -Infinity;
     for (const o of s.entrants) {
       if (o.status !== "Racing" || o.id === r.id) continue;
       if (o.q > leader) leader = o.q;
-      if (o.lane === r.lane && o.q > r.q && o.q - r.q <= c.draftTiles) draft = true;
     }
     if (leader - r.q > c.packDeadzone) factor += Math.min(c.packCatchupMax, (leader - r.q - c.packDeadzone) * c.packCatchup);
-    if (draft) factor += c.draftBonus;
+    if (drafting(s, r)) factor += c.draftBonus * strategyMul(r, "draft");
   }
   // Corner speed goes with the square root of lateral grip, so scale it by factor squared.
   return factor === 1 ? d : {...d, maxSpeed: d.maxSpeed * factor, lateral: d.lateral * factor * factor, acceleration: d.acceleration * factor};
@@ -540,7 +549,7 @@ function corner(s, r) {
   if (loc.type !== "turn") return;
   const safe = Math.sqrt(r.derived.lateral * loc.radius),
     excess = Math.max(0, r.speed / safe - 1);
-  const probability = Math.min(1, s.config.cornerRisk * excess * excess);
+  const probability = Math.min(1, s.config.cornerRisk * strategyMul(r, "cornerRisk") * excess * excess);
   const roll = randomDraw(s, "corner", r.id, r.cornerVisits++);
   emit(s, "CORNER_EVALUATED", [r.id], {
     safe,
@@ -964,7 +973,7 @@ export function step(s, commands = []) {
     if (s.consequences)
       for (const r of sorted(s)) updateControl(s, r, "Boundary condition");
     applyCommands(s, [...s.pendingOverrides.splice(0), ...commands]);
-    for(const r of sorted(s))if(m6Entrant(r)){if(r.id!==s.playerId)rivalAbility(s,r);m6Boundary(s,r);activateSign(s,r,{m6Boundary:true});if(s.driverMode!=='autonomous')r.derived=deriveAt(s,r);}
+    for(const r of sorted(s))if(m6Entrant(r)){if(r.id!==s.playerId){rivalAbility(s,r);rivalStrategy(s,r);}m6Boundary(s,r);activateSign(s,r,{m6Boundary:true});if(s.driverMode!=='autonomous')r.derived=deriveAt(s,r);}
     if(s.entrants.some(endowed)){endowBoundary(s);if(s.driverMode!=='autonomous')for(const r of sorted(s))if(endowed(r)&&r.status==='Racing')r.derived=deriveAt(s,r);}
     if (s.status === "Ready") {
       s.status = "Running";

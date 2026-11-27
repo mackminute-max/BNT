@@ -8,6 +8,8 @@ export const signs = [
   "Race Defensively",
   "Engage Rivals",
   "Hold Position",
+  "Ride the Slipstream",
+  "Play It Safe",
 ];
 export function signCommand(s, cmd) {
   const r = s.entrants.find((r) => r.id === s.playerId);
@@ -69,6 +71,10 @@ export function signPreference(sign, action, c) {
       : 0;
   if (sign === "Hold Position")
     return ["hold", "defend", "Maintain"].includes(action) ? c.signHold : 0;
+  if (sign === "Ride the Slipstream")
+    return ["hold", "Maintain", "Conserve"].includes(action) ? c.signHold : 0;
+  if (sign === "Play It Safe")
+    return ["Conserve", "avoid", "yield", "hold"].includes(action) ? c.signDefensive : 0;
   if (sign === "Engage Rivals")
     return ["attack", "ram"].includes(action) ? c.signEngage : 0;
   return 0;
