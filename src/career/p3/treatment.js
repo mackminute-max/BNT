@@ -21,14 +21,14 @@ export function treatmentDefinition(x, key, who) {
   const {kind, asset} = target(who, key), price = TREATMENT.price[kind] * treatmentTier(x);
   const verb = kind === 'chariot' ? `Repair ${asset.name}` : `Treat ${asset.name}`;
   const what = kind === 'chariot'
-    ? `Restore up to ${TREATMENT.restore} condition and integrity and remove ${TREATMENT.wear} wear.`
-    : `Restore up to ${TREATMENT.restore} condition and ease the injury by one level.`;
-  return {id: 'p3-treatment-' + key, kind: 'treatment', target: key, price, name: verb, category: 'Treatment', description: `${what} Costs ${price} Gold and replaces this reward.`, weight: 0};
+    ? `+${TREATMENT.restore} condition and integrity, −${TREATMENT.wear} wear.`
+    : `+${TREATMENT.restore} condition, injury eased one level.`;
+  return {id: 'p3-treatment-' + key, kind: 'treatment', target: key, price, name: verb, category: 'Treatment', description: what, weight: 0};
 }
 export function treatmentPreview(s, x, d, who) {
   const c = treatmentDefinition(x, d.target, who), {kind, asset} = target(who, d.target);
   if (c.id !== d.id || c.price !== d.price) throw Error('Treatment terms changed');
-  const hurt = kind === 'chariot' ? asset.condition < 100 || asset.integrity < 100 || asset.wear > 0 : asset.condition < 100 || (asset.injury && asset.injury !== 'Healthy');
+  const hurt = kind === 'chariot' ? asset.condition < 99 || asset.integrity < 99 || asset.wear >= 1 : asset.condition < 99 || (asset.injury && asset.injury !== 'Healthy');
   if (!hurt) throw Error('Nothing to treat');
   if (s.career.treasury < c.price) throw Error(`Needs ${c.price} Gold`);
   return c;

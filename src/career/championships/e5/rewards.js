@@ -7,7 +7,7 @@ export function buildEntitlements(s,x,terms){
  if(!terms)return [];
  const out=[],add=(kind,entrantId,amount,source,assetId=null)=>{gold(amount);if(amount)out.push({id:'e5-award-'+fingerprint([s.career.id,x.id,source,entrantId,kind,assetId,terms.rulesVersion]).slice(0,40),kind,entrantId,assetId,amount,source});};
  for(const r of x.raceResults){for(const row of r.rows){if(!row.started)continue;const finish=row.status==='Finished',place=finish?row.place:null;
-  add('Gold',row.id,finish?(terms.purses[r.eventIndex][place-1]??0):row.status==='DNF'&&row.classified===true?terms.dnfPurse:0,r.resultId);
+  add('Gold',row.id,finish?((terms.purses[r.eventIndex]??terms.purses.at(-1))[place-1]??0):row.status==='DNF'&&row.classified===true?terms.dnfPurse:0,r.resultId);
   if(row.id===x.playerId){const score=rules=>rules.start+(finish?rules.finish:0)+(finish&&place<=3?rules.podium:0)+(finish&&place===1?rules.win:0);const ids=x.entrants.find(e=>e.player).assetIds;for(const id of [ids.driver,...ids.beasts])add('XP',row.id,score(terms.xp),r.resultId,id);add('Reputation',row.id,score(terms.reputation),r.resultId);}
  }}
  x.standings.forEach((row,i)=>{add('Gold',row.id,terms.placement[i]??0,'placement');if(row.id===x.playerId)add('Reputation',row.id,terms.reputation.placement[i]??0,'placement');});

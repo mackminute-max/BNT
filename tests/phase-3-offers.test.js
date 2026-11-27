@@ -63,6 +63,9 @@ test('Phase 3 Series lengths: intro 3, then 5, 7 and 9 races', async () => {
   assert.deepEqual(nationalBoard('c', 'N1', {tier: 1, epoch: 0, localWins: 0, prestigeWon: false}, false).map(d => d.offer.value.schedule.length), [3]);
   assert.deepEqual(nationalBoard('c', 'N1', {tier: 1, epoch: 1, localWins: 0, prestigeWon: false}, true).map(d => d.offer.value.schedule.length), [5, 7, 9]);
   assert.deepEqual(nationalBoard('c', 'N1', {tier: 1, epoch: 1, localWins: 2, prestigeWon: false}, true).map(d => d.offer.value.schedule.length), [5, 7, 9]);
+  // Every race needs a purse row, or publishing that race fails (Mack's intro race 3 bug).
+  for (const [nation, n, intro] of [['N1', {tier: 1, epoch: 0, localWins: 0, prestigeWon: false}, false], ['N1', {tier: 1, epoch: 1, localWins: 2, prestigeWon: false}, true], ['N2', {tier: 3, epoch: 1, localWins: 0, prestigeWon: true}, true], ['N5', {tier: 6, epoch: 0, localWins: 0, prestigeWon: false}, true]])
+    for (const d of nationalBoard('c', nation, n, intro)) { assert.equal(d.terms.purses.length, d.offer.value.schedule.length, d.id); assert.ok(d.terms.purses.every(p => p.length === d.offer.value.fieldSize)); }
 });
 
 test('Phase 3 rivals carry 2 to 5 Boons by tier, mostly from one style', async () => {
