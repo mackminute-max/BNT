@@ -8,7 +8,7 @@ import {UI_P1,contextQuote} from './headquarters/context-actions.js';
 import {finances as playerFinances,services as playerServices,cleanPlayerCopy} from './headquarters/workflow.js';
 import {M3UI,homeDashboard,barnDashboard,mountBarnControls,beastReplacement} from './headquarters/consolidated.js';
 import {activeTeam} from './headquarters/active-team.js';
-import {HQ_ENABLED,HQ_ROUTES,HeadquartersRoutes,championshipName} from './headquarters/model.js';
+import {HQ_ENABLED,HQ_ROUTES,NAV_ORDER,HeadquartersRoutes,championshipName} from './headquarters/model.js';
 import {confirmAction} from './startup/dialogs.js';
 import {createCareerFlow,championshipStep} from './career-race/flow.js';
 import {e5Records,bindE5} from './championship-e5.js';
@@ -40,7 +40,7 @@ export function mountPlayableStable(port){
  if(HQ_ENABLED){markHistory();addEventListener('popstate',e=>{if(document.querySelector('#m1-options[open]'))return;if(skipOptionsPop){skipOptionsPop=false;markHistory();return;}if(e.state?.hqCareer!==careerKey())return;if(busy||port.pending){markHistory(true);notice='Wait for the current protected operation before leaving this page.';render();return;}if(e.state.hqRoute!==page)navigate(e.state.hqRoute,{record:false,restore:true});});root.addEventListener('keydown',e=>{if(e.key==='Escape'&&!e.defaultPrevented&&!document.querySelector('dialog[open]')&&page!=='overview'){e.preventDefault();goBack();}});}
 
  const careerFlow=globalThis.__BNT_E5_C__?createCareerFlow(port,{run,render,navigate}):null;const denFlow=createDenInterface(port,{run,render,navigate});
- $('nav').innerHTML=Object.entries(tabs).map(([key,name])=>`<button data-page="${key}">${escape(name)}</button>`).join('')+`<button id="hs-practice-button">Practice Race</button>`;
+ $('nav').innerHTML=[...NAV_ORDER.filter(k=>k==='practice'||tabs[k]),...Object.keys(tabs).filter(k=>!NAV_ORDER.includes(k))].map(key=>key==='practice'?`<button id="hs-practice-button">Practice Track</button>`:`<button data-page="${key}">${escape(tabs[key])}</button>`).join('');
  if(careerFlow){const b=document.createElement('button');b.id='hs-continue-championship';b.textContent='Continue Championship';b.hidden=true;b.disabled=true;b.setAttribute('aria-hidden','true');b.setAttribute('aria-disabled','true');b.onclick=()=>{const next=continuationNavigation(view(),busy,port.durableView);if(next.visible&&!next.disabled)navigate(next.page);};$('nav').append(b);}
  for(const b of $('nav').querySelectorAll('[data-page]'))b.onclick=()=>navigate(b.dataset.page);
  function show(){document.getElementById('legacyWorkbench').style.display='none';$('content').hidden=false;$('practice').hidden=true;$('practice-frame').replaceChildren();render();}
