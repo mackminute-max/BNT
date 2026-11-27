@@ -146,6 +146,8 @@ app.renderMetadata = (state = globalThis.P2.currentSnapshot?.state) => {
   }
   text(raceTitle, state.track.name ?? session.options.course);
   const weather = typeof session.options.weather === 'string' ? session.options.weather : null;
+  // Mack 2026-11-27: the status line is hidden on the race page; it only appears to report a worker problem.
+  raceInfo.hidden = !(session.error || session.fallbackReason);
   text(raceInfo, `${state.format} · ${state.entrants.length} entrants${weather ? ' · ' + weather : ''} · ${state.time.toFixed(2)}s · ${state.status}${session.phase ? ' · ' + session.phase : ''}${session.error ? ' · Worker error: ' + session.error : ''}${session.fallbackReason ? ' · Synchronous fallback: ' + session.fallbackReason : ''}`);
   const current = sequence.project({phase: session.phase, started: session.started, tick: state.tick, countdownLeft: session.countdownLeft, mode: session.mode, playing: app.contextPlaying, terminal: ['Ended', 'Stalled', 'Error'].includes(state.status)}, performance.now());
   overlay.hidden = current.stage === 'hidden'; overlay.dataset.stage = current.stage; overlay.dataset.presentedTick = state.tick;
