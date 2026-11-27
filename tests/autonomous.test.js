@@ -121,7 +121,7 @@ test("Perception excludes hidden hazards and competitors and never leaks into ut
   decide(b, br);
   assert.deepEqual(ar.ai.diagnostics, br.ai.diagnostics);
 });
-test("Different personalities choose distinguishable paces; sign changes preference without stat buff", () => {
+test("Different personalities choose distinguishable paces; a Strategy changes preference and applies its stated trade-off", () => {
   const a = one({
       autonomous: {
         noise: 0,
@@ -152,7 +152,9 @@ test("Different personalities choose distinguishable paces; sign changes prefere
   const d = structuredClone(c.entrants[0].derived);
   issueSign(c, "queue", "Conserve Strength");
   step(c);
-  assert.deepEqual(c.entrants[0].derived, d);
+  // Strategies (bnt-strategies-v1) carry a visible cost: Conserve Strength is -3% top speed.
+  assert.ok(Math.abs(c.entrants[0].derived.maxSpeed - d.maxSpeed * 0.97) < 1e-9);
+  assert.equal(c.entrants[0].derived.acceleration, d.acceleration);
   assert.ok(
     c.entrants[0].ai.diagnostics.candidates.find((x) => x.action === "Conserve")
       .terms.sign > 0,
