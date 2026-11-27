@@ -236,3 +236,14 @@ body.m2-creation-open #m1-wheel{display:none}
 #m1-title-notice:empty{display:none}
 .p3-fallen-own strong{color:var(--bt-crimson,#c31e2c)}.p3-grim{border-color:var(--bt-crimson,#c31e2c)!important}
 .p3-warning{color:#ffd27a;border-left:4px solid var(--bt-crimson,#c31e2c);padding-left:8px}
+/* Placeholder portrait art (Mack 2026-11-27) */
+img.a1-portrait-img{width:64px;height:64px;padding:0;object-fit:cover;border-radius:4px;display:block}
+.bt-portrait-row .bt-portrait-img{width:260px;max-width:100%;aspect-ratio:1/1;object-fit:cover;border:3px solid var(--bt-gold,#ffbc19);display:block}
+.bt-portrait-row div .bt-portrait-img{width:140px}
+#bt-audio-settings{grid-column:1/-1;max-width:600px;margin:.4rem 0 1rem;padding:.6rem .8rem;border:1px solid var(--bt-bronze,#b89968);border-radius:6px}
+#bt-audio-settings h4{margin:0 0 .4rem}
+.bt-audio-row{display:grid;grid-template-columns:1fr 3.2rem auto;align-items:center;gap:.6rem;margin:.3rem 0}
+.bt-audio-row>label:first-child{display:grid;grid-template-columns:7.5rem 1fr;align-items:center;gap:.6rem;margin:0}
+.bt-audio-row input[type=range]{width:100%;max-width:none;min-width:140px;accent-color:var(--bt-gold,#ffbc19)}
+.bt-audio-mute{display:flex;align-items:center;gap:.35rem;white-space:nowrap;margin:0}
+img.m3ui-portrait-img{width:96px;height:96px;object-fit:cover;border:2px solid var(--bt-bronze,#b89968);border-radius:4px;display:block}

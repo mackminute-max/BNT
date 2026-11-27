@@ -5,6 +5,7 @@ if(typeof BNT_M3UIP1_BUILD!=='undefined'&&BNT_M3UIP1_BUILD)globalThis.__BNT_M3_U
 if(typeof BNT_M3UI_BUILD!=='undefined'&&BNT_M3UI_BUILD)globalThis.__BNT_M3_UI__=true;
 import {mountPlayableStable} from '../playable.js';
 import {installTips} from '../../presentation/frame/tips.js';
+import {installMusic} from '../../presentation/media/music.js';
 import {startShell} from './shell.js';
 import {installFrame} from '../../presentation/frame/frame.js';
 globalThis.__BNT_E5_C__=true;
@@ -16,4 +17,5 @@ const legacy=document.createElement('div');legacy.id='legacyWorkbench';for(const
 globalThis.__BNT_HOME_STABLE_MOUNT__=mountPlayableStable;
 installFrame();
 installTips(document);
+installMusic(document);
 startShell(()=>import('../../ui/app.js'));
