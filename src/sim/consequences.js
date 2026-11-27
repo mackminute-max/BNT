@@ -1,5 +1,6 @@
 import {controlRecoveryRate} from './m6-interaction.js';
 import {activeAbility} from './m6-interaction.js';
+import {endowBonus} from './endowments.js';
 import {chargeAction} from './action-costs.js';
 import { resolveAction } from "../ai/telemetry.js";
 import { byId, clamp, random } from "../core/determinism.js";
@@ -377,6 +378,7 @@ export function flushImpacts(s, refresh) {
             resistance
           : impact.amount / resistance;
       if(['contact','ram','incident'].includes(impact.kind)&&activeAbility(s,live,'brace'))amount*=.7;
+      if(live.endowments)amount*=1-endowBonus(s,live,'shield');
       effects.push({
         r: live,
         target,
@@ -495,6 +497,7 @@ export function resolveAttacks(s, intents, refresh) {
       a.derived.combat * c.attackSkillMultiplier +
       (drawConsequence(s, id, "attacker") * 2 - 1) * c.contestNoise;
     if(activeAbility(s,a,'savage-assault'))attack*=1.2;
+    if(a.endowments)attack*=1+endowBonus(s,a,'combat');
     const defense =
       b.ru.driver.driving * c.defenseDriving +
       b.derived.combat * c.defenseCombat +

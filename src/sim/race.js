@@ -1,4 +1,5 @@
 import {m6Entrant,m6Boundary,abilityDerived} from './m6-interaction.js';
+import {endowed,endowBoundary,endowDerived,initialEndowState,validateEndowments} from './endowments.js';
 import {applyAffinity,validateAffinityContext} from '../model/affinity.js';
 import {validateProgressionContext} from '../model/progression-context.js';
 import {beginActionCosts,chargeAction,flushActionCosts,endActionCosts} from './action-costs.js';
@@ -125,7 +126,7 @@ export function createRace({
         throw new Error(`Invalid personality ${k}`);
     validateAffinityContext(e.affinityContext);validateCoaching(e.coachingContext);validateProgressionContext(e.progressionContext);if(e.progressionContext&&ru.id!==(playerId??input[0].ru.id))throw Error('Progression is player-only');
     if(e.coachingContext&&ru.id!==(playerId??input[0].ru.id))throw Error('Coaching is player-only');
-    validatePayrollContext(e.payrollContext);
+    validatePayrollContext(e.payrollContext);validateEndowments(e.endowments);
     const derived = applyPayrollControl(applyAffinity(derive(ru, {
       ...c,
       crowdMorale: environment.crowdMorale,
@@ -159,6 +160,7 @@ export function createRace({
       derived,
       ...(e.affinityContext?{affinityContext:structuredClone(e.affinityContext)}:{}),
       ...(e.progressionContext?{progressionContext:structuredClone(e.progressionContext)}:{}),
+      ...(e.endowments?.boons?.length?{endowments:structuredClone(e.endowments),endow:initialEndowState()}:{}),
       ...(e.coachingContext ? {coachingContext:freezeCoaching(e.coachingContext)} : {}),
       ...(championshipContext ? {progressEvidence:{version:1,progress:q,firstTime:0,firstTick:0}} : {}),
       ...(e.payrollContext===undefined?{}:{payrollContext:structuredClone(e.payrollContext)}),
@@ -247,6 +249,7 @@ export function createRace({
       ru: structuredClone(r.ru),
       ...(r.affinityContext?{affinityContext:structuredClone(r.affinityContext)}:{}),
       ...(r.progressionContext?{progressionContext:structuredClone(r.progressionContext)}:{}),
+      ...(r.endowments?{endowments:structuredClone(r.endowments)}:{}),
       ...(r.coachingContext ? {coachingContext:freezeCoaching(r.coachingContext)} : {}),
       ...(r.payrollContext===undefined?{}:{payrollContext:structuredClone(r.payrollContext)}),
       lane: r.lane,
@@ -358,6 +361,7 @@ export function snapshot(s) {
     entrants: sorted(s),
     commands: s.commands,
     events: s.events,
+    ...(s.endowCursor!==undefined?{endowCursor:s.endowCursor,endowAttackers:s.endowAttackers??{}}:{}),
   };
 }
 export function digest(s) {
@@ -445,14 +449,14 @@ function packed(s, r, d) {
 }
 function baseDerived(s, r) {
   const surface = location(r.q, r.lane, s.config, s.track).surface;
-  return abilityDerived(s,r,applyPayrollControl(applyAffinity(derive(r.ru, {
+  return endowDerived(s,r,abilityDerived(s,r,applyPayrollControl(applyAffinity(derive(r.ru, {
     ...s.config,
     crowdMorale: s.environment.crowdMorale,
     grip: s.config.grip * s.environment.grip * surface.grip,
     speedReference:
       s.config.speedReference /
       (s.environment.rolling * surface.rollingResistance),
-  }),r.affinityContext,s.config),r.payrollContext));
+  }),r.affinityContext,s.config),r.payrollContext)));
 }
 function randomDraw(s, ...keys) {
   s.rng.draws++;
@@ -960,6 +964,7 @@ export function step(s, commands = []) {
       for (const r of sorted(s)) updateControl(s, r, "Boundary condition");
     applyCommands(s, [...s.pendingOverrides.splice(0), ...commands]);
     for(const r of sorted(s))if(m6Entrant(r)){m6Boundary(s,r);activateSign(s,r,{m6Boundary:true});if(s.driverMode!=='autonomous')r.derived=deriveAt(s,r);}
+    if(s.entrants.some(endowed)){endowBoundary(s);if(s.driverMode!=='autonomous')for(const r of sorted(s))if(endowed(r)&&r.status==='Racing')r.derived=deriveAt(s,r);}
     if (s.status === "Ready") {
       s.status = "Running";
       emit(s, "RACE_STARTED", [], {
