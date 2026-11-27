@@ -9,7 +9,7 @@ export const utilityDefaults = Object.freeze({
   combatRetaliationCost: 1,
   combatConditionCost: 3,
   combatFutilityCost: 3,
-  combatDamageUnit: 10,
+  combatDamageUnit: 34,
   combatSpeedUnit: 2,
   combatUnknownSkill: 50,
   combatUnknownProtection: 50,

@@ -17,7 +17,9 @@ export const fixtureDefinitions = {
   finish_photo: {
     seed: 23,
     entrants: [entrant("A", 0), entrant("B", 1)],
-    overrides: { laps: 1 },
+    // Precision tie fixture: calibrated to the original physics (schema 1, no
+    // pack racing or race-day form, original attribute strength).
+    overrides: { laps: 1, schema: 1, attributeStrength: 0.8 },
     consequence: { incidentRate: 0 },
   },
   rear_row_laps: {
