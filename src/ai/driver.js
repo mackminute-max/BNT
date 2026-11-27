@@ -1,3 +1,4 @@
+import { grudgeValue, huntTerms } from "../sim/grudges.js";
 import {activeAbility} from '../sim/m6-interaction.js';
 import {pendingDelay} from './buffered-signs.js';
 import {paceDirective} from './directives.js';
@@ -297,7 +298,7 @@ export function decide(s, r) {
     const canAct = s.time + s.config.epsilon >= r.nextAttackTime && r.control !== "Out of Control";
     const evaluated = action => rivals
       .filter(o => action !== "ram" || (Math.abs(o.lane - r.lane) === 1 && Math.abs(o.gap) <= combat.ramRange))
-      .map(o => ({ target: o, value: combatValue(action, r, o, perceived, s.config, combat, w, grip, s.track.course && !s.track.closed ? r.q >= s.track.checkpoints.at(-1).q : null) }))
+      .map(o => ({ target: o, value: grudgeValue(r, o, combatValue(action, r, o, perceived, s.config, combat, w, grip, s.track.course && !s.track.closed ? r.q >= s.track.checkpoints.at(-1).q : null)) }))
       .sort((a, b) => Object.values(b.value.features).reduce((x, y) => x + y, 0) -
         Object.values(a.value.features).reduce((x, y) => x + y, 0) || byId(a.target, b.target))[0];
     const target = rivals[0];
@@ -306,7 +307,7 @@ export function decide(s, r) {
       add(action, combat[action + "Base"], {
         aggression: p.aggression / 100 * combat[action + "Aggression"],
         opportunity: p.opportunism / 100 * combat[action + "Opportunity"],
-        caution: -p.caution / 100 * combat[action + "Caution"],
+        caution: -p.caution / 100 * combat[action + "Caution"] * (best?.value.features.grudge ? .5 : 1),
         ...(best?.value.features ?? {}),
       }, !!best, null, best?.target.id, best?.value.estimate);
     }
@@ -327,6 +328,9 @@ export function decide(s, r) {
       laneScores[0]?.lane ?? null,
     );
   }
+  if (r.grudgeContext && s.format === "Combat") huntTerms(r, candidates, s.entrants
+    .filter(o => r.grudgeContext.targets.includes(o.id) && o.status === "Racing" && o.physical === "Live")
+    .map(o => ({ id: o.id, lane: o.lane, gap: gap(r.q, o.q, s.track) })), perceived.range);
   let pace = candidates
     .filter((x) =>
       ["Conserve", "Maintain", "Push", "Sprint"].includes(x.action),

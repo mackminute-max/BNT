@@ -1,3 +1,4 @@
+import {rivalryAfterRace} from '../m6/rivalry.js';
 import {survivalBonus,seriesLevels} from '../m6/facilities.js';
 import {createRace} from '../../sim/race.js';
 import {hash} from '../../core/determinism.js';
@@ -50,6 +51,7 @@ export function publishOfficial(s,x,{candidate,reference,setupFingerprint},noSta
   for(const condition of candidate.conditions){const e=x.entrants.find(e=>e.id===condition.entrantId),start=x.raceSetup.entrants.find(e=>e.ru.id===condition.entrantId);if(!e||!start||e.native.id!==condition.native.id)throw Error('Foreign native consequence');
    const mapped=mapCondition({instanceId:x.id,eventId,resultId,start:start.ru,final:condition.native,persistent:x.conditionState[e.id],provenance:{reference,setupFingerprint,stateFingerprint:candidate.stateFingerprint}});x.conditionState[e.id]=structuredClone(mapped.persistent);e.native=structuredClone(mapped.native);if(e.player)applyPlayer(s,e,mapped);if(x.m6&&s.schema===8)stakes(s,x,e,index,resultId,rows.find(r=>r.id===e.id),condition.native);mappings.push(structuredClone(mapped.audit));
   }
+  if(x.m6&&s.schema===8)rivalryAfterRace(x,index,candidate.ledger);
   effects=raceAwardEffects(rows,{points:x.offer.value.points,dnfPoints:x.offer.value.dnfPoints},{careerId:s.career.id,instanceId:x.id,raceId:x.raceId});
  }
  const participation=x.entrants.map(e=>({entrantId:e.id,started:rows.some(r=>r.id===e.id&&r.started),eligibility:structuredClone(x.eligibility.find(a=>a.entrantId===e.id))}));
