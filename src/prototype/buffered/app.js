@@ -10,7 +10,7 @@ import { trackChoices } from "../../track/catalog.js";
 import { weatherPresets } from "../../sim/environment.js";
 import { signs } from "../../ai/signs.js";
 import { coachingProfile, coachingAxes } from "../../ai/coaching.js";
-import { Commentary } from "../../reporting/commentary.js";
+import { RaceRadio as Commentary } from "../../reporting/radio.js";
 import { classification } from "../../sim/race.js";
 const $ = (id) => document.getElementById(id), options = [];
 for (const kind of ["Oval", "Circuit", "Rally"]) {

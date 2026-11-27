@@ -147,3 +147,12 @@ export function validateRivalry(s) {
     for (const k of ['series', 'met', 'ahead', 'behind', 'theyWrecked', 'youWrecked', 'out', 'heirs']) if (!Number.isInteger(f[k]) || f[k] < 0) throw Error('Invalid rival record');
   }
 }
+
+// Context for the Race Radio (display only): who is who, styles and grudges.
+export function radioContext(s, x) {
+  const names = x.m6?.names ?? {}, ev = x.offer.value.schedule[x.raceIndex] ?? {}, venue = x.m6?.competition?.events?.[x.raceIndex]?.venueName ?? null;
+  const entrants = x.entrants.map(e => { const n = names[e.id] ?? {}; return {id: e.id, player: !!e.player, team: n.organization ?? null, driver: n.driver ?? null, style: e.player ? null : n.style ?? null}; });
+  const present = new Set(x.entrants.map(e => e.id));
+  const grudges = (x.m6?.feud?.targets ?? []).filter(id => present.has(id) && !(names[id]?.style === 'dirty' && !(names[id]?.grudge > 0) && !(x.m6.feud.wrecks ?? []).some(w => w.includes(id)))).map(id => [x.playerId, id]);
+  return {version: 1, playerId: x.playerId, venue, series: x.offer.value.name, race: x.raceIndex + 1, races: x.offer.value.schedule.length, format: ev.format ?? null, laps: ev.laps ?? null, weather: ev.weather ?? null, entrants, grudges};
+}
