@@ -57,3 +57,10 @@ test('Phase 3 Treatment replaces a reward: pay Gold to heal or repair', () => {
   const o2 = runOffer(s, x, 'broke'), c = o2.choices.find(c => c.target === 'chariot');
   assert.throws(() => pick(s, x, o2, c, 'treat-2'), /Gold/);
 });
+
+test('Phase 3 Series lengths: intro 3, then 5, 7 and 9 races', async () => {
+  const {nationalBoard} = await import('../src/career/m6/world.js');
+  assert.deepEqual(nationalBoard('c', 'N1', {tier: 1, epoch: 0, localWins: 0, prestigeWon: false}, false).map(d => d.offer.value.schedule.length), [3]);
+  assert.deepEqual(nationalBoard('c', 'N1', {tier: 1, epoch: 1, localWins: 0, prestigeWon: false}, true).map(d => d.offer.value.schedule.length), [5, 7, 9]);
+  assert.deepEqual(nationalBoard('c', 'N1', {tier: 1, epoch: 1, localWins: 2, prestigeWon: false}, true).map(d => d.offer.value.schedule.length), [5, 7, 9]);
+});

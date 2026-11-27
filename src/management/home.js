@@ -14,7 +14,7 @@ const options=(records,selected)=>Object.values(records??{}).map(a=>option(a.id,
 const panel=(title,body)=>`<section class="hs-panel"><h2>${escape(title)}</h2>${body}</section>`;
 const table=(headers,rows)=>rows.length?`<div class="hs-table"><table><thead><tr>${headers.map(h=>`<th>${escape(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(c=>`<td>${escape(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:'<p>No records yet.</p>';
 const button=(id,text,disabled=false)=>`<button id="hs-${id}" ${disabled?'disabled':''}>${escape(text)}</button>`;
-const tabs={overview:'Home Stable',roster:'Roster & Racing Unit',facilities:'Staff & Facilities',finances:'Finances & Operations',championships:'Championships',records:'Career Records',saves:'Save & Recovery'};
+const tabs={overview:'Home Stable',roster:'Roster & Racing Unit',facilities:'Staff & Facilities',finances:'Finances & Operations',championships:'RACING',records:'Career Records',saves:'Save & Recovery'};
 export function mountHomeStable(port){
  const root=document.createElement('section');root.id='homeStable';document.body.prepend(root);
  let page='overview',busy=false,notice='',error=false,selection=null,selectionCareer=null,quote=null,form={type:'market.acquire',service:'driver-recovery',amount:10,points:1,term:'standard',resolve:false};
