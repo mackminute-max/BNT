@@ -9,6 +9,7 @@ import {icon} from './art.js';
 const GROUPS = {
   overview: [['Overview', /stable progress/i, '.m3ui-identity,.hs-stats'], ['Legacy', /legacy/i, '#m4-legacy'], ['Career Highlights', /accomplishment|highlight/i]],
   roster: [['Turnout', /active racing unit|turnout/i], ['Owned Roster', /owned roster|roster/i]],
+  gambling: [['Race Book', /race book|spectator/i], ['Bones', /^bones$/i], ['Beast Pit', /beast pit/i]],
   workshop: [['Facilities', /facilit/i], ['Workshop', /workshop|engineering|training/i]],
   services: [['Recovery & Services', /recovery|service|care|repair/i], ['Work Review', /work review/i]],
   championships: [['Active Series', /active|standings|schedule|next race|current|reward|endowment/i], ['Available Series', /your turnout|national championships|series|events|details|registration|loadout/i], ['Last Event', /last event|result/i]],
