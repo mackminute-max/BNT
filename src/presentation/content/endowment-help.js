@@ -48,10 +48,12 @@ export function tagHelp(tag, counts = null) {
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 
 // A tag that opens its explanation when clicked (see presentation/frame/tips.js).
+// Terms are small chips, not game buttons (Mack 2026-11-27): a span, so the
+// game's button styling never applies to them.
 export function tagButton(tag, counts = null, extraClass = '') {
   const help = tagHelp(tag, counts);
   return help
-    ? `<button type="button" class="bt-tag ${extraClass}" data-tip="${esc(help)}" aria-label="${esc(tag)}: what this means">${esc(tag)}</button>`
+    ? `<span role="button" tabindex="0" class="bt-tag ${extraClass}" data-tip="${esc(help)}" aria-label="${esc(tag)}: what this means">${esc(tag)}</span>`
     : `<span class="bt-tag bt-tag-plain ${extraClass}">${esc(tag)}</span>`;
 }
 export function categoryTags(category, counts = null) {
