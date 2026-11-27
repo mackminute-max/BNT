@@ -4,9 +4,9 @@
 //   Races: one of the two race songs from the moment the race starts; the
 //   Championship song plays for every Championship race and only those.
 // Songs fade into each other. Settings persist per browser; the master volume
-// starts at 35%. Sound effects will use the same settings when they arrive.
+// starts at 20% (Mack 2026-11-27). Sound effects will use the same settings when they arrive.
 const KEY = 'bnt.audio.v1';
-export const AUDIO_DEFAULTS = Object.freeze({master: 0.35, music: 1, effects: 1, muted: false, musicMuted: false, effectsMuted: false});
+export const AUDIO_DEFAULTS = Object.freeze({master: 0.2, music: 1, effects: 1, muted: false, musicMuted: false, effectsMuted: false});
 const FADE_MS = 2500;
 
 function load() {
