@@ -773,7 +773,8 @@ function motion(s, r) {
       if (gap <= s.config.exitTiles + 1) {
         let position = r.q,
           distance = 0,
-          remaining = gap;
+          // Schema 2: stop short of the occupied tile, never on its boundary.
+          remaining = s.config.schema >= 2 ? Math.max(0, gap - 2 * s.config.positionEpsilon) : gap;
         while (remaining > s.config.positionEpsilon) {
           const portion = Math.min(
             remaining,

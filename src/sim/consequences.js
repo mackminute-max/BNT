@@ -6,7 +6,7 @@ import { byId, clamp, random } from "../core/determinism.js";
 import { location, gap } from "../track/oval.js";
 import { emit } from "../events/events.js";
 
-const CRIT_BASE = 0.1, CRIT_MARGIN_CAP = 0.15, CRIT_MULTIPLIER = 2;
+const CRIT_BASE = 0.1, CRIT_MARGIN_CAP = 0.15, CRIT_MULTIPLIER = 3;
 export const consequenceDefaults = Object.freeze({
   componentResistanceBase: 0.5,
   damageScale: 0.006,

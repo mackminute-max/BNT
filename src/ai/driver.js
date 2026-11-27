@@ -68,24 +68,38 @@ function draw(s, r, kind) {
 // Phase 2 racecraft (config schema 2): drivers race the line, not the lane.
 // They take the inside line into corners, dive inside a rival ahead before a
 // corner, and move across to block a rival closing from behind.
-const RACECRAFT = Object.freeze({line: 1.2, dive: 2.2, block: 1.8, diveGap: 5, blockGap: 3, lookahead: 6});
-function turnAhead(s, r, tiles) {
-  for (let k = 0; k <= tiles; k++)
-    if (location(Math.floor(r.q) + k, r.lane, s.config, s.track).type === "turn") return true;
-  return false;
+const RACECRAFT = Object.freeze({setup: 2.8, line: 3.2, unwind: 2.4, dive: 2.2, block: 2.6, pass: 3, apexTiles: 3, entryTiles: 8, exitTiles: 3, diveGap: 5, blockGap: 5, passGap: 6});
+// Nearest corner ahead (tiles, and +1/-1 for which lane direction is inside)
+// and whether a corner was just left behind.
+function cornerPhase(s, r, route) {
+  const at = k => location(Math.floor(r.q) + k, r.lane, s.config, s.track);
+  let ahead = null;
+  if (route) { if (route.corner) ahead = {tiles: route.corner.tilesAhead, inside: route.corner.direction}; }
+  else for (let k = 0; k <= RACECRAFT.entryTiles; k++) if (at(k).type === "turn") { ahead = {tiles: k, inside: -1}; break; }
+  let behind = false;
+  if (!ahead || ahead.tiles > 0) for (let k = 1; k <= RACECRAFT.exitTiles; k++) if (Math.floor(r.q) - k >= 0 && at(-k).type === "turn") { behind = true; break; }
+  return {ahead, behind};
 }
 function racecraft(s, r, perceived, action, lane, route, p) {
   if (s.config.schema < 2) return {};
-  const R = RACECRAFT, aggression = p.aggression / 100, terms = {};
-  const inside = route ? !!route.corner && (action === "outward" ? 1 : -1) === route.corner.direction : action === "inward";
-  const corner = route ? !!route.corner : turnAhead(s, r, R.lookahead);
-  if (corner && inside) {
-    terms.line = R.line;
-    if (perceived.neighbors.some(o => o.status === "Racing" && o.gap > 0 && o.gap < R.diveGap && Math.abs(o.lane - r.lane) <= 1))
-      terms.dive = R.dive * (0.4 + aggression);
-  }
+  const R = RACECRAFT, aggression = p.aggression / 100, terms = {}, dir = action === "outward" ? 1 : -1;
+  const {ahead, behind} = cornerPhase(s, r, route);
+  // Racing line: wide on entry, inside at the apex, run wide on exit.
+  if (ahead && ahead.tiles <= R.apexTiles) {
+    if (dir === ahead.inside) {
+      terms.line = R.line;
+      if (perceived.neighbors.some(o => o.status === "Racing" && o.gap > 0 && o.gap < R.diveGap && Math.abs(o.lane - r.lane) <= 1))
+        terms.dive = R.dive * (0.4 + aggression);
+    }
+  } else if (ahead) { if (dir === -ahead.inside) terms.line = R.setup; }
+  else if (behind && dir === 1 && !route) terms.line = R.unwind;
   if (perceived.neighbors.some(o => o.status === "Racing" && o.lane === lane && o.gap < 0 && o.gap > -R.blockGap))
     terms.block = R.block * (0.3 + aggression);
+  // Stuck behind a rival in our lane: swing out (or in) to pass if the
+  // target lane is clear just ahead.
+  const blocked = perceived.neighbors.some(o => o.status === "Racing" && o.lane === r.lane && o.gap > 0 && o.gap < R.passGap),
+    clear = !perceived.neighbors.some(o => o.lane === lane && o.gap > -1 && o.gap < R.passGap);
+  if (blocked && clear) terms.pass = R.pass * (0.4 + aggression);
   return terms;
 }
 export function decide(s, r) {

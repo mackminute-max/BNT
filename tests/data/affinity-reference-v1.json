@@ -7,35 +7,35 @@
       "format": "Pure",
       "seed": 1,
       "relation": "primary",
-      "ticks": 617,
+      "ticks": 584,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 28.016862851939816,
+      "time": 27.001584758274273,
       "condition": {
         "driver": 100,
         "beasts": [
           100,
           100
         ],
-        "chariot": 100
+        "chariot": 99.45310416170804
       },
       "fatigue": [
-        3.4129357735376864,
-        3.4129357735376864
+        3.29351973109226,
+        3.29351973109226
       ],
-      "checksum": "a98b3460"
+      "checksum": "8768d579"
     },
     {
       "kind": "oval",
       "format": "Pure",
       "seed": 1,
       "relation": "neutral",
-      "ticks": 614,
+      "ticks": 643,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 28.691226404108942,
+      "time": 27.526379966305736,
       "condition": {
         "driver": 100,
         "beasts": [
@@ -45,21 +45,21 @@
         "chariot": 100
       },
       "fatigue": [
-        3.7903664609074523,
-        3.7903664609074523
+        3.438064175838765,
+        3.438064175838765
       ],
-      "checksum": "ad63cbb9"
+      "checksum": "0a6247d5"
     },
     {
       "kind": "oval",
       "format": "Pure",
       "seed": 1,
       "relation": "mismatch",
-      "ticks": 640,
+      "ticks": 611,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 29.928730085788043,
+      "time": 28.49360944513912,
       "condition": {
         "driver": 100,
         "beasts": [
@@ -69,47 +69,47 @@
         "chariot": 100
       },
       "fatigue": [
-        3.5529349111524478,
-        3.5529349111524478
+        3.566744227868086,
+        3.566744227868086
       ],
-      "checksum": "322df175"
+      "checksum": "c43a4b18"
     },
     {
       "kind": "oval",
       "format": "Combat",
       "seed": 1,
       "relation": "primary",
-      "ticks": 617,
+      "ticks": 619,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 28.520158165273873,
+      "time": 28.8435516703967,
       "condition": {
-        "driver": 85.69667881486298,
+        "driver": 100,
         "beasts": [
-          68.45442345017082,
+          54.25345281951738,
           100
         ],
-        "chariot": 100
+        "chariot": 99.45310416170804
       },
       "fatigue": [
-        3.75115787987821,
-        3.4721328889631775
+        3.7949984235028764,
+        3.5101701250419
       ],
-      "checksum": "0911bcd2"
+      "checksum": "70043c34"
     },
     {
       "kind": "oval",
       "format": "Combat",
       "seed": 1,
       "relation": "neutral",
-      "ticks": 617,
+      "ticks": 627,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 28.84674215577889,
+      "time": 27.649032512619605,
       "condition": {
-        "driver": 85.61554462307511,
+        "driver": 100,
         "beasts": [
           100,
           100
@@ -117,45 +117,45 @@
         "chariot": 100
       },
       "fatigue": [
-        3.809572656238696,
-        3.809572656238696
+        3.425419265308523,
+        3.425419265308523
       ],
-      "checksum": "0798e28a"
+      "checksum": "f9128b31"
     },
     {
       "kind": "oval",
       "format": "Combat",
       "seed": 1,
       "relation": "mismatch",
-      "ticks": 639,
+      "ticks": 626,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 29.886985241545013,
+      "time": 27.937534187891757,
       "condition": {
         "driver": 100,
         "beasts": [
           100,
           100
         ],
-        "chariot": 100
+        "chariot": 99.72290103168429
       },
       "fatigue": [
-        3.547508081400833,
-        3.547508081400833
+        3.761879444425921,
+        3.761879444425921
       ],
-      "checksum": "02c9c393"
+      "checksum": "a0c7e50c"
     },
     {
       "kind": "circuit",
       "format": "Pure",
       "seed": 1,
       "relation": "primary",
-      "ticks": 1379,
+      "ticks": 1394,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 66.94693906035658,
+      "time": 67.63195250797958,
       "condition": {
         "driver": 100,
         "beasts": [
@@ -165,45 +165,21 @@
         "chariot": 100
       },
       "fatigue": [
-        8.066481026817483,
-        8.066481026817483
+        6.908859986299213,
+        6.908859986299213
       ],
-      "checksum": "7b917bee"
+      "checksum": "a857c98c"
     },
     {
       "kind": "circuit",
       "format": "Pure",
       "seed": 1,
       "relation": "neutral",
-      "ticks": 1397,
+      "ticks": 1359,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 67.75614716550722,
-      "condition": {
-        "driver": 100,
-        "beasts": [
-          100,
-          99.8601690951356
-        ],
-        "chariot": 100
-      },
-      "fatigue": [
-        8.574791051342405,
-        8.581764147448956
-      ],
-      "checksum": "c895a33b"
-    },
-    {
-      "kind": "circuit",
-      "format": "Pure",
-      "seed": 1,
-      "relation": "mismatch",
-      "ticks": 1412,
-      "status": "Ended",
-      "finished": true,
-      "win": false,
-      "time": 68.46376285876597,
+      "time": 65.85587039006626,
       "condition": {
         "driver": 100,
         "beasts": [
@@ -213,47 +189,71 @@
         "chariot": 100
       },
       "fatigue": [
-        9.13218286057366,
-        9.13218286057366
+        7.178091557552014,
+        7.178091557552014
       ],
-      "checksum": "7735b8a5"
+      "checksum": "3d81c2e0"
+    },
+    {
+      "kind": "circuit",
+      "format": "Pure",
+      "seed": 1,
+      "relation": "mismatch",
+      "ticks": 1431,
+      "status": "Ended",
+      "finished": true,
+      "win": false,
+      "time": 69.36564174686379,
+      "condition": {
+        "driver": 100,
+        "beasts": [
+          100,
+          93.63587374826524
+        ],
+        "chariot": 100
+      },
+      "fatigue": [
+        8.68562609607302,
+        9.101496450500925
+      ],
+      "checksum": "673c955f"
     },
     {
       "kind": "circuit",
       "format": "Combat",
       "seed": 1,
       "relation": "primary",
-      "ticks": 1419,
+      "ticks": 1486,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 67.15276568961822,
+      "time": 69.43721420612671,
       "condition": {
         "driver": 100,
         "beasts": [
           100,
           100
         ],
-        "chariot": 100
+        "chariot": 99.89401593460036
       },
       "fatigue": [
-        8.35224863584034,
-        8.35224863584034
+        7.78470691509408,
+        7.78470691509408
       ],
-      "checksum": "f73a57fb"
+      "checksum": "126a6dbb"
     },
     {
       "kind": "circuit",
       "format": "Combat",
       "seed": 1,
       "relation": "neutral",
-      "ticks": 1414,
+      "ticks": 1398,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 68.50453500695555,
+      "time": 66.22592244007225,
       "condition": {
-        "driver": 100,
+        "driver": 86.8183712663575,
         "beasts": [
           100,
           100
@@ -261,178 +261,178 @@
         "chariot": 100
       },
       "fatigue": [
-        8.975558784203173,
-        8.975558784203173
+        8.20132446921724,
+        8.20132446921724
       ],
-      "checksum": "66fd4797"
+      "checksum": "169e0820"
     },
     {
       "kind": "circuit",
       "format": "Combat",
       "seed": 1,
       "relation": "mismatch",
-      "ticks": 1426,
+      "ticks": 1458,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 69.17172293701086,
+      "time": 70.71056751739638,
       "condition": {
         "driver": 100,
         "beasts": [
           100,
-          100
+          93.72424863491156
         ],
         "chariot": 100
       },
       "fatigue": [
-        9.534539501786423,
-        9.534539501786423
+        8.59024275940221,
+        9.009023190448044
       ],
-      "checksum": "a169a218"
+      "checksum": "cee57269"
     },
     {
       "kind": "rally",
       "format": "Pure",
       "seed": 1,
       "relation": "primary",
-      "ticks": 1104,
+      "ticks": 1129,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 53.15115583333351,
+      "time": 54.113107073657346,
       "condition": {
         "driver": 100,
         "beasts": [
           100,
-          100
+          99.7377034133949
         ],
         "chariot": 100
       },
       "fatigue": [
-        7.227465823360286,
-        7.227465823360286
+        6.69796608362704,
+        6.702154011585825
       ],
-      "checksum": "4a3ddf24"
+      "checksum": "f25316b3"
     },
     {
       "kind": "rally",
       "format": "Pure",
       "seed": 1,
       "relation": "neutral",
-      "ticks": 1118,
+      "ticks": 1155,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 53.77388150859145,
+      "time": 55.54928249474092,
       "condition": {
         "driver": 100,
         "beasts": [
           100,
           100
         ],
-        "chariot": 100
+        "chariot": 86.68713529984393
       },
       "fatigue": [
-        7.841640096156555,
-        7.841640096156555
+        7.20671799051976,
+        7.20671799051976
       ],
-      "checksum": "98d00043"
+      "checksum": "abc8a2e7"
     },
     {
       "kind": "rally",
       "format": "Pure",
       "seed": 1,
       "relation": "mismatch",
-      "ticks": 1126,
+      "ticks": 1121,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 54.12924825186874,
+      "time": 53.8906094368356,
       "condition": {
         "driver": 100,
         "beasts": [
           100,
           100
         ],
-        "chariot": 100
+        "chariot": 98.50904083527058
       },
       "fatigue": [
-        8.161951892618474,
-        8.161951892618474
+        7.380590368076184,
+        7.380590368076184
       ],
-      "checksum": "8cf30bd9"
+      "checksum": "e55f7567"
     },
     {
       "kind": "rally",
       "format": "Combat",
       "seed": 1,
       "relation": "primary",
-      "ticks": 1159,
+      "ticks": 1164,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 53.236965322213905,
+      "time": 53.048066343244486,
       "condition": {
-        "driver": 100,
+        "driver": 73.28699668479373,
         "beasts": [
           100,
-          100
+          99.98410133558976
         ],
         "chariot": 100
       },
       "fatigue": [
-        7.236227530800237,
-        7.236227530800237
+        6.924018039326543,
+        6.924510144793034
       ],
-      "checksum": "0502d3a6"
+      "checksum": "13d41ae1"
     },
     {
       "kind": "rally",
       "format": "Combat",
       "seed": 1,
       "relation": "neutral",
-      "ticks": 1159,
+      "ticks": 1128,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 53.85734614741793,
+      "time": 54.111312929543324,
       "condition": {
-        "driver": 100,
+        "driver": 81.58412573545688,
         "beasts": [
-          100,
+          53.90598698289205,
           100
         ],
         "chariot": 100
       },
       "fatigue": [
-        7.8504654950771595,
-        7.8504654950771595
+        10.203548533307371,
+        8.039902665456982
       ],
-      "checksum": "209967e6"
+      "checksum": "439d988c"
     },
     {
       "kind": "rally",
       "format": "Combat",
       "seed": 1,
       "relation": "mismatch",
-      "ticks": 1152,
+      "ticks": 1142,
       "status": "Ended",
       "finished": true,
       "win": false,
-      "time": 55.31611988828653,
+      "time": 54.800808268216045,
       "condition": {
-        "driver": 79.32911665559877,
+        "driver": 81.48756969207075,
         "beasts": [
-          67.68468759585075,
+          53.6654290902096,
           100
         ],
         "chariot": 100
       },
       "fatigue": [
-        10.014169487885379,
-        8.32838004026862
+        10.939876624928493,
+        8.598822923296598
       ],
-      "checksum": "7f53dc4c"
+      "checksum": "10db39bc"
     }
   ]
 }
