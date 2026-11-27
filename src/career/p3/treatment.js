@@ -4,6 +4,7 @@
 import {BONUS_TIERS} from '../m4/catalog.js';
 import {INJURIES3} from '../economy/catalog.js';
 import {integrityStatus} from '../assets.js';
+import {careDiscount,repairDiscount,seriesLevels} from '../m6/facilities.js';
 
 export const TREATMENT = Object.freeze({restore: 35, wear: 10, price: {driver: 120, beast: 90, chariot: 80}});
 const cap = n => Math.max(0, Math.min(100, n));
@@ -18,7 +19,7 @@ function target(who, key) {
   return {kind: 'beast', asset: b};
 }
 export function treatmentDefinition(x, key, who) {
-  const {kind, asset} = target(who, key), price = TREATMENT.price[kind] * treatmentTier(x);
+  const {kind, asset} = target(who, key), base = TREATMENT.price[kind] * treatmentTier(x), off = kind === 'chariot' ? repairDiscount(seriesLevels(x)) : careDiscount(seriesLevels(x)), price = Math.ceil(base * (100 - off) / 100);
   const verb = kind === 'chariot' ? `Repair ${asset.name}` : `Treat ${asset.name}`;
   const what = kind === 'chariot'
     ? `+${TREATMENT.restore} condition and integrity, −${TREATMENT.wear} wear.`

@@ -12,9 +12,10 @@ export const DEATH_ODDS = Object.freeze({Combat: 25, Pure: 5});
 const roll = (...k) => parseInt(fingerprint([STAKES_RULES, ...k]).slice(0, 8), 16) % 100;
 
 // Which parts of a wrecked turnout are lost. `final` is the native RU at the end of the race.
-export function rollCasualties({instanceId, resultId, entrantId, format, wrecked, final}) {
+// `survive` is the Infirmary's cut to the death odds, in percent (player only).
+export function rollCasualties({instanceId, resultId, entrantId, format, wrecked, final, survive = 0}) {
   if (!wrecked) return [];
-  const odds = DEATH_ODDS[format] ?? DEATH_ODDS.Pure, out = [];
+  const odds = (DEATH_ODDS[format] ?? DEATH_ODDS.Pure) * (100 - survive) / 100, out = [];
   const {disabledCondition, minimumTeamCondition} = consequenceDefaults;
   if (final.driver.condition <= disabledCondition && roll(instanceId, resultId, entrantId, 'driver') < odds) out.push({member: 'driver', kind: 'death'});
   final.beasts.forEach((b, i) => { if (b.condition <= minimumTeamCondition && roll(instanceId, resultId, entrantId, 'beast', i) < odds) out.push({member: 'beast-' + i, kind: 'death'}); });

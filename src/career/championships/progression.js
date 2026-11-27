@@ -1,3 +1,4 @@
+import {survivalBonus,seriesLevels} from '../m6/facilities.js';
 import {createRace} from '../../sim/race.js';
 import {hash} from '../../core/determinism.js';
 import {mapCondition,initialCondition,nativeEligibility,CONDITION_MAPPING} from './condition.js';
@@ -35,7 +36,7 @@ function applyPlayer(s,e,mapped){
  // No availability restoration, driver management-fatigue conversion, XP or equipment changes.
 }
 // Phase 3: a wrecked turnout may lose its driver or a beast (death) or its chariot (destroyed).
-function stakes(s,x,e,index,resultId,row,final){const format=x.offer.value.schedule[index].format,lost=rollCasualties({instanceId:x.id,resultId,entrantId:e.id,format,wrecked:row?.nativeStatus==='Retired',final});if(!lost.length)return;applyCasualtiesToPersistent(x.conditionState[e.id],lost);if(e.player)applyCasualtiesToPlayer(s,e,lost);const n=x.m6.names[e.id]??{};x.m6.casualties??=[];for(const c of lost)x.m6.casualties.push({entrantId:e.id,member:c.member,kind:c.kind,raceIndex:index,resultId,team:e.player?s.career.name:n.organization??'Rival',name:c.member==='driver'?n.driver:c.member==='chariot'?n.chariot:n.beasts?.[Number(c.member.split('-')[1])]??'Beast',player:!!e.player});}
+function stakes(s,x,e,index,resultId,row,final){const format=x.offer.value.schedule[index].format,lost=rollCasualties({instanceId:x.id,resultId,entrantId:e.id,format,wrecked:row?.nativeStatus==='Retired',final,survive:e.player?survivalBonus(seriesLevels(x)):0});if(!lost.length)return;applyCasualtiesToPersistent(x.conditionState[e.id],lost);if(e.player)applyCasualtiesToPlayer(s,e,lost);const n=x.m6.names[e.id]??{};x.m6.casualties??=[];for(const c of lost)x.m6.casualties.push({entrantId:e.id,member:c.member,kind:c.kind,raceIndex:index,resultId,team:e.player?s.career.name:n.organization??'Rival',name:c.member==='driver'?n.driver:c.member==='chariot'?n.chariot:n.beasts?.[Number(c.member.split('-')[1])]??'Beast',player:!!e.player});}
 export function publishOfficial(s,x,{candidate,reference,setupFingerprint},noStarter=false){
  if(x.raceResults.some(r=>r.raceId===x.raceId))throw Error('Official race identity already committed');
  const index=x.raceIndex,eventId=raceIdFor(x),resultId=noStarter?'e3-no-starters-'+fingerprint([x.id,index]).slice(0,40):candidate.resultId;
