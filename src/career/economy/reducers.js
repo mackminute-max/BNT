@@ -1,3 +1,4 @@
+import {factionDiscount} from '../m6/factions.js';
 import {facilityLevels,repairDiscount,careDiscount} from '../m6/facilities.js';
 import {componentReasons} from '../component-eligibility.js';
 import {canonical} from '../../core/determinism.js';
@@ -41,7 +42,8 @@ export function quoteEconomy(state,type,payload){
   const personnel=['driver','specialist'].includes(offer.category);
   if(personnel&&!Object.hasOwn(TERMS,payload.term))throw Error('Choose a contract term');
   if(!personnel&&payload.term!==null)throw Error('Owned assets have no employment term');
-  cost=offer.price+(personnel?TERMS[payload.term].surcharge:0);
+  const favorOff=factionDiscount(state,state.m6?.identities?.[offer.id]?.residentNationId),favorCut=Math.floor(offer.price*favorOff/100);
+  cost=offer.price-favorCut+(personnel?TERMS[payload.term].surcharge:0);
   const acquired=acquireRecord(offer,state.career.id);details={offerId:offer.id,assetId:acquired.id,category:offer.category,price:offer.price,signingSurcharge:personnel?TERMS[payload.term].surcharge:0};
  }else if(type==='asset.sell'){
   const {kind,record}=asset(state,payload.assetId);assigned(record);
