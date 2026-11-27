@@ -7,6 +7,7 @@ import {championshipClassification,raceAwardEffects,standings,titleCandidate} fr
 import {financialAnchorValue} from './anchor.js';
 import {noStarterProof} from '../../sim/foundation/no-starters.js';
 import {canonical} from '../../core/determinism.js';
+import {replaceEliminatedRivals} from '../m6/replacements.js';
 export const E3_RULES='m2e-controller-e3-v1';
 export const raceIdFor=(x,index=x.raceIndex)=>'e2-race-'+fingerprint([x.id,index]).slice(0,40);
 export function enableE3(s){
@@ -51,6 +52,6 @@ export function publishOfficial(s,x,{candidate,reference,setupFingerprint},noSta
  const record={version:1,raceId:x.raceId,eventIndex:index,resultId,kind:noStarter?'NoStarters':'NativeCleared',proofFingerprint:fingerprint(candidate),proof:structuredClone(candidate),reference:structuredClone(reference),anchor:structuredClone(x.raceAnchor),setupFingerprint,rows,effects,mappings,participation};
  x.raceResults.push(record);x.pendingClearance=null;x.blockedReason=null;x.checkpointRef=null;x.standings=standings(x.entrants.map(e=>e.id),x.raceResults);x.eligibility=eligibility(s,x);
  if(index+1===x.offer.value.schedule.length){x.phase='SETTLEMENT_PENDING';x.officialFinal={version:1,standings:structuredClone(x.standings),championId:titleCandidate(x.standings,rows),finalParticipation:participation,resultIds:x.raceResults.map(r=>r.resultId),pendingEntitlementIds:x.raceResults.flatMap(r=>r.effects.map(e=>e.pendingEntitlementId).filter(Boolean)),settled:false};x.officialFinal.fingerprint=fingerprint(x.officialFinal);}
- else{const player=x.eligibility.find(e=>e.entrantId===x.playerId);if(!x.withdrawal&&!player.mayStart)x.withdrawal={kind:'Forced',raceIndex:index+1,sourceResultId:resultId,reason:player.reason};x.raceIndex++;x.phase=x.withdrawal?'AI_CONTINUATION':'INTERMISSION_READY';}
+ else{const player=x.eligibility.find(e=>e.entrantId===x.playerId);if(!x.withdrawal&&!player.mayStart)x.withdrawal={kind:'Forced',raceIndex:index+1,sourceResultId:resultId,reason:player.reason};x.raceIndex++;if(replaceEliminatedRivals(s,x,x.raceIndex,eligibility).length)x.standings=standings(x.entrants.map(e=>e.id),x.raceResults);x.phase=x.withdrawal?'AI_CONTINUATION':'INTERMISSION_READY';}
  return {instanceId:x.id,raceId:record.raceId,resultId,proofFingerprint:record.proofFingerprint,phase:x.phase,mappingVersion:CONDITION_MAPPING};
 }

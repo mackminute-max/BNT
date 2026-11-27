@@ -92,7 +92,7 @@ function validateChampionships(s){
   if(key!==x.id||!phases.includes(x.phase)||x.version!==1)throw Error('Invalid instance identity/phase');id(x.id);gold(x.revision);validateOffer(x.offer);
   if(!s.e5.board.some(d=>d.offer.fingerprint===x.offer.fingerprint))throw Error('Untrusted frozen offer');
   if(x.phase!=='COMPLETED_ARCHIVED'){active++;if(f.activeId!==key)throw Error('Active championship mismatch');}
-  if(!s.e5.instances[key]||x.entrants.length!==x.offer.value.fieldSize||new Set(x.entrants.map(e=>e.id)).size!==x.entrants.length||x.entrants.filter(e=>e.player).length!==1||!x.entrants.some(e=>e.player&&e.id===x.playerId))throw Error('Invalid frozen entrant roster');
+  if(!s.e5.instances[key]||x.entrants.length!==x.offer.value.fieldSize+(x.m6?.replacements?.length??0)||new Set(x.entrants.map(e=>e.id)).size!==x.entrants.length||x.entrants.filter(e=>e.player).length!==1||!x.entrants.some(e=>e.player&&e.id===x.playerId))throw Error('Invalid frozen entrant roster');
   for(const e of x.entrants){validateRU(e.native);if(e.native.id!==e.id)throw Error('Entrant native identity mismatch');}
   if(!Number.isInteger(x.raceIndex)||x.raceIndex<0||x.raceIndex>=x.offer.value.schedule.length||x.raceResults.length>x.offer.value.schedule.length)throw Error('Invalid schedule progress');
   for(let i=0;i<x.raceResults.length;i++){
