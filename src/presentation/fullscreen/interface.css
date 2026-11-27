@@ -89,3 +89,4 @@
  .p22 .p22-support>.panel{width:100%}
  .p22 .p22-support #map{max-width:640px;margin-inline:auto}
 }
+.p22 .p21-race-info[hidden],#p21RaceInfo[hidden]{display:none!important}

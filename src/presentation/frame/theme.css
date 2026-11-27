@@ -225,7 +225,8 @@ body.m2-creation-open #m1-wheel{display:none}
 #m2-creation .bt-panel.bt-dark .m2-detail,#m2-creation .bt-panel.bt-dark .m2-detail dl div{background:#00000040}
 #m2-creation .m2-brand{margin:10px 0}
 /* Owner-supplied placeholder art for the title splash and Main Menu (logo is part of the art). */
-#bt-splash{background:var(--bt-art-splash,none) center/cover no-repeat,#1a0c18}
+/* Mack 2026-11-27: anchor the art to the top so the logo is never cropped on wide windows. */
+#bt-splash{background:var(--bt-art-splash,none) center top/cover no-repeat,#1a0c18}
 #bt-splash>.bt-logo,#bt-splash>.bt-splash-scene{display:none}
 #m1-title{background:var(--bt-art-menu,none) left top/cover no-repeat,var(--bt-ink)}
 #m1-title .bt-menu-curtain{background:none;border:0;box-shadow:none;padding:calc(min(56.35vw,100vh) * .335) 2.2vw 3vh 3.4vw;justify-content:flex-start}

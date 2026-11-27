@@ -11,6 +11,7 @@ body>main{height:100vh;box-sizing:border-box;padding:8px 10px!important;max-widt
 #playerView .race-layout{flex:1 1 0;min-height:0;gap:8px!important}
 #p22Primary,#p22Support{min-height:0;overflow:auto;gap:8px!important}
 footer.p21-navigation{display:none!important}
+#p21RaceInfo[hidden]{display:none!important}
 #p21RaceInfo{margin:0!important;color:var(--text);font-size:14px}
 .panel{background:linear-gradient(180deg,#2d1d15f2,#1c120df2)!important;border:2px solid var(--bt-bronze)!important;border-top:3px solid var(--bt-bronze)!important;box-shadow:none!important;color:var(--text);border-radius:2px}
 .panel::before,.panel::after{display:none!important}
