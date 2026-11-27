@@ -46,11 +46,11 @@ function grouping(page, children) {
     const groups = [];
     for (const el of children) {
       const h = headingOf(el);
-      if (h && el.matches('section,article,div') && h.length < 48) groups.push({name: h, items: [el]});
+      if (h && el.matches('section,article,div') && h.length < 48) groups.push({name: h, items: [el], hidden: el.hasAttribute('data-bt-hidden-tab')});
       else if (groups.length) groups.at(-1).items.push(el);
       else groups.push({name: 'Overview', items: [el]});
     }
-    return groups.length > 1 && groups.length <= 10 ? groups : [];
+    return groups.length > 1 && groups.filter(g => !g.hidden).length <= 10 ? groups : [];
   }
   return [];
 }
@@ -106,7 +106,9 @@ export function installFrame() {
       focuses.set(page, focusKey);
       if (!groups.some(g => g.name === active)) active = groups[0].name;
       remembered.set(page, active);
-      bar.replaceChildren(...groups.map(g => {
+      // Pages can open a tab directly (the Racing Nations map opens a nation's page).
+      globalThis.__btShowTab = name => { if (!groups.some(g => g.name === name)) return; remembered.set(page, name); apply(); content.scrollTop = 0; };
+      bar.replaceChildren(...groups.filter(g => !g.hidden || g.name === active).map(g => {
         const b = document.createElement('button');
         b.type = 'button';
         b.textContent = g.name;

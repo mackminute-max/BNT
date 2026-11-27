@@ -1,4 +1,5 @@
 import {m6Entrant,m6Boundary,abilityDerived,rivalAbility} from './m6-interaction.js';
+import {validateGrudge} from './grudges.js';
 import {endowed,endowBoundary,endowDerived,initialEndowState,validateEndowments} from './endowments.js';
 import {applyAffinity,validateAffinityContext} from '../model/affinity.js';
 import {validateProgressionContext} from '../model/progression-context.js';
@@ -127,7 +128,7 @@ export function createRace({
         throw new Error(`Invalid personality ${k}`);
     validateAffinityContext(e.affinityContext);validateCoaching(e.coachingContext);validateProgressionContext(e.progressionContext);if(e.progressionContext&&ru.id!==(playerId??input[0].ru.id)&&!(e.progressionContext.version===3&&e.progressionContext.abilities?.length&&e.progressionContext.signBonus===0&&e.progressionContext.wearMultiplier===1))throw Error('Progression is player-only');
     if(e.coachingContext&&ru.id!==(playerId??input[0].ru.id))throw Error('Coaching is player-only');
-    validatePayrollContext(e.payrollContext);validateEndowments(e.endowments);
+    validatePayrollContext(e.payrollContext);validateEndowments(e.endowments);validateGrudge(e.grudgeContext);
     const derived = applyPayrollControl(applyAffinity(derive(ru, {
       ...c,
       crowdMorale: environment.crowdMorale,
@@ -162,6 +163,7 @@ export function createRace({
       ...(e.affinityContext?{affinityContext:structuredClone(e.affinityContext)}:{}),
       ...(e.progressionContext?{progressionContext:structuredClone(e.progressionContext)}:{}),
       ...(e.endowments?.boons?.length?{endowments:structuredClone(e.endowments),endow:initialEndowState()}:{}),
+      ...(e.grudgeContext?{grudgeContext:structuredClone(e.grudgeContext)}:{}),
       ...(e.coachingContext ? {coachingContext:freezeCoaching(e.coachingContext)} : {}),
       ...(championshipContext ? {progressEvidence:{version:1,progress:q,firstTime:0,firstTick:0}} : {}),
       ...(e.payrollContext===undefined?{}:{payrollContext:structuredClone(e.payrollContext)}),
@@ -252,6 +254,7 @@ export function createRace({
       ...(r.affinityContext?{affinityContext:structuredClone(r.affinityContext)}:{}),
       ...(r.progressionContext?{progressionContext:structuredClone(r.progressionContext)}:{}),
       ...(r.endowments?{endowments:structuredClone(r.endowments)}:{}),
+      ...(r.grudgeContext?{grudgeContext:structuredClone(r.grudgeContext)}:{}),
       ...(r.coachingContext ? {coachingContext:freezeCoaching(r.coachingContext)} : {}),
       ...(r.payrollContext===undefined?{}:{payrollContext:structuredClone(r.payrollContext)}),
       lane: r.lane,

@@ -1,3 +1,4 @@
+import {combatLedger} from '../grudges.js';
 import {validateM6Entrant} from '../m6-interaction.js';
 import {validateAffinityContext} from '../../model/affinity.js';
 import {validateCoaching} from '../../ai/coaching.js';
@@ -51,5 +52,5 @@ export function clearedNativeResult(s){
   validateRaceBoundary(s);
   if(s.status!=='Ended'||s.pendingImpacts.length||s.pendingOverrides.length||s.entrants.some(r=>r.status==='Racing'||r.physical==='Clearing')||!s.events.some(e=>e.type==='RACE_ENDED'))throw Error('RACE_CLEARANCE_BLOCKED: unresolved authoritative processing');
   const official=classification(s);if(official.length!==s.entrants.length||new Set(official.map(x=>x.id)).size!==s.entrants.length)throw Error('RACE_CLEARANCE_BLOCKED: classification identity');
-  return {...(s.championshipContext ? {championshipEvidence:{version:1,context:structuredClone(s.championshipContext),starters:structuredClone(s.events.find(e=>e.type==='RACE_STARTED')?.effects.starters??[]),progress:s.entrants.map(r=>({id:r.id,...r.progressEvidence}))}} : {}),classification:official,conditions:s.entrants.map(r=>({entrantId:r.id,native:structuredClone(r.ru)}))};
+  return {...(s.championshipContext ? {championshipEvidence:{version:1,context:structuredClone(s.championshipContext),starters:structuredClone(s.events.find(e=>e.type==='RACE_STARTED')?.effects.starters??[]),progress:s.entrants.map(r=>({id:r.id,...r.progressEvidence}))},ledger:combatLedger(s)} : {}),classification:official,conditions:s.entrants.map(r=>({entrantId:r.id,native:structuredClone(r.ru)}))};
 }

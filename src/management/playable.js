@@ -1,3 +1,5 @@
+import {m6MapPage} from './m6-map.js';
+import {m6RivalsPage} from './m6-rivals.js';
 import {m6FactionsPage,bindM6Factions} from './m6-factions.js';
 import {m6FacilitiesPage,bindM6Facilities} from './m6-facilities.js';
 import {createDenInterface} from './m6-den.js';
@@ -71,7 +73,7 @@ export function mountPlayableStable(port){
   if(page==='overview')body=homeDashboard(v);if(page==='gambling'&&s?.schema===8)body=denFlow.html(s);
   if(page==='roster')body=barnDashboard(v);
   if(page==='markets')body=panel('Market',recruitmentCards(v,['driver','beast','chariot','specialist','equipment']))+panel('Capacity',capacitySummary(v));
-  if(page==='championships'&&careerFlow)body=(s.schema===8&&!s.championshipFoundation.activeId&&typeof BNT_M3UI_BUILD==='undefined'?m6NationNavigation(s):'')+(()=>{const f=careerFlow.html(v),w=s.schema===8?championshipBetting(s):'';return f.includes('<!--bt-wager-->')?f.replace('<!--bt-wager-->',()=>w):f+w;})();if(page==='world'&&s.schema===8)body=m6FactionsPage(s)+m6WorldPage(s);
+  if(page==='championships'&&careerFlow)body=(()=>{const f=careerFlow.html(v),w=s.schema===8?championshipBetting(s):'';return f.includes('<!--bt-wager-->')?f.replace('<!--bt-wager-->',()=>w):f+w;})();if(page==='world'&&s.schema===8)body=m6MapPage(s)+m6RivalsPage(s)+m6FactionsPage(s)+m6WorldPage(s);
   if(page==='records')body=panel('Career records',table(['Championship','Outcome','Official events'],Object.values(s?.championshipFoundation?.instances??{}).map(x=>[x.offer.value.name,x.withdrawal?'Player '+x.withdrawal.kind.toLowerCase()+' withdrawal':phaseName(x.phase),x.raceResults.length])))+panel('Settlement history',table(['Championship','Cycle','Income','Closing treasury'],Object.values(s?.cycles?.statements??{}).map(x=>[championshipName(s,x.championshipId),x.cycle,x.income,x.treasuryAfter])))+e5Records(s);
   if(UI_P1&&page==='facilities')body=panel('Staff & Contracts',rosterCards(v,['personnel','specialists']))+contractTable(v);
   if(UI_P1&&page==='workshop')body=(s?.schema===8?m6FacilitiesPage(s):panel('Facilities',improvements(v)))+panel('Workshop',rosterCards(v,['chariots','equipment']));
