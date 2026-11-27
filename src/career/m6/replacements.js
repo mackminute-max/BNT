@@ -4,6 +4,7 @@
 // The eliminated team keeps its points in the standings; the new team starts on 0.
 import {hash} from '../../core/determinism.js';
 import {teamProfile,freezeTeam,displayIdentity,profileNames} from '../m5/d2/generation.js';
+import {toughenRival,seriesIsIntro} from './rival-strength.js';
 import {initialCondition} from '../championships/condition.js';
 import {refreshPresentationMetadata} from './presentation.js';
 
@@ -25,6 +26,7 @@ export function replaceEliminatedRivals(s, x, nextIndex, eligibilityFor) {
     const p = teamProfile(s.career.id, tier, context, {nationId, usedNames: used});
     const id = 'e2-' + hash([REPLACEMENT_RULES, x.id, nextIndex, r.entrantId]).toString(16);
     const e = freezeTeam(p, id, 'replacement');
+    toughenRival(e.native, tier, seriesIsIntro(x));
     x.entrants.push(e);
     x.m6.names[id] = {...displayIdentity(p), organizationId: p.id, memberIds: p.memberIds, kind: 'replacement'};
     if (x.m5Identities) x.m5Identities[id] = structuredClone(x.m6.names[id]);
