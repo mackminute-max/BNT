@@ -6,7 +6,8 @@
 // per character. Humans from a nation where Human is not one of the two main
 // peoples use the generic human files. Images come from the build
 // (globalThis.__BNT_MEDIA__); without them every lookup returns null and the
-// caller keeps its drawn placeholder.
+// caller keeps its drawn placeholder. A character whose ancestry has no file
+// gets a generic silhouette (BNT_ART_Portrait_Generic_<Sex>_NN).
 import {AFFINITY_RULES} from '../../model/affinity.generated.js';
 import {CATALOGS} from '../../career/m5/content.generated.js';
 
@@ -59,7 +60,9 @@ export function pickArt(kind, who = {}) {
     && (!f.ancestry || !who.ancestry || f.ancestry === who.ancestry)
     && (!f.sex || !who.sex || f.sex === who.sex));
   if (kind === 'Portrait') {
-    if (who.ancestry) pool = pool.filter(f => f.ancestry === who.ancestry); // never borrow another people's face
+    // Never borrow another people's face: with no file for the ancestry, use
+    // the generic silhouettes (files that name no ancestry).
+    if (who.ancestry) { const own = pool.filter(f => f.ancestry === who.ancestry); pool = own.length ? own : pool.filter(f => !f.ancestry); }
     if (who.ancestry === 'A01' && who.nation && !humanHome(who.nation)) {
       const generic = pool.filter(f => f.generic);
       if (generic.length) pool = generic;
