@@ -7,6 +7,8 @@ import {championshipClassification,raceAwardEffects,standings,titleCandidate} fr
 import {financialAnchorValue} from './anchor.js';
 import {noStarterProof} from '../../sim/foundation/no-starters.js';
 import {canonical} from '../../core/determinism.js';
+import {replaceEliminatedRivals} from '../m6/replacements.js';
+import {rollCasualties,applyCasualtiesToPersistent,applyCasualtiesToPlayer} from '../p3/stakes.js';
 export const E3_RULES='m2e-controller-e3-v1';
 export const raceIdFor=(x,index=x.raceIndex)=>'e2-race-'+fingerprint([x.id,index]).slice(0,40);
 export function enableE3(s){
@@ -32,6 +34,8 @@ function applyPlayer(s,e,mapped){
  c.condition=n.chariot.condition;c.wear=n.chariot.wear;c.integrity=p.chariot.integrity;c.status=p.chariot.status;
  // No availability restoration, driver management-fatigue conversion, XP or equipment changes.
 }
+// Phase 3: a wrecked turnout may lose its driver or a beast (death) or its chariot (destroyed).
+function stakes(s,x,e,index,resultId,row,final){const format=x.offer.value.schedule[index].format,lost=rollCasualties({instanceId:x.id,resultId,entrantId:e.id,format,wrecked:row?.nativeStatus==='Retired',final});if(!lost.length)return;applyCasualtiesToPersistent(x.conditionState[e.id],lost);if(e.player)applyCasualtiesToPlayer(s,e,lost);const n=x.m6.names[e.id]??{};x.m6.casualties??=[];for(const c of lost)x.m6.casualties.push({entrantId:e.id,member:c.member,kind:c.kind,raceIndex:index,resultId,team:e.player?s.career.name:n.organization??'Rival',name:c.member==='driver'?n.driver:c.member==='chariot'?n.chariot:n.beasts?.[Number(c.member.split('-')[1])]??'Beast',player:!!e.player});}
 export function publishOfficial(s,x,{candidate,reference,setupFingerprint},noStarter=false){
  if(x.raceResults.some(r=>r.raceId===x.raceId))throw Error('Official race identity already committed');
  const index=x.raceIndex,eventId=raceIdFor(x),resultId=noStarter?'e3-no-starters-'+fingerprint([x.id,index]).slice(0,40):candidate.resultId;
@@ -43,7 +47,7 @@ export function publishOfficial(s,x,{candidate,reference,setupFingerprint},noSta
   rows=championshipClassification(candidate);const starters=new Set(x.raceSetup.entrants.map(e=>e.ru.id));
   if(rows.length!==starters.size||candidate.conditions.length!==starters.size||new Set(candidate.conditions.map(c=>c.entrantId)).size!==starters.size||rows.some(r=>!starters.has(r.id)))throw Error('Official participant identities mismatch');
   for(const condition of candidate.conditions){const e=x.entrants.find(e=>e.id===condition.entrantId),start=x.raceSetup.entrants.find(e=>e.ru.id===condition.entrantId);if(!e||!start||e.native.id!==condition.native.id)throw Error('Foreign native consequence');
-   const mapped=mapCondition({instanceId:x.id,eventId,resultId,start:start.ru,final:condition.native,persistent:x.conditionState[e.id],provenance:{reference,setupFingerprint,stateFingerprint:candidate.stateFingerprint}});x.conditionState[e.id]=structuredClone(mapped.persistent);e.native=structuredClone(mapped.native);if(e.player)applyPlayer(s,e,mapped);mappings.push(structuredClone(mapped.audit));
+   const mapped=mapCondition({instanceId:x.id,eventId,resultId,start:start.ru,final:condition.native,persistent:x.conditionState[e.id],provenance:{reference,setupFingerprint,stateFingerprint:candidate.stateFingerprint}});x.conditionState[e.id]=structuredClone(mapped.persistent);e.native=structuredClone(mapped.native);if(e.player)applyPlayer(s,e,mapped);if(x.m6&&s.schema===8)stakes(s,x,e,index,resultId,rows.find(r=>r.id===e.id),condition.native);mappings.push(structuredClone(mapped.audit));
   }
   effects=raceAwardEffects(rows,{points:x.offer.value.points,dnfPoints:x.offer.value.dnfPoints},{careerId:s.career.id,instanceId:x.id,raceId:x.raceId});
  }
@@ -51,6 +55,6 @@ export function publishOfficial(s,x,{candidate,reference,setupFingerprint},noSta
  const record={version:1,raceId:x.raceId,eventIndex:index,resultId,kind:noStarter?'NoStarters':'NativeCleared',proofFingerprint:fingerprint(candidate),proof:structuredClone(candidate),reference:structuredClone(reference),anchor:structuredClone(x.raceAnchor),setupFingerprint,rows,effects,mappings,participation};
  x.raceResults.push(record);x.pendingClearance=null;x.blockedReason=null;x.checkpointRef=null;x.standings=standings(x.entrants.map(e=>e.id),x.raceResults);x.eligibility=eligibility(s,x);
  if(index+1===x.offer.value.schedule.length){x.phase='SETTLEMENT_PENDING';x.officialFinal={version:1,standings:structuredClone(x.standings),championId:titleCandidate(x.standings,rows),finalParticipation:participation,resultIds:x.raceResults.map(r=>r.resultId),pendingEntitlementIds:x.raceResults.flatMap(r=>r.effects.map(e=>e.pendingEntitlementId).filter(Boolean)),settled:false};x.officialFinal.fingerprint=fingerprint(x.officialFinal);}
- else{const player=x.eligibility.find(e=>e.entrantId===x.playerId);if(!x.withdrawal&&!player.mayStart)x.withdrawal={kind:'Forced',raceIndex:index+1,sourceResultId:resultId,reason:player.reason};x.raceIndex++;x.phase=x.withdrawal?'AI_CONTINUATION':'INTERMISSION_READY';}
+ else{const player=x.eligibility.find(e=>e.entrantId===x.playerId),defer=x.m6&&s.schema===8&&!(x.m6.casualties??[]).some(c=>c.player);if(!x.withdrawal&&!player.mayStart&&!defer)x.withdrawal={kind:'Forced',raceIndex:index+1,sourceResultId:resultId,reason:player.reason};x.raceIndex++;if(replaceEliminatedRivals(s,x,x.raceIndex,eligibility).length)x.standings=standings(x.entrants.map(e=>e.id),x.raceResults);x.phase=x.withdrawal?'AI_CONTINUATION':'INTERMISSION_READY';}
  return {instanceId:x.id,raceId:record.raceId,resultId,proofFingerprint:record.proofFingerprint,phase:x.phase,mappingVersion:CONDITION_MAPPING};
 }

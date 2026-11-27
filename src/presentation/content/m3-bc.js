@@ -4,6 +4,7 @@ import {CATALOGS} from '../../career/m5/content.generated.js';
 import {hash} from '../../core/determinism.js';
 import {DATA,PACK_VERSION,PACK_DIGEST} from './m3-bc-data.js';
 import {identity as nativeIdentity} from '../../management/content.js';
+import {BOONS} from '../../sim/endowments.js';
 export const M3BC_ENABLED=typeof BNT_M3BC_BUILD!=='undefined'&&BNT_M3BC_BUILD;
 function freeze(v){if(v&&typeof v==='object'){for(const x of Object.values(v))freeze(x);Object.freeze(v);}return v;}freeze(DATA);
 const identities=new Map(DATA.identities.map(x=>[x.sourceOfferId,x.presentation_identity]));
@@ -32,6 +33,7 @@ export function commentaryTokens(type,e){
  case 'WRECK_IMPACT':result={wreckId:text(a.wreckId)};break;
  case 'INCIDENT':result={incident_type:text(a.type),lane_1based:Number.isSafeInteger(a.lane)&&a.lane>=0?String(a.lane+1):null};break;
  case 'SIGN_ACTIVATED':result={subject,sign:text(a.sign)};break;
+ case 'BOON_FIRED':result={subject,boon:text(BOONS[a.boonId]?.name)};break;
  case 'COURSE_ENTERED':result={subject,track:text(a.track)};break;
  case 'SEGMENT_ENTERED':result={subject,terrain:text(a.terrain),segment_motion:a.type==='turn'?(numeric(a.direction)===null?null:', turning '+(a.direction>0?'right':'left')):text(a.type)?' straightaway':null};break;
  case 'CHECKPOINT_CROSSED':result={subject,checkpoint:typeof a.checkpoint==='string'?text(a.checkpoint):numeric(a.checkpoint)===null?null:String(a.checkpoint)};break;

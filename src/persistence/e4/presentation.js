@@ -1,7 +1,7 @@
 import {exact,id} from '../../career/legacy-state.js';
 import {canonical} from '../../core/determinism.js';
 import {packageById,CATALOG_VERSION} from '../../career/packages.js';
-export const EMBLEMS=Object.freeze(['wheel','shield','bolt']);
+export const EMBLEMS=Object.freeze(['wheel','shield','bolt','crown','skull','flame','star','sun','hammer','horseshoe','moon','tower','spears']);
 export const GUIDE_STEPS=6;
 export function validatePresentation(p){
  exact(p,['kind','version','profileId','careerId','creationId','packageId','emblem','primary','secondary','onboarding'],'stable presentation');

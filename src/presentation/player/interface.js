@@ -32,7 +32,7 @@ const racePanel = $('race').closest('.panel'), signPanel = $('sign').closest('.p
 const deck = document.querySelector('.command-deck');
 primary.append(signPanel, controls); deck.remove();
 signPanel.classList.add('p21-sign-bar'); controls.classList.add('panel', 'p21-race-controls');
-text(signPanel.querySelector('h2'), 'STRATEGY SIGNS'); text(controls.querySelector('h2'), 'Race Controls');
+text(signPanel.querySelector('h2'), 'STRATEGY'); text(controls.querySelector('h2'), 'Race Controls');
 const remaining = node('span', 'p21-opportunities'); remaining.id = 'p21Opportunities'; remaining.setAttribute('role', 'status'); signPanel.querySelector('h2').append(remaining);
 // The six cards and original queue/select/cancel/lower controls are moved, never cloned.
 const hint = signPanel.querySelector('#p2SignChoices + .hint'); if (hint) hint.hidden = true;
@@ -49,6 +49,7 @@ $('start').textContent = 'Start Race'; $('step').textContent = 'Single tick';
 const reduced = $('p2Reduced').closest('label'); controls.append(reduced);
 
 const raceTitle = node('h2'); raceTitle.id = 'p21RaceTitle'; racePanel.prepend(raceTitle);
+const raceTitleName = node('span'), raceTitleMeta = node('small', 'p21-race-meta'); raceTitleMeta.id = 'p21RaceMeta'; raceTitle.append(raceTitleName, raceTitleMeta);
 const stage = node('div', 'p21-race-stage'), raceCanvas = $('race'); raceCanvas.replaceWith(stage); stage.append(raceCanvas);
 const overlay = node('div', 'p21-countdown'); overlay.id = 'p21Countdown'; overlay.hidden = true;
 const countdownWord = node('strong'), countdownDetail = node('span');
@@ -144,8 +145,13 @@ app.renderMetadata = (state = globalThis.P2.currentSnapshot?.state) => {
     if (!labels.length) labels.push('Available');
     text(card.lastElementChild, labels.join(' · ')); card.setAttribute('aria-label', sign + ' — ' + labels.join(', '));
   }
-  text(raceTitle, state.track.name ?? session.options.course);
+  text(raceTitleName, state.track.name ?? session.options.course);
+  // Mack 2026-11-27: race type and distance beside the track name; rallies read "Point to Point".
+  const p2p = state.track.course && !state.track.closed;
+  text(raceTitleMeta, ` · ${state.format} · ${p2p ? 'Point to Point' : state.config.laps + (state.config.laps === 1 ? ' lap' : ' laps')}`);
   const weather = typeof session.options.weather === 'string' ? session.options.weather : null;
+  // Mack 2026-11-27: the status line is hidden on the race page; it only appears to report a worker problem.
+  raceInfo.hidden = !(session.error || session.fallbackReason);
   text(raceInfo, `${state.format} · ${state.entrants.length} entrants${weather ? ' · ' + weather : ''} · ${state.time.toFixed(2)}s · ${state.status}${session.phase ? ' · ' + session.phase : ''}${session.error ? ' · Worker error: ' + session.error : ''}${session.fallbackReason ? ' · Synchronous fallback: ' + session.fallbackReason : ''}`);
   const current = sequence.project({phase: session.phase, started: session.started, tick: state.tick, countdownLeft: session.countdownLeft, mode: session.mode, playing: app.contextPlaying, terminal: ['Ended', 'Stalled', 'Error'].includes(state.status)}, performance.now());
   overlay.hidden = current.stage === 'hidden'; overlay.dataset.stage = current.stage; overlay.dataset.presentedTick = state.tick;

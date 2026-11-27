@@ -207,7 +207,7 @@ function draw() {
   ctx.font = "16px Georgia";
   ctx.fillText(t.course ? t.name : "BLOOD AND THUNDER", 500, t.course ? 485 : 275);
   ctx.font = "12px system-ui";
-  ctx.fillText(t.course ? `${t.raceType} · ${t.closed ? c.laps + " laps" : "point to point"}` : "AUTONOMOUS RACING · FOUR-LANE OVAL", 500, t.course ? 505 : 300);
+  ctx.fillText(t.course ? `${t.raceType} · ${t.closed ? c.laps + " laps" : "Point to Point"}` : "AUTONOMOUS RACING · FOUR-LANE OVAL", 500, t.course ? 505 : 300);
   for (const [i, r] of [...state.entrants]
     .sort((a, b) => a.id.localeCompare(b.id))
     .entries()) {

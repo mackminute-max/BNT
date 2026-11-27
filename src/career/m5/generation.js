@@ -14,10 +14,10 @@ function vector(next,base,...offsets){return Object.fromEntries(Object.entries(b
 function varied(next,base,variation,...offsets){const offset=integerDraw(next,-variation,variation);return vector(next,base,...offsets,Object.fromEntries(Object.keys(base).map(k=>[k,offset])));}
 function blended(a,b){return a.map(r=>({id:r.id,weight:r.weight*(b.find(x=>x.id===r.id)?.weight??0)}));}
 const reserved=new Set(M['name-reservations'].records.map(r=>r.displayName.toLowerCase()));
-export function generateIdentity(context,{category,tier='Standard',nationId=null,ancestryId=null,speciesId=null,usedNames=[],authoredName=null,nativeRole=null,qualityId=null,namingVersion=1}={}){
+export function generateIdentity(context,{category,tier='Standard',nationId=null,ancestryId=null,speciesId=null,usedNames=[],authoredName=null,nativeRole=null,qualityId=null,namingVersion=1,domestic=false}={}){
  const identity=stream(context,'identity'),stats=stream(context,'stats'),personality=stream(context,'personality'),names=stream(context,'names');
  const nation=nationId?C.nation.find(n=>n.canonicalNationId===nationId):pick(identity,C.nation);if(!nation)throw Error('Unknown national source');
- const imported=integerDraw(identity,0,999)<Math.round(nation.importWeight*1000),origin=imported?pick(identity,C.nation.filter(n=>n.id!==nation.id)):nation;
+ const importDraw=integerDraw(identity,0,999),imported=!domestic&&importDraw<Math.round(nation.importWeight*1000),origin=imported?pick(identity,C.nation.filter(n=>n.id!==nation.id)):nation;
  const culture=lookup(weighted(identity,nation.cultureWeights));
  const grade=qualityId?lookup(qualityId):lookup(weighted(stats,C.qualityRarity.filter(q=>q.tier===tier).map(q=>({id:q.id,weight:q.weight}))));if(grade.tier!==tier)throw Error('Quality/tier mismatch');
  const out={version:1,algorithm:'m5-generation-v1',pin:CONTENT_PIN,contextFingerprint:fingerprint(context),category,residentNationId:nation.canonicalNationId,residentNationLabel:nation.label,originNationId:origin.canonicalNationId,originNationLabel:origin.label,cultureProfileId:culture.id,qualityProfileId:grade.id,qualityLabel:grade.label,valuation:structuredClone(grade.valuation),name:null,attributes:null,personality:null};

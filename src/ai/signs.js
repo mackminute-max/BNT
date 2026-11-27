@@ -16,7 +16,7 @@ export function signCommand(s, cmd) {
     return false;
   };
   if (!r || r.status !== "Racing") return reject("Player is not racing");
-  if(cmd.action==='ability'){if(abilityRequest(s,r))return true;return reject('Active Ability unavailable');}if(cmd.action===BUFFERED_SIGN_ACTION&&m6Entrant(r))return reject('M6 Signs use the next simulation tick');
+  if(cmd.action==='ability'){if(abilityRequest(s,r,cmd.sign))return true;return reject('Active Ability unavailable');}if(cmd.action===BUFFERED_SIGN_ACTION&&m6Entrant(r))return reject('M6 Signs use the next simulation tick');
   if(cmd.action===BUFFERED_SIGN_ACTION){try{const proof=requestDelay(s,r,cmd.sign);emit(s,"SIGN_DELAY_REQUESTED",[r.id],proof);return true;}catch(error){return reject(error.message);}}
   if (cmd.action === "queue") {
     if (

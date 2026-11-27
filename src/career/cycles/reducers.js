@@ -15,7 +15,7 @@ function pay(s,amount,paymentId){
  let left=amount;const allocations=[];for(const o of claims){const paid=Math.min(left,o.balance);if(paid){o.paid=plus(o.paid,paid);o.balance-=paid;o.payments.push({id:paymentId,amount:paid});allocations.push({obligationId:o.id,amount:paid});left-=paid;}}
  const spent=amount-left;s.career.treasury-=spent;return {spent,allocations};
 }
-function removePerson(s,p,{resolveAssignment=false,reason}){
+export function removePerson(s,p,{resolveAssignment=false,reason}){
  const r=s.management.registries;
  if(p.references.assignment?.length){if(!resolveAssignment)throw Error('Explicit assignment resolution required');for(const id of [...p.references.assignment]){const a=r.assignments[id];for(const k of ['personnel','beasts','chariots'])for(const subject of a.references.subject)if(r[k][subject])r[k][subject].references.assignment=[];delete r.assignments[id];}}
  archiveCreditor(s,p);const c=r.contracts[p.references.contract[0]];s.cycles.contractArchive[c.id]={...structuredClone(c),closedReason:reason};delete r.contracts[c.id];delete r[p.role==='driver'?'personnel':'specialists'][p.id];

@@ -450,6 +450,27 @@
       "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
       "mechanics": "UNCHANGED",
       "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
+    },
+    {
+      "key": "BOON_FIRED",
+      "native_event_type": "BOON_FIRED",
+      "variant_count": 3,
+      "variants": [
+        "{subject}: {boon} kicks in!",
+        "{boon} fires for {subject}.",
+        "{subject} feels {boon} take hold."
+      ],
+      "allowed_tokens": [
+        "subject",
+        "boon"
+      ],
+      "native_function_source_reference": "src/reporting/commentary.js",
+      "template_source_excerpt": "BOON_FIRED: (e) => [...]",
+      "status": "DRAFT_STRING_ONLY",
+      "priority_and_throttle": "PRESERVE_NATIVE",
+      "variant_selection": "PRESERVE_NATIVE_DETERMINISTIC_HASH",
+      "mechanics": "UNCHANGED",
+      "runtime_selection_policy": "DRAFT_ONLY; retain original native reporter, template pool and exported narrative for all existing careers unless a separately approved versioned display-only consumer is implemented."
     }
   ],
   "reconciliation": "CONTENT_DRAFT_REVISED; NO_RUNTIME_IMPORT_OR_IMPLEMENTATION_AUTHORIZATION"

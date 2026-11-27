@@ -1,6 +1,7 @@
 import {validateM6Entrant} from '../m6-interaction.js';
 import {validateAffinityContext} from '../../model/affinity.js';
 import {validateCoaching} from '../../ai/coaching.js';
+import {validateEndowments} from '../endowments.js';
 import {canonical} from '../../core/determinism.js';
 import {createRace,assertState,classification} from '../race.js';
 import {VERSION,config} from '../../config/config.js';
@@ -21,7 +22,7 @@ export function validateRaceBoundary(s){
   if(!(s.nextIncidentAt===Infinity||Number.isFinite(s.nextIncidentAt)))throw Error('Invalid incident sentinel');
   if(canonical(s.championshipContext??null)!==canonical(initial.championshipContext??null))throw Error('Championship context changed after start');
   for(const r of s.entrants){validateM6Entrant(s,r);
-    validateAffinityContext(r.affinityContext);if(canonical(r.affinityContext??null)!==canonical(initial.entrants.find(e=>e.id===r.id)?.affinityContext??null))throw Error('Frozen affinity context changed');validateCoaching(r.coachingContext);if(canonical(r.progressionContext??null)!==canonical(initial.entrants.find(e=>e.id===r.id)?.progressionContext??null))throw Error('Frozen progression context changed');const original=initial.entrants.find(e=>e.id===r.id);if(canonical(r.coachingContext??null)!==canonical(original.coachingContext??null))throw Error('Frozen coaching context changed');
+    validateAffinityContext(r.affinityContext);if(canonical(r.affinityContext??null)!==canonical(initial.entrants.find(e=>e.id===r.id)?.affinityContext??null))throw Error('Frozen affinity context changed');validateCoaching(r.coachingContext);validateEndowments(r.endowments);if(canonical(r.endowments??null)!==canonical(initial.entrants.find(e=>e.id===r.id)?.endowments??null))throw Error('Frozen endowments changed');if(r.endowments&&(!r.endow||!Array.isArray(r.endow.buffs)||typeof r.endow.cool!=='object'||typeof r.endow.damagedLap!=='boolean'))throw Error('Invalid endowment state');if(canonical(r.progressionContext??null)!==canonical(initial.entrants.find(e=>e.id===r.id)?.progressionContext??null))throw Error('Frozen progression context changed');const original=initial.entrants.find(e=>e.id===r.id);if(canonical(r.coachingContext??null)!==canonical(original.coachingContext??null))throw Error('Frozen coaching context changed');
     if(s.championshipContext){const p=r.progressEvidence;exact(p,['version','progress','firstTime','firstTick']);if(p.version!==1||!Number.isFinite(p.progress)||!Number.isFinite(p.firstTime)||p.firstTime<0||p.firstTime>s.time+s.config.epsilon||!Number.isInteger(p.firstTick)||p.firstTick<0||p.firstTick>s.tick||r.status==='Racing'&&p.progress!==r.q||r.status==='Retired'&&p.progress!==r.retirement?.progress)throw Error('Invalid authoritative first-progress evidence');}
 
     derive(r.ru,s.config);
