@@ -12,7 +12,8 @@ export function buildEntitlements(s,x,terms){
  }}
  x.standings.forEach((row,i)=>{add('Gold',row.id,terms.placement[i]??0,'placement');if(row.id===x.playerId)add('Reputation',row.id,terms.reputation.placement[i]??0,'placement');});
  if(x.officialFinal.championId){add('Gold',x.officialFinal.championId,terms.titleGold,'title');if(x.officialFinal.championId===x.playerId)add('Reputation',x.playerId,terms.titleRep,'title');}
- if(x.m4?.loadout.includes('patron')){const base=out.filter(e=>e.kind==='Gold'&&e.entrantId===x.playerId).reduce((n,e)=>n+e.amount,0);add('Gold',x.playerId,Math.min(1000,Math.floor(base/10)),'legacy-patron');}
+ if(x.m4?.loadout.includes('patron')){const base=out.filter(e=>e.kind==='Gold'&&e.entrantId===x.playerId).reduce((n,e)=>n+e.amount,0);add('Gold',x.playerId,x.m6?Math.min(2000,Math.floor(base/5)):Math.min(1000,Math.floor(base/10)),'legacy-patron');}
+ if(x.m4?.loadout.includes('favourite')){const base=out.filter(e=>e.kind==='Reputation'&&e.entrantId===x.playerId).reduce((n,e)=>n+e.amount,0);add('Reputation',x.playerId,Math.floor(base/4),'legacy-favourite');}
  if(x.m6?.purse&&!x.withdrawal)add('Gold',x.playerId,x.m6.purse,'p3-purse');
  if(new Set(out.map(x=>x.id)).size!==out.length)throw Error('Duplicate E5 entitlement');return scaleM6Awards(s,x,out);
 }

@@ -25,15 +25,21 @@ export const RUN_REWARDS=freeze([
  row('supplier','Supplier’s Bargain','Trading Opportunities','purchase',null,15,'Immediately buy a disclosed available equipment item at 15% off.',6),
  row('negotiation','Prize Negotiation','Trading Opportunities','gold',null,100,'Receive 100 spendable Gold immediately; not a future prize multiplier.')
 ]);
+// Legacy Boons (Mack 2026-11-27): Core Boons ('permanent') are passive, cost more,
+// give smaller effects and have no limit. Major Boons ('active') are bigger and
+// only one can be active at a time. Both are bought on the Legacy page.
+export const BOON_TIER=Object.freeze({permanent:'Core',active:'Major'});
 export const LEGACY_UPGRADES=freeze([
  {id:'recruiters',name:'Veteran Recruiters',cost:typeof BNT_M5_BUILD!=='undefined'&&BNT_M5_BUILD?6:4,kind:'permanent',description:typeof BNT_M5_BUILD!=='undefined'&&BNT_M5_BUILD?'One extra Premium driver now and at each full Home Market renewal; normal hiring costs apply.':'Add one extra Premium driver candidate to this stable’s fixed market.',effects:[]},
- {id:'engineers',name:'Master Engineers',cost:4,kind:'permanent',description:'+5 Stability and +5 Maneuverability for every registered chariot.',effects:[['chariot.stability',5],['chariot.maneuverability',5]]},
- {id:'beastmaster',name:'Beastmaster’s Legacy',cost:4,kind:'permanent',description:'+5 Discipline and +5 Endurance for both registered beasts.',effects:[['beasts.discipline',5],['beasts.endurance',5]]},
- {id:'distinguished',name:'Distinguished Stable',cost:5,kind:'permanent',description:'+5 Awareness and +5 Nerve for every registered driver.',effects:[['driver.awareness',5],['driver.nerve',5]]},
- {id:'dynasty',name:'Racing Dynasty',cost:8,kind:'permanent',description:'+5 Driving and +5 Speed for both beasts in every registered team.',effects:[['driver.driving',5],['beasts.speed',5]]},
- {id:'established',name:'Established Stable',cost:3,kind:'active',icon:'◆',description:'+150 spendable Gold at registration after paying the entry fee.',effects:[]},
- {id:'patron',name:'Influential Patron',cost:5,kind:'active',icon:'✦',description:'+10% championship Gold prizes, rounded down once; maximum 1,000 bonus Gold per championship.',effects:[]},
- {id:'strategist',name:'Master Strategist',cost:6,kind:'active',icon:'⚑',description:'+1 Strategy Sign opportunity per race for your driver.',effects:[]}
+ {id:'engineers',name:'Master Engineers',cost:6,kind:'permanent',description:'+5 Stability and +5 Maneuverability for every registered chariot.',effects:[['chariot.stability',5],['chariot.maneuverability',5]]},
+ {id:'beastmaster',name:'Beastmaster’s Legacy',cost:6,kind:'permanent',description:'+5 Discipline and +5 Endurance for both registered beasts.',effects:[['beasts.discipline',5],['beasts.endurance',5]]},
+ {id:'distinguished',name:'Distinguished Stable',cost:6,kind:'permanent',description:'+5 Awareness and +5 Nerve for every registered driver.',effects:[['driver.awareness',5],['driver.nerve',5]]},
+ {id:'dynasty',name:'Racing Dynasty',cost:10,kind:'permanent',description:'+5 Driving and +5 Speed for both beasts in every registered team.',effects:[['driver.driving',5],['beasts.speed',5]]},
+ {id:'established',name:'Established Stable',cost:3,kind:'active',icon:'◆',description:'+300 spendable Gold at registration after paying the entry fee.',effects:[]},
+ {id:'patron',name:'Influential Patron',cost:5,kind:'active',icon:'✦',description:'+20% championship Gold prizes, rounded down once; maximum 2,000 bonus Gold per championship.',effects:[]},
+ {id:'strategist',name:'Master Strategist',cost:6,kind:'active',icon:'⚑',description:'+2 Strategy uses per race for your driver.',effects:[]},
+ {id:'ironhide',name:'Iron Constitution',cost:6,kind:'active',icon:'⛨',description:'Your driver and beasts are half as likely to die in a wreck.',effects:[]},
+ {id:'favourite',name:'Crowd Favourite',cost:5,kind:'active',icon:'★',description:'+25% Reputation from every Series.',effects:[]}
 ]);
 export function upgrade(id,state=null){const d=LEGACY_UPGRADES.find(d=>d.id===id);if(!d)throw Error('Unknown Legacy Upgrade');return [7,8].includes(state?.schema)&&id==='recruiters'?{...d,cost:6,...(state?.schema===8?{description:'One extra driver of your highest unlocked market grade now and at each qualifying Home Market renewal; normal hiring costs apply.'}:{})}:d;}
 export const BONUS_TIERS=freeze({dustroad:1,ironwheel:2,bannerfall:3,crownfire:4,'thunder-crown':5,'iron-gauntlet':5});
