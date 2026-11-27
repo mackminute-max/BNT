@@ -10,6 +10,7 @@ import {fingerprint} from '../cycles/contracts.js';
 import {gold} from '../cycles/contracts.js';
 import {createRace,step} from '../../sim/race.js';
 import {exact} from '../legacy-state.js';
+import {factionsAfterBet} from './factions.js';
 
 export const PARLOR_RULES = 'bnt-parlor-v1';
 export const BET_TYPES = Object.freeze({
@@ -120,6 +121,7 @@ export function slipStart(s, p, nextDenEvent, validateQuote) {
   g.totals.staked += stake; g.totals.bets++; g.totals.viewed++;
   g.den.active = {version: 1, eventId: event.id, event: structuredClone(event), stake, entrantId: slip[0].picks[0], odds: Math.min(50, slip[0].odds), quoteFingerprint: q.fingerprint, slip, maxStake: q.maxStake, entrantIds: [...q.entrantIds], probabilities: [...q.probabilities], live: null};
   g.den.events[g.den.cursor] = null; g.den.cursor++; g.quote = null;
+  factionsAfterBet(s, stake);
   return {eventId: event.id, stake, bets: slip.length};
 }
 // m6.denLive: one Win bet while the race runs, at the price of that moment.
@@ -143,6 +145,7 @@ export function liveBet(s, p) {
   s.career.treasury -= p.stake; a.stake += p.stake; g.totals.staked += p.stake;
   if (!a.slip) { a.slip = []; a.maxStake ??= room; a.entrantId = p.entrantId; a.odds = Math.min(50, odds); }
   a.live = {type: 'win', picks: [p.entrantId], stake: p.stake, odds, tick: p.tick};
+  factionsAfterBet(s, p.stake);
   return {stake: p.stake, odds};
 }
 // Settles a slip and any live bet; returns the same shape the old single bet did.

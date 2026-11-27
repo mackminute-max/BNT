@@ -1,3 +1,4 @@
+import {bannerChip} from './m6-factions.js';
 import {LEGACY_UPGRADES,upgrade} from '../career/m4/catalog.js';
 import {isM4,runPreview,effectiveRU} from '../career/m4/progression.js';
 import {fingerprint} from '../career/cycles/contracts.js';
@@ -6,7 +7,7 @@ import {ownedBoons,boonText,styleCounts} from '../career/p3/boons.js';
 import {categoryTags,tagButton} from '../presentation/content/endowment-help.js';
 import {BOONS,CAPSTONES,capstones,STYLES,CAPSTONE_AT} from '../sim/endowments.js';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-export function heroPerks(s){if(!isM4(s))return '';const id=s.e5.m4.loadout.find(Boolean),d=id?upgrade(id,s):null;return `<div class="m4-perk-icons" aria-label="Active Major Boon"><span tabindex="0" role="img" aria-label="${esc(d?'Major Boon: '+d.name+' — '+d.description:'No Major Boon active')}" title="${esc(d?d.name+' — '+d.description:'No Major Boon active')}">${d?d.icon:'◇'}</span></div>`;}
+export function heroPerks(s){if(!isM4(s))return '';const id=s.e5.m4.loadout.find(Boolean),d=id?upgrade(id,s):null;return `${s.m6?bannerChip(s):''}<div class="m4-perk-icons" aria-label="Active Major Boon"><span tabindex="0" role="img" aria-label="${esc(d?'Major Boon: '+d.name+' — '+d.description:'No Major Boon active')}" title="${esc(d?d.name+' — '+d.description:'No Major Boon active')}">${d?d.icon:'◇'}</span></div>`;}
 const LEGACY_CSS=`<style>.bt-legacy{display:flex;flex-direction:column;gap:12px}.bt-lp-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;border:2px solid #c9a75a;padding:10px 16px;background:linear-gradient(90deg,#3a0f12,#1d0a08)}.bt-lp-head h2{margin:0;font-size:2rem}.bt-lp-head em{display:block;opacity:.85}.bt-lp{display:flex;gap:0;border:2px solid #c9a75a}.bt-lp div{padding:6px 18px;text-align:center}.bt-lp div+div{border-left:1px solid #c9a75a}.bt-lp b{display:block;font-size:1.8rem;color:#f0c96a}
 .bt-legacy-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:14px}.bt-legacy-grid>section{border:1px solid #c9a75a;padding:10px;background:rgba(0,0,0,.25);min-width:0;max-height:520px;overflow:auto}
 .bt-major-slot{display:flex;gap:12px;align-items:center;border:2px solid #f0c96a;padding:10px;background:rgba(240,201,106,.08)}.bt-major-slot .bt-icon{font-size:2.6rem;width:64px;height:64px;display:grid;place-items:center;border:2px solid #c9a75a}

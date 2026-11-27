@@ -43,7 +43,7 @@ function validateResult(tx,result){
  for(const key of ['price','signingSurcharge','proceeds','fee','basePrice','discountPercent','xpCost'])if(Object.hasOwn(d,key))integer(d[key]);
  if(tx.type==='asset.sell'){if(result.cost!==0||tx.delta!==d.proceeds)throw Error('Inconsistent resale facts');}
  else if(tx.delta!==-result.cost)throw Error('Inconsistent economic debit');
- if(tx.type==='market.acquire'&&result.cost!==d.price+d.signingSurcharge)throw Error('Inconsistent acquisition cost');
+ if(tx.type==='market.acquire'&&(result.cost>d.price+d.signingSurcharge||result.cost<d.price-Math.floor(d.price/5)+d.signingSurcharge))throw Error('Inconsistent acquisition cost');
  if(tx.type==='personnel.terminate'&&result.cost!==d.fee)throw Error('Inconsistent termination fee');
  if(tx.type==='equipment.detach'&&result.cost!==0)throw Error('Detach must be free');
  if(tx.type==='service.apply'&&d.discountPercent>25)throw Error('Invalid discount facts');
