@@ -1,6 +1,6 @@
 import {regionalAllowed} from '../m5/d2/markets.js';
 import {effectiveRU,raceProgression} from '../m4/progression.js';
-import {endowmentsFor} from '../p3/boons.js';
+import {endowmentsFor,rivalEndowments} from '../p3/boons.js';
 import {enableE3,initializeE3Instance,eligibility,noStarterCandidate,publishOfficial,E3_RULES} from './progression.js';
 import {restoreServiceNative} from './condition.js';
 import {financialAnchorValue} from './anchor.js';
@@ -74,7 +74,7 @@ export function prepareRace(instance,index){
  const seeded=(a,b)=>random(gridSeed,a.id)-random(gridSeed,b.id)||(a.id<b.id?-1:1);
  if(index===0||event.grid==='random')entrants.sort(seeded);else{const ranks=new Map(instance.standings.map((x,i)=>[x.id,i]));entrants.sort((a,b)=>(event.grid==='reverse'?-1:1)*((ranks.get(a.id)??0)-(ranks.get(b.id)??0))||seeded(a,b));}
  const initial=createRace({...(event.surfaces?{surfaces:event.surfaces}:{}),course:event.course,overrides:event.config,format:event.format,weather:event.weather,entrants:entrants.map(e=>({ru:e.native}))});
- const nativeEntrants=entrants.map((e,i)=>({ru:e.player&&instance.m4?effectiveRU(e.native,instance.m4):structuredClone(e.native),...(e.player&&instance.m4?{progressionContext:instance.m6?{...raceProgression(instance.m4),version:instance.m6.interactionVersion===3?3:2,interactionRules:instance.m6.interactionVersion===3?'m6-p1-immediate-signs-abilities-v1':'m6-immediate-signs-abilities-v1',abilityId:instance.m6.activeAbility??null}:raceProgression(instance.m4)}:{}),q:initial.setup.entrants[i].q,lane:initial.setup.entrants[i].lane,...(e.affinityContext?{affinityContext:e.affinityContext}:{}),...(e.payrollContext?{payrollContext:e.payrollContext}:{}),...(e.player&&instance.coaching?{coachingContext:instance.coaching}:{}),...(e.player&&instance.m4&&endowmentsFor(instance)?{endowments:endowmentsFor(instance)}:{})}));
+ const nativeEntrants=entrants.map((e,i)=>({ru:e.player&&instance.m4?effectiveRU(e.native,instance.m4):structuredClone(e.native),...(e.player&&instance.m4?{progressionContext:instance.m6?{...raceProgression(instance.m4),version:instance.m6.interactionVersion===3?3:2,interactionRules:instance.m6.interactionVersion===3?'m6-p1-immediate-signs-abilities-v1':'m6-immediate-signs-abilities-v1',abilityId:instance.m6.activeAbility??null}:raceProgression(instance.m4)}:{}),q:initial.setup.entrants[i].q,lane:initial.setup.entrants[i].lane,...(e.affinityContext?{affinityContext:e.affinityContext}:{}),...(e.payrollContext?{payrollContext:e.payrollContext}:{}),...(e.player&&instance.coaching?{coachingContext:instance.coaching}:{}),...(e.player&&instance.m4&&endowmentsFor(instance)?{endowments:endowmentsFor(instance)}:{}),...(!e.player&&instance.m6?{endowments:rivalEndowments(instance,e.id)}:{})}));
  const raceId='e2-race-'+fingerprint([instance.id,index]).slice(0,40);
  return createRace({seed,...(event.surfaces?{surfaces:event.surfaces}:{}),course:event.course,overrides:event.config,format:event.format,weather:event.weather,entrants:nativeEntrants,playerId:entrants.find(e=>e.player)?.id??entrants[0].id,championshipContext:{version:1,instanceId:instance.id,raceId}}).setup;
 }

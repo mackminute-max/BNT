@@ -35,7 +35,7 @@ test('Phase 3 picking Boons levels them up and reaches the race as endowments', 
   const e = endowmentsFor(x); validateEndowments(e);
   const race = createRace(prepareRace(x, 0));
   assert.deepEqual(race.entrants.find(r => r.id === race.playerId).endowments, e);
-  assert.ok(race.entrants.filter(r => r.id !== race.playerId).every(r => !r.endowments));
+  assert.ok(race.entrants.filter(r => r.id !== race.playerId).every(r => r.endowments.boons.length === 2));
 });
 
 test('Phase 3 offers fall back to the original Run Rewards outside M6 careers', () => {
@@ -63,4 +63,14 @@ test('Phase 3 Series lengths: intro 3, then 5, 7 and 9 races', async () => {
   assert.deepEqual(nationalBoard('c', 'N1', {tier: 1, epoch: 0, localWins: 0, prestigeWon: false}, false).map(d => d.offer.value.schedule.length), [3]);
   assert.deepEqual(nationalBoard('c', 'N1', {tier: 1, epoch: 1, localWins: 0, prestigeWon: false}, true).map(d => d.offer.value.schedule.length), [5, 7, 9]);
   assert.deepEqual(nationalBoard('c', 'N1', {tier: 1, epoch: 1, localWins: 2, prestigeWon: false}, true).map(d => d.offer.value.schedule.length), [5, 7, 9]);
+});
+
+test('Phase 3 rivals carry 2 to 5 Boons by tier, mostly from one style', async () => {
+  const {rivalEndowments} = await import('../src/career/p3/boons.js');
+  const {BOONS} = await import('../src/sim/endowments.js');
+  const x = t => ({id: 'inst', m6: {type: 'local', competition: {tier: t}}});
+  assert.deepEqual([1, 2, 3, 4, 5].map(t => rivalEndowments(x(t), 'e1').boons.length), [2, 3, 4, 5, 5]);
+  assert.equal(rivalEndowments({id: 'i', m6: {type: 'intro', competition: {tier: 1}}}, 'e1').boons.length, 1);
+  assert.deepEqual(rivalEndowments(x(3), 'e1'), rivalEndowments(x(3), 'e1'));
+  for (let i = 0; i < 20; i++) { const e = rivalEndowments(x(4), 'e' + i); validateEndowments(e); assert.ok(e.boons.every(b => BOONS[b.id].effect.kind !== 'charge')); }
 });

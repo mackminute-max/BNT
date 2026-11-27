@@ -3,6 +3,7 @@
 // Boons last for the championship (they live in x.m4.run, which is cleared at
 // settlement or withdrawal) and are handed to the race as `endowments`.
 import {BOONS, STYLES, RARITY, LEVEL, ENDOWMENT_RULES, boonStrength} from '../../sim/endowments.js';
+import {fingerprint} from '../cycles/contracts.js';
 
 export const P3_OFFER_RULES = 'p3-offers-v1';
 export const RARITY_WEIGHTS = Object.freeze({Common: 70, Rare: 24, Epic: 6});
@@ -80,4 +81,20 @@ export function applyBoon(x, d, {driver, beasts}) {
   if (i >= 0) run[i] = entry; else run.push(entry);
   if (d.pact) for (const a of [driver, ...beasts]) a.condition = Math.max(1, a.condition - PACT_COST);
   return {boon: entry, pactCost: d.pact ? PACT_COST : 0};
+}
+
+// Rivals carry Boons too (Mack, 2026-11-26): 2 to 5 by tier, mostly from one
+// style so each rival plays a recognisable way. Charge Boons are left out
+// because rivals have no Active Ability.
+export function rivalEndowments(x, entrantId) {
+  const tier = x?.m6?.competition?.tier ?? 1, intro = x?.m6?.type === 'intro' || x?.m6?.competition?.type === 'intro';
+  const count = intro ? 1 : Math.min(5, tier + 1);
+  const h = k => BigInt('0x' + fingerprint(['p3-rival-boons-v1', x.id, entrantId, k]).slice(0, 12));
+  const style = STYLES[Number(h('style') % BigInt(STYLES.length))];
+  const usable = Object.values(BOONS).filter(b => b.effect.kind !== 'charge');
+  const pool = [...usable.filter(b => b.style === style), ...usable.filter(b => b.style === style), ...usable.filter(b => b.style !== style)];
+  const picked = [];
+  for (let i = 0; picked.length < count && i < 40; i++) { const b = pool[Number(h('pick:' + i) % BigInt(pool.length))]; if (!picked.includes(b)) picked.push(b); }
+  const rarity = tier >= 4 ? 'Rare' : 'Common';
+  return {rules: ENDOWMENT_RULES, boons: picked.map(b => ({id: b.id, level: 1, rarity}))};
 }
