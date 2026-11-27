@@ -214,6 +214,7 @@ export function createRace({
     hazards: [],
     wrecks: {},
     contactHistory: {},
+    ...(units.some(endowed)?{endowCursor:0,endowAttackers:{}}:{}),
     pendingImpacts: [],
     impactsThisTick: 0,
     nextImpact: 1,

@@ -51,3 +51,17 @@ test('Phase 3 Boon bonuses stack within their caps', () => {
   assert.equal(endowBonus(s, a, 'combat'), CAPS.combat);
   assert.equal(endowBonus(s, s.entrants.find(r => r.id === 'B'), 'combat'), 0);
 });
+
+test('Phase 3 endowed races checkpoint, restore mid-race and clear officially', async () => {
+  const {checkpointRace, restoreRace, clearedNativeResult} = await import('../src/sim/foundation/checkpoint.js');
+  const {step} = await import('../src/sim/race.js');
+  const all = boons(Object.keys(BOONS)), endow = {A: all, C: all};
+  const full = race(endow);
+  const s = createRace({seed: 21, format: 'Combat', entrants: field(endow), overrides: {laps: 3}});
+  while (s.tick < 900) step(s);
+  const id = {profileId: 'p', careerId: 'c', instanceId: 'i', raceId: 'r'};
+  const back = restoreRace(checkpointRace(s, id), {identity: id});
+  run(back);
+  assert.equal(digest(back), digest(full));
+  assert.ok(clearedNativeResult(full));
+});
