@@ -44,6 +44,20 @@ export const BOONS = Object.freeze(Object.fromEntries([
   boon('smoke-screen', 'Smoke Screen', 'Schemer', 'contact', {kind: 'buff', stat: 'shield', amount: .2, seconds: 3}, 4, 'Contact gives {shield} damage reduction for {seconds} s (every 4 s).'),
 ].map(b => [b.id, b])));
 
+// Capstones (Phase 3): holding 3 or more Boons of one style unlocks that style's
+// always-on bonus for the rest of the Series.
+export const CAPSTONE_AT = 3;
+export const CAPSTONES = Object.freeze({
+  Bruiser: Object.freeze({name: 'Butcher', stat: 'combat', amount: .1, text: '+10% combat at all times.'}),
+  Speedster: Object.freeze({name: 'Quicksilver', stat: 'speed', amount: .04, text: '+4% top speed at all times.'}),
+  Stayer: Object.freeze({name: 'Ironclad', stat: 'shield', amount: .15, text: '15% damage reduction at all times.'}),
+  Schemer: Object.freeze({name: 'Mastermind', stat: 'handling', amount: .05, text: '+5% handling, and your Boons recharge twice as fast.'}),
+});
+export function capstones(boons) {
+  const n = {};
+  for (const b of boons ?? []) { const st = BOONS[b.id]?.style; if (st) n[st] = (n[st] ?? 0) + 1; }
+  return STYLES.filter(st => (n[st] ?? 0) >= CAPSTONE_AT);
+}
 export function boonStrength(b, level, rarity) { return (RARITY[rarity] ?? 1) * LEVEL[Math.min(LEVEL.length, level) - 1]; }
 export function validateEndowments(e) {
   if (e === undefined) return;
@@ -86,7 +100,9 @@ function apply(s, r, b, def) {
   if (fx.kind === 'fatigue') { const n = fx.amount * k; for (const x of r.ru.beasts) x.fatigue = Math.max(0, x.fatigue - n); return {fatigue: -n}; }
   if (fx.kind === 'strain') { const n = fx.amount * k; r.ru.driver.strain = Math.max(0, r.ru.driver.strain - n); return {strain: -n}; }
   if (fx.kind === 'charge') {
-    const m = r.m6; if (!m || m.charges !== 0 || m.activeAbility || m.pendingAbility || !r.progressionContext?.abilityId) return null;
+    const m = r.m6; if (!m || m.activeAbility || m.pendingAbility || !r.progressionContext?.abilityId) return null;
+    if (m.spent) { if (!m.spent.length) return null; m.spent.pop(); m.charges++; return {charges: m.charges}; }
+    if (m.charges !== 0) return null;
     m.charges = 1; return {charges: 1};
   }
   return null;
@@ -114,7 +130,7 @@ export function endowBoundary(s) {
         if (!keys.includes(def.trigger) || s.tick < (r.endow.cool[b.id] ?? 0)) continue;
         const result = apply(s, r, b, def);
         if (!result) continue;
-        if (def.cooldown) r.endow.cool[b.id] = s.tick + Math.ceil(def.cooldown / s.config.dt);
+        if (def.cooldown) r.endow.cool[b.id] = s.tick + Math.ceil(def.cooldown / s.config.dt / (capstones(r.endowments.boons).includes('Schemer') ? 2 : 1));
         emit(s, 'BOON_FIRED', [r.id], {boonId: b.id, trigger: def.trigger, ...result});
       }
     }
@@ -130,6 +146,7 @@ export function endowBonus(s, r, stat) {
     const def = BOONS[b.id];
     if (def.trigger === 'leading' && r.status === 'Racing' && leader(s)?.id === r.id) n += def.effect.amount * boonStrength(def, b.level, b.rarity);
   }
+  for (const st of capstones(r.endowments.boons)) if (CAPSTONES[st].stat === stat) n += CAPSTONES[st].amount;
   return Math.min(CAPS[stat] ?? n, n);
 }
 export function endowDerived(s, r, d) {

@@ -60,7 +60,7 @@ export function portrait(ancestry, sex, index = 0) {
   const ears = ['A07', 'A08', 'A09'].includes(ancestry) ? '<path d="M64 70l-14-16 6 26zM136 70l14-16-6 26z" fill="' + tone + '"/>' : '';
   const horns = ancestry === 'A12' ? '<path d="M70 40l-12-22 22 14zM130 40l12-22-22 14z" fill="#e6d3a3"/>' : '';
   const beard = sex !== 'female' && ['A04', 'A05'].includes(ancestry) ? '<path d="M70 92q30 40 60 0v14q-30 30-60 0z" fill="#b0521f"/>' : '';
-  return `<svg class="bt-portrait" viewBox="0 0 200 260" aria-hidden="true"><rect width="200" height="260" fill="#2a1d14"/><path d="M0 200 Q100 160 200 200 V260 H0Z" fill="#3d2a1c"/>${hair}${horns}${ears}<ellipse cx="100" cy="80" rx="38" ry="44" fill="${tone}"/>${beard}<path d="M40 260c0-60 26-90 60-90s60 30 60 90z" fill="${cloth}"/><path d="M84 170h32l-16 30z" fill="#FFBC19"/><text x="100" y="252" text-anchor="middle" fill="#ffffff88" font-family="Helvetica,Arial" font-size="9" letter-spacing="2">PLACEHOLDER PORTRAIT</text></svg>`;
+  return `<svg class="bt-portrait" viewBox="0 10 200 200" aria-hidden="true"><rect width="200" height="260" fill="#2a1d14"/><path d="M0 200 Q100 160 200 200 V260 H0Z" fill="#3d2a1c"/>${hair}${horns}${ears}<ellipse cx="100" cy="80" rx="38" ry="44" fill="${tone}"/>${beard}<path d="M40 260c0-60 26-90 60-90s60 30 60 90z" fill="${cloth}"/><path d="M84 170h32l-16 30z" fill="#FFBC19"/><text x="100" y="204" text-anchor="middle" fill="#ffffff88" font-family="Helvetica,Arial" font-size="9" letter-spacing="2">PLACEHOLDER PORTRAIT</text></svg>`;
 }
 
 /** Placeholder package illustration: a small stable yard tinted per package. */

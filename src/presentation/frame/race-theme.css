@@ -29,7 +29,7 @@ button:disabled{background:var(--bt-charcoal)!important;color:var(--bt-gray)!imp
 #start{font-size:22px!important}
 button.p2-sign-card{font-family:var(--bt-body)!important;font-size:14px!important;letter-spacing:0;text-align:left;text-shadow:none;background:#140c08!important;border:2px solid #6b5235!important}
 button.p2-sign-card strong,button.p2-sign-card b{font-family:var(--bt-display);font-size:17px;letter-spacing:.04em;font-weight:400;color:var(--bt-white)}
-button.p2-sign-card[aria-pressed=true],button.p2-sign-card.active,button.p2-sign-card.queued,button.p2-sign-card[aria-current=true]{border-color:var(--gold)!important;background:#3a2612!important;box-shadow:inset 0 0 0 1px var(--gold)!important}
+button.p2-sign-card[data-active=true],button.p2-sign-card.active,button.p2-sign-card.queued,button.p2-sign-card[aria-current=true]{border-color:var(--gold)!important;background:#3a2612!important;box-shadow:inset 0 0 0 1px var(--gold)!important}
 button.p2-sign-card:hover:enabled{border-color:var(--bt-hover)!important;background:#2a1a10!important}
 select,input{background:var(--bt-charcoal)!important;color:var(--bt-white)!important;border:1px solid var(--bt-bronze)!important}
 #radio,.radio{background:#0d0907!important;border:1px solid #4a3626!important;color:var(--text)!important}
@@ -37,3 +37,7 @@ select,input{background:var(--bt-charcoal)!important;color:var(--bt-white)!impor
 canvas#map{max-height:28vh;object-fit:contain}
 :focus-visible{outline:3px solid var(--gold)!important;outline-offset:2px}
 #p21RaceMeta{font-size:.7em;color:var(--text);opacity:.85;font-family:inherit;margin-left:.2em}
+
+/* Mack 2026-11-27: the highlight follows the strategy in force, not the hidden picker. Queued shows dashed. */
+button.p2-sign-card[data-selected=true]:not([data-active=true]){box-shadow:none!important}
+button.p2-sign-card[data-queued=true]:not([data-active=true]){border-style:dashed!important;border-color:var(--gold)!important}

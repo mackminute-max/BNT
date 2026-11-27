@@ -32,7 +32,7 @@ const racePanel = $('race').closest('.panel'), signPanel = $('sign').closest('.p
 const deck = document.querySelector('.command-deck');
 primary.append(signPanel, controls); deck.remove();
 signPanel.classList.add('p21-sign-bar'); controls.classList.add('panel', 'p21-race-controls');
-text(signPanel.querySelector('h2'), 'STRATEGY SIGNS'); text(controls.querySelector('h2'), 'Race Controls');
+text(signPanel.querySelector('h2'), 'STRATEGY'); text(controls.querySelector('h2'), 'Race Controls');
 const remaining = node('span', 'p21-opportunities'); remaining.id = 'p21Opportunities'; remaining.setAttribute('role', 'status'); signPanel.querySelector('h2').append(remaining);
 // The six cards and original queue/select/cancel/lower controls are moved, never cloned.
 const hint = signPanel.querySelector('#p2SignChoices + .hint'); if (hint) hint.hidden = true;

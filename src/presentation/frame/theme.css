@@ -178,7 +178,7 @@ body:has(#m1-title:not([hidden])) #m1-wheel,body:has(#bt-splash:not([hidden])) #
 .bt-swatches{display:flex;flex-wrap:wrap;gap:6px}
 .bt-swatch{width:36px;height:36px;min-height:0!important;padding:0!important;border:2px solid #0008!important;clip-path:none!important;background:var(--c)!important;border-radius:2px}
 .bt-swatch[aria-pressed=true]{outline:3px solid var(--bt-gold);outline-offset:2px;border-color:#fff!important}
-.bt-portrait{display:block;width:100%;max-width:260px;aspect-ratio:3/4;margin:0 auto;border:3px solid var(--bt-gold);background:linear-gradient(180deg,#3a2a1f,#1a120d)}
+.bt-portrait{display:block;width:100%;max-width:260px;aspect-ratio:1/1;margin:0 auto;border:3px solid var(--bt-gold);background:linear-gradient(180deg,#3a2a1f,#1a120d)}
 .bt-portrait-row{display:flex;align-items:center;justify-content:center;gap:12px}
 .bt-nation-art{width:100%;height:180px;border:3px solid var(--bt-bronze);display:block}
 .bt-package-hero{width:100%;height:150px;display:block;border:2px solid var(--bt-bronze)}
@@ -233,3 +233,5 @@ body.m2-creation-open #m1-wheel{display:none}
 #m1-title .bt-menu-logo,#m1-title .bt-menu-scene{display:none}
 #m1-title-notice,#m1-loading{background:#09090bb3;padding:4px 8px;border-radius:2px}
 #m1-title-notice:empty{display:none}
+.p3-fallen-own strong{color:var(--bt-crimson,#c31e2c)}.p3-grim{border-color:var(--bt-crimson,#c31e2c)!important}
+.p3-warning{color:#ffd27a;border-left:4px solid var(--bt-crimson,#c31e2c);padding-left:8px}

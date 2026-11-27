@@ -185,7 +185,7 @@ export function createRace({
       nextAttackTime: 0,
       reactionsRemaining: consequenceTuning.reactionBudget,
       defending: false,
-      ...([2,3].includes(e.progressionContext?.version)?{m6:{charges:e.progressionContext.abilityId?1:0,pendingAbility:null,activeAbility:null,throughTick:0}}:{}),
+      ...([2,3].includes(e.progressionContext?.version)?{m6:e.progressionContext.abilities?{charges:e.progressionContext.abilities.length,pendingAbility:null,activeAbility:null,throughTick:0,spent:[]}:{charges:e.progressionContext.abilityId?1:0,pendingAbility:null,activeAbility:null,throughTick:0}}:{}),
       signs: { remaining: [2,3].includes(e.progressionContext?.version)?(t.course&&!t.closed?t.checkpoints.length+1:c.laps)+e.progressionContext.signBonus:e.progressionContext?Math.min(100,tuning.signUses+e.progressionContext.signBonus):tuning.signUses, pending: null, active: null },
       ai: {
         nextDecision: 0,
