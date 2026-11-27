@@ -1,4 +1,5 @@
 // Presentation projections only. Native event history remains intact.
+import {BOONS} from '../sim/endowments.js';
 export function interaction(event){
  const e=event.effects??{},ids=event.participants??[];
  const base={id:event.id,tick:event.tick,time:event.time,participants:[...ids],entityId:ids[0],source:event.type};
@@ -6,6 +7,7 @@ export function interaction(event){
  if(event.type==='DAMAGE'&&Number.isFinite(e.amount)&&e.amount>0)return {...base,kind:'damage',label:`−${(e.amount<.1?e.amount.toPrecision(2):e.amount.toFixed(1))} ${e.component}`,amount:e.amount,component:e.component,crit:e.crit===true,contactId:e.contactId,color:e.crit?'#ffe14d':'#ff8a79'};
  if(event.type==='ATTACK'&&typeof e.success==='boolean')return {...base,kind:e.success?'hit':'defense',entityId:e.defender??ids[1],label:e.success?(e.crit?'CRITICAL HIT':'HIT'):e.reacted?'DEFENDED':'ATTACK RESISTED',color:e.success?(e.crit?'#ffe14d':'#ff7a5c'):'#8bd8ff',attacker:e.attacker,defender:e.defender,crit:e.crit===true,action:e.action};
  if(event.type==='ATTACK_INVALIDATED')return {...base,kind:'invalid',label:'ATTACK NOT EXECUTED',reason:e.reason,color:'#b3bfcb'};
+ if(event.type==='BOON_FIRED'&&BOONS[e.boonId])return {...base,kind:'boon',label:'✦ '+BOONS[e.boonId].name.toUpperCase(),boonId:e.boonId,color:'#d9a6ff'};
  if(event.type==='WRECK_IMPACT')return {...base,kind:'impact',label:'WRECK IMPACT',color:'#ffb587'};
  if(event.type==='CONTROL_CHANGED'&&e.control)return {...base,kind:'control',label:e.control==='Normal'?'CONTROL RESTORED':`CONTROL: ${e.control}`,color:e.control==='Normal'?'#86e0bd':'#f5a9f4'};
  return null;
