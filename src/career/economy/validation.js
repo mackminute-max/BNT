@@ -4,6 +4,7 @@ import {REGISTRY_NAMES,REGISTRY_LINKS} from '../registries.js';
 import {INJURIES3,TIERS,TERMS,UPGRADES} from './catalog.js';
 import {ratingKeys} from './records.js';
 import {compare,add,decimal} from './arithmetic.js';
+import {facilityCapacity,facilityLevels} from '../m6/facilities.js';
 function number(n,min=0,max=100){if(!Number.isFinite(n)||n<min||n>max)throw Error('Invalid economy record number');}
 function integer(n,min=0,max=Number.MAX_SAFE_INTEGER){if(!Number.isSafeInteger(n)||n<min||n>max)throw Error('Invalid economy record integer');}
 const COMMON=['id','ownerCareerId','references','recordVersion','name'];
@@ -61,6 +62,7 @@ export function validateGraph3(state){
  const properties=Object.values(r.properties);if(properties.length!==1||Object.values(r.facilities).filter(f=>f.descriptiveOnly===true).length!==1)throw Error('Invalid stable home');
  const property=properties[0],caps={...BASIC_CAPACITY},upgrades=new Set();
  for(const f of Object.values(r.facilities)){if(f.references.property?.[0]!==property.id)throw Error('Facility property mismatch');if(f.descriptiveOnly===false){if(upgrades.has(f.upgradeId))throw Error('Duplicate permanent upgrade');upgrades.add(f.upgradeId);const u=UPGRADES[f.upgradeId];if(u.capacity)caps[u.capacity]+=u.amount;}}
+ {const extra=facilityCapacity(facilityLevels(state));for(const k of Object.keys(caps))caps[k]+=extra[k];}
  for(const k of Object.keys(caps))if(property.capacities[k]!==caps[k])throw Error('Facility capacity discrepancy');
  for(const [kind,cap] of [['personnel','drivers'],['specialists','specialists'],['beasts','beasts'],['chariots','chariots']])if(Object.keys(r[kind]).length>caps[cap])throw Error('Capacity exceeded: '+cap);
 }

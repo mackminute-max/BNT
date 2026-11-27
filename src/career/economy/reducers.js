@@ -1,3 +1,4 @@
+import {facilityLevels,repairDiscount,careDiscount} from '../m6/facilities.js';
 import {componentReasons} from '../component-eligibility.js';
 import {canonical} from '../../core/determinism.js';
 import {freeze,integrityStatus} from '../assets.js';
@@ -18,7 +19,7 @@ function asset(state,key,allowed=['personnel','beasts','chariots','equipment','s
 export function hasUpgrade(state,key){return Object.values(state.management.registries.facilities).some(f=>f.descriptiveOnly===false&&f.upgradeId===key);}
 function activeRole(state,role){const r=state.management.registries;return Object.values(r.specialists).some(p=>p.role===role&&p.available&&['Healthy','Minor'].includes(p.injury)&&p.references.contract?.length===1&&r.contracts[p.references.contract[0]]?.cyclesRemaining>0);}
 function assigned(record){if(record.references.assignment?.length)throw Error('Asset is assigned: explicitly disassemble the RU first');}
-function serviceDiscount(state,service){let discount=0;if(service.role&&activeRole(state,service.role))discount+=15;if(service.workshop&&hasUpgrade(state,'workshop'))discount+=10;if(service.ward&&hasUpgrade(state,'treatment-ward'))discount+=10;return Math.min(25,discount);}
+function serviceDiscount(state,service){let discount=0;if(service.role&&activeRole(state,service.role))discount+=15;if(service.workshop&&hasUpgrade(state,'workshop'))discount+=10;if(service.ward&&hasUpgrade(state,'treatment-ward'))discount+=10;const f=facilityLevels(state);if(service.workshop)discount+=repairDiscount(f);if(service.registry!=='chariots'&&service.field==='injury')discount+=careDiscount(f);return Math.min(50,discount);}
 export function resaleValue(category,record){
  const e=record.economics;if(category==='equipment')return Math.min(e.acquisitionBasis,rounded(mul(e.acquisitionBasis,0.4),'floor'));
  if(!['beast','chariot'].includes(category))throw Error('Personnel cannot be resold');
