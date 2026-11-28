@@ -7,7 +7,15 @@
 import {hash} from '../core/determinism.js';
 import {BOONS} from '../sim/endowments.js';
 import {ABILITIES} from '../sim/m6-interaction.js';
-import {LINES, COLOR_KEYS, ANNOUNCERS, SPONSORS} from './radio-lines.js';
+import {LINES as BOOTH_LINES, COLOR_KEYS, ANNOUNCERS, SPONSORS} from './radio-lines.js';
+import {WBNT_LINES, WBNT_NETWORK_KEYS, NETWORK} from './radio-wbnt-lines.js';
+// Two channels (Mack 2026-11-27): 'wbnt' carries the color commentary and only the
+// race highlights, with a network intro, pregame ads and, in long races after the
+// halfway point, product and network plugs. 'pbp' is the full play-by-play with no
+// color. 'all' is the original single booth (kept for broadcast() and tests).
+export const CHANNELS = Object.freeze({wbnt: {name: 'WBNT', text: NETWORK.tagline}, pbp: {name: 'Play-by-play', text: 'Every move, called live'}});
+const LINES = {...BOOTH_LINES, ...WBNT_LINES};
+const PLUG_GAP = 25;
 
 const PRIORITY = new Set(['RACE_STARTED', 'RU_FINISHED', 'RACE_ENDED', 'RACE_STALLED', 'RU_RETIRED', 'FINAL_LAP', 'LEAD_CHANGED']);
 const GAP = 1.2, QUIET = 7, COLOR_GAP = 12;
@@ -15,13 +23,13 @@ const WEATHER = {Rain: 'rain', 'Heavy Rain': 'rain', Mud: 'mud', Dust: 'dust', W
 const COLOR_ORDER = ['rivalry', 'style', 'sponsor', 'player', 'lore', 'betting', 'weather', 'quiet', 'lore', 'sponsor', 'betting'];
 const defaultContext = () => globalThis.P1?.session?.display?.radio ?? null;
 
-export class RaceRadio {
-  constructor({context = defaultContext} = {}) { this.context = context; this.reset(); }
+export class RadioChannel {
+  constructor({context = defaultContext, mode = 'all'} = {}) { this.context = context; this.mode = mode; this.reset(); }
   reset() {
     this.cursor = 0; this.lines = []; this.last = new Map(); this.used = new Map();
     this.lastTime = -Infinity; this.lastColor = -Infinity; this.colorTurn = 0;
     this.started = false; this.ended = false; this.finishers = 0; this.finalLap = false;
-    this.hitBy = new Map(); this.leader = null; this.retired = new Map(); this.playerPlace = null; this.playerOut = false;
+    this.hitBy = new Map(); this.leader = null; this.firstLap = undefined; this.lastPlug = -Infinity; this.plugTurn = 0; this.retired = new Map(); this.playerPlace = null; this.playerOut = false;
   }
   consumeBatch(events, options = {}) { this.cursor = 0; const lines = this.consume(events, options); this.cursor = 0; return lines; }
   consume(events, {enabled = true} = {}) {
@@ -42,7 +50,9 @@ export class RaceRadio {
   say(e, key, tokens, {force = false} = {}) {
     const pool = LINES[key];
     if (!pool?.length) return false;
-    if (!force && e.time - this.lastTime < GAP) return false;
+    const speaker = WBNT_NETWORK_KEYS.has(key) ? 'network' : COLOR_KEYS.has(key) || key === 'plug_product' ? 'color' : 'pbp';
+    if (this.mode === 'pbp' && speaker !== 'pbp') return false;
+    if (!force && e.time - this.lastTime < (this.mode === 'pbp' ? GAP / 2 : GAP)) return false;
     const used = this.used.get(key) ?? new Set();
     if (used.size >= pool.length) used.clear();
     const free = pool.map((_, i) => i).filter(i => !used.has(i)), start = hash(`${e.id}:${key}:${this.lines.length}`) % free.length;
@@ -50,8 +60,7 @@ export class RaceRadio {
       const i = free[(start + k) % free.length], text = fill(pool[i], tokens);
       if (text === null) continue;
       used.add(i); this.used.set(key, used);
-      const speaker = COLOR_KEYS.has(key) ? 'color' : 'pbp';
-      this.lines.push({eventId: e.id, time: e.time, type: 'RADIO', key, speaker, text: `${ANNOUNCERS[speaker].short}: ${text}`});
+      this.lines.push({eventId: e.id, time: e.time, type: 'RADIO', key, speaker, channel: this.mode, text: `${speaker === 'network' ? NETWORK.short : ANNOUNCERS[speaker].short}: ${text}`});
       this.lastTime = e.time;
       if (speaker === 'color') this.lastColor = e.time;
       return true;
@@ -60,11 +69,27 @@ export class RaceRadio {
   }
   follow(e, key, tokens, chance = 2) { if (hash(`${e.id}:follow:${key}`) % chance === 0) this.say(e, key, tokens, {force: true}); }
   // ---- events ----------------------------------------------------------------
+  // WBNT carries only the highlights; everything else is left to play-by-play.
+  highlight(e) {
+    const p = e.participants ?? [], fx = e.effects ?? {};
+    switch (e.type) {
+      case 'RACE_STARTED': case 'RU_RETIRED': case 'WRECK_CREATED': case 'INCIDENT': case 'FINAL_LAP': case 'RU_FINISHED': case 'RACE_ENDED': case 'RACE_STALLED': return true;
+      case 'LEAD_CHANGED': return e.time >= 2 && (this.isPlayer(fx.leader) || this.finalLap || (e.time - (this.last.get('wlead') ?? -Infinity) >= 15 && (this.last.set('wlead', e.time), true)));
+      case 'ATTACK': return !!fx.success && (!!fx.crit || this.grudge(fx.attacker, fx.defender) || this.isPlayer(fx.attacker) || this.isPlayer(fx.defender));
+      case 'OVERTAKE': return this.grudge(fx.passer, fx.passed) || (this.finalLap && (this.isPlayer(fx.passer) || this.isPlayer(fx.passed)));
+      case 'ABILITY_ACTIVATED': return this.isPlayer(p[0]);
+      default: return false;
+    }
+  }
   event(e, ctx) {
     const p = e.participants ?? [], fx = e.effects ?? {}, force = PRIORITY.has(e.type);
+    if (e.type === 'LAP_COMPLETED' && this.firstLap === undefined) this.firstLap = e.time;
+    if (e.type === 'LEAD_CHANGED' && fx.leader) this.leader = fx.leader;
+    if (this.mode === 'wbnt' && !this.highlight(e)) { this.quiet(e); return; }
     switch (e.type) {
       case 'RACE_STARTED': {
         if (this.started) return; this.started = true;
+        if (this.mode === 'wbnt') { const t = this.tokens(e); this.say(e, 'wbnt_intro', t, {force: true}); this.say(e, 'wbnt_ad', t, {force: true}); this.say(e, 'wbnt_ad', this.tokens({...e, id: e.id + ':ad2'}), {force: true}); }
         this.intro(e, ctx);
         this.say(e, 'start', this.tokens(e), {force: true});
         return;
@@ -215,8 +240,18 @@ export class RaceRadio {
     if (g) this.say(e, 'intro_grudge', this.tokens(e, g[1], g[0]), f);
   }
   // Color commentary on quiet stretches.
+  // Halfway in a long race: about 2.5 minutes or more (estimated from the first lap), or a single-lap rally past 2 minutes.
+  halfway(e) {
+    const laps = this.ctx?.laps ?? 0;
+    if (laps >= 2) return this.firstLap !== undefined && this.firstLap * laps >= 150 && e.time >= this.firstLap * laps / 2;
+    return e.time >= 120;
+  }
   quiet(e) {
-    if (!this.started || this.ended || e.time - this.lastTime < QUIET || e.time - this.lastColor < COLOR_GAP) return;
+    if (this.mode === 'pbp' || !this.started || this.ended || e.time - this.lastTime < QUIET || e.time - this.lastColor < COLOR_GAP) return;
+    if (this.mode === 'wbnt' && e.time - this.lastPlug >= PLUG_GAP && this.halfway(e)) {
+      const key = this.plugTurn++ % 2 ? 'plug_network' : 'plug_product';
+      if (this.say(e, key, this.tokens(e), {force: true})) { this.lastPlug = e.time; this.lastColor = e.time; return; }
+    }
     const c = this.ctx, styled = (c?.entrants ?? []).filter(x => !x.player && x.style);
     for (let k = 0; k < COLOR_ORDER.length; k++) {
       const kind = COLOR_ORDER[(this.colorTurn + k) % COLOR_ORDER.length];
@@ -238,4 +273,18 @@ function fill(template, tokens) {
   return missing ? null : text;
 }
 const componentName = c => ({driver: 'driver', chariot: 'chariot', beasts: 'team', beast: 'team'})[c] ?? (typeof c === 'string' ? c.replace(/[-_]/g, ' ') : null);
-export function broadcast(events, context = null) { return new RaceRadio({context: () => context}).consume(events); }
+export function broadcast(events, context = null, mode = 'all') { return new RadioChannel({context: () => context, mode}).consume(events); }
+
+// The race view's radio: both channels run side by side; `lines` shows the one tuned in.
+export class RaceRadio {
+  constructor({context = defaultContext, channel = 'wbnt'} = {}) {
+    this.channels = {wbnt: new RadioChannel({context, mode: 'wbnt'}), pbp: new RadioChannel({context, mode: 'pbp'})};
+    this.channel = CHANNELS[channel] ? channel : 'wbnt';
+  }
+  get lines() { return this.channels[this.channel].lines; }
+  set lines(v) { this.channels[this.channel].lines = v; for (const [k, o] of Object.entries(this.channels)) if (k !== this.channel && o.lines.length > 200) o.lines = o.lines.slice(-200); }
+  reset() { for (const c of Object.values(this.channels)) c.reset(); }
+  consume(events, options) { for (const c of Object.values(this.channels)) c.consume(events, options); return this.lines; }
+  consumeBatch(events, options) { for (const c of Object.values(this.channels)) c.consumeBatch(events, options); return this.lines; }
+  tune(channel) { if (CHANNELS[channel]) this.channel = channel; return this.lines; }
+}

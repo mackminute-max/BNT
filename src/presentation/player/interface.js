@@ -71,6 +71,21 @@ const transcript = $('radio'), radioPanel = transcript.closest('.panel');
 text(radioPanel.querySelector('h2'), 'Race Radio');
 const latest = node('button', 'p21-latest', 'Latest commentary'); latest.id = 'radioLatest'; latest.type = 'button';
 const radioNotice = node('span', 'hint'); radioNotice.id = 'radioUnread'; radioPanel.append(latest, radioNotice);
+// Radio dials (Phase 4c, Mack 2026-11-27): tune WBNT (color and highlights) or the
+// play-by-play channel, and a knob to mute the music.
+const tuner = node('div', 'bt-tuner');
+const dial = node('div', 'bt-dial'), needle = node('span', 'bt-needle');
+const stations = [['wbnt', 'WBNT', '101.3'], ['pbp', 'Play-by-play', '88.7']];
+dial.append(node('span', 'bt-ticks'), needle);
+const stationButtons = stations.map(([id, name, freq], i) => { const b = node('button', 'bt-station'); b.type = 'button'; b.dataset.channel = id; b.style.left = (i ? 70 : 8) + '%'; b.append(node('strong', '', name), node('small', '', freq)); b.onclick = () => tune(id); dial.append(b); return b; });
+const musicKnob = node('button', 'bt-knob'); musicKnob.type = 'button'; musicKnob.id = 'btMusicKnob';
+const audio = () => { try { return parent.__btAudio?.() ?? null; } catch { return null; } };
+const drawKnob = () => { const muted = !!audio()?.musicMuted; musicKnob.dataset.off = String(muted); text(musicKnob, muted ? '♪ Music off' : '♪ Music on'); musicKnob.setAttribute('aria-pressed', String(muted)); };
+musicKnob.onclick = () => { try { const a = audio(); parent.__btSetAudio?.({musicMuted: !a?.musicMuted}); } catch {} drawKnob(); };
+const tagline = node('p', 'bt-tuner-tag');
+function tune(id) { globalThis.__btRadioTune?.(id); drawTuner(); }
+function drawTuner() { const ch = globalThis.__btRadioChannel?.() ?? 'wbnt'; stationButtons.forEach(b => b.dataset.on = String(b.dataset.channel === ch)); needle.style.left = ch === 'pbp' ? '78%' : '17%'; text(tagline, ch === 'pbp' ? 'Play-by-play: every move, called live by Rook Calloway.' : 'WBNT radio: Home of the Sundaran Open Cup and the Founders’ Cup.'); }
+tuner.append(dial, musicKnob); radioPanel.querySelector('h2').after(tuner, tagline); drawTuner(); drawKnob();
 let unread = 0, radioGeneration = null, hiddenRadioPosition = null;
 const updateUnread = () => { latest.disabled = nearRadioBottom(transcript); text(radioNotice, unread ? `${unread} new message${unread === 1 ? '' : 's'}` : 'Presented events · chronological order'); };
 latest.onclick = () => { transcript.scrollTop = transcript.scrollHeight; unread = 0; updateUnread(); };

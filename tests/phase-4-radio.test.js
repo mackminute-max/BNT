@@ -8,3 +8,13 @@ test('the booth has 600+ lines and two announcers',()=>{assert(lineCount()>=600)
 test('a race gets an intro, play-by-play, color on quiet stretches and a wrap',()=>{const lines=broadcast(race().events,ctx),text=lines.map(l=>l.text).join('\n');assert.match(lines[0].text,/^Rook: /);assert(lines.some(l=>l.speaker==='color'));assert(lines.some(l=>l.key==='intro_grudge'));assert(lines.some(l=>l.key.startsWith('intro_rival_')));assert(lines.some(l=>l.key==='start'));assert(lines.some(l=>l.key==='wrap_sign_off'));assert(!/\{[a-z]+\}/.test(text));assert(lines.every(l=>l.type==='RADIO'));});
 test('no line repeats until its pool is used up, and output is deterministic',()=>{const s=race(),a=broadcast(s.events,ctx),b=broadcast(s.events,ctx);assert.deepEqual(a,b);const seen=new Map();for(const l of a){const k=l.key+'|'+l.text;seen.set(k,(seen.get(k)??0)+1);}for(const [k,n] of seen)if(LINES[k.split('|')[0]].length>3)assert.equal(n,1,k);});
 test('without context the radio still talks in plain ids, incrementally',()=>{const s=race(),r=new RaceRadio({context:()=>null});const half=Math.floor(s.events.length/2);r.consume(s.events.slice(0,half));r.consume(s.events);assert(r.lines.length>5);assert(!r.lines.some(l=>/undefined|null/.test(l.text)));});
+// Phase 4c (Mack 2026-11-27): two channels.
+const longCtx={...ctx,laps:4};
+const longRace=()=>run(createRace({seed:5,format:'Combat',laps:4,entrants:field()}));
+test('WBNT opens with the network and two ads, carries color and highlights, and plugs after halfway',()=>{const s=longRace(),w=broadcast(s.events,longCtx,'wbnt'),all=broadcast(s.events,longCtx,'all');
+ assert.equal(w[0].key,'wbnt_intro');assert.deepEqual(w.slice(1,3).map(l=>l.key),['wbnt_ad','wbnt_ad']);assert.match(w[0].text,/^WBNT: /);
+ assert(w.some(l=>l.speaker==='color'));assert(!w.some(l=>['contact','damage_big','unstable','boon','rival_strategy'].includes(l.key)));
+ const plugs=w.filter(l=>/^plug_/.test(l.key));assert(plugs.length>=1,'plugs');const half=s.events.find(e=>e.type==='LAP_COMPLETED').time*2;assert(plugs.every(l=>l.time>=half));
+ assert(w.filter(l=>!/^(wbnt|plug)_/.test(l.key)).length<all.length,'WBNT is calmer than the old booth');});
+test('play-by-play has no color, ads or plugs',()=>{const s=longRace(),p=broadcast(s.events,longCtx,'pbp');assert(p.length>10);assert(p.every(l=>l.speaker==='pbp'&&/^Rook: /.test(l.text)));});
+test('the race radio runs both channels and switches between them',()=>{const s=longRace(),r=new RaceRadio({context:()=>longCtx});r.consume(s.events);const w=r.lines.length;r.tune('pbp');assert.notEqual(r.lines.length,w);assert(r.lines.every(l=>l.channel==='pbp'));r.tune('wbnt');assert.equal(r.lines.length,w);});
