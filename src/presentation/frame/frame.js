@@ -7,7 +7,7 @@ import {icon} from './art.js';
 // Sub-tab groups per destination, matched against each panel's heading.
 // Panels that match nothing join the first tab, so no function is ever hidden.
 const GROUPS = {
-  overview: [['Overview', /stable progress/i, '.m3ui-identity,.hs-stats'], ['Legacy', /legacy/i, '#m4-legacy'], ['Career Highlights', /accomplishment|highlight/i]],
+  overview: [['Overview', /stable progress/i, '.m3ui-identity,.hs-stats'], ['Legacy', /legacy/i, '#m4-legacy'], ['Career Highlights', /accomplishment|highlight/i], ['Active Quests', /^active quests$/i]],
   roster: [['Turnout', /active racing unit|turnout/i], ['Owned Roster', /owned roster|roster/i]],
   gambling: [['Race Book', /race book|spectator/i], ['Bones', /^bones$/i], ['Beast Pit', /beast pit/i]],
   workshop: [['Facilities', /facilit/i], ['Workshop', /workshop|engineering|training/i], ['Upgrades', /builders/i]],
