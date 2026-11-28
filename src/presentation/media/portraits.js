@@ -19,16 +19,24 @@ const ANCESTRY_TOKENS = Object.fromEntries(Object.entries(AFFINITY_RULES.ancestr
 const ANCESTRY_BY_TOKEN = Object.fromEntries(Object.entries(ANCESTRY_TOKENS).map(([id, t]) => [t.toLowerCase(), id]));
 const NATION_BY_TOKEN = Object.fromEntries(Object.entries(NATION_TOKENS).map(([id, t]) => [t.toLowerCase(), id]));
 const ROLE_TOKENS = new Set(Object.values(ROLES).map(r => r.toLowerCase()));
+// Batch 2 (Mack 2026-11-27): "Elf" in a file name means High Elf (Velmora's elves).
+ANCESTRY_BY_TOKEN.elf = 'A08';
+// Beast files name the species by its short label: Crown Boar (Brond) -> CrownBoar.
+const SPECIES_BY_TOKEN = Object.fromEntries(CATALOGS.beastSpecies.map(s => [token(s.label.replace(/\(.*\)/, '')).toLowerCase(), s.canonicalSpeciesId]));
+// Build variants: beasts are Base, Swift or Strong; chariots Basic, Speed or Combat.
+const VARIANTS = new Set(['base', 'swift', 'strong', 'basic', 'speed', 'combat']);
 
 export function parseArtName(name) {
   const parts = String(name).replace(/\.[a-z0-9]+$/i, '').split('_');
   if (parts[0] !== 'BNT' || parts[1] !== 'ART' || parts.length < 3) return null;
-  const out = {name, kind: parts[2], nation: null, generic: false, ancestry: null, sex: null, role: null, tags: []};
+  const out = {name, kind: parts[2], nation: null, generic: false, ancestry: null, sex: null, role: null, species: null, variant: null, tags: []};
   for (const raw of parts.slice(3)) {
     const t = raw.toLowerCase();
     if (/^\d+$/.test(t)) continue;
     if (GENERIC.has(raw)) out.generic = true;
     else if (NATION_BY_TOKEN[t]) out.nation = NATION_BY_TOKEN[t];
+    else if (out.kind === 'Beast' && SPECIES_BY_TOKEN[t]) out.species = SPECIES_BY_TOKEN[t];
+    else if (VARIANTS.has(t)) out.variant = t;
     else if (ANCESTRY_BY_TOKEN[t]) out.ancestry = ANCESTRY_BY_TOKEN[t];
     else if (t === 'male' || t === 'female') out.sex = t;
     else if (ROLE_TOKENS.has(t)) out.role = t;
@@ -68,14 +76,37 @@ export function pickArt(kind, who = {}) {
       if (generic.length) pool = generic;
     }
   }
+  if (kind === 'Beast') pool = pool.filter(f => f.species && f.species === who.species);
+  if (kind === 'Chariot') { const own = pool.filter(f => f.nation && f.nation === who.nation); pool = own.length ? own : pool.filter(f => f.generic || !f.nation); }
   if (!pool.length) return null;
-  const score = f => (role && f.role === role ? 8 : 0) + (who.ancestry && f.ancestry === who.ancestry ? 4 : 0) + (who.sex && f.sex === who.sex ? 2 : 0) + (who.nation && f.nation === who.nation ? 1 : 0);
+  const score = f => (who.variant && f.variant === who.variant ? 16 : 0) + (role && f.role === role ? 8 : 0) + (who.ancestry && f.ancestry === who.ancestry ? 4 : 0) + (who.sex && f.sex === who.sex ? 2 : 0) + (who.nation && f.nation === who.nation ? 1 : 0);
   const best = Math.max(...pool.map(score)), top = pool.filter(f => score(f) === best).sort((a, b) => a.name < b.name ? -1 : 1);
   const chosen = top[hash(who.key ?? JSON.stringify(who)) % top.length];
   return {name: chosen.name, src: globalThis.__BNT_MEDIA__.art[chosen.name]};
 }
 export const portraitFor = who => pickArt('Portrait', who);
 export const stableArt = who => pickArt('Stable', who);
+
+// Beasts and chariots (art batch 2). The build variant comes from the ratings:
+// a beast leaning on speed and agility is Swift, on power and toughness Strong;
+// a chariot leaning on rolling and handling is Speed, on protection and
+// durability Combat. Anything balanced is the Base or Basic build.
+export function buildVariant(category, a = {}) {
+  const n = k => Number(a[k]) || 0;
+  if (category === 'beast') { const d = n('speed') + n('agility') - n('power') - n('toughness'); return d >= 6 ? 'swift' : d <= -6 ? 'strong' : 'base'; }
+  const d = n('rollingEfficiency') + n('maneuverability') - n('protection') - n('durability');
+  return d >= 6 ? 'speed' : d <= -6 ? 'combat' : 'basic';
+}
+export function assetFacts(state, id, category) {
+  const p = state?.m6?.identities?.[id] ?? state?.m5?.identities?.[id];
+  const r = state?.management?.registries;
+  const attrs = r?.[category === 'beast' ? 'beasts' : 'chariots']?.[id]?.attributes ?? r?.marketOffers?.[id]?.template?.attributes ?? p?.attributes ?? {};
+  return {species: p?.speciesId ?? null, nation: p?.originNationId ?? p?.residentNationId ?? null, variant: buildVariant(category, attrs), key: id};
+}
+export function assetImg(state, id, category, cls = 'bt-portrait-img') {
+  const art = pickArt(category === 'beast' ? 'Beast' : 'Chariot', assetFacts(state, id, category));
+  return art ? `<img class="${cls}" src="${art.src}" alt="" data-art="${art.name}" loading="lazy" decoding="async">` : '';
+}
 
 // Pulls the facts a portrait needs from a saved career, for any person record.
 export function personFacts(state, id, role) {

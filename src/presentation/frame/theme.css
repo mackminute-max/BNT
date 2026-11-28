@@ -138,7 +138,7 @@ body:has(#m1-title:not([hidden])) #m1-wheel,body:has(#bt-splash:not([hidden])) #
 /* Home Stable overview hero (placeholder art) */
 #homeStable .m3ui-identity{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:0;padding:0;overflow:hidden;height:auto!important;max-height:none!important;min-height:max-content;border:3px solid var(--bt-gold);background:var(--bt-panel-solid)}
 #homeStable .m3ui-identity .m3ui-stable-art{grid-column:1/-1;grid-row:1;width:100%;height:220px;max-height:none;object-fit:cover;border:0;filter:sepia(.9) saturate(1.3) hue-rotate(-12deg) brightness(.85)}
-#homeStable .m3ui-identity>img:not(.m3ui-stable-art){position:absolute;right:18px;top:18px;width:150px;height:170px;object-fit:cover;border:3px solid var(--bt-gold);background:var(--bt-charcoal);z-index:2;filter:sepia(.8) saturate(1.2) hue-rotate(-12deg)}
+#homeStable .m3ui-identity>img:not(.m3ui-stable-art){position:absolute;right:18px;top:18px;width:150px;height:170px;object-fit:contain;border:3px solid var(--bt-gold);background:var(--bt-charcoal);z-index:2;filter:sepia(.8) saturate(1.2) hue-rotate(-12deg)}
 #homeStable .m3ui-identity>div{position:relative;z-index:1;grid-column:1/-1;grid-row:2;display:flex;align-items:center;gap:18px;padding:10px 16px;background:linear-gradient(180deg,var(--bt-oxblood),#2c070c);border-top:3px solid var(--bt-gold)}
 #homeStable .m3ui-identity h2{font:34px var(--bt-heading);margin:0;color:var(--bt-gold)}
 #homeStable .m3ui-identity .m3ui-owner{margin:0;font:20px var(--bt-heading);color:var(--bt-ivory)}
