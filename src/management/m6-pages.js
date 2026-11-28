@@ -57,7 +57,7 @@ export const LD_CSS=`<style>.bt-ld{display:grid;grid-template-columns:minmax(220
 .bt-ld-list .bt-ld-thumb{width:44px;height:44px;border:1px solid #c9a75a;display:grid;place-items:center;overflow:hidden;background:#2a2116;color:#f0c96a;font-weight:bold}.bt-ld-list .bt-ld-thumb img{width:100%;height:100%;object-fit:cover}
 .bt-ld-list b{display:block;font-weight:600}.bt-ld-list small{opacity:.8}.bt-ld-list .bt-ld-cost{color:#f0c96a;font-weight:bold;white-space:nowrap}
 .bt-ld-art{border:2px solid #c9a75a;min-height:340px;display:grid;place-items:center;background:radial-gradient(ellipse at center,#3a2b1a,#140e08);position:relative;overflow:hidden}
-.bt-ld-art img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}.bt-ld-art .bt-ld-sil{font-size:110px;opacity:.35;color:#c9a75a}
+.bt-ld-art img{width:100%;height:100%;object-fit:contain;object-position:center;position:absolute;inset:0}.bt-ld-art .bt-ld-sil{font-size:110px;opacity:.35;color:#c9a75a}
 .bt-ld-art figcaption{position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:rgba(0,0,0,.6);font-size:.8em;opacity:.85}
 .bt-ld:not(:has(.a1-card)){display:block}.bt-ld:not(:has(.a1-card)) .bt-ld-list,.bt-ld:not(:has(.a1-card)) .bt-ld-art{display:none}.bt-ld-profile .a1-cards{display:block}.bt-ld-profile .a1-card[data-bt-ld-off]{display:none}.bt-ld-profile .a1-card{max-height:62vh;overflow:auto}</style>`;
 const SIL={beast:'🐎',chariot:'⚙',equipment:'🛡',driver:'👤',specialist:'👤'};
