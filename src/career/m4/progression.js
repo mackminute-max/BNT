@@ -1,5 +1,6 @@
 import {eligibility} from '../championships/progression.js';
 import {ABILITIES} from '../../sim/m6-interaction.js';
+import {factionBoons} from '../m6/factions.js';
 import {scaleM6Completion} from '../m6/rewards.js';
 import {homeBatchD2} from '../m5/d2/generation.js';
 import {homeBatch} from '../m5/generation.js';
@@ -41,7 +42,7 @@ function offer(scope,s,x,sourceId,choices){const source={scope,profileId:s.profi
 function weighted(pool,roll){const total=pool.reduce((n,d)=>n+d.weight,0);let pick=Number(roll%BigInt(total)),j=0;for(;j<pool.length-1;j++){if(pick<pool[j].weight)break;pick-=pool[j].weight;}return pool[j];}
 function eligible(s,x,defs){return defs.flatMap(d=>{try{const p=runPreview(s,x,d);return [{...d,scope:'run',catalogVersion:M4_RULES,preview:p,quoteFingerprint:fingerprint(p)}];}catch{return [];}});}
 function phase3Offer(s,x,resultId){const roll=k=>BigInt('0x'+fingerprint([P3_OFFER_RULES,s.career.id,x.id,resultId,k]).slice(0,12)),choices=[];
- const boon=(k,not)=>{for(let a=0;a<6;a++){const d=drawBoon(x,i=>roll(k+':'+a+':'+i));if(d&&d.id!==not){const [c]=eligible(s,x,[d]);if(c)return c;}}return null;};
+ const boon=(k,not)=>{for(let a=0;a<6;a++){const d=drawBoon(x,i=>roll(k+':'+a+':'+i),s.schema===8?factionBoons(s):[]);if(d&&d.id!==not){const [c]=eligible(s,x,[d]);if(c)return c;}}return null;};
  const first=boon('boon');if(first)choices.push(first);
  const abilities=eligible(s,x,Object.keys(ABILITIES).map(id=>abilityDefinition(x,id)));
  const second=abilities.length?{...weighted(abilities,roll('ability')),category:'Active Ability'}:boon('boon-2',first?.id);if(second)choices.push(second);

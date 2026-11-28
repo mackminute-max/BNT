@@ -42,17 +42,20 @@ export function boonDefinition(x, boonId, rarity, pact) {
   return {
     id: 'p3-boon-' + boonId, kind: 'boon', boonId, rarity, level, pact: !!pact, style: def.style,
     name: (pact ? 'Blood Pact: ' : '') + def.name + roman,
-    category: `${def.style} Boon · ${shown}${owned ? ' · upgrade' : ''}`,
+    category: def.style === 'Faction' ? `Faction signature Boon${owned ? ' · upgrade' : ''}` : `${def.style} Boon · ${shown}${owned ? ' · upgrade' : ''}`,
     description: boonText(def, level, shown) + (pact ? ` Costs ${PACT_COST} condition from your driver and both beasts now.` : ''),
     weight: 10,
   };
 }
 
 // Deterministic draw: `roll(i)` returns a big non-negative integer for draw i.
-export function drawBoon(x, roll) {
-  const counts = styleCounts(x), pool = [];
+// factionTiers: [{boonId, tier}] from the faction unlocks you bought (Phase 4c).
+export function drawBoon(x, roll, factionTiers = []) {
+  const counts = styleCounts(x), pool = [], cap = {};
+  for (const f of factionTiers) cap[f.boonId] = f.tier;
   for (const def of Object.values(BOONS)) {
     const owned = ownedBoons(x).find(b => b.boonId === def.id);
+    if (def.style === 'Faction') { if (cap[def.id] && (owned?.level ?? 0) < cap[def.id]) pool.push({def, weight: 12}); continue; }
     if (owned && owned.level >= LEVEL.length) continue;
     pool.push({def, weight: (counts[def.style] ? 20 : 10) + (owned ? 5 : 0)});
   }
@@ -62,7 +65,9 @@ export function drawBoon(x, roll) {
   for (; j < pool.length - 1; j++) { if (pick < pool[j].weight) break; pick -= pool[j].weight; }
   const r = Number(roll(1) % 100n);
   let rarity = r < RARITY_WEIGHTS.Common ? 'Common' : r < RARITY_WEIGHTS.Common + RARITY_WEIGHTS.Rare ? 'Rare' : 'Epic';
-  const pact = roll(2) % BigInt(PACT_CHANCE) === 0n;
+  const faction = pool[j].def.style === 'Faction';
+  if (faction) rarity = 'Common';
+  const pact = !faction && roll(2) % BigInt(PACT_CHANCE) === 0n;
   if (pact) rarity = NEXT_RARITY[rarity];
   return boonDefinition(x, pool[j].def.id, rarity, pact);
 }
@@ -109,6 +114,7 @@ export function rivalLoadout(x, entrantId) {
     }
     const weighted = [];
     for (const b of Object.values(BOONS)) {
+      if (b.style === 'Faction') continue;
       if (b.effect.kind === 'charge' && !abilities.length) continue;
       const held = boons.find(x => x.id === b.id);
       if (held && held.level >= LEVEL.length) continue;
@@ -133,3 +139,7 @@ export function rivalAbilityContext(x, entrantId) {
   const {abilities} = rivalLoadout(x, entrantId);
   return abilities.length ? {version: 3, interactionRules: M6_P1_INTERACTION, abilityId: abilities[0].id, abilities, signBonus: 0, wearMultiplier: 1} : null;
 }
+
+// Plain words for each faction's signature Boon, at Level I, for the faction pages.
+import {FACTION_BOON_TEXT} from '../m6/factions.js';
+for (const def of Object.values(BOONS)) if (def.style === 'Faction') FACTION_BOON_TEXT[def.id] = `${def.name}: ${boonText(def, 1, 'Common')}`;

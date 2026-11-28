@@ -55,6 +55,21 @@ export function casualtyText(c) {
 // Once a Series is fully settled: the player's fallen leave the stable, and every
 // loss in the Series (the player's and rivals') goes on the memorial.
 export const MEMORIAL_LIMIT = 200;
+// A chariot or beast leaves the stable for good (killed, destroyed, or lost in a
+// race for pinks): its turnout assignment is dissolved and fitted gear comes off.
+export function removeAsset(s, kind, id) {
+  const r = s.management.registries, a = r[kind][id];
+  if (!a) return false;
+  for (const key of [...(a.references.assignment ?? [])]) {
+    const asg = r.assignments[key];
+    if (!asg) continue;
+    for (const k of ['personnel', 'beasts', 'chariots']) for (const subject of asg.references.subject) if (r[k][subject]) r[k][subject].references.assignment = [];
+    delete r.assignments[key];
+  }
+  if (kind === 'chariots') for (const eq of a.references.equipment ?? []) if (r.equipment[eq]) r.equipment[eq].references.installedOn = [];
+  delete r[kind][id];
+  return true;
+}
 export function buryFallen(s, x, removePerson) {
   const lost = x?.m6?.casualties ?? [];
   if (!lost.length) return;
@@ -65,16 +80,7 @@ export function buryFallen(s, x, removePerson) {
     if (!c.player) continue;
     const id = playerAssetId(player, c.member);
     if (c.member === 'driver') { const p = r.personnel[id]; if (p) removePerson(s, p, {resolveAssignment: true, reason: 'died'}); continue; }
-    const kind = c.member === 'chariot' ? 'chariots' : 'beasts', a = r[kind][id];
-    if (!a) continue;
-    for (const key of [...(a.references.assignment ?? [])]) {
-      const asg = r.assignments[key];
-      if (!asg) continue;
-      for (const k of ['personnel', 'beasts', 'chariots']) for (const subject of asg.references.subject) if (r[k][subject]) r[k][subject].references.assignment = [];
-      delete r.assignments[key];
-    }
-    if (kind === 'chariots') for (const eq of a.references.equipment ?? []) if (r.equipment[eq]) r.equipment[eq].references.installedOn = [];
-    delete r[kind][id];
+    removeAsset(s, c.member === 'chariot' ? 'chariots' : 'beasts', id);
   }
   if (m.fallen.length > MEMORIAL_LIMIT) m.fallen.splice(0, m.fallen.length - MEMORIAL_LIMIT);
 }
