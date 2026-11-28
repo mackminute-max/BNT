@@ -11,7 +11,7 @@ import {isM4} from '../career/m4/progression.js';
 import {legacyMarket,bindM4} from './m4.js';
 import {UI_P1,contextQuote} from './headquarters/context-actions.js';
 import {finances as playerFinances,services as playerServices,cleanPlayerCopy} from './headquarters/workflow.js';
-import {M3UI,homeDashboard,barnDashboard,mountBarnControls,beastReplacement} from './headquarters/consolidated.js';
+import {M3UI,homeDashboard,barnDashboard,lineupPreview,mountBarnControls,beastReplacement} from './headquarters/consolidated.js';
 import {activeTeam} from './headquarters/active-team.js';
 import {HQ_ENABLED,HQ_ROUTES,NAV_ORDER,HeadquartersRoutes,championshipName} from './headquarters/model.js';
 import {confirmAction} from './startup/dialogs.js';
@@ -73,13 +73,13 @@ export function mountPlayableStable(port){
   root.setAttribute('aria-busy',String(busy));
   let body='';
   if(page==='overview')body=(s?.schema===8?m6EventPanel(s):'')+homeDashboard(v)+(s?.schema===8?activeQuestsPanel(s):'');if(page==='gambling'&&s?.schema===8)body=denFlow.html(s);
-  if(page==='roster')body=barnDashboard(v);
+  if(page==='roster')body=s?.schema===8?m6Roster(v,s):barnDashboard(v);
   if(page==='markets')body=panel('Market',recruitmentCards(v,['driver','beast','chariot','specialist','equipment']))+panel('Capacity',capacitySummary(v));
   if(page==='championships'&&careerFlow)body=(()=>{let f=careerFlow.html(v);const w=s.schema===8?championshipBetting(s):'',sc=s.schema===8?m6ScoutPanel(s):'';f=f.includes('<!--bt-wager-->')?f.replace('<!--bt-wager-->',()=>w):f+w;return f.includes('<!--bt-scout-->')?f.replace('<!--bt-scout-->',()=>sc):f+sc;})();if(page==='world'&&s.schema===8)body=m6MapPage(s)+m6RivalsPage(s)+activeQuestsPanel(s)+m6FactionsPage(s)+m6WorldPage(s);
   if(page==='records')body=panel('Career records',table(['Championship','Outcome','Official events'],Object.values(s?.championshipFoundation?.instances??{}).map(x=>[x.offer.value.name,x.withdrawal?'Player '+x.withdrawal.kind.toLowerCase()+' withdrawal':phaseName(x.phase),x.raceResults.length])))+panel('Settlement history',table(['Championship','Cycle','Income','Closing treasury'],Object.values(s?.cycles?.statements??{}).map(x=>[championshipName(s,x.championshipId),x.cycle,x.income,x.treasuryAfter])))+e5Records(s);
   if(UI_P1&&page==='facilities')body=panel('Staff & Contracts',rosterCards(v,['personnel','specialists']))+contractTable(v);
   if(UI_P1&&page==='workshop')body=(s?.schema===8?m6FacilitiesPage(s):panel('Facilities',improvements(v)))+panel('Workshop',rosterCards(v,['chariots','equipment']));
-  if(UI_P1&&page==='services')body=playerServices(v);
+  if(UI_P1&&page==='services')body=s?.schema===8?m6Services(v):playerServices(v);
   if(UI_P1&&page==='finances')body=playerFinances(v);
   if(UI_P1&&page==='markets'){body+=panel('Owned assets for sale',rosterCards(v,['beasts','chariots','equipment']));}
   if(s?.schema===8){if(page==='records')body=m6Records(s,Number(root.dataset.m6RecordPage??0));if(['markets','facilities','workshop'].includes(page))body=m6Management(v,s,page);}$('content').innerHTML=body;if(s?.schema===8){bindM6World($('content'),s,port,run);bindM6Facilities($('content'),s,port,run);bindM6Factions($('content'),s,port,run);bindM6Events($('content'),s,port,run);bindChampionshipBetting($('content'),s,port,run);bindM6Pages($('content'),s,port,run,render);if(page==='gambling')denFlow.bind($('content'),s);for(const b of $('content').querySelectorAll('[data-m6-record-page]'))b.onclick=()=>{root.dataset.m6RecordPage=b.dataset.m6RecordPage;render();};}if(isM4(s)){bindM4($('content'),s,port,run,navigate);const show=kind=>{globalThis.__BNT_M4_MARKET__=kind;const ordinary=document.getElementById('m4-ordinary-market'),legacy=document.getElementById('m4-legacy-market');if(ordinary)ordinary.hidden=kind==='legacy';if(legacy)legacy.hidden=kind!=='legacy';};for(const b of $('content').querySelectorAll('[data-m4-category]'))b.onclick=()=>show(b.dataset.m4Category);show(globalThis.__BNT_M4_MARKET__??'ordinary');}
@@ -100,6 +100,12 @@ export function mountPlayableStable(port){
   };
   if(busy){for(const el of $('content').querySelectorAll('button,input,select'))el.disabled=true;if(UI_P1&&optionsSaveHost?.isConnected)for(const el of optionsSaveHost.querySelectorAll('button,input,select'))el.disabled=true;}
  }
+ // Recovery & Services (Interface Bible 08): Driver Care, Beast Care and Chariot Repair.
+ function m6Services(v){const tab=(name,html)=>`<div data-bt-tab="${name}">${html}</div>`,one=(name,key,kind,kinds,blurb)=>tab(name,panel(name,`<p>${blurb}</p>`+listDetail(key,kind,rosterCards(v,kinds),{owned:true})));
+  return PAGE_CSS+LD_CSS+one('Driver Care','care-driver','driver',['personnel'],'Treat injuries, help drivers recover and train their ratings. Work completes when you confirm it.')+one('Beast Care','care-beast','beast',['beasts'],'Treat injuries, rest and train your draft beasts.')+one('Chariot Repair','care-chariot','chariot',['chariots'],'Restore integrity, refurbish wear and engineer improvements.');}
+ // Roster & Barn (Interface Bible 04): Turnout, Drivers, Draft Team and Chariots tabs.
+ function m6Roster(v,s){const t=activeTeam(s,v.presentation),active=[t.driverId,...t.beastIds,t.chariotId].filter(Boolean),tab=(name,html)=>`<div data-bt-tab="${name}">${html}</div>`,iv={...v,inspectionOnly:true},owned=(key,kind,kinds)=>listDetail(key,kind,rosterCards(iv,kinds),{active,owned:true});
+  return PAGE_CSS+LD_CSS+tab('Turnout',panel('Active turnout',lineupPreview(s,v.presentation)))+tab('Drivers',panel('Drivers',owned('roster-driver','driver',['personnel'])))+tab('Draft Team',panel('Draft Team',owned('roster-beast','beast',['beasts'])))+tab('Chariots',panel('Chariots and Equipment',owned('roster-chariot','chariot',['chariots','equipment'])));}
  // Schema 8 buying pages: each splits into its own section tabs (the frame turns
  // each data-bt-tab wrapper into a tab) and ends in a Reputation upgrade tree.
  function m6Management(v,s,page){
