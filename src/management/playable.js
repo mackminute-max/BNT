@@ -1,7 +1,7 @@
 import {m6EventPanel,bindM6Events} from './m6-events.js';
 import {m6MapPage} from './m6-map.js';
 import {m6RivalsPage,m6ScoutPanel} from './m6-rivals.js';
-import {m6FactionsPage,bindM6Factions} from './m6-factions.js';
+import {m6FactionsPage,bindM6Factions,activeQuestsPanel} from './m6-factions.js';
 import {m6FacilitiesPage,bindM6Facilities} from './m6-facilities.js';
 import {createDenInterface} from './m6-den.js';
 import {championshipBetting,bindChampionshipBetting} from './m6-betting.js';
@@ -72,10 +72,10 @@ export function mountPlayableStable(port){
   if(careerFlow){const b=$('continue-championship'),next=continuationNavigation(v,busy,port.durableView);b.hidden=!next.visible;b.disabled=next.disabled;b.title=next.label;b.setAttribute('aria-label','Continue Championship: '+next.label);b.setAttribute('aria-hidden',String(!next.visible));b.setAttribute('aria-disabled',String(next.disabled));b.setAttribute('aria-current',String(next.visible&&page===next.page));}
   root.setAttribute('aria-busy',String(busy));
   let body='';
-  if(page==='overview')body=(s?.schema===8?m6EventPanel(s):'')+homeDashboard(v);if(page==='gambling'&&s?.schema===8)body=denFlow.html(s);
+  if(page==='overview')body=(s?.schema===8?m6EventPanel(s):'')+homeDashboard(v)+(s?.schema===8?activeQuestsPanel(s):'');if(page==='gambling'&&s?.schema===8)body=denFlow.html(s);
   if(page==='roster')body=barnDashboard(v);
   if(page==='markets')body=panel('Market',recruitmentCards(v,['driver','beast','chariot','specialist','equipment']))+panel('Capacity',capacitySummary(v));
-  if(page==='championships'&&careerFlow)body=(()=>{let f=careerFlow.html(v);const w=s.schema===8?championshipBetting(s):'',sc=s.schema===8?m6ScoutPanel(s):'';f=f.includes('<!--bt-wager-->')?f.replace('<!--bt-wager-->',()=>w):f+w;return f.includes('<!--bt-scout-->')?f.replace('<!--bt-scout-->',()=>sc):f+sc;})();if(page==='world'&&s.schema===8)body=m6MapPage(s)+m6RivalsPage(s)+m6FactionsPage(s)+m6WorldPage(s);
+  if(page==='championships'&&careerFlow)body=(()=>{let f=careerFlow.html(v);const w=s.schema===8?championshipBetting(s):'',sc=s.schema===8?m6ScoutPanel(s):'';f=f.includes('<!--bt-wager-->')?f.replace('<!--bt-wager-->',()=>w):f+w;return f.includes('<!--bt-scout-->')?f.replace('<!--bt-scout-->',()=>sc):f+sc;})();if(page==='world'&&s.schema===8)body=m6MapPage(s)+m6RivalsPage(s)+activeQuestsPanel(s)+m6FactionsPage(s)+m6WorldPage(s);
   if(page==='records')body=panel('Career records',table(['Championship','Outcome','Official events'],Object.values(s?.championshipFoundation?.instances??{}).map(x=>[x.offer.value.name,x.withdrawal?'Player '+x.withdrawal.kind.toLowerCase()+' withdrawal':phaseName(x.phase),x.raceResults.length])))+panel('Settlement history',table(['Championship','Cycle','Income','Closing treasury'],Object.values(s?.cycles?.statements??{}).map(x=>[championshipName(s,x.championshipId),x.cycle,x.income,x.treasuryAfter])))+e5Records(s);
   if(UI_P1&&page==='facilities')body=panel('Staff & Contracts',rosterCards(v,['personnel','specialists']))+contractTable(v);
   if(UI_P1&&page==='workshop')body=(s?.schema===8?m6FacilitiesPage(s):panel('Facilities',improvements(v)))+panel('Workshop',rosterCards(v,['chariots','equipment']));

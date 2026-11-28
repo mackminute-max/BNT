@@ -2,7 +2,7 @@
 // An overview of every faction, then one page per faction (hidden from the tab
 // bar until opened) with its unlocks and costs, quests, ways to earn Reputation
 // and its signature Endowment.
-import {FACTIONS,FACTION_IDS,QUESTS,STANDINGS,standing,factionsOf,unlocksFor,wallet,credit,factionDiscount} from '../career/m6/factions.js';
+import {FACTIONS,FACTION_IDS,QUEST_LIMIT,questDef,questOffers,questReward,STANDINGS,standing,factionsOf,unlocksFor,wallet,credit,factionDiscount} from '../career/m6/factions.js';
 import {BOONS} from '../sim/endowments.js';
 import {boonText} from '../career/p3/boons.js';
 import {WORLD_CONTENT} from '../career/m6/world-content.generated.js';
@@ -21,7 +21,9 @@ const CSS=`<style>.bt-fx-wallet{display:flex;flex-wrap:wrap;gap:18px;align-items
 export function bannerChip(s){const id=s?.m6?.factions?.banner;return id&&FACTIONS[id]?`<span class="bt-banner" title="Faction banner">⚑ ${esc(FACTIONS[id].banner)}</span>`:'';}
 const nextStanding=n=>STANDINGS.find(([at])=>at>n);
 function bar(n){const next=nextStanding(n),prev=[...STANDINGS].reverse().find(([at])=>at<=n)?.[0]??0;const pct=next?Math.round(100*(n-prev)/(next[0]-prev)):100;return `<div class="bt-fx-bar" aria-label="${n} earned"><i style="width:${pct}%"></i></div><p class="bt-fx-small">${next?`${next[0]-n} more to ${esc(next[1])}`:'Highest standing'}</p>`;}
-function prefers(id){const d=FACTIONS[id],p=d.prefers,what=[p.formats?.join(' or '),p.kinds?(p.kinds.length>1?p.kinds.join(', ')+' tracks':p.kinds[0]+' tracks'):''].filter(Boolean).join(' on ');return what||'any racing';}
+const list=a=>a.length>1?a.slice(0,-1).join(', ')+' or '+a.at(-1):a[0];
+// The exact races a faction favours, e.g. "Combat on Short Ovals or Short Rallies".
+function prefers(id){const p=FACTIONS[id].prefers,fm=p.formats??p.questFormats;return `${fm?list(fm)+' on ':''}${list(p.types.map(t=>t.endsWith('y')?t.slice(0,-1)+'ies':t+'s'))}`;}
 function earnWays(id){const d=FACTIONS[id],k=kindOf(id),ways=[];
  if(k==='house')ways.push(`<strong>Race in ${esc(nationName(d.nationId))}.</strong> Every Series there shares its Reputation with them: half of it always, and the rest by how many races were ${esc(prefers(id))}.`,`Withdrawing from a Series in ${esc(nationName(d.nationId))} costs 2.`);
  else ways.push(`<strong>Race ${esc(prefers(id))}.</strong> Every Series shares its Reputation with them by how many of its races were ${esc(prefers(id))}.`);
@@ -29,10 +31,16 @@ function earnWays(id){const d=FACTIONS[id],k=kindOf(id),ways=[];
  if(id==='ring')ways.push('+1 to +3 for each Race Book bet of 20 Gold or more.','+5 when a bet against your own turnout pays off and the stewards hear of it.');
  ways.push('Complete their quests (below).','Trackside events: some choices earn or cost standing with them.');
  return ways;}
-function questBlock(s,id,active){const f=factionsOf(s),q=f.quests[id],k=kindOf(id),offers=Object.entries(QUESTS).filter(([,x])=>x.faction===k);
- const reward=x=>`Reward: ${x.rep} Reputation with them and ${x.gold} Gold`;
- if(q){const d=QUESTS[q.questId];return `<div class="bt-quest bt-q-active"><p><strong>Active: ${esc(d.name)}</strong>${d.stages>1?` · step ${q.stage+1} of ${d.stages}`:''}</p><p>${esc(d.text)}${q.questId==='high-roller'?` (${q.staked} of 300 staked)`:''}</p><p class="bt-fx-small">${reward(d)}. Checked when each Series closes.</p><p><button data-fx-drop="${id}">Drop quest (−3 Reputation with them)</button></p></div>`+offers.filter(([qid])=>qid!==q.questId).map(([,x])=>`<div class="bt-quest"><p><strong>${esc(x.name)}</strong></p><p>${esc(x.text)}</p><p class="bt-fx-small">${reward(x)}. One quest per faction at a time.</p></div>`).join('');}
- return offers.map(([qid,x])=>`<div class="bt-quest"><p><strong>${esc(x.name)}</strong>${x.stages>1?` · ${x.stages} steps`:''}</p><p>${esc(x.text)}</p><p class="bt-fx-small">${reward(x)}.</p><p><button data-fx-quest="${qid}" data-fx-faction="${id}" ${active?'disabled title="Take quests between Series"':''}>Take quest</button></p></div>`).join('');}
+const rewardText=(id,d)=>{const home=FACTIONS[id].nationId,half=questReward(id,d,'elsewhere');return `Reward: ${d.rep} Reputation with them and ${d.gold} Gold${home?` in ${esc(nationName(home))}; ${half.rep} and ${half.gold} Gold anywhere else`:''}`;};
+const progressText=(d,q)=>d.need>1?` · ${q.progress??0} of ${d.need} done`:d.stages>1?` · step ${q.stage+1} of ${d.stages}`:q.questId==='high-roller'?` · ${q.staked} of 300 staked`:'';
+function questBlock(s,id,active){const f=factionsOf(s),q=f.quests[id],count=Object.keys(f.quests).length,full=count>=QUEST_LIMIT;
+ const mine=q?(()=>{const d=questDef(id,q.questId);return `<div class="bt-quest bt-q-active"><p><strong>Active: ${esc(d.name)}</strong>${progressText(d,q)}</p><p>${esc(d.text)}</p><p class="bt-fx-small">${rewardText(id,d)}. Checked when each Series closes.</p><p><button data-fx-drop="${id}">Drop quest (−3 Reputation with them)</button></p></div>`;})():'';
+ const why=active?'Take quests between Series':q?'One quest per faction at a time':full?`You have ${QUEST_LIMIT} active quests already`:'';
+ return mine+`<p class="bt-fx-small">On offer now. The offer changes after every Series. Active quests: ${count} of ${QUEST_LIMIT}.</p>`+questOffers(s,id).filter(qid=>qid!==q?.questId).map(qid=>{const x=questDef(id,qid);return `<div class="bt-quest"><p><strong>${esc(x.name)}</strong>${x.stages>1?` · ${x.stages} steps`:''}</p><p>${esc(x.text)}</p><p class="bt-fx-small">${rewardText(id,x)}.</p><p><button data-fx-quest="${qid}" data-fx-faction="${id}" ${why?`disabled title="${esc(why)}"`:''}>Take quest</button>${why?` <span class="bt-fx-small">${esc(why)}</span>`:''}</p></div>`;}).join('');}
+// Active Quests (Mack 2026-11-27): the same panel on Racing Associations and Home Stable.
+export function activeQuestsPanel(s){const f=factionsOf(s),rows=Object.entries(f.quests),active=!!s.championshipFoundation.activeId;
+ const body=rows.length?rows.map(([id,q])=>{const d=questDef(id,q.questId);return d?`<div class="bt-quest bt-q-active"><p><strong>${esc(d.name)}</strong> · ${esc(FACTIONS[id].name)}${progressText(d,q)}</p><p>${esc(d.text)}</p><p class="bt-fx-small">${rewardText(id,d)}. Checked when each Series closes.</p><p><button data-fx-drop="${id}" ${active?'disabled title="Drop quests between Series"':''}>Drop quest (−3 Reputation with them)</button> <button data-fx-open="${esc(FACTIONS[id].name)}">Open ${esc(FACTIONS[id].name)} →</button></p></div>`:'';}).join(''):'<p>No active quests. Open a faction on the Racing Associations page to take one.</p>';
+ return `<section class="hs-panel" data-bt-tab="Active Quests"><h2>Active Quests</h2>${CSS}<p>You can hold ${QUEST_LIMIT} quests at once, one per faction. Only active quests count: races won before you take a quest don't. Active: <strong>${rows.length} of ${QUEST_LIMIT}</strong>.</p>${body}</section>`;}
 function unlockRows(s,id,active){const f=factionsOf(s),owned=f.owned[id],earned=f.earned[id],cr=credit(s,id),w=wallet(s);
  return unlocksFor(id).filter(u=>!u.id.startsWith('boon-')).map(u=>{const has=!u.repeat&&owned.includes(u.id),waiting=u.pending&&f.pending.includes(u.pending);
   const why=has?'Unlocked':waiting?'Waiting to be used':active?'Between Series only':earned<u.need?`Needs ${u.need} earned`:u.after&&!owned.includes(u.after)?'Unlock the previous step first':cr<u.cost?`Only ${cr} spendable here`:w<u.cost?`Only ${w} Reputation to spend`:'';
@@ -55,12 +63,14 @@ function factionPage(s,id,active){const d=FACTIONS[id],f=factionsOf(s),n=f.earne
  ${log.length?`<div class="bt-fx-log"><h3>Recent</h3>${log.map(l=>`<p>${esc(l)}</p>`).join('')}</div>`:''}</section>`;}
 export function m6FactionsPage(s){const f=factionsOf(s),active=!!s.championshipFoundation.activeId,life=s.championshipFoundation.facts.reputation,w=s.m6.world;
  const card=id=>{const d=FACTIONS[id],n=f.earned[id],st=standing(n),q=f.quests[id],visited=!d.nationId||w.nations[d.nationId]?.entered||d.nationId===w.currentNation;
-  return `<article class="bt-fx"><h3>${esc(d.name)}<span class="bt-stand bt-st-${st}">${st}</span></h3><p class="bt-fx-small">${d.nationId?esc(nationName(d.nationId))+' · ':''}Favours ${esc(prefers(id))}${visited?'':' · not yet visited'}</p>${bar(n)}<p>Earned <strong>${n}</strong> · Spendable <strong>${credit(s,id)}</strong> · ${f.owned[id].length} unlocked</p>${q?`<p class="bt-fx-small">Quest: ${esc(QUESTS[q.questId].name)}</p>`:''}<p class="bt-fx-small">Signature: ${esc(BOONS[d.boon].name)}</p><p style="margin-top:auto"><button data-fx-open="${esc(d.name)}">Open ${esc(d.name)} →</button></p></article>`;};
+  return `<article class="bt-fx"><h3>${esc(d.name)}<span class="bt-stand bt-st-${st}">${st}</span></h3><p class="bt-fx-small">${d.nationId?esc(nationName(d.nationId))+' · ':''}Favours ${esc(prefers(id))}${visited?'':' · not yet visited'}</p>${bar(n)}<p>Earned <strong>${n}</strong> · Spendable <strong>${credit(s,id)}</strong> · ${f.owned[id].length} unlocked</p>${q?`<p class="bt-fx-small">Quest: ${esc(questDef(id,q.questId)?.name??'')}</p>`:''}<p class="bt-fx-small">Signature: ${esc(BOONS[d.boon].name)}</p><p style="margin-top:auto"><button data-fx-open="${esc(d.name)}">Open ${esc(d.name)} →</button></p></article>`;};
  const pending=f.pending.map(k=>`<p>Waiting to be used: ${esc(PENDING_TEXT[k])}</p>`).join('');
  return `<section class="hs-panel"><h2>Factions</h2>${CSS}<p>Reputation is a currency. You earn it by racing, and each faction remembers the Reputation you earned <em>their</em> way: at their kind of track, in their format, in their nation, and through their quests. Spend it on their favors, perks and signature Endowment. You can spend up to what you have earned with a faction, and spending never lowers your standing. Standings: ${STANDINGS.map(([at,name])=>`${esc(name)} ${at}`).join(' · ')}.${f.banner?' Flying: '+bannerChip(s):''}</p>
  <div class="bt-fx-wallet"><span>Reputation to spend <strong>${wallet(s)}</strong></span><span>Lifetime Reputation ${life}</span><span>Spent ${f.spent}</span>${active?'<span>Unlocks and quests open between Series.</span>':''}</div>${pending}<div class="bt-fx-grid">${FACTION_IDS.map(card).join('')}</div></section>`+FACTION_IDS.map(id=>factionPage(s,id,active)).join('');}
 export function bindM6Factions(root,s,port,run){
- for(const b of root.querySelectorAll('[data-fx-open]'))b.onclick=()=>globalThis.__btShowTab?.(b.dataset.fxOpen);
+ const page=()=>document.querySelector('#hs-nav [aria-current=true]')?.dataset.page;
+ for(const b of root.querySelectorAll('[data-fx-open]'))b.onclick=()=>{if(page()!=='world'){globalThis.__btOpenFaction=b.dataset.fxOpen;document.querySelector('#hs-nav [data-page=world]')?.click();return;}globalThis.__btShowTab?.(b.dataset.fxOpen);};
+ if(globalThis.__btOpenFaction&&page()==='world'){const n=globalThis.__btOpenFaction;globalThis.__btOpenFaction=null;setTimeout(()=>globalThis.__btShowTab?.(n),0);}
  for(const b of root.querySelectorAll('[data-fx-back]'))b.onclick=()=>globalThis.__btShowTab?.('Factions');
  for(const b of root.querySelectorAll('[data-fx-quest]'))b.onclick=()=>run(()=>port.e5('m6.takeQuest',{questId:b.dataset.fxQuest,factionId:b.dataset.fxFaction,confirmed:true}),'Quest taken.');
  for(const b of root.querySelectorAll('[data-fx-drop]'))b.onclick=()=>run(()=>port.e5('m6.dropQuest',{factionId:b.dataset.fxDrop,confirmed:true}),'Quest dropped.');
