@@ -1,3 +1,4 @@
+import { isJoust, acrossPartition, JOUST_BLOW } from "./joust.js";
 import {controlRecoveryRate} from './m6-interaction.js';
 import {activeAbility} from './m6-interaction.js';
 import {endowBonus} from './endowments.js';
@@ -449,6 +450,8 @@ export function eligibleCombat(s, a, b, action) {
     a.control === "Out of Control"
   )
     return false;
+  // Jousting: blows land only across the partition, and there is no ramming.
+  if (isJoust(s)) return action === "attack" && acrossPartition(s, a, b);
   const separation = Math.abs(gap(a.q, b.q, s.track)),
     lanes = Math.abs(a.lane - b.lane);
   return action === "ram"
@@ -542,7 +545,7 @@ export function resolveAttacks(s, intents, refresh) {
         b: null,
         energy: 0,
         amount:
-          c.attackDamage * (1 + Math.min(c.marginDamageCap, margin / 100)) * (crit ? CRIT_MULTIPLIER : 1),
+          c.attackDamage * (1 + Math.min(c.marginDamageCap, margin / 100)) * (crit ? CRIT_MULTIPLIER : 1) * (isJoust(s) ? JOUST_BLOW : 1),
         direction: "attack",
         kind: "attack",
         ...(crit ? {crit: true} : {}),

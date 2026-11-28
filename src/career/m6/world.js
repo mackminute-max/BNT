@@ -8,6 +8,7 @@ import {exact} from '../legacy-state.js';
 import {canonical} from '../../core/determinism.js';
 import {freeze} from '../assets.js';
 import {createRace} from '../../sim/race.js';
+import {joustCourse} from '../../sim/joust.js';
 import {SPECIALS,specialName,invitationRules,invitedFactions} from './specials.js';
 export const M6_WORLD_RULES='m6-national-progression-v1';
 export const NATIONS=Object.freeze({N1:'Northreach',N2:'Frosthall',N3:'Greenvale',N4:'Ironhold',N5:'Sundaran',N6:'Karthen',N7:'Velmora',N8:'Zarashi'});
@@ -39,16 +40,25 @@ function dragStrip(v,seed,format){
  v.schedule.course=structuredClone(race.setup.course);v.schedule.surfaces=surfaces;v.schedule.laps=1;v.schedule.format=format;
  Object.assign(v.disclosure,{geometryId:'geometry.drag-strip',geometryKind:'Drag',surfaces:{'sector-0':terrain,'sector-1':terrain},laps:1,format,venueName:course.name,courseFingerprint:fingerprint(race.setup.course)});
  return v;}
+function joustLists(v,seed,format){
+ const terrain=Object.values(v.disclosure.surfaces)[0]??'dirt',course=joustCourse('joust-'+seed,v.disclosure.venueName+' Lists');
+ for(const sg of course.segments)sg.terrain=terrain;
+ const surfaces=Object.fromEntries(course.segments.map(sg=>[sg.id,{...DUMMY_SURFACES[terrain]}])),race=createRace({seed,course,format,weather:v.schedule.weather,surfaces,overrides:{laps:JOUST_LAPS},entrants:createRace().setup.entrants.slice(0,2)});
+ v.schedule.course=structuredClone(race.setup.course);v.schedule.surfaces=surfaces;v.schedule.laps=JOUST_LAPS;v.schedule.format=format;
+ Object.assign(v.disclosure,{geometryId:'geometry.joust-lists',geometryKind:'Joust',surfaces:Object.fromEntries(course.segments.map(sg=>[sg.id,terrain])),laps:JOUST_LAPS,format,venueName:course.name,courseFingerprint:fingerprint(race.setup.course)});
+ return v;}
+const JOUST_LAPS=20; // never reached: the joust ends at a wreck or on points (sim/joust.js)
 function specialDefinition(careerId,nationId,n,kind,factionId=null){
  const rule=SPECIALS[kind],inv=kind==='invitational'?invitationRules(factionId):null,economicContextId=nationId==='N5'?'iron-gauntlet':CONTEXTS[n.tier-1],native=catalogDefinition(economicContextId),base=native.offer.value,templateId='m6-'+kind+'-'+fingerprint([careerId,nationId,n.epoch,kind,factionId,M6_WORLD_RULES]).slice(0,32),name=specialName(kind,factionId,nationId,parseInt(fingerprint([careerId,nationId,n.epoch,kind,'name']).slice(0,8),16));
  const kinds=inv?.kinds??(kind==='drag'?['Rally']:null),venues=D.competition.venue.filter(v=>v.nationId===nationId&&v.permanence!=='prestige'&&(!kinds||kinds.includes(KIND_OF_VENUE(v))));
  if(!venues.length)throw Error('No venues for '+kind);
  const length=rule.races,events=[];
- for(let i=0;i<length;i++){const context=[M6_WORLD_RULES,careerId,nationId,n.epoch,kind,factionId,i],h=fingerprint(context),venue=venues[parseInt(h.slice(0,8),16)%venues.length],format=inv?.format??rule.format??base.schedule[i%base.schedule.length].format;let v=resolveVenue(venue,context,{format,laps:1,grid:i?'standings':'random'});if(kind==='drag')v=dragStrip(v,v.disclosure.seed,format);else{v.schedule.laps=minimumLaps(v.schedule.course??venue.geometryWeights[0].id.replace('geometry.',''));v.disclosure.laps=v.schedule.laps;}v.disclosure.eventId=templateId+'-race-'+(i+1);v.disclosure.eventName=length>1?name+' — Race '+(i+1):name;events.push(v);}
+ for(let i=0;i<length;i++){const context=[M6_WORLD_RULES,careerId,nationId,n.epoch,kind,factionId,i],h=fingerprint(context),venue=venues[parseInt(h.slice(0,8),16)%venues.length],format=inv?.format??rule.format??base.schedule[i%base.schedule.length].format;let v=resolveVenue(venue,context,{format,laps:1,grid:i?'standings':'random'});if(kind==='drag')v=dragStrip(v,v.disclosure.seed,format);else if(kind==='joust')v=joustLists(v,v.disclosure.seed,format);else{v.schedule.laps=minimumLaps(v.schedule.course??venue.geometryWeights[0].id.replace('geometry.',''));v.disclosure.laps=v.schedule.laps;}v.disclosure.eventId=templateId+'-race-'+(i+1);v.disclosure.eventName=length>1?name+' — Race '+(i+1):name;events.push(v);}
  const fieldSize=rule.fieldSize??base.fieldSize,fee=Math.round(base.entryFee*rule.fee),pool=fee*fieldSize,points=base.points.slice(0,fieldSize).concat(Array(Math.max(0,fieldSize-base.points.length)).fill(0));
  const terms={...structuredClone(native.terms),trophyId:null};
  if(rule.purse==='winner-takes-most'){terms.purses=[Array.from({length:fieldSize},(_,i)=>[Math.round(pool*.75),Math.round(pool*.2)][i]??0)];terms.placement=terms.placement.map(()=>0);terms.titleGold=0;}
  else if(rule.purse==='none'){terms.purses=[Array(fieldSize).fill(0)];terms.placement=terms.placement.map(()=>0);terms.titleGold=0;}
+ else if(rule.purse==='duel'){terms.purses=[Array.from({length:fieldSize},(_,i)=>i?0:fee*3)];terms.placement=terms.placement.map(()=>0);terms.titleGold=0;}
  else if(rule.purse==='sprint'){terms.purses=[Array.from({length:fieldSize},(_,i)=>[fee*3,fee*2,fee][i]??0)];terms.placement=terms.placement.map(()=>0);terms.titleGold=0;}
  else{const k=rule.purseScale??1;terms.purses=seriesPurses(native.terms.purses,length).map(p=>p.map(g=>Math.round(g*k)));terms.placement=terms.placement.map(g=>Math.round(g*k));terms.titleGold=Math.round(terms.titleGold*k);terms.titleRep=Math.round(terms.titleRep*k);}
  const offer=freezeOffer({kind:base.kind,version:1,templateId,name,entryFee:fee,fieldSize,qualification:{all:[]},schedule:events.map(e=>e.schedule),points,dnfPoints:base.dnfPoints},{rulesVersion:'m5-competition-v1'}),m6={version:1,rulesVersion:M6_WORLD_RULES,contentPin:structuredClone(D2_PIN),nationId,type:kind,tier:n.tier,epoch:n.epoch,economicContextId,rewardFactor:{gold:100,reputation:100,completionLP:length>1},events:events.map(e=>e.disclosure),special:{kind,factionId}};

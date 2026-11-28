@@ -43,6 +43,7 @@ import { ovalPresets, resolveCatalog } from "../track/catalog.js";
 import { normalizeCourse } from "../track/course.js";
 import { surfaceDefaults, surfaceRules, track, location, key, nextDistance, gap, forwardGap, finishQ } from "../track/oval.js";
 import { emit } from "../events/events.js";
+import { isJoust, joustCourseId, joustGrid, joustVerdict, JOUST_SPACING } from "./joust.js";
 import { travel, arrival } from "./kinematics.js";
 
 const sorted = (s) => [...s.entrants].sort(byId);
@@ -88,13 +89,16 @@ export function createRace({
     throw new Error("Seed must be a safe integer");
   if (!["Pure", "Combat"].includes(format))
     throw new Error("Invalid race format");
-  const input =
+  let input =
     entrants ??
     Array.from({ length: 8 }, (_, i) => ({
       ru: defaultRU(`RU${i + 1}`, 46 + i * 2),
       lane: i % c.lanes,
       q: -c.gridOffset - Math.floor(i / c.lanes) * c.gridGap,
     }));
+  // Jousting: two turnouts, innermost lane, half a lap apart (see joust.js).
+  const joust = !!t.course && joustCourseId(t.id) && input.length === 2;
+  if (joust) input = input.map((e, i) => ({ ...e, ...joustGrid(t, c)[i] }));
   if (!input.length || input.length > 64)
     throw new Error("Expected 1..64 entrants");
   for (const [id, patch] of Object.entries(surfaces)) {
@@ -199,6 +203,7 @@ export function createRace({
       },
     };
   });
+  if (joust) for (const r of units) r.signs.remaining = 99; // Strategies are unlimited in a joust
   const s = {
     version: VERSION,
     ...(championshipContext ? {championshipContext:structuredClone(championshipContext)} : {}),
@@ -579,6 +584,8 @@ function laneChanges(s, commands) {
   const speeds = new Map(sorted(s).map((r) => [r.id, r.speed]));
   for (const cmd of commands) {
     const r = s.entrants.find((r) => r.id === cmd.id);
+    // Jousting: each turnout keeps to the lane along the partition.
+    if (r && isJoust(s)) { resolveAction(s, r, cmd.decisionId, "position", false, "Jousting lanes are fixed"); continue; }
     if (
       !r ||
       r.status !== "Racing" ||
@@ -781,6 +788,15 @@ function motion(s, r) {
       });
   }
   if (s.consequences && r.control === "Out of Control") target = 0;
+  // Jousting: the lists keep the two turnouts about half a lap apart, so they meet
+  // across the partition. A turnout closing on the other's tail is held back.
+  if (r.status === "Racing" && isJoust(s)) {
+    const o = s.entrants.find((x) => x.id !== r.id && x.status === "Racing");
+    if (o) {
+      const ahead = forwardGap(r.q, o.q, s.track), keep = s.track.cells * JOUST_SPACING;
+      if (ahead < keep) target *= ahead < keep * 0.4 ? 0 : ahead < keep * 0.7 ? 0.3 : ahead < keep * 0.85 ? 0.6 : 0.85; // stepped, so motion stays piecewise
+    }
+  }
   if (r.physical === "Clearing") {
     for (const other of sorted(s).filter(
       (o) => o.id !== r.id && physical(o) && o.lane === r.lane,
@@ -915,7 +931,17 @@ function resolveForward(s, movers) {
   }
   flush(s);
 }
+function endJoust(s) {
+  const v = joustVerdict(s);
+  if (!v || !v.winner) return;
+  const out = (r) => { lockFinish(s, r); r.physical = "Exited"; r.speed = 0; emit(s, "RU_EXITED", [r.id]); };
+  emit(s, "JOUST_DECIDED", [v.winner.id, v.loser.id], { winner: v.winner.id, loser: v.loser.id, reason: v.reason });
+  out(v.winner);
+  // On points the loser rides off second; after a wreck it is already out.
+  if (v.reason === "points" && v.loser.status === "Racing") { out(v.loser); v.loser.finishTime = s.time + 5; }
+}
 function endIfDone(s) {
+  if (isJoust(s)) endJoust(s);
   if (
     s.entrants.every((r) => r.status !== "Racing") &&
     // Schema 2: a finisher stuck behind a wreck in its run-off no longer holds the

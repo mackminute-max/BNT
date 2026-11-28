@@ -1,3 +1,4 @@
+import { isJoust, acrossPartition, JOUST_EAGERNESS } from "../sim/joust.js";
 import { grudgeValue, huntTerms } from "../sim/grudges.js";
 import {activeAbility} from '../sim/m6-interaction.js';
 import {pendingDelay} from './buffered-signs.js';
@@ -287,7 +288,11 @@ export function decide(s, r) {
   );
   if (s.consequences && s.format === "Combat") {
     const combat = s.consequence;
-    const rivals = perceived.neighbors.filter(
+    // Jousting: the only rival is the one across the partition, when in reach.
+    const rivals = isJoust(s)
+      ? s.entrants.filter((o) => o.id !== r.id && o.status === "Racing" && o.physical === "Live" && acrossPartition(s, r, o))
+          .map((o) => ({ id: o.id, lane: r.lane, gap: 0, speed: o.speed, physical: o.physical, status: o.status }))
+      : perceived.neighbors.filter(
       (o) =>
         o.status === "Racing" &&
         o.physical === "Live" &&
@@ -309,6 +314,7 @@ export function decide(s, r) {
         opportunity: p.opportunism / 100 * combat[action + "Opportunity"],
         caution: -p.caution / 100 * combat[action + "Caution"] * (best?.value.features.grudge ? .5 : 1),
         ...(best?.value.features ?? {}),
+        ...(isJoust(s) && action === "attack" ? { joust: JOUST_EAGERNESS } : {}),
       }, !!best, null, best?.target.id, best?.value.estimate);
     }
     add(
