@@ -21,6 +21,7 @@ import {identity,phaseName} from './content.js';
 import {createDeveloperWorkspace} from './workspace.js';
 import {rosterCards,recruitmentCards,improvements,capacitySummary} from './player-pages.js';
 import {managementView} from './model.js';
+import {PAGE_CSS,perksLine,marketGradeLine,regionalIntro,treePanel,bindM6Pages} from './m6-pages.js';
 const escape=value=>String(value??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const panel=(title,body)=>`<section class="hs-panel"><h2>${escape(title)}</h2>${body}</section>`;
 const table=(headers,rows)=>rows.length?`<div class="hs-table"><table><thead><tr>${headers.map(h=>`<th>${escape(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(c=>`<td>${escape(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:'<p>No records yet.</p>';
@@ -81,7 +82,7 @@ export function mountPlayableStable(port){
   if(UI_P1&&page==='services')body=playerServices(v);
   if(UI_P1&&page==='finances')body=playerFinances(v);
   if(UI_P1&&page==='markets'){body+=panel('Owned assets for sale',rosterCards(v,['beasts','chariots','equipment']));}
-  if(s?.schema===8){if(page==='records')body=m6Records(s,Number(root.dataset.m6RecordPage??0));if(page==='markets')body=m6MarketHeader(s)+body;}$('content').innerHTML=body;if(s?.schema===8){bindM6World($('content'),s,port,run);bindM6Facilities($('content'),s,port,run);bindM6Factions($('content'),s,port,run);bindM6Events($('content'),s,port,run);bindChampionshipBetting($('content'),s,port,run);if(page==='gambling')denFlow.bind($('content'),s);for(const b of $('content').querySelectorAll('[data-m6-record-page]'))b.onclick=()=>{root.dataset.m6RecordPage=b.dataset.m6RecordPage;render();};}if(isM4(s)){bindM4($('content'),s,port,run,navigate);const show=kind=>{globalThis.__BNT_M4_MARKET__=kind;const ordinary=document.getElementById('m4-ordinary-market'),legacy=document.getElementById('m4-legacy-market');if(ordinary)ordinary.hidden=kind==='legacy';if(legacy)legacy.hidden=kind!=='legacy';};for(const b of $('content').querySelectorAll('[data-m4-category]'))b.onclick=()=>show(b.dataset.m4Category);show(globalThis.__BNT_M4_MARKET__??'ordinary');}
+  if(s?.schema===8){if(page==='records')body=m6Records(s,Number(root.dataset.m6RecordPage??0));if(['markets','facilities','workshop'].includes(page))body=m6Management(v,s,page);}$('content').innerHTML=body;if(s?.schema===8){bindM6World($('content'),s,port,run);bindM6Facilities($('content'),s,port,run);bindM6Factions($('content'),s,port,run);bindM6Events($('content'),s,port,run);bindChampionshipBetting($('content'),s,port,run);bindM6Pages($('content'),s,port,run,render);if(page==='gambling')denFlow.bind($('content'),s);for(const b of $('content').querySelectorAll('[data-m6-record-page]'))b.onclick=()=>{root.dataset.m6RecordPage=b.dataset.m6RecordPage;render();};}if(isM4(s)){bindM4($('content'),s,port,run,navigate);const show=kind=>{globalThis.__BNT_M4_MARKET__=kind;const ordinary=document.getElementById('m4-ordinary-market'),legacy=document.getElementById('m4-legacy-market');if(ordinary)ordinary.hidden=kind==='legacy';if(legacy)legacy.hidden=kind!=='legacy';};for(const b of $('content').querySelectorAll('[data-m4-category]'))b.onclick=()=>show(b.dataset.m4Category);show(globalThis.__BNT_M4_MARKET__??'ordinary');}
   if(UI_P1){cleanPlayerCopy($('content'));if(optionsSaveHost?.isConnected)optionsSaveHost.innerHTML=saveBody(v);}
 
   if(M3UI&&page==='roster'&&s?.management?.initialized)mountBarnControls($('content'),v,async(kind,key)=>{let slot=null;const team=activeTeam(port.store.state,v.presentation);if(kind==='beasts'&&!team.beastIds.includes(key)&&team.beastIds.every(Boolean)){slot=await beastReplacement();if(slot===null)return;}run(async()=>{const state=port.store.state,request={kind,assetId:key,slot,id:port.newId('active-team'),expectedRevision:state.revision,expectedMaintenanceRevision:state.maintenanceRevision,expectedPresentationRevision:(port.durableView?.presentation??port.store.presentation)?.revision??0};if(port.durable)return port.game('activeTeam',request);return port.perform(store=>store.setActiveTeam(request));},'Turnout selection saved.');});
@@ -98,6 +99,23 @@ export function mountPlayableStable(port){
   for(const el of $('content').querySelectorAll('[data-context-type]'))el.onclick=()=>{const type=el.dataset.contextType,payload=JSON.parse(el.dataset.contextPayload),signature=el.dataset.contextSignature,label=el.textContent;return run(async()=>{const preview=contextQuote(port.store.state,type,payload,port.newId('context'),port.durableView?.presentation??port.store.presentation);if(!preview.quote.canAfford)throw Error('Insufficient Gold or XP.');if(!await confirmAction((signature!==preview.signature?'The terms have changed. Review the updated terms before confirming.\n':'')+label+'?\n'+preview.lines.join('\n')))return false;try{return await port.perform(store=>store.transaction(preview.command));}catch(e){if(/stale|changed in another|source/i.test(e.message))throw Error('Terms changed before confirmation. Review the updated card and confirm again.');throw e;}},'Completed: '+label+'.');
   };
   if(busy){for(const el of $('content').querySelectorAll('button,input,select'))el.disabled=true;if(UI_P1&&optionsSaveHost?.isConnected)for(const el of optionsSaveHost.querySelectorAll('button,input,select'))el.disabled=true;}
+ }
+ // Schema 8 buying pages: each splits into its own section tabs (the frame turns
+ // each data-bt-tab wrapper into a tab) and ends in a Reputation upgrade tree.
+ function m6Management(v,s,page){
+  const regional=new Set(Object.keys(s.m6.market.regional?.offers??{})),all=['driver','beast','chariot','specialist','equipment'],tab=(name,html)=>`<div data-bt-tab="${name}">${html}</div>`;
+  if(page==='markets'){const perks=perksLine(s,'market'),shelf=(name,cat)=>tab(name,perks+panel(name,marketGradeLine(s)+'<p>Fresh stock arrives after every Series you race. Rivals shop here too: what you pass on may go to a rival team.</p>'+recruitmentCards(v,[cat],{exclude:regional,bare:true,empty:'No '+name.toLowerCase()+' on offer until the next renewal.'})));
+   return PAGE_CSS+shelf('Beasts','beast')+shelf('Chariots','chariot')+shelf('Equipment','equipment')
+    +tab('Regional Market',panel('Regional Market',regionalIntro(s)+(regional.size?recruitmentCards(v,all,{only:regional,bare:true,empty:'The regional stock has sold out.'}):'')))
+    +tab('Sell',panel('Sell owned assets','<p>Beasts, chariots and equipment that are not in your racing turnout can be sold back to the Market.</p>'+rosterCards(v,['beasts','chariots','equipment']))+panel('Capacity',capacitySummary(v)))
+    +tab('Upgrades',perks+treePanel(s,'market'));}
+  if(page==='facilities'){const perks=perksLine(s,'staff'),hire=(name,cat,blurb,none)=>tab(name,perks+panel(name,marketGradeLine(s)+blurb+recruitmentCards(v,[cat],{exclude:regional,bare:true,empty:none}))+panel('Capacity',capacitySummary(v)));
+   return PAGE_CSS+tab('Your Staff',panel('Staff & Contracts',rosterCards(v,['personnel','specialists']))+contractTable(v))
+    +hire('Hire Drivers','driver','<p>Drivers sign a contract and draw wages each Series. A driver you pass on may sign with a rival team.</p>','No drivers looking for work until the next renewal.')
+    +hire('Hire Specialists','specialist','<p>Specialists need a room in Staff Quarters or the Bunk House. Each one makes a service cheaper.</p>','No specialists looking for work until the next renewal.')
+    +tab('Upgrades',perks+treePanel(s,'staff'));}
+  const perks=perksLine(s,'facilities');
+  return PAGE_CSS+tab('Facilities',perks+m6FacilitiesPage(s))+tab('Workshop',panel('Workshop',rosterCards(v,['chariots','equipment'])))+tab('Upgrades',perks+treePanel(s,'facilities'));
  }
  function contractTable(v){const r=v.registries??{};return table(['Employee','Term','State','Cycles remaining','Wage'],Object.values(r.contracts??{}).map(c=>[identity(r.personnel?.[c.references.employee[0]]??r.specialists?.[c.references.employee[0]]).name,c.term,c.lifecycle,c.cyclesRemaining,c.wage+' Gold']));}
  workspace=createDeveloperWorkspace({root,onReturn:()=>render()});
