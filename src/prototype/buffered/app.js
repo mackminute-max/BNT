@@ -101,7 +101,7 @@ async function prepare(config = settings()) {
   playing = false;
   session = next;
   g = nextGeometry;
-  radio = new Commentary();
+  radio = new Commentary({channel: radioChannelPref()});
   effects = new InteractionFeed();
   effectFrame = null;
   lastEffectTick = -1;
@@ -218,11 +218,7 @@ function render() {
   if (batch) radio.consumeBatch(batch);
   else radio.consume(s.events);
   const added = radio.lines.slice(n);
-  for (const line of added) {
-    const div = document.createElement("div");
-    div.textContent = `${line.time.toFixed(2)} \xB7 ${line.text}`;
-    $("radio").append(div);
-  }
+  for (const line of added) $("radio").append(radioLineNode(line));
   while ($("radio").children.length > 160) $("radio").firstChild.remove();
   radio.lines = radio.lines.slice(-200);
   if (added.length) $("radio").scrollTop = $("radio").scrollHeight;
@@ -368,3 +364,20 @@ window.P1 = { version: "p1.5-playable-v1", get session() {
 }, prepare, compare, classification, draw: render, lastComparison: null };
 prepare();
 requestAnimationFrame(frame);
+
+// Radio channels (Phase 4c): WBNT (color and highlights) or play-by-play.
+function radioLineNode(line) {
+  const div = document.createElement("div");
+  div.dataset.speaker = line.speaker ?? "";
+  div.textContent = `${line.time.toFixed(2)} \xB7 ${line.text}`;
+  return div;
+}
+function radioChannelPref() { try { return localStorage.getItem("bnt.radio.channel") || "wbnt"; } catch { return "wbnt"; } }
+globalThis.__btRadioTune = channel => {
+  try { localStorage.setItem("bnt.radio.channel", channel); } catch {}
+  if (!radio) return;
+  radio.tune(channel);
+  $("radio").replaceChildren(...radio.lines.slice(-160).map(radioLineNode));
+  $("radio").scrollTop = $("radio").scrollHeight;
+};
+globalThis.__btRadioChannel = () => radio?.channel ?? radioChannelPref();

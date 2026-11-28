@@ -110,6 +110,7 @@ function sceneNow(doc) {
 export function installMusic(doc = globalThis.document) {
   if (player || !doc || !globalThis.__BNT_MEDIA__?.music) return null;
   player = new Player(); player.applyVolume(); globalThis.__BNT_MUSIC__ = player;
+  globalThis.__btSetAudio = setAudio; globalThis.__btAudio = audioSettings;
   try { const h = JSON.parse(sessionStorage.getItem(HANDOFF) ?? 'null'); sessionStorage.removeItem(HANDOFF); if (h && Date.now() - h.at < 20000) player.handoff = h; } catch {}
   addEventListener('pagehide', () => { try { const d = player.deck; if (player.current === 'theme_01' && !d.paused) sessionStorage.setItem(HANDOFF, JSON.stringify({t: d.currentTime, at: Date.now()})); } catch {} });
   const tick = () => { try { const sc = sceneNow(doc); player.setScene(sc === 'pre-race' ? 'silent' : sc); } catch {} };
