@@ -21,7 +21,7 @@ import {identity,phaseName} from './content.js';
 import {createDeveloperWorkspace} from './workspace.js';
 import {rosterCards,recruitmentCards,improvements,capacitySummary} from './player-pages.js';
 import {managementView} from './model.js';
-import {PAGE_CSS,perksLine,marketGradeLine,regionalIntro,treePanel,bindM6Pages} from './m6-pages.js';
+import {PAGE_CSS,LD_CSS,listDetail,perksLine,marketGradeLine,regionalIntro,treePanel,bindM6Pages} from './m6-pages.js';
 const escape=value=>String(value??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const panel=(title,body)=>`<section class="hs-panel"><h2>${escape(title)}</h2>${body}</section>`;
 const table=(headers,rows)=>rows.length?`<div class="hs-table"><table><thead><tr>${headers.map(h=>`<th>${escape(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(c=>`<td>${escape(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:'<p>No records yet.</p>';
@@ -104,13 +104,13 @@ export function mountPlayableStable(port){
  // each data-bt-tab wrapper into a tab) and ends in a Reputation upgrade tree.
  function m6Management(v,s,page){
   const regional=new Set(Object.keys(s.m6.market.regional?.offers??{})),all=['driver','beast','chariot','specialist','equipment'],tab=(name,html)=>`<div data-bt-tab="${name}">${html}</div>`;
-  if(page==='markets'){const perks=perksLine(s,'market'),shelf=(name,cat)=>tab(name,perks+panel(name,marketGradeLine(s)+'<p>Fresh stock arrives after every Series you race. Rivals shop here too: what you pass on may go to a rival team.</p>'+recruitmentCards(v,[cat],{exclude:regional,bare:true,empty:'No '+name.toLowerCase()+' on offer until the next renewal.'})));
-   return PAGE_CSS+shelf('Beasts','beast')+shelf('Chariots','chariot')+shelf('Equipment','equipment')
-    +tab('Regional Market',panel('Regional Market',regionalIntro(s)+(regional.size?recruitmentCards(v,all,{only:regional,bare:true,empty:'The regional stock has sold out.'}):'')))
+  if(page==='markets'){const perks=perksLine(s,'market'),shelf=(name,cat)=>tab(name,perks+panel(name,marketGradeLine(s)+'<p>Fresh stock arrives after every Series you race. Rivals shop here too: what you pass on may go to a rival team.</p>'+listDetail('market-'+cat,cat,recruitmentCards(v,[cat],{exclude:regional,bare:true,empty:'No '+name.toLowerCase()+' on offer until the next renewal.'}))));
+   return PAGE_CSS+LD_CSS+shelf('Beasts','beast')+shelf('Chariots','chariot')+shelf('Equipment','equipment')
+    +tab('Regional Market',panel('Regional Market',regionalIntro(s)+(regional.size?listDetail('market-regional','any',recruitmentCards(v,all,{only:regional,bare:true,empty:'The regional stock has sold out.'})):'')))
     +tab('Sell',panel('Sell owned assets','<p>Beasts, chariots and equipment that are not in your racing turnout can be sold back to the Market.</p>'+rosterCards(v,['beasts','chariots','equipment']))+panel('Capacity',capacitySummary(v)))
     +tab('Upgrades',perks+treePanel(s,'market'));}
-  if(page==='facilities'){const perks=perksLine(s,'staff'),hire=(name,cat,blurb,none)=>tab(name,perks+panel(name,marketGradeLine(s)+blurb+recruitmentCards(v,[cat],{exclude:regional,bare:true,empty:none}))+panel('Capacity',capacitySummary(v)));
-   return PAGE_CSS+tab('Your Staff',panel('Staff & Contracts',rosterCards(v,['personnel','specialists']))+contractTable(v))
+  if(page==='facilities'){const perks=perksLine(s,'staff'),hire=(name,cat,blurb,none)=>tab(name,perks+panel(name,marketGradeLine(s)+blurb+listDetail('staff-'+cat,cat,recruitmentCards(v,[cat],{exclude:regional,bare:true,empty:none})))+panel('Capacity',capacitySummary(v)));
+   return PAGE_CSS+LD_CSS+tab('Your Staff',panel('Staff & Contracts',rosterCards(v,['personnel','specialists']))+contractTable(v))
     +hire('Hire Drivers','driver','<p>Drivers sign a contract and draw wages each Series. A driver you pass on may sign with a rival team.</p>','No drivers looking for work until the next renewal.')
     +hire('Hire Specialists','specialist','<p>Specialists need a room in Staff Quarters or the Bunk House. Each one makes a service cheaper.</p>','No specialists looking for work until the next renewal.')
     +tab('Upgrades',perks+treePanel(s,'staff'));}
