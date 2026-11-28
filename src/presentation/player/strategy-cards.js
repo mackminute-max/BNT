@@ -60,6 +60,7 @@ export const STRATEGY_CSS = `
 #p2SignChoices button.p2-sign-card[data-active=true] .bt-strat-ico{fill:#1d1410}
 #p2SignChoices button.p2-sign-card[data-queued=true]:not([data-active=true]){border:2px dashed #ffc94a!important}
 #p2SignChoices button.p2-sign-card:hover:enabled:not([data-active=true]){background:linear-gradient(180deg,#2f5d77,#1e4253 60%,#132b36)!important;border-color:#ffc94a!important}
+#p2SignChoices button.p2-sign-card[hidden]{display:none!important}
 #p2SignChoices button.p2-sign-card:disabled{filter:grayscale(.85) brightness(.7);cursor:not-allowed}
 @media (max-width:1100px){.p21 #p2SignChoices,#p2SignChoices{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 @media (max-width:700px){.p21 #p2SignChoices,#p2SignChoices{grid-template-columns:repeat(2,minmax(0,1fr))!important}}

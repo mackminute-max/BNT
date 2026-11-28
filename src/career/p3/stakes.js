@@ -1,5 +1,5 @@
 // Phase 3 stakes (Mack, 2026-11-26): when a turnout is wrecked, a driver or beast
-// that was beaten down to nothing may die (25% in Combat, 5% in Pure), and a
+// that was beaten down to nothing may die (15% in Combat, 5% in Pure), and a
 // chariot smashed to nothing is destroyed. The rolls happen once, when the official
 // result is published, and are seeded from the result so replays agree.
 // A loss ends that turnout's Series. The player's fallen are removed from the
@@ -8,7 +8,7 @@ import {fingerprint} from '../cycles/contracts.js';
 import {consequenceDefaults} from '../../sim/consequences.js';
 
 export const STAKES_RULES = 'p3-stakes-v1';
-export const DEATH_ODDS = Object.freeze({Combat: 25, Pure: 5});
+export const DEATH_ODDS = Object.freeze({Combat: 15, Pure: 5});
 const roll = (...k) => parseInt(fingerprint([STAKES_RULES, ...k]).slice(0, 8), 16) % 100;
 
 // Which parts of a wrecked turnout are lost. `final` is the native RU at the end of the race.
