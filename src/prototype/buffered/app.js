@@ -1,4 +1,5 @@
 import { restoreRace } from "../../sim/foundation/checkpoint.js";
+import { isJoust, JOUST_TIME } from "../../sim/joust.js";
 import { BufferedSession } from "./client.js";
 import { InteractionFeed, signFeedback } from "../interactions.js";
 import { PlayableSession, playback } from "../session.js";
@@ -193,7 +194,7 @@ function render() {
   const cost = recent ? ` \xB7 Recent additional cost: beasts +${receipt.effects.beastFatigue.map((x) => x.toFixed(2)).join("/")} fatigue, driver +${receipt.effects.driverStrain.toFixed(2)} strain` : "";
   text("exertionState", `Current exertion ${exertion.toFixed(2)} \xB7 ${endurance.trend === "decreasing" ? "Recovering" : endurance.trend === "increasing" ? "Expending endurance" : "Stable"}${cost}`);
   $("signState").textContent = `Active: ${p.signs.active ?? "none"} \xB7 Queued: ${p.signs.pending ?? "none"} \xB7 Uses remaining: ${p.signs.remaining}`;
-  $("progress").textContent = open ? `Sign Points crossed: ${p.checkpointCursor}/${s.track.checkpoints.length} \xB7 Next: ${s.track.checkpoints[p.checkpointCursor]?.id ?? "finish"}` : `${s.format} \xB7 ${s.config.laps} laps \xB7 Player ${progress(p)}`;
+  $("progress").textContent = open ? `Sign Points crossed: ${p.checkpointCursor}/${s.track.checkpoints.length} \xB7 Next: ${s.track.checkpoints[p.checkpointCursor]?.id ?? "finish"}` : isJoust(s) ? `${s.format} \xB7 Joust \xB7 ${Math.max(0, Math.ceil(JOUST_TIME - s.time))} s to the stewards\u2019 call` : `${s.format} \xB7 ${s.config.laps} laps \xB7 Player ${progress(p)}`;
   const official = terminal?.cleared ? terminal.classification : null, rows = official ?? [...s.entrants].sort((a, b) => (a.finishTime === null) - (b.finishTime === null) || (a.finishTime ?? 0) - (b.finishTime ?? 0) || b.q - a.q || a.id.localeCompare(b.id)).map((r, i) => ({ id: r.id, place: i + 1, status: r.status, time: r.finishTime }));
   const desired = [];
   for (const row of rows) {

@@ -1,0 +1,14 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {joustCourse,isJoust,acrossPartition,JOUST_TIME} from '../src/sim/joust.js';
+import {createRace,run,digest} from '../src/sim/race.js';
+import {location} from '../src/track/oval.js';
+import {nationalBoard} from '../src/career/m6/world.js';
+import {validateOffer} from '../src/career/championships/offers.js';
+const two=()=>createRace().setup.entrants.slice(0,2);
+const joust=seed=>createRace({seed,course:joustCourse(),format:'Combat',overrides:{laps:20},entrants:two()});
+test('the lists: two turnouts in the lane along the partition, half a lap apart, both on a straight',()=>{const s=joust(1);assert(isJoust(s));const [a,b]=s.entrants;assert.equal(a.lane,3);assert.equal(b.lane,3);assert.equal(a.q-b.q,Math.floor(s.track.cells/2));for(const r of [a,b])assert.equal(location(r.q,r.lane,s.config,s.track).type,'straight');assert.equal(a.signs.remaining,99);
+ assert(!isJoust(createRace({seed:1,course:joustCourse(),format:'Combat',overrides:{laps:2},entrants:createRace().setup.entrants.slice(0,3)})),'a joust is strictly one against one');});
+test('blows land only across the partition, never along the same straight',()=>{const s=joust(1);const [a,b]=s.entrants;assert.equal(acrossPartition(s,a,b),false);const t={...a,q:a.q},u={...b,q:a.q+1};assert.equal(acrossPartition(s,t,u),false,'same straight');});
+test('every joust ends with a decision: a wreck, or points at the time limit',()=>{let wrecks=0;for(let seed=1;seed<=10;seed++){const s=run(joust(seed)),d=s.events.find(e=>e.type==='JOUST_DECIDED');assert.equal(s.status,'Ended');assert(d,'decided '+seed);assert(s.events.filter(e=>e.type==='ATTACK').every(e=>e.effects.action==='attack'),'no ramming');const w=s.entrants.find(r=>r.id===d.effects.winner);assert.equal(w.status,'Finished');if(d.effects.reason==='wreck'){wrecks++;assert.equal(s.entrants.find(r=>r.id===d.effects.loser).physical,'Wreck');}else assert(s.time>=JOUST_TIME);}assert(wrecks>=3,'jousts end in wrecks often ('+wrecks+'/10)');});
+test('jousts are deterministic',()=>{assert.equal(digest(run(joust(4))),digest(run(joust(4))));});
+test('Jousting is on rotation beside Racing for Pinks, one race against one rival',()=>{const d=nationalBoard('c','N1',{tier:1,epoch:2,localWins:0,prestigeWon:false},true).find(d=>d.m6.type==='joust');assert(d);assert.equal(d.offer.value.fieldSize,2);assert.equal(d.offer.value.schedule[0].format,'Combat');assert(d.offer.value.schedule[0].course.id.startsWith('joust-'));assert.equal(d.m6.events[0].geometryKind,'Joust');validateOffer(d.offer);});

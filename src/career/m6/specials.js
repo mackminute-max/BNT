@@ -2,7 +2,7 @@
 // Racing board.
 //  - Always there: Big Buy-In (one race, entry 4x, winner takes most) and the
 //    Drag Race (a straight sprint).
-//  - On rotation, two at a time: Racing for Pinks (and Jousting when it lands).
+//  - On rotation, two at a time: Racing for Pinks and Jousting.
 //  - Unlocked: each faction's Invitational once you have earned 50 Reputation
 //    with it (a House only in its own nation).
 // One-off races are sealed and carry no Endowments (there is no race after them).
@@ -17,6 +17,7 @@ export const SPECIALS = Object.freeze({
   buyin: {label: 'Big Buy-In', slot: 'always', races: 1, fee: 4, purse: 'winner-takes-most', blurb: 'One race, four times the entry fee. The winner takes most of the pot, second gets a little, everyone else goes home poorer.'},
   drag: {label: 'Drag Race', slot: 'always', races: 1, fee: .5, purse: 'sprint', format: 'Pure', blurb: 'A straight sprint down a 600-metre strip. No corners, no tricks, just raw speed.'},
   pinks: {label: 'Racing for Pinks', slot: 'rotation', races: 1, fee: 0, purse: 'none', fieldSize: 2, blurb: 'One rival, one race. Both sides stake their chariot and both beasts, and the winner takes them. Your driver stays yours.'},
+  joust: {label: 'Jousting', slot: 'rotation', races: 1, fee: 1, purse: 'duel', fieldSize: 2, format: 'Combat', blurb: 'One rival on the narrow lists, half a lap apart, striking across the centre partition each time you pass. It ends when one turnout is wrecked, or on points if both last seven minutes. Strategies are unlimited.'},
   invitational: {label: 'Invitational', slot: 'unlocked', races: 3, fee: 1.5, purseScale: 2, blurb: 'A faction’s private three-race Series, run their way. Double purses, and extra Reputation with the faction that invited you.'},
 });
 export const INVITATION_AT = 50;
@@ -25,10 +26,11 @@ export const INVITATION_BONUS = {start: 5, win: 10}; // extra Reputation earned 
 const nationName = id => (WORLD_CONTENT.profiles.find(p => p.id === id)?.name ?? id).split(' ')[0];
 const BUYIN_NAMES = ['High Stakes Night', 'The Golden Gate', 'Purse of Iron', 'The Heavy Wallet', 'Kingmaker’s Pot', 'All-In Derby'];
 const DRAG_NAMES = ['Straight Shot', 'Quarter-Mile Thunder', 'The Long Straight', 'Dead Run', 'Bolt Sprint', 'The Starting Gun'];
+const JOUST_NAMES = ['Lists of Iron', 'The Broken Lance', 'Partition Duel', 'Tilt of Champions', 'The Crossing Blades'];
 const PINKS_NAMES = ['Pink Slip Duel', 'Winner Takes the Wheels', 'Back-Alley Stakes', 'The Title Race'];
 export function specialName(kind, factionId, nationId, h) {
   if (kind === 'invitational') return `${FACTIONS[factionId].name.replace(/^The /, '')} Invitational`;
-  const pool = kind === 'buyin' ? BUYIN_NAMES : kind === 'drag' ? DRAG_NAMES : PINKS_NAMES;
+  const pool = kind === 'buyin' ? BUYIN_NAMES : kind === 'drag' ? DRAG_NAMES : kind === 'joust' ? JOUST_NAMES : PINKS_NAMES;
   return `${nationName(nationId)} ${pool[h % pool.length]}`.slice(0, 100);
 }
 // An Invitational runs the faction's way: its preferred track kinds and format.

@@ -9,12 +9,13 @@ import {BOONS} from '../sim/endowments.js';
 import {ABILITIES} from '../sim/m6-interaction.js';
 import {LINES as BOOTH_LINES, COLOR_KEYS, ANNOUNCERS, SPONSORS} from './radio-lines.js';
 import {WBNT_LINES, WBNT_NETWORK_KEYS, NETWORK} from './radio-wbnt-lines.js';
+import {JOUST_LINES} from './radio-joust-lines.js';
 // Two channels (Mack 2026-11-27): 'wbnt' carries the color commentary and only the
 // race highlights, with a network intro, pregame ads and, in long races after the
 // halfway point, product and network plugs. 'pbp' is the full play-by-play with no
 // color. 'all' is the original single booth (kept for broadcast() and tests).
 export const CHANNELS = Object.freeze({wbnt: {name: 'WBNT', text: NETWORK.tagline}, pbp: {name: 'Play-by-play', text: 'Every move, called live'}});
-const LINES = {...BOOTH_LINES, ...WBNT_LINES};
+const LINES = {...BOOTH_LINES, ...WBNT_LINES, ...JOUST_LINES};
 const PLUG_GAP = 25;
 
 const PRIORITY = new Set(['RACE_STARTED', 'RU_FINISHED', 'RACE_ENDED', 'RACE_STALLED', 'RU_RETIRED', 'FINAL_LAP', 'LEAD_CHANGED']);
@@ -73,7 +74,7 @@ export class RadioChannel {
   highlight(e) {
     const p = e.participants ?? [], fx = e.effects ?? {};
     switch (e.type) {
-      case 'RACE_STARTED': case 'RU_RETIRED': case 'WRECK_CREATED': case 'INCIDENT': case 'FINAL_LAP': case 'RU_FINISHED': case 'RACE_ENDED': case 'RACE_STALLED': return true;
+      case 'RACE_STARTED': case 'RU_RETIRED': case 'WRECK_CREATED': case 'INCIDENT': case 'FINAL_LAP': case 'RU_FINISHED': case 'RACE_ENDED': case 'RACE_STALLED': case 'JOUST_DECIDED': return true;
       case 'LEAD_CHANGED': return e.time >= 2 && (this.isPlayer(fx.leader) || this.finalLap || (e.time - (this.last.get('wlead') ?? -Infinity) >= 15 && (this.last.set('wlead', e.time), true)));
       case 'ATTACK': return !!fx.success && (!!fx.crit || this.grudge(fx.attacker, fx.defender) || this.isPlayer(fx.attacker) || this.isPlayer(fx.defender));
       case 'OVERTAKE': return this.grudge(fx.passer, fx.passed) || (this.finalLap && (this.isPlayer(fx.passer) || this.isPlayer(fx.passed)));
@@ -193,6 +194,10 @@ export class RadioChannel {
       case 'ABILITY_ACTIVATED': {
         const a = p[0], ability = ABILITIES[fx.abilityId]?.name;
         if (a && ability) this.say(e, 'ability', this.tokens(e, a, null, {ability}), {force: true});
+        break;
+      }
+      case 'JOUST_DECIDED': {
+        this.say(e, fx.reason === 'points' ? 'joust_points' : 'joust_wreck', this.tokens(e, fx.winner, fx.loser), {force: true});
         break;
       }
       case 'FINAL_LAP': {

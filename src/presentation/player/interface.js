@@ -1,3 +1,4 @@
+import { isJoust } from '../../sim/joust.js';
 import {playerProfile, StartSequence, nearRadioBottom} from './model.js';
 const $ = id => document.getElementById(id);
 function node(tag, className, text) {
@@ -163,7 +164,7 @@ app.renderMetadata = (state = globalThis.P2.currentSnapshot?.state) => {
   text(raceTitleName, state.track.name ?? session.options.course);
   // Mack 2026-11-27: race type and distance beside the track name; rallies read "Point to Point".
   const p2p = state.track.course && !state.track.closed;
-  text(raceTitleMeta, ` · ${state.format} · ${p2p ? 'Point to Point' : state.config.laps + (state.config.laps === 1 ? ' lap' : ' laps')}`);
+  text(raceTitleMeta, ` · ${state.format} · ${isJoust(state) ? 'Joust: until one is wrecked' : p2p ? 'Point to Point' : state.config.laps + (state.config.laps === 1 ? ' lap' : ' laps')}`);
   const weather = typeof session.options.weather === 'string' ? session.options.weather : null;
   // Mack 2026-11-27: the status line is hidden on the race page; it only appears to report a worker problem.
   raceInfo.hidden = !(session.error || session.fallbackReason);
