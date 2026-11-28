@@ -7,6 +7,10 @@ import {INJURIES3} from '../economy/catalog.js';
 import {integrityStatus} from '../assets.js';
 import {exact} from '../legacy-state.js';
 import {add,decimal} from '../economy/arithmetic.js';
+import {buildCut,upkeepCut,cut} from './upgrades.js';
+// Price of the next level after any Builders' Guild discount.
+export const buildPrice = (s, id, level) => cut(FACILITIES[id].levels[level].cost, buildCut(s));
+export const upkeepFor = (s, levels) => cut(upkeepOf(levels), upkeepCut(s));
 
 export const FACILITY_RULES = 'bnt-facilities-v1';
 export const FACILITY_IDS = Object.freeze(['barn', 'bunkhouse', 'workshop', 'yard', 'infirmary']);
@@ -76,13 +80,14 @@ export function buildFacility(s, {facilityId}) {
   const now = m.facilities.levels[facilityId];
   if (now >= 3) throw Error('This facility is already at its top level');
   const next = FACILITIES[facilityId].levels[now];
-  if (s.career.treasury < next.cost) throw Error(`Building ${FACILITIES[facilityId].name} level ${now + 1} costs ${next.cost} Gold`);
+  const price = buildPrice(s, facilityId, now);
+  if (s.career.treasury < price) throw Error(`Building ${FACILITIES[facilityId].name} level ${now + 1} costs ${price} Gold`);
   const before = facilityCapacity(m.facilities.levels);
-  s.career.treasury -= next.cost;
+  s.career.treasury -= price;
   m.facilities.levels[facilityId] = now + 1;
   const after = facilityCapacity(m.facilities.levels), property = Object.values(s.management.registries.properties)[0];
   for (const k of Object.keys(after)) property.capacities[k] += after[k] - before[k];
-  return {facilityId, level: now + 1, cost: next.cost};
+  return {facilityId, level: now + 1, cost: price};
 }
 
 const cap = n => Math.max(0, Math.min(100, n));
@@ -107,7 +112,7 @@ function train(a, points, lines) {
 export function facilitiesAfterSeries(s, x, summary) {
   const m = s.m6, levels = m.facilities?.levels;
   if (!levels || FACILITY_IDS.every(k => !levels[k])) return;
-  const r = s.management.registries, lines = [], upkeep = upkeepOf(levels), paid = Math.min(upkeep, s.career.treasury);
+  const r = s.management.registries, lines = [], upkeep = upkeepFor(s, levels), paid = Math.min(upkeep, s.career.treasury);
   s.career.treasury -= paid;
   const short = paid < upkeep;
   if (short) lines.push(`Upkeep was ${upkeep - paid} Gold short. The buildings gave no care this time.`);
