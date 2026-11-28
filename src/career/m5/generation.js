@@ -1,3 +1,7 @@
+import {CHARIOT_MODELS} from './chariot-models.js';
+// Chariot naming rules. Careers made before 2026-11-28 keep the old long names (2);
+// new careers use "<model> by <manufacturer>" (3). validateM6 and createM6 set this.
+export const NAMING={chariot:2};
 import {CATALOGS as C,METADATA as M,CONTENT_PIN} from './content.generated.js';
 import {fingerprint} from '../cycles/contracts.js';
 import {marketStream,seedInteger,integerDraw,generateMarket,offerPrice} from '../economy/market.js';
@@ -40,8 +44,9 @@ export function generateIdentity(context,{category,tier='Standard',nationId=null
   else if(['driver','specialist'].includes(category))name=pick(names,culture.given)+' '+pick(names,culture.family);
   else if(category==='beast')name=pick(names,culture.beastNames);
   else if(category==='organization')name=pick(names,culture.organizationRoots)+' '+pick(names,culture.organizationEndings);
+  else if(category==='chariot'&&NAMING.chariot>=3){const naming=lookup('chariot.'+nation.canonicalNationId.toLowerCase());name=pick(names,CHARIOT_MODELS[nation.canonicalNationId]??naming.modelNames)+' by '+pick(names,naming.manufacturers);}
   else{const naming=lookup(category==='chariot'?'chariot.'+nation.canonicalNationId.toLowerCase():nation.equipmentPreferences[0]);name=pick(names,naming.manufacturers)+' '+pick(names,naming.modelNames);}
-  if(namingVersion===2&&!authoredName&&['beast','organization','chariot','equipment'].includes(category))name+=' of '+pick(names,culture.family);
+  if(namingVersion===2&&!authoredName&&['beast','organization','equipment'].includes(category)||namingVersion===2&&!authoredName&&category==='chariot'&&NAMING.chariot<3)name+=' of '+pick(names,culture.family);
   if(name.length<=100&&!occupied.has(name.toLowerCase())&&(authoredName||!reserved.has(name.toLowerCase()))){out.name=name;return out;}
   if(authoredName)break;
  }

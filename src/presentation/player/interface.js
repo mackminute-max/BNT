@@ -147,7 +147,7 @@ app.renderMetadata = (state = globalThis.P2.currentSnapshot?.state) => {
   }
   text(physical, `${values.status}${values.control ? ' · ' + values.control : ''}${values.physical ? ' · ' + values.physical : ''}`);
   const actual = state.entrants.find(r => r.id === state.playerId);
-  text(remaining, actual ? ` ${actual.signs.remaining} opportunities remaining` : ' Unavailable');
+  text(remaining, actual ? ` ${actual.signs.remaining} ${actual.signs.remaining === 1 ? 'change' : 'changes'} left` : ' Unavailable');
   for (const card of $('p2SignChoices').children) {
     const sign = card.firstElementChild.textContent, labels = [];
     if (actual?.signs.active === sign) labels.push('Active');

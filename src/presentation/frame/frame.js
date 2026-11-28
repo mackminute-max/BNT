@@ -13,7 +13,7 @@ const GROUPS = {
   workshop: [['Facilities', /facilit/i], ['Workshop', /workshop|engineering|training/i], ['Upgrades', /builders/i]],
   // Schema 8 Market and Staff tag each section (data-bt-tab); older saves fall to the first tab.
   markets: [['Beasts', /^beasts$/i], ['Chariots', /^chariots$/i], ['Equipment', /^equipment$/i], ['Regional Market', /regional/i], ['Sell', /sell/i], ['Upgrades', /connections/i]],
-  facilities: [['Your Staff', /staff & contracts|contract/i], ['Hire Drivers', /hire drivers/i], ['Hire Specialists', /hire specialists/i], ['Upgrades', /staff network/i]],
+  facilities: [['Your Staff', /staff & contracts|contract/i], ['Hire Drivers', /hire drivers/i], ['Hire Specialists', /hire specialists/i], ['Training', /^training/i], ['Upgrades', /staff network/i]],
   services: [['Recovery & Services', /recovery|service/i], ['Work Review', /work review/i], ['Driver Care', /driver care/i], ['Beast Care', /beast care/i], ['Chariot Repair', /chariot repair/i]],
   championships: [['Active Series', /active|standings|schedule|next race|current|reward|endowment/i], ['Available Series', /your turnout|national championships|series|events|details|registration|loadout/i], ['Last Event', /last event|result/i]],
 };
