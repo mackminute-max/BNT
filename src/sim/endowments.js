@@ -42,6 +42,19 @@ export const BOONS = Object.freeze(Object.fromEntries([
   boon('counterpunch', 'Counterpunch', 'Schemer', 'overtaken', {kind: 'buff', stat: 'combat', amount: .15, seconds: 5}, 3, 'Being overtaken gives +{combat} combat for {seconds} s.'),
   boon('war-chest', 'War Chest', 'Schemer', 'lead', {kind: 'charge'}, 9999, 'The first time you take the lead, refund your ability charge.'),
   boon('smoke-screen', 'Smoke Screen', 'Schemer', 'contact', {kind: 'buff', stat: 'shield', amount: .2, seconds: 3}, 4, 'Contact gives {shield} damage reduction for {seconds} s (every 4 s).'),
+  // Faction signature Boons (Phase 4c): unlocked with Reputation, offered at the
+  // tier you bought (Level I to III). They belong to no style and never count
+  // toward capstones; rivals never draw them.
+  boon('stewards-blessing', 'Steward’s Blessing', 'Faction', 'cleanLap', {kind: 'buff', stat: 'shield', amount: .15, seconds: 8}, 0, 'A lap without damage gives {shield} damage reduction for {seconds} s.'),
+  boon('house-edge', 'House Edge', 'Faction', 'lead', {kind: 'buff', stat: 'combat', amount: .15, seconds: 8}, 6, 'Taking the lead gives +{combat} combat for {seconds} s.'),
+  boon('banner-charge', 'Banner Charge', 'Faction', 'start', {kind: 'buff', stat: 'speed', amount: .06, seconds: 10}, 0, 'Race start: +{speed} speed for {seconds} s.'),
+  boon('crown-discipline', 'Crown Discipline', 'Faction', 'controlRegained', {kind: 'buff', stat: 'handling', amount: .12, seconds: 6}, 0, 'Regaining control gives +{handling} handling for {seconds} s.'),
+  boon('greenvale-stride', 'Greenvale Stride', 'Faction', 'lap', {kind: 'fatigue', amount: 4}, 0, 'Every lap removes {amount} fatigue from both beasts.'),
+  boon('anvil-hide', 'Anvil Hide', 'Faction', 'hurt', {kind: 'buff', stat: 'shield', amount: .25, seconds: 4}, 12, 'Taking damage gives {shield} damage reduction for {seconds} s (every 12 s).'),
+  boon('league-pedigree', 'League Pedigree', 'Faction', 'finalLap', {kind: 'buff', stat: 'accel', amount: .08, seconds: 600}, 0, 'Final lap: +{accel} acceleration to the line.'),
+  boon('horde-fury', 'Horde Fury', 'Faction', 'hit', {kind: 'buff', stat: 'speed', amount: .05, seconds: 4}, 0, 'A landed hit gives +{speed} speed for {seconds} s.'),
+  boon('paid-escort', 'Paid Escort', 'Faction', 'contact', {kind: 'strain', amount: 4}, 5, 'Contact removes {amount} driver strain (every 5 s).'),
+  boon('sandstorm-veil', 'Sandstorm Veil', 'Faction', 'overtaken', {kind: 'buff', stat: 'shield', amount: .2, seconds: 4}, 6, 'Being overtaken gives {shield} damage reduction for {seconds} s (every 6 s).'),
 ].map(b => [b.id, b])));
 
 // Capstones (Phase 3): holding 3 or more Boons of one style unlocks that style's

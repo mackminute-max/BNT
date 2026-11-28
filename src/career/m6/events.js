@@ -3,7 +3,7 @@
 // until you answer it (or the next Series closes and replaces it). Outcomes move
 // Gold, Reputation, faction favor, the condition of your stable, and your rivals.
 import {fingerprint} from '../cycles/contracts.js';
-import {addFavor} from './factions.js';
+import {addFavor,FACTIONS} from './factions.js';
 import {GRUDGES} from './rivalry.js';
 
 export const EVENT_RULES = 'bnt-events-v1';
@@ -154,7 +154,7 @@ function apply(s, [kind, a, b], p, title) {
   switch (kind) {
     case 'gold': { const n = Math.max(-s.career.treasury, a); s.career.treasury += n; return `${n >= 0 ? '+' : ''}${n} Gold`; }
     case 'rep': { s.championshipFoundation.facts.reputation = Math.max(0, s.championshipFoundation.facts.reputation + a); return `${a >= 0 ? '+' : ''}${a} Reputation`; }
-    case 'favor': { const id = a === 'house' ? 'house-' + s.m6.world.currentNation : a; addFavor(s, id, b, title); return `${b >= 0 ? '+' : ''}${b} favor`; }
+    case 'favor': { const id = a === 'house' ? 'house-' + s.m6.world.currentNation : a; addFavor(s, id, b, title); return `${b >= 0 ? '+' : ''}${b} Reputation with ${FACTIONS[id].name}`; }
     case 'beasts': for (const x of live(r.beasts)) x.condition = cap(x.condition + a); return `beasts ${a >= 0 ? '+' : ''}${a} condition`;
     case 'drivers': for (const x of live(r.personnel)) if (x.role === 'driver') x.condition = cap((x.condition ?? 100) + a); return `drivers ${a >= 0 ? '+' : ''}${a} condition`;
     case 'chariots': for (const x of live(r.chariots)) { x.condition = cap(x.condition + a); x.integrity = cap(x.integrity + a); x.status = x.integrity >= 80 ? 'Functional' : x.integrity >= 60 ? 'Light' : x.integrity >= 30 ? 'Moderate' : 'Critical'; } return `chariots +${a} condition`;
