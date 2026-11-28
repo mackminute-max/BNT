@@ -8,13 +8,13 @@ import {icon} from './art.js';
 // Panels that match nothing join the first tab, so no function is ever hidden.
 const GROUPS = {
   overview: [['Overview', /stable progress/i, '.m3ui-identity,.hs-stats'], ['Legacy', /legacy/i, '#m4-legacy'], ['Career Highlights', /accomplishment|highlight/i], ['Active Quests', /^active quests$/i]],
-  roster: [['Turnout', /active racing unit|turnout/i], ['Owned Roster', /owned roster|roster/i]],
+  roster: [['Turnout', /active racing unit|turnout/i], ['Owned Roster', /owned roster|roster/i], ['Drivers', /^drivers$/i], ['Draft Team', /draft team/i], ['Chariots', /^chariots/i]],
   gambling: [['Race Book', /race book|spectator/i], ['Bones', /^bones$/i], ['Beast Pit', /beast pit/i]],
   workshop: [['Facilities', /facilit/i], ['Workshop', /workshop|engineering|training/i], ['Upgrades', /builders/i]],
   // Schema 8 Market and Staff tag each section (data-bt-tab); older saves fall to the first tab.
   markets: [['Beasts', /^beasts$/i], ['Chariots', /^chariots$/i], ['Equipment', /^equipment$/i], ['Regional Market', /regional/i], ['Sell', /sell/i], ['Upgrades', /connections/i]],
   facilities: [['Your Staff', /staff & contracts|contract/i], ['Hire Drivers', /hire drivers/i], ['Hire Specialists', /hire specialists/i], ['Upgrades', /staff network/i]],
-  services: [['Recovery & Services', /recovery|service|care|repair/i], ['Work Review', /work review/i]],
+  services: [['Recovery & Services', /recovery|service/i], ['Work Review', /work review/i], ['Driver Care', /driver care/i], ['Beast Care', /beast care/i], ['Chariot Repair', /chariot repair/i]],
   championships: [['Active Series', /active|standings|schedule|next race|current|reward|endowment/i], ['Available Series', /your turnout|national championships|series|events|details|registration|loadout/i], ['Last Event', /last event|result/i]],
 };
 // Destinations where each headed panel simply becomes its own tab.
@@ -28,7 +28,7 @@ function cardKind(card) {
 }
 
 const headingOf = el => (el.matches('h2,h3') ? el : el.querySelector('h2,h3'))?.textContent.trim() ?? '';
-const visible = el => !el.hidden && el.tagName !== 'SCRIPT' && el.tagName !== 'TEMPLATE';
+const visible = el => !el.hidden && el.tagName !== 'SCRIPT' && el.tagName !== 'TEMPLATE' && el.tagName !== 'STYLE';
 
 function grouping(page, children) {
   const rules = GROUPS[page];
