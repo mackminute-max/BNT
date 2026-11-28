@@ -10,7 +10,8 @@ test('art batch 2 names parse: species, build variants and the Velmora "Elf"',()
 });
 test('beasts use their own species only, preferring the matching build',()=>withMedia(()=>{
  assert.equal(pickArt('Beast',{species:'B07',variant:'swift',key:'a'}).name,'BNT_ART_Beast_DireWolf_Swift_01');
- assert.equal(pickArt('Beast',{species:'B01',variant:'base',key:'a'}),null,'no horse art yet, so the silhouette stays');
+ assert.equal(pickArt('Beast',{species:'B01',variant:'base',key:'a'}).name,'BNT_ART_Beast_Horse_Base_01');
+ assert.match(pickArt('Beast',{species:'B02',variant:'swift',key:'a'}).name,/StormElk_(Base|Strong)/,'a missing build falls back to the same species');
  assert.equal(buildVariant('beast',{speed:60,agility:60,power:50,toughness:50}),'swift');assert.equal(buildVariant('beast',{speed:50,agility:50,power:50,toughness:50}),'base');
 }));
 test('chariots use their nation, or the generic set when the nation has none',()=>withMedia(()=>{
