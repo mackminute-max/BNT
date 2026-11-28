@@ -1,4 +1,5 @@
 import {scaleM6Awards} from '../../m6/rewards.js';
+import {LOSER_NOTHING} from '../../m6/specials.js';
 import {generateRewardOffer} from '../reward-offers.js';import {fingerprint,gold,plus} from '../../cycles/contracts.js';
 export function runEligibility(x,r){const row=r.rows.find(row=>row.id===x.playerId);return !!(row?.started&&!['DNS','DQ','Disqualified','Withdrawn'].includes(row.status)&&!x.withdrawal&&r.eventIndex+1<x.offer.value.schedule.length&&(x.eligibility.find(e=>e.entrantId===x.playerId)?.mayStart||!!x.m6&&!(x.m6.casualties??[]).some(c=>c.player)));}
 export function legacyEligibility(x,{versioned=true}={}){const started=x.raceResults.some(r=>r.participation.some(p=>p.entrantId===x.playerId&&p.started));const complete=x.raceResults.length===x.offer.value.schedule.length;return {version:1,eligible:versioned&&started&&complete&&x.withdrawal?.kind!=='Voluntary',started,complete,voluntary:x.withdrawal?.kind==='Voluntary',reason:!versioned?'Legacy offer without E5 reward terms':!started?'No legitimate start':!complete?'Schedule incomplete':x.withdrawal?.kind==='Voluntary'?'Voluntary withdrawal':'Earned participation'};}
@@ -15,6 +16,9 @@ export function buildEntitlements(s,x,terms){
  if(x.m4?.loadout.includes('patron')){const base=out.filter(e=>e.kind==='Gold'&&e.entrantId===x.playerId).reduce((n,e)=>n+e.amount,0);add('Gold',x.playerId,x.m6?Math.min(2000,Math.floor(base/5)):Math.min(1000,Math.floor(base/10)),'legacy-patron');}
  if(x.m4?.loadout.includes('favourite')){const base=out.filter(e=>e.kind==='Reputation'&&e.entrantId===x.playerId).reduce((n,e)=>n+e.amount,0);add('Reputation',x.playerId,Math.floor(base/4),'legacy-favourite');}
  if(x.m6?.purse&&!x.withdrawal)add('Gold',x.playerId,x.m6.purse,'p3-purse');
- if(new Set(out.map(x=>x.id)).size!==out.length)throw Error('Duplicate E5 entitlement');return scaleM6Awards(s,x,out);
+ if(new Set(out.map(x=>x.id)).size!==out.length)throw Error('Duplicate E5 entitlement');
+ // Duels: the loser walks away with nothing (Mack 2026-11-27).
+ const duel=LOSER_NOTHING.includes(x.m6?.special?.kind),won=x.raceResults.some(r=>r.rows.some(row=>row.id===x.playerId&&row.status==='Finished'&&row.place===1));
+ return scaleM6Awards(s,x,duel&&!won?out.filter(e=>e.entrantId!==x.playerId):out);
 }
 export const sumAwards=(awards,kind,entrantId)=>awards.filter(e=>e.kind===kind&&e.entrantId===entrantId).reduce((n,e)=>plus(n,e.amount),0);

@@ -2,7 +2,8 @@
 // Racing board.
 //  - Always there: Big Buy-In (one race, entry 4x, winner takes most) and the
 //    Drag Race (a straight sprint).
-//  - On rotation, two at a time: Racing for Pinks and Jousting.
+//  - On rotation, two at a time: Turnout Takedown (was Racing for Pinks) and Jousting.
+//  - Duels (a field of two): the loser gets no Gold, XP or Reputation.
 //  - Unlocked: each faction's Invitational once you have earned 50 Reputation
 //    with it (a House only in its own nation).
 // One-off races are sealed and carry no Endowments (there is no race after them).
@@ -14,20 +15,22 @@ import {WORLD_CONTENT} from './world-content.generated.js';
 // races: Series length. fee: entry fee times the board's normal fee.
 // slot: always | rotation | unlocked.
 export const SPECIALS = Object.freeze({
-  buyin: {label: 'Big Buy-In', slot: 'always', races: 1, fee: 4, purse: 'winner-takes-most', blurb: 'One race, four times the entry fee. The winner takes most of the pot, second gets a little, everyone else goes home poorer.'},
-  drag: {label: 'Drag Race', slot: 'always', races: 1, fee: .5, purse: 'sprint', format: 'Pure', blurb: 'A straight sprint down a 600-metre strip. No corners, no tricks, just raw speed.'},
-  pinks: {label: 'Racing for Pinks', slot: 'rotation', races: 1, fee: 0, purse: 'none', fieldSize: 2, blurb: 'One rival, one race. Both sides stake their chariot and both beasts, and the winner takes them. Your driver stays yours.'},
-  joust: {label: 'Jousting', slot: 'rotation', races: 1, fee: 1, purse: 'duel', fieldSize: 2, format: 'Combat', blurb: 'One rival on the narrow lists, half a lap apart, striking across the centre partition each time you pass. It ends when one turnout is wrecked, or on points if both last seven minutes. Strategies are unlimited.'},
-  invitational: {label: 'Invitational', slot: 'unlocked', races: 3, fee: 1.5, purseScale: 2, blurb: 'A faction’s private three-race Series, run their way. Double purses, and extra Reputation with the faction that invited you.'},
+  buyin: {label: 'Big Buy-In', slot: 'always', races: 1, fee: 4, purse: 'winner-takes-most', short: 'Four times the fee; the winner takes most.', blurb: 'One race, four times the entry fee. The winner takes most of the pot, second gets a little, everyone else goes home poorer.'},
+  drag: {label: 'Drag Race', slot: 'always', races: 1, fee: .5, purse: 'sprint', format: 'Pure', short: 'One flat-out sprint down a straight strip.', blurb: 'A straight sprint down a 600-metre strip. No corners, no tricks, just raw speed.'},
+  pinks: {label: 'Turnout Takedown', slot: 'rotation', races: 1, fee: 0, purse: 'none', fieldSize: 2, short: 'Winner takes the loser’s chariot and beasts.', blurb: 'One rival, one race. Both sides stake their chariot and both beasts, and the winner takes them. The loser gets nothing else. Your driver stays yours.'},
+  joust: {label: 'Jousting', slot: 'rotation', races: 1, fee: 1, purse: 'duel', fieldSize: 2, format: 'Combat', short: 'Duel across the partition until one is wrecked.', blurb: 'One rival on the narrow lists, half a lap apart, striking across the centre partition each time you pass. It ends when one turnout is wrecked, or on points if both last seven minutes. The loser gets nothing. Strategies are unlimited.'},
+  invitational: {label: 'Invitational', slot: 'unlocked', races: 3, fee: 1.5, purseScale: 2, short: 'A faction’s private Series, double purses.', blurb: 'A faction’s private three-race Series, run their way. Double purses, and extra Reputation with the faction that invited you.'},
 });
 export const INVITATION_AT = 50;
+// Duels where the loser earns nothing (Mack 2026-11-27).
+export const LOSER_NOTHING = Object.freeze(['pinks', 'joust']);
 export const INVITATION_BONUS = {start: 5, win: 10}; // extra Reputation earned with the faction
 
 const nationName = id => (WORLD_CONTENT.profiles.find(p => p.id === id)?.name ?? id).split(' ')[0];
 const BUYIN_NAMES = ['High Stakes Night', 'The Golden Gate', 'Purse of Iron', 'The Heavy Wallet', 'Kingmaker’s Pot', 'All-In Derby'];
 const DRAG_NAMES = ['Straight Shot', 'Quarter-Mile Thunder', 'The Long Straight', 'Dead Run', 'Bolt Sprint', 'The Starting Gun'];
 const JOUST_NAMES = ['Lists of Iron', 'The Broken Lance', 'Partition Duel', 'Tilt of Champions', 'The Crossing Blades'];
-const PINKS_NAMES = ['Pink Slip Duel', 'Winner Takes the Wheels', 'Back-Alley Stakes', 'The Title Race'];
+const PINKS_NAMES = ['Takedown Duel', 'Winner Takes the Turnout', 'Back-Alley Takedown', 'The Title Takedown'];
 export function specialName(kind, factionId, nationId, h) {
   if (kind === 'invitational') return `${FACTIONS[factionId].name.replace(/^The /, '')} Invitational`;
   const pool = kind === 'buyin' ? BUYIN_NAMES : kind === 'drag' ? DRAG_NAMES : kind === 'joust' ? JOUST_NAMES : PINKS_NAMES;
