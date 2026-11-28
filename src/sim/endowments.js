@@ -58,6 +58,27 @@ export function capstones(boons) {
   for (const b of boons ?? []) { const st = BOONS[b.id]?.style; if (st) n[st] = (n[st] ?? 0) + 1; }
   return STYLES.filter(st => (n[st] ?? 0) >= CAPSTONE_AT);
 }
+// Soft ceiling (2026-11-27): a single Boon's buff bends toward its stat's ceiling
+// instead of passing it, so every level and rarity upgrade still adds something.
+// Values up to half the ceiling are unchanged.
+export function softAmount(stat, raw) {
+  const cap = CAPS[stat];
+  if (!cap || raw <= cap / 2) return raw;
+  const h = cap / 2;
+  return h + h * (1 - Math.exp(-(raw - h) / h));
+}
+// Strength the ceiling bends away is paid out as extra duration, so an upgrade
+// near the ceiling lasts longer instead of doing nothing. Rounded to 0.5 s.
+export function boonSeconds(def, level, rarity) {
+  const fx = def.effect;
+  if (fx.kind !== 'buff' || !fx.seconds || fx.seconds >= 600) return fx.seconds;
+  const raw = (fx.amount ?? 0) * boonStrength(def, level, rarity), amount = softAmount(fx.stat, raw);
+  return Math.round(fx.seconds * (amount > 0 ? raw / amount : 1) * 2) / 2;
+}
+export function boonAmount(def, level, rarity) {
+  const raw = (def.effect.amount ?? 0) * boonStrength(def, level, rarity);
+  return def.effect.kind === 'buff' ? softAmount(def.effect.stat, raw) : raw;
+}
 export function boonStrength(b, level, rarity) { return (RARITY[rarity] ?? 1) * LEVEL[Math.min(LEVEL.length, level) - 1]; }
 export function validateEndowments(e) {
   if (e === undefined) return;
@@ -94,8 +115,9 @@ function apply(s, r, b, def) {
   if (fx.kind === 'buff') {
     if (!fx.seconds) return null;
     r.endow.buffs = r.endow.buffs.filter(x => x.id !== def.id);
-    r.endow.buffs.push({id: def.id, stat: fx.stat, amount: fx.amount * k, until: s.tick + Math.ceil(fx.seconds / dt)});
-    return {stat: fx.stat, amount: fx.amount * k, seconds: fx.seconds};
+    const amount = boonAmount(def, b.level, b.rarity), seconds = boonSeconds(def, b.level, b.rarity);
+    r.endow.buffs.push({id: def.id, stat: fx.stat, amount, until: s.tick + Math.ceil(seconds / dt)});
+    return {stat: fx.stat, amount, seconds};
   }
   if (fx.kind === 'fatigue') { const n = fx.amount * k; for (const x of r.ru.beasts) x.fatigue = Math.max(0, x.fatigue - n); return {fatigue: -n}; }
   if (fx.kind === 'strain') { const n = fx.amount * k; r.ru.driver.strain = Math.max(0, r.ru.driver.strain - n); return {strain: -n}; }
@@ -144,7 +166,7 @@ export function endowBonus(s, r, stat) {
   for (const x of r.endow.buffs) if (x.stat === stat && x.until > s.tick) n += x.amount;
   if (stat === 'accel') for (const b of r.endowments.boons) {
     const def = BOONS[b.id];
-    if (def.trigger === 'leading' && r.status === 'Racing' && leader(s)?.id === r.id) n += def.effect.amount * boonStrength(def, b.level, b.rarity);
+    if (def.trigger === 'leading' && r.status === 'Racing' && leader(s)?.id === r.id) n += boonAmount(def, b.level, b.rarity);
   }
   for (const st of capstones(r.endowments.boons)) if (CAPSTONES[st].stat === stat) n += CAPSTONES[st].amount;
   return Math.min(CAPS[stat] ?? n, n);

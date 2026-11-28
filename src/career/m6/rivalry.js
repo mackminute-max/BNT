@@ -63,7 +63,7 @@ export function applyFace(s, x, entrant, names, p) {
   names.style = face.style;
   names.grudge = face.grudge;
   const feud = (x.m6.feud ??= {rules: RIVALRY_RULES, targets: [], wrecks: []});
-  if ((face.grudge > 0 || face.style === 'dirty') && !feud.targets.includes(entrant.id)) feud.targets.push(entrant.id);
+  if (face.grudge > 0 && !feud.targets.includes(entrant.id)) feud.targets.push(entrant.id);
 }
 
 // Grudge context for a race setup (read by src/sim/grudges.js).

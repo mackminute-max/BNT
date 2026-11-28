@@ -2,7 +2,7 @@
 // a Boon, an Active Ability, and a Supplies card (the original Endowments).
 // Boons last for the championship (they live in x.m4.run, which is cleared at
 // settlement or withdrawal) and are handed to the race as `endowments`.
-import {BOONS, STYLES, RARITY, LEVEL, ENDOWMENT_RULES, boonStrength} from '../../sim/endowments.js';
+import {BOONS, STYLES, RARITY, LEVEL, ENDOWMENT_RULES, boonStrength, boonAmount, boonSeconds} from '../../sim/endowments.js';
 import {fingerprint} from '../cycles/contracts.js';
 import {ABILITIES as ABILITY_IDS, ABILITY_SLOTS as ABILITY_SLOT_LIMIT, M6_P1_INTERACTION} from '../../sim/m6-interaction.js';
 
@@ -23,9 +23,9 @@ export function endowmentsFor(x) {
 const pct = n => Math.round(n * 100) + '%';
 // Card text with numbers filled in for this level and rarity.
 export function boonText(def, level, rarity) {
-  const k = boonStrength(def, level, rarity), fx = def.effect, amount = (fx.amount ?? 0) * k;
+  const fx = def.effect, amount = boonAmount(def, level, rarity);
   return def.text
-    .replaceAll('{seconds}', String(fx.seconds ?? ''))
+    .replaceAll('{seconds}', String(boonSeconds(def, level, rarity) ?? ''))
     .replaceAll('{amount}', String(Math.round(amount * 10) / 10))
     .replaceAll('{combat}', pct(amount)).replaceAll('{speed}', pct(amount)).replaceAll('{accel}', pct(amount))
     .replaceAll('{handling}', pct(amount)).replaceAll('{shield}', pct(amount));
