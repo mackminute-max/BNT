@@ -58,6 +58,9 @@ export function scoutReport(kind, attributes, personality = null) {
 export function scoutHtml(kind, attributes, personality, esc) {
   const r = scoutReport(kind, attributes, personality);
   if (!r) return '';
+  // Clarity pass: an even spread has no real strengths, so say so instead of a style tag.
+  const vals = Object.values(attributes).filter(Number.isFinite);
+  if (Math.max(...vals) - Math.min(...vals) < 4) return `<div class="bt-scout"><p><small>Even ratings: no clear strength or weakness yet. Training will shape a style.</small></p></div>`;
   return `<div class="bt-scout"><p><span class="bt-style bt-style-${r.style.toLowerCase()}">${esc(r.style)}</span> <small>${esc(r.hint)}</small></p><p><strong>Strong:</strong> ${esc(r.strengths.join(', '))} · <strong>Weak:</strong> ${esc(r.weakness)}</p>${r.quirk ? `<p><strong>Quirk: ${esc(r.quirk.name)}.</strong> ${esc(r.quirk.text)}</p>` : ''}</div>`;
 }
 export const SCOUT_CSS = `.bt-scout{border-top:1px solid rgba(201,167,90,.35);margin-top:4px;padding-top:4px}.bt-scout p{margin:2px 0}

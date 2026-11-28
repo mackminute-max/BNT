@@ -10,6 +10,7 @@
 //    and, as the marquee unlock, a signature Endowment in three tiers.
 // Every nation has a faction of its own (its racing house), plus two that span
 // the continent: the Racing Authority and the Bookmakers' Ring.
+import {trainingRepSpent} from './stable-care.js';
 import {upgradeSpent} from './upgrades.js';
 import {exact} from '../legacy-state.js';
 import {fingerprint} from '../cycles/contracts.js';
@@ -140,7 +141,7 @@ function upgrade(f) {
 export const factionsOf = s => upgrade(s.m6.factions);
 const ensure = s => (s.m6.factions = upgrade(s.m6.factions));
 function note(f, text) { f.log.unshift(text.slice(0, 200)); f.log = f.log.slice(0, 12); }
-export const wallet = s => Math.max(0, (s.championshipFoundation?.facts?.reputation ?? 0) - (s.m6.factions?.spent ?? 0) - upgradeSpent(s));
+export const wallet = s => Math.max(0, (s.championshipFoundation?.facts?.reputation ?? 0) - (s.m6.factions?.spent ?? 0) - upgradeSpent(s) - trainingRepSpent(s));
 export const credit = (s, id) => { const f = factionsOf(s); return Math.max(0, f.earned[id] - f.spentOn[id]); };
 export const owns = (s, id, unlockId) => !!s?.m6?.factions?.owned?.[id]?.includes(unlockId);
 

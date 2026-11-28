@@ -5,6 +5,8 @@
 // (presentation/frame/frame.js); playable.js tags each section with data-bt-tab.
 import {UPGRADE_TREES,hasUpgrade,marketCut,signingCut,noSigningFee,buildCut,upkeepCut} from '../career/m6/upgrades.js';
 import {wallet} from '../career/m6/factions.js';
+import {repPerPoint,GOLD_PER_REP,NAME_MAX} from '../career/m6/stable-care.js';
+import {statLabel,statHelp,helpTip,SYSTEM_HELP} from './help-tips.js';
 import {MARKET_GRADES,marketGrade,reputationGrade} from '../career/m6/markets.js';
 import {WORLD_CONTENT} from '../career/m6/world-content.generated.js';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -29,7 +31,7 @@ export function perksLine(s,page){const p=[];
  return p.length?`<div class="bt-perks"><strong>Your upgrades:</strong>${p.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:'';}
 
 export function marketGradeLine(s){const rep=s.championshipFoundation.facts.reputation,r=reputationGrade(s),g=marketGrade(s),next=MARKET_GRADES[MARKET_GRADES.indexOf(r)+1];
- return `<p><strong>Market quality: ${esc(g.name)}</strong>${g!==r?` (your Reputation alone gives ${esc(r.name)})`:''}${next?` · Next Reputation grade: ${esc(next.name)} at ${next.reputation} (${Math.max(0,next.reputation-rep)} more).`:' · All Reputation grades reached.'} New grades appear at the next market renewal.</p>`;}
+ return `<p><strong>Market quality: ${esc(g.name)}</strong>${g!==r?` (your Reputation alone gives ${esc(r.name)})`:''}${next?` · Next Reputation grade: ${esc(next.name)} at ${next.reputation} (${Math.max(0,next.reputation-rep)} more).`:' · All Reputation grades reached.'} New grades appear at the next market renewal. ${helpTip(SYSTEM_HELP.marketGrade,'Market quality')}</p>`;}
 
 export function regionalIntro(s){const r=s.m6.market.regional;if(!r)return `<p>The Regional Market opens in the host nation during a Series, once you have raced its first event. Its stock comes from that nation and is gone when the Series ends.</p>`;
  const nation=Object.values(r.identities??{})[0]?.residentNationId;
@@ -40,8 +42,20 @@ export function treePanel(s,page){const t=UPGRADE_TREES[page],w=wallet(s),active
   return `<div class="bt-node ${own?'bt-own':open?'bt-next':'bt-lock'}" data-upgrade="${n.id}"><h4><span><span class="bt-tier-n">${'I'.repeat(n.tier)}</span>${esc(n.name)}</span>${own?'<span class="bt-owned">Owned</span>':''}</h4><p>${esc(n.text)}</p>${own?'':`<p><span class="bt-rep">${n.cost} Reputation</span></p><button type="button" data-up-buy="${n.id}" ${why?'disabled':''}>Buy</button>${why?` <span class="bt-fx-small">${esc(why)}</span>`:''}`}</div>`;};
  return `<section class="hs-panel"><h2>${esc(t.name)}</h2><p><em>${esc(t.job)}</em></p><div class="bt-tree-head"><span>Reputation to spend <strong>${w}</strong></span><span>Shared with your faction unlocks. Spent Reputation is never refunded.</span></div><div class="bt-tree">${branches.map(b=>`<div class="bt-branch">${t.nodes.filter(n=>n.branch===b).map(node).join('')}</div>`).join('')}</div></section>`;}
 
+// Mack 2026-11-27: training moved here from Driver Care. Each point costs
+// Reputation or Gold (the player picks); Gold costs GOLD_PER_REP times more.
+export function trainingPanel(s){const r=s.management.registries,w=wallet(s),active=!!s.championshipFoundation.activeId;
+ const rows=(id,a,kind)=>Object.entries(a.attributes).map(([k,v])=>{const n=Math.round(Number(v)),rep=repPerPoint(v),gold=rep*GOLD_PER_REP,max=Number(v)>=100;return `<tr><th scope="row">${esc(statLabel(k))} ${helpTip(statHelp(k,kind))}</th><td>${n}</td><td><button data-train="${esc(id)}" data-attr="${esc(k)}" data-cur="rep" ${active||max||w<rep?'disabled':''}>+1 for ${rep} Rep</button></td><td><button data-train="${esc(id)}" data-attr="${esc(k)}" data-cur="gold" ${active||max||s.career.treasury<gold?'disabled':''}>+1 for ${gold} Gold</button></td></tr>`;}).join('');
+ const block=(id,a,kind,label)=>`<details class="bt-train"${''}><summary><b>${esc(a.name)}</b> <small>${label}</small></summary><table class="bt-train-t"><thead><tr><th>Rating</th><th>Now</th><th>Pay Reputation</th><th>Pay Gold</th></tr></thead><tbody>${rows(id,a,kind)}</tbody></table></details>`;
+ return `<style>.bt-train{border:1px solid #6b5a3e;background:rgba(0,0,0,.25);padding:6px 10px;margin:0 0 8px}.bt-train summary{cursor:pointer}.bt-train-t{width:100%;border-collapse:collapse;margin-top:6px}.bt-train-t th,.bt-train-t td{padding:4px 6px;border-bottom:1px solid rgba(201,167,90,.2);text-align:left}.bt-train-t button{min-height:0!important;padding:3px 10px!important;font-size:.85em!important}</style><section class="hs-panel"><h2>Training</h2><p>Raise a driver's or beast's ratings one point at a time. Pay with Reputation or with Gold; Gold costs ${GOLD_PER_REP} times as much. The price goes up as the rating climbs, and ratings stop at 100. Training happens between Series.</p><p class="bt-tree-head"><span>Reputation to spend: <strong>${w}</strong></span><span>Gold: <strong>${s.career.treasury}</strong></span></p>${active?'<p><b>Finish or leave your current Series to train.</b></p>':''}${Object.entries(r.personnel).map(([id,a])=>block(id,a,'driver','Driver')).join('')}${Object.entries(r.beasts).map(([id,a])=>block(id,a,'beast','Beast')).join('')||''}</section>`;}
+
+// Mack 2026-11-27: rename anything in your own stable.
+export const renameForm=(id,name)=>`<details class="bt-rename"><summary>Rename</summary><input data-rename-input="${esc(id)}" maxlength="${NAME_MAX}" value="${esc(name)}" aria-label="New name"> <button data-rename="${esc(id)}">Save name</button></details>`;
+
 export function bindM6Pages(root,s,port,run){
  bindListDetail(root);
+ for(const b of root.querySelectorAll('[data-train]'))b.onclick=()=>{const d=b.dataset,openIds=[...root.querySelectorAll('details.bt-train[open] [data-train]')].map(x=>x.dataset.train);run(()=>port.e5('m6.train',{assetId:d.train,attribute:d.attr,points:1,currency:d.cur,confirmed:true}),'Trained +1 '+statLabel(d.attr)+'.').then(()=>{for(const id of new Set(openIds))document.querySelector(`[data-train="${CSS.escape(id)}"]`)?.closest('details')?.setAttribute('open','');});};
+ for(const b of root.querySelectorAll('[data-rename]'))b.onclick=()=>{const id=b.dataset.rename,input=root.querySelector(`[data-rename-input="${CSS.escape(id)}"]`);run(()=>port.e5('m6.rename',{assetId:id,name:input?.value??'',confirmed:true}),'Name saved.');};
  for(const b of root.querySelectorAll('[data-up-buy]'))b.onclick=()=>{const id=b.dataset.upBuy;run(()=>port.e5('m6.buyUpgrade',{upgradeId:id,confirmed:true}),'Upgrade bought.');};
 }
 

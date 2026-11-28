@@ -21,7 +21,8 @@ import {identity,phaseName} from './content.js';
 import {createDeveloperWorkspace} from './workspace.js';
 import {rosterCards,recruitmentCards,improvements,capacitySummary} from './player-pages.js';
 import {managementView} from './model.js';
-import {PAGE_CSS,LD_CSS,listDetail,perksLine,marketGradeLine,regionalIntro,treePanel,bindM6Pages} from './m6-pages.js';
+import {helpTip,SYSTEM_HELP,friendly} from './help-tips.js';
+import {PAGE_CSS,LD_CSS,listDetail,perksLine,marketGradeLine,regionalIntro,treePanel,bindM6Pages,trainingPanel,renameForm} from './m6-pages.js';
 const escape=value=>String(value??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const panel=(title,body)=>`<section class="hs-panel"><h2>${escape(title)}</h2>${body}</section>`;
 const table=(headers,rows)=>rows.length?`<div class="hs-table"><table><thead><tr>${headers.map(h=>`<th>${escape(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(c=>`<td>${escape(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:'<p>No records yet.</p>';
@@ -56,7 +57,7 @@ export function mountPlayableStable(port){
  async function run(operation,message){
   if(busy)return;const focusBefore=document.activeElement?.id;busy=true;notice='Waiting for authoritative confirmation…';error=false;render();
   try{const result=await operation();if(result===false){notice='Cancelled. Nothing changed.';}else notice=message+(port.store.mode==='manual'?' Manual mode: change is in memory only. Export and explicitly confirm your checkpoint.':'');}
-  catch(e){error=true;notice=e.message.replaceAll('schema','save format').replaceAll('revision','save version').replaceAll('STALE_WRITER','Save changed in another window').replaceAll('RECOVERY_REQUIRED','Save recovery needed');}
+  catch(e){error=true;notice=friendly(e.message).replaceAll('schema','save format').replaceAll('revision','save version').replaceAll('STALE_WRITER','Save changed in another window').replaceAll('RECOVERY_REQUIRED','Save recovery needed');}
   finally{busy=false;render();if(HQ_ENABLED&&!document.body.classList.contains('career-race-open'))requestAnimationFrame(()=>{const target=focusBefore&&document.getElementById(focusBefore);if(target&&!target.disabled)target.focus({preventScroll:true});else{$('feedback').tabIndex=-1;$('feedback').focus({preventScroll:true});}});}
  }
  function bind(id,handler){const el=$(id);if(el)el.onclick=handler;}
@@ -102,7 +103,7 @@ export function mountPlayableStable(port){
  }
  // Recovery & Services (Interface Bible 08): Driver Care, Beast Care and Chariot Repair.
  function m6Services(v){const tab=(name,html)=>`<div data-bt-tab="${name}">${html}</div>`,one=(name,key,kind,kinds,blurb)=>tab(name,panel(name,`<p>${blurb}</p>`+listDetail(key,kind,rosterCards(v,kinds),{owned:true})));
-  return PAGE_CSS+LD_CSS+one('Driver Care','care-driver','driver',['personnel'],'Treat injuries, help drivers recover and train their ratings. Work completes when you confirm it.')+one('Beast Care','care-beast','beast',['beasts'],'Treat injuries, rest and train your draft beasts.')+one('Chariot Repair','care-chariot','chariot',['chariots'],'Restore integrity, refurbish wear and engineer improvements.');}
+  return PAGE_CSS+LD_CSS+one('Driver Care','care-driver','driver',['personnel'],'Treat injuries and help drivers recover, for Gold. Training is on the Staff page. Work completes when you confirm it.')+one('Beast Care','care-beast','beast',['beasts'],'Treat injuries and rest your draft beasts, for Gold. Training is on the Staff page.')+one('Chariot Repair','care-chariot','chariot',['chariots'],'Restore integrity, refurbish wear and engineer improvements, for Gold. '+helpTip(SYSTEM_HELP.services,'Services'));}
  // Roster & Barn (Interface Bible 04): Turnout, Drivers, Draft Team and Chariots tabs.
  function m6Roster(v,s){const t=activeTeam(s,v.presentation),active=[t.driverId,...t.beastIds,t.chariotId].filter(Boolean),tab=(name,html)=>`<div data-bt-tab="${name}">${html}</div>`,iv={...v,inspectionOnly:true},owned=(key,kind,kinds)=>listDetail(key,kind,rosterCards(iv,kinds),{active,owned:true});
   return PAGE_CSS+LD_CSS+tab('Turnout',panel('Active turnout',lineupPreview(s,v.presentation)))+tab('Drivers',panel('Drivers',owned('roster-driver','driver',['personnel'])))+tab('Draft Team',panel('Draft Team',owned('roster-beast','beast',['beasts'])))+tab('Chariots',panel('Chariots and Equipment',owned('roster-chariot','chariot',['chariots','equipment'])));}
@@ -119,6 +120,7 @@ export function mountPlayableStable(port){
    return PAGE_CSS+LD_CSS+tab('Your Staff',panel('Staff & Contracts',rosterCards(v,['personnel','specialists']))+contractTable(v))
     +hire('Hire Drivers','driver','<p>Drivers sign a contract and draw wages each Series. A driver you pass on may sign with a rival team.</p>','No drivers looking for work until the next renewal.')
     +hire('Hire Specialists','specialist','<p>Specialists need a room in Staff Quarters or the Bunk House. Each one makes a service cheaper.</p>','No specialists looking for work until the next renewal.')
+    +tab('Training',trainingPanel(s))
     +tab('Upgrades',perks+treePanel(s,'staff'));}
   const perks=perksLine(s,'facilities');
   return PAGE_CSS+tab('Facilities',perks+m6FacilitiesPage(s))+tab('Workshop',panel('Workshop',rosterCards(v,['chariots','equipment'])))+tab('Upgrades',perks+treePanel(s,'facilities'));
